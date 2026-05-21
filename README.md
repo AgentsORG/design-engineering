@@ -140,7 +140,7 @@ design-engineering/
 ├── spec/
 │   └── agent-skills-spec.md           ← pointer to the Agent Skills specification
 ├── template/
-│   └── SKILL.md                       ← starter template for a new skill
+│   └── TEMPLATE.md                    ← starter template (not SKILL.md so the CLI ignores it)
 └── skills/design-engineering/
     ├── SKILL.md                       ← thin Map of Content (~90 lines)
     ├── evals/                         ← Perplexity Step-0 evals
