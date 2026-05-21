@@ -44,6 +44,8 @@ Each atomic node should cite its source at the bottom. The current sources are:
 - **Benji Taylor** — delight-impact curve, fly-not-teleport, feeling-right, lerp-breathing (Liveline), morphing-icons, shared-letter-morph, tray-rules.
 - **Jakub Antalik (transitions.dev)** — cross-blur, compose-subtract-asymmetry, distance-falloff-propagation, multi-segment-shake.
 - **guidelines.sh** — typography, color, hover states, visual-imperfection, interaction-personality, cards-design, forms-validation, layout, content-authenticity, anti-patterns, marketing-vs-product UI.
+- **Vercel (vercel.com/design/guidelines)** — accessibility-baseline, optimistic-updates, copy-voice, url-as-state, contrast-and-color-scheme.
+- **Ben DC (github.com/bendc/frontend-guidelines)** — css-conventions, dependency-discipline.
 - **DiceBear** — `components/avatar-systems` references the v9.x catalog of procedural avatar styles.
 - **Lucide-animated / @pqoqubbw** — `motion/hover-default-imperative` pattern.
 - **HKTITAN / installer** — `meta/gotchas.md` and `meta/pov.md`. These grow over time and reflect lived experience. Forked installers should edit `meta/pov.md`.

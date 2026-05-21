@@ -15,6 +15,7 @@ The decisions that look invisible but determine whether the UI feels considered 
 - [[shadows-whisper]] — Shadows should whisper, not announce. The default `0 2px 8px rgba(0,0,0,0.1)` is a tell. Concrete spec.
 - [[border-radius]] — Uniform radius everywhere is lazy. Capsule buttons need full package. Nested-radius rules.
 - [[visual-imperfection]] — Asymmetry in marketing only. Optical over mathematical alignment. Subtle texture/noise. Imperfect shapes — perfect geometry feels cold.
+- [[contrast-and-color-scheme]] — APCA over WCAG 2 for contrast math. `<meta name="theme-color">` + `color-scheme: dark`. Interactions raise contrast. Avoid gradient banding.
 
 ## Cross-cluster
 

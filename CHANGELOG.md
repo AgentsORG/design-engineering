@@ -4,6 +4,41 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+## [1.1.0] — 2026-05-21
+
+Adds two more named sources — [Vercel's web-interface guidelines](https://vercel.com/design/guidelines) and [Ben DC's frontend-guidelines](https://github.com/bendc/frontend-guidelines) — distilled into 7 new atomic nodes covering accessibility, copy voice, URL state, contrast math, optimistic updates, CSS conventions, and dependency discipline.
+
+### Added — 7 new nodes
+
+**`components/` (3 nodes)**
+
+- `accessibility-baseline.md` — Keyboard-everywhere, `:focus-visible` rings, hit targets (24/44px), ARIA names on icon-only buttons, polite aria-live for async. The a11y floor below taste. (Vercel + bendc)
+- `optimistic-updates.md` — Update UI immediately on likely-success actions, reconcile or undo on failure. Largest perceived-latency win available without infra changes. Pair destructive actions with Undo toasts. (Vercel)
+- `copy-voice.md` — Active voice, Title Case for headings/buttons, "&" over "and", numerals for counts, error messages that guide the exit. Microcopy is design. (Vercel)
+
+**`layout/` (1 node)**
+
+- `url-as-state.md` — Filters, tabs, pagination, panels — all live in the URL. Back/forward restores scroll. Deep-link every modal. (Vercel)
+
+**`surface/` (1 node)**
+
+- `contrast-and-color-scheme.md` — APCA over WCAG 2 for contrast math. `<meta name="theme-color">` + `color-scheme: dark`. Interactions raise contrast. Avoid gradient banding. (Vercel)
+
+**`motion/` (1 node)**
+
+- `css-conventions.md` — `1turn` over `360deg`, unitless line-height, hex over rgb, native browser APIs over libraries. Ben DC's CSS dialect choices. (bendc)
+
+**`philosophy/` (1 node)**
+
+- `dependency-discipline.md` — Every dependency is a tax. Replicate simple utilities. Draw shapes in CSS. Prefer native browser APIs. The bundle is design. (bendc)
+
+### Changed
+
+- `SKILL.md` description expanded to mention writing UI copy and auditing a11y. All 5 affected MOCs updated to link the new nodes.
+- `marketplace.json` version bumped to 1.1.0; description expanded to list the new source authors.
+- `README.md` — repo layout tree includes new nodes; Sources section adds Vercel + bendc with their specific contributions; file count updated to 72 markdown files.
+- `AGENTS.md` — Sources of truth section adds Vercel + bendc with the node lists they sourced.
+
 ## [1.0.0] — 2026-05-21
 
 Initial public release of the `design-engineering` skill graph.
@@ -61,5 +96,6 @@ Initial public release of the `design-engineering` skill graph.
 npx skills add HKTITAN/design-engineering
 ```
 
-[Unreleased]: https://github.com/HKTITAN/design-engineering/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/HKTITAN/design-engineering/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/HKTITAN/design-engineering/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/HKTITAN/design-engineering/releases/tag/v1.0.0
