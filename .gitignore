@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+node_modules/
+.vscode/
+.idea/
+*.log
+.env
+.env.local
+akshay-skill-graphs.md
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json

@@ -1,0 +1,131 @@
+name: Lint and validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  markdown-lint:
+    name: Markdown lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install markdownlint-cli
+        run: npm install -g markdownlint-cli@0.41.0
+
+      - name: Run markdownlint
+        run: markdownlint '**/*.md' --ignore node_modules --ignore .obsidian --config .markdownlint.jsonc
+
+  frontmatter-check:
+    name: Frontmatter present on all nodes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check every reference node starts with frontmatter
+        run: |
+          set -e
+          missing=0
+          for f in $(find skills/design-engineering/references -name '*.md'); do
+            first_line=$(head -n 1 "$f")
+            if [ "$first_line" != "---" ]; then
+              echo "::error file=$f::Missing YAML frontmatter (file must start with ---)"
+              missing=$((missing + 1))
+            fi
+          done
+          if [ $missing -gt 0 ]; then
+            echo "::error::$missing reference file(s) missing frontmatter"
+            exit 1
+          fi
+          echo "All reference nodes have frontmatter."
+
+  skill-structure:
+    name: Skill structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify required files exist
+        run: |
+          set -e
+          required=(
+            "skills/design-engineering/SKILL.md"
+            "AGENTS.md"
+            "README.md"
+            "LICENSE"
+            "CONTRIBUTING.md"
+            "CODE_OF_CONDUCT.md"
+            "SECURITY.md"
+            "spec/agent-skills-spec.md"
+            "template/SKILL.md"
+            ".claude-plugin/marketplace.json"
+          )
+          for f in "${required[@]}"; do
+            if [ ! -f "$f" ]; then
+              echo "::error file=$f::Required file missing"
+              exit 1
+            fi
+          done
+          echo "All required files present."
+
+      - name: SKILL.md description starts with 'Load when'
+        run: |
+          desc=$(awk '/^description:/{flag=1; sub(/^description: /, ""); print; next} flag && /^[a-z]+:/ {flag=0} flag {print}' skills/design-engineering/SKILL.md)
+          if ! echo "$desc" | head -n 1 | grep -qiE '^["\'']?(load when|use when)'; then
+            echo "::warning file=skills/design-engineering/SKILL.md::Description should start with 'Load when...' or 'Use when...' per Perplexity's skill-building guide"
+          else
+            echo "Description starts with 'Load when' / 'Use when' — OK."
+          fi
+
+      - name: Skill name matches folder name
+        run: |
+          name=$(grep -m 1 '^name:' skills/design-engineering/SKILL.md | awk '{print $2}' | tr -d '"')
+          if [ "$name" != "design-engineering" ]; then
+            echo "::error::SKILL.md name ($name) does not match folder name (design-engineering)"
+            exit 1
+          fi
+          echo "Name matches folder name."
+
+  link-check:
+    name: Internal wikilink check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify every [[wikilink]] in skill content resolves to a file
+        run: |
+          set -e
+          # Collect basenames of reference files (the resolvable wikilink targets)
+          basenames=$(find skills/design-engineering/references -name '*.md' -exec basename {} .md \;)
+
+          # Descriptive uses that aren't real links (allow-list)
+          allowlist=$(printf '%s\n' wikilinks node-name name foo bar wikilink-1 wikilink-2)
+
+          unresolved=0
+          # Only check actual skill content — not docs (CONTRIBUTING/README/AGENTS/spec/template)
+          for f in $(find skills/design-engineering -name '*.md'); do
+            # Strip code fences and inline backticks so descriptive [[wikilinks]] in code don't false-positive.
+            stripped=$(awk 'BEGIN{infence=0} /^```/{infence=!infence; next} !infence' "$f" | sed 's/`[^`]*`//g')
+            for link in $(echo "$stripped" | grep -oE '\[\[[a-zA-Z0-9_-]+\]\]' | sed 's/\[\[//;s/\]\]//' | sort -u); do
+              if echo "$allowlist" | grep -qx "$link"; then
+                continue
+              fi
+              if ! echo "$basenames" | grep -qx "$link"; then
+                echo "::error file=$f::Unresolved wikilink: [[$link]]"
+                unresolved=$((unresolved + 1))
+              fi
+            done
+          done
+          if [ $unresolved -gt 0 ]; then
+            echo "::error::$unresolved unresolved wikilink(s)"
+            exit 1
+          fi
+          echo "All wikilinks in skill content resolve."

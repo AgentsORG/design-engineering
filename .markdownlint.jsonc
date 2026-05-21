@@ -1,0 +1,30 @@
+{
+  "default": true,
+
+  // Line length — irrelevant for prose / tables / code blocks.
+  "MD013": false,
+
+  // Allow same heading text in sibling sections only.
+  "MD024": { "siblings_only": true },
+
+  // Frontmatter + H1 false-positives as "multiple top-level headings."
+  "MD025": false,
+
+  // Lists adjacent to text are common in node bodies — let them through.
+  "MD032": false,
+
+  // Allow raw HTML (used for inline avatar previews etc).
+  "MD033": false,
+
+  // Email addresses in CoC, SECURITY, pov, content-authenticity etc.
+  "MD034": false,
+
+  // Don't require a language on every fenced block.
+  "MD040": false,
+
+  // Don't require first line to be a heading (frontmatter).
+  "MD041": false,
+
+  // Fenced code blocks are the standard.
+  "MD046": { "style": "fenced" }
+}
