@@ -1,0 +1,98 @@
+/* Vault tokens — subtle polish for the design-engineering vault.
+ *
+ * Eats its own dog food where possible:
+ *   - radius tracks `surface/border-radius`
+ *   - easing + durations track `motion/easing-curves` + `motion/duration-table`
+ *   - hover lifts are 1px per `components/hover-states-subtle`
+ *   - active press is scale(0.97-0.98) per `components/responsive-feedback`
+ *   - reduced-motion guard per `motion/prefers-reduced-motion`
+ */
+
+:root,
+.theme-dark,
+.theme-light {
+  /* House easing — single curve reused everywhere so the vault feels
+   * coherent rather than a quilt of different bezier choices. */
+  --t-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Duration scale — UI windows from the skill's own duration-table. */
+  --t-duration-instant: 60ms;
+  --t-duration-fast: 180ms;
+  --t-duration-base: 220ms;
+
+  /* Radius scale — matches the 0.625rem (~10px) baseline from
+   * surface/border-radius, with sm/md/lg/full per the skill's spec. */
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 14px;
+}
+
+/* ---------- Internal links ---------- */
+/* Single transition on color — no underline animation, nothing flashy.
+ * Hover state is the accent-hover token from appearance.json. */
+a.internal-link,
+.cm-hmd-internal-link .cm-underline {
+  transition: color var(--t-duration-fast) var(--t-ease-out);
+}
+a.internal-link:hover {
+  color: var(--text-accent-hover);
+}
+
+/* ---------- File explorer ---------- */
+/* Items match the radius scale; only background animates on hover. */
+.nav-file-title,
+.nav-folder-title {
+  padding: 4px 8px;
+  border-radius: var(--radius-s);
+  transition: background-color var(--t-duration-fast) var(--t-ease-out);
+}
+
+/* ---------- Tags ---------- */
+.tag {
+  border-radius: var(--radius-s);
+  font-feature-settings: "tnum" on, "cv11" on;
+}
+
+/* ---------- Buttons + icon-only buttons ---------- */
+/* Landing-button pattern: 1px lift on hover, scale-down + faster
+ * duration on press for instant feedback. */
+button,
+.clickable-icon {
+  transition:
+    transform var(--t-duration-base) var(--t-ease-out),
+    background-color var(--t-duration-fast) var(--t-ease-out),
+    border-color var(--t-duration-fast) var(--t-ease-out);
+}
+button:hover,
+.clickable-icon:hover {
+  transform: translateY(-1px);
+}
+button:active,
+.clickable-icon:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: var(--t-duration-instant);
+}
+
+/* ---------- Graph view ---------- */
+/* Soften graph arrows so node text and edges read first. */
+.graph-view.color-arrow {
+  --graph-arrow-color: var(--text-faint);
+}
+
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  a.internal-link,
+  .cm-hmd-internal-link .cm-underline,
+  .nav-file-title,
+  .nav-folder-title,
+  button,
+  .clickable-icon {
+    transition-duration: 0.01ms;
+  }
+  button:hover,
+  .clickable-icon:hover,
+  button:active,
+  .clickable-icon:active {
+    transform: none;
+  }
+}

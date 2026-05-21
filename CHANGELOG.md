@@ -4,6 +4,19 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+## [1.4.0] — 2026-05-22
+
+### Added — Obsidian vault polish
+
+The `.obsidian/` config now ships a coherent visual layer for installers who open the repo as a vault:
+
+- **Graph view color groups** — every node is colored by its theme cluster, with `MOC-*.md` hub files standing out in the warmest hue so the structure of the graph reads at a glance. Nine groups: MOCs, philosophy, motion, typography, surface, components, layout, anti-patterns, meta.
+- **`.obsidian/snippets/vault-tokens.css`** — small CSS snippet that wires Obsidian's UI to the same tokens the skill itself recommends: one easing curve, three durations (60ms / 180ms / 220ms), the 6 / 10 / 14px radius scale, 1px hover lifts on interactive elements, `scale(0.98)` press, full `prefers-reduced-motion` guard.
+- **Accent color** set to a calm coral that complements the warm-cream surface most note-taking themes default to.
+- **`appearance.json`** declares the snippet enabled so it's active on first open.
+
+Nothing in the published skill content changed — these only affect the vault-view experience when installers browse the repo in Obsidian.
+
 ## [1.3.0] — 2026-05-22
 
 ### Changed — repo migration
@@ -150,7 +163,8 @@ Initial public release of the `design-engineering` skill graph.
 npx skills add AgentsORG/design-engineering
 ```
 
-[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/AgentsORG/design-engineering/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/AgentsORG/design-engineering/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/AgentsORG/design-engineering/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/AgentsORG/design-engineering/compare/v1.1.0...v1.2.0
