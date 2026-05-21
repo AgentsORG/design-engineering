@@ -74,7 +74,7 @@ The rules in this file are operating guidance for AI agents editing the repo; CO
 
 ```bash
 # install
-npx skills add HKTITAN/design-engineering
+npx skills add AgentsORG/design-engineering
 
 # validate (optional, agentskills.io CLI)
 skills-ref validate ./skills/design-engineering

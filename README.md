@@ -1,7 +1,7 @@
 # design-engineering
 
-[![skills.sh](https://skills.sh/b/HKTITAN/design-engineering)](https://skills.sh/HKTITAN/design-engineering)
-[![CI](https://github.com/HKTITAN/design-engineering/actions/workflows/lint.yml/badge.svg)](https://github.com/HKTITAN/design-engineering/actions/workflows/lint.yml)
+[![skills.sh](https://skills.sh/b/AgentsORG/design-engineering)](https://skills.sh/AgentsORG/design-engineering)
+[![CI](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml/badge.svg)](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 An agent skill that encodes design engineering — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight + [Agentation](https://www.agentation.com)), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), and [DiceBear](https://www.dicebear.com) (avatars) into one navigable skill graph.
@@ -11,7 +11,7 @@ Not a tutorial. Not a doc site. **A working memory the agent loads** when you're
 ## Install
 
 ```bash
-npx skills add HKTITAN/design-engineering
+npx skills add AgentsORG/design-engineering
 ```
 
 This uses the [skills.sh](https://skills.sh) CLI to install into your detected agent (Claude Code, Cursor, Windsurf, Codex, Gemini, Cline, Aider, and [18+ others](https://www.skills.sh/agent)). The CLI prompts for scope (project vs. global) and method (symlink vs. copy).
@@ -46,9 +46,9 @@ an easing curve or transition pattern, deciding "should this animate at
 all?", choosing an avatar / typography / color system, auditing for
 AI-default tells, or asking "why does this feel flat?"
 
-- Repo:        https://github.com/HKTITAN/design-engineering
-- Skill root:  https://github.com/HKTITAN/design-engineering/tree/main/skills/design-engineering
-- Install:     npx skills add HKTITAN/design-engineering
+- Repo:        https://github.com/AgentsORG/design-engineering
+- Skill root:  https://github.com/AgentsORG/design-engineering/tree/main/skills/design-engineering
+- Install:     npx skills add AgentsORG/design-engineering
 - Authoring rules and conventions: AGENTS.md at the repo root.
 
 The skill is a hub-and-spoke graph:
