@@ -1,6 +1,6 @@
 ---
 name: design-engineering
-description: Load when reviewing UI code, designing a component or page layout, picking an easing curve or transition pattern, deciding "should this animate at all?", choosing an avatar/typography/color system, auditing for AI-default tells, asking "why does this feel flat?", or judging when delight earns its weight. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh.
+description: Load when reviewing UI code, designing a component or page layout, picking an easing curve or transition pattern, deciding "should this animate at all?", choosing an avatar/typography/color system, writing UI copy or error messages, auditing for AI-default tells or a11y misses, asking "why does this feel flat?", or judging when delight earns its weight. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated.
 license: MIT
 metadata:
   author: HKTITAN
@@ -25,13 +25,13 @@ If the user asks for a UI code review, use the format defined in `[[review-forma
 
 How to think about taste, delight, and the difference between marketing and product UI.
 
-- `[[MOC-philosophy]]` → [[taste-is-trained]], [[unseen-details-compound]], [[beauty-is-leverage]], [[delight-impact-curve]], [[feeling-right]], [[marketing-vs-product-ui]], [[states-are-the-work]], [[data-is-content]]
+- `[[MOC-philosophy]]` → [[taste-is-trained]], [[unseen-details-compound]], [[beauty-is-leverage]], [[delight-impact-curve]], [[feeling-right]], [[marketing-vs-product-ui]], [[states-are-the-work]], [[data-is-content]], [[dependency-discipline]]
 
 ## Motion — when something should move, and how
 
 The largest cluster. Animation is the most overused tool in modern UI; this cluster tells you when *not* to animate as much as when to.
 
-- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[hover-default-imperative]], [[tray-rules]]
+- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]]
 
 ## Transition techniques — Jakub Antalik's catalog
 
@@ -52,19 +52,19 @@ The font defaults of the AI era are tells. Better choices and the rules around t
 
 The "background" choices that most decks of guidelines skip. They're load-bearing for feel.
 
-- `[[MOC-surface]]` → [[color-monochromatic]], [[dark-mode]], [[shadows-whisper]], [[border-radius]], [[visual-imperfection]]
+- `[[MOC-surface]]` → [[color-monochromatic]], [[dark-mode]], [[shadows-whisper]], [[border-radius]], [[visual-imperfection]], [[contrast-and-color-scheme]]
 
-## Layout — page-level grids, viewports, sticky chrome
+## Layout — page-level grids, viewports, sticky chrome, URL-as-state
 
-The container, not the component. Marketing especially benefits from custom-per-viewport thinking.
+The container, not the component. Marketing especially benefits from custom-per-viewport thinking; product apps benefit from URL-driven state.
 
-- `[[MOC-layout]]` → [[viewport-custom-design]], [[sticky-and-scroll-tells]]
+- `[[MOC-layout]]` → [[viewport-custom-design]], [[sticky-and-scroll-tells]], [[url-as-state]]
 
-## Components — buttons, hovers, states, cards, forms, avatars, icons
+## Components — buttons, hovers, states, cards, forms, avatars, icons, a11y, copy
 
 The atoms users actually touch. Their behavior is where craft lives.
 
-- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[cards-design]], [[forms-validation]], [[avatar-systems]], [[interaction-personality]]
+- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[cards-design]], [[forms-validation]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]]
 
 ## Anti-patterns — what AI-generated UI gives away
 

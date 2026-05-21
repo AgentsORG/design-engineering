@@ -4,7 +4,7 @@
 [![CI](https://github.com/HKTITAN/design-engineering/actions/workflows/lint.yml/badge.svg)](https://github.com/HKTITAN/design-engineering/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-An agent skill that encodes design engineering — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [lucide-animated](https://lucide-animated.com) (icon animation), and [DiceBear](https://www.dicebear.com) (avatars) into one navigable skill graph.
+An agent skill that encodes design engineering — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [lucide-animated](https://lucide-animated.com) (icon animation), and [DiceBear](https://www.dicebear.com) (avatars) into one navigable skill graph.
 
 Not a tutorial. Not a doc site. **A working memory the agent loads** when you're reviewing UI code, picking an easing curve, designing a component, or asking "why does this feel flat?"
 
@@ -133,7 +133,8 @@ design-engineering/
         ├── philosophy/  (taste-is-trained, unseen-details-compound,
         │              beauty-is-leverage, delight-impact-curve,
         │              feeling-right, marketing-vs-product-ui,
-        │              states-are-the-work, data-is-content)
+        │              states-are-the-work, data-is-content,
+        │              dependency-discipline)
         ├── motion/      (animation-decision-framework, easing-curves,
         │              duration-table, spring-animations, transform-opacity-only,
         │              transform-mastery, clip-path-tricks, never-scale-from-zero,
@@ -143,20 +144,23 @@ design-engineering/
         │              compose-subtract-asymmetry, distance-falloff-propagation,
         │              multi-segment-shake, lerp-breathing, morphing-icons,
         │              shared-letter-morph, hover-default-imperative, tray-rules,
-        │              animations-dev-curriculum)
+        │              css-conventions, animations-dev-curriculum)
         ├── typography/  (typography-humanity, line-length-tracking)
         ├── surface/     (color-monochromatic, dark-mode, shadows-whisper,
-        │              border-radius, visual-imperfection)
+        │              border-radius, visual-imperfection,
+        │              contrast-and-color-scheme)
         ├── components/  (hover-states-subtle, empty-loading-states, icon-systems,
         │              cards-design, forms-validation, avatar-systems,
-        │              interaction-personality)
-        ├── layout/      (viewport-custom-design, sticky-and-scroll-tells)
+        │              interaction-personality, accessibility-baseline,
+        │              optimistic-updates, copy-voice)
+        ├── layout/      (viewport-custom-design, sticky-and-scroll-tells,
+        │              url-as-state)
         ├── anti-patterns/  (ai-default-tells, content-authenticity)
         └── meta/        (review-format, review-checklist, cross-model-testing,
                        gotchas, pov)
 ```
 
-Total: **65 markdown files** in the skill — 1 SKILL.md, 8 MOCs, 53 atomic nodes, 3 evals.
+Total: **72 markdown files** in the skill — 1 SKILL.md, 8 MOCs, 60 atomic nodes, 3 evals.
 
 ## View and edit in Obsidian
 
@@ -199,6 +203,8 @@ PRs welcome. The shorter the better.
 - **Benji Taylor** — [benji.org](https://benji.org) (Family Values, Honkish, Liveline, Morphing Icons with Claude, Annotating, Agentation)
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev), [github.com/Jakubantalik/transitions.dev](https://github.com/Jakubantalik/transitions.dev)
 - **James Frewin** — [guidelines.sh](https://guidelines.sh)
+- **Vercel** — [vercel.com/design/guidelines](https://vercel.com/design/guidelines) (web-interface guidelines: a11y, optimistic updates, URL-as-state, contrast, copy voice)
+- **Ben DC** — [github.com/bendc/frontend-guidelines](https://github.com/bendc/frontend-guidelines) (CSS dialect choices, dependency discipline)
 - **dmytro / @pqoqubbw** — [lucide-animated.com](https://lucide-animated.com)
 - **DiceBear** — [dicebear.com/styles](https://www.dicebear.com/styles), [github.com/dicebear/styles](https://github.com/dicebear/styles)
 - **HKTITAN / Duolingo Skills** — [hktitan/duolingo](https://github.com/hktitan/duolingo) (skill-graph layout reference)

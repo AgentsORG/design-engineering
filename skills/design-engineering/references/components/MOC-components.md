@@ -17,6 +17,9 @@ Components are where craft lives because users *touch* them. Their states are wh
 - [[forms-validation]] — Validate at input, not on submit. Soft validation while typing, hard validation on blur. Inline beats summaries.
 - [[avatar-systems]] — Procedural avatars (DiceBear), uploaded photos, initials. All 31 DiceBear v9.x styles with previews. Seeding strategy.
 - [[interaction-personality]] — Unique microinteractions, contextual feedback, easter eggs, audio when intentional. Personality is *how* the product responds.
+- [[accessibility-baseline]] — Keyboard-everywhere, `:focus-visible`, hit targets, ARIA names on icon buttons, polite aria-live. The floor below taste.
+- [[optimistic-updates]] — Update UI immediately on likely-success actions, reconcile or undo on failure. The largest perceived-latency win.
+- [[copy-voice]] — Active voice, Title Case for headings/buttons, numerals for counts, error messages that guide the exit.
 
 ## Cross-cluster
 

@@ -33,6 +33,7 @@ The largest cluster. Read [[animation-decision-framework]] first — it tells yo
 ## Workflow nodes
 
 - [[debugging-animations]] — Slow-motion playback, frame-by-frame inspection, real-device testing. The three tools.
+- [[css-conventions]] — `1turn` over `360deg`, unitless line-height, hex over rgb, native over libraries. Ben DC's CSS dialect choices.
 
 ## Benji's catalog (benji.org)
 

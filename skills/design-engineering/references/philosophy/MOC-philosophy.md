@@ -18,6 +18,7 @@ The cluster that answers "why bother." Use when the user asks why something feel
 - [[marketing-vs-product-ui]] — Marketing is brand expression and narrative pacing. Product is consistency designed for the 100th session, not the first. Different rules apply.
 - [[states-are-the-work]] — The empty, loading, error, partial, offline, permission-denied states are 80% of the actual product work — the "happy path" is the easy 20%.
 - [[data-is-content]] — Tables, charts, lists, dashboards deserve the same typography / alignment / whitespace care as marketing prose. Data display *is* design.
+- [[dependency-discipline]] — Every dependency is a tax. Replicate simple utilities. Draw shapes in CSS. Prefer native browser APIs. The bundle is design.
 
 ## When to read this whole cluster
 

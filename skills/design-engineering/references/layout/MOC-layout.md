@@ -12,6 +12,7 @@ The page-level container, not the component level. When designing a screen — e
 
 - [[viewport-custom-design]] — Each viewport gets its own design, not just a scaled version of desktop. The "narrow central column on blog content" pattern.
 - [[sticky-and-scroll-tells]] — Background-blur on sticky sections is an AI giveaway. Scroll hijacking is almost always wrong. What to do instead.
+- [[url-as-state]] — Filters, tabs, pagination, panels — all live in the URL. Back/forward restores scroll. Deep-link everything.
 
 ## Cross-cluster
 
