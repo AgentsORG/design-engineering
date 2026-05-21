@@ -4,6 +4,14 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+## [1.2.1] — 2026-05-22
+
+### Fixed
+
+- `template/SKILL.md` renamed to `template/TEMPLATE.md`. The skills.sh CLI globs `**/SKILL.md` across the repo when discovering installable skills, so the template file was appearing as a second skill candidate (`your-skill-name`) in the install picker. Renaming sidesteps the glob while keeping the starter content discoverable to contributors. ([#install-picker-fix](https://github.com/HKTITAN/design-engineering/commit/v1.2.1))
+- `.github/workflows/lint.yml` required-files check updated to reference `template/TEMPLATE.md`.
+- README file tree and `marketplace.json` version updated accordingly.
+
 ## [1.2.0] — 2026-05-21
 
 Adds two more named sources mirrored offline in `spec/` — the full [Agent Skills specification](https://github.com/agentskills/agentskills) and [Google Labs' design.md format](https://github.com/google-labs-code/design.md) — plus integrates [Agentation](https://www.agentation.com) as both an installer-recommended companion tool and a skill-graph node.
@@ -119,7 +127,8 @@ Initial public release of the `design-engineering` skill graph.
 npx skills add HKTITAN/design-engineering
 ```
 
-[Unreleased]: https://github.com/HKTITAN/design-engineering/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/HKTITAN/design-engineering/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/HKTITAN/design-engineering/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/HKTITAN/design-engineering/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/HKTITAN/design-engineering/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/HKTITAN/design-engineering/releases/tag/v1.0.0

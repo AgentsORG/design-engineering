@@ -4,7 +4,7 @@ description: Load when reviewing UI code, designing a component or page layout, 
 license: MIT
 metadata:
   author: HKTITAN
-  version: "1.2.0"
+  version: "1.2.1"
   graph: true
 ---
 

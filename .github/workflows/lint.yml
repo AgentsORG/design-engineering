@@ -65,7 +65,7 @@ jobs:
             "CODE_OF_CONDUCT.md"
             "SECURITY.md"
             "spec/agent-skills-spec.md"
-            "template/SKILL.md"
+            "template/TEMPLATE.md"
             ".claude-plugin/marketplace.json"
           )
           for f in "${required[@]}"; do
