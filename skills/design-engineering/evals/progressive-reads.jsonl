@@ -1,0 +1,20 @@
+{"query": "pick an easing for a tab content swap", "expected_nodes": ["easing-curves", "duration-table"], "forbidden_nodes": ["spring-animations", "gesture-momentum"]}
+{"query": "fix a slow / janky scroll animation", "expected_nodes": ["transform-opacity-only", "debugging-animations"], "forbidden_nodes": ["stagger-choreography"]}
+{"query": "review a modal entrance animation", "expected_nodes": ["review-format", "never-scale-from-zero", "duration-table"], "forbidden_nodes": ["gesture-momentum"]}
+{"query": "should this delight animation fire on every button click?", "expected_nodes": ["delight-impact-curve", "animation-decision-framework"], "forbidden_nodes": ["spring-animations"]}
+{"query": "we want fake users for our demo screenshots", "expected_nodes": ["avatar-systems", "content-authenticity"], "forbidden_nodes": ["typography-humanity"]}
+{"query": "why does our landing page feel AI-generated?", "expected_nodes": ["ai-default-tells", "typography-humanity", "color-monochromatic"], "forbidden_nodes": ["spring-animations", "gesture-momentum"]}
+{"query": "design a multi-step bottom-sheet flow", "expected_nodes": ["tray-rules", "fly-not-teleport"], "forbidden_nodes": ["clip-path-tricks"]}
+{"query": "stack of avatars where hover lifts the hovered and neighbors slightly", "expected_nodes": ["distance-falloff-propagation", "avatar-systems"], "forbidden_nodes": ["stagger-choreography"]}
+{"query": "should a chart animate when data updates in real time?", "expected_nodes": ["lerp-breathing", "animation-decision-framework"], "forbidden_nodes": ["spring-animations"]}
+{"query": "review form-error UX", "expected_nodes": ["forms-validation", "multi-segment-shake", "review-format"], "forbidden_nodes": ["empty-loading-states"]}
+{"query": "tabs with sliding underline + text color flip", "expected_nodes": ["clip-path-tricks", "fly-not-teleport"], "forbidden_nodes": ["gesture-momentum"]}
+{"query": "build a hold-to-delete confirm button", "expected_nodes": ["clip-path-tricks", "delight-impact-curve"], "forbidden_nodes": ["multi-segment-shake"]}
+{"query": "icon should morph from play to pause", "expected_nodes": ["morphing-icons", "fly-not-teleport"], "forbidden_nodes": ["icon-systems"]}
+{"query": "design the loading state for a 4-second async operation", "expected_nodes": ["empty-loading-states", "duration-table"], "forbidden_nodes": ["prefers-reduced-motion"]}
+{"query": "narrow column layout for our blog post pages", "expected_nodes": ["viewport-custom-design", "line-length-tracking"], "forbidden_nodes": ["cards-design"]}
+{"query": "our sticky nav uses backdrop-blur and feels generic", "expected_nodes": ["sticky-and-scroll-tells", "ai-default-tells"], "forbidden_nodes": ["dark-mode"]}
+{"query": "set dark-mode background and text", "expected_nodes": ["dark-mode", "shadows-whisper"], "forbidden_nodes": ["typography-humanity"]}
+{"query": "we keep nesting cards inside cards and it looks bad", "expected_nodes": ["cards-design"], "forbidden_nodes": ["border-radius"]}
+{"query": "pick a non-default sans for our marketing site", "expected_nodes": ["typography-humanity", "line-length-tracking", "ai-default-tells"], "forbidden_nodes": ["typography-humanity"]}
+{"query": "is it OK to use Lucide for icons in 2026?", "expected_nodes": ["icon-systems", "ai-default-tells"], "forbidden_nodes": ["morphing-icons"]}

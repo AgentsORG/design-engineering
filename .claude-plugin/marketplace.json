@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/schemas/marketplace.schema.json",
+  "name": "design-engineering",
+  "displayName": "Design Engineering",
+  "description": "Design engineering wisdom — animation, transitions, taste, typography, color, components, anti-patterns. From Emil Kowalski, Benji Taylor, Jakub Antalik, and guidelines.sh.",
+  "author": {
+    "name": "HKTITAN",
+    "email": "harshitkhemani@gmail.com",
+    "url": "https://github.com/HKTITAN"
+  },
+  "homepage": "https://github.com/HKTITAN/design-engineering",
+  "repository": "https://github.com/HKTITAN/design-engineering",
+  "license": "MIT",
+  "version": "1.0.0",
+  "plugins": [
+    {
+      "name": "design-engineering",
+      "displayName": "Design Engineering",
+      "description": "A skill graph for design engineering — animation decisions, transition techniques, taste, typography, color, hover states, anti-patterns.",
+      "skills": [
+        {
+          "name": "design-engineering",
+          "path": "skills/design-engineering"
+        }
+      ]
+    }
+  ]
+}

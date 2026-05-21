@@ -1,0 +1,20 @@
+{"query": "review this CSS for a modal animation", "should_load": true, "reason": "design-engineering covers animation review (review-format + duration-table + easing-curves)"}
+{"query": "what easing curve should I use for a dropdown opening?", "should_load": true, "reason": "easing-curves node + responsive-feedback"}
+{"query": "should this button bounce on click?", "should_load": true, "reason": "animation-decision-framework + delight-impact-curve + responsive-feedback"}
+{"query": "why does this UI feel flat?", "should_load": true, "reason": "feeling-right + unseen-details-compound — flagship trigger query"}
+{"query": "audit my landing page for AI tells", "should_load": true, "reason": "ai-default-tells + content-authenticity + typography-humanity"}
+{"query": "pick an avatar style for our directory", "should_load": true, "reason": "avatar-systems node — DiceBear catalog"}
+{"query": "design a card grid for our product list", "should_load": true, "reason": "cards-design + visual-imperfection + viewport-custom-design"}
+{"query": "what's a good dark mode background color?", "should_load": true, "reason": "dark-mode node — concrete spec"}
+{"query": "validate this form on input vs on submit?", "should_load": true, "reason": "forms-validation node"}
+{"query": "tray height should change between steps?", "should_load": true, "reason": "tray-rules node (Benji)"}
+{"query": "morph the play / pause icon properly", "should_load": true, "reason": "morphing-icons + fly-not-teleport"}
+{"query": "make this real-time chart breathe", "should_load": true, "reason": "lerp-breathing node (Benji Liveline)"}
+{"query": "set up a CSS file for a Next.js project", "should_load": false, "reason": "general framework setup, model knows from training data"}
+{"query": "explain how flexbox works", "should_load": false, "reason": "model knows from training; this skill is opinion, not docs"}
+{"query": "write a SQL query to join users and orders", "should_load": false, "reason": "backend / data task — adjacent to nothing here"}
+{"query": "what's the latest version of React?", "should_load": false, "reason": "factual lookup; not design engineering"}
+{"query": "create a Stripe checkout component", "should_load": false, "reason": "integration task; design-eng might inform the polish layer but shouldn't auto-load"}
+{"query": "convert this code to TypeScript", "should_load": false, "reason": "language conversion; off-domain"}
+{"query": "set up authentication with NextAuth", "should_load": false, "reason": "auth task; off-domain"}
+{"query": "explain CSS specificity rules", "should_load": false, "reason": "fundamentals; model knows"}
