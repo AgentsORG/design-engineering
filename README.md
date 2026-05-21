@@ -4,7 +4,7 @@
 [![CI](https://github.com/HKTITAN/design-engineering/actions/workflows/lint.yml/badge.svg)](https://github.com/HKTITAN/design-engineering/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-An agent skill that encodes design engineering — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [lucide-animated](https://lucide-animated.com) (icon animation), and [DiceBear](https://www.dicebear.com) (avatars) into one navigable skill graph.
+An agent skill that encodes design engineering — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight + [Agentation](https://www.agentation.com)), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), and [DiceBear](https://www.dicebear.com) (avatars) into one navigable skill graph.
 
 Not a tutorial. Not a doc site. **A working memory the agent loads** when you're reviewing UI code, picking an easing curve, designing a component, or asking "why does this feel flat?"
 
@@ -15,6 +15,24 @@ npx skills add HKTITAN/design-engineering
 ```
 
 This uses the [skills.sh](https://skills.sh) CLI to install into your detected agent (Claude Code, Cursor, Windsurf, Codex, Gemini, Cline, Aider, and [18+ others](https://www.skills.sh/agent)). The CLI prompts for scope (project vs. global) and method (symlink vs. copy).
+
+### Recommended companions
+
+Two tools that compound the value of this skill — install both:
+
+```bash
+# Obsidian — view + edit the skill graph in a real graph view
+# https://obsidian.md → "Open folder as vault" → pick this repo
+
+# Agentation — click-to-annotate design review in your localhost dev environment
+npx skills add benjitaylor/agentation
+```
+
+**Obsidian** turns the wikilinks-and-frontmatter graph into a navigable canvas. `Ctrl/Cmd + G` opens the graph view; theme folders cluster naturally; you can edit any node in place and the agent picks up the change. See the *View and edit in Obsidian* section below.
+
+**Agentation** ([agentation.com](https://www.agentation.com), [github.com/benjitaylor/agentation](https://github.com/benjitaylor/agentation)) mounts a toolbar in your dev environment so you can click any element on the page and annotate it. The annotation becomes structured markdown — selectors, file paths, computed styles — that your AI agent can act on directly. This skill's `[[pointing-beats-describing]]` and `[[agentation-workflow]]` nodes encode the underlying principle and the two-session workflow.
+
+Both pair naturally with this skill — Obsidian for editing the knowledge, Agentation for applying it to a running app.
 
 ## Paste this into your coding agent
 
@@ -134,7 +152,7 @@ design-engineering/
         │              beauty-is-leverage, delight-impact-curve,
         │              feeling-right, marketing-vs-product-ui,
         │              states-are-the-work, data-is-content,
-        │              dependency-discipline)
+        │              dependency-discipline, pointing-beats-describing)
         ├── motion/      (animation-decision-framework, easing-curves,
         │              duration-table, spring-animations, transform-opacity-only,
         │              transform-mastery, clip-path-tricks, never-scale-from-zero,
@@ -157,10 +175,16 @@ design-engineering/
         │              url-as-state)
         ├── anti-patterns/  (ai-default-tells, content-authenticity)
         └── meta/        (review-format, review-checklist, cross-model-testing,
+                       using-design-md, agentation-workflow,
                        gotchas, pov)
 ```
 
-Total: **72 markdown files** in the skill — 1 SKILL.md, 8 MOCs, 60 atomic nodes, 3 evals.
+The `spec/` folder mirrors two external specs offline:
+
+- [`spec/agent-skills-spec.md`](spec/agent-skills-spec.md) — full mirror of the [Agent Skills specification](https://github.com/agentskills/agentskills) (Apache-2.0 / CC-BY-4.0).
+- [`spec/design-md-spec.md`](spec/design-md-spec.md) — full mirror of [Google Labs' `design.md` format](https://github.com/google-labs-code/design.md) (Apache-2.0).
+
+Total: **75 markdown files** in the skill — 1 SKILL.md, 8 MOCs, 63 atomic nodes, 3 evals.
 
 ## View and edit in Obsidian
 
@@ -200,13 +224,15 @@ PRs welcome. The shorter the better.
 ## Sources
 
 - **Emil Kowalski** — [emilkowalski/skill](https://github.com/emilkowalski/skill), [animations.dev](https://animations.dev), [emilkowal.ski](https://emilkowal.ski), [sonner.emilkowal.ski](https://sonner.emilkowal.ski)
-- **Benji Taylor** — [benji.org](https://benji.org) (Family Values, Honkish, Liveline, Morphing Icons with Claude, Annotating, Agentation)
+- **Benji Taylor** — [benji.org](https://benji.org) (Family Values, Honkish, Liveline, Morphing Icons with Claude, Annotating, Agentation) + [Agentation](https://www.agentation.com) ([github.com/benjitaylor/agentation](https://github.com/benjitaylor/agentation), [skills.sh/benjitaylor/agentation](https://www.skills.sh/benjitaylor/agentation/agentation))
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev), [github.com/Jakubantalik/transitions.dev](https://github.com/Jakubantalik/transitions.dev)
 - **James Frewin** — [guidelines.sh](https://guidelines.sh)
 - **Vercel** — [vercel.com/design/guidelines](https://vercel.com/design/guidelines) (web-interface guidelines: a11y, optimistic updates, URL-as-state, contrast, copy voice)
 - **Ben DC** — [github.com/bendc/frontend-guidelines](https://github.com/bendc/frontend-guidelines) (CSS dialect choices, dependency discipline)
 - **dmytro / @pqoqubbw** — [lucide-animated.com](https://lucide-animated.com)
 - **DiceBear** — [dicebear.com/styles](https://www.dicebear.com/styles), [github.com/dicebear/styles](https://github.com/dicebear/styles)
+- **Google Labs Code** — [github.com/google-labs-code/design.md](https://github.com/google-labs-code/design.md) (design-token format mirrored in `spec/`)
+- **agentskills.io** — [github.com/agentskills/agentskills](https://github.com/agentskills/agentskills) (Agent Skills specification mirrored in `spec/`)
 - **HKTITAN / Duolingo Skills** — [hktitan/duolingo](https://github.com/hktitan/duolingo) (skill-graph layout reference)
 - **Akshay Pachaar** — [Skill Graphs > SKILL.md](https://x.com/akshay_pachaar)
 - **Perplexity Agents team** — [Designing, Refining, and Maintaining Agent Skills](https://research.perplexity.ai/articles/designing-refining-and-maintaining-agent-skills-at-perplexity)
@@ -215,8 +241,10 @@ PRs welcome. The shorter the better.
 ## See also
 
 - [skills.sh](https://skills.sh) — the CLI and registry
-- [Agent Skills spec](https://agentskills.io/specification) — frontmatter and directory standard
+- [Agent Skills spec](https://agentskills.io/specification) — frontmatter and directory standard (mirrored at [`spec/agent-skills-spec.md`](spec/agent-skills-spec.md))
 - [agents.md](https://agents.md) — the AGENTS.md format
+- [design.md](https://github.com/google-labs-code/design.md) — design-token format for coding agents (mirrored at [`spec/design-md-spec.md`](spec/design-md-spec.md))
+- [Agentation](https://www.agentation.com) — click-to-annotate design review for your localhost dev environment
 - [kepano/obsidian-skills](https://www.skills.sh/kepano/obsidian-skills) — companion skill for editing skill graphs in Obsidian
 
 ## License

@@ -4,6 +4,29 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+## [1.2.0] — 2026-05-21
+
+Adds two more named sources mirrored offline in `spec/` — the full [Agent Skills specification](https://github.com/agentskills/agentskills) and [Google Labs' design.md format](https://github.com/google-labs-code/design.md) — plus integrates [Agentation](https://www.agentation.com) as both an installer-recommended companion tool and a skill-graph node.
+
+### Added — 3 new nodes
+
+- `meta/using-design-md.md` — How the agent reads, respects, and rarely updates a project's `DESIGN.md` file. Token-category → relevant skill-node cross-reference table.
+- `meta/agentation-workflow.md` — Install Agentation. Click-to-annotate design review. Two-session critique-then-fix workflow with MCP. Critique style guidelines.
+- `philosophy/pointing-beats-describing.md` — Benji Taylor's principle: precise machine-readable selection (selectors, file paths, computed styles) beats prose when feedback goes to an AI agent.
+
+### Added — 2 new spec mirrors
+
+- `spec/agent-skills-spec.md` — Full mirror of the canonical Agent Skills specification (previously only a one-line pointer). Apache-2.0 / CC-BY-4.0.
+- `spec/design-md-spec.md` — Full mirror of the design.md format spec (frontmatter token schema, section order, CLI, linter rules, programmatic API). Apache-2.0.
+
+### Changed
+
+- `SKILL.md` description expanded to mention consuming DESIGN.md tokens and giving feedback through Agentation. Version bumped to 1.2.0.
+- `MOC-philosophy.md` links `[[pointing-beats-describing]]`. SKILL.md Meta section links the two new meta nodes.
+- `README.md` adds a **Recommended companions** section that points installers to Obsidian and Agentation, with install commands. Sources section expanded with Google Labs Code, agentskills.io, and Agentation. See-also section links the new spec mirrors. File count updated to 75.
+- `AGENTS.md` adds three new entries to Sources of truth: Google Labs Code, Agentation, agentskills.io.
+- `marketplace.json` v1.2.0; description mentions Agentation workflow and design.md consumption.
+
 ## [1.1.0] — 2026-05-21
 
 Adds two more named sources — [Vercel's web-interface guidelines](https://vercel.com/design/guidelines) and [Ben DC's frontend-guidelines](https://github.com/bendc/frontend-guidelines) — distilled into 7 new atomic nodes covering accessibility, copy voice, URL state, contrast math, optimistic updates, CSS conventions, and dependency discipline.
@@ -96,6 +119,7 @@ Initial public release of the `design-engineering` skill graph.
 npx skills add HKTITAN/design-engineering
 ```
 
-[Unreleased]: https://github.com/HKTITAN/design-engineering/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/HKTITAN/design-engineering/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/HKTITAN/design-engineering/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/HKTITAN/design-engineering/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/HKTITAN/design-engineering/releases/tag/v1.0.0

@@ -1,10 +1,10 @@
 ---
 name: design-engineering
-description: Load when reviewing UI code, designing a component or page layout, picking an easing curve or transition pattern, deciding "should this animate at all?", choosing an avatar/typography/color system, writing UI copy or error messages, auditing for AI-default tells or a11y misses, asking "why does this feel flat?", or judging when delight earns its weight. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated.
+description: Load when reviewing UI code, designing a component or page layout, picking an easing curve or transition pattern, deciding "should this animate at all?", choosing an avatar/typography/color system, writing UI copy or error messages, auditing for AI-default tells or a11y misses, consuming a project's DESIGN.md tokens, giving feedback through Agentation or a similar annotation tool, asking "why does this feel flat?", or judging when delight earns its weight. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.
 license: MIT
 metadata:
   author: HKTITAN
-  version: "1.1.0"
+  version: "1.2.0"
   graph: true
 ---
 
@@ -25,7 +25,7 @@ If the user asks for a UI code review, use the format defined in `[[review-forma
 
 How to think about taste, delight, and the difference between marketing and product UI.
 
-- `[[MOC-philosophy]]` → [[taste-is-trained]], [[unseen-details-compound]], [[beauty-is-leverage]], [[delight-impact-curve]], [[feeling-right]], [[marketing-vs-product-ui]], [[states-are-the-work]], [[data-is-content]], [[dependency-discipline]]
+- `[[MOC-philosophy]]` → [[taste-is-trained]], [[unseen-details-compound]], [[beauty-is-leverage]], [[delight-impact-curve]], [[feeling-right]], [[marketing-vs-product-ui]], [[states-are-the-work]], [[data-is-content]], [[dependency-discipline]], [[pointing-beats-describing]]
 
 ## Motion — when something should move, and how
 
@@ -72,12 +72,14 @@ What looks "AI default" and what to do instead. High-value because it's about de
 
 - `[[MOC-anti-patterns]]` → [[ai-default-tells]], [[content-authenticity]]
 
-## Meta — review format, evals, per-installer files
+## Meta — review format, design.md, Agentation, evals, per-installer files
 
 Procedural rules and growing files. `[[review-format]]` is mandatory when doing UI code reviews.
 
 - [[review-format]] — Required output format for UI critiques (Before | After | Why markdown table).
 - [[review-checklist]] — Eleven-row audit to scan against before signing off on a UI review.
+- [[using-design-md]] — How to consume a project's DESIGN.md (Google Labs spec). Tokens are normative; prose is context.
+- [[agentation-workflow]] — Install and use [Agentation](https://www.agentation.com) for click-to-annotate design review. Two-session critique-then-fix workflow.
 - [[cross-model-testing]] — How to test description / routing changes across GPT, Claude Opus, and Claude Sonnet.
 - [[gotchas]] — lived failures, appended as the agent trips up.
 - [[pov]] — author/installer's opinions and taste calls that override defaults. Edit this when you fork.
