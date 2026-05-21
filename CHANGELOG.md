@@ -4,11 +4,34 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+## [1.3.0] — 2026-05-22
+
+### Changed — repo migration
+
+The skill's canonical home moved from [`HKTITAN/design-engineering`](https://github.com/AgentsORG/design-engineering) (auto-redirects) to [`AgentsORG/design-engineering`](https://github.com/AgentsORG/design-engineering). All URL references updated:
+
+- **Install command** is now `npx skills add AgentsORG/design-engineering`.
+- **README** badges (`skills.sh`, `CI`), the paste-into-agent block, file-tree mentions, and Sources section updated to the new URL.
+- **AGENTS.md** install command updated.
+- **CONTRIBUTING.md** clone URL and issues link updated.
+- **.claude-plugin/marketplace.json** `homepage` and `repository` updated; version bumped to 1.3.0.
+- **skills/design-engineering/SKILL.md** frontmatter `metadata.version` bumped to 1.3.0.
+- **CHANGELOG** compare links updated.
+
+The old URL (`HKTITAN/design-engineering`) auto-redirects via GitHub, so existing clones and installed skills continue to work. New installs should use the AgentsORG URL.
+
+### Attribution unchanged
+
+- LICENSE copyright stays "HKTITAN" — the individual author.
+- `metadata.author: HKTITAN` in SKILL.md frontmatter — unchanged.
+- `marketplace.json` `author.name: HKTITAN`, `author.url: https://github.com/HKTITAN` — unchanged (HKTITAN is the human curator; AgentsORG is the new repo owner).
+- `meta/pov.md` HKTITAN starter POV — unchanged (it's an example for installers to override).
+
 ## [1.2.1] — 2026-05-22
 
 ### Fixed
 
-- `template/SKILL.md` renamed to `template/TEMPLATE.md`. The skills.sh CLI globs `**/SKILL.md` across the repo when discovering installable skills, so the template file was appearing as a second skill candidate (`your-skill-name`) in the install picker. Renaming sidesteps the glob while keeping the starter content discoverable to contributors. ([#install-picker-fix](https://github.com/HKTITAN/design-engineering/commit/v1.2.1))
+- `template/SKILL.md` renamed to `template/TEMPLATE.md`. The skills.sh CLI globs `**/SKILL.md` across the repo when discovering installable skills, so the template file was appearing as a second skill candidate (`your-skill-name`) in the install picker. Renaming sidesteps the glob while keeping the starter content discoverable to contributors. ([#install-picker-fix](https://github.com/AgentsORG/design-engineering/commit/v1.2.1))
 - `.github/workflows/lint.yml` required-files check updated to reference `template/TEMPLATE.md`.
 - README file tree and `marketplace.json` version updated accordingly.
 
@@ -124,11 +147,12 @@ Initial public release of the `design-engineering` skill graph.
 ### Install
 
 ```bash
-npx skills add HKTITAN/design-engineering
+npx skills add AgentsORG/design-engineering
 ```
 
-[Unreleased]: https://github.com/HKTITAN/design-engineering/compare/v1.2.1...HEAD
-[1.2.1]: https://github.com/HKTITAN/design-engineering/compare/v1.2.0...v1.2.1
-[1.2.0]: https://github.com/HKTITAN/design-engineering/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/HKTITAN/design-engineering/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/HKTITAN/design-engineering/releases/tag/v1.0.0
+[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/AgentsORG/design-engineering/compare/v1.2.1...v1.3.0
+[1.2.1]: https://github.com/AgentsORG/design-engineering/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/AgentsORG/design-engineering/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/AgentsORG/design-engineering/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/AgentsORG/design-engineering/releases/tag/v1.0.0

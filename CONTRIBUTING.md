@@ -142,7 +142,7 @@ See `skills/design-engineering/references/meta/cross-model-testing.md` for the f
 Open the repo as an [Obsidian](https://obsidian.md) vault to see the graph. Theme folders cluster naturally; wikilinks render as edges. This is the best way to verify your additions integrate.
 
 ```bash
-git clone https://github.com/HKTITAN/design-engineering
+git clone https://github.com/AgentsORG/design-engineering
 cd design-engineering
 # open in Obsidian: File → Open folder as vault → select this directory
 ```
@@ -153,7 +153,7 @@ All contributions are MIT-licensed under the terms of [LICENSE](LICENSE).
 
 ## Where to talk
 
-Open an issue at [github.com/HKTITAN/design-engineering/issues](https://github.com/HKTITAN/design-engineering/issues). For taste questions ("should this be a node or a gotcha?"), open a discussion first — saves both of us a forced rewrite.
+Open an issue at [github.com/AgentsORG/design-engineering/issues](https://github.com/AgentsORG/design-engineering/issues). For taste questions ("should this be a node or a gotcha?"), open a discussion first — saves both of us a forced rewrite.
 
 ---
 
