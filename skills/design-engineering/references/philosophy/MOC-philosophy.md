@@ -19,6 +19,7 @@ The cluster that answers "why bother." Use when the user asks why something feel
 - [[states-are-the-work]] — The empty, loading, error, partial, offline, permission-denied states are 80% of the actual product work — the "happy path" is the easy 20%.
 - [[data-is-content]] — Tables, charts, lists, dashboards deserve the same typography / alignment / whitespace care as marketing prose. Data display *is* design.
 - [[dependency-discipline]] — Every dependency is a tax. Replicate simple utilities. Draw shapes in CSS. Prefer native browser APIs. The bundle is design.
+- [[pointing-beats-describing]] — Precise machine-readable selection (selectors, file paths, coordinates) outperforms prose when feedback goes to an AI agent. Benji Taylor's framing.
 
 ## When to read this whole cluster
 

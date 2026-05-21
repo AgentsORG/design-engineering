@@ -48,6 +48,9 @@ Each atomic node should cite its source at the bottom. The current sources are:
 - **Ben DC (github.com/bendc/frontend-guidelines)** — css-conventions, dependency-discipline.
 - **DiceBear** — `components/avatar-systems` references the v9.x catalog of procedural avatar styles.
 - **Lucide-animated / @pqoqubbw** — `motion/hover-default-imperative` pattern.
+- **Google Labs Code (github.com/google-labs-code/design.md)** — design-token format. Mirrored offline at `spec/design-md-spec.md`; runtime guidance in `meta/using-design-md`.
+- **Agentation (agentation.com / benjitaylor/agentation)** — click-to-annotate design-review workflow. Drives `philosophy/pointing-beats-describing` and `meta/agentation-workflow`.
+- **agentskills/agentskills** — canonical Agent Skills specification, mirrored offline at `spec/agent-skills-spec.md`.
 - **HKTITAN / installer** — `meta/gotchas.md` and `meta/pov.md`. These grow over time and reflect lived experience. Forked installers should edit `meta/pov.md`.
 
 ## What NOT to do
