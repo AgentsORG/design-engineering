@@ -1,6 +1,6 @@
 {
   "name": "design-engineering",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns. Plus a SOUL.md identity layer and six workflow subagents. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
   "author": {
     "name": "HKTITAN",
