@@ -139,11 +139,9 @@ jobs:
       - name: Verify every [[wikilink]] in skill content resolves to a file
         run: |
           set -e
-          # Collect basenames of reference files AND subagents (the resolvable wikilink targets)
-          basenames=$(find skills/design-engineering/references skills/design-engineering/agents -name '*.md' -exec basename {} .md \;)
-          # Add SKILL as a resolvable target for cross-references from subagents
-          basenames="$basenames
-SKILL"
+          # Collect basenames of reference files AND subagents (the resolvable wikilink targets).
+          # Also include "SKILL" so cross-refs from subagents/README to the main SKILL.md resolve.
+          basenames=$( { find skills/design-engineering/references skills/design-engineering/agents -name '*.md' -exec basename {} .md \; ; echo SKILL ; } )
 
           # Descriptive uses that aren't real links (allow-list)
           allowlist=$(printf '%s\n' wikilinks node-name name foo bar wikilink-1 wikilink-2)
