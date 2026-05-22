@@ -103,6 +103,17 @@ The lint job is the authoritative gate. If it passes on your branch, the PR is m
 
 This skill is indexed at [skills.sh/agentsorg/design-engineering/design-engineering](https://www.skills.sh/agentsorg/design-engineering/design-engineering). Discovery is automatic — skills.sh re-indexes on `npx skills add` calls. If the live page shows stale metadata after a release, re-run `npx skills add AgentsORG/design-engineering` once to trigger a re-index. There is no manual publish step.
 
+## Plugin manifests
+
+Three agent-specific manifests ship alongside the skills.sh registry entry, following the same pattern as [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes):
+
+- **`.claude-plugin/plugin.json`** — minimal Claude Code plugin metadata (name, description, version, author, homepage, repository, license). Omits a `skills` field — Claude Code auto-discovers the root `skills/` directory.
+- **`.claude-plugin/marketplace.json`** — single-entry marketplace with `"source": "./"` so the repo doubles as its own marketplace. Add via `/plugin marketplace add AgentsORG/design-engineering`.
+- **`.codex-plugin/plugin.json`** — richer manifest with `keywords`, `skills: "./skills/"`, and an `interface` block (displayName, shortDescription, longDescription, developerName, category, capabilities, defaultPrompt, brandColor).
+- **`.cursor-plugin/plugin.json`** — Cursor IDE manifest with `$schema`, `displayName`, `publisher`, `category`, `tags`, `keywords`, and the same `skills` path.
+
+When changing version: bump it in all four files plus `skills/design-engineering/SKILL.md`. The `Plugin manifest versions match` CI step enforces parity — drift will fail the lint job.
+
 ## License
 
 MIT.

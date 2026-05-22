@@ -77,6 +77,9 @@ jobs:
             "spec/agent-skills-spec.md"
             "template/TEMPLATE.md"
             ".claude-plugin/marketplace.json"
+            ".claude-plugin/plugin.json"
+            ".codex-plugin/plugin.json"
+            ".cursor-plugin/plugin.json"
           )
           for f in "${required[@]}"; do
             if [ ! -f "$f" ]; then
@@ -145,6 +148,36 @@ jobs:
             exit 1
           fi
           echo "All subagents carry a ## Soul section."
+
+      - name: Plugin manifests are valid JSON
+        run: |
+          set -e
+          fails=0
+          for f in .claude-plugin/plugin.json .claude-plugin/marketplace.json .codex-plugin/plugin.json .cursor-plugin/plugin.json; do
+            if ! python3 -c "import json,sys; json.load(open('$f'))" 2>/dev/null; then
+              echo "::error file=$f::Invalid JSON"
+              fails=$((fails + 1))
+            fi
+          done
+          if [ $fails -gt 0 ]; then
+            echo "::error::$fails plugin manifest(s) failed JSON validation"
+            exit 1
+          fi
+          echo "All four plugin manifests are valid JSON."
+
+      - name: Plugin manifest versions match
+        run: |
+          set -e
+          v_claude=$(python3 -c "import json; print(json.load(open('.claude-plugin/plugin.json'))['version'])")
+          v_market=$(python3 -c "import json; print(json.load(open('.claude-plugin/marketplace.json'))['plugins'][0]['version'])")
+          v_codex=$(python3 -c "import json; print(json.load(open('.codex-plugin/plugin.json'))['version'])")
+          v_cursor=$(python3 -c "import json; print(json.load(open('.cursor-plugin/plugin.json'))['version'])")
+          v_skill=$(grep -m 1 'version:' skills/design-engineering/SKILL.md | sed -E 's/.*"([^"]+)".*/\1/')
+          if [ "$v_claude" != "$v_market" ] || [ "$v_claude" != "$v_codex" ] || [ "$v_claude" != "$v_cursor" ] || [ "$v_claude" != "$v_skill" ]; then
+            echo "::error::Version mismatch — claude:$v_claude marketplace:$v_market codex:$v_codex cursor:$v_cursor skill:$v_skill"
+            exit 1
+          fi
+          echo "All plugin manifests + SKILL.md report version $v_claude."
 
   link-check:
     name: Internal wikilink check

@@ -4,6 +4,44 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+## [1.7.0] — 2026-05-22
+
+### Added — multi-agent plugin manifests (hyperframes pattern)
+
+The repo now ships three agent-specific plugin manifests in addition to the skills.sh / `npx skills add` install path, following the same pattern as [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes). Each major agent host can install the design-engineering skill via its native plugin system without going through the cross-agent `skills.sh` shim.
+
+- **`.claude-plugin/plugin.json`** (NEW) — minimal Claude Code plugin metadata (name, description, version, author, homepage, repository, license). No `skills` field — Claude Code auto-discovers from `skills/`.
+- **`.claude-plugin/marketplace.json`** (refactored) — single-entry pattern with `"source": "./"` so the repo doubles as its own marketplace. Drops the nested `plugins[].skills[]` array in favor of auto-discovery. Top-level `owner` instead of `author` (matches the hyperframes / Claude Code marketplace schema).
+- **`.codex-plugin/plugin.json`** (NEW) — full OpenAI Codex manifest with `keywords`, `skills: "./skills/"`, and an `interface` block (displayName: "Design Engineering by HKTITAN", shortDescription, longDescription, developerName, category: Design, capabilities: Read+Write, defaultPrompt array, brandColor: `#0a0a0a`).
+- **`.cursor-plugin/plugin.json`** (NEW) — Cursor IDE manifest with `$schema`, `displayName`, `publisher`, `category: developer-tools`, `tags`, `keywords`, and the same `skills` path.
+
+Install paths now read:
+
+```bash
+# Cross-agent (recommended) — skills.sh
+npx skills add AgentsORG/design-engineering
+
+# Claude Code marketplace
+/plugin marketplace add AgentsORG/design-engineering
+/plugin install design-engineering
+
+# Codex marketplace
+codex plugin marketplace add AgentsORG/design-engineering --sparse .codex-plugin --sparse skills
+
+# Cursor — sideload via Settings → Plugins → Load unpacked
+```
+
+### Changed
+
+- **`README.md`** — Install section expanded with per-agent commands. Repository-layout tree updated to show all three plugin dotfolders.
+- **`AGENTS.md`** — new `## Plugin manifests` section documenting the four manifests and the version-parity convention.
+- **`.github/workflows/lint.yml`** — required-files check extended to `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`. New `Plugin manifests are valid JSON` step parses all four manifests with Python. New `Plugin manifest versions match` step verifies that all four manifests + SKILL.md report the same version (drift fails the lint job).
+- **`skills/design-engineering/SKILL.md`** version bumped to 1.7.0.
+
+### Breaking-ish
+
+The Claude Code `marketplace.json` schema changed shape: top-level `owner` replaces `author`, and the nested `plugins[].skills[]` array was removed in favor of auto-discovery from `skills/`. Existing installs continue to work because the skill content path (`skills/design-engineering/SKILL.md`) is unchanged. New installs via `/plugin marketplace add` use the simpler pattern.
+
 ## [1.6.0] — 2026-05-22
 
 ### Added — per-agent souls
@@ -212,7 +250,8 @@ Initial public release of the `design-engineering` skill graph.
 npx skills add AgentsORG/design-engineering
 ```
 
-[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/AgentsORG/design-engineering/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/AgentsORG/design-engineering/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/AgentsORG/design-engineering/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/AgentsORG/design-engineering/compare/v1.3.0...v1.4.0

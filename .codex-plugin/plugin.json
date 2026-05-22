@@ -1,0 +1,51 @@
+{
+  "name": "design-engineering",
+  "version": "1.7.0",
+  "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns. Plus a SOUL.md identity layer and six workflow subagents. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
+  "author": {
+    "name": "HKTITAN",
+    "email": "harshitkhemani@gmail.com",
+    "url": "https://github.com/HKTITAN"
+  },
+  "homepage": "https://github.com/AgentsORG/design-engineering",
+  "repository": "https://github.com/AgentsORG/design-engineering",
+  "license": "MIT",
+  "keywords": [
+    "design-engineering",
+    "design-system",
+    "animation",
+    "motion",
+    "transitions",
+    "typography",
+    "color",
+    "shadows",
+    "components",
+    "layout",
+    "accessibility",
+    "anti-patterns",
+    "ui-review",
+    "taste",
+    "agentation",
+    "design-md",
+    "obsidian",
+    "skill-graph"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Design Engineering by HKTITAN",
+    "shortDescription": "Make AI-generated UI feel right",
+    "longDescription": "A navigable skill graph for design engineering. Eight themed clusters (philosophy, motion, typography, surface, components, layout, anti-patterns, meta), 63 atomic nodes, six workflow subagents, a SOUL.md identity layer, and an AGENTS.md operating guide. Load it when reviewing UI code, choosing an easing curve, auditing for AI-default tells, consuming a DESIGN.md, or asking 'why does this feel flat?' Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated, Google Labs design.md, and Agentation into one Obsidian-compatible graph.",
+    "developerName": "HKTITAN",
+    "category": "Design",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://github.com/AgentsORG/design-engineering",
+    "defaultPrompt": [
+      "Review this component for design-engineering issues",
+      "Audit this animation against the motion cluster",
+      "Scan this page for AI-default tells",
+      "Apply our DESIGN.md tokens to this layout",
+      "Help me fork pov.md for my own taste"
+    ],
+    "brandColor": "#0a0a0a"
+  }
+}

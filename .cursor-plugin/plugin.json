@@ -1,0 +1,44 @@
+{
+  "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
+  "name": "design-engineering",
+  "displayName": "Design Engineering by HKTITAN",
+  "version": "1.7.0",
+  "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns. Plus a SOUL.md identity layer and six workflow subagents. Distills Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
+  "author": {
+    "name": "HKTITAN",
+    "email": "harshitkhemani@gmail.com"
+  },
+  "publisher": "HKTITAN",
+  "homepage": "https://github.com/AgentsORG/design-engineering",
+  "repository": "https://github.com/AgentsORG/design-engineering",
+  "license": "MIT",
+  "category": "developer-tools",
+  "keywords": [
+    "design-engineering",
+    "design-system",
+    "animation",
+    "motion",
+    "transitions",
+    "typography",
+    "color",
+    "shadows",
+    "components",
+    "layout",
+    "accessibility",
+    "anti-patterns",
+    "ui-review",
+    "taste",
+    "agentation",
+    "design-md",
+    "obsidian",
+    "skill-graph"
+  ],
+  "tags": [
+    "design",
+    "animation",
+    "ui-review",
+    "design-system",
+    "workflow"
+  ],
+  "skills": "./skills/"
+}
