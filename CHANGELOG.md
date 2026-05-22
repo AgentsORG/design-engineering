@@ -4,6 +4,15 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+## [1.7.1] — 2026-05-22
+
+### Fixed
+
+- **`skills/design-engineering/SKILL.md`** — description rewrapped as a double-quoted YAML scalar and embedded `"..."` substrings rephrased to plain prose. The skills.sh web indexer was showing "0 skills" despite the CLI installing fine (CLI parses YAML loosely; the indexer's parser appeared brittle on unquoted double-quote substrings inside the value). Similar regressions documented at [vercel-labs/skills#1017](https://github.com/vercel-labs/skills/issues/1017) and [#1036](https://github.com/vercel-labs/skills/issues/1036).
+- **`.claude-plugin/plugin.json`**, **`.claude-plugin/marketplace.json`**, **`.codex-plugin/plugin.json`**, **`.cursor-plugin/plugin.json`** — version bumped to 1.7.1 to satisfy the `Plugin manifest versions match` CI check.
+
+No content changes; pure indexing-safety patch.
+
 ## [1.7.0] — 2026-05-22
 
 ### Added — multi-agent plugin manifests (hyperframes pattern)
@@ -250,7 +259,8 @@ Initial public release of the `design-engineering` skill graph.
 npx skills add AgentsORG/design-engineering
 ```
 
-[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.7.1...HEAD
+[1.7.1]: https://github.com/AgentsORG/design-engineering/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/AgentsORG/design-engineering/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/AgentsORG/design-engineering/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/AgentsORG/design-engineering/compare/v1.4.0...v1.5.0
