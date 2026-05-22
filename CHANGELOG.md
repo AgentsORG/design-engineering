@@ -4,6 +4,33 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+## [1.5.0] — 2026-05-22
+
+### Added — SOUL.md, 6 workflow subagents, AGENTS.md polish
+
+The skill now ships an identity layer (`SOUL.md`) and a set of six narrow-purpose subagents that cover the highest-value design-engineering workflows. Everything stays Obsidian-compatible and skills.sh-compliant.
+
+- **`SOUL.md`** at repo root — the [steipete/SOUL.md](https://github.com/steipete/SOUL.md) + [OpenClaw](https://docs.openclaw.ai/reference/templates/SOUL) five-section template (Core Truths, Boundaries, Vibe, Continuity, Related). Anchors voice in the existing taste lineage (Emil, Benji, Jakub, guidelines.sh, Vercel, Ben DC). Cross-linked from AGENTS.md and SKILL.md so non-OpenClaw harnesses pick it up.
+- **`skills/design-engineering/agents/`** — six workflow subagents, each ~80–150 lines, with `name` / `description` / `tools` / `model` frontmatter per the [Claude Code subagent spec](https://docs.claude.com/en/docs/claude-code/sub-agents):
+  - `ui-reviewer` — runs the `[[review-format]]` Before / After / Why table + `[[review-checklist]]` audit.
+  - `motion-auditor` — animation / transition critique against the motion cluster + transitions.dev.
+  - `anti-pattern-scanner` — AI-default-tell deletion list (purple gradients, Inter-on-marketing, stock copy).
+  - `agentation-fix-loop` — Session-2 fix side of the [[agentation-workflow]] two-session pattern.
+  - `design-md-consumer` — reads a project's DESIGN.md and threads tokens through generated UI.
+  - `pov-curator` — helps installers fork [[pov]] and append to [[gotchas]].
+- **`skills/design-engineering/agents/README.md`** — directory index + selection guide. Documents *why* there are workflow subagents instead of theme parrots.
+
+### Changed
+
+- **`AGENTS.md`** — adds explicit `## Testing` section (CI gate explainer), a `## skills.sh discovery` paragraph documenting the re-index trigger, and a cross-link to SOUL.md. File-conventions section now covers the `agents/` directory layout.
+- **`SKILL.md`** — adds `compatibility:` frontmatter field per [Agent Skills specification](spec/agent-skills-spec.md), `metadata.subagents` + `metadata.soul` pointers, and two new MOC sections (Workflow subagents, Identity / SOUL.md). Version bumped to 1.5.0.
+- **`.github/workflows/lint.yml`** — required-files check extended to validate SOUL.md and all six subagent files. New `Subagent frontmatter fields` step verifies each subagent declares `name`, `description`, `tools`, `model`, and that the name matches the filename. Wikilink resolver now indexes `agents/` basenames so cross-references from SKILL.md resolve.
+- **`.claude-plugin/marketplace.json`** — version bumped to 1.5.0; description expanded to mention subagents and SOUL.md.
+
+### skills.sh compatibility note
+
+The local SKILL.md was already structurally compatible with [skills.sh](https://www.skills.sh) (valid `name` / `description`, `Load when` prefix, name-matches-folder). The live page at [skills.sh/agentsorg/design-engineering/design-engineering](https://www.skills.sh/agentsorg/design-engineering/design-engineering) was showing a stale "No SKILL.md available" warning. Re-running `npx skills add AgentsORG/design-engineering` after this release should trigger a re-index.
+
 ## [1.4.0] — 2026-05-22
 
 ### Added — Obsidian vault polish
@@ -163,7 +190,8 @@ Initial public release of the `design-engineering` skill graph.
 npx skills add AgentsORG/design-engineering
 ```
 
-[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/AgentsORG/design-engineering/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/AgentsORG/design-engineering/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/AgentsORG/design-engineering/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/AgentsORG/design-engineering/compare/v1.2.0...v1.2.1
