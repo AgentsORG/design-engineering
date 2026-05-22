@@ -4,6 +4,25 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+## [1.7.2] — 2026-05-22
+
+### Added
+
+- **`.plugin/plugin.json`** — vendor-neutral manifest for `npx plugins add AgentsORG/design-engineering` ([vercel-labs/plugins](https://github.com/vercel-labs/plugins)).
+- **`agents/`** (repo root) — six workflow subagents hoisted from `skills/design-engineering/agents/` so the plugins CLI and Cursor/Codex manifests discover them at install time.
+- **`commands/`** — six slash workflows: `review-ui`, `motion-audit`, `scan-ai-tells`, `agentation-fix`, `apply-design-md`, `fork-pov`.
+
+### Changed
+
+- **`.cursor-plugin/plugin.json`**, **`.codex-plugin/plugin.json`** — `agents` and `commands` paths; version **1.7.2**.
+- **`README.md`** — Plugins CLI install section; repository layout updated.
+- **`AGENTS.md`**, **`SOUL.md`**, **`skills/design-engineering/SKILL.md`** — subagent path `agents/`; version **1.7.2**.
+- **`.github/workflows/lint.yml`** — CI checks `agents/` at repo root; five-manifest version parity including `.plugin/`.
+
+### Removed
+
+- **`skills/design-engineering/agents/*.md`** (except redirect `README.md`) — content lives under repo-root `agents/`.
+
 ## [1.7.1] — 2026-05-22
 
 ### Fixed

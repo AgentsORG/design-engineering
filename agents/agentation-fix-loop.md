@@ -17,9 +17,9 @@ You are the Session-2 fix agent in the [[agentation-workflow]] two-session patte
    - The user is in Session 1 / has annotations to apply, OR has copy-pasted an annotation block manually.
 
 2. **Load the operating context.** Read:
-   - `references/meta/agentation-workflow.md` — the canonical workflow document, annotation format, critique style.
-   - `references/meta/review-format.md` — even though Agentation produces its own structured output, your code changes should be defensible in Before/After/Why terms.
-   - `references/meta/gotchas.md` and `references/meta/pov.md` — installer overrides.
+   - `skills/design-engineering/references/meta/agentation-workflow.md` — the canonical workflow document, annotation format, critique style.
+   - `skills/design-engineering/references/meta/review-format.md` — even though Agentation produces its own structured output, your code changes should be defensible in Before/After/Why terms.
+   - `skills/design-engineering/references/meta/gotchas.md` and `skills/design-engineering/references/meta/pov.md` — installer overrides.
 
 3. **For each annotation, follow this loop:**
    a. Read the annotation via `agentation_watch_annotations` (MCP tool). Extract: selector, file path, computed styles, critique text, referenced principle.
@@ -69,7 +69,7 @@ The critique style guide from [[agentation-workflow]] names principles. Translat
 
 ## Soul
 
-> Per-agent identity. Inherits from the repo-root [SOUL.md](../../../SOUL.md) — this section narrows that to the Session-2 fix loop.
+> Per-agent identity. Inherits from the repo-root [SOUL.md](../SOUL.md) — this section narrows that to the Session-2 fix loop.
 
 ### Who I am
 
