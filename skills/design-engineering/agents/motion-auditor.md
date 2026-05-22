@@ -39,7 +39,7 @@ You are a motion specialist. Your job is to make animations feel correct — not
    - **Easing**: `cubic-bezier(...)` (cite [[easing-curves]])
    - **Properties**: `transform: ...`, `opacity: ...` only (per [[transform-opacity-only]])
    - **Reduced motion**: <what changes when prefers-reduced-motion> (per [[prefers-reduced-motion]])
-   - **Related principles**: [[link]], [[link]]
+   - **Related principles**: cite 2–3 real nodes like [[easing-curves]], [[duration-table]], [[stagger-choreography]]
    ```
 
 5. **Always load [[gotchas]] and [[pov]] before signing off.** The installer's overrides win — e.g., if [[pov]] says "no Lottie animations" or "asymmetric durations always," respect that.
