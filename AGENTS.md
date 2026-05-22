@@ -1,10 +1,10 @@
 # AGENTS.md
 
-Repo-level operating guidance for AI agents working in this codebase.
+Repo-level operating guidance for AI agents working in this codebase. Pairs with [SOUL.md](SOUL.md), which carries identity (voice, stance, taste lineage). This file is the **what / how**; SOUL.md is the **who / why**. Read both on cold start.
 
 ## What this repo is
 
-A single agent skill packaged as a **skill graph** — one root `SKILL.md` (the Map of Content) plus a `references/` folder of atomic, wikilinked nodes organised into themed subfolders (`philosophy/`, `motion/`, `typography/`, `surface/`, `components/`, `layout/`, `anti-patterns/`, `meta/`) and an `evals/` folder for Perplexity-style Step-0 evals. The skill encodes design engineering knowledge.
+A single agent skill packaged as a **skill graph** — one root `SKILL.md` (the Map of Content) plus a `references/` folder of atomic, wikilinked nodes organised into themed subfolders (`philosophy/`, `motion/`, `typography/`, `surface/`, `components/`, `layout/`, `anti-patterns/`, `meta/`) and an `evals/` folder for Perplexity-style Step-0 evals. A sibling `agents/` directory ships six workflow subagents that map to the highest-value design-engineering tasks. The skill encodes design engineering knowledge.
 
 The graph is intentionally **Obsidian-compatible**: installers can open this repo as a vault to navigate clusters in the graph view and edit nodes in place. The recommended companion is [kepano/obsidian-skills](https://www.skills.sh/kepano/obsidian-skills). Preserving that compatibility is a constraint on every edit (see rule 6).
 
@@ -34,6 +34,7 @@ The graph is intentionally **Obsidian-compatible**: installers can open this rep
 - Atomic nodes: `references/<theme>/<concept-name>.md`.
 - A new theme = a new folder + a new `MOC-<theme>.md` + a link from SKILL.md. Don't create themes for fewer than 3 nodes — fold into an existing one.
 - Frontmatter on every node (light: `title`, `summary`, `tags`) — required for Obsidian graph indexing.
+- **Subagents**: `skills/design-engineering/agents/<agent-name>.md` — YAML frontmatter (`name`, `description`, `tools`, `model`) plus a system-prompt body. Names match the basename so wikilinks resolve. Don't add a subagent unless it has a workflow the main agent can't do cheaply inline.
 - Markdown linted via `.markdownlint.jsonc`.
 
 ## Sources of truth
@@ -79,6 +80,28 @@ npx skills add AgentsORG/design-engineering
 # validate (optional, agentskills.io CLI)
 skills-ref validate ./skills/design-engineering
 ```
+
+## Testing
+
+CI runs four checks on every PR (see [`.github/workflows/lint.yml`](.github/workflows/lint.yml)):
+
+1. **`markdown-lint`** — `markdownlint` against `.markdownlint.jsonc`.
+2. **`frontmatter-check`** — every file under `skills/design-engineering/references/` and `skills/design-engineering/agents/` must start with `---` YAML.
+3. **`skill-structure`** — required files exist (`SKILL.md`, `AGENTS.md`, `SOUL.md`, `LICENSE`, `CONTRIBUTING.md`, etc.); description starts with `Load when` or `Use when`; skill name matches folder name.
+4. **`link-check`** — every `[[wikilink]]` in skill content resolves to a real reference node or subagent file.
+
+Run locally before pushing:
+
+```bash
+npm install -g markdownlint-cli@0.41.0
+markdownlint '**/*.md' --ignore node_modules --ignore .obsidian --config .markdownlint.jsonc
+```
+
+The lint job is the authoritative gate. If it passes on your branch, the PR is mechanically clean.
+
+## skills.sh discovery
+
+This skill is indexed at [skills.sh/agentsorg/design-engineering/design-engineering](https://www.skills.sh/agentsorg/design-engineering/design-engineering). Discovery is automatic — skills.sh re-indexes on `npx skills add` calls. If the live page shows stale metadata after a release, re-run `npx skills add AgentsORG/design-engineering` once to trigger a re-index. There is no manual publish step.
 
 ## License
 

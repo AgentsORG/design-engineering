@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/schemas/marketplace.schema.json",
   "name": "design-engineering",
   "displayName": "Design Engineering",
-  "description": "Design engineering wisdom — animation, transitions, taste, typography, color, components, layout, accessibility, anti-patterns. Plus Agentation workflow and design.md consumption. From Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md.",
+  "description": "Design engineering wisdom — animation, transitions, taste, typography, color, components, layout, accessibility, anti-patterns. Plus Agentation workflow, design.md consumption, SOUL.md identity layer, and six workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator). From Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md.",
   "author": {
     "name": "HKTITAN",
     "email": "harshitkhemani@gmail.com",
@@ -11,7 +11,7 @@
   "homepage": "https://github.com/AgentsORG/design-engineering",
   "repository": "https://github.com/AgentsORG/design-engineering",
   "license": "MIT",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "plugins": [
     {
       "name": "design-engineering",

@@ -2,10 +2,13 @@
 name: design-engineering
 description: Load when reviewing UI code, designing a component or page layout, picking an easing curve or transition pattern, deciding "should this animate at all?", choosing an avatar/typography/color system, writing UI copy or error messages, auditing for AI-default tells or a11y misses, consuming a project's DESIGN.md tokens, giving feedback through Agentation or a similar annotation tool, asking "why does this feel flat?", or judging when delight earns its weight. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.
 license: MIT
+compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: HKTITAN
-  version: "1.4.0"
+  version: "1.5.0"
   graph: true
+  subagents: skills/design-engineering/agents/
+  soul: SOUL.md
 ---
 
 # design-engineering
@@ -84,6 +87,23 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 - [[gotchas]] — lived failures, appended as the agent trips up.
 - [[pov]] — author/installer's opinions and taste calls that override defaults. Edit this when you fork.
 - [[animations-dev-curriculum]] — external pointer to Emil's course; don't duplicate.
+
+## Workflow subagents — sibling `agents/` directory
+
+Six narrow-purpose subagents live in `agents/` next to this file. Spawn one when its specific workflow matches the user's ask. Each subagent loads its own slice of the graph and returns to the main agent with a structured result.
+
+- [[ui-reviewer]] — Runs the `[[review-format]]` table + `[[review-checklist]]` audit on a UI snippet.
+- [[motion-auditor]] — Animation/transition critique against the motion cluster + transitions.dev nodes.
+- [[anti-pattern-scanner]] — Scans for AI-default tells and content-authenticity misses.
+- [[agentation-fix-loop]] — Session-2 fix side of `[[agentation-workflow]]`. Reads MCP annotations and applies fixes.
+- [[design-md-consumer]] — Reads a project's DESIGN.md and threads its tokens through generated UI per `[[using-design-md]]`.
+- [[pov-curator]] — Helps the installer fork `[[pov]]` and append to `[[gotchas]]` after a real failure.
+
+See `agents/README.md` for the full directory and selection guide.
+
+## Identity — SOUL.md
+
+The repo also ships a [`SOUL.md`](../../SOUL.md) at root — voice, stance, and taste lineage for any agent operating in this skill. AGENTS.md is the "what/how"; SOUL.md is the "who/why". Read it once per session if your harness doesn't auto-inject it.
 
 ## Tax check
 

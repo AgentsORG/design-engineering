@@ -126,14 +126,15 @@ The skill is a **graph**, not a single file. The pattern (per [Akshay Pachaar's 
 ```text
 design-engineering/
 ├── README.md
-├── AGENTS.md                          ← repo-level agent guidance
+├── AGENTS.md                          ← repo-level agent guidance (the "what / how")
+├── SOUL.md                            ← identity layer (the "who / why") — voice, taste lineage
 ├── CONTRIBUTING.md                    ← node format, PR checklist, cross-model
 ├── CODE_OF_CONDUCT.md                 ← Contributor Covenant v2.1
 ├── SECURITY.md                        ← responsible-disclosure policy
 ├── CHANGELOG.md                       ← Keep a Changelog / SemVer
 ├── LICENSE                            ← MIT
 ├── .github/
-│   ├── workflows/lint.yml             ← markdownlint + frontmatter + wikilinks
+│   ├── workflows/lint.yml             ← markdownlint + frontmatter + wikilinks + subagent fields
 │   └── PULL_REQUEST_TEMPLATE.md
 ├── .claude-plugin/marketplace.json    ← Claude Code marketplace manifest
 ├── .markdownlint.jsonc
@@ -142,7 +143,15 @@ design-engineering/
 ├── template/
 │   └── TEMPLATE.md                    ← starter template (not SKILL.md so the CLI ignores it)
 └── skills/design-engineering/
-    ├── SKILL.md                       ← thin Map of Content (~90 lines)
+    ├── SKILL.md                       ← thin Map of Content (~120 lines)
+    ├── agents/                        ← six workflow subagents
+    │   ├── README.md                  ← directory index + selection guide
+    │   ├── ui-reviewer.md             ← Before / After / Why table + review-checklist audit
+    │   ├── motion-auditor.md          ← motion + transitions critique
+    │   ├── anti-pattern-scanner.md    ← AI-default-tell deletion list
+    │   ├── agentation-fix-loop.md     ← Session-2 fix side of agentation-workflow
+    │   ├── design-md-consumer.md      ← reads DESIGN.md, threads tokens through UI
+    │   └── pov-curator.md             ← maintains installer's pov.md + gotchas.md
     ├── evals/                         ← Perplexity Step-0 evals
     │   ├── README.md
     │   ├── loading.jsonl              ← positive/negative routing queries
@@ -184,7 +193,7 @@ The `spec/` folder mirrors two external specs offline:
 - [`spec/agent-skills-spec.md`](spec/agent-skills-spec.md) — full mirror of the [Agent Skills specification](https://github.com/agentskills/agentskills) (Apache-2.0 / CC-BY-4.0).
 - [`spec/design-md-spec.md`](spec/design-md-spec.md) — full mirror of [Google Labs' `design.md` format](https://github.com/google-labs-code/design.md) (Apache-2.0).
 
-Total: **75 markdown files** in the skill — 1 SKILL.md, 8 MOCs, 63 atomic nodes, 3 evals.
+Total: **83 markdown files** in the skill — 1 SKILL.md, 8 MOCs, 63 atomic nodes, 6 workflow subagents + 1 agents README, 3 evals. Plus the repo-root identity files (AGENTS.md, SOUL.md).
 
 ## View and edit in Obsidian
 
@@ -243,6 +252,8 @@ PRs welcome. The shorter the better.
 - [skills.sh](https://skills.sh) — the CLI and registry
 - [Agent Skills spec](https://agentskills.io/specification) — frontmatter and directory standard (mirrored at [`spec/agent-skills-spec.md`](spec/agent-skills-spec.md))
 - [agents.md](https://agents.md) — the AGENTS.md format
+- [steipete/SOUL.md](https://github.com/steipete/SOUL.md) + [soul.md](https://soul.md) — identity layer for agents; companion to AGENTS.md
+- [Claude Code subagents spec](https://docs.claude.com/en/docs/claude-code/sub-agents) — frontmatter for the files under `skills/design-engineering/agents/`
 - [design.md](https://github.com/google-labs-code/design.md) — design-token format for coding agents (mirrored at [`spec/design-md-spec.md`](spec/design-md-spec.md))
 - [Agentation](https://www.agentation.com) — click-to-annotate design review for your localhost dev environment
 - [kepano/obsidian-skills](https://www.skills.sh/kepano/obsidian-skills) — companion skill for editing skill graphs in Obsidian

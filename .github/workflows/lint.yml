@@ -30,22 +30,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check every reference node starts with frontmatter
+      - name: Check every reference node and subagent starts with frontmatter
         run: |
           set -e
           missing=0
-          for f in $(find skills/design-engineering/references -name '*.md'); do
-            first_line=$(head -n 1 "$f")
-            if [ "$first_line" != "---" ]; then
-              echo "::error file=$f::Missing YAML frontmatter (file must start with ---)"
-              missing=$((missing + 1))
-            fi
+          for dir in skills/design-engineering/references skills/design-engineering/agents; do
+            for f in $(find "$dir" -name '*.md'); do
+              first_line=$(head -n 1 "$f")
+              if [ "$first_line" != "---" ]; then
+                echo "::error file=$f::Missing YAML frontmatter (file must start with ---)"
+                missing=$((missing + 1))
+              fi
+            done
           done
           if [ $missing -gt 0 ]; then
-            echo "::error::$missing reference file(s) missing frontmatter"
+            echo "::error::$missing file(s) missing frontmatter"
             exit 1
           fi
-          echo "All reference nodes have frontmatter."
+          echo "All reference nodes and subagents have frontmatter."
 
   skill-structure:
     name: Skill structure
@@ -58,7 +60,15 @@ jobs:
           set -e
           required=(
             "skills/design-engineering/SKILL.md"
+            "skills/design-engineering/agents/README.md"
+            "skills/design-engineering/agents/ui-reviewer.md"
+            "skills/design-engineering/agents/motion-auditor.md"
+            "skills/design-engineering/agents/anti-pattern-scanner.md"
+            "skills/design-engineering/agents/agentation-fix-loop.md"
+            "skills/design-engineering/agents/design-md-consumer.md"
+            "skills/design-engineering/agents/pov-curator.md"
             "AGENTS.md"
+            "SOUL.md"
             "README.md"
             "LICENSE"
             "CONTRIBUTING.md"
@@ -94,6 +104,32 @@ jobs:
           fi
           echo "Name matches folder name."
 
+      - name: Subagent frontmatter fields
+        run: |
+          set -e
+          missing=0
+          for f in $(find skills/design-engineering/agents -name '*.md' -not -name 'README.md'); do
+            base=$(basename "$f" .md)
+            # Each subagent must declare: name, description, tools, model
+            for field in name description tools model; do
+              if ! grep -qE "^${field}:" "$f"; then
+                echo "::error file=$f::Subagent missing required frontmatter field: $field"
+                missing=$((missing + 1))
+              fi
+            done
+            # Subagent name must match filename
+            agent_name=$(grep -m 1 '^name:' "$f" | awk '{print $2}' | tr -d '"')
+            if [ "$agent_name" != "$base" ]; then
+              echo "::error file=$f::Subagent name ($agent_name) does not match filename ($base)"
+              missing=$((missing + 1))
+            fi
+          done
+          if [ $missing -gt 0 ]; then
+            echo "::error::$missing subagent frontmatter error(s)"
+            exit 1
+          fi
+          echo "All subagents have required frontmatter (name, description, tools, model) and names match filenames."
+
   link-check:
     name: Internal wikilink check
     runs-on: ubuntu-latest
@@ -103,8 +139,11 @@ jobs:
       - name: Verify every [[wikilink]] in skill content resolves to a file
         run: |
           set -e
-          # Collect basenames of reference files (the resolvable wikilink targets)
-          basenames=$(find skills/design-engineering/references -name '*.md' -exec basename {} .md \;)
+          # Collect basenames of reference files AND subagents (the resolvable wikilink targets)
+          basenames=$(find skills/design-engineering/references skills/design-engineering/agents -name '*.md' -exec basename {} .md \;)
+          # Add SKILL as a resolvable target for cross-references from subagents
+          basenames="$basenames
+SKILL"
 
           # Descriptive uses that aren't real links (allow-list)
           allowlist=$(printf '%s\n' wikilinks node-name name foo bar wikilink-1 wikilink-2)
