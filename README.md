@@ -18,6 +18,25 @@ npx skills add AgentsORG/design-engineering
 
 This uses the [skills.sh](https://skills.sh) CLI to install into your detected agent (Claude Code, Cursor, Windsurf, Codex, Gemini, Cline, Aider, and [18+ others](https://www.skills.sh/agent)). The CLI prompts for scope (project vs. global) and method (symlink vs. copy).
 
+### Plugins CLI (Claude Code + Cursor + Codex)
+
+Install the full plugin bundle — skill graph, six workflow subagents, and slash commands — in one step via [vercel-labs/plugins](https://github.com/vercel-labs/plugins):
+
+```bash
+npx plugins add AgentsORG/design-engineering
+
+# Dry run — see skills, agents, and commands before installing
+npx plugins discover AgentsORG/design-engineering
+
+# List detected agent hosts on this machine
+npx plugins targets
+
+# Cursor only, skip confirmation
+npx plugins add AgentsORG/design-engineering --target cursor -y
+```
+
+Restart your agent tools after install. Slash commands (when your host supports them) include `/design-engineering:review-ui`, `/design-engineering:motion-audit`, `/design-engineering:scan-ai-tells`, `/design-engineering:agentation-fix`, `/design-engineering:apply-design-md`, and `/design-engineering:fork-pov`.
+
 ### Per-agent install
 
 The repo also ships agent-specific plugin manifests so you can install via each agent's native plugin system:
@@ -174,6 +193,23 @@ design-engineering/
 │   └── plugin.json                    ← OpenAI Codex manifest with full interface block
 ├── .cursor-plugin/
 │   └── plugin.json                    ← Cursor IDE plugin manifest
+├── .plugin/
+│   └── plugin.json                    ← vendor-neutral manifest (plugins CLI canonical)
+├── agents/                            ← six workflow subagents (plugin-discoverable)
+│   ├── README.md
+│   ├── ui-reviewer.md
+│   ├── motion-auditor.md
+│   ├── anti-pattern-scanner.md
+│   ├── agentation-fix-loop.md
+│   ├── design-md-consumer.md
+│   └── pov-curator.md
+├── commands/                          ← slash-command workflows
+│   ├── review-ui.md
+│   ├── motion-audit.md
+│   ├── scan-ai-tells.md
+│   ├── agentation-fix.md
+│   ├── apply-design-md.md
+│   └── fork-pov.md
 ├── .markdownlint.jsonc
 ├── spec/
 │   └── agent-skills-spec.md           ← pointer to the Agent Skills specification
@@ -181,14 +217,8 @@ design-engineering/
 │   └── TEMPLATE.md                    ← starter template (not SKILL.md so the CLI ignores it)
 └── skills/design-engineering/
     ├── SKILL.md                       ← thin Map of Content (~120 lines)
-    ├── agents/                        ← six workflow subagents
-    │   ├── README.md                  ← directory index + selection guide
-    │   ├── ui-reviewer.md             ← Before / After / Why table + review-checklist audit
-    │   ├── motion-auditor.md          ← motion + transitions critique
-    │   ├── anti-pattern-scanner.md    ← AI-default-tell deletion list
-    │   ├── agentation-fix-loop.md     ← Session-2 fix side of agentation-workflow
-    │   ├── design-md-consumer.md      ← reads DESIGN.md, threads tokens through UI
-    │   └── pov-curator.md             ← maintains installer's pov.md + gotchas.md
+    ├── agents/
+    │   └── README.md                  ← pointer to repo-root agents/
     ├── evals/                         ← Perplexity Step-0 evals
     │   ├── README.md
     │   ├── loading.jsonl              ← positive/negative routing queries
@@ -290,7 +320,7 @@ PRs welcome. The shorter the better.
 - [Agent Skills spec](https://agentskills.io/specification) — frontmatter and directory standard (mirrored at [`spec/agent-skills-spec.md`](spec/agent-skills-spec.md))
 - [agents.md](https://agents.md) — the AGENTS.md format
 - [steipete/SOUL.md](https://github.com/steipete/SOUL.md) + [soul.md](https://soul.md) — identity layer for agents; companion to AGENTS.md
-- [Claude Code subagents spec](https://docs.claude.com/en/docs/claude-code/sub-agents) — frontmatter for the files under `skills/design-engineering/agents/`
+- [Claude Code subagents spec](https://docs.claude.com/en/docs/claude-code/sub-agents) — frontmatter for the files under `agents/`
 - [design.md](https://github.com/google-labs-code/design.md) — design-token format for coding agents (mirrored at [`spec/design-md-spec.md`](spec/design-md-spec.md))
 - [Agentation](https://www.agentation.com) — click-to-annotate design review for your localhost dev environment
 - [kepano/obsidian-skills](https://www.skills.sh/kepano/obsidian-skills) — companion skill for editing skill graphs in Obsidian

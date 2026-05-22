@@ -34,7 +34,7 @@ The graph is intentionally **Obsidian-compatible**: installers can open this rep
 - Atomic nodes: `references/<theme>/<concept-name>.md`.
 - A new theme = a new folder + a new `MOC-<theme>.md` + a link from SKILL.md. Don't create themes for fewer than 3 nodes — fold into an existing one.
 - Frontmatter on every node (light: `title`, `summary`, `tags`) — required for Obsidian graph indexing.
-- **Subagents**: `skills/design-engineering/agents/<agent-name>.md` — YAML frontmatter (`name`, `description`, `tools`, `model`) plus a system-prompt body. Names match the basename so wikilinks resolve. Don't add a subagent unless it has a workflow the main agent can't do cheaply inline.
+- **Subagents**: `agents/<agent-name>.md` — YAML frontmatter (`name`, `description`, `tools`, `model`) plus a system-prompt body. Hoisted to repo root for `npx plugins` / Cursor plugin discovery; names match the basename so wikilinks resolve. Don't add a subagent unless it has a workflow the main agent can't do cheaply inline.
 - Markdown linted via `.markdownlint.jsonc`.
 
 ## Sources of truth
@@ -86,7 +86,7 @@ skills-ref validate ./skills/design-engineering
 CI runs four checks on every PR (see [`.github/workflows/lint.yml`](.github/workflows/lint.yml)):
 
 1. **`markdown-lint`** — `markdownlint` against `.markdownlint.jsonc`.
-2. **`frontmatter-check`** — every file under `skills/design-engineering/references/` and `skills/design-engineering/agents/` must start with `---` YAML.
+2. **`frontmatter-check`** — every file under `skills/design-engineering/references/` and `agents/` must start with `---` YAML.
 3. **`skill-structure`** — required files exist (`SKILL.md`, `AGENTS.md`, `SOUL.md`, `LICENSE`, `CONTRIBUTING.md`, etc.); description starts with `Load when` or `Use when`; skill name matches folder name.
 4. **`link-check`** — every `[[wikilink]]` in skill content resolves to a real reference node or subagent file.
 
@@ -107,12 +107,13 @@ This skill is indexed at [skills.sh/agentsorg/design-engineering/design-engineer
 
 Three agent-specific manifests ship alongside the skills.sh registry entry, following the same pattern as [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes):
 
+- **`.plugin/plugin.json`** — vendor-neutral canonical manifest for [vercel-labs/plugins](https://github.com/vercel-labs/plugins) (`npx plugins add AgentsORG/design-engineering`). The CLI translates `.plugin/` into per-host folders when missing.
 - **`.claude-plugin/plugin.json`** — minimal Claude Code plugin metadata (name, description, version, author, homepage, repository, license). Omits a `skills` field — Claude Code auto-discovers the root `skills/` directory.
 - **`.claude-plugin/marketplace.json`** — single-entry marketplace with `"source": "./"` so the repo doubles as its own marketplace. Add via `/plugin marketplace add AgentsORG/design-engineering`.
-- **`.codex-plugin/plugin.json`** — richer manifest with `keywords`, `skills: "./skills/"`, and an `interface` block (displayName, shortDescription, longDescription, developerName, category, capabilities, defaultPrompt, brandColor).
-- **`.cursor-plugin/plugin.json`** — Cursor IDE manifest with `$schema`, `displayName`, `publisher`, `category`, `tags`, `keywords`, and the same `skills` path.
+- **`.codex-plugin/plugin.json`** — richer manifest with `keywords`, `skills: "./skills/"`, `agents: "./agents/"`, `commands: "./commands/"`, and an `interface` block (displayName, shortDescription, longDescription, developerName, category, capabilities, defaultPrompt, brandColor).
+- **`.cursor-plugin/plugin.json`** — Cursor IDE manifest with `$schema`, `displayName`, `publisher`, `category`, `tags`, `keywords`, `skills`, `agents`, and `commands` paths.
 
-When changing version: bump it in all four files plus `skills/design-engineering/SKILL.md`. The `Plugin manifest versions match` CI step enforces parity — drift will fail the lint job.
+When changing version: bump it in all five manifest files plus `skills/design-engineering/SKILL.md`. The `Plugin manifest versions match` CI step enforces parity — drift will fail the lint job.
 
 ## License
 

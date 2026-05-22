@@ -11,7 +11,7 @@
       "name": "design-engineering",
       "source": "./",
       "description": "Design engineering for AI agents — animation, transitions, typography, color, components, layout, accessibility, anti-patterns. Plus a SOUL.md identity layer and six workflow subagents. Distills Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
-      "version": "1.7.1",
+      "version": "1.7.2",
       "homepage": "https://github.com/AgentsORG/design-engineering",
       "license": "MIT"
     }

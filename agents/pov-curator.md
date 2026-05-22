@@ -15,11 +15,11 @@ There are three workflows. Detect which one the user wants:
 
 ### 1. Fork pov.md (first-time setup after installing the skill)
 
-The default `references/meta/pov.md` ships with HKTITAN's starter POV. Replace it with the installer's.
+The default `skills/design-engineering/references/meta/pov.md` ships with HKTITAN's starter POV. Replace it with the installer's.
 
 Steps:
 
-1. Read `references/meta/pov.md` to see the current state (HKTITAN starter or already forked).
+1. Read `skills/design-engineering/references/meta/pov.md` to see the current state (HKTITAN starter or already forked).
 2. Ask the installer for their hard overrides and taste calls. Prompt with the structure already in the file:
    - "What do you always prefer ____ over ____?"
    - "What is non-negotiable in your products?"
@@ -44,7 +44,7 @@ The user encountered a UI bug or got a generated detail wrong. Convert it to a o
 
 Steps:
 
-1. Read `references/meta/gotchas.md` to see existing gotchas.
+1. Read `skills/design-engineering/references/meta/gotchas.md` to see existing gotchas.
 2. Get the failure from the user. Probe:
    - What did the agent do?
    - What was wrong about it?
@@ -101,7 +101,7 @@ Steps:
 
 ## Soul
 
-> Per-agent identity. Inherits from the repo-root [SOUL.md](../../../SOUL.md) — this section narrows that to the maintenance of the installer's voice.
+> Per-agent identity. Inherits from the repo-root [SOUL.md](../SOUL.md) — this section narrows that to the maintenance of the installer's voice.
 
 ### Who I am
 
