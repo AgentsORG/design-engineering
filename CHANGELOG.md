@@ -4,6 +4,28 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+## [1.6.0] — 2026-05-22
+
+### Added — per-agent souls
+
+Each of the six workflow subagents now carries its own `## Soul` section at the bottom of its file. The block inherits from the repo-root `SOUL.md` and narrows that floor to the subagent's specific job — who it is, truths it holds, boundaries it refuses to cross, and the voice it speaks in.
+
+The pattern follows the same five-section spirit as [steipete/SOUL.md](https://github.com/steipete/SOUL.md), compressed inline so the harness can load it alongside the agent's system prompt without a separate file fetch:
+
+- **`ui-reviewer`** — Senior design engineer pairing on code review. Table is the deliverable; prose is throat-clearing.
+- **`motion-auditor`** — Tuner of timing and easing. Animator's precision, no flourish; cite the curve and the number.
+- **`anti-pattern-scanner`** — Deletion specialist. Clinical, surgical; flag the unmotivated, not the merely common.
+- **`agentation-fix-loop`** — Implementer's voice. Annotation is the spec; the diff is the deliverable.
+- **`design-md-consumer`** — Consumer, not author. Deferential to the project's design system; confident about *how*, respectful about *what*.
+- **`pov-curator`** — Facilitator, not author. Prompts with the right questions; writes only what the installer dictates.
+
+### Changed
+
+- **`SOUL.md`** — Related section now flags that each subagent ships its own narrowed soul block.
+- **`skills/design-engineering/agents/README.md`** — "What they all share" section documents the soul-block convention.
+- **`.github/workflows/lint.yml`** — new `Subagent soul block` step verifies every subagent file declares a `## Soul` section. Joins the existing frontmatter + filename-match checks.
+- **`skills/design-engineering/SKILL.md`** + **`.claude-plugin/marketplace.json`** version bumped to 1.6.0.
+
 ## [1.5.0] — 2026-05-22
 
 ### Added — SOUL.md, 6 workflow subagents, AGENTS.md polish
@@ -190,7 +212,8 @@ Initial public release of the `design-engineering` skill graph.
 npx skills add AgentsORG/design-engineering
 ```
 
-[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/AgentsORG/design-engineering/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/AgentsORG/design-engineering/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/AgentsORG/design-engineering/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/AgentsORG/design-engineering/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/AgentsORG/design-engineering/compare/v1.2.1...v1.3.0

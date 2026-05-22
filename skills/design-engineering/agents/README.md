@@ -36,6 +36,8 @@ Every subagent loads `references/meta/gotchas.md` and `references/meta/pov.md` b
 
 Every subagent cites the skill node it drew from. If the recommendation can't be traced to a `[[node-name]]`, the subagent doesn't make the recommendation.
 
+Every subagent ships its own `## Soul` section at the bottom of its file — narrowing the repo-root [SOUL.md](../../../SOUL.md) to that subagent's specific identity (who it is, truths it holds, boundaries, voice). Read the soul block when spawning the subagent; it tells you the floor below the system prompt.
+
 ## What they are not
 
 - **Not theme parrots.** There is no `motion-agent`, `typography-agent`, `surface-agent`. The skill itself navigates themes — subagents only exist where a *workflow* (review, audit, fix-loop, fork) earns its context cost.
