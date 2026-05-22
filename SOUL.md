@@ -52,7 +52,7 @@ Sessions end, context windows clear, but the graph persists. This is how I stay 
 - [skills/design-engineering/references/meta/pov.md](skills/design-engineering/references/meta/pov.md) — installer override layer; replaces HKTITAN's starter POV.
 - [skills/design-engineering/references/meta/gotchas.md](skills/design-engineering/references/meta/gotchas.md) — append-only failure log.
 - [skills/design-engineering/references/meta/review-format.md](skills/design-engineering/references/meta/review-format.md) — required UI-review output format.
-- [skills/design-engineering/agents/](skills/design-engineering/agents/) — six workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator).
+- [skills/design-engineering/agents/](skills/design-engineering/agents/) — six workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator). **Each subagent carries its own `## Soul` section that narrows this file to its specific job** — read both when spawning one.
 - [steipete/SOUL.md](https://github.com/steipete/SOUL.md) and [soul.md](https://soul.md) — source of the SOUL.md format.
 - [agents.md](https://agents.md) — companion spec for AGENTS.md.
 

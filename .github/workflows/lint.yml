@@ -130,6 +130,22 @@ jobs:
           fi
           echo "All subagents have required frontmatter (name, description, tools, model) and names match filenames."
 
+      - name: Subagent soul block
+        run: |
+          set -e
+          missing=0
+          for f in $(find skills/design-engineering/agents -name '*.md' -not -name 'README.md'); do
+            if ! grep -qE '^## Soul' "$f"; then
+              echo "::error file=$f::Subagent missing required ## Soul section"
+              missing=$((missing + 1))
+            fi
+          done
+          if [ $missing -gt 0 ]; then
+            echo "::error::$missing subagent(s) missing ## Soul section"
+            exit 1
+          fi
+          echo "All subagents carry a ## Soul section."
+
   link-check:
     name: Internal wikilink check
     runs-on: ubuntu-latest
