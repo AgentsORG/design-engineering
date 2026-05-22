@@ -1,28 +1,19 @@
 {
   "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/schemas/marketplace.schema.json",
   "name": "design-engineering",
-  "displayName": "Design Engineering",
-  "description": "Design engineering wisdom — animation, transitions, taste, typography, color, components, layout, accessibility, anti-patterns. Plus Agentation workflow, design.md consumption, SOUL.md identity layer, and six workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator). From Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md.",
-  "author": {
+  "owner": {
     "name": "HKTITAN",
     "email": "harshitkhemani@gmail.com",
     "url": "https://github.com/HKTITAN"
   },
-  "homepage": "https://github.com/AgentsORG/design-engineering",
-  "repository": "https://github.com/AgentsORG/design-engineering",
-  "license": "MIT",
-  "version": "1.6.0",
   "plugins": [
     {
       "name": "design-engineering",
-      "displayName": "Design Engineering",
-      "description": "A skill graph for design engineering — animation decisions, transition techniques, taste, typography, color, hover states, anti-patterns.",
-      "skills": [
-        {
-          "name": "design-engineering",
-          "path": "skills/design-engineering"
-        }
-      ]
+      "source": "./",
+      "description": "Design engineering for AI agents — animation, transitions, typography, color, components, layout, accessibility, anti-patterns. Plus a SOUL.md identity layer and six workflow subagents. Distills Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
+      "version": "1.7.0",
+      "homepage": "https://github.com/AgentsORG/design-engineering",
+      "license": "MIT"
     }
   ]
 }

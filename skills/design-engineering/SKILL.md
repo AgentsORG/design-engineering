@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: HKTITAN
-  version: "1.6.0"
+  version: "1.7.0"
   graph: true
   subagents: skills/design-engineering/agents/
   soul: SOUL.md

@@ -10,11 +10,42 @@ Not a tutorial. Not a doc site. **A working memory the agent loads** when you're
 
 ## Install
 
+The fastest path — one command, any agent:
+
 ```bash
 npx skills add AgentsORG/design-engineering
 ```
 
 This uses the [skills.sh](https://skills.sh) CLI to install into your detected agent (Claude Code, Cursor, Windsurf, Codex, Gemini, Cline, Aider, and [18+ others](https://www.skills.sh/agent)). The CLI prompts for scope (project vs. global) and method (symlink vs. copy).
+
+### Per-agent install
+
+The repo also ships agent-specific plugin manifests so you can install via each agent's native plugin system:
+
+**Claude Code** — uses `.claude-plugin/marketplace.json` + `.claude-plugin/plugin.json`. Skills under `skills/` auto-discover.
+
+```bash
+# Add as a marketplace
+/plugin marketplace add AgentsORG/design-engineering
+/plugin install design-engineering
+
+# Or test locally
+claude --plugin-dir .
+```
+
+**Codex** — uses `.codex-plugin/plugin.json` with the full `interface` block (default prompts, brand color, capabilities).
+
+```bash
+codex plugin marketplace add AgentsORG/design-engineering --sparse .codex-plugin --sparse skills
+```
+
+**Cursor** — uses `.cursor-plugin/plugin.json`. Install via the Cursor Marketplace or sideload locally.
+
+```text
+Settings → Plugins → Load unpacked → point at this repo root
+```
+
+All three manifests share the same `name`, `version`, `description`, `author`, `homepage`, `repository`, and `license` so plugin identity stays consistent across hosts. The Codex manifest adds `interface` (default prompts, brand color, capabilities); the Cursor manifest adds `displayName`, `publisher`, `tags`, and a `$schema` URL. CI lints all four manifests for valid JSON and version-parity with `SKILL.md` on every PR.
 
 ### Recommended companions
 
@@ -134,9 +165,15 @@ design-engineering/
 ├── CHANGELOG.md                       ← Keep a Changelog / SemVer
 ├── LICENSE                            ← MIT
 ├── .github/
-│   ├── workflows/lint.yml             ← markdownlint + frontmatter + wikilinks + subagent fields
+│   ├── workflows/lint.yml             ← markdownlint + frontmatter + wikilinks + subagent fields + manifest version-parity
 │   └── PULL_REQUEST_TEMPLATE.md
-├── .claude-plugin/marketplace.json    ← Claude Code marketplace manifest
+├── .claude-plugin/
+│   ├── marketplace.json               ← Claude Code marketplace manifest (single-entry, auto-discovery)
+│   └── plugin.json                    ← Claude Code plugin metadata
+├── .codex-plugin/
+│   └── plugin.json                    ← OpenAI Codex manifest with full interface block
+├── .cursor-plugin/
+│   └── plugin.json                    ← Cursor IDE plugin manifest
 ├── .markdownlint.jsonc
 ├── spec/
 │   └── agent-skills-spec.md           ← pointer to the Agent Skills specification
