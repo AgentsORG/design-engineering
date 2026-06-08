@@ -16,3 +16,4 @@ Typography is where AI-generated UIs give themselves away first. Inter and SF Pr
 ## Cross-cluster
 
 - See [[ai-default-tells]] in [[MOC-anti-patterns]] for typography tells (default sans on landing pages, gradient text on hero).
+- For the precise word behind a vague critique (kerning vs tracking, widow vs orphan, leading), see [[design-vocabulary]].
