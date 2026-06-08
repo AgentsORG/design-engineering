@@ -1,6 +1,6 @@
 ---
 name: design-engineering
-description: "Load when reviewing UI code, designing a component or page layout, picking an easing curve or transition pattern, deciding whether something should animate at all, choosing an avatar/typography/color system, writing UI copy or error messages, auditing for AI-default tells or a11y misses, consuming a project's DESIGN.md tokens, giving feedback through Agentation or a similar annotation tool, asking why a UI feels flat, or judging when delight earns its weight. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation."
+description: "Load when reviewing UI code, designing a component or page layout, picking an easing curve or transition pattern, deciding whether something should animate at all, choosing an avatar/typography/color system, writing UI copy or error messages, auditing for AI-default tells or a11y misses, consuming a project's DESIGN.md tokens, giving feedback through Agentation or a similar annotation tool, asking why a UI feels flat, or judging when delight earns its weight. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation, and Index (index.how — Emil Kowalski and Glenn Carstens-Peters)."
 license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
@@ -28,7 +28,7 @@ If the user asks for a UI code review, use the format defined in `[[review-forma
 
 How to think about taste, delight, and the difference between marketing and product UI.
 
-- `[[MOC-philosophy]]` → [[taste-is-trained]], [[unseen-details-compound]], [[beauty-is-leverage]], [[delight-impact-curve]], [[feeling-right]], [[marketing-vs-product-ui]], [[states-are-the-work]], [[data-is-content]], [[dependency-discipline]], [[pointing-beats-describing]]
+- `[[MOC-philosophy]]` → [[taste-is-trained]], [[unseen-details-compound]], [[beauty-is-leverage]], [[delight-impact-curve]], [[feeling-right]], [[marketing-vs-product-ui]], [[states-are-the-work]], [[data-is-content]], [[dependency-discipline]], [[pointing-beats-describing]], [[articulate-precisely]]
 
 ## Motion — when something should move, and how
 
@@ -81,6 +81,7 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 
 - [[review-format]] — Required output format for UI critiques (Before | After | Why markdown table).
 - [[review-checklist]] — Eleven-row audit to scan against before signing off on a UI review.
+- [[design-vocabulary]] — The precise word for each design phenomenon and where the skill goes deeper. The lexicon behind [[articulate-precisely]]; seeded by Index (Emil Kowalski & Glenn Carstens-Peters).
 - [[using-design-md]] — How to consume a project's DESIGN.md (Google Labs spec). Tokens are normative; prose is context.
 - [[agentation-workflow]] — Install and use [Agentation](https://www.agentation.com) for click-to-annotate design review. Two-session critique-then-fix workflow.
 - [[cross-model-testing]] — How to test description / routing changes across GPT, Claude Opus, and Claude Sonnet.

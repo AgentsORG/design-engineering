@@ -20,6 +20,7 @@ Components are where craft lives because users *touch* them. Their states are wh
 - [[accessibility-baseline]] — Keyboard-everywhere, `:focus-visible`, hit targets, ARIA names on icon buttons, polite aria-live. The floor below taste.
 - [[optimistic-updates]] — Update UI immediately on likely-success actions, reconcile or undo on failure. The largest perceived-latency win.
 - [[copy-voice]] — Active voice, Title Case for headings/buttons, numerals for counts, error messages that guide the exit.
+- [[component-confusables]] — Pick by behaviour, not looks: tooltip vs popover (can it hold a link?), badge vs tag (attached/read-only vs standalone/interactive), sheet vs drawer vs dialog.
 
 ## Cross-cluster
 

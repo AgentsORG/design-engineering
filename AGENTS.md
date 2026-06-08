@@ -51,6 +51,7 @@ Each atomic node should cite its source at the bottom. The current sources are:
 - **Lucide-animated / @pqoqubbw** — `motion/hover-default-imperative` pattern.
 - **Google Labs Code (github.com/google-labs-code/design.md)** — design-token format. Mirrored offline at `spec/design-md-spec.md`; runtime guidance in `meta/using-design-md`.
 - **Agentation (agentation.com / benjitaylor/agentation)** — click-to-annotate design-review workflow. Drives `philosophy/pointing-beats-describing` and `meta/agentation-workflow`.
+- **Index — Emil Kowalski & Glenn Carstens-Peters (index.how)** — "say precisely what you mean" design vocabulary. Drives `philosophy/articulate-precisely`, `meta/design-vocabulary`, and `components/component-confusables`.
 - **agentskills/agentskills** — canonical Agent Skills specification, mirrored offline at `spec/agent-skills-spec.md`.
 - **HKTITAN / installer** — `meta/gotchas.md` and `meta/pov.md`. These grow over time and reflect lived experience. Forked installers should edit `meta/pov.md`.
 

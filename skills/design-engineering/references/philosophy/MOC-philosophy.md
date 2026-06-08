@@ -20,6 +20,7 @@ The cluster that answers "why bother." Use when the user asks why something feel
 - [[data-is-content]] — Tables, charts, lists, dashboards deserve the same typography / alignment / whitespace care as marketing prose. Data display *is* design.
 - [[dependency-discipline]] — Every dependency is a tax. Replicate simple utilities. Draw shapes in CSS. Prefer native browser APIs. The bundle is design.
 - [[pointing-beats-describing]] — Precise machine-readable selection (selectors, file paths, coordinates) outperforms prose when feedback goes to an AI agent. Benji Taylor's framing.
+- [[articulate-precisely]] — Name the phenomenon exactly and say why it works; precise vocabulary is what turns taste into a rule an agent can follow. Its lexicon is [[design-vocabulary]]. Emil Kowalski & Glenn Carstens-Peters (Index).
 
 ## When to read this whole cluster
 

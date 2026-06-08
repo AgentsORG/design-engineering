@@ -4,6 +4,22 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+### Added — Index "articulate" integration (index.how)
+
+Integrates [index.how/to/articulate](https://index.how/to/articulate) — Emil Kowalski & Glenn Carstens-Peters' "say precisely what you mean" design vocabulary — into the skill. Glosses are this skill's own (re-expressed, not lifted); Index is the canonical reference.
+
+- **`references/philosophy/articulate-precisely.md`** — new philosophy node: name the phenomenon exactly and say why it works; precise vocabulary is what converts taste into a rule an agent can follow. Sibling to `pointing-beats-describing` (the *word* vs the *target*). Sources: Index and Emil Kowalski's *Agents with Taste*.
+- **`references/meta/design-vocabulary.md`** — new lexicon node: the precise word for each design phenomenon across Index's 188-term `articulate` module (12 categories), with original glosses and `→ [[node]]` cross-links to where each concept is treated in depth. Terms with no deeper node are named but left as plain vocabulary.
+- **`references/components/component-confusables.md`** — new components node converting Index's confusable component pairs into a rule: tooltip vs popover (interactive content?), badge vs tag (attached/read-only vs standalone/interactive), sheet vs drawer vs dialog.
+
+### Changed
+
+- **`skills/design-engineering/SKILL.md`** — Philosophy MOC line gains `articulate-precisely`; Meta section gains `design-vocabulary`; description source list adds Index (index.how).
+- **`references/philosophy/MOC-philosophy.md`** — lists the new `articulate-precisely` node.
+- **`references/components/MOC-components.md`** — lists `component-confusables`.
+- **`references/typography/MOC-typography.md`** — cross-cluster pointer to `design-vocabulary` for precise typographic terms.
+- **`README.md`**, **`AGENTS.md`**, **`SOUL.md`** — Index added to the "Distills…" intro, repository-layout tree, node count (66 atomic nodes / 86 files), and the Sources / Sources-of-truth / taste-lineage registries.
+
 ## [1.7.2] — 2026-05-22
 
 ### Added

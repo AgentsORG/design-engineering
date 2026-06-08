@@ -4,7 +4,7 @@
 [![CI](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml/badge.svg)](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-An agent skill that encodes design engineering — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight + [Agentation](https://www.agentation.com)), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), and [DiceBear](https://www.dicebear.com) (avatars) into one navigable skill graph.
+An agent skill that encodes design engineering — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight + [Agentation](https://www.agentation.com)), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), [DiceBear](https://www.dicebear.com) (avatars), and [Index](https://index.how) (Emil Kowalski & Glenn Carstens-Peters — design vocabulary) into one navigable skill graph.
 
 Not a tutorial. Not a doc site. **A working memory the agent loads** when you're reviewing UI code, picking an easing curve, designing a component, or asking "why does this feel flat?"
 
@@ -228,7 +228,8 @@ design-engineering/
         │              beauty-is-leverage, delight-impact-curve,
         │              feeling-right, marketing-vs-product-ui,
         │              states-are-the-work, data-is-content,
-        │              dependency-discipline, pointing-beats-describing)
+        │              dependency-discipline, pointing-beats-describing,
+        │              articulate-precisely)
         ├── motion/      (animation-decision-framework, easing-curves,
         │              duration-table, spring-animations, transform-opacity-only,
         │              transform-mastery, clip-path-tricks, never-scale-from-zero,
@@ -246,12 +247,12 @@ design-engineering/
         ├── components/  (hover-states-subtle, empty-loading-states, icon-systems,
         │              cards-design, forms-validation, avatar-systems,
         │              interaction-personality, accessibility-baseline,
-        │              optimistic-updates, copy-voice)
+        │              optimistic-updates, copy-voice, component-confusables)
         ├── layout/      (viewport-custom-design, sticky-and-scroll-tells,
         │              url-as-state)
         ├── anti-patterns/  (ai-default-tells, content-authenticity)
         └── meta/        (review-format, review-checklist, cross-model-testing,
-                       using-design-md, agentation-workflow,
+                       using-design-md, design-vocabulary, agentation-workflow,
                        gotchas, pov)
 ```
 
@@ -260,7 +261,7 @@ The `spec/` folder mirrors two external specs offline:
 - [`spec/agent-skills-spec.md`](spec/agent-skills-spec.md) — full mirror of the [Agent Skills specification](https://github.com/agentskills/agentskills) (Apache-2.0 / CC-BY-4.0).
 - [`spec/design-md-spec.md`](spec/design-md-spec.md) — full mirror of [Google Labs' `design.md` format](https://github.com/google-labs-code/design.md) (Apache-2.0).
 
-Total: **83 markdown files** in the skill — 1 SKILL.md, 8 MOCs, 63 atomic nodes, 6 workflow subagents + 1 agents README, 3 evals. Plus the repo-root identity files (AGENTS.md, SOUL.md).
+Total: **86 markdown files** in the skill — 1 SKILL.md, 8 MOCs, 66 atomic nodes, 6 workflow subagents + 1 agents README, 3 evals. Plus the repo-root identity files (AGENTS.md, SOUL.md).
 
 ## View and edit in Obsidian
 
@@ -300,6 +301,7 @@ PRs welcome. The shorter the better.
 ## Sources
 
 - **Emil Kowalski** — [emilkowalski/skill](https://github.com/emilkowalski/skill), [animations.dev](https://animations.dev), [emilkowal.ski](https://emilkowal.ski), [sonner.emilkowal.ski](https://sonner.emilkowal.ski)
+- **Index (Emil Kowalski & Glenn Carstens-Peters)** — [index.how](https://index.how) ("Say precisely what you mean" — the design-vocabulary project behind `philosophy/articulate-precisely`, `meta/design-vocabulary`, and `components/component-confusables`)
 - **Benji Taylor** — [benji.org](https://benji.org) (Family Values, Honkish, Liveline, Morphing Icons with Claude, Annotating, Agentation) + [Agentation](https://www.agentation.com) ([github.com/benjitaylor/agentation](https://github.com/benjitaylor/agentation), [skills.sh/benjitaylor/agentation](https://www.skills.sh/benjitaylor/agentation/agentation))
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev), [github.com/Jakubantalik/transitions.dev](https://github.com/Jakubantalik/transitions.dev)
 - **James Frewin** — [guidelines.sh](https://guidelines.sh)
