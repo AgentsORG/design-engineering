@@ -67,6 +67,12 @@ jobs:
             "agents/agentation-fix-loop.md"
             "agents/design-md-consumer.md"
             "agents/pov-curator.md"
+            "plugin.json"
+            "package.json"
+            "agent/agent.ts"
+            "agent/instructions.md"
+            "evals/evals.config.ts"
+            "scripts/sync-skills.mjs"
             ".plugin/plugin.json"
             "AGENTS.md"
             "SOUL.md"
@@ -154,7 +160,7 @@ jobs:
         run: |
           set -e
           fails=0
-          for f in .plugin/plugin.json .claude-plugin/plugin.json .claude-plugin/marketplace.json .codex-plugin/plugin.json .cursor-plugin/plugin.json; do
+          for f in plugin.json package.json .plugin/plugin.json .claude-plugin/plugin.json .claude-plugin/marketplace.json .codex-plugin/plugin.json .cursor-plugin/plugin.json; do
             if ! python3 -c "import json,sys; json.load(open('$f'))" 2>/dev/null; then
               echo "::error file=$f::Invalid JSON"
               fails=$((fails + 1))
@@ -164,19 +170,21 @@ jobs:
             echo "::error::$fails plugin manifest(s) failed JSON validation"
             exit 1
           fi
-          echo "All five plugin manifests are valid JSON."
+          echo "All plugin manifests are valid JSON."
 
       - name: Plugin manifest versions match
         run: |
           set -e
+          v_root=$(python3 -c "import json; print(json.load(open('plugin.json'))['version'])")
+          v_pkg=$(python3 -c "import json; print(json.load(open('package.json'))['version'])")
           v_plugin=$(python3 -c "import json; print(json.load(open('.plugin/plugin.json'))['version'])")
           v_claude=$(python3 -c "import json; print(json.load(open('.claude-plugin/plugin.json'))['version'])")
           v_market=$(python3 -c "import json; print(json.load(open('.claude-plugin/marketplace.json'))['plugins'][0]['version'])")
           v_codex=$(python3 -c "import json; print(json.load(open('.codex-plugin/plugin.json'))['version'])")
           v_cursor=$(python3 -c "import json; print(json.load(open('.cursor-plugin/plugin.json'))['version'])")
           v_skill=$(grep -m 1 'version:' skills/design-engineering/SKILL.md | sed -E 's/.*"([^"]+)".*/\1/')
-          if [ "$v_plugin" != "$v_claude" ] || [ "$v_claude" != "$v_market" ] || [ "$v_claude" != "$v_codex" ] || [ "$v_claude" != "$v_cursor" ] || [ "$v_claude" != "$v_skill" ]; then
-            echo "::error::Version mismatch — plugin:$v_plugin claude:$v_claude marketplace:$v_market codex:$v_codex cursor:$v_cursor skill:$v_skill"
+          if [ "$v_root" != "$v_plugin" ] || [ "$v_root" != "$v_pkg" ] || [ "$v_plugin" != "$v_claude" ] || [ "$v_claude" != "$v_market" ] || [ "$v_claude" != "$v_codex" ] || [ "$v_claude" != "$v_cursor" ] || [ "$v_claude" != "$v_skill" ]; then
+            echo "::error::Version mismatch — root:$v_root package:$v_pkg plugin:$v_plugin claude:$v_claude marketplace:$v_market codex:$v_codex cursor:$v_cursor skill:$v_skill"
             exit 1
           fi
           echo "All plugin manifests + SKILL.md report version $v_claude."

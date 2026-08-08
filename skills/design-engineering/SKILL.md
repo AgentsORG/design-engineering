@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: HKTITAN
-  version: "1.7.2"
+  version: "2.0.0"
   graph: true
   subagents: agents/
   soul: SOUL.md
@@ -17,8 +17,8 @@ metadata:
 
 ## How to use this skill
 
-1. Scan the MOCs below. Pick the cluster that matches the user's question.
-2. Open the relevant `MOC-*.md` for that cluster. It lists the atomic nodes under it.
+1. Route first: `[[routing-table]]` maps intent → entry node for most single questions. If two intents blur, `[[disambiguation]]` names the tiebreaker. Multi-cluster jobs follow `[[stacking-chains]]`.
+2. Otherwise scan the MOCs below, pick the cluster, and open its `MOC-*.md` for the atomic nodes under it.
 3. Read only the atomic nodes that match. Each node is standalone — you don't need siblings.
 4. Before reviewing UI code, also load `[[gotchas]]` and `[[pov]]`.
 
@@ -79,6 +79,9 @@ What looks "AI default" and what to do instead. High-value because it's about de
 
 Procedural rules and growing files. `[[review-format]]` is mandatory when doing UI code reviews.
 
+- [[routing-table]] — Intent → entry-node router with the four postures (build / judge / decide / name). Open this before anything else on a single question.
+- [[disambiguation]] — The questions that blur together (four motion questions, three dark-mode owners, two layout-shift owners) and which node owns each.
+- [[stacking-chains]] — Ordered node chains for multi-step jobs (new screen, feel-better pass, design system, marketing site, a11y pass).
 - [[review-format]] — Required output format for UI critiques (Before | After | Why markdown table).
 - [[review-checklist]] — Eleven-row audit to scan against before signing off on a UI review.
 - [[design-vocabulary]] — The precise word for each design phenomenon and where the skill goes deeper. The lexicon behind [[articulate-precisely]]; seeded by Index (Emil Kowalski & Glenn Carstens-Peters).
