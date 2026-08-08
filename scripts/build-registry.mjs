@@ -26,6 +26,10 @@ const walk = (dir) =>
 
 const toPosix = (p) => p.split(sep).join(posix.sep);
 
+// Normalize CRLF so the built output is byte-identical on Windows and Linux —
+// otherwise a Windows checkout embeds \r\n and CI's rebuild reports drift.
+const readText = (path) => readFileSync(join(root, path), "utf8").replace(/\r\n/g, "\n");
+
 // Every file in the skill graph lands under the cross-agent skills directory,
 // preserving its path below skills/design-engineering/.
 const skillFiles = walk("skills/design-engineering")
@@ -133,7 +137,7 @@ for (const item of items) {
     files: item.files?.map((file) => ({
       ...file,
       path: toPosix(file.path),
-      content: readFileSync(join(root, file.path), "utf8"),
+      content: readText(file.path),
     })),
   };
   if (!built.files) delete built.files;
