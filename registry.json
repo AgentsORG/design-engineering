@@ -1,0 +1,574 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "design-engineering",
+  "homepage": "https://github.com/AgentsORG/design-engineering",
+  "items": [
+    {
+      "name": "design-engineering",
+      "type": "registry:file",
+      "title": "Design Engineering skill graph",
+      "description": "The full design-engineering skill graph — 8 themed clusters of atomic, wikilinked nodes covering motion, typography, surface, components, layout, anti-patterns, and the routing layer. Installs into .agents/skills/ where any coding agent can load it.",
+      "author": "HKTITAN",
+      "categories": [
+        "design",
+        "agents",
+        "skills"
+      ],
+      "docs": "Restart your coding agent after installing so it picks up the new skill. Start at .agents/skills/design-engineering/SKILL.md; the router is references/meta/routing-table.md. Fork references/meta/pov.md to record your own taste overrides.",
+      "files": [
+        {
+          "path": "skills/design-engineering/agents/README.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/agents/README.md"
+        },
+        {
+          "path": "skills/design-engineering/evals/loading.jsonl",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/evals/loading.jsonl"
+        },
+        {
+          "path": "skills/design-engineering/evals/progressive-reads.jsonl",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/evals/progressive-reads.jsonl"
+        },
+        {
+          "path": "skills/design-engineering/evals/README.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/evals/README.md"
+        },
+        {
+          "path": "skills/design-engineering/references/anti-patterns/ai-default-tells.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/anti-patterns/ai-default-tells.md"
+        },
+        {
+          "path": "skills/design-engineering/references/anti-patterns/content-authenticity.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/anti-patterns/content-authenticity.md"
+        },
+        {
+          "path": "skills/design-engineering/references/anti-patterns/MOC-anti-patterns.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/anti-patterns/MOC-anti-patterns.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/accessibility-baseline.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/accessibility-baseline.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/avatar-systems.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/avatar-systems.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/cards-design.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/cards-design.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/component-confusables.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/component-confusables.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/copy-voice.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/copy-voice.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/empty-loading-states.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/empty-loading-states.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/forms-validation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/forms-validation.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/hover-states-subtle.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/hover-states-subtle.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/icon-systems.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/icon-systems.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/interaction-personality.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/interaction-personality.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/MOC-components.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/MOC-components.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/optimistic-updates.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/optimistic-updates.md"
+        },
+        {
+          "path": "skills/design-engineering/references/layout/MOC-layout.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/MOC-layout.md"
+        },
+        {
+          "path": "skills/design-engineering/references/layout/sticky-and-scroll-tells.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/sticky-and-scroll-tells.md"
+        },
+        {
+          "path": "skills/design-engineering/references/layout/url-as-state.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/url-as-state.md"
+        },
+        {
+          "path": "skills/design-engineering/references/layout/viewport-custom-design.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/viewport-custom-design.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/agentation-workflow.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/agentation-workflow.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/cross-model-testing.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/cross-model-testing.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/design-vocabulary.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/design-vocabulary.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/disambiguation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/disambiguation.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/gotchas.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/gotchas.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/pov.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/pov.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/review-checklist.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/review-checklist.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/review-format.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/review-format.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/routing-table.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/routing-table.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/stacking-chains.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/stacking-chains.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/using-design-file.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/using-design-file.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/using-design-md.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/using-design-md.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/animation-decision-framework.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/animation-decision-framework.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/animations-dev-curriculum.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/animations-dev-curriculum.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/clip-path-tricks.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/clip-path-tricks.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/compose-subtract-asymmetry.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/compose-subtract-asymmetry.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/cross-blur-transitions.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/cross-blur-transitions.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/css-conventions.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/css-conventions.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/debugging-animations.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/debugging-animations.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/distance-falloff-propagation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/distance-falloff-propagation.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/duration-table.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/duration-table.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/easing-curves.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/easing-curves.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/fly-not-teleport.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/fly-not-teleport.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/gesture-momentum.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/gesture-momentum.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/hover-default-imperative.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/hover-default-imperative.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/lerp-breathing.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/lerp-breathing.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/MOC-motion.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/MOC-motion.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/morphing-icons.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/morphing-icons.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/multi-segment-shake.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/multi-segment-shake.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/never-scale-from-zero.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/never-scale-from-zero.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/prefers-reduced-motion.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/prefers-reduced-motion.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/responsive-feedback.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/responsive-feedback.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/shared-letter-morph.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/shared-letter-morph.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/sonner-principles.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/sonner-principles.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/spring-animations.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/spring-animations.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/stagger-choreography.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/stagger-choreography.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/transform-mastery.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/transform-mastery.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/transform-opacity-only.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/transform-opacity-only.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/tray-rules.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/tray-rules.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/articulate-precisely.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/articulate-precisely.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/beauty-is-leverage.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/beauty-is-leverage.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/data-is-content.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/data-is-content.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/delight-impact-curve.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/delight-impact-curve.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/dependency-discipline.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/dependency-discipline.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/feeling-right.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/feeling-right.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/marketing-vs-product-ui.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/marketing-vs-product-ui.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/MOC-philosophy.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/MOC-philosophy.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/pointing-beats-describing.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/pointing-beats-describing.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/states-are-the-work.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/states-are-the-work.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/taste-is-trained.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/taste-is-trained.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/unseen-details-compound.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/unseen-details-compound.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/border-radius.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/border-radius.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/color-monochromatic.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/color-monochromatic.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/contrast-and-color-scheme.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/contrast-and-color-scheme.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/dark-mode.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/dark-mode.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/MOC-surface.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/MOC-surface.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/shadows-whisper.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/shadows-whisper.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/visual-imperfection.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/visual-imperfection.md"
+        },
+        {
+          "path": "skills/design-engineering/references/typography/line-length-tracking.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/typography/line-length-tracking.md"
+        },
+        {
+          "path": "skills/design-engineering/references/typography/MOC-typography.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/typography/MOC-typography.md"
+        },
+        {
+          "path": "skills/design-engineering/references/typography/typography-humanity.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/typography/typography-humanity.md"
+        },
+        {
+          "path": "skills/design-engineering/SKILL.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/SKILL.md"
+        }
+      ]
+    },
+    {
+      "name": "design-engineering-agents",
+      "type": "registry:file",
+      "title": "Design Engineering subagents and commands",
+      "description": "Six workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator) and their slash commands, in Claude Code format.",
+      "author": "HKTITAN",
+      "categories": [
+        "design",
+        "agents"
+      ],
+      "docs": "Installs into .claude/agents/ and .claude/commands/. Requires the design-engineering skill item for the reference nodes these agents load.",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r/design-engineering.json"
+      ],
+      "files": [
+        {
+          "path": "agents/agentation-fix-loop.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/agentation-fix-loop.md"
+        },
+        {
+          "path": "agents/anti-pattern-scanner.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/anti-pattern-scanner.md"
+        },
+        {
+          "path": "agents/design-md-consumer.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/design-md-consumer.md"
+        },
+        {
+          "path": "agents/motion-auditor.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/motion-auditor.md"
+        },
+        {
+          "path": "agents/pov-curator.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/pov-curator.md"
+        },
+        {
+          "path": "agents/README.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/README.md"
+        },
+        {
+          "path": "agents/ui-reviewer.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/ui-reviewer.md"
+        },
+        {
+          "path": "commands/agentation-fix.md",
+          "type": "registry:file",
+          "target": "~/.claude/commands/agentation-fix.md"
+        },
+        {
+          "path": "commands/apply-design-md.md",
+          "type": "registry:file",
+          "target": "~/.claude/commands/apply-design-md.md"
+        },
+        {
+          "path": "commands/fork-pov.md",
+          "type": "registry:file",
+          "target": "~/.claude/commands/fork-pov.md"
+        },
+        {
+          "path": "commands/motion-audit.md",
+          "type": "registry:file",
+          "target": "~/.claude/commands/motion-audit.md"
+        },
+        {
+          "path": "commands/review-ui.md",
+          "type": "registry:file",
+          "target": "~/.claude/commands/review-ui.md"
+        },
+        {
+          "path": "commands/scan-ai-tells.md",
+          "type": "registry:file",
+          "target": "~/.claude/commands/scan-ai-tells.md"
+        }
+      ]
+    },
+    {
+      "name": "design-engineering-design-file",
+      "type": "registry:file",
+      "title": "Starter .design contract",
+      "description": "A design.v1 living visual contract encoding this skill's canonical motion and surface defaults — easing curves, duration scale, layered elevation, and the constraints that keep AI-default tells out. Color and typography are left to your brand.",
+      "author": "HKTITAN",
+      "categories": [
+        "design",
+        "design-tokens"
+      ],
+      "docs": "Installs as .design at your project root. Adapt name, intent, and tokens to your product — or reference it from your own contract via `extends`. Agents read it before generating UI; it outranks generic taste skills.",
+      "files": [
+        {
+          "path": "templates/design-engineering.design",
+          "type": "registry:file",
+          "target": "~/.design"
+        }
+      ]
+    },
+    {
+      "name": "design-engineering-motion",
+      "type": "registry:theme",
+      "title": "Design Engineering motion tokens",
+      "description": "Motion theme variables: four easing curves worth memorizing and a duration scale keyed to element type. Drop-in for any shadcn project — reference them as var(--ease-out-quart) or, on Tailwind v4, register under @theme inline for utility classes.",
+      "author": "HKTITAN",
+      "categories": [
+        "design",
+        "animation",
+        "design-tokens"
+      ],
+      "docs": "Never `transition: all` — name the properties. Entrances use --ease-out-quart; exits run at 60% of their entrance duration. Never ease-in on a UI entrance, and never scale an entrance from 0 (start at 0.95).",
+      "cssVars": {
+        "theme": {
+          "ease-out-quart": "cubic-bezier(0.25, 1, 0.5, 1)",
+          "ease-out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "ease-in-out": "cubic-bezier(0.65, 0, 0.35, 1)",
+          "ease-spring": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+          "duration-press": "120ms",
+          "duration-hover": "160ms",
+          "duration-popover": "200ms",
+          "duration-modal": "250ms",
+          "duration-page": "300ms"
+        }
+      }
+    }
+  ]
+}

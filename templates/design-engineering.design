@@ -1,0 +1,232 @@
+schema: design.v1
+name: design-engineering-starter
+version: 1.0.0
+status: bootstrap
+description: >
+  Starter .design contract encoding the design-engineering skill's canonical motion
+  and surface defaults. Copy to your project root as `.design` and adapt, or reference
+  it from your own contract via `extends`. Color and typography are deliberately
+  sparse — those are brand decisions this skill advises on but does not dictate.
+
+agent:
+  skill: design-engineering
+  instructions: |
+    You are holding a .design living visual contract (schema design.v1).
+    If the AgentsORG `design` skill is installed, activate it — then still obey THIS file as source of truth.
+    If the AgentsORG `design-engineering` skill is installed, use it for craft decisions this file leaves silent.
+
+    READ
+    - Load this file before any UI generation or restyle. Normative core first
+      (intent, constraints, policy/decisions, tokens, components, themes, voice); rationale on demand.
+    - Tokens and structured rules are normative. Rationale is judgment when tokens under-specify.
+
+    FOLLOW (generate or edit UI)
+    - Calibrate treatment per surface: patterns.<name>.treatment > intent.treatment
+      (utilitarian = restrained product craft; editorial = distinctive identity).
+    - Bind every listed component property. Never invent raw hex/spacing/radius when a token exists.
+    - Enforce constraints.always / never; apply voice.* to all UI copy.
+    - Concentrate boldness in intent.signature; keep everything around it quiet.
+    - Match the project's existing styling stack — do not switch stacks.
+    - If integrations.shadcn.enabled: prefer shadcn UI; write css_vars into the listed CSS file; tokens win on conflict.
+
+    UPDATE
+    - Edit this file in place when design changes. Git is history.
+    - Ask before changing any path in locked. Bump version (SemVer).
+
+    VERIFY
+    - Compare tokens <-> CSS/Tailwind and components <-> imports; report drift per token group
+      as added/removed/modified plus a regression flag before fixing.
+
+    PRECEDENCE
+    1) User prompt  2) This file  3) design skill  4) Generic taste skills  5) Model defaults
+
+    NEVER
+    - Invent a parallel design system beside this file
+    - Animate `all`, or scale an entrance from zero
+    - Ship a single heavy shadow as "elevation"
+
+overview: |
+  A restrained product surface. Motion serves attention rather than performing it;
+  elevation whispers; one primary action per view. The defaults here are the ones
+  the design-engineering skill would apply anyway — written down so they are
+  enforceable, diffable, and overridable per project.
+
+intent:
+  reference: "Product craft in the Linear / Vercel register — quiet chrome, decisive motion"
+  direction: restrained-craft
+  signature: "One accent, reserved for the single primary action per view"
+  treatment: utilitarian
+  density: comfortable
+  trust: high
+
+voice:
+  register: "Plain and direct; confident, never cute. Verbs over adjectives."
+  casing: sentence
+  terminology:
+    # End-user vocabulary — never leak system terms into the UI.
+    workspace: workspace
+    delete: delete
+  action_naming: "Button label matches the destination or result, not the mechanism."
+  errors: "Say what happened, then the next step. Never blame the user, never say 'oops'."
+
+tokens:
+  motion:
+    duration:
+      press: 120ms        # button press feedback — 100-160ms
+      hover: 160ms        # hover state change — 120-200ms
+      popover: 200ms      # popover / dropdown — 150-250ms
+      modal: 250ms        # modal — hierarchy shift earns more time
+      page: 300ms         # page transition — the longest "ok" UI duration
+      exit-ratio: 0.6     # exits run at 60% of their entrance
+    easing:
+      # Custom cubic-bezier beats the built-in CSS keywords. Never ease-in for UI.
+      out-quart: cubic-bezier(0.25, 1, 0.5, 1)      # default for hover, menus, entrances
+      out-expo: cubic-bezier(0.16, 1, 0.3, 1)       # snappy — taps and presses
+      in-out: cubic-bezier(0.65, 0, 0.35, 1)        # symmetric — two-way transitions
+      spring: cubic-bezier(0.34, 1.56, 0.64, 1)     # slight anticipation, soft landing
+    enter-scale: 0.95     # never 0 — scale-from-zero renders blurry and reads as inflation
+  radius:
+    sm: 6px
+    md: 10px
+    lg: 14px
+    # Nested radius = outer radius - padding. Concentric corners or none.
+  elevation:
+    # Layered and faint. A single heavy shadow reads flat.
+    raised: "0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.06)"
+    overlay: "0 2px 4px rgb(0 0 0 / 0.04), 0 16px 40px rgb(0 0 0 / 0.08)"
+  space:
+    unit: 4
+    sm: 8
+    md: 16
+    lg: 24
+    xl: 40
+
+themes:
+  default: light
+  # Dark mode is a redesign, not an inversion: desaturate 20-30%, preserve layering,
+  # and let borders take over the job shadows do in light.
+
+components:
+  button:
+    when: ["primary actions", "destructive confirmation"]
+    when_not: ["more than one filled primary per view", "navigation — use a link"]
+    variants: [filled, ghost, danger]
+    states: [default, hover, active, disabled, loading]
+    tokens:
+      filled:
+        rounded: "{tokens.radius.md}"
+        padding: "12px 16px"
+      ghost:
+        backgroundColor: transparent
+        rounded: "{tokens.radius.md}"
+        padding: "12px 16px"
+
+patterns:
+  marketing:
+    treatment: editorial
+    notes: "Marketing tolerates more expression than product chrome — and less default. Run the AI-tell deletion pass before shipping."
+
+policy:
+  if_missing: ask
+  hierarchy: [typography, spacing, contrast, color]
+  a11y:
+    target_min: 44
+    focus_visible: required
+    reduced_motion: honor
+
+decisions:
+  motion:
+    - if: "element enters the viewport"
+      then: { easing: "{tokens.motion.easing.out-quart}", scale_from: "{tokens.motion.enter-scale}" }
+    - if: "element leaves the viewport"
+      then: { duration_ratio: "{tokens.motion.duration.exit-ratio}" }
+    - if: "gesture, drag, or dismiss"
+      then: { use: spring-physics, note: "Curves do not model interruption — use springs." }
+  feedback:
+    - if: "request resolves under 800ms"
+      then: { spinner: false, note: "A spinner that flashes is worse than no spinner." }
+
+constraints:
+  always:
+    - use semantic tokens
+    - one filled primary per view
+    - transform and opacity only for animation
+    - honor prefers-reduced-motion — drop translation and scale, keep opacity
+    - visible focus states on every interactive element
+  never:
+    - "transition: all"
+    - scale an entrance from zero
+    - ease-in on a UI entrance
+    - a single heavy shadow as elevation
+    - crossfade two icons through empty space
+    - unmotivated purple-to-blue gradients
+
+integrations:
+  shadcn:
+    enabled: true
+    css_variables: true
+    css: app/globals.css
+    components_json: ./components.json
+    radius: "0.625rem"
+    aliases:
+      components: "@/components"
+      utils: "@/lib/utils"
+      ui: "@/components/ui"
+    css_vars:
+      theme:
+        # Motion tokens are mode-independent. Register custom vars under
+        # @theme inline on Tailwind v4 or no utility class exists for them.
+        ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1)
+        ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1)
+        ease-in-out: cubic-bezier(0.65, 0, 0.35, 1)
+        ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1)
+        duration-press: 120ms
+        duration-hover: 160ms
+        duration-popover: 200ms
+        duration-modal: 250ms
+        duration-page: 300ms
+    map_from_tokens:
+      radius: tokens.radius.md
+
+rationale:
+  motion: |
+    Most animation problems are timing problems, and most timing problems are easing
+    problems. Ease-out for entrances; the action starts fast and settles. Exits run
+    shorter than entrances because disappearance should feel soft, not reversed.
+  elevation: |
+    Shadows whisper. Two faint layers at 4-6% opacity read as depth; one 16px
+    monolith reads as a sticker. In dark mode shadows stop working entirely —
+    borders carry the layering instead.
+  dos:
+    - Pick a curve deliberately for every transition
+    - Reserve saturation for the one action that matters
+    - Design each viewport, rather than scaling the desktop layout down
+  donts:
+    - Animate layout properties
+    - Flash a spinner on a fast request
+    - Ship Inter on a marketing page and call it neutral
+
+omitted:
+  - section: tokens.color
+    reason: "Brand-specific. The skill advises on palette derivation, contrast repair, and dark mode, but does not pick your hue."
+  - section: tokens.typography
+    reason: "Brand-specific. Set your own families; the skill governs measure, tracking, and wrapping."
+
+locked:
+  - constraints.never
+  - tokens.motion.easing
+
+sources:
+  - type: repo
+    path: "skills/design-engineering/references/motion"
+    note: "Easing curves, duration table, transform/opacity discipline, reduced motion."
+  - type: repo
+    path: "skills/design-engineering/references/surface"
+    note: "Layered shadows, border radius, dark-mode treatment."
+  - type: repo
+    path: "skills/design-engineering/references/components"
+    note: "Hover states, empty/loading states, copy voice, accessibility baseline."
+
+provenance:
+  owner: AgentsORG/design-engineering
+  last_reviewed: "2026-08-08"

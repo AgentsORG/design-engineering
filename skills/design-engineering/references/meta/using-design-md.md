@@ -8,6 +8,8 @@ tags: [meta, design-md, tokens, workflow]
 
 When a user's project contains a `DESIGN.md` file (per [Google Labs Code's design.md spec](https://github.com/google-labs-code/design.md), mirrored at [`spec/design-md-spec.md`](../../../../spec/design-md-spec.md)), the agent has access to a machine-readable description of the design system. Use it.
 
+> **Check for a `.design` contract first.** If the project has one, it outranks DESIGN.md and this skill both — see [[using-design-file]]. When both exist, `.design` is the contract and DESIGN.md becomes rationale.
+
 ## Detection
 
 Before generating any UI, look for `DESIGN.md` in:
