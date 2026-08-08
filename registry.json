@@ -17,9 +17,19 @@
       "docs": "Restart your coding agent after installing so it picks up the new skill. Start at .agents/skills/design-engineering/SKILL.md; the router is references/meta/routing-table.md. Fork references/meta/pov.md to record your own taste overrides.",
       "files": [
         {
+          "path": "skills/design-engineering/SKILL.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/SKILL.md"
+        },
+        {
           "path": "skills/design-engineering/agents/README.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/agents/README.md"
+        },
+        {
+          "path": "skills/design-engineering/evals/README.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/evals/README.md"
         },
         {
           "path": "skills/design-engineering/evals/loading.jsonl",
@@ -32,9 +42,9 @@
           "target": "~/.agents/skills/design-engineering/evals/progressive-reads.jsonl"
         },
         {
-          "path": "skills/design-engineering/evals/README.md",
+          "path": "skills/design-engineering/references/anti-patterns/MOC-anti-patterns.md",
           "type": "registry:file",
-          "target": "~/.agents/skills/design-engineering/evals/README.md"
+          "target": "~/.agents/skills/design-engineering/references/anti-patterns/MOC-anti-patterns.md"
         },
         {
           "path": "skills/design-engineering/references/anti-patterns/ai-default-tells.md",
@@ -47,9 +57,9 @@
           "target": "~/.agents/skills/design-engineering/references/anti-patterns/content-authenticity.md"
         },
         {
-          "path": "skills/design-engineering/references/anti-patterns/MOC-anti-patterns.md",
+          "path": "skills/design-engineering/references/components/MOC-components.md",
           "type": "registry:file",
-          "target": "~/.agents/skills/design-engineering/references/anti-patterns/MOC-anti-patterns.md"
+          "target": "~/.agents/skills/design-engineering/references/components/MOC-components.md"
         },
         {
           "path": "skills/design-engineering/references/components/accessibility-baseline.md",
@@ -100,11 +110,6 @@
           "path": "skills/design-engineering/references/components/interaction-personality.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/interaction-personality.md"
-        },
-        {
-          "path": "skills/design-engineering/references/components/MOC-components.md",
-          "type": "registry:file",
-          "target": "~/.agents/skills/design-engineering/references/components/MOC-components.md"
         },
         {
           "path": "skills/design-engineering/references/components/optimistic-updates.md",
@@ -192,6 +197,11 @@
           "target": "~/.agents/skills/design-engineering/references/meta/using-design-md.md"
         },
         {
+          "path": "skills/design-engineering/references/motion/MOC-motion.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/MOC-motion.md"
+        },
+        {
           "path": "skills/design-engineering/references/motion/animation-decision-framework.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/animation-decision-framework.md"
@@ -262,11 +272,6 @@
           "target": "~/.agents/skills/design-engineering/references/motion/lerp-breathing.md"
         },
         {
-          "path": "skills/design-engineering/references/motion/MOC-motion.md",
-          "type": "registry:file",
-          "target": "~/.agents/skills/design-engineering/references/motion/MOC-motion.md"
-        },
-        {
           "path": "skills/design-engineering/references/motion/morphing-icons.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/morphing-icons.md"
@@ -327,6 +332,11 @@
           "target": "~/.agents/skills/design-engineering/references/motion/tray-rules.md"
         },
         {
+          "path": "skills/design-engineering/references/philosophy/MOC-philosophy.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/MOC-philosophy.md"
+        },
+        {
           "path": "skills/design-engineering/references/philosophy/articulate-precisely.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/philosophy/articulate-precisely.md"
@@ -362,11 +372,6 @@
           "target": "~/.agents/skills/design-engineering/references/philosophy/marketing-vs-product-ui.md"
         },
         {
-          "path": "skills/design-engineering/references/philosophy/MOC-philosophy.md",
-          "type": "registry:file",
-          "target": "~/.agents/skills/design-engineering/references/philosophy/MOC-philosophy.md"
-        },
-        {
           "path": "skills/design-engineering/references/philosophy/pointing-beats-describing.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/philosophy/pointing-beats-describing.md"
@@ -385,6 +390,11 @@
           "path": "skills/design-engineering/references/philosophy/unseen-details-compound.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/philosophy/unseen-details-compound.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/MOC-surface.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/MOC-surface.md"
         },
         {
           "path": "skills/design-engineering/references/surface/border-radius.md",
@@ -407,11 +417,6 @@
           "target": "~/.agents/skills/design-engineering/references/surface/dark-mode.md"
         },
         {
-          "path": "skills/design-engineering/references/surface/MOC-surface.md",
-          "type": "registry:file",
-          "target": "~/.agents/skills/design-engineering/references/surface/MOC-surface.md"
-        },
-        {
           "path": "skills/design-engineering/references/surface/shadows-whisper.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/surface/shadows-whisper.md"
@@ -422,24 +427,19 @@
           "target": "~/.agents/skills/design-engineering/references/surface/visual-imperfection.md"
         },
         {
-          "path": "skills/design-engineering/references/typography/line-length-tracking.md",
-          "type": "registry:file",
-          "target": "~/.agents/skills/design-engineering/references/typography/line-length-tracking.md"
-        },
-        {
           "path": "skills/design-engineering/references/typography/MOC-typography.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/typography/MOC-typography.md"
         },
         {
+          "path": "skills/design-engineering/references/typography/line-length-tracking.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/typography/line-length-tracking.md"
+        },
+        {
           "path": "skills/design-engineering/references/typography/typography-humanity.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/typography/typography-humanity.md"
-        },
-        {
-          "path": "skills/design-engineering/SKILL.md",
-          "type": "registry:file",
-          "target": "~/.agents/skills/design-engineering/SKILL.md"
         }
       ]
     },
@@ -458,6 +458,11 @@
         "https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r/design-engineering.json"
       ],
       "files": [
+        {
+          "path": "agents/README.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/README.md"
+        },
         {
           "path": "agents/agentation-fix-loop.md",
           "type": "registry:file",
@@ -482,11 +487,6 @@
           "path": "agents/pov-curator.md",
           "type": "registry:file",
           "target": "~/.claude/agents/pov-curator.md"
-        },
-        {
-          "path": "agents/README.md",
-          "type": "registry:file",
-          "target": "~/.claude/agents/README.md"
         },
         {
           "path": "agents/ui-reviewer.md",
