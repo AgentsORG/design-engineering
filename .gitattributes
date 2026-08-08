@@ -1,0 +1,11 @@
+# Normalize on commit; check out with LF everywhere. CI byte-compares the
+# generated registry output, so a CRLF checkout would report false drift.
+* text=auto eol=lf
+
+*.json text eol=lf
+*.md text eol=lf
+*.mjs text eol=lf
+*.ts text eol=lf
+*.yml text eol=lf
+*.jsonl text eol=lf
+*.design text eol=lf
