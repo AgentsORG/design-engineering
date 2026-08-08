@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "design-engineering-motion",
+  "type": "registry:theme",
+  "title": "Design Engineering motion tokens",
+  "description": "Motion theme variables: four easing curves worth memorizing and a duration scale keyed to element type. Drop-in for any shadcn project — reference them as var(--ease-out-quart) or, on Tailwind v4, register under @theme inline for utility classes.",
+  "author": "HKTITAN",
+  "categories": [
+    "design",
+    "animation",
+    "design-tokens"
+  ],
+  "docs": "Never `transition: all` — name the properties. Entrances use --ease-out-quart; exits run at 60% of their entrance duration. Never ease-in on a UI entrance, and never scale an entrance from 0 (start at 0.95).",
+  "cssVars": {
+    "theme": {
+      "ease-out-quart": "cubic-bezier(0.25, 1, 0.5, 1)",
+      "ease-out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "ease-in-out": "cubic-bezier(0.65, 0, 0.35, 1)",
+      "ease-spring": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      "duration-press": "120ms",
+      "duration-hover": "160ms",
+      "duration-popover": "200ms",
+      "duration-modal": "250ms",
+      "duration-page": "300ms"
+    }
+  }
+}

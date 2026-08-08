@@ -69,6 +69,10 @@ jobs:
             "agents/pov-curator.md"
             "plugin.json"
             "package.json"
+            "registry.json"
+            "scripts/build-registry.mjs"
+            "templates/design-engineering.design"
+            "spec/design-file-spec.md"
             "agent/agent.ts"
             "agent/instructions.md"
             "evals/evals.config.ts"
@@ -188,6 +192,53 @@ jobs:
             exit 1
           fi
           echo "All plugin manifests + SKILL.md report version $v_claude."
+
+  registry-check:
+    name: shadcn registry is current
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Rebuild registry and verify no drift
+        run: |
+          set -e
+          node scripts/build-registry.mjs
+          if ! git diff --quiet -- registry.json r/; then
+            echo "::error::registry.json / r/ are stale. Run 'npm run build:registry' and commit the result."
+            git diff --stat -- registry.json r/
+            exit 1
+          fi
+          echo "Registry output matches the source files."
+
+      - name: Validate against the shadcn schemas
+        run: |
+          set -e
+          npm install ajv@8 ajv-formats@3 --no-save --no-fund --no-audit
+          curl -sSL https://ui.shadcn.com/schema/registry-item.json -o /tmp/item.schema.json
+          curl -sSL https://ui.shadcn.com/schema/registry.json -o /tmp/reg.schema.json
+          node -e "
+            const Ajv=require('ajv'), addFormats=require('ajv-formats'), fs=require('fs');
+            const load=p=>{const s=JSON.parse(fs.readFileSync(p,'utf8'));delete s['\$schema'];return s};
+            const ajv=new Ajv({strict:false,allErrors:true}); addFormats(ajv);
+            ajv.addSchema(load('/tmp/item.schema.json'),'https://ui.shadcn.com/schema/registry-item.json');
+            const vi=ajv.compile(load('/tmp/item.schema.json'));
+            let bad=0;
+            for (const f of fs.readdirSync('r')) {
+              const d=JSON.parse(fs.readFileSync('r/'+f,'utf8'));
+              if (!vi(d)) { console.error('::error file=r/'+f+'::'+JSON.stringify(vi.errors.slice(0,3))); bad++; }
+            }
+            const vr=ajv.compile(load('/tmp/reg.schema.json'));
+            if (!vr(JSON.parse(fs.readFileSync('registry.json','utf8')))) {
+              console.error('::error file=registry.json::'+JSON.stringify(vr.errors.slice(0,3))); bad++;
+            }
+            if (bad) process.exit(1);
+            console.log('Registry and all items validate against the shadcn schemas.');
+          "
 
   link-check:
     name: Internal wikilink check

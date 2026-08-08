@@ -4,7 +4,25 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
-*Nothing yet.*
+### Added — shadcn registry
+
+The repo is now a [shadcn registry](https://ui.shadcn.com/docs/registry), so any frontend project can install the skill with the CLI it already has: `npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r/design-engineering.json`.
+
+- **`registry.json`** + **`r/*.json`** — four items: `design-engineering` (the full 85-file skill graph → `.agents/skills/`), `design-engineering-agents` (six subagents + six commands → `.claude/`), `design-engineering-design-file` (the starter `.design` → project root), and `design-engineering-motion` (a `registry:theme` of easing curves and durations as CSS variables — the lightest way in, no skill install).
+- **`scripts/build-registry.mjs`** + `npm run build:registry` — generates both from the canonical sources. The `r/` items embed file content and are committed so raw URLs resolve.
+- **CI `registry-check`** — rebuilds and fails on drift, then validates every item and the registry against the published shadcn schemas.
+
+### Added — `.design` contract support
+
+Integrates the [`design.v1` living visual contract](https://github.com/AgentsORG/design) — a machine-readable YAML system with committed aesthetic intent, executable policy, and copy voice.
+
+- **`references/meta/using-design-file.md`** — new meta node: discovery (nearest wins, `extends` resolution), load order, following, updating, drift verification, and the shadcn bridge. States the precedence chain plainly: a project's `.design` outranks this skill, which sits at the generic-taste tier. Silence in the contract is where the craft canon still applies.
+- **`spec/design-file-spec.md`** — offline spec mirror (MIT), matching the existing `spec/` convention.
+- **`templates/design-engineering.design`** — a starter contract encoding this skill's canonical motion and surface defaults (four easing curves, the duration scale with a 0.6 exit ratio, layered elevation, `constraints.never`). Color and typography are declared in `omitted` — brand decisions the skill advises on but does not make. Validates clean against the upstream linter.
+- **`agents/design-md-consumer.md`** (+ eve twin) — broadened from DESIGN.md-only to any design contract: discovers `.design` first, resolves precedence, reports drift as added/removed/modified with a regression flag, and honors `locked` paths.
+- **`commands/apply-design-md.md`** — rewritten around contract discovery and bootstrap.
+- **`references/meta/using-design-md.md`** — now points at `.design` as the higher-precedence contract when both exist.
+- **`plugin.json`** — new `com.shadcn.registry` and `org.agentsorg.design` extension namespaces.
 
 ## [2.0.0] — 2026-08-08
 

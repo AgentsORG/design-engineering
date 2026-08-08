@@ -85,6 +85,7 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 - [[review-format]] — Required output format for UI critiques (Before | After | Why markdown table).
 - [[review-checklist]] — Eleven-row audit to scan against before signing off on a UI review.
 - [[design-vocabulary]] — The precise word for each design phenomenon and where the skill goes deeper. The lexicon behind [[articulate-precisely]]; seeded by Index (Emil Kowalski & Glenn Carstens-Peters).
+- [[using-design-file]] — How to consume a project's `.design` contract (schema `design.v1`). Machine-readable tokens, committed intent, executable policy — and it outranks this skill's defaults.
 - [[using-design-md]] — How to consume a project's DESIGN.md (Google Labs spec). Tokens are normative; prose is context.
 - [[agentation-workflow]] — Install and use [Agentation](https://www.agentation.com) for click-to-annotate design review. Two-session critique-then-fix workflow.
 - [[cross-model-testing]] — How to test description / routing changes across GPT, Claude Opus, and Claude Sonnet.

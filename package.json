@@ -6,6 +6,7 @@
   "description": "eve runtime for the design-engineering skill graph — a durable design-engineering agent with six specialist subagents.",
   "scripts": {
     "sync:skills": "node scripts/sync-skills.mjs",
+    "build:registry": "node scripts/build-registry.mjs",
     "dev": "npm run sync:skills && eve dev",
     "info": "eve info",
     "eval": "npm run sync:skills && eve eval"

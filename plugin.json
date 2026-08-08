@@ -40,6 +40,14 @@
     "dev.eve.agent": {
       "agent": "./agent/",
       "evals": "./evals/"
+    },
+    "com.shadcn.registry": {
+      "registry": "./registry.json",
+      "items": "./r/"
+    },
+    "org.agentsorg.design": {
+      "starter": "./templates/design-engineering.design",
+      "spec": "./spec/design-file-spec.md"
     }
   }
 }

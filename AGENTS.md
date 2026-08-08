@@ -53,6 +53,7 @@ Each atomic node should cite its source at the bottom. The current sources are:
 - **DiceBear** — `components/avatar-systems` references the v9.x catalog of procedural avatar styles.
 - **Lucide-animated / @pqoqubbw** — `motion/hover-default-imperative` pattern.
 - **Google Labs Code (github.com/google-labs-code/design.md)** — design-token format. Mirrored offline at `spec/design-md-spec.md`; runtime guidance in `meta/using-design-md`.
+- **AgentsORG `.design` (github.com/AgentsORG/design)** — the `design.v1` living visual contract. Mirrored offline at `spec/design-file-spec.md`; runtime guidance in `meta/using-design-file`; starter contract at `templates/design-engineering.design`. Note the precedence chain: a project's `.design` outranks this skill, which sits at the "generic taste skills" tier. When editing the starter, re-validate with the upstream `scripts/lint_design.py`.
 - **Agentation (agentation.com / benjitaylor/agentation)** — click-to-annotate design-review workflow. Drives `philosophy/pointing-beats-describing` and `meta/agentation-workflow`.
 - **Index — Emil Kowalski & Glenn Carstens-Peters (index.how)** — "say precisely what you mean" design vocabulary. Drives `philosophy/articulate-precisely`, `meta/design-vocabulary`, and `components/component-confusables`.
 - **agentskills/agentskills** — canonical Agent Skills specification, mirrored offline at `spec/agent-skills-spec.md`.
@@ -117,6 +118,8 @@ Six manifests ship alongside the skills.sh registry entry:
 - **`.claude-plugin/marketplace.json`** — single-entry marketplace with `"source": "./"` so the repo doubles as its own marketplace. Add via `/plugin marketplace add AgentsORG/design-engineering`.
 - **`.codex-plugin/plugin.json`** — richer manifest with `keywords`, `skills: "./skills/"`, `agents: "./agents/"`, `commands: "./commands/"`, and an `interface` block (displayName, shortDescription, longDescription, developerName, category, capabilities, defaultPrompt, brandColor).
 - **`.cursor-plugin/plugin.json`** — Cursor IDE manifest with `$schema`, `displayName`, `publisher`, `category`, `tags`, `keywords`, `skills`, `agents`, and `commands` paths.
+
+**shadcn registry.** `registry.json` and `r/*.json` are **generated** by `npm run build:registry` from `skills/`, `agents/`, `commands/`, and `templates/design-engineering.design`. The `r/` items embed file content, so any edit to those sources makes them stale — rebuild and commit in the same PR. CI fails on drift and validates every item against the published shadcn schemas. Edit `scripts/build-registry.mjs` to change what ships, never the generated JSON.
 
 When changing version: bump it in all six manifest files (root `plugin.json`, `.plugin/`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/`, `.cursor-plugin/`) plus `skills/design-engineering/SKILL.md` and `package.json`. The `Plugin manifest versions match` CI step enforces parity — drift will fail the lint job.
 
