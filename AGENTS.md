@@ -6,6 +6,8 @@ Repo-level operating guidance for AI agents working in this codebase. Pairs with
 
 A single agent skill packaged as a **skill graph** — one root `SKILL.md` (the Map of Content) plus a `references/` folder of atomic, wikilinked nodes organised into themed subfolders (`philosophy/`, `motion/`, `typography/`, `surface/`, `components/`, `layout/`, `anti-patterns/`, `meta/`) and an `evals/` folder for Perplexity-style Step-0 evals. A sibling `agents/` directory ships six workflow subagents that map to the highest-value design-engineering tasks. The skill encodes design engineering knowledge.
 
+Since v2.0.0 the repo is organised around **four primitives**: Knowledge (`skills/design-engineering/`, Agent Skills spec), Package (root `plugin.json`, [Agent Plugins v1.0.0](https://agent-plugins.org/)), Runtime (`agent/` + `evals/`, the [eve](https://eve.dev/) framework), and Client extensions (`agents/`, `commands/`, and the per-host manifest dirs, declared under reverse-domain namespaces in `plugin.json` `extensions`). The knowledge is canonical; everything else delivers it. `agent/skills/` is **generated** by `scripts/sync-skills.mjs` — never edit it; edit `skills/design-engineering/` and re-sync.
+
 The graph is intentionally **Obsidian-compatible**: installers can open this repo as a vault to navigate clusters in the graph view and edit nodes in place. The recommended companion is [kepano/obsidian-skills](https://www.skills.sh/kepano/obsidian-skills). Preserving that compatibility is a constraint on every edit (see rule 6).
 
 ## When editing this repo
@@ -35,6 +37,7 @@ The graph is intentionally **Obsidian-compatible**: installers can open this rep
 - A new theme = a new folder + a new `MOC-<theme>.md` + a link from SKILL.md. Don't create themes for fewer than 3 nodes — fold into an existing one.
 - Frontmatter on every node (light: `title`, `summary`, `tags`) — required for Obsidian graph indexing.
 - **Subagents**: `agents/<agent-name>.md` — YAML frontmatter (`name`, `description`, `tools`, `model`) plus a system-prompt body. Hoisted to repo root for `npx plugins` / Cursor plugin discovery; names match the basename so wikilinks resolve. Don't add a subagent unless it has a workflow the main agent can't do cheaply inline.
+- **eve mirrors**: every subagent in `agents/<name>.md` has an eve twin at `agent/subagents/<name>/` (an `agent.ts` carrying the delegation `description` + model, and an `instructions.md` carrying the body with skill paths rewritten to `$HOME/.agents/skills/...`). When you change a subagent, change both. Root identity lives in `agent/instructions.md` (distilled from SOUL.md). Evals in `evals/*.eval.ts` guard the review-format table contract and concrete-motion-values rule — keep them passing.
 - Markdown linted via `.markdownlint.jsonc`.
 
 ## Sources of truth
@@ -106,15 +109,16 @@ This skill is indexed at [skills.sh/agentsorg/design-engineering/design-engineer
 
 ## Plugin manifests
 
-Three agent-specific manifests ship alongside the skills.sh registry entry, following the same pattern as [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes):
+Six manifests ship alongside the skills.sh registry entry:
 
-- **`.plugin/plugin.json`** — vendor-neutral canonical manifest for [vercel-labs/plugins](https://github.com/vercel-labs/plugins) (`npx plugins add AgentsORG/design-engineering`). The CLI translates `.plugin/` into per-host folders when missing.
+- **`plugin.json`** (repo root) — the **canonical** manifest, conforming to the [Agent Plugins specification v1.0.0](https://agent-plugins.org/) (`$schema: https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`). Declares the portable core (`skills/`) implicitly and the client extensions explicitly under reverse-domain namespaces in `extensions`. Edit identity fields here first; mirror to the host manifests.
+- **`.plugin/plugin.json`** — vendor-neutral manifest for [vercel-labs/plugins](https://github.com/vercel-labs/plugins) (`npx plugins add AgentsORG/design-engineering`). The CLI translates `.plugin/` into per-host folders when missing.
 - **`.claude-plugin/plugin.json`** — minimal Claude Code plugin metadata (name, description, version, author, homepage, repository, license). Omits a `skills` field — Claude Code auto-discovers the root `skills/` directory.
 - **`.claude-plugin/marketplace.json`** — single-entry marketplace with `"source": "./"` so the repo doubles as its own marketplace. Add via `/plugin marketplace add AgentsORG/design-engineering`.
 - **`.codex-plugin/plugin.json`** — richer manifest with `keywords`, `skills: "./skills/"`, `agents: "./agents/"`, `commands: "./commands/"`, and an `interface` block (displayName, shortDescription, longDescription, developerName, category, capabilities, defaultPrompt, brandColor).
 - **`.cursor-plugin/plugin.json`** — Cursor IDE manifest with `$schema`, `displayName`, `publisher`, `category`, `tags`, `keywords`, `skills`, `agents`, and `commands` paths.
 
-When changing version: bump it in all five manifest files plus `skills/design-engineering/SKILL.md`. The `Plugin manifest versions match` CI step enforces parity — drift will fail the lint job.
+When changing version: bump it in all six manifest files (root `plugin.json`, `.plugin/`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/`, `.cursor-plugin/`) plus `skills/design-engineering/SKILL.md` and `package.json`. The `Plugin manifest versions match` CI step enforces parity — drift will fail the lint job.
 
 ## License
 

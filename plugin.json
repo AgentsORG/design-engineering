@@ -1,0 +1,45 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "design-engineering",
+  "version": "2.0.0",
+  "description": "Design engineering for AI agents — a navigable skill graph covering animation timing, transitions, typography, color, components, layout, accessibility, and anti-patterns, plus six workflow subagents and an eve runtime. Distills Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation, and Index.",
+  "author": {
+    "name": "HKTITAN",
+    "email": "harshitkhemani@gmail.com",
+    "url": "https://github.com/HKTITAN"
+  },
+  "homepage": "https://github.com/AgentsORG/design-engineering",
+  "repository": "https://github.com/AgentsORG/design-engineering",
+  "license": "MIT",
+  "keywords": [
+    "design-engineering",
+    "design-system",
+    "animation",
+    "motion",
+    "ui-review",
+    "skill-graph",
+    "agentation",
+    "design-md"
+  ],
+  "extensions": {
+    "com.anthropic.claude-code": {
+      "manifest": "./.claude-plugin/plugin.json",
+      "marketplace": "./.claude-plugin/marketplace.json",
+      "agents": "./agents/",
+      "commands": "./commands/"
+    },
+    "com.openai.codex": {
+      "manifest": "./.codex-plugin/plugin.json"
+    },
+    "com.cursor.editor": {
+      "manifest": "./.cursor-plugin/plugin.json"
+    },
+    "dev.vercel.plugins": {
+      "manifest": "./.plugin/plugin.json"
+    },
+    "dev.eve.agent": {
+      "agent": "./agent/",
+      "evals": "./evals/"
+    }
+  }
+}

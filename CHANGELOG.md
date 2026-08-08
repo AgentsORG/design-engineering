@@ -4,6 +4,43 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+*Nothing yet.*
+
+## [2.0.0] — 2026-08-08
+
+The repo is reorganised around **four primitives**: Knowledge (the skill graph), Package ([Agent Plugins v1.0.0](https://agent-plugins.org/)), Runtime ([eve](https://eve.dev/)), and Client extensions (per-host manifests). No knowledge was removed; the delivery layers were rebuilt from first principles.
+
+### Added — Agent Plugins conformance
+
+- **`plugin.json`** (repo root, NEW) — canonical manifest with `$schema: https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`. The portable core is `plugin.json` + `skills/`; every client-specific surface is declared under `extensions`, keyed by reverse-domain namespace (`com.anthropic.claude-code`, `com.openai.codex`, `com.cursor.editor`, `dev.vercel.plugins`, `dev.eve.agent`). Clients ignore namespaces they don't implement.
+
+### Added — eve runtime
+
+The repo is now a runnable [eve](https://eve.dev/) project: a durable design-engineering agent whose knowledge is the skill graph.
+
+- **`agent/agent.ts`** — `defineAgent()` runtime config for the root agent.
+- **`agent/instructions.md`** — base system prompt distilled from `SOUL.md` (core truths, operating rules, delegation, voice).
+- **`agent/subagents/<name>/`** — eve twins of all six workflow subagents, each with an `agent.ts` (delegation description + model) and `instructions.md` (skill paths rewritten to the sandbox seed location `$HOME/.agents/skills/...`).
+- **`evals/`** — `defineEval()` scored checks: `review-format.eval.ts` (review requests must return the Before | After | Why table) and `motion-values.eval.ts` (easing advice must name concrete values). `evals.config.ts` holds shared defaults.
+- **`scripts/sync-skills.mjs`** + **`package.json`** scripts — `skills/design-engineering/` stays the single source of truth; `agent/skills/` is generated (gitignored) before `eve dev` / `eve eval`.
+
+### Added — routing layer (meta cluster)
+
+Three new meta nodes encode how to *navigate* the graph, not just what's in it:
+
+- **`references/meta/routing-table.md`** — intent → entry-node router plus the four postures (build / judge / decide / name) and their output-shape rules.
+- **`references/meta/disambiguation.md`** — the questions that blur together (the four motion questions, three dark-mode owners, two layout-shift owners, craft-vs-floor hit areas) with tiebreakers.
+- **`references/meta/stacking-chains.md`** — ordered node chains for multi-step jobs (new screen start-to-ship, feel-better pass, design system from scratch, marketing surface, a11y pass, jank triage, divergent prototyping on a named axis).
+
+### Changed — delivery layers
+
+- **`skills/design-engineering/SKILL.md`** — "How to use" now routes through `[[routing-table]]` first; Meta section lists the three routing nodes; version **2.0.0**.
+- **`README.md`** — rewritten around the four primitives; repository layout, Agent Plugins conformance section, eve runtime section.
+- **`AGENTS.md`** — four-primitives overview, eve-mirror editing rule (change `agents/<name>.md` and `agent/subagents/<name>/` together), six-manifest version parity.
+- **`.github/workflows/lint.yml`** — validates root `plugin.json` + `package.json` JSON; version parity now spans eight files; required-files list includes the eve runtime.
+- **`.gitignore`** — ignores `.eve/`, `agent/skills/` (generated), `package-lock.json`.
+- All manifests bumped to **2.0.0**.
+
 ### Added — Index "articulate" integration (index.how)
 
 Integrates [index.how/to/articulate](https://index.how/to/articulate) — Emil Kowalski & Glenn Carstens-Peters' "say precisely what you mean" design vocabulary — into the skill. Glosses are this skill's own (re-expressed, not lifted); Index is the canonical reference.
