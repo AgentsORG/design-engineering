@@ -4,6 +4,12 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
+*Nothing yet.*
+
+## [2.0.0] — 2026-08-08
+
+The repo is reorganised around **four primitives**: Knowledge (the skill graph), Package ([Agent Plugins v1.0.0](https://agent-plugins.org/)), Runtime ([eve](https://eve.dev/)), and Client extensions (per-host manifests, plus a [shadcn registry](https://ui.shadcn.com/docs/registry)). No knowledge was removed; the delivery layers were rebuilt from first principles.
+
 ### Added — shadcn registry
 
 The repo is now a [shadcn registry](https://ui.shadcn.com/docs/registry), so any frontend project can install the skill with the CLI it already has: `npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r/design-engineering.json`.
@@ -23,10 +29,6 @@ Integrates the [`design.v1` living visual contract](https://github.com/AgentsORG
 - **`commands/apply-design-md.md`** — rewritten around contract discovery and bootstrap.
 - **`references/meta/using-design-md.md`** — now points at `.design` as the higher-precedence contract when both exist.
 - **`plugin.json`** — new `com.shadcn.registry` and `org.agentsorg.design` extension namespaces.
-
-## [2.0.0] — 2026-08-08
-
-The repo is reorganised around **four primitives**: Knowledge (the skill graph), Package ([Agent Plugins v1.0.0](https://agent-plugins.org/)), Runtime ([eve](https://eve.dev/)), and Client extensions (per-host manifests). No knowledge was removed; the delivery layers were rebuilt from first principles.
 
 ### Added — Agent Plugins conformance
 
