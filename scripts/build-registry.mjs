@@ -18,11 +18,15 @@ const HOMEPAGE = "https://github.com/AgentsORG/design-engineering";
 // Direct raw host — shadcn does not follow github.com's cross-host redirect.
 const RAW = "https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r";
 
+// Sorted so the built output is identical regardless of the filesystem's
+// directory order — CI byte-compares it against the committed copy.
 const walk = (dir) =>
-  readdirSync(join(root, dir)).flatMap((entry) => {
-    const rel = posix.join(dir, entry);
-    return statSync(join(root, rel)).isDirectory() ? walk(rel) : [rel];
-  });
+  readdirSync(join(root, dir))
+    .sort()
+    .flatMap((entry) => {
+      const rel = posix.join(dir, entry);
+      return statSync(join(root, rel)).isDirectory() ? walk(rel) : [rel];
+    });
 
 const toPosix = (p) => p.split(sep).join(posix.sep);
 
