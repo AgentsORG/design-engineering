@@ -1,0 +1,61 @@
+{
+  "material": "felt mallet on a small wooden block, dry, no reverb, no tail, clean transient",
+  "generatedAt": "2026-09-05T10:13:21.167Z",
+  "provider": "elevenlabs",
+  "sounds": [
+    {
+      "name": "tick",
+      "provider": "elevenlabs",
+      "file": "tick.wav",
+      "processed": true,
+      "prompt": "felt mallet on a small wooden block, dry, no reverb, no tail, clean transient. single very short tick, one-shot UI feedback, bright",
+      "seconds": 0.5,
+      "license": "ElevenLabs — per your plan's commercial terms"
+    },
+    {
+      "name": "tap",
+      "provider": "elevenlabs",
+      "file": "tap.wav",
+      "processed": true,
+      "prompt": "felt mallet on a small wooden block, dry, no reverb, no tail, clean transient. soft muted tap, short body, one-shot",
+      "seconds": 0.5,
+      "license": "ElevenLabs — per your plan's commercial terms"
+    },
+    {
+      "name": "send",
+      "provider": "elevenlabs",
+      "file": "send.wav",
+      "processed": true,
+      "prompt": "felt mallet on a small wooden block, dry, no reverb, no tail, clean transient. two very quick rising notes, damped, muted, very short decay, stops immediately, confirmation",
+      "seconds": 0.5,
+      "license": "ElevenLabs — per your plan's commercial terms"
+    },
+    {
+      "name": "receive",
+      "provider": "elevenlabs",
+      "file": "receive.wav",
+      "processed": true,
+      "prompt": "felt mallet on a small wooden block, dry, no reverb, no tail, clean transient. two soft quick descending notes, damped, muted, very short decay, stops immediately, incoming message",
+      "seconds": 0.5,
+      "license": "ElevenLabs — per your plan's commercial terms"
+    },
+    {
+      "name": "error",
+      "provider": "elevenlabs",
+      "file": "error.wav",
+      "processed": true,
+      "prompt": "felt mallet on a small wooden block, dry, no reverb, no tail, clean transient. short low dull thud with a slight downward pitch, rubber on wood",
+      "seconds": 0.5,
+      "license": "ElevenLabs — per your plan's commercial terms"
+    },
+    {
+      "name": "success",
+      "provider": "elevenlabs",
+      "file": "success.wav",
+      "processed": true,
+      "prompt": "felt mallet on a small wooden block, dry, no reverb, no tail, clean transient. three ascending mellow notes, major, warm, short decay, completion",
+      "seconds": 1,
+      "license": "ElevenLabs — per your plan's commercial terms"
+    }
+  ]
+}

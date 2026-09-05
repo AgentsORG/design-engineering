@@ -8,6 +8,43 @@ Design engineering for AI agents — the invisible details that make UI feel rig
 
 Not a tutorial. Not a doc site. **A working memory the agent loads** when you're reviewing UI code, picking an easing curve, designing a component, deciding whether a send button should make a sound, or asking "why does this feel flat?"
 
+```bash
+npx skills add AgentsORG/design-engineering
+```
+
+## Demo
+
+![design-engineering in twelve seconds: the router, a Before / After / Why review, the sound family, the SVG mascot, the install command](docs/demo/design-engineering-demo.gif)
+
+Twelve seconds, made with the skill's own rules and tools. [Watch the MP4 with sound](docs/demo/design-engineering-demo.mp4) — every transient sits on the frame where something lands, and the holds are silent.
+
+| What you see | What made it |
+|---|---|
+| The composition | [`docs/demo/hyperframes/index.html`](docs/demo/hyperframes/index.html), a [HyperFrames](https://www.skills.sh/heygen-com/hyperframes/hyperframes) project: one paused GSAP timeline, `data-start` clips, `check` passing with zero layout or contrast findings. Motion values come from `easing-curves` and `duration-table`; sound placement from `sound-motion-sync`. |
+| The six sounds | `scripts/sound-family.mjs` against ElevenLabs with the shipped [example manifest](skills/design-engineering/scripts/sound-family.example.json) — one material ("felt mallet on a small wooden block"), trimmed, peaked at −3 dBFS. Files and prompts in [`docs/demo/hyperframes/assets/sfx/`](docs/demo/hyperframes/assets/sfx/). |
+| The mascot | Eight flat SVG frames through `scripts/svg-flipbook.mjs --vars`: one 5.7 KB file, colors lifted to CSS variables, driven by the composition timeline. |
+
+Re-render it yourself:
+
+```bash
+cd docs/demo/hyperframes && npm run check && npm run render
+```
+
+## What `/design-engineering` produces
+
+Frames from the demo, each a real output shape of the skill.
+
+<table>
+<tr>
+<td width="50%"><img src="docs/demo/screenshots/02-router.png" alt="The router: contract, phase, one owner"><br><sub><b>The router.</b> Before reading anything, <code>/design-engineering</code> resolves the design contract, classifies the phase, and hands the job to one owner — a node, a subagent, or an installed companion. <code>references/meta/skill-router.md</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/03-review-and-modal.png" alt="A Before / After / Why review table beside the fixed modal"><br><sub><b>A review, then the fix.</b> Every UI review is a Before | After | Why table scanned against the thirteen-row checklist; the modal on the right is what the After column ships. <code>review-format</code>, <code>review-checklist</code></sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/demo/screenshots/04-sound-and-svg.png" alt="Six generated UI sounds and an SVG mascot flipbook"><br><sub><b>Sound and vectors.</b> A six-sound family from one material via <code>sound-family.mjs</code>, and a mascot flipbook from <code>svg-flipbook.mjs</code>. <code>sound-palette</code>, <code>video-to-vector-pipeline</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/05-install.png" alt="Ten clusters, nine subagents, one router, and the install command"><br><sub><b>Ten clusters, nine subagents, one router.</b> Installs into any agent that reads a <code>SKILL.md</code>; slash commands and subagents ship for Claude Code, Cursor, and Codex.</sub></td>
+</tr>
+</table>
+
 ## The four primitives
 
 Since v2.0.0 the repo is organized around four primitives, each owned by an open spec, each independently useful:
@@ -23,13 +60,7 @@ The knowledge is the core; everything else is a delivery mechanism for it. `plug
 
 ## Install
 
-The fastest path — one command, any agent:
-
-```bash
-npx skills add AgentsORG/design-engineering
-```
-
-This uses the [skills.sh](https://skills.sh) CLI to install into your detected agent (Claude Code, Cursor, Windsurf, Codex, Gemini, Cline, Aider, and [18+ others](https://www.skills.sh/agent)). The CLI prompts for scope (project vs. global) and method (symlink vs. copy).
+The fastest path is the one-liner at the top — `npx skills add AgentsORG/design-engineering`. It uses the [skills.sh](https://skills.sh) CLI to install into your detected agent (Claude Code, Cursor, Windsurf, Codex, Gemini, Cline, Aider, and [18+ others](https://www.skills.sh/agent)). The CLI prompts for scope (project vs. global) and method (symlink vs. copy).
 
 ### Plugins CLI (Claude Code + Cursor + Codex)
 
@@ -221,6 +252,7 @@ design-engineering/
 ├── scripts/build-registry.mjs         ← registry.json + r/*.json builder
 ├── spec/                              ← offline mirrors: agent-skills-spec.md, design-md-spec.md, design-file-spec.md
 ├── templates/design-engineering.design ← starter .design contract (this skill's motion + surface defaults)
+├── docs/demo/                         ← the README demo: HyperFrames source, MP4/GIF, screenshots, generated sounds
 ├── template/TEMPLATE.md
 └── skills/design-engineering/         ← THE KNOWLEDGE (portable core)
     ├── SKILL.md                       ← thin Map of Content
