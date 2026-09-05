@@ -200,11 +200,15 @@ async function generateEleven(name, spec) {
   writeFileSync(mp3, Buffer.from(await res.arrayBuffer()));
   if (!ffmpeg) return { file: basename(mp3), processed: false, prompt: text };
 
-  // Two-pass: measure peak, then trim leading silence, high-pass, and normalize to -3 dBFS.
-  const probe = spawnSync("ffmpeg", ["-i", mp3, "-af", "volumedetect", "-f", "null", "-"], { encoding: "utf8" });
+  // Two-pass. Pass 1 runs the trim + high-pass chain and measures the peak that survives it
+  // (measuring the raw file overshoots, because the high-pass removes low-frequency energy).
+  // Trailing silence is trimmed by reversing, trimming leading silence, and reversing back.
+  const trim = "silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,highpass=f=150";
+  const probe = spawnSync("ffmpeg", ["-i", mp3, "-af", `${trim},volumedetect`, "-f", "null", "-"], { encoding: "utf8" });
   const max = Number(/max_volume:\s*(-?[\d.]+) dB/.exec(probe.stderr)?.[1] ?? 0);
   const wav = join(outDir, `${name}.wav`);
-  const af = `silenceremove=start_periods=1:start_threshold=-50dB,highpass=f=150,volume=${(-3 - max).toFixed(2)}dB,afade=t=out:st=0:d=0.01:curve=tri`;
+  // Pass 2: same chain, then peak to -3 dBFS, 10 ms fade-out, mono 44.1 kHz.
+  const af = `${trim},volume=${(-3 - max).toFixed(2)}dB,areverse,afade=t=in:st=0:d=0.01:curve=tri,areverse`;
   const r = spawnSync("ffmpeg", ["-y", "-loglevel", "error", "-i", mp3, "-af", af, "-ac", "1", "-ar", String(SR), wav]);
   if (r.status !== 0) return { file: basename(mp3), processed: false, prompt: text };
   unlinkSync(mp3);
