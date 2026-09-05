@@ -26,6 +26,12 @@ The Perplexity Agent Skills team calls this the "gotchas flywheel." Negative exa
 - [2026-05-21] Agent used a single 16px shadow for elevation. Looked flat. → Layered shadows at 4–6% opacity. See [[shadows-whisper]].
 - [2026-05-21] Agent picked Inter for a marketing page. Indistinguishable from every other AI page. → Pangram, Geist, or Displaay. See [[typography-humanity]].
 - [2026-05-21] Agent applied `prefers-reduced-motion` to disable a loading spinner without providing a static replacement. Critical accessibility miss. See [[prefers-reduced-motion]].
+- [2026-09-05] Agent added a click sound to every button and a "whoosh" to every route change. Users muted the whole site within a day. → Sound only on daily and rare moments, off by default. See [[sound-decision-framework]].
+- [2026-09-05] Agent created `new AudioContext()` at module load; sounds silently dropped until the second click. → Create and resume inside the first user gesture. See [[sound-playback-web]].
+- [2026-09-05] Agent shipped a generated "success" sound with 40ms of leading silence; it read as lagging behind the check animation. → Trim to the first sample above −60 dBFS; transient on the contact frame. See [[sound-spec]] and [[sound-motion-sync]].
+- [2026-09-05] Agent prompted ElevenLabs with "futuristic UI success sound" and got a stock jingle with reverb. → Describe a material and a stick, add "dry, no tail", request 0.5s and cut. See [[sound-generation-elevenlabs]].
+- [2026-09-05] Agent pulled five sounds from three CC0 packs; the product sounded like a browser toolbar. → One material per product; re-pitch a single family. See [[sound-palette]].
+- [2026-09-05] Agent laid a music bed under a logo reveal to hide the sync work; the piece felt cheap. → Cut with no bed first; place hits on frames; add a bed at −24 LUFS or not at all. See [[launch-video-sound]].
 
 ## Why this file matters
 
@@ -46,3 +52,12 @@ The Perplexity team finds gotchas often help more than positive guidance. If you
 - Long explanations — keep gotchas to one line. If it needs explanation, link to a node.
 
 — append below this line —
+- [2026-09-05] Agent copied the parent's 16px radius onto a nested card; corners pinched. → inner = outer − padding. See [[depth-and-nesting]].
+- [2026-09-05] Agent "fixed" grey-on-grey text by raising saturation; contrast unchanged. → move L only. See [[color-scales-oklch]].
+- [2026-09-05] Agent put `text-wrap: balance` on body paragraphs; every column narrowed. → headings balance, paragraphs don't. See [[line-behavior]].
+- [2026-09-05] Agent hid a closed drawer with `opacity: 0`; keyboard users tabbed into it. → `inert` or `visibility: hidden`. See [[touch-and-focus]].
+- [2026-09-05] Agent sprinkled `will-change: transform` on every card "for performance". → only after an observed first-frame hitch. See [[performance-discipline]].
+- [2026-09-05] Agent restyled a generated hero without deleting anything; the tells survived under new colors. → subtract first. See [[unslop-pass]].
+- [2026-09-05] Agent rotated an SVG arm around (0,0) — it orbited the corner. → `transform-box: fill-box` + explicit origin. See [[svg-animation]].
+- [2026-09-05] Agent morphed a four-line rect into a four-arc circle with CSS `d`; Safari jumped. → same command count and type. See [[svg-path-morphing]].
+- [2026-09-05] Agent loaded four craft skills at once for one review and applied none properly. → one or two owners. See [[skill-router]].

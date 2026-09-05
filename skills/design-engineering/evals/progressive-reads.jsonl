@@ -18,3 +18,35 @@
 {"query": "we keep nesting cards inside cards and it looks bad", "expected_nodes": ["cards-design"], "forbidden_nodes": ["border-radius"]}
 {"query": "pick a non-default sans for our marketing site", "expected_nodes": ["typography-humanity", "line-length-tracking", "ai-default-tells"], "forbidden_nodes": ["typography-humanity"]}
 {"query": "is it OK to use Lucide for icons in 2026?", "expected_nodes": ["icon-systems", "ai-default-tells"], "forbidden_nodes": ["morphing-icons"]}
+{"query": "should this toggle have a sound?", "expected_nodes": ["sound-decision-framework"], "forbidden_nodes": ["sound-generation-elevenlabs", "launch-video-sound"]}
+{"query": "the sound plays before the card actually lands, fix the timing", "expected_nodes": ["sound-motion-sync"], "forbidden_nodes": ["sound-palette"]}
+{"query": "design a family of 5 UI sounds that feel like they belong together", "expected_nodes": ["sound-palette"], "forbidden_nodes": ["launch-video-sound"]}
+{"query": "how loud and how long should a notification sound be, and what format?", "expected_nodes": ["sound-spec"], "forbidden_nodes": ["sound-decision-framework"]}
+{"query": "sounds only work on the second click and there's no mute button", "expected_nodes": ["sound-playback-web"], "forbidden_nodes": ["sound-generation-open-source"]}
+{"query": "write ElevenLabs prompts for a tick, a send tone, and an error thud", "expected_nodes": ["sound-generation-elevenlabs"], "forbidden_nodes": ["sound-generation-open-source"]}
+{"query": "we have no API key — synthesize or find CC0 UI sounds we can ship commercially", "expected_nodes": ["sound-generation-open-source"], "forbidden_nodes": ["sound-generation-elevenlabs"]}
+{"query": "score this logo reveal like the base / OpenAI launch videos", "expected_nodes": ["launch-video-sound"], "forbidden_nodes": ["sound-decision-framework"]}
+{"query": "the corners of the inner card look pinched", "expected_nodes": ["depth-and-nesting"], "forbidden_nodes": ["shadows-whisper"]}
+{"query": "derive a tonal ramp from our brand hue and fix the grey text contrast", "expected_nodes": ["color-scales-oklch"], "forbidden_nodes": ["color-monochromatic"]}
+{"query": "set up leading, tracking, and a type scale for the app", "expected_nodes": ["type-scale-and-rhythm"], "forbidden_nodes": ["line-behavior"]}
+{"query": "long URLs blow out our cards and the headline strands one word", "expected_nodes": ["line-behavior"], "forbidden_nodes": ["type-scale-and-rhythm"]}
+{"query": "Enter does nothing in our login form and the button fires twice", "expected_nodes": ["forms-behavior"], "forbidden_nodes": ["forms-validation"]}
+{"query": "hover states get stuck on iPhone and tab lands in the closed drawer", "expected_nodes": ["touch-and-focus"], "forbidden_nodes": ["hover-states-subtle"]}
+{"query": "it works but feels unfinished, do a polish pass", "expected_nodes": ["ui-polish-pass"], "forbidden_nodes": ["review-format"]}
+{"query": "design the props API for a reusable Combobox", "expected_nodes": ["component-api-design"], "forbidden_nodes": ["component-confusables"]}
+{"query": "build our docs site with copy buttons and RSS", "expected_nodes": ["marketing-surface-rules"], "forbidden_nodes": ["marketing-vs-product-ui"]}
+{"query": "the 5,000-row table scrolls janky", "expected_nodes": ["performance-discipline"], "forbidden_nodes": ["easing-curves"]}
+{"query": "this hero looks like every other AI landing page", "expected_nodes": ["unslop-pass"], "forbidden_nodes": ["content-authenticity"]}
+{"query": "this README reads like ChatGPT wrote it", "expected_nodes": ["copy-tells"], "forbidden_nodes": ["copy-voice"]}
+{"query": "clean up the try-catch theater and narrated comments in this generated component", "expected_nodes": ["code-tells"], "forbidden_nodes": ["unslop-pass"]}
+{"query": "make this icon a clean, recolorable svg", "expected_nodes": ["svg-creation"], "forbidden_nodes": ["svg-animation"]}
+{"query": "animate this logo drawing itself, it will be used as an <img>", "expected_nodes": ["svg-animation"], "forbidden_nodes": ["svg-path-morphing"]}
+{"query": "morph the play icon into pause", "expected_nodes": ["svg-path-morphing"], "forbidden_nodes": ["video-to-vector-pipeline"]}
+{"query": "turn our flat mascot clip into one editable animated svg", "expected_nodes": ["video-to-vector-pipeline"], "forbidden_nodes": ["svg-path-morphing"]}
+{"query": "which skill covers this — I want a polish pass and a sound", "expected_nodes": ["skill-router"], "forbidden_nodes": []}
+{"query": "show me a few options for the toast before we decide", "expected_nodes": ["prototype-picker"], "forbidden_nodes": ["build-a-tool"]}
+{"query": "you've been close but not quite on this generative header three times", "expected_nodes": ["build-a-tool"], "forbidden_nodes": ["prototype-picker"]}
+{"query": "I want something risograph-ish and warm, not sure what exactly", "expected_nodes": ["vibe-to-generator"], "forbidden_nodes": ["build-a-tool"]}
+{"query": "our agent keeps inventing button variants, document the system", "expected_nodes": ["design-system-docs"], "forbidden_nodes": ["using-design-md"]}
+{"query": "why does the agent ignore my animation skill file?", "expected_nodes": ["skill-writing-rules"], "forbidden_nodes": ["pov"]}
+{"query": "how do we measure whether the new motion node made output better?", "expected_nodes": ["design-benchmarks"], "forbidden_nodes": ["cross-model-testing"]}

@@ -1,6 +1,6 @@
 schema: design.v1
 name: design-engineering-starter
-version: 1.0.0
+version: 1.2.0
 status: bootstrap
 description: >
   Starter .design contract encoding the design-engineering skill's canonical motion
@@ -85,6 +85,20 @@ tokens:
       in-out: cubic-bezier(0.65, 0, 0.35, 1)        # symmetric — two-way transitions
       spring: cubic-bezier(0.34, 1.56, 0.64, 1)     # slight anticipation, soft landing
     enter-scale: 0.95     # never 0 — scale-from-zero renders blurry and reads as inflation
+  sound:
+    # Silent by default. One material per product; sound only on daily and rare moments.
+    material: "felt mallet on a small wooden block, dry, no tail"   # ONE material; prompt prefix for generation
+    enabled: false        # first-run state of the user's sound toggle; product UI ships off
+    peak: -3dBFS
+    loudness:
+      feedback: -16LUFS   # ticks, taps, sends — below speech
+      notification: -12LUFS
+    duration:
+      tick: 60ms          # toggle / select / snap — 40-80ms
+      send: 200ms         # send / save / confirm — 150-250ms
+      error: 150ms        # low, falling — pairs with the form shake
+      notification: 400ms # attention is being requested — 200-600ms
+    sync-lag-max: 30ms    # audio may lag the contact frame by one frame; it never leads
   radius:
     sm: 6px
     md: 10px
@@ -145,6 +159,13 @@ decisions:
   feedback:
     - if: "request resolves under 800ms"
       then: { spinner: false, note: "A spinner that flashes is worse than no spinner." }
+  sound:
+    - if: "hover, focus, scroll, or keystroke"
+      then: { sound: none }
+    - if: "daily moment — send, save, complete — and the user's toggle is on"
+      then: { sound: "{tokens.sound.duration.send}", trigger: "on the settle frame of the confirming animation" }
+    - if: "rare milestone"
+      then: { sound: "designed two- or three-note figure in the family's material", max: 800ms }
 
 constraints:
   always:
@@ -160,6 +181,19 @@ constraints:
     - a single heavy shadow as elevation
     - crossfade two icons through empty space
     - unmotivated purple-to-blue gradients
+    - sound on hover, focus, or keystroke
+    - sound on by default, or without a persisted mute
+    - information carried by sound alone
+
+exports:
+  frame_md:
+    path: "./frame.md"          # HyperFrames video-frame companion — carries tokens + motion + sound
+    aspect: "16:9"
+
+# assets:
+#   sounds:                     # names match tokens.sound.duration; paths only, never data: URIs
+#     tick: "./public/sfx/tick.wav"
+#     send: "./public/sfx/send.wav"
 
 integrations:
   shadcn:
@@ -226,7 +260,10 @@ sources:
   - type: repo
     path: "skills/design-engineering/references/components"
     note: "Hover states, empty/loading states, copy voice, accessibility baseline."
+  - type: repo
+    path: "skills/design-engineering/references/sound"
+    note: "Sound decision framework, palette, spec, playback, sound-motion sync."
 
 provenance:
   owner: AgentsORG/design-engineering
-  last_reviewed: "2026-08-08"
+  last_reviewed: "2026-09-05"

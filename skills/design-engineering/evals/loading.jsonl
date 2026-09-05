@@ -18,3 +18,20 @@
 {"query": "convert this code to TypeScript", "should_load": false, "reason": "language conversion; off-domain"}
 {"query": "set up authentication with NextAuth", "should_load": false, "reason": "auth task; off-domain"}
 {"query": "explain CSS specificity rules", "should_load": false, "reason": "fundamentals; model knows"}
+{"query": "should the send button in my chat app make a sound?", "should_load": true, "reason": "sound-decision-framework in the sound cluster"}
+{"query": "generate a set of UI sound effects for our app — we have an ElevenLabs key", "should_load": true, "reason": "sound-palette + sound-generation-elevenlabs"}
+{"query": "the click sound feels late compared to the animation", "should_load": true, "reason": "sound-motion-sync"}
+{"query": "how do I do sound design for our product launch video like the OpenAI ones?", "should_load": true, "reason": "launch-video-sound"}
+{"query": "we can't use ElevenLabs, what's the open-source way to make UI sounds?", "should_load": true, "reason": "sound-generation-open-source"}
+{"query": "transcribe this podcast episode to text", "should_load": false, "reason": "speech-to-text — not interface sound design"}
+{"query": "compose a 3-minute background music track for my game", "should_load": false, "reason": "music generation — not UI or launch-video sound design"}
+{"query": "my Web Audio oscillator is producing clipping artifacts in a synth app", "should_load": false, "reason": "DSP debugging in an audio product, not interface sound"}
+{"query": "turn this mp4 of our mascot into an animated svg", "should_load": true, "reason": "video-to-vector-pipeline / svg-animator"}
+{"query": "make this logo draw itself on page load", "should_load": true, "reason": "svg-animation stroke drawing"}
+{"query": "this landing page looks AI generated, fix it", "should_load": true, "reason": "unslop-pass"}
+{"query": "build an oklch palette from #4f46e5 with dark mode", "should_load": true, "reason": "color-scales-oklch"}
+{"query": "show me three directions for the pricing card", "should_load": true, "reason": "prototype-picker"}
+{"query": "which design skill should handle this — impeccable or yours?", "should_load": true, "reason": "skill-router"}
+{"query": "write a DESIGN.md our agents will actually follow", "should_load": true, "reason": "design-system-docs"}
+{"query": "convert this SVG to PNG at 3 sizes", "should_load": false, "reason": "asset conversion; no craft decision"}
+{"query": "set up a postgres schema for user settings", "should_load": false, "reason": "backend"}

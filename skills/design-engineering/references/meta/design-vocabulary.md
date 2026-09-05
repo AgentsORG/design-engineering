@@ -262,6 +262,25 @@ The building blocks. Their state behaviour is where craft lives — see [[states
 - **Progress** — a bar for a determinate process; for unknown durations use a spinner instead.
 - **Separator** — a visual divider; often overused where spacing would do the same job.
 
+## 13 — Sound
+
+The words for what an interface sounds like. This category is the skill's own extension of the Index module; see [[MOC-sound]].
+
+- **Transient** — the sharp onset of a sound; the part you sync to a frame. → [[sound-motion-sync]]
+- **Earcon** — a short abstract tone whose meaning is learned (rising = success); distinct from an *auditory icon*, which imitates a real sound. → [[sound-palette]]
+- **Contour** — the pitch shape of a sound over time: rising, falling, flat. Carries meaning before timbre does. → [[sound-palette]]
+- **Timbre / material** — what the sound is *made of* — wood, glass, breath. A product has one. → [[sound-palette]]
+- **Envelope (ADSR)** — attack, decay, sustain, release; UI sounds are nearly all attack and decay. → [[sound-spec]]
+- **Tail** — the decay after the event; the first thing to cut. → [[sound-spec]]
+- **Dry / wet** — without / with reverb; UI sounds are dry. → [[sound-generation-elevenlabs]]
+- **One-shot / loop** — a sound that plays once vs one that sustains a state (processing, recording). → [[sound-spec]]
+- **Sprite** — several sounds in one file addressed by offset; one decode for the whole family. → [[sound-spec]]
+- **LUFS / dBFS / true peak** — perceived loudness, sample level, and the reconstructed peak; the three numbers a spec names. → [[sound-spec]]
+- **Ducking** — lowering one track (a bed) while another (a hit, a voice) plays. → [[launch-video-sound]]
+- **Pre-roll** — silence before a file's transient; a sync bug disguised as an asset. → [[sound-motion-sync]]
+- **Whoosh / riser / stinger / braam** — the motion-graphics vocabulary: movement, tension build, a brand hit, a cinematic drone. Product UI uses none of them. → [[launch-video-sound]]
+- **Audio-haptic harmony** — Apple's term for sound, haptic, and visual describing the same physical event at the same instant. → [[sound-motion-sync]]
+
 ## Sources
 
 - *Index — Say Precisely What You Mean*, Emil Kowalski & Glenn Carstens-Peters — [index.how/to/articulate](https://index.how/to/articulate). The 188-term articulate module this lexicon is seeded from; the canonical reference, arriving fall 2026. Glosses here are this skill's own.

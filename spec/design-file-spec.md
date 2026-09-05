@@ -112,9 +112,18 @@ Edit the YAML in place; bump `version` (SemVer) and `provenance.last_reviewed` w
 - Embed binaries or full page HTML trees
 - Claim affiliation with third-party brands used only as visual references
 
+## Sound, video, and `frame.md` (contract 1.3)
+
+- **`tokens.sound`** — the product's sound contract: `enabled` (boolean; product UI ships `false` with a persisted toggle), one `material` (the prompt prefix for any generated or sourced audio), `peak` and `loudness.*` as Level values (`-3dBFS`, `-16LUFS`), `duration.*` by role as Time values (`60ms`), `sync-lag-max`. Rules: silent by default; sound reinforces and never carries information alone; one material per family; the transient lands on the contact frame. Without the group, agents MUST NOT add sound; `omitted: [tokens.sound]` makes the silence a decision. These tokens outrank [[sound-spec]] and [[sound-decision-framework]] where they speak.
+- **`assets.sounds`** — role → file path, never `data:` URIs; names match `tokens.sound.duration`.
+- **`decisions.sound`** and **`rationale.sound`** — the if→then rules and the prose.
+- **`targets[]` video entries** — `aspect`, `fps`, delivery `loudness`; a video target inverts the product default (sound is the medium; see [[launch-video-sound]]).
+- **`exports.frame_md`** — a HyperFrames `frame.md` generated from the contract: `colors` / `typography` / `spacing` / `radii` / `components` plus `motion` and `sound` groups; HyperFrames resolves `frame.md → design.md → DESIGN.md`, so the video inherits the brand's timing and material while composition stays the frame author's.
+- **Companion routing** — the `design` skill hands named jobs to this graph (craft, motion, sound), impeccable (polish passes), HyperFrames (video), and ElevenLabs (audio files), with the contract kept normative; [[skill-router]] is the mirror image from this side.
+
 ## Tooling
 
-The upstream repo ships `scripts/lint_design.py`, `diff_design.py`, `export_design.py`, and `convert_getdesign.py` (bootstrap from a getdesign.md-style brand analysis), plus a JSON Schema at `schema/design.v1.schema.json`.
+The upstream repo ships `scripts/lint_design.py`, `diff_design.py`, `export_design.py` (CSS, Tailwind v4, DTCG, shadcn registry item, `frame.md`), and `convert_getdesign.py` (bootstrap from a getdesign.md-style brand analysis), plus a JSON Schema at `schema/design.v1.schema.json`.
 
 ## Starter
 

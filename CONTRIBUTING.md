@@ -74,6 +74,8 @@ tags: [<theme>, <topic>, <topic>]
 |---|---|---|
 | Philosophy | `references/philosophy/` | Why, when, what-matters |
 | Motion | `references/motion/` | Animation, easing, transition, gesture |
+| Sound | `references/sound/` | Whether to make a sound, the palette, spec, playback, sound–motion sync, generation, launch-video register |
+| SVG | `references/svg/` | Authoring clean SVG, animating it, morphing paths, video-to-vector mascots |
 | Typography | `references/typography/` | Type, tracking, weight, hierarchy |
 | Surface | `references/surface/` | Color, shadow, radius, dark mode, imperfection |
 | Components | `references/components/` | Hover/loading/empty states, icons, cards, forms, avatars |

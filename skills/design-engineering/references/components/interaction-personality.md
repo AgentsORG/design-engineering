@@ -75,6 +75,8 @@ Examples done well: Linear's command palette open sound, Apple's "swoosh" on Mai
 
 Examples done poorly: Microsoft Office's pre-2007 default sounds. Discord's default ping (lovable, but obviously stock).
 
+The sound cluster goes deeper: [[sound-decision-framework]] for whether, [[sound-palette]] for the family, [[sound-motion-sync]] for timing.
+
 ## When to apply
 
 - Consumer products where personality is a competitive advantage.

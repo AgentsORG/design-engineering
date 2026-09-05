@@ -19,6 +19,7 @@ The largest cluster. Read [[animation-decision-framework]] first — it tells yo
 - [[duration-table]] — Specific durations by element type. UI < 300ms. Buttons 100–160ms.
 - [[spring-animations]] — When springs beat curves. Apple's spring configuration. Interruptibility.
 - [[transform-opacity-only]] — The only two properties that are cheap to animate. The hardware acceleration rule.
+- [[performance-discipline]] — The rest of the discipline: named transition properties, `will-change` as a targeted fix, virtualization past ~50 rows, frames out of React state, reserved space, preload, off-screen pause, muted theme swaps.
 - [[transform-mastery]] — translateY percentages, scale() scales children, 3D transforms, transform-origin fundamentals.
 - [[clip-path-tricks]] — The most underrated animatable property. 5 patterns: tabs, hold-to-delete, image reveals, comparison sliders, directional swap.
 - [[never-scale-from-zero]] — Why `scale(0)` looks like an inflating balloon. Use `scale(0.95)` + opacity, or `@starting-style` for modern CSS.
@@ -65,3 +66,5 @@ Catalog of canonical transitions for common UI archetypes. Implementation layer 
 
 - See [[ai-default-tells]] in [[MOC-anti-patterns]] for animation tells (crossfading icons, gradient flourishes).
 - See [[animations-dev-curriculum]] for the external course pointer; don't duplicate course material here.
+- When a motion has a sound, [[sound-motion-sync]] in [[MOC-sound]] owns the timing — the transient lands on the contact frame, never before it.
+- When the thing that moves is vector, [[svg-animation]] in [[MOC-svg]] owns the engine choice and the SVG-specific mechanics (transform-origin, stroke drawing, morphing).

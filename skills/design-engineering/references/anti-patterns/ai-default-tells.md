@@ -53,6 +53,16 @@ The frame: *could this UI have been generated in 30 seconds with a prompt?* If y
 | Bouncy spring on a daily-use button | Subtle, fast easing | [[delight-impact-curve]] |
 | Animation on `:hover` for touch devices | Gate with `@media (hover: hover)` | [[hover-states-subtle]] |
 
+## Sound
+
+| Tell | Fix | Linked node |
+|---|---|---|
+| A click on every button, a whoosh on every transition | Sound on daily and rare moments only; silence elsewhere | [[sound-decision-framework]] |
+| Recognizable stock-pack sounds (Kenney raw, the Discord ping) | One material, one generated or re-pitched family | [[sound-palette]] |
+| "Futuristic UI blip" with reverb tail | Dry, short, a physical material | [[sound-spec]] |
+| Sound on by default, no toggle | Off by default, discoverable persisted toggle | [[sound-playback-web]] |
+| Music bed hiding unsynced hits in a launch video | Transients on contact frames, bed last or not at all | [[launch-video-sound]] |
+
 ## Microcopy
 
 | Tell | Fix |

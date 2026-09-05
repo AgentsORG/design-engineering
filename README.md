@@ -4,9 +4,9 @@
 [![CI](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml/badge.svg)](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Design engineering for AI agents — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight + [Agentation](https://www.agentation.com)), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), [DiceBear](https://www.dicebear.com) (avatars), and [Index](https://index.how) (design vocabulary) into one navigable skill graph.
+Design engineering for AI agents — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight + [Agentation](https://www.agentation.com)), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), [DiceBear](https://www.dicebear.com) (avatars), [Index](https://index.how) (design vocabulary), Apple's audio-haptic principles, [Josh Comeau](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/) (use-sound), and [bruno / superfx](https://superfx.co) (launch-video sound) into one navigable skill graph.
 
-Not a tutorial. Not a doc site. **A working memory the agent loads** when you're reviewing UI code, picking an easing curve, designing a component, or asking "why does this feel flat?"
+Not a tutorial. Not a doc site. **A working memory the agent loads** when you're reviewing UI code, picking an easing curve, designing a component, deciding whether a send button should make a sound, or asking "why does this feel flat?"
 
 ## The four primitives
 
@@ -14,9 +14,9 @@ Since v2.0.0 the repo is organized around four primitives, each owned by an open
 
 | Primitive | What it is | Where | Spec |
 |---|---|---|---|
-| **Knowledge** | The skill graph — 72 atomic, wikilinked nodes in 8 themed clusters | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
+| **Knowledge** | The skill graph — 105 atomic, wikilinked nodes in 10 themed clusters, plus two generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
 | **Package** | The portable plugin — one manifest, portable skills, namespaced client extensions | `plugin.json` + `skills/` | [Agent Plugins v1.0.0](https://agent-plugins.org/) |
-| **Runtime** | A durable agent that *runs* the knowledge — root agent, six specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
+| **Runtime** | A durable agent that *runs* the knowledge — root agent, nine specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
 | **Client extensions** | Per-host adapters — subagents, slash commands, host manifests, shadcn registry | `agents/`, `commands/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
 
 The knowledge is the core; everything else is a delivery mechanism for it. `plugin.json` declares the client extensions under reverse-domain namespaces (`com.anthropic.claude-code`, `com.openai.codex`, `com.cursor.editor`, `dev.vercel.plugins`, `dev.eve.agent`) so any Agent Plugins client can discover what this repo ships and ignore what it doesn't implement.
@@ -33,7 +33,7 @@ This uses the [skills.sh](https://skills.sh) CLI to install into your detected a
 
 ### Plugins CLI (Claude Code + Cursor + Codex)
 
-Install the full plugin bundle — skill graph, six workflow subagents, and slash commands — in one step via [vercel-labs/plugins](https://github.com/vercel-labs/plugins):
+Install the full plugin bundle — skill graph, nine workflow subagents, and slash commands — in one step via [vercel-labs/plugins](https://github.com/vercel-labs/plugins):
 
 ```bash
 npx plugins add AgentsORG/design-engineering
@@ -42,7 +42,7 @@ npx plugins add AgentsORG/design-engineering
 npx plugins discover AgentsORG/design-engineering
 ```
 
-Restart your agent tools after install. Slash commands (when your host supports them) include `/design-engineering:review-ui`, `/design-engineering:motion-audit`, `/design-engineering:scan-ai-tells`, `/design-engineering:agentation-fix`, `/design-engineering:apply-design-md`, and `/design-engineering:fork-pov`.
+Restart your agent tools after install. Slash commands (when your host supports them) include `/design-engineering:review-ui`, `/design-engineering:motion-audit`, `/design-engineering:scan-ai-tells`, `/design-engineering:agentation-fix`, `/design-engineering:apply-design-md`, `/design-engineering:fork-pov`, `/design-engineering:sound-pass`, `/design-engineering:svg-create`, and `/design-engineering:svg-animate`.
 
 ### Per-agent install
 
@@ -78,8 +78,8 @@ Four items ship:
 
 | Item | Installs | Into |
 |---|---|---|
-| `design-engineering` | The full skill graph (85 files) | `.agents/skills/design-engineering/` |
-| `design-engineering-agents` | Six subagents + six slash commands | `.claude/agents/`, `.claude/commands/` |
+| `design-engineering` | The full skill graph (markdown, eval fixtures, and both scripts) | `.agents/skills/design-engineering/` |
+| `design-engineering-agents` | Nine subagents + nine slash commands | `.claude/agents/`, `.claude/commands/` |
 | `design-engineering-design-file` | The starter `.design` contract | `.design` at project root |
 | `design-engineering-motion` | Motion tokens as theme CSS variables | your global CSS |
 
@@ -95,7 +95,7 @@ Registry sources live in [`registry.json`](registry.json); the built, content-em
 
 ### Run it as an agent (eve)
 
-The repo is also a runnable [eve](https://eve.dev/) project — a durable backend design-engineering agent with the skill graph seeded into its sandbox and six specialist subagents it can delegate to:
+The repo is also a runnable [eve](https://eve.dev/) project — a durable backend design-engineering agent with the skill graph seeded into its sandbox and nine specialist subagents it can delegate to:
 
 ```bash
 npm install
@@ -139,8 +139,8 @@ Navigation:
 - When two intents blur, references/meta/disambiguation.md names the
   tiebreaker; multi-cluster jobs follow references/meta/stacking-chains.md.
 - SKILL.md is a thin Map of Content with [[wikilinks]] to atomic nodes in
-  8 themed folders: philosophy, motion, typography, surface, components,
-  layout, anti-patterns, meta. Wikilinks resolve by basename.
+  10 themed folders: philosophy, motion, sound, svg, typography, surface,
+  components, layout, anti-patterns, meta. Wikilinks resolve by basename.
 
 Rules:
 1. For any UI code review, use the Before | After | Why table from
@@ -160,18 +160,20 @@ references/meta/review-format.md first, then the relevant motion nodes
 
 ## What's included
 
-One skill, organised into **8 themed clusters**. Each cluster has its own MOC (meta indexes from SKILL.md directly).
+One skill, organised into **10 themed clusters**, fronted by a router: `/design-engineering` resolves the project's design contract, classifies the phase of the work, and hands the job to one owner — a node here, one of nine subagents, or an installed companion skill (AgentsORG `design`, [impeccable](https://impeccable.style/), HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI). See `references/meta/skill-router.md`. Each cluster has its own MOC (meta indexes from SKILL.md directly).
 
 | Theme | Use it when… |
 |---|---|
 | `philosophy` | Justifying polish, picking between two valid approaches, debating delight budget. The "why bother" cluster. |
 | `motion` | Adding or reviewing any animation. Easing, durations, springs, gestures, transitions, stagger. The largest cluster. |
-| `typography` | Picking a typeface, line length, tracking. Avoiding AI-default font tells. |
-| `surface` | Color palette, dark mode, shadows, border radius, visual imperfection. |
-| `components` | Buttons, hovers, empty/loading states, cards, forms, avatars, icons, a11y, copy. |
-| `layout` | Page-level grids, viewports, sticky chrome, URL-as-state. |
-| `anti-patterns` | Auditing for "could this have been generated in 30s with a prompt?" tells. The deletion cluster. |
-| `meta` | Routing (`routing-table`, `disambiguation`, `stacking-chains`), required review format + checklist, design.md consumption, Agentation workflow, gotchas, pov. |
+| `sound` | Deciding whether an interaction should make a sound (usually no), designing one material family, syncing transients to frames, generating files — ElevenLabs on demand or open-weight / procedural / CC0 without a key — and scoring launch videos in the OpenAI register. Ships `scripts/sound-family.mjs`. |
+| `svg` | Creating clean, token-aware, editable SVG; animating it with the engine its home allows (inline CSS/WAAPI, embedded keyframes or SMIL for image use); morphing paths by the command-count rule; turning flat clips into editable animated mascots. Ships `scripts/svg-flipbook.mjs`. |
+| `typography` | Picking a typeface, building a type scale, leading, tracking, wrapping, truncation, underlines, the 16px and contrast floors. Avoiding AI-default font tells. |
+| `surface` | Color palette and OKLCH ramps, dark mode, shadows and nested radii, hairlines, image outlines, visual imperfection. |
+| `components` | Buttons, hovers, empty/loading states, cards, forms (validation and behavior), touch and focus, the polish pass, component APIs, avatars, icons, a11y, copy. |
+| `layout` | Page-level grids, viewports, sticky chrome, URL-as-state, marketing / docs / blog surface rules. |
+| `anti-patterns` | Auditing for "could this have been generated in 30s with a prompt?" tells — visual, copy, and code — and the unslop pass that removes them. The deletion cluster. |
+| `meta` | The `/design-engineering` skill router, routing (`routing-table`, `disambiguation`, `stacking-chains`), review format + checklist, `.design` and DESIGN.md consumption, design-system docs for agents, prototyping behind a picker, tools before artifacts, skill-writing rules, design benchmarks, Agentation workflow, gotchas, pov. |
 
 ## Structure: a skill graph, not a SKILL.md file
 
@@ -200,17 +202,19 @@ design-engineering/
 ├── .codex-plugin/                     ← OpenAI Codex manifest                (com.openai.codex)
 ├── .cursor-plugin/                    ← Cursor IDE manifest                  (com.cursor.editor)
 ├── .plugin/                           ← vendor-neutral plugins-CLI manifest  (dev.vercel.plugins)
-├── agents/                            ← six workflow subagents (Claude Code subagent format)
-├── commands/                          ← six slash-command workflows
+├── agents/                            ← nine workflow subagents (Claude Code subagent format)
+├── commands/                          ← nine slash-command workflows
 ├── agent/                             ← eve runtime                          (dev.eve.agent)
 │   ├── agent.ts                       ← defineAgent() — model + runtime config
 │   ├── instructions.md                ← base system prompt, distilled from SOUL.md
 │   ├── skills/                        ← generated: skill graph synced in (gitignored)
-│   └── subagents/<name>/              ← agent.ts (description + model) + instructions.md × 6
+│   └── subagents/<name>/              ← agent.ts (description + model) + instructions.md × 9
 ├── evals/                             ← eve evals: defineEval() scored checks
 │   ├── evals.config.ts
 │   ├── review-format.eval.ts          ← review requests must return the Before|After|Why table
-│   └── motion-values.eval.ts          ← easing advice must name concrete values
+│   ├── motion-values.eval.ts          ← easing advice must name concrete values
+│   ├── sound-values.eval.ts           ← sound advice names a duration, a level, or says "no sound"
+│   └── design-bench.eval.ts           ← generated UI passes the review-checklist floor (DesignBench-style repair)
 ├── scripts/sync-skills.mjs            ← skills/ → agent/skills/ (single source of truth)
 ├── registry.json                      ← shadcn registry source          (com.shadcn.registry)
 ├── r/                                 ← built registry items (generated, committed for raw URLs)
@@ -221,10 +225,11 @@ design-engineering/
 └── skills/design-engineering/         ← THE KNOWLEDGE (portable core)
     ├── SKILL.md                       ← thin Map of Content
     ├── evals/                         ← Step-0 routing fixtures (loading.jsonl, progressive-reads.jsonl)
-    └── references/                    ← 8 themed clusters, 72 atomic nodes, 7 MOCs
+    ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), svg-flipbook.mjs (frames → animated SVG)
+    └── references/                    ← 10 themed clusters, 105 atomic nodes, 9 MOCs
 ```
 
-Total: **72 atomic nodes** across 8 clusters (82 markdown files in the skill), 6 workflow subagents ×2 formats, 6 commands, 3 eve evals, 6 plugin manifests.
+Total: **105 atomic nodes** across 10 clusters (117 markdown files in the skill), 9 workflow subagents ×2 formats, 9 commands, 5 eve evals, 6 plugin manifests, 2 scripts.
 
 ## Agent Plugins conformance
 
@@ -258,6 +263,18 @@ PRs welcome. The shorter the better. See [CONTRIBUTING.md](CONTRIBUTING.md), [CO
 - **Index (Emil Kowalski & Glenn Carstens-Peters)** — [index.how](https://index.how)
 - **Benji Taylor** — [benji.org](https://benji.org) + [Agentation](https://www.agentation.com)
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev)
+- **Apple** — [Designing Audio-Haptic Experiences (WWDC19)](https://developer.apple.com/videos/play/wwdc2019/223/), [HIG: Playing audio](https://developer.apple.com/design/human-interface-guidelines/playing-audio), [Twenty Thousand Hertz: The Sound of Apple](https://www.20k.org/episodes/the-sound-of-apple)
+- **bruno (@tvnxty)** — [superfx.co](https://superfx.co); the [Base logo reveal](https://x.com/tvnxty/status/2095601307444728212) whose sound map anchors `launch-video-sound`
+- **Studio Dumbar/DEPT** — [OpenAI brand motion + sound](https://studiodumbar.com/work/openai)
+- **Josh Comeau** — [use-sound](https://github.com/joshwcomeau/use-sound)
+- **ElevenLabs** — [Text to sound effects API](https://elevenlabs.io/docs/api-reference/text-to-sound-effects/convert)
+- **Stability AI** — [Stable Audio 3 Small-SFX](https://huggingface.co/stabilityai/stable-audio-3-small-sfx); **KilledByAPixel** — [ZzFX](https://github.com/KilledByAPixel/ZzFX); **Kenney** — [Interface Sounds](https://kenney.nl/assets/interface-sounds); **soundcn** — [soundcn.xyz](https://www.soundcn.xyz/); **Freesound** — [APIv2](https://freesound.org/docs/api/)
+- **ITU-R BT.1359** — audio/video sync thresholds
+- **Emil Kowalski's design-engineering practice** — the typography, color, surfaces, forms, touch, polish, performance, component-API, marketing, prototyping, tooling, docs, unslop, and skill-writing nodes are distilled from studying it; glosses and rules are this graph's own
+- **supermemoryai/skills** — [svg-animations](https://github.com/supermemoryai/skills/blob/main/svg-animations/SKILL.md) (engine choice, stroke drawing, SMIL timing, morphing rule)
+- **Adrian Abelarde** — [Anim8](https://www.tryanim8.com/), the MP4 → editable animated SVG pipeline behind `video-to-vector-pipeline`; **visioncortex/vtracer**, Potrace, SVGO
+- **WebPAI DesignBench** — [arXiv 2506.06251](https://arxiv.org/abs/2506.06251) (generation / edit / repair tasks and metrics); **Design Arena** — [methodology](https://notes.designarena.ai/methodology/) (anonymous pairwise votes, Bradley-Terry)
+- **Companions the router hands off to** — [AgentsORG `.design`](https://github.com/AgentsORG/DESIGN), [impeccable](https://impeccable.style/), [HyperFrames](https://www.hyperframes.dev/design), ElevenLabs, [shadcn CLI](https://ui.shadcn.com/docs/cli)
 - **James Frewin** — [guidelines.sh](https://guidelines.sh)
 - **Vercel** — [vercel.com/design/guidelines](https://vercel.com/design/guidelines)
 - **Ben DC** — [github.com/bendc/frontend-guidelines](https://github.com/bendc/frontend-guidelines)

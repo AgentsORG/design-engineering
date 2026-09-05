@@ -4,7 +4,7 @@ Repo-level operating guidance for AI agents working in this codebase. Pairs with
 
 ## What this repo is
 
-A single agent skill packaged as a **skill graph** — one root `SKILL.md` (the Map of Content) plus a `references/` folder of atomic, wikilinked nodes organised into themed subfolders (`philosophy/`, `motion/`, `typography/`, `surface/`, `components/`, `layout/`, `anti-patterns/`, `meta/`) and an `evals/` folder for Perplexity-style Step-0 evals. A sibling `agents/` directory ships six workflow subagents that map to the highest-value design-engineering tasks. The skill encodes design engineering knowledge.
+A single agent skill packaged as a **skill graph** — one root `SKILL.md` (the Map of Content) plus a `references/` folder of atomic, wikilinked nodes organised into themed subfolders (`philosophy/`, `motion/`, `sound/`, `typography/`, `surface/`, `components/`, `layout/`, `anti-patterns/`, `meta/`), an `evals/` folder for Perplexity-style Step-0 evals, and a `scripts/` folder with the one tool the knowledge needs (`sound-family.mjs`, a dependency-free sound generator). A sibling `agents/` directory ships nine workflow subagents that map to the highest-value design-engineering tasks. The skill encodes design engineering knowledge.
 
 Since v2.0.0 the repo is organised around **four primitives**: Knowledge (`skills/design-engineering/`, Agent Skills spec), Package (root `plugin.json`, [Agent Plugins v1.0.0](https://agent-plugins.org/)), Runtime (`agent/` + `evals/`, the [eve](https://eve.dev/) framework), and Client extensions (`agents/`, `commands/`, and the per-host manifest dirs, declared under reverse-domain namespaces in `plugin.json` `extensions`). The knowledge is canonical; everything else delivers it. `agent/skills/` is **generated** by `scripts/sync-skills.mjs` — never edit it; edit `skills/design-engineering/` and re-sync.
 
@@ -31,7 +31,9 @@ The graph is intentionally **Obsidian-compatible**: installers can open this rep
 ## File conventions
 
 - Filenames: lowercase, hyphenated, no extension in wikilinks, **unique across the vault** (Obsidian resolves wikilinks by basename, so theme subfolders are organizational only — they don't create namespaces).
-- Theme folders: `references/<theme>/` — one per cluster. Current themes: philosophy, motion, typography, surface, components, layout, anti-patterns, meta.
+- Theme folders: `references/<theme>/` — one per cluster. Current themes: philosophy, motion, sound, svg, typography, surface, components, layout, anti-patterns, meta.
+- Scripts: `skills/design-engineering/scripts/` — only for work the agent cannot do by reading (today: `sound-family.mjs`, which calls ElevenLabs or synthesizes offline, with its example manifest; `svg-flipbook.mjs`, which assembles SVG frames into one animated SVG). No dependencies, Node 18+. Don't add a script for anything a node can describe.
+- The router: `references/meta/skill-router.md` is the first thing `/design-engineering` runs — contract, phase, one owner, companions. New clusters and subagents get a row there and in `routing-table.md`, or they are unreachable.
 - MOCs: `references/<theme>/MOC-<theme>.md` — one per theme folder. Indexes that theme's atomic nodes.
 - Atomic nodes: `references/<theme>/<concept-name>.md`.
 - A new theme = a new folder + a new `MOC-<theme>.md` + a link from SKILL.md. Don't create themes for fewer than 3 nodes — fold into an existing one.
@@ -56,6 +58,17 @@ Each atomic node should cite its source at the bottom. The current sources are:
 - **AgentsORG `.design` (github.com/AgentsORG/design)** — the `design.v1` living visual contract. Mirrored offline at `spec/design-file-spec.md`; runtime guidance in `meta/using-design-file`; starter contract at `templates/design-engineering.design`. Note the precedence chain: a project's `.design` outranks this skill, which sits at the "generic taste skills" tier. When editing the starter, re-validate with the upstream `scripts/lint_design.py`.
 - **Agentation (agentation.com / benjitaylor/agentation)** — click-to-annotate design-review workflow. Drives `philosophy/pointing-beats-describing` and `meta/agentation-workflow`.
 - **Index — Emil Kowalski & Glenn Carstens-Peters (index.how)** — "say precisely what you mean" design vocabulary. Drives `philosophy/articulate-precisely`, `meta/design-vocabulary`, and `components/component-confusables`.
+- **Apple (WWDC19 *Designing Audio-Haptic Experiences*, HIG *Playing audio* / *Feedback*, Twenty Thousand Hertz *The Sound of Apple* with Hugo Verweij)** — causality / harmony / utility, the first-vs-hundredth-use test, silent-switch respect, organic materials. Drives the `sound/` cluster.
+- **ITU-R BT.1359** — audio/video sync thresholds (+45 / −125 ms) in `sound/sound-motion-sync`.
+- **bruno (@tvnxty, superfx.co)** — launch-video sound register; the measured sound map in `sound/launch-video-sound` comes from HKTITAN's analysis of the 2026-09-03 Base logo reveal.
+- **Studio Dumbar/DEPT** — OpenAI brand motion and ChatGPT-5 sizzle sound; the "organic motion" register.
+- **Josh Comeau (use-sound)** — mute-toggle rules, playback-rate variation, the hook API. **Blattner et al. (1989)** — earcon grammar.
+- **ElevenLabs (text-to-sound-effects API)** — on-demand generation path. **Stability AI (Stable Audio 3 Small-SFX, Community License)**, **KilledByAPixel/ZzFX**, **Kenney**, **soundcn**, **Freesound** — the no-key paths.
+- **Emil Kowalski's design-engineering practice, distilled** — the typography, color, surface, forms, touch, polish, performance, component-API, marketing, prototyping, tooling, docs, unslop, and skill-writing nodes added in 2.1.0. Cite as "Emil Kowalski's design-engineering practice … distilled by HKTITAN"; glosses are this graph's own and no course material is quoted or linked.
+- **supermemoryai/skills `svg-animations`** — engine choice, stroke drawing, SMIL timing, the morphing rule in `svg/`.
+- **Adrian Abelarde (Anim8)** — the MP4 → editable animated SVG pipeline and its flat-art constraint in `svg/video-to-vector-pipeline`; tools: vtracer, Potrace, ffmpeg, SVGO.
+- **WebPAI DesignBench (arXiv 2506.06251) and Design Arena** — `meta/design-benchmarks` and the `design-bench` eval fixtures.
+- **Companions** — AgentsORG `.design` (contract 1.3: `tokens.sound`, `exports.frame_md`, video targets), impeccable (23 named passes), HyperFrames (`frame.md`), ElevenLabs, transitions-dev, shadcn CLI — routed by `meta/skill-router`, never duplicated.
 - **agentskills/agentskills** — canonical Agent Skills specification, mirrored offline at `spec/agent-skills-spec.md`.
 - **HKTITAN / installer** — `meta/gotchas.md` and `meta/pov.md`. These grow over time and reflect lived experience. Forked installers should edit `meta/pov.md`.
 
