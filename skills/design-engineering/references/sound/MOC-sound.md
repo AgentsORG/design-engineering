@@ -31,7 +31,7 @@ Two surfaces share this cluster and have opposite defaults. **Product UI** is si
 
 ## Launch-video register
 
-- [[launch-video-sound]] — The OpenAI / Studio Dumbar register and a measured sound map of a bruno (@tvnxty) logo reveal: sound density mirrors motion density, holds are true silence, small things tick high and short, big things land low and long.
+- [[launch-video-sound]] — Two measured registers: the sparse logo reveal (no bed, every hit on a motion peak, true silence) and the OpenAI brand film (a sub-heavy bed in F, dry clicks 10–20 dB under it on stepped reveals, silences as punctuation). Numbers from *Refreshed.* and *Introducing GPT-5*.
 - [[sound-from-motion]] — Derive the sound from the motion: size → pitch and decay, x → pan, y → brightness, direction → contour, tween → length, contact frame → transient. The cue sheet and `scripts/sound-sheet.mjs`, which renders a stereo stem from it.
 
 ## Shipped tooling

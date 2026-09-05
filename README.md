@@ -23,12 +23,12 @@ npx skills add AgentsORG/design-engineering
 
 ![design-engineering in twelve seconds: the router, a Before / After / Why review, the sound family, the SVG mascot, the install command](docs/demo/design-engineering-demo.gif)
 
-Twelve seconds, made with the skill's own rules and tools. [Watch the MP4 with sound](docs/demo/design-engineering-demo.mp4) — the whole soundtrack is *derived from the motion*: every transient sits on the frame where something lands, pitch follows size, pan follows position, and the holds are silent.
+Twelve seconds, made with the skill's own rules and tools. [Watch the MP4 with sound](docs/demo/design-engineering-demo.mp4). It is scored in the register measured from OpenAI's *Refreshed.* and *Introducing GPT-5* films: a warm sub-heavy bed in F that carries the piece, dry clicks 10–20 dB under it on every stepped reveal (a glyph flipbook, words streaming in, a table filling cell by cell), a low thud when something big settles, and the sub dropping out for half a second before the modal lands. The whole soundtrack is *derived from the motion* — nothing is picked from a library.
 
 | What you see | What made it |
 |---|---|
-| The composition | [`docs/demo/hyperframes/index.html`](docs/demo/hyperframes/index.html), a [HyperFrames](https://www.skills.sh/heygen-com/hyperframes/hyperframes) project in the shape HeyGen uses for its own launches: one paused GSAP timeline, `data-start` clips, a [storyboard](docs/demo/hyperframes/STORYBOARD.md) with the act table and audio cue map, a [seam ledger](docs/demo/hyperframes/ledger.json), `check` passing with zero layout or contrast findings. Motion values come from `easing-curves`, `duration-table`, and `launch-video-seams`. |
-| The sound | One stereo stem rendered by `scripts/sound-sheet.mjs` from a [cue sheet](docs/demo/hyperframes/assets/sfx/cues.json) — 25 cues, one per visual event, each with its contact frame and its box on the canvas. Size sets pitch and decay, x sets pan, y sets brightness, direction sets the whoosh's contour; nothing is picked from a library. The six product one-shots in the same folder come from the same voices (`--family`). `sound-from-motion`, `sound-motion-sync`, `launch-video-sound`. For ElevenLabs-generated families use `scripts/sound-family.mjs` with the [example manifest](skills/design-engineering/scripts/sound-family.example.json). |
+| The composition | [`docs/demo/hyperframes/index.html`](docs/demo/hyperframes/index.html), a [HyperFrames](https://www.skills.sh/heygen-com/hyperframes/hyperframes) project in the shape HeyGen uses for its own launches: one paused GSAP timeline, `data-start` clips, a [storyboard](docs/demo/hyperframes/STORYBOARD.md) with the act table and audio cue map, a [seam ledger](docs/demo/hyperframes/ledger.json), `check` passing with zero layout or contrast findings. Reveals are stepped, not tweened — seven frames a glyph, 110 ms a word, 210 ms a cell — and only placement eases (`power3.out`). `easing-curves`, `duration-table`, `launch-video-seams`. |
+| The sound | One stereo stem rendered by `scripts/sound-sheet.mjs` from a [cue sheet](docs/demo/hyperframes/assets/sfx/cues.json): a bed with its act-by-act gain arc, one dropout, and ducking under every thud, plus 72 onsets from 22 cues, each with its contact frame and its box on the canvas. Size sets pitch, x sets pan, y sets brightness, a stepped reveal sets the click cadence. The six product one-shots in the same folder come from the same voices (`--family`). The register's numbers — bed root, click decay, hit level under the sub, silence as punctuation — were measured from the two OpenAI films with the scripts in [`docs/research/launch-register/`](docs/research/launch-register/). `sound-from-motion`, `launch-video-sound`, `sound-motion-sync`. |
 | The mascot | Eight flat SVG frames through `scripts/svg-flipbook.mjs --vars`: one 5.7 KB file, colors lifted to CSS variables, driven by the composition timeline. |
 
 Re-render it yourself:
@@ -47,7 +47,7 @@ Frames from the demo, each a real output shape of the skill.
 <td width="50%"><img src="docs/demo/screenshots/03-review-and-modal.png" alt="A Before / After / Why review table beside the fixed modal"><br><sub><b>A review, then the fix.</b> Every UI review is a Before | After | Why table scanned against the thirteen-row checklist; the modal on the right is what the After column ships. <code>review-format</code>, <code>review-checklist</code></sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/demo/screenshots/04-sound-and-svg.png" alt="Six generated UI sounds and an SVG mascot flipbook"><br><sub><b>Sound and vectors.</b> A six-sound family from one material, rendered by <code>sound-sheet.mjs</code> from the same voices that score the video, and a mascot flipbook from <code>svg-flipbook.mjs</code>. <code>sound-from-motion</code>, <code>sound-palette</code>, <code>video-to-vector-pipeline</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/04-sound-and-svg.png" alt="Six generated UI sounds and an SVG mascot flipbook"><br><sub><b>Sound and vectors.</b> A six-sound family from the same voices that score the video — dry clicks and a low thud on the bed's root — rendered by <code>sound-sheet.mjs</code>, and a mascot flipbook from <code>svg-flipbook.mjs</code>. <code>sound-from-motion</code>, <code>launch-video-sound</code>, <code>video-to-vector-pipeline</code></sub></td>
 <td width="50%"><img src="docs/demo/screenshots/05-install.png" alt="Ten clusters, nine subagents, one router, and the install command"><br><sub><b>Ten clusters, nine subagents, one router.</b> Installs into any agent that reads a <code>SKILL.md</code>; slash commands and subagents ship for Claude Code, Cursor, and Codex.</sub></td>
 </tr>
 </table>
@@ -334,6 +334,7 @@ design-engineering/
 ├── spec/                              ← offline mirrors: agent-skills-spec.md, design-md-spec.md, design-file-spec.md
 ├── templates/design-engineering.design ← starter .design contract (this skill's motion + surface defaults)
 ├── docs/brand/                        ← AgentsORG wordmark (light / dark) and icon
+├── docs/research/launch-register/     ← the scripts and summaries that measured the OpenAI launch-film register
 ├── docs/demo/                         ← the README demo: HyperFrames source + storyboard + ledger, MP4/GIF, screenshots, the stem and cue sheet
 ├── template/TEMPLATE.md
 └── skills/design-engineering/         ← THE KNOWLEDGE (portable core)
@@ -377,6 +378,7 @@ PRs welcome. The shorter the better. See [CONTRIBUTING.md](CONTRIBUTING.md), [CO
 - **Index (Emil Kowalski & Glenn Carstens-Peters)** — [index.how](https://index.how)
 - **Benji Taylor** — [benji.org](https://benji.org) + [Agentation](https://www.agentation.com)
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev)
+- **OpenAI / Studio Dumbar/DEPT** — [*Refreshed.*](https://www.youtube.com/watch?v=k3d_xeVxEOE) and [*Introducing GPT-5*](https://www.youtube.com/watch?v=boJG84Jcf-4), measured for the bed-and-clicks register; [case study](https://studiodumbar.com/work/openai-brand-film)
 - **HeyGen** — [hyperframes-launches](https://github.com/heygen-com/hyperframes-launches) (launch-video seams, storyboards, audio cue maps) and [HyperFrames](https://github.com/heygen-com/hyperframes)
 - **Apple** — [Designing Audio-Haptic Experiences (WWDC19)](https://developer.apple.com/videos/play/wwdc2019/223/), [HIG: Playing audio](https://developer.apple.com/design/human-interface-guidelines/playing-audio), [Twenty Thousand Hertz: The Sound of Apple](https://www.20k.org/episodes/the-sound-of-apple)
 - **bruno (@tvnxty)** — [superfx.co](https://superfx.co); the [Base logo reveal](https://x.com/tvnxty/status/2095601307444728212) whose sound map anchors `launch-video-sound`

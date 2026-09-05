@@ -1,6 +1,6 @@
 {
   "name": "design-engineering",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
   "type": "module",
   "description": "eve runtime for the design-engineering skill graph — a durable design-engineering agent with nine specialist subagents.",

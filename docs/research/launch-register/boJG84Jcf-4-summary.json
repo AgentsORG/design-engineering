@@ -1,0 +1,158 @@
+{
+ "analysis": {
+  "video": "boJG84Jcf-4",
+  "duration_s": 89.5,
+  "onsets": 548,
+  "onsets_per_s": 6.13,
+  "silence_frac_below_-50dB": 0.025,
+  "quiet_frac_below_-40dB": 0.036,
+  "program_rms_db": -18.6,
+  "peak_db": -3.5,
+  "env_median_db": -25.7,
+  "env_p10_db": -32.9,
+  "band_share_overall": {
+   "<120": 0.673,
+   "120-500": 0.294,
+   "500-2k": 0.028,
+   "2k-6k": 0.003,
+   ">6k": 0.002
+  },
+  "onset_centroid_median_hz": 2054,
+  "onset_decay20_median_s": 2.0,
+  "onset_peak_median_db": -17.2,
+  "cuts_(hard)": 11,
+  "motion_mean": 1.95,
+  "onsets_within_2_frames_of_motion_peak": 0.24
+ },
+ "analysis2": {
+  "video": "boJG84Jcf-4",
+  "duration": 89.5,
+  "bpm_estimate": 93.8,
+  "beat_period_s": 0.64,
+  "onsets_per_s": {
+   "low": 9.72,
+   "mid": 9.48,
+   "high": 6.15
+  },
+  "grid_concentration_high_hits": 0.09,
+  "grid_concentration_low": 0.01,
+  "bed_floor_median_db": -30.8,
+  "bed_present_frac": 0.97,
+  "dropout_seconds": [
+   86,
+   87,
+   88
+  ],
+  "bed_low_peaks_hz_db_note": [
+   [
+    43.1,
+    33.0,
+    "F1"
+   ],
+   [
+    86.1,
+    32.6,
+    "F2"
+   ],
+   [
+    64.6,
+    32.5,
+    "C2"
+   ],
+   [
+    107.7,
+    29.9,
+    "A2"
+   ],
+   [
+    172.3,
+    27.2,
+    "F3"
+   ],
+   [
+    129.2,
+    27.0,
+    "C3"
+   ]
+  ],
+  "strong_high_hits": 73,
+  "strong_hits_per_s": 0.82,
+  "strong_hit_centroid_median": 4731,
+  "strong_hit_decay_median_s": 2.0,
+  "strong_hit_peak_median_db": -27.0,
+  "strong_hits_within_2f_of_motion_peak": 0.25,
+  "strong_hits_near_cut": 0.0,
+  "cuts": 11,
+  "cut_times": [
+   51.67,
+   52.93,
+   54.87,
+   55.93,
+   56.77,
+   57.4,
+   58.03,
+   58.67,
+   59.97,
+   63.8,
+   65.73
+  ],
+  "shot_len_median_s": 1.28,
+  "shot_len_p90_s": 21.68,
+  "still_frac_(motion<0.3)": 0.64,
+  "avg_motion_curve_24f_after_cut": [
+   0.51,
+   0.39,
+   0.32,
+   0.29,
+   0.26,
+   0.3,
+   0.24,
+   0.25,
+   0.26,
+   0.23,
+   0.28,
+   0.28,
+   0.2,
+   0.22,
+   0.19,
+   0.21,
+   0.23,
+   0.24,
+   0.5,
+   0.17,
+   0.25,
+   0.29,
+   0.26,
+   0.27
+  ]
+ },
+ "analysis3": {
+  "video": "boJG84Jcf-4",
+  "hits_total": 488,
+  "strong_hits": 460,
+  "strong_per_s": 5.14,
+  "strong_high_db_median": -35.2,
+  "strong_prom_db_median": 28.2,
+  "strong_dec10_median_s": 0.03,
+  "strong_dec20_median_s": 0.055,
+  "strong_dec20_p25_p75": [
+   0.04,
+   0.141
+  ],
+  "hit_vs_sub_at_same_time_db_median": -7.3,
+  "sub_env_pulse_lag_s": 0.259,
+  "sub_env_pulse_strength": 0.252,
+  "band_medians_db": {
+   "sub": -31.2,
+   "lowmid": -31.6,
+   "mid": -36.5,
+   "high": -60.2
+  },
+  "band_p95_db": {
+   "sub": -14.2,
+   "lowmid": -18.1,
+   "mid": -30.8,
+   "high": -33.4
+  }
+ }
+}

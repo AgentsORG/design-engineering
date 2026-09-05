@@ -14,21 +14,25 @@
       .clip { position: absolute; inset: 0; }
       .scene { width: 100%; height: 100%; padding: 120px 160px; display: flex; flex-direction: column; justify-content: center; }
       .eyebrow { font-size: 26px; letter-spacing: 0.08em; text-transform: uppercase; color: #0B57D0; font-weight: 600; }
-      h1 { font-size: 132px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+      #s1-h { visibility: hidden; opacity: 0; }
+      h1 { font-size: 132px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
       h2 { font-size: 88px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; max-width: 1400px; }
       .sub { font-size: 40px; color: #5a5852; margin-top: 28px; max-width: 1200px; line-height: 1.35; }
+      .w { visibility: hidden; }
       .cards { display: flex; gap: 32px; margin-top: 64px; }
       .card { flex: 1; background: #fff; border-radius: 20px; padding: 36px 40px; box-shadow: 0 0 0 1px rgb(0 0 0 / .05), 0 1px 3px rgb(0 0 0 / .05), 0 4px 10px -4px rgb(0 0 0 / .05); }
       .card .k { font-size: 24px; color: #0B57D0; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
       .card .v { font-size: 38px; font-weight: 600; margin-top: 10px; letter-spacing: -0.01em; }
       .card .d { font-size: 26px; color: #5a5852; margin-top: 14px; line-height: 1.35; }
+      .card .k, .card .v, .card .d { visibility: hidden; }
       .split { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; margin-top: 56px; align-items: start; }
       .term { background: #14161a; color: #e8e6e1; border-radius: 20px; padding: 36px 40px; font-size: 26px; line-height: 1.55; box-shadow: 0 0 0 1px rgb(0 0 0 / .1), 0 12px 32px -12px rgb(0 0 0 / .25); }
-      .term .h { color: #9aa0ab; }
       .term .row { display: grid; grid-template-columns: 1.2fr 1.2fr 1.6fr; gap: 24px; padding: 14px 0; border-top: 1px solid rgb(255 255 255 / .08); }
-      .term .row.head { border-top: 0; color: #9aa0ab; font-size: 22px; letter-spacing: 0.06em; text-transform: uppercase; }
-      .term .b { color: #f0a3a3; } .term .a { color: #9fe3b0; } .term .w { color: #cfd3da; font-family: "Inter", sans-serif; }
-      .term .w em { color: #8ab4ff; font-style: normal; }
+      .term .row.head { border-top: 0; color: #bec2c9; font-size: 22px; letter-spacing: 0.06em; text-transform: uppercase; }
+      .term .row > div { visibility: hidden; }
+      .term .row.head > div { visibility: visible; }
+      .term .b { color: #f0a3a3; } .term .a { color: #9fe3b0; } .term .w2 { color: #cfd3da; font-family: "Inter", sans-serif; }
+      .term .w2 em { color: #8ab4ff; font-style: normal; }
       .modal-wrap { position: relative; height: 560px; border-radius: 20px; background: #eceae4; display: grid; place-items: center; overflow: hidden; }
       .overlay { position: absolute; inset: 0; background: rgb(17 17 17 / .35); }
       .modal { position: relative; width: 520px; background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 2px 4px rgb(0 0 0 / .04), 0 16px 40px rgb(0 0 0 / .12); }
@@ -46,7 +50,7 @@
       .btn.filled { color: #fff; background: #0B57D0; }
       .sound { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 56px; align-items: center; }
       .bars { display: flex; flex-direction: column; gap: 22px; }
-      .bar { display: grid; grid-template-columns: 180px 1fr 140px; align-items: center; gap: 24px; font-size: 26px; }
+      .bar { display: grid; grid-template-columns: 180px 1fr 140px; align-items: center; gap: 24px; font-size: 26px; visibility: hidden; }
       .bar .name { font-weight: 600; }
       .bar .wave { height: 40px; display: flex; align-items: center; gap: 4px; }
       .bar .wave i { display: block; width: 6px; border-radius: 3px; background: #0B57D0; transform-origin: center; }
@@ -55,30 +59,30 @@
       .mascot-stage svg { width: 360px; height: 360px; }
       .mascot-stage .frame { visibility: hidden; }
       .mascot-stage .tag { position: absolute; left: 32px; bottom: 28px; font-size: 22px; color: #5a5852; }
-      .install { margin-top: 64px; display: inline-flex; align-items: center; gap: 20px; background: #14161a; color: #e8e6e1; border-radius: 16px; padding: 28px 36px; font-size: 40px; width: max-content; box-shadow: 0 12px 32px -12px rgb(0 0 0 / .3); }
+      .install { margin-top: 64px; display: inline-flex; align-items: center; gap: 20px; background: #14161a; color: #e8e6e1; border-radius: 16px; padding: 28px 36px; font-size: 40px; width: max-content; min-width: 1150px; box-shadow: 0 12px 32px -12px rgb(0 0 0 / .3); }
       .install .p { color: #9aa0ab; }
-      .foot { position: absolute; left: 160px; bottom: 96px; font-size: 26px; color: #5a5852; display: flex; gap: 48px; }
-      .hit { position: absolute; }
+      .install .c { visibility: hidden; }
+      .foot { position: absolute; left: 160px; bottom: 96px; font-size: 26px; color: #5a5852; display: flex; gap: 48px; align-items: center; }
       .brand { display: flex; align-items: center; gap: 20px; }
       .mark { height: 64px; width: auto; display: block; }
       .foot .mark { height: 44px; }
-      .foot { align-items: center; }
+      .foot .icon { height: 48px; margin-left: -8px; }
     </style>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="12" data-width="1920" data-height="1080" data-layout-allow-overflow>
 
-      <!-- 1 · Title -->
-      <section id="s1" class="clip" data-start="0" data-duration="2.4" data-track-index="1">
+      <!-- 1 · Title — the wordmark arrives as a glyph flipbook (stepped, seven frames a step), then holds -->
+      <section id="s1" class="clip" data-start="0" data-duration="2.8" data-track-index="1">
         <div class="scene">
-          <div id="s1-eye" class="eyebrow brand"><img src="assets/brand/agents.svg" alt="agents.org.in" class="mark"><span>design‑engineering · v2.2.0</span></div>
+          <div id="s1-eye" class="eyebrow brand"><img src="assets/brand/agents.svg" alt="agents.org.in" class="mark"><span>design‑engineering · v2.3.0</span></div>
           <h1 id="s1-h">design‑engineering</h1>
-          <div id="s1-sub" class="sub">A skill graph for coding agents. It routes, it reviews, it makes sound and vectors, and it says no to most animation.</div>
+          <div id="s1-sub" class="sub"><span class="w">A</span> <span class="w">skill</span> <span class="w">graph</span> <span class="w">for</span> <span class="w">coding</span> <span class="w">agents.</span> <span class="w">It</span> <span class="w">routes,</span> <span class="w">reviews,</span> <span class="w">scores</span> <span class="w">sound,</span> <span class="w">draws</span> <span class="w">vectors.</span></div>
         </div>
       </section>
 
-      <!-- 2 · Router -->
-      <section id="s2" class="clip" data-start="2.4" data-duration="2.8" data-track-index="1">
+      <!-- 2 · Router — three cards, each built line by line -->
+      <section id="s2" class="clip" data-start="2.8" data-duration="2.8" data-track-index="1">
         <div class="scene">
           <div id="s2-eye" class="eyebrow">/design‑engineering</div>
           <h2 id="s2-h">A router before it is a library.</h2>
@@ -90,17 +94,17 @@
         </div>
       </section>
 
-      <!-- 3 · Review table + the modal it produces -->
-      <section id="s3" class="clip" data-start="5.2" data-duration="3" data-track-index="1">
+      <!-- 3 · Review — the table streams in cell by cell; the bed drops out before the modal lands -->
+      <section id="s3" class="clip" data-start="5.6" data-duration="3" data-track-index="1">
         <div class="scene">
           <div id="s3-eye" class="eyebrow">review‑format · thirteen‑row checklist</div>
           <h2 id="s3-h">Before · After · Why. Then the fix.</h2>
           <div class="split">
             <div class="term mono" id="term">
               <div class="row head"><div>Before</div><div>After</div><div>Why</div></div>
-              <div class="row" id="r1"><div class="b">transition: all .3s ease-in</div><div class="a">transition: transform 200ms<br>cubic-bezier(.25,1,.5,1)</div><div class="w">ease‑in reads hesitant. <em>[[easing-curves]]</em></div></div>
-              <div class="row" id="r2"><div class="b">transform: scale(0)</div><div class="a">transform: scale(.95)</div><div class="w">Nothing real appears from nowhere. <em>[[never-scale-from-zero]]</em></div></div>
-              <div class="row" id="r3"><div class="b">new AudioContext() at load</div><div class="a">resume() in the first gesture</div><div class="w">Sound works on the second click otherwise. <em>[[sound-playback-web]]</em></div></div>
+              <div class="row" id="r1"><div class="b cell">transition: all .3s ease-in</div><div class="a cell">transition: transform 200ms<br>cubic-bezier(.25,1,.5,1)</div><div class="w2 cell">ease‑in reads hesitant. <em>[[easing-curves]]</em></div></div>
+              <div class="row" id="r2"><div class="b cell">transform: scale(0)</div><div class="a cell">transform: scale(.95)</div><div class="w2 cell">Nothing real appears from nowhere. <em>[[never-scale-from-zero]]</em></div></div>
+              <div class="row" id="r3"><div class="b cell">new AudioContext() at load</div><div class="a cell">resume() in the first gesture</div><div class="w2 cell">Sound works on the second click otherwise. <em>[[sound-playback-web]]</em></div></div>
             </div>
             <div class="modal-wrap" id="mw">
               <div class="overlay" id="ov"></div>
@@ -116,19 +120,19 @@
         </div>
       </section>
 
-      <!-- 4 · Sound family + SVG mascot -->
-      <section id="s4" class="clip" data-start="8.2" data-duration="2.2" data-track-index="1">
+      <!-- 4 · Sound family + SVG mascot — bars step in; the flipbook ticks -->
+      <section id="s4" class="clip" data-start="8.6" data-duration="2" data-track-index="1">
         <div class="scene">
           <div id="s4-eye" class="eyebrow">sound‑sheet.mjs · svg‑flipbook.mjs</div>
-          <h2 id="s4-h">One material. Pitch from size, pan from position, every transient on the contact frame.</h2>
+          <h2 id="s4-h">One material. A bed that breathes. Clicks on the frame.</h2>
           <div class="sound">
             <div class="bars" id="bars">
-              <div class="bar"><span class="name">tick</span><span class="wave" data-w="3,7,18,40,26,12,8,5,4,3,2,2"></span><span class="ms">44 ms</span></div>
-              <div class="bar"><span class="name">tap</span><span class="wave" data-w="4,10,24,40,34,20,12,8,6,4,3,2"></span><span class="ms">136 ms</span></div>
-              <div class="bar"><span class="name">send</span><span class="wave" data-w="6,16,30,40,28,16,22,36,30,18,10,5"></span><span class="ms">240 ms</span></div>
-              <div class="bar"><span class="name">receive</span><span class="wave" data-w="5,14,34,40,24,14,26,32,20,10,6,3"></span><span class="ms">206 ms</span></div>
-              <div class="bar"><span class="name">error</span><span class="wave" data-w="10,28,40,36,26,18,12,8,6,4,3,2"></span><span class="ms">155 ms</span></div>
-              <div class="bar"><span class="name">success</span><span class="wave" data-w="6,18,36,40,30,22,34,40,28,18,10,4"></span><span class="ms">393 ms</span></div>
+              <div class="bar"><span class="name">tick</span><span class="wave" data-w="3,7,18,40,26,12,8,5,4,3,2,2"></span><span class="ms" id="ms-tick">— ms</span></div>
+              <div class="bar"><span class="name">tap</span><span class="wave" data-w="4,10,24,40,34,20,12,8,6,4,3,2"></span><span class="ms" id="ms-tap">— ms</span></div>
+              <div class="bar"><span class="name">send</span><span class="wave" data-w="6,16,30,40,28,16,22,36,30,18,10,5"></span><span class="ms" id="ms-send">— ms</span></div>
+              <div class="bar"><span class="name">receive</span><span class="wave" data-w="5,14,34,40,24,14,26,32,20,10,6,3"></span><span class="ms" id="ms-receive">— ms</span></div>
+              <div class="bar"><span class="name">error</span><span class="wave" data-w="10,28,40,36,26,18,12,8,6,4,3,2"></span><span class="ms" id="ms-error">— ms</span></div>
+              <div class="bar"><span class="name">success</span><span class="wave" data-w="6,18,36,40,30,22,34,40,28,18,10,4"></span><span class="ms" id="ms-success">— ms</span></div>
             </div>
             <div class="mascot-stage" id="stage">
               <svg viewBox="0 0 120 120" id="mascot" role="img" aria-label="Bouncing mascot"></svg>
@@ -138,17 +142,17 @@
         </div>
       </section>
 
-      <!-- 5 · Install -->
-      <section id="s5" class="clip" data-start="10.4" data-duration="1.6" data-track-index="1">
+      <!-- 5 · Install — the command types in; the bed resolves and leaves -->
+      <section id="s5" class="clip" data-start="10.6" data-duration="1.4" data-track-index="1">
         <div class="scene">
           <div id="s5-eye" class="eyebrow">Install</div>
           <h2 id="s5-h">Ten clusters. Nine subagents. One router.</h2>
-          <div class="install mono" id="cmd"><span class="p">$</span><span>npx skills add AgentsORG/design-engineering</span></div>
+          <div class="install mono" id="cmd"><span class="p">$</span><span><span class="c">npx</span> <span class="c">skills</span> <span class="c">add</span> <span class="c">AgentsORG/</span><span class="c">design-engineering</span></span></div>
         </div>
-        <div class="foot" id="foot"><img src="assets/brand/agents.svg" alt="agents.org.in" class="mark"><span>github.com/AgentsORG/design-engineering</span><span>MIT</span></div>
+        <div class="foot" id="foot"><img src="assets/brand/agents-icon.svg" alt="agents.org.in" class="mark icon"><span>github.com/AgentsORG/design-engineering</span><span>MIT</span></div>
       </section>
 
-      <!-- Sound: silence is the material; a transient only where the visual makes contact -->
+      <!-- the whole soundtrack: one stem, derived from these tweens by assets/sfx/cues.json -->
       <audio id="stem" src="assets/sfx/stem.wav" data-start="0" data-duration="12" data-track-index="10"></audio>
     </div>
 
@@ -157,55 +161,66 @@
       document.querySelectorAll(".wave").forEach((el) => {
         el.dataset.w.split(",").forEach((h) => { const i = document.createElement("i"); i.style.height = h + "px"; el.appendChild(i); });
       });
-      // Inline the flipbook frames from assets/mascot.svg so the timeline, not an <img> clock, drives them.
-      const MASCOT_FRAMES = window.__MASCOT_FRAMES || [];
+      // Family durations come from the manifest written next to the stem.
+      const FAMILY_MS = window.__FAMILY_MS || { tick: 23, tap: 130, send: 93, receive: 103, error: 155, success: 313 };
+      Object.entries(FAMILY_MS).forEach(([k, v]) => { const el = document.getElementById("ms-" + k); if (el) el.textContent = v + " ms"; });
 
       const OUT = "power3.out";
+      const IN = "power2.in";
+      const STEP = 7 / 30; // the flipbook step: seven frames, the cadence of the OpenAI brand film's glyph cuts
       const tl = gsap.timeline({ paused: true });
+      const exit = (sel, at) => { tl.to(sel, { autoAlpha: 0, y: -8, duration: 0.22, ease: IN }, at); };
 
-      // 1 · Title — the headline lands at 0.51; the stem (assets/sfx/stem.wav) carries every transient, derived from these tweens by assets/sfx/cues.json
-      tl.from("#s1-eye", { autoAlpha: 0, y: 12, duration: 0.35, ease: OUT }, 0.1);
-      tl.from("#s1-h", { autoAlpha: 0, y: 40, scale: 0.97, duration: 0.42, ease: OUT }, 0.15);
-      tl.from("#s1-sub", { autoAlpha: 0, y: 14, duration: 0.4, ease: OUT }, 0.7);
-      tl.to("#s1 .scene", { autoAlpha: 0, y: -8, duration: 0.22, ease: "power2.in" }, 2.14);
-      tl.set("#s1 .scene", { autoAlpha: 0 }, 2.4);
+      // 1 · Title. Glyph flipbook: three stepped variants, then the real word lands (thud) and holds.
+      const GLYPHS = [
+        ["dęsįgn‑ęngįnęęrįng", 300],
+        ["dēsïgn‑ēngïnēērïng", 400],
+        ["dèsígn‑èngínèèríng", 500],
+        ["design‑engineering", 600],
+      ];
+      GLYPHS.forEach(([txt, wgt], i) => tl.set("#s1-h", { innerText: txt, fontWeight: wgt, autoAlpha: 1 }, 0.2 + i * STEP));
+      tl.from("#s1-eye", { autoAlpha: 0, duration: 0.3, ease: OUT }, 1.2);
+      document.querySelectorAll("#s1-sub .w").forEach((w, i) => tl.set(w, { visibility: "visible" }, 1.3 + i * 0.11));
+      exit("#s1 .scene", 2.58);
+      tl.set("#s1 .scene", { autoAlpha: 0 }, 2.8);
 
-      // 2 · Router — three cards land at 3.02 / 3.18 / 3.34 (tick × 3)
-      tl.from("#s2-eye", { autoAlpha: 0, y: 12, duration: 0.3, ease: OUT }, 2.45);
-      tl.from("#s2-h", { autoAlpha: 0, y: 28, duration: 0.4, ease: OUT }, 2.5);
-      tl.from("#c1", { autoAlpha: 0, y: 32, scale: 0.97, duration: 0.3, ease: OUT }, 2.74);
-      tl.from("#c2", { autoAlpha: 0, y: 32, scale: 0.97, duration: 0.3, ease: OUT }, 2.82);
-      tl.from("#c3", { autoAlpha: 0, y: 32, scale: 0.97, duration: 0.3, ease: OUT }, 2.9);
-      tl.to("#s2 .scene", { autoAlpha: 0, y: -8, duration: 0.22, ease: "power2.in" }, 4.94);
-      tl.set("#s2 .scene", { autoAlpha: 0 }, 5.2);
+      // 2 · Router. Headline lands; each card rises, then its three lines appear a step apart.
+      tl.from("#s2-eye", { autoAlpha: 0, duration: 0.3, ease: OUT }, 2.85);
+      tl.from("#s2-h", { autoAlpha: 0, y: 28, duration: 0.4, ease: OUT }, 2.9);
+      ["#c1", "#c2", "#c3"].forEach((id, i) => {
+        const t0 = 3.5 + i * 0.36;
+        tl.from(id, { autoAlpha: 0, y: 16, duration: 0.3, ease: OUT }, t0);
+        [".k", ".v", ".d"].forEach((cls, j) => tl.set(id + " " + cls, { visibility: "visible" }, t0 + 0.26 + j * STEP * 0.5));
+      });
+      exit("#s2 .scene", 5.38);
+      tl.set("#s2 .scene", { autoAlpha: 0 }, 5.6);
 
-      // 3 · Review — rows land at 5.86 / 6.02 / 6.18 (tick × 3); modal lands at 6.62 (tap)
-      tl.from("#s3-eye", { autoAlpha: 0, y: 12, duration: 0.3, ease: OUT }, 5.25);
-      tl.from("#s3-h", { autoAlpha: 0, y: 28, duration: 0.4, ease: OUT }, 5.3);
-      tl.from("#term", { autoAlpha: 0, y: 24, duration: 0.35, ease: OUT }, 5.5);
-      tl.from("#r1", { autoAlpha: 0, x: -12, duration: 0.24, ease: OUT }, 5.64);
-      tl.from("#r2", { autoAlpha: 0, x: -12, duration: 0.24, ease: OUT }, 5.72);
-      tl.from("#r3", { autoAlpha: 0, x: -12, duration: 0.24, ease: OUT }, 5.8);
-      tl.from("#mw", { autoAlpha: 0, duration: 0.3, ease: OUT }, 5.5);
-      tl.from("#ov", { autoAlpha: 0, duration: 0.2, ease: OUT }, 6.4);
-      tl.from("#modal", { autoAlpha: 0, scale: 0.95, duration: 0.2, ease: OUT }, 6.4);
-      tl.to("#s3 .scene", { autoAlpha: 0, y: -8, duration: 0.22, ease: "power2.in" }, 7.94);
-      tl.set("#s3 .scene", { autoAlpha: 0 }, 8.2);
+      // 3 · Review. Terminal lands; cells stream in at typing cadence; the sub drops out, then the modal lands with it.
+      tl.from("#s3-eye", { autoAlpha: 0, duration: 0.3, ease: OUT }, 5.65);
+      tl.from("#s3-h", { autoAlpha: 0, y: 28, duration: 0.4, ease: OUT }, 5.7);
+      tl.from("#term", { autoAlpha: 0, y: 24, duration: 0.35, ease: OUT }, 5.9);
+      document.querySelectorAll("#term .cell").forEach((c, i) => tl.set(c, { visibility: "visible" }, 6.25 + i * 0.21));
+      tl.from("#mw", { autoAlpha: 0, duration: 0.3, ease: OUT }, 5.9);
+      tl.from("#ov", { autoAlpha: 0, duration: 0.2, ease: OUT }, 7.3);
+      tl.from("#modal", { autoAlpha: 0, scale: 0.95, duration: 0.25, ease: OUT }, 7.3);
+      exit("#s3 .scene", 8.38);
+      tl.set("#s3 .scene", { autoAlpha: 0 }, 8.6);
 
-      // 4 · Sound + SVG — stage lands at 8.66 (receive); mascot flips 8 frames at 8 fps
-      tl.from("#s4-eye", { autoAlpha: 0, y: 12, duration: 0.3, ease: OUT }, 8.25);
-      tl.from("#s4-h", { autoAlpha: 0, y: 28, duration: 0.4, ease: OUT }, 8.3);
-      tl.from("#bars .bar", { autoAlpha: 0, x: -12, duration: 0.25, ease: OUT, stagger: 0.05 }, 8.5);
-      tl.from("#bars .wave i", { scaleY: 0.1, duration: 0.3, ease: OUT, stagger: 0.004 }, 8.6);
-      tl.from("#stage", { autoAlpha: 0, y: 40, scale: 0.97, duration: 0.34, ease: OUT }, 8.34);
-      tl.to("#s4 .scene", { autoAlpha: 0, y: -8, duration: 0.22, ease: "power2.in" }, 10.14);
-      tl.set("#s4 .scene", { autoAlpha: 0 }, 10.4);
+      // 4 · Sound + SVG. Stage lands; the six bars step in; the flipbook runs at 8 fps.
+      tl.from("#s4-eye", { autoAlpha: 0, duration: 0.3, ease: OUT }, 8.65);
+      tl.from("#s4-h", { autoAlpha: 0, y: 28, duration: 0.4, ease: OUT }, 8.7);
+      tl.from("#stage", { autoAlpha: 0, y: 24, duration: 0.34, ease: OUT }, 8.75);
+      document.querySelectorAll("#bars .bar").forEach((b, i) => tl.set(b, { visibility: "visible" }, 9.1 + i * 0.1));
+      tl.from("#bars .wave i", { scaleY: 0.1, duration: 0.3, ease: OUT, stagger: 0.004 }, 9.2);
+      exit("#s4 .scene", 10.38);
+      tl.set("#s4 .scene", { autoAlpha: 0 }, 10.6);
 
-      // 5 · Install — command lands at 10.78 (success)
-      tl.from("#s5-eye", { autoAlpha: 0, y: 12, duration: 0.3, ease: OUT }, 10.45);
-      tl.from("#s5-h", { autoAlpha: 0, y: 28, duration: 0.4, ease: OUT }, 10.5);
-      tl.from("#cmd", { autoAlpha: 0, y: 24, scale: 0.97, duration: 0.3, ease: OUT }, 10.5);
-      tl.from("#foot", { autoAlpha: 0, duration: 0.3 }, 10.9);
+      // 5 · Install. Headline lands; the command types in five chunks; the bed resolves and leaves.
+      tl.from("#s5-eye", { autoAlpha: 0, duration: 0.3, ease: OUT }, 10.65);
+      tl.from("#s5-h", { autoAlpha: 0, y: 28, duration: 0.4, ease: OUT }, 10.7);
+      tl.from("#cmd", { autoAlpha: 0, y: 16, duration: 0.3, ease: OUT }, 10.8);
+      document.querySelectorAll("#cmd .c").forEach((c, i) => tl.set(c, { visibility: "visible" }, 10.95 + i * 0.12));
+      tl.from("#foot", { autoAlpha: 0, duration: 0.3 }, 11.4);
 
       window.__timelines["main"] = tl;
     </script>
@@ -216,7 +231,7 @@
         const svg = document.getElementById("mascot");
         const frames = window.__MASCOT_FRAMES || [];
         frames.forEach((markup, i) => { const g = document.createElementNS("http://www.w3.org/2000/svg", "g"); g.setAttribute("class", "frame f" + i); g.innerHTML = markup; svg.appendChild(g); });
-        const fps = 8, start = 8.34, end = 10.4;
+        const fps = 8, start = 8.75, end = 10.6;
         const n = frames.length; if (!n) return;
         const tl = window.__timelines["main"];
         let t = start, k = 0;

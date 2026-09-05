@@ -6,6 +6,23 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.3.0] — 2026-09-05
+
+The launch-video register, measured from the films HKTITAN pointed at — OpenAI's *Refreshed.* and *Introducing GPT-5* — and built into the renderer and the demo.
+
+### Added — the bed-and-clicks register
+
+- **`references/sound/launch-video-sound.md`** rewritten around two measured registers: A, the sparse logo reveal (no bed, every hit on a motion peak); B, the OpenAI brand film — a warm sub-heavy bed in F (66 % of the energy under 120 Hz, root F1 with C2 · F2 · A2), dry clicks at 3.5–4.7 kHz with a 20–30 ms ten-dB decay sitting 10–20 dB under the sub, 3–5 hits per second while text streams, no tempo grid, silences of 0.5–1 s as punctuation, the sub alone pulled for a "thinking" beat, 61–64 % of frames still. Numbers, sources, and the gotcha that a stock bed is not this bed.
+- **`scripts/sound-sheet.mjs`** — a `bed` block (root, sub and pad levels, `gainPoints` as the film's act arc in dB, dropouts with `keep: "pad"`, swells, a 0.26 s pulse, automatic ducking under thuds) and four new cue kinds: `click`, `thud`, `type` (a run at a cadence with hand jitter), `flicker` (a cut-exact run at seven frames a step). Clicks stay in 2.8–5.2 kHz whatever the element; a big thing gets a thud on the bed's root. The `--family` one-shots now come from these voices.
+- **`references/sound/sound-from-motion.md`** — the bed and the runs added to the cue sheet, the arc as step four of the workflow.
+- **`docs/research/launch-register/`** — the three analysis scripts (onsets vs motion, tempo / bed / cuts, hits above the bed) and both films' summaries, so the numbers can be re-derived.
+
+### Changed — the demo
+
+- **Motion** in the OpenAI vocabulary: the wordmark arrives as a glyph flipbook (three accented variants, seven frames a step, weight climbing 300 → 600), the thesis streams in word by word at 110 ms, cards build line by line, the review table fills cell by cell at 210 ms, the command types in five chunks; placement still eases with `power3.out`; no whooshes, the bed carries every cut.
+- **Sound**: 72 onsets from 22 cues over a bed with a gain arc (−9 dB open, full by the review, resolving on the install), one sub dropout before the modal, ducking under six thuds; integrated −16.5 LUFS. `STORYBOARD.md` carries the act table, the cue map, and the reference measurements.
+- The footer uses the icon; the header-row contrast in the terminal now passes.
+
 ## [2.2.0] — 2026-09-05
 
 Sound that is derived from the motion instead of placed against it, the launch-video cut grammar, a with/without benchmark run, and the AgentsORG mark.
