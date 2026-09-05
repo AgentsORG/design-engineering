@@ -29,7 +29,7 @@ Write the sound as data next to the timeline, one row per visual event, *before*
 ```json
 { "canvas": { "w": 1920, "h": 1080 }, "fps": 30, "duration": 12,
   "bed": { "root": 43.1, "level": -22, "pad": -31, "in": 0, "out": 11.55,
-           "gainPoints": [[0, -9], [1.0, -5], [2.9, -2], [5.9, 0], [11.4, 1]],
+           "gainPoints": [ [0, -9], [1.0, -5], [2.9, -2], [5.9, 0], [11.4, 1] ],
            "dropouts": [ { "t": 6.95, "dur": 0.6, "keep": "pad" } ],
            "swells":   [ { "t": 11.2, "dur": 0.35, "db": 2.5 } ] },
   "cues": [
