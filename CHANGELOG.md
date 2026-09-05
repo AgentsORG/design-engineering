@@ -28,6 +28,11 @@ Three things at once: `/design-engineering` becomes a **router** over the design
 - surface: **`color-scales-oklch`**, **`depth-and-nesting`**. typography: **`type-scale-and-rhythm`**, **`line-behavior`**. components: **`forms-behavior`**, **`touch-and-focus`** (with the mobile-native fixes table), **`ui-polish-pass`**, **`component-api-design`**. motion: **`performance-discipline`**. layout: **`marketing-surface-rules`**. anti-patterns: **`unslop-pass`**, **`copy-tells`**, **`code-tells`**. meta: **`prototype-picker`**, **`build-a-tool`**, **`vibe-to-generator`**, **`design-system-docs`**, **`skill-writing-rules`**, **`design-benchmarks`**, **`skill-router`**.
 - Every one cites "Emil Kowalski's design-engineering practice, distilled by HKTITAN" plus public references; no course material is quoted or linked.
 
+### Added — demo
+
+- **`docs/demo/`** — a twelve-second HyperFrames composition (`hyperframes/index.html`, `check` clean) rendered to MP4 with sound and GIF for the README, five scene screenshots, the six ElevenLabs-generated sounds with their manifest, and the mascot flipbook produced by `svg-flipbook.mjs`. README gains a Demo section and a "What `/design-engineering` produces" gallery.
+- **`sound-family.example.json`** — `send` and `receive` prompts ask for damped, very-short-decay notes (verified live: 296 ms and 174 ms).
+
 ### Added — benchmarks and evals
 
 - **`references/meta/design-benchmarks.md`** — DesignBench (generation / edit / repair, compile + CLIP + MLLM-judge, 9 edit types, repair issue categories) and Design Arena (anonymous pairwise votes, Bradley-Terry, vote threshold), and how this skill borrows both shapes.

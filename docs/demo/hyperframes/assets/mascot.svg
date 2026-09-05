@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" id="mascot" role="img" aria-labelledby="mascot-title">
+<title id="mascot-title">Bouncing mascot</title>
+<style>
+#mascot .frame{visibility:hidden;animation-duration:1.0000s;animation-timing-function:step-end;animation-iteration-count:infinite;animation-fill-mode:forwards}
+#mascot .f0{animation-name:mascot-f0}
+#mascot .f1{animation-name:mascot-f1}
+#mascot .f2{animation-name:mascot-f2}
+#mascot .f3{animation-name:mascot-f3}
+#mascot .f4{animation-name:mascot-f4}
+#mascot .f5{animation-name:mascot-f5}
+#mascot .f6{animation-name:mascot-f6}
+@keyframes mascot-f0{0%{visibility:visible}12.5%{visibility:hidden}}
+@keyframes mascot-f1{12.5%{visibility:hidden}12.5%{visibility:visible}25%{visibility:hidden}}
+@keyframes mascot-f2{25%{visibility:hidden}25%{visibility:visible}37.5%{visibility:hidden}}
+@keyframes mascot-f3{37.5%{visibility:hidden}37.5%{visibility:visible}50%{visibility:hidden}}
+@keyframes mascot-f4{50%{visibility:hidden}50%{visibility:visible}62.5%{visibility:hidden}}
+@keyframes mascot-f5{62.5%{visibility:hidden}62.5%{visibility:visible}75%{visibility:hidden}}
+@keyframes mascot-f6{75%{visibility:hidden}75%{visibility:visible}}
+#mascot .f0{visibility:visible}
+@media (prefers-reduced-motion: reduce){#mascot .frame{animation:none;visibility:hidden}#mascot .f0{visibility:visible}}
+</style>
+<g class="frame f0" data-frame="0" data-hold="1" data-src="f_001.svg">
+<g id="shadow"><ellipse cx="60" cy="108" rx="26" ry="5" fill="var(--c1, #d9d5cc)"/></g><g id="body"><rect x="30" y="40" width="60" height="60" rx="16" fill="var(--c2, #0B57D0)"/></g><g id="face"><rect x="44" y="58" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><rect x="68" y="58" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><path d="M50 82 q10 8 20 0" stroke="var(--c3, #ffffff)" stroke-width="4" fill="none" stroke-linecap="round"/></g><g id="crest"><rect x="52" y="28" width="16" height="14" rx="7" fill="var(--c4, #F2C94C)"/></g>
+</g>
+<g class="frame f1" data-frame="1" data-hold="1" data-src="f_002.svg">
+<g id="shadow"><ellipse cx="60" cy="108" rx="22" ry="5" fill="var(--c1, #d9d5cc)"/></g><g id="body"><rect x="30" y="30" width="60" height="60" rx="16" fill="var(--c2, #0B57D0)"/></g><g id="face"><rect x="44" y="48" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><rect x="68" y="48" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><path d="M50 72 q10 8 20 0" stroke="var(--c3, #ffffff)" stroke-width="4" fill="none" stroke-linecap="round"/></g><g id="crest"><rect x="52" y="18" width="16" height="14" rx="7" fill="var(--c4, #F2C94C)"/></g>
+</g>
+<g class="frame f2" data-frame="2" data-hold="1" data-src="f_003.svg">
+<g id="shadow"><ellipse cx="60" cy="108" rx="18" ry="5" fill="var(--c1, #d9d5cc)"/></g><g id="body"><rect x="30" y="22" width="60" height="60" rx="16" fill="var(--c2, #0B57D0)"/></g><g id="face"><rect x="44" y="40" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><rect x="68" y="40" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><path d="M50 64 q10 8 20 0" stroke="var(--c3, #ffffff)" stroke-width="4" fill="none" stroke-linecap="round"/></g><g id="crest"><rect x="52" y="10" width="16" height="14" rx="7" fill="var(--c4, #F2C94C)"/></g>
+</g>
+<g class="frame f3" data-frame="3" data-hold="1" data-src="f_004.svg">
+<g id="shadow"><ellipse cx="60" cy="108" rx="22" ry="5" fill="var(--c1, #d9d5cc)"/></g><g id="body"><rect x="30" y="30" width="60" height="60" rx="16" fill="var(--c2, #0B57D0)"/></g><g id="face"><rect x="44" y="48" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><rect x="68" y="48" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><path d="M50 72 q10 8 20 0" stroke="var(--c3, #ffffff)" stroke-width="4" fill="none" stroke-linecap="round"/></g><g id="crest"><rect x="52" y="18" width="16" height="14" rx="7" fill="var(--c4, #F2C94C)"/></g>
+</g>
+<g class="frame f4" data-frame="4" data-hold="1" data-src="f_005.svg">
+<g id="shadow"><ellipse cx="60" cy="108" rx="28" ry="5" fill="var(--c1, #d9d5cc)"/></g><g id="body"><rect x="30" y="42" width="60" height="58" rx="16" fill="var(--c2, #0B57D0)"/></g><g id="face"><rect x="44" y="60" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><rect x="68" y="60" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><path d="M50 84 q10 8 20 0" stroke="var(--c3, #ffffff)" stroke-width="4" fill="none" stroke-linecap="round"/></g><g id="crest"><rect x="52" y="30" width="16" height="14" rx="7" fill="var(--c4, #F2C94C)"/></g>
+</g>
+<g class="frame f5" data-frame="5" data-hold="1" data-src="f_006.svg">
+<g id="shadow"><ellipse cx="60" cy="108" rx="26" ry="5" fill="var(--c1, #d9d5cc)"/></g><g id="body"><rect x="30" y="40" width="60" height="60" rx="16" fill="var(--c2, #0B57D0)"/></g><g id="face"><rect x="44" y="58" width="8" height="3" rx="4" fill="var(--c3, #ffffff)"/><rect x="68" y="58" width="8" height="3" rx="4" fill="var(--c3, #ffffff)"/><path d="M50 82 q10 8 20 0" stroke="var(--c3, #ffffff)" stroke-width="4" fill="none" stroke-linecap="round"/></g><g id="crest"><rect x="52" y="28" width="16" height="14" rx="7" fill="var(--c4, #F2C94C)"/></g>
+</g>
+<g class="frame f6" data-frame="6" data-hold="2" data-src="f_007.svg">
+<g id="shadow"><ellipse cx="60" cy="108" rx="26" ry="5" fill="var(--c1, #d9d5cc)"/></g><g id="body"><rect x="30" y="40" width="60" height="60" rx="16" fill="var(--c2, #0B57D0)"/></g><g id="face"><rect x="44" y="58" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><rect x="68" y="58" width="8" height="12" rx="4" fill="var(--c3, #ffffff)"/><path d="M50 82 q10 8 20 0" stroke="var(--c3, #ffffff)" stroke-width="4" fill="none" stroke-linecap="round"/></g><g id="crest"><rect x="52" y="28" width="16" height="14" rx="7" fill="var(--c4, #F2C94C)"/></g>
+</g>
+</svg>

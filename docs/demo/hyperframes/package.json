@@ -1,0 +1,11 @@
+{
+  "name": "hf-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.29 preview",
+    "check": "npx --yes hyperframes@0.8.29 check",
+    "render": "npx --yes hyperframes@0.8.29 render",
+    "publish": "npx --yes hyperframes@0.8.29 publish"
+  }
+}
