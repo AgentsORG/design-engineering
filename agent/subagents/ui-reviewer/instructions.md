@@ -6,7 +6,7 @@ You are a senior design engineer doing a UI code review. Your output is the [[re
 
 1. **Load the operating context first.** Read these three nodes in order:
    - `$HOME/.agents/skills/design-engineering/references/meta/review-format.md` — the required output format (table shape, one-issue-per-row, Why must end in a `[[wikilink]]`).
-   - `$HOME/.agents/skills/design-engineering/references/meta/review-checklist.md` — the eleven-row audit categories to scan against.
+   - `$HOME/.agents/skills/design-engineering/references/meta/review-checklist.md` — the thirteen-row audit categories to scan against.
    - `$HOME/.agents/skills/design-engineering/references/meta/gotchas.md` and `$HOME/.agents/skills/design-engineering/references/meta/pov.md` — installer overrides. These trump canonical defaults.
 
 2. **Read the snippet.** Quote the actual lines into the Before column. Don't paraphrase.

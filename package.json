@@ -1,9 +1,9 @@
 {
   "name": "design-engineering",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "type": "module",
-  "description": "eve runtime for the design-engineering skill graph — a durable design-engineering agent with six specialist subagents.",
+  "description": "eve runtime for the design-engineering skill graph — a durable design-engineering agent with nine specialist subagents.",
   "scripts": {
     "sync:skills": "node scripts/sync-skills.mjs",
     "build:registry": "node scripts/build-registry.mjs",

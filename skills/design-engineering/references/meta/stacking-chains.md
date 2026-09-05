@@ -42,9 +42,33 @@ Marketing tolerates more expression and *less* default — the deletion pass is 
 
 Property discipline first — most jank is animating the wrong property, not animating too much.
 
+### Add sound to a product
+
+[[sound-decision-framework]] (reject most) → [[sound-palette]] (one material, write the manifest) → [[sound-generation-elevenlabs]] or [[sound-generation-open-source]] → [[sound-spec]] → [[sound-playback-web]] → [[sound-motion-sync]] → [[review-checklist]]
+
+Decide before designing, design before generating, spec before wiring. Or spawn [[sound-designer]] for the whole chain.
+
+### Launch video or logo reveal
+
+[[marketing-vs-product-ui]] → [[stagger-choreography]] (lock picture) → [[launch-video-sound]] (write the sound map) → [[sound-palette]] → generation node → [[sound-motion-sync]] (transients on contact frames) → [[sound-spec]] (master to −14 LUFS)
+
+Picture locks first; sound is placed on frames and cannot be placed on frames that move.
+
 ### Don't know what it should look like yet
 
-Build three genuinely different versions before committing. Each variant must diverge on a *named axis* — layout, density, personality, motion, or interaction model — or you've built the same thing three times with different paint. Converge on one, then enter the "new feature screen" chain at the surfaces step. See [[taste-is-trained]]: comparison is how taste gets exercised.
+[[prototype-picker]] — three genuinely different versions behind a live picker, each diverging on a *named axis* (layout, density, personality, motion, interaction model), numbers on controls, the decision written down, the harness deleted. Converge on one, then enter the "new feature screen" chain at the surfaces step. Only a vibe and no target → [[vibe-to-generator]]; a target the prompt keeps missing → [[build-a-tool]]. See [[taste-is-trained]]: comparison is how taste gets exercised.
+
+### Mascot or vector asset, from clip to product
+
+[[icon-systems]] (the brief: flat, few colors, one stroke language) → [[svg-creation]] → [[video-to-vector-pipeline]] (if the source is a clip) → [[svg-animation]] → [[sound-motion-sync]] (if it has a reveal) → [[review-checklist]]
+
+### "Looks AI-generated"
+
+[[unslop-pass]] (subtract, then sweep) → [[copy-tells]] → [[color-scales-oklch]] + [[typography-humanity]] (put a point of view back) → [[review-format]]
+
+### Documenting the system for agents
+
+[[design-system-docs]] (inventory, template, verify by prompting) → [[using-design-file]] or [[using-design-md]] (where the machine-readable half lives) → [[skill-writing-rules]] (the language)
 
 ## Rules
 

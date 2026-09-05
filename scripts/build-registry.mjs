@@ -37,7 +37,7 @@ const readText = (path) => readFileSync(join(root, path), "utf8").replace(/\r\n/
 // Every file in the skill graph lands under the cross-agent skills directory,
 // preserving its path below skills/design-engineering/.
 const skillFiles = walk("skills/design-engineering")
-  .filter((p) => p.endsWith(".md") || p.endsWith(".jsonl"))
+  .filter((p) => p.endsWith(".md") || p.endsWith(".jsonl") || p.endsWith(".mjs") || p.endsWith(".json"))
   .map((path) => ({
     path,
     type: "registry:file",
@@ -73,7 +73,7 @@ const items = [
     type: "registry:file",
     title: "Design Engineering skill graph",
     description:
-      "The full design-engineering skill graph — 8 themed clusters of atomic, wikilinked nodes covering motion, typography, surface, components, layout, anti-patterns, and the routing layer. Installs into .agents/skills/ where any coding agent can load it.",
+      "The full design-engineering skill graph — 10 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
     author: "HKTITAN",
     categories: ["design", "agents", "skills"],
     docs: "Restart your coding agent after installing so it picks up the new skill. Start at .agents/skills/design-engineering/SKILL.md; the router is references/meta/routing-table.md. Fork references/meta/pov.md to record your own taste overrides.",
@@ -84,7 +84,7 @@ const items = [
     type: "registry:file",
     title: "Design Engineering subagents and commands",
     description:
-      "Six workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator) and their slash commands, in Claude Code format.",
+      "Nine workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator) and their slash commands, in Claude Code format.",
     author: "HKTITAN",
     categories: ["design", "agents"],
     docs: "Installs into .claude/agents/ and .claude/commands/. Requires the design-engineering skill item for the reference nodes these agents load.",

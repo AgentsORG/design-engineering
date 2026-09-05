@@ -1,0 +1,35 @@
+{
+  "material": "felt mallet on a small wooden block, dry, no reverb, no tail, clean transient",
+  "sounds": {
+    "tick": {
+      "prompt": "single very short tick, one-shot UI feedback, bright",
+      "seconds": 0.5,
+      "synth": { "type": "tick", "freq": 3200, "seconds": 0.07 }
+    },
+    "tap": {
+      "prompt": "soft muted tap, short body, one-shot",
+      "seconds": 0.5,
+      "synth": { "type": "tap", "freq": 1400, "seconds": 0.12 }
+    },
+    "send": {
+      "prompt": "two quick rising notes, warm, short decay, confirmation",
+      "seconds": 0.8,
+      "synth": { "type": "chime", "notes": [523.25, 659.25], "decay": 0.08, "stagger": 0.07 }
+    },
+    "receive": {
+      "prompt": "two soft descending notes, gentle, short, incoming message",
+      "seconds": 0.8,
+      "synth": { "type": "chime", "notes": [493.88, 392.0], "decay": 0.1, "stagger": 0.09 }
+    },
+    "error": {
+      "prompt": "short low dull thud with a slight downward pitch, rubber on wood",
+      "seconds": 0.5,
+      "synth": { "type": "thud", "from": 220, "to": 140, "seconds": 0.16 }
+    },
+    "success": {
+      "prompt": "three ascending mellow notes, major, warm, short decay, completion",
+      "seconds": 1.0,
+      "synth": { "type": "chime", "notes": [523.25, 659.25, 783.99], "decay": 0.12, "stagger": 0.08 }
+    }
+  }
+}

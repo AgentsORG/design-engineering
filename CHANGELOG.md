@@ -6,6 +6,79 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.1.0] — 2026-09-05
+
+Three things at once: `/design-engineering` becomes a **router** over the design-skill ecosystem; two new clusters, **sound** and **svg**; and twenty nodes distilled from Emil Kowalski's design-engineering practice that fill the graph's thin spots (typography mechanics, OKLCH color, surfaces, forms, touch, polish, performance, component APIs, marketing surfaces, prototyping, tooling, docs, the unslop passes, skill writing). Plus design benchmarks and alignment with AgentsORG `.design` contract 1.3.
+
+### Added — the router
+
+- **`references/meta/skill-router.md`** — what `/design-engineering` does first: resolve the design contract (`.design` → `frame.md` / `design.md` / `DESIGN.md`), classify the phase (undecided → foundation → pieces → refine → check → name), pick the material, and hand the job to **one owner** — a node, a subagent, or an installed companion: AgentsORG `design`, impeccable (`/impeccable <command>`), HyperFrames, ElevenLabs `sound-effects`, `transitions-dev`, the shadcn CLI / MCP, `soundcn`. Detection rule for "installed"; companions inherit the contract and [[gotchas]] / [[pov]]. `SKILL.md` step 0, `agent/instructions.md`, `SOUL.md`, and `agents/README.md` point at it.
+
+### Added — `references/svg/` (4 nodes + MOC)
+
+- **`svg-creation`** — viewBox always, paths when it animates, `currentColor` / CSS variables, defs and symbols, named layers, SVGO with animation-safe flags, `<title>`/`<desc>`, the tells of generated SVG.
+- **`svg-animation`** — engine by where the file lives (inline CSS/WAAPI · library for gestures · embedded keyframes or SMIL for image use), stroke drawing, `transform-box: fill-box`, composite-only, reduced motion, size budgets vs Lottie.
+- **`svg-path-morphing`** — the same-command-count rule, authoring to it, flubber when it fails, and why icon swaps usually beat morphs.
+- **`video-to-vector-pipeline`** — flat clip → frames → quantize → vectorize (vtracer / Potrace) → clean → match layers → vector flipbook → Lottie / Rive; the flat-art constraint; after Adrian Abelarde's Anim8.
+- **`scripts/svg-flipbook.mjs`** — dependency-free: a folder of SVG frames → one self-contained animated SVG (stepped keyframes, duplicate frames collapsed into holds, `--vars` lifts colors to CSS custom properties, reduced motion freezes on frame 0, `<title>` labelling).
+- **`agents/svg-creator.md`**, **`agents/svg-animator.md`** (+ eve twins) and **`commands/svg-create.md`**, **`commands/svg-animate.md`**.
+
+### Added — distilled craft nodes (20)
+
+- surface: **`color-scales-oklch`**, **`depth-and-nesting`**. typography: **`type-scale-and-rhythm`**, **`line-behavior`**. components: **`forms-behavior`**, **`touch-and-focus`** (with the mobile-native fixes table), **`ui-polish-pass`**, **`component-api-design`**. motion: **`performance-discipline`**. layout: **`marketing-surface-rules`**. anti-patterns: **`unslop-pass`**, **`copy-tells`**, **`code-tells`**. meta: **`prototype-picker`**, **`build-a-tool`**, **`vibe-to-generator`**, **`design-system-docs`**, **`skill-writing-rules`**, **`design-benchmarks`**, **`skill-router`**.
+- Every one cites "Emil Kowalski's design-engineering practice, distilled by HKTITAN" plus public references; no course material is quoted or linked.
+
+### Added — benchmarks and evals
+
+- **`references/meta/design-benchmarks.md`** — DesignBench (generation / edit / repair, compile + CLIP + MLLM-judge, 9 edit types, repair issue categories) and Design Arena (anonymous pairwise votes, Bradley-Terry, vote threshold), and how this skill borrows both shapes.
+- **`skills/design-engineering/evals/design-bench.jsonl`** — twelve fixtures: generation, edit, and repair rows with `must_match` / `must_not_match` regexes tied to review-checklist rows, plus two `arena` rows for blind pairwise judging of node changes.
+- **`evals/design-bench.eval.ts`** — eve eval: a generated modal must carry reduced motion and a 0.9x start scale and must not carry `transition: all` or `scale(0)`.
+
+### Added — `.design` contract 1.3 alignment
+
+- **`spec/design-file-spec.md`** mirror and **`references/meta/using-design-file.md`** — `tokens.sound`, `assets.sounds`, `decisions.sound`, video targets, `exports.frame_md`, companion routing; the contract's sound tokens outrank `sound-spec` / `sound-decision-framework`.
+- **`templates/design-engineering.design`** — `tokens.sound.enabled: false` + `material`, `exports.frame_md`, commented `assets.sounds`; template 1.2.0; validates against the upstream linter and exports a `frame.md`.
+
+### Added — sound cluster
+
+Adds a ninth cluster: **sound**. The web forgot audio; this release gives the skill a source-cited way to decide whether an interface should be heard, design one material family, sync it to motion, and produce the files — with ElevenLabs when a key is present and open-weight / procedural / CC0 paths when it is not. The launch-video register (OpenAI / Studio Dumbar, bruno @tvnxty) is treated as its own surface with opposite defaults.
+
+### Added — `references/sound/` (8 nodes + MOC)
+
+- **`MOC-sound`** — the two surfaces (product UI silent by default; launch video sound-as-medium) and the read order.
+- **`sound-decision-framework`** — frequency → purpose → the 100th-use test → visual twin → off-by-default. Extends `delight-impact-curve` one notch stricter. Sources: Apple WWDC19 *Designing Audio-Haptic Experiences* (utility), Benji Taylor, Josh Comeau, Material Design.
+- **`sound-motion-sync`** — the transient lands on the contact frame; audio may lag a frame but never leads. ITU-R BT.1359 thresholds (+45 / −125 ms detectable). Measured: 32 onsets in a 10.7 s bruno (@tvnxty) logo reveal, every one within two frames of a visual motion peak; holds at −56 dBFS.
+- **`sound-palette`** — one material per product; size → pitch and length; contour → meaning; consonance → success, dissonance → error; pitch variation on repeats. Earcon grammar (Blattner 1989), Apple's real-instrument practice.
+- **`sound-spec`** — duration bands by category, −18 to −14 LUFS for feedback, ≈ −12 for notifications, −14 LUFS / −1 dBTP video master, −3 dBFS peak, mono 44.1 kHz, zero leading silence, high-pass at 150 Hz.
+- **`sound-playback-web`** — lazy `AudioContext`, resume on first gesture, decode once, one `AudioBufferSourceNode` per play, persisted mute off by default, never sound-only information, never on `focus`; iOS silent switch and `ambient` session category.
+- **`sound-generation-elevenlabs`** — `POST /v1/sound-generation` fields and ranges, 200 credits per generation, the material-first prompt formula ("felt mallet on wood, dry, no tail"), `prompt_influence` 0.8, 0.5 s requests, one session per family, regenerate the whole family.
+- **`sound-generation-open-source`** — decision table across open-weight models (Stable Audio 3 Small-SFX on CPU under the Community License; AudioGen weights are non-commercial), procedural synthesis (Web Audio, ZzFX < 1 KB MIT), and CC0 libraries (Kenney, soundcn via shadcn CLI, Freesound APIv2 with a CC0 filter).
+- **`launch-video-sound`** — the four measurable properties of the premium register (density mirrors motion, holds are silence, size → pitch/length, materials not effects), a full timed sound map of the @tvnxty Base reveal, and a Remotion / HyperFrames timeline recipe.
+
+### Added — tooling
+
+- **`skills/design-engineering/scripts/sound-family.mjs`** — dependency-free Node 18+ script. One manifest → a normalized family of files. Uses ElevenLabs when `ELEVENLABS_API_KEY` is set, a built-in synthesizer (tick, tap, chime, thud, pop, whoosh) when it is not; trims leading and trailing silence, fades the tail, peaks at −3 dBFS, writes mono 44.1 kHz WAV and a `manifest.json` with prompts, recipes, and licenses. `--dry-run` prints prompts without spending credits. **`sound-family.example.json`** ships a six-sound family.
+- **`agents/sound-designer.md`** (+ eve twin `agent/subagents/sound-designer/`) — seventh subagent: decide → palette → generate → spec → wire → sound-map table. **`commands/sound-pass.md`** — its slash command.
+- **`evals/sound-values.eval.ts`** — sound advice must name a duration, a level, or say "no sound".
+
+### Changed
+
+- **`SKILL.md`** — description gains sound triggers (deciding whether an interaction should make a sound, generating UI sound effects, syncing sound to animation, scoring a launch video) and the new sources; new **Sound** section; subagents list gains `sound-designer`; version **2.1.0**.
+- **`references/meta/routing-table`** — four sound rows. **`disambiguation`** — "Sound has three owners". **`stacking-chains`** — "Add sound to a product" and "Launch video or logo reveal" chains.
+- **`references/meta/review-checklist`** — rows 12 (sound with no mute / on by default) and 13 (sound on hover / focus / keystroke / page load); "eleven-row" → "thirteen-row" in `ui-reviewer` and `SKILL.md`.
+- **`references/meta/design-vocabulary`** — new category 13, Sound (transient, earcon, contour, material, envelope, tail, dry/wet, one-shot/loop, sprite, LUFS/dBFS/true peak, ducking, pre-roll, whoosh/riser/stinger/braam, audio-haptic harmony).
+- **`references/anti-patterns/ai-default-tells`** — Sound table (click on every button, stock-pack sounds, reverb blips, on by default, bed hiding unsynced hits). **`MOC-anti-patterns`**, **`MOC-motion`**, **`interaction-personality`** — cross-cluster pointers.
+- **`references/meta/gotchas`** — six sound gotchas dated 2026-09-05.
+- **`evals/loading.jsonl`** — five positive and three negative sound queries. **`evals/progressive-reads.jsonl`** — one row per new node.
+- **`templates/design-engineering.design`** — `tokens.sound` (default off, peak, loudness classes, durations, max sync lag), `decisions.sound`, three `constraints.never` rows, a sound source; template version 1.1.0.
+- **`scripts/build-registry.mjs`** — the skill item now ships `.mjs` and `.json` under `skills/` so the generator installs with the graph; descriptions updated to nine clusters / seven subagents. Registry rebuilt.
+- **`.github/workflows/lint.yml`** — required files gain `agents/sound-designer.md` and the script.
+- **`README.md`**, **`AGENTS.md`**, **`SOUL.md`**, **`CONTRIBUTING.md`**, **`agents/README.md`**, **`agent/instructions.md`**, all six plugin manifests, `package.json` — ten clusters, nine subagents, nine commands, new sources, version 2.1.0.
+- **`references/meta/routing-table`** — twenty new rows for the distilled and SVG nodes; **`disambiguation`** — feels-finished now routes to `ui-polish-pass`, plus feels-wrong vs drops-frames and broken vs unpolished; **`stacking-chains`** — mascot/vector, "looks AI-generated", and documenting-the-system chains; the undecided chain now names `prototype-picker`, `vibe-to-generator`, `build-a-tool`.
+- **`references/meta/gotchas`** — nine more entries (nested radius, L-only contrast, `text-wrap: balance` on paragraphs, `opacity: 0` drawers in the tab order, cargo-cult `will-change`, restyling without subtracting, SVG origin, morph command mismatch, loading four skills at once).
+- **`evals/loading.jsonl`** and **`progressive-reads.jsonl`** — rows for every new node and the router.
+- **`.github/workflows/lint.yml`** — required files gain both SVG subagents and `svg-flipbook.mjs`.
+
 ## [2.0.0] — 2026-08-08
 
 The repo is reorganised around **four primitives**: Knowledge (the skill graph), Package ([Agent Plugins v1.0.0](https://agent-plugins.org/)), Runtime ([eve](https://eve.dev/)), and Client extensions (per-host manifests, plus a [shadcn registry](https://ui.shadcn.com/docs/registry)). No knowledge was removed; the delivery layers were rebuilt from first principles.

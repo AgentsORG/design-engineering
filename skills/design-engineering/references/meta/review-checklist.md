@@ -1,6 +1,6 @@
 ---
 title: review-checklist
-summary: Audit table — eleven common UI issues with the fix for each. Scan against this before signing off.
+summary: Audit table — thirteen common UI issues with the fix for each. Scan against this before signing off.
 tags: [meta, review, checklist]
 ---
 
@@ -23,6 +23,8 @@ A pre-flight checklist for UI code review. Scan the user's code against each row
 | 9 | Pure `#000` dark mode | Grep for `background: #000` (or `black`) | Use `#18181b` or `#1a1a1a` | [[dark-mode]] |
 | 10 | Spinner under 800ms expected wait | Look for `<Spinner />` on quick async calls | Skip the spinner; or use skeleton | [[empty-loading-states]] |
 | 11 | Inter / SF Pro on marketing page | Check font-family on landing/marketing routes | Use a less-default sans (Geist, Pangram, Displaay) | [[typography-humanity]] |
+| 12 | Sound with no mute, or on by default | Grep for `AudioContext`, `new Audio(`, `useSound`; look for a persisted toggle | Off by default, discoverable toggle, persisted; never sound-only information | [[sound-playback-web]] |
+| 13 | Sound on hover / focus / keystroke, or on page load | Grep for `play(` inside `mouseenter`, `focus`, `keydown`, or module scope | Delete it; sound belongs to daily and rare moments only | [[sound-decision-framework]] |
 
 ## Workflow
 

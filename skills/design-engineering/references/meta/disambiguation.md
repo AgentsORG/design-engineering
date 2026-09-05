@@ -24,8 +24,10 @@ Tiebreaker: scope. One element → decide/build nodes. One diff → judge postur
 ## Looks right vs. feels finished vs. should ship
 
 - **Looks right** — hierarchy, spacing, restraint, while designing → [[feeling-right]], [[unseen-details-compound]].
-- **Feels finished** — press states, tabular numbers, no layout shift, after it works → [[review-checklist]] as a finishing audit.
+- **Feels finished** — press states, tabular numbers, no layout shift, after it works → [[ui-polish-pass]] as the finishing pass, [[review-checklist]] as the audit.
 - **Should ship** — a verdict on a diff, at the gate → [[review-format]] table, checklist-scoped.
+
+Two more that blur: **feels wrong vs. drops frames** — judged motion goes to [[easing-curves]] and [[duration-table]]; measured slowness goes to [[performance-discipline]]. **Broken for someone vs. merely unpolished** — a failure in [[touch-and-focus]] is blocking; polish is not.
 
 Same screen, three altitudes. Don't give a gate verdict when the user is still designing.
 
@@ -47,6 +49,14 @@ A dark-mode question that names a hex value routes to palette; one that says "lo
 ## Hit areas: craft vs. floor
 
 [[hover-states-subtle]] treats target sizing and feedback as craft. [[accessibility-baseline]] treats the same numbers as a floor you cannot trade away. An a11y audit routes to the floor; a polish pass routes to the craft node — but the floor still applies.
+
+## Sound has three owners
+
+- **Should it make a sound at all** — frequency and purpose, before any file exists → [[sound-decision-framework]]. The burden of proof is on adding.
+- **It has sounds and something is off** — stock, late, too long, too loud, no toggle → [[sound-palette]] for character, [[sound-motion-sync]] for timing, [[sound-spec]] for numbers, [[sound-playback-web]] for wiring.
+- **It is a video, not a product** → [[launch-video-sound]]. Opposite defaults: silence is placed, sound is the medium.
+
+Tiebreaker: is there a user who can mute it? If yes, product rules. If no (video), the launch register.
 
 ## Component look-alikes
 

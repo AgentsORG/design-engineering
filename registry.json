@@ -7,7 +7,7 @@
       "name": "design-engineering",
       "type": "registry:file",
       "title": "Design Engineering skill graph",
-      "description": "The full design-engineering skill graph — 8 themed clusters of atomic, wikilinked nodes covering motion, typography, surface, components, layout, anti-patterns, and the routing layer. Installs into .agents/skills/ where any coding agent can load it.",
+      "description": "The full design-engineering skill graph — 10 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
       "author": "HKTITAN",
       "categories": [
         "design",
@@ -32,6 +32,11 @@
           "target": "~/.agents/skills/design-engineering/evals/README.md"
         },
         {
+          "path": "skills/design-engineering/evals/design-bench.jsonl",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/evals/design-bench.jsonl"
+        },
+        {
           "path": "skills/design-engineering/evals/loading.jsonl",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/evals/loading.jsonl"
@@ -52,9 +57,24 @@
           "target": "~/.agents/skills/design-engineering/references/anti-patterns/ai-default-tells.md"
         },
         {
+          "path": "skills/design-engineering/references/anti-patterns/code-tells.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/anti-patterns/code-tells.md"
+        },
+        {
           "path": "skills/design-engineering/references/anti-patterns/content-authenticity.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/anti-patterns/content-authenticity.md"
+        },
+        {
+          "path": "skills/design-engineering/references/anti-patterns/copy-tells.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/anti-patterns/copy-tells.md"
+        },
+        {
+          "path": "skills/design-engineering/references/anti-patterns/unslop-pass.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/anti-patterns/unslop-pass.md"
         },
         {
           "path": "skills/design-engineering/references/components/MOC-components.md",
@@ -77,6 +97,11 @@
           "target": "~/.agents/skills/design-engineering/references/components/cards-design.md"
         },
         {
+          "path": "skills/design-engineering/references/components/component-api-design.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/component-api-design.md"
+        },
+        {
           "path": "skills/design-engineering/references/components/component-confusables.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/component-confusables.md"
@@ -90,6 +115,11 @@
           "path": "skills/design-engineering/references/components/empty-loading-states.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/empty-loading-states.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/forms-behavior.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/forms-behavior.md"
         },
         {
           "path": "skills/design-engineering/references/components/forms-validation.md",
@@ -117,9 +147,24 @@
           "target": "~/.agents/skills/design-engineering/references/components/optimistic-updates.md"
         },
         {
+          "path": "skills/design-engineering/references/components/touch-and-focus.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/touch-and-focus.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/ui-polish-pass.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/ui-polish-pass.md"
+        },
+        {
           "path": "skills/design-engineering/references/layout/MOC-layout.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/layout/MOC-layout.md"
+        },
+        {
+          "path": "skills/design-engineering/references/layout/marketing-surface-rules.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/marketing-surface-rules.md"
         },
         {
           "path": "skills/design-engineering/references/layout/sticky-and-scroll-tells.md",
@@ -142,9 +187,24 @@
           "target": "~/.agents/skills/design-engineering/references/meta/agentation-workflow.md"
         },
         {
+          "path": "skills/design-engineering/references/meta/build-a-tool.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/build-a-tool.md"
+        },
+        {
           "path": "skills/design-engineering/references/meta/cross-model-testing.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/cross-model-testing.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/design-benchmarks.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/design-benchmarks.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/design-system-docs.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/design-system-docs.md"
         },
         {
           "path": "skills/design-engineering/references/meta/design-vocabulary.md",
@@ -167,6 +227,11 @@
           "target": "~/.agents/skills/design-engineering/references/meta/pov.md"
         },
         {
+          "path": "skills/design-engineering/references/meta/prototype-picker.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/prototype-picker.md"
+        },
+        {
           "path": "skills/design-engineering/references/meta/review-checklist.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/review-checklist.md"
@@ -182,6 +247,16 @@
           "target": "~/.agents/skills/design-engineering/references/meta/routing-table.md"
         },
         {
+          "path": "skills/design-engineering/references/meta/skill-router.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/skill-router.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/skill-writing-rules.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/skill-writing-rules.md"
+        },
+        {
           "path": "skills/design-engineering/references/meta/stacking-chains.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/stacking-chains.md"
@@ -195,6 +270,11 @@
           "path": "skills/design-engineering/references/meta/using-design-md.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/using-design-md.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/vibe-to-generator.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/vibe-to-generator.md"
         },
         {
           "path": "skills/design-engineering/references/motion/MOC-motion.md",
@@ -285,6 +365,11 @@
           "path": "skills/design-engineering/references/motion/never-scale-from-zero.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/never-scale-from-zero.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/performance-discipline.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/performance-discipline.md"
         },
         {
           "path": "skills/design-engineering/references/motion/prefers-reduced-motion.md",
@@ -392,6 +477,51 @@
           "target": "~/.agents/skills/design-engineering/references/philosophy/unseen-details-compound.md"
         },
         {
+          "path": "skills/design-engineering/references/sound/MOC-sound.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/MOC-sound.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/launch-video-sound.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/launch-video-sound.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/sound-decision-framework.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/sound-decision-framework.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/sound-generation-elevenlabs.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/sound-generation-elevenlabs.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/sound-generation-open-source.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/sound-generation-open-source.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/sound-motion-sync.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/sound-motion-sync.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/sound-palette.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/sound-palette.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/sound-playback-web.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/sound-playback-web.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/sound-spec.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/sound-spec.md"
+        },
+        {
           "path": "skills/design-engineering/references/surface/MOC-surface.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/surface/MOC-surface.md"
@@ -407,6 +537,11 @@
           "target": "~/.agents/skills/design-engineering/references/surface/color-monochromatic.md"
         },
         {
+          "path": "skills/design-engineering/references/surface/color-scales-oklch.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/color-scales-oklch.md"
+        },
+        {
           "path": "skills/design-engineering/references/surface/contrast-and-color-scheme.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/surface/contrast-and-color-scheme.md"
@@ -415,6 +550,11 @@
           "path": "skills/design-engineering/references/surface/dark-mode.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/surface/dark-mode.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/depth-and-nesting.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/depth-and-nesting.md"
         },
         {
           "path": "skills/design-engineering/references/surface/shadows-whisper.md",
@@ -427,9 +567,39 @@
           "target": "~/.agents/skills/design-engineering/references/surface/visual-imperfection.md"
         },
         {
+          "path": "skills/design-engineering/references/svg/MOC-svg.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/svg/MOC-svg.md"
+        },
+        {
+          "path": "skills/design-engineering/references/svg/svg-animation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/svg/svg-animation.md"
+        },
+        {
+          "path": "skills/design-engineering/references/svg/svg-creation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/svg/svg-creation.md"
+        },
+        {
+          "path": "skills/design-engineering/references/svg/svg-path-morphing.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/svg/svg-path-morphing.md"
+        },
+        {
+          "path": "skills/design-engineering/references/svg/video-to-vector-pipeline.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/svg/video-to-vector-pipeline.md"
+        },
+        {
           "path": "skills/design-engineering/references/typography/MOC-typography.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/typography/MOC-typography.md"
+        },
+        {
+          "path": "skills/design-engineering/references/typography/line-behavior.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/typography/line-behavior.md"
         },
         {
           "path": "skills/design-engineering/references/typography/line-length-tracking.md",
@@ -437,9 +607,29 @@
           "target": "~/.agents/skills/design-engineering/references/typography/line-length-tracking.md"
         },
         {
+          "path": "skills/design-engineering/references/typography/type-scale-and-rhythm.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/typography/type-scale-and-rhythm.md"
+        },
+        {
           "path": "skills/design-engineering/references/typography/typography-humanity.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/typography/typography-humanity.md"
+        },
+        {
+          "path": "skills/design-engineering/scripts/sound-family.example.json",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/scripts/sound-family.example.json"
+        },
+        {
+          "path": "skills/design-engineering/scripts/sound-family.mjs",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/scripts/sound-family.mjs"
+        },
+        {
+          "path": "skills/design-engineering/scripts/svg-flipbook.mjs",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/scripts/svg-flipbook.mjs"
         }
       ]
     },
@@ -447,7 +637,7 @@
       "name": "design-engineering-agents",
       "type": "registry:file",
       "title": "Design Engineering subagents and commands",
-      "description": "Six workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator) and their slash commands, in Claude Code format.",
+      "description": "Nine workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator) and their slash commands, in Claude Code format.",
       "author": "HKTITAN",
       "categories": [
         "design",
@@ -489,6 +679,21 @@
           "target": "~/.claude/agents/pov-curator.md"
         },
         {
+          "path": "agents/sound-designer.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/sound-designer.md"
+        },
+        {
+          "path": "agents/svg-animator.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/svg-animator.md"
+        },
+        {
+          "path": "agents/svg-creator.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/svg-creator.md"
+        },
+        {
           "path": "agents/ui-reviewer.md",
           "type": "registry:file",
           "target": "~/.claude/agents/ui-reviewer.md"
@@ -522,6 +727,21 @@
           "path": "commands/scan-ai-tells.md",
           "type": "registry:file",
           "target": "~/.claude/commands/scan-ai-tells.md"
+        },
+        {
+          "path": "commands/sound-pass.md",
+          "type": "registry:file",
+          "target": "~/.claude/commands/sound-pass.md"
+        },
+        {
+          "path": "commands/svg-animate.md",
+          "type": "registry:file",
+          "target": "~/.claude/commands/svg-animate.md"
+        },
+        {
+          "path": "commands/svg-create.md",
+          "type": "registry:file",
+          "target": "~/.claude/commands/svg-create.md"
         }
       ]
     },

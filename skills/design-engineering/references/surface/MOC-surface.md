@@ -16,6 +16,8 @@ The decisions that look invisible but determine whether the UI feels considered 
 - [[border-radius]] — Uniform radius everywhere is lazy. Capsule buttons need full package. Nested-radius rules.
 - [[visual-imperfection]] — Asymmetry in marketing only. Optical over mathematical alignment. Subtle texture/noise. Imperfect shapes — perfect geometry feels cold.
 - [[contrast-and-color-scheme]] — APCA over WCAG 2 for contrast math. `<meta name="theme-color">` + `color-scheme: dark`. Interactions raise contrast. Avoid gradient banding.
+- [[color-scales-oklch]] — Author in OKLCH: one hue per ramp, L anchored and evenly spaced, chroma as a clamped curve, siblings at the same fraction of their own ceiling, dark mode by remapping steps, contrast repaired by moving L only.
+- [[depth-and-nesting]] — Inner radius = outer − padding; shadows elevate, borders separate; dark mode collapses shadows to a ring; 0.5px hairlines, pure black/white image outlines, mask fades, themes flip variables.
 
 ## Cross-cluster
 

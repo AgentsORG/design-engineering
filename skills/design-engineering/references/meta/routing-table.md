@@ -40,6 +40,29 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Build a marketing / landing surface | [[marketing-vs-product-ui]] |
 | Consume a project's DESIGN.md tokens | [[using-design-md]] (or spawn [[design-md-consumer]]) |
 | Put the right word to a design idea | [[design-vocabulary]] |
+| Decide whether an interaction should make a sound | [[sound-decision-framework]] |
+| Design or generate a set of UI sounds | [[sound-palette]], then [[sound-generation-elevenlabs]] or [[sound-generation-open-source]] (or spawn [[sound-designer]]) |
+| Sync a sound to an animation, or fix one that feels late | [[sound-motion-sync]] |
+| Score a launch video or logo reveal | [[launch-video-sound]] |
+| Decide which skill or companion should own a job | [[skill-router]] |
+| Build an OKLCH palette or ramp, repair contrast by lightness | [[color-scales-oklch]] |
+| Fix pinched corners, harsh borders, dark-mode cards vanishing | [[depth-and-nesting]] |
+| Set up a type scale, leading, tracking, font loading | [[type-scale-and-rhythm]] |
+| Fix wrapping, truncation, underlines, casing, RTL | [[line-behavior]] |
+| Make a form behave (labels, Enter, loading, autofocus) | [[forms-behavior]] |
+| Make it work on touch, keyboard, screen readers, iOS | [[touch-and-focus]] |
+| "Feels unfinished" with nothing obviously wrong | [[ui-polish-pass]] |
+| Design a component's props API | [[component-api-design]] |
+| Build a landing page, docs site, blog, changelog | [[marketing-surface-rules]] |
+| Fix jank, layout shift, slow lists (measured slowness) | [[performance-discipline]] |
+| "Looks AI-generated" — run the pass | [[unslop-pass]]; copy → [[copy-tells]]; code → [[code-tells]] |
+| Create or clean up an SVG | [[svg-creation]] (or spawn [[svg-creator]]) |
+| Animate an SVG, morph a path, vectorize a clip | [[svg-animation]], [[svg-path-morphing]], [[video-to-vector-pipeline]] (or spawn [[svg-animator]]) |
+| Explore several directions before deciding | [[prototype-picker]] |
+| Stop re-prompting; build the tool that makes the artifact | [[build-a-tool]]; no target yet → [[vibe-to-generator]] |
+| Write design docs an agent can follow | [[design-system-docs]] |
+| Write or fix a skill file, or [[pov]] | [[skill-writing-rules]] |
+| Measure whether a change made output better | [[design-benchmarks]] |
 
 ## Rules
 

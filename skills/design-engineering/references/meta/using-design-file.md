@@ -48,6 +48,10 @@ A drift check compares `tokens` against the real CSS/Tailwind theme and `compone
 
 When `integrations.shadcn.enabled`, prefer installed shadcn primitives over parallel ones, and write `css_vars` into the declared CSS file. **Tokens outrank stale `css_vars` literals** — refresh the CSS after token edits rather than trusting what's already in `:root`. Emit the full variable set including charts and sidebar. See [`spec/design-file-spec.md`](../../../../spec/design-file-spec.md) for the Tailwind v4 mechanics.
 
+## Sound, video, and companions
+
+Contract 1.3 adds `tokens.sound` (default toggle state, one material, levels, durations, sync tolerance), `assets.sounds`, `decisions.sound`, `targets[]` video entries, and `exports.frame_md`. When they exist they outrank [[sound-spec]] and [[sound-decision-framework]]; when the group is absent, the contract is saying *silent* and this graph must not add a sound. A `video` target flips the default — see [[launch-video-sound]] — and `exports.frame_md` is how a HyperFrames project inherits the brand's motion and material. The `design` skill also names the companions it routes to; [[skill-router]] is this graph's side of the same handshake.
+
 ## `.design` vs `DESIGN.md`
 
 Both can exist. `.design` is the machine-readable contract with intent and executable policy; `DESIGN.md` is prose-plus-tokens ([[using-design-md]]). When both are present, `.design` wins and `DESIGN.md` becomes rationale — offer to converge them rather than maintaining two sources.

@@ -1,7 +1,7 @@
 {
   "name": "design-engineering",
-  "version": "2.0.0",
-  "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns. Plus a SOUL.md identity layer and six workflow subagents. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
+  "version": "2.1.0",
+  "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns, sound, SVG. Plus a SOUL.md identity layer and nine workflow subagents. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
   "author": {
     "name": "HKTITAN",
     "email": "harshitkhemani@gmail.com",
@@ -23,6 +23,12 @@
     "layout",
     "accessibility",
     "anti-patterns",
+    "sound",
+    "sound-design",
+    "svg",
+    "svg-animation",
+    "prototyping",
+    "unslop",
     "ui-review",
     "taste",
     "agentation",
@@ -36,7 +42,7 @@
   "interface": {
     "displayName": "Design Engineering by HKTITAN",
     "shortDescription": "Make AI-generated UI feel right",
-    "longDescription": "A navigable skill graph for design engineering. Eight themed clusters (philosophy, motion, typography, surface, components, layout, anti-patterns, meta), 63 atomic nodes, six workflow subagents, a SOUL.md identity layer, and an AGENTS.md operating guide. Load it when reviewing UI code, choosing an easing curve, auditing for AI-default tells, consuming a DESIGN.md, or asking 'why does this feel flat?' Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated, Google Labs design.md, and Agentation into one Obsidian-compatible graph.",
+    "longDescription": "A navigable skill graph for design engineering. Nine themed clusters (philosophy, motion, sound, typography, surface, components, layout, anti-patterns, meta), 81 atomic nodes, nine workflow subagents, a SOUL.md identity layer, and an AGENTS.md operating guide. Load it when reviewing UI code, choosing an easing curve, deciding whether an interaction should make a sound, auditing for AI-default tells, consuming a DESIGN.md, or asking 'why does this feel flat?' Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated, Google Labs design.md, and Agentation into one Obsidian-compatible graph.",
     "developerName": "HKTITAN",
     "category": "Design",
     "capabilities": ["Read", "Write"],

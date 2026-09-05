@@ -21,6 +21,10 @@ Components are where craft lives because users *touch* them. Their states are wh
 - [[optimistic-updates]] — Update UI immediately on likely-success actions, reconcile or undo on failure. The largest perceived-latency win.
 - [[copy-voice]] — Active voice, Title Case for headings/buttons, numerals for counts, error messages that guide the exit.
 - [[component-confusables]] — Pick by behaviour, not looks: tooltip vs popover (can it hold a link?), badge vs tag (attached/read-only vs standalone/interactive), sheet vs drawer vs dialog.
+- [[forms-behavior]] — Everything a form does besides validating: label wiring, input types, 16px, focus-visible, decorations over the input, autofocus rules, Enter and Cmd+Enter, buttons that disable while submitting, no dead zones, confirmed destruction, prefill.
+- [[touch-and-focus]] — Hover enhances, never enables; 44px hit areas; `touch-action`; `playsinline`; labelled icon buttons; hidden content out of the tab order; focus moved and restored; the mobile-native fixes table.
+- [[ui-polish-pass]] — The finishing pass after it works: antialiasing, constant weight, tabular numbers, no layout shift, real characters, states that stay put, a z-index scale, optical alignment, designed empty states, no flash on refresh.
+- [[component-api-design]] — Composition over configuration, compound parts with context, variants → size → className → asChild, platform prop names, controlled and uncontrolled, refs forwarded and props spread.
 
 ## Cross-cluster
 
