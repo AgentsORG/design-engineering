@@ -51,7 +51,7 @@ Distinctive techniques from Benji Taylor's body of work — Family, Honk, Liveli
 
 ## Launch video
 
-- [[launch-video-seams]] — HeyGen's cut grammar: one ease family with mirrored exits, matched vectors at every cut, a ledger per seam, a storyboard with an act table and an audio cue map, and the HyperFrames project shape that carries it.
+- [[launch-video-seams]] — The launch motion system and its seams: one easing law (tau 0.131 s), a damped spring at zeta 1/3 on position / shape / rotation, blur derived from velocity, stepped decisions, shared-element morphs instead of cuts, a ledger per seam, no idle motion — measured from HeyGen's launches and Skale's reel.
 
 ## Transition techniques (transitions.dev)
 

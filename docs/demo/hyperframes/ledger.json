@@ -1,10 +1,11 @@
 {
-  "_": "Vector ledger: one row per cut. exit/entry must agree on axis and dir (y -1 = upward). Every scene leaves with an 8 px upward nudge over 0.22 s and is hard-killed on the cut frame; the next scene's headline enters from below, moving up. Keep them matched when you retime anything.",
+  "_": "Vector ledger: one row per seam. Every scene change is a shared-element morph, never a cut or a crossfade; the outgoing element is still travelling on the cut frame and the incoming one enters on the same axis. exit/entry must agree; every exit has a tl.set hard kill with the same selector string on the cut frame. Keep them matched when you retime anything.",
   "fps": 30,
   "seams": [
-    { "id": "title → router",   "cut": 2.4,  "technique": "velocity-matched cut, upward", "exit": { "selector": "#s1 .scene", "axis": "y", "dir": -1 }, "entry": { "selector": "#s2-h",  "axis": "y", "dir": -1 } },
-    { "id": "router → review",  "cut": 5.2,  "technique": "velocity-matched cut, upward", "exit": { "selector": "#s2 .scene", "axis": "y", "dir": -1 }, "entry": { "selector": "#s3-h",  "axis": "y", "dir": -1 } },
-    { "id": "review → sound",   "cut": 8.2,  "technique": "velocity-matched cut, upward", "exit": { "selector": "#s3 .scene", "axis": "y", "dir": -1 }, "entry": { "selector": "#s4-h",  "axis": "y", "dir": -1 } },
-    { "id": "sound → install",  "cut": 10.4, "technique": "velocity-matched cut, upward", "exit": { "selector": "#s4 .scene", "axis": "y", "dir": -1 }, "entry": { "selector": "#s5-h",  "axis": "y", "dir": -1 } }
-  ]
+    { "id": "title → router",  "cut": 2.8,  "technique": "zoom-through (scene flies past the camera, blur peaks on the cut; next scene arrives from behind, 0.92 → 1)", "exit": { "selector": "#s1 .scene", "axis": "z", "dir": 1 }, "entry": { "selector": "#s2 .scene", "axis": "z", "dir": 1 } },
+    { "id": "router → review", "cut": 5.6,  "technique": "edge-on collapse → unfold (cards scaleX → 0.02; terminal unfolds scaleX 0.03 → 1 on the same axis)", "exit": { "selector": "#cards", "axis": "x", "dir": 0 }, "entry": { "selector": "#term", "axis": "x", "dir": 0 } },
+    { "id": "review → sound",  "cut": 8.6,  "technique": "dock (modal wrap shrinks to 0.5 and blurs; the mascot stage grows from 0.5 on a spring)", "exit": { "selector": "#mw", "axis": "z", "dir": -1 }, "entry": { "selector": "#stage", "axis": "z", "dir": 1 } },
+    { "id": "sound → install", "cut": 10.6, "technique": "conveyor off the top (bars y → −140) → the command pill rises from below (y 140 → 0) on a spring", "exit": { "selector": "#bars", "axis": "y", "dir": -1 }, "entry": { "selector": "#cmd", "axis": "y", "dir": -1 } }
+  ],
+  "system": { "tau_s": 0.131, "zeta": 0.333, "spring_hz": { "position": 1.45, "shape": 1.88, "rotation": 2.5 }, "flipbook_step_frames": 7, "type_cadence_s": { "words": 0.11, "cells": 0.21, "chunks": 0.12 }, "idle_motion": false }
 }
