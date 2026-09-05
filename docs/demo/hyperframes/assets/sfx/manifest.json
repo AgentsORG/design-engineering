@@ -1,48 +1,42 @@
 {
-  "material": "felt mallet on a wooden bar, breath through paper for travel",
-  "generatedAt": "2026-09-05T10:39:56.368Z",
+  "material": "dry clicks (3–5 kHz, 20–30 ms) with a low thud on the bed's root; a felt mallet for the two tonal cues",
+  "generatedAt": "2026-09-05T11:02:34.961Z",
   "provider": "sound-sheet",
   "sounds": [
     {
       "name": "tick",
       "file": "tick.wav",
-      "ms": 44,
-      "hz": 5200,
+      "ms": 23,
       "peakDbfs": -3
     },
     {
       "name": "tap",
       "file": "tap.wav",
-      "ms": 136,
-      "hz": 4044,
+      "ms": 130,
       "peakDbfs": -3
     },
     {
       "name": "send",
       "file": "send.wav",
-      "ms": 240,
-      "hz": 3018,
+      "ms": 93,
       "peakDbfs": -3
     },
     {
       "name": "receive",
       "file": "receive.wav",
-      "ms": 206,
-      "hz": 1833,
+      "ms": 103,
       "peakDbfs": -3
     },
     {
       "name": "error",
       "file": "error.wav",
       "ms": 155,
-      "hz": 3018,
       "peakDbfs": -3
     },
     {
       "name": "success",
       "file": "success.wav",
-      "ms": 393,
-      "hz": 1650,
+      "ms": 313,
       "peakDbfs": -3
     }
   ]

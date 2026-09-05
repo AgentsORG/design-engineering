@@ -1,56 +1,66 @@
 ---
 title: launch-video-sound
-summary: The launch-video register — sound density mirrors motion density, holds are true silence, small things tick high and short, big things land low and long — with a measured sound map and a timeline recipe.
-tags: [sound, launch-video, marketing, motion-graphics, audio]
+summary: The launch-video register, measured twice — the sparse logo-reveal (no bed, every hit on a motion peak, true silence) and the OpenAI brand-film (a warm sub-heavy bed that carries the piece, dry clicks 10–20 dB under it on every stepped reveal, silences as punctuation) — with sound maps, numbers, and a timeline recipe.
+tags: [sound, launch-video, marketing, motion-graphics, audio, openai]
 ---
 
 # Launch-video sound
 
-A product launch video inverts the product-UI default. On the product, sound is opt-in and rare; in the video, sound *is* the emotional layer and the viewer cannot mute it without losing the piece. The register that reads as premium in 2026 — the OpenAI film language Studio Dumbar/DEPT describes as "organic motion" with sound that makes the brand "feel alive" — has four properties you can measure.
+A product launch video inverts the product-UI default. On the product, sound is opt-in and rare; in the video, sound *is* the emotional layer. Two registers read as premium in 2026, and they are not the same thing. Pick one on purpose.
 
-## The four properties
+## Register A — the logo reveal (no bed)
 
-1. **Sound density mirrors motion density.** A fan of cards shuffling gets a cluster of ticks, one per card; a single snap gets a single hit; a hold gets nothing. The soundtrack is a transcript of the motion.
-2. **Holds are true silence.** Not a pad, not room tone — the track drops to the noise floor between events. Silence is what makes the next transient land.
-3. **Size maps to pitch and length.** Small elements tick at 3–6 kHz for 100–200 ms. The wordmark lands around 1 kHz for 700–800 ms. Nothing lives below 120 Hz except a deliberate sub-hit.
-4. **Materials, not effects.** Taps, mallets, breath, paper — the [[sound-palette]] rule. No braams, no risers, no stock whoosh library; a whoosh is a *filtered breath* with its peak on the settle.
+Measured from a 10.7 s logo reveal for Base by bruno (@tvnxty, superfx.co): 32 onsets, every one within two frames of a visual motion peak; holds at −56 dBFS; peak −3.1 dBFS; program average −25 dBFS; no music.
 
-## A measured sound map
+1. **Sound density mirrors motion density.** A fan of cards gets a cluster of ticks, one per card; a single snap gets one hit; a hold gets nothing.
+2. **Holds are true silence.** Not a pad, not room tone.
+3. **Size maps to pitch and length.** Ticks 3–6 kHz for 100–200 ms; the wordmark ~1 kHz for 700 ms.
+4. **Materials, not effects.** Taps, mallets, breath, paper — [[sound-palette]].
 
-Analysis of a 10.7 s logo reveal for Base by sound designer bruno (@tvnxty, superfx.co), posted 2026-09-03:
+Use it for reveals under fifteen seconds, stings, and anything where the silence is the point.
 
-| Time | Visual | Audio | Character |
-|---|---|---|---|
-| 0.3–1.4 s | Stack of cards shuffles, then snaps into a row | 12 onsets: ten small ticks, then two hard hits | Ticks 3.5–6 kHz, ~100–200 ms; hits 2.5 kHz, ~100–190 ms decay, the loudest events in the piece |
-| 1.5–3.4 s | Hold | Silence (−56 dBFS) | — |
-| 3.5 s | Wordmark cuts in | Two soft hits, 1.0–1.1 kHz, ~750 ms decay | The biggest element, the lowest and longest sound |
-| 5.8 s, 6.4 s | Wordmark pixelates / glitches | Two mid pulses, 0.8–1.3 kHz | Texture, not transient |
-| 8.2–9.1 s | Cards recolor and shuffle | 10 ticks, 2.5–5 kHz | Same family as the opening |
-| 9.3–10.4 s | Collapse to one card, then a dot | Three pulses, 1.0–1.4 kHz, decaying 350 → 120 ms | Each smaller than the last |
+## Register B — the brand film (bed + clicks)
 
-Whole piece: peak −3.1 dBFS, program average −25 dBFS, every onset within two frames of a visual motion peak. There is no music bed. That is the whole recipe.
+Measured from OpenAI's *Refreshed.* (110 s, Studio Dumbar/DEPT with the OpenAI design studio, type by Dinamo, 2025) and *Introducing GPT-5* (89 s, 2025), 720p rips analysed frame by frame:
 
-## Timeline recipe
+| | Refreshed. | GPT-5 |
+|---|---|---|
+| Integrated loudness / range | −19.1 LUFS · 15 LU | −20.6 LUFS · 9 LU |
+| Energy under 120 Hz / 120–500 Hz | 66 % / 25 % | 67 % / 29 % |
+| Bed root and partials | F1 43 Hz · C2 · F2 · A2 (an F chord) | same key |
+| Bed present | 78 % of runtime | 97 % |
+| Sub-envelope pulse | 0.26 s, weak (12 %) | 0.26 s, 25 % |
+| Hits above the bed | 3.1 / s, centroid 3.5 kHz | 5.1 / s, centroid 4.7 kHz |
+| Hit decay (−10 dB / −20 dB) | 20 ms / 115 ms | 30 ms / 55 ms |
+| Hit level vs the sub at the same moment | level with it | 7 dB under |
+| Hits on a tempo grid | no (phase concentration 0.02) | no (0.09) |
+| Hard cuts | 39, of which 11 in one 2 s glyph flipbook | 11, all in one montage |
+| Frames nearly still | 61 % | 64 % |
+
+What the numbers say:
+
+- **The bed is the material.** A warm, sub-heavy drone in one key, breathing slowly, with a faint quarter-second pulse. It is not a beat: nothing sits on a grid. It carries every cut, so there are no whooshes.
+- **The hits are clicks, and they are quiet.** Dry, 3–5 kHz, ten dB down inside 30 ms, sitting 10–20 dB under the bed's low end. They land on *stepped* reveals — a glyph flicking through variants every seven frames, a sentence streaming in word by word, a table filling cell by cell (210 ms apart in GPT-5) — so they read as the interface's own sound, not as a soundtrack. A big element settling gets a low thud on the bed's root instead.
+- **Silence is punctuation, not the default.** *Refreshed.* opens with nine seconds of near-silence and tiny clicks before the bed arrives, drops to nothing for 0.5–1 s at a time in its breakdown (47–58 s), and pulls the sub out under the photography (79–91 s). GPT-5 pulls the sub — and only the sub — for the "thinks deeply" beat at 32–38 s and again at 61–64 s, keeping the pad. The reveal that follows lands with the sub returning.
+- **Dynamics come from the arc, not from the hits.** The film's loudness moves in acts: quiet open, full section, breakdown, finale, out. Inside an act the level barely moves.
+- **Most frames are still.** The eye is given long holds on type; motion is stepped or slow. Sound density follows: dense while text streams, sparse in the holds.
+
+## Timeline recipe (either register)
 
 1. **Lock picture first.** Sound is placed on frames; it cannot be placed on frames that move.
-2. **Write the sound map** as the table above, one row per visual event, *before* generating anything. Assign each row a family member from [[sound-palette]] and a size class.
-3. **Generate the family** in one session — [[sound-generation-elevenlabs]] prompts for video add the physical gesture: "soft whoosh, breath through paper, peak at the end, dry, 400 ms"; "single dull impact, felt mallet on thick card, dry, 600 ms tail." Or [[sound-generation-open-source]].
-4. **Place transients on contact frames**, not file starts — [[sound-motion-sync]]. In Remotion, `<Audio src startFrom={offset} />` where `offset` corrects for the file's pre-roll; in HyperFrames, `data-start` on the settle frame and `/hyperframes-audio` for gain lanes.
-5. **Duck, don't fight.** If there *is* a bed, carve 3–6 dB out of it under each hit rather than raising the hit.
-6. **Master to −14 LUFS, −1 dBTP** for social; check on phone speakers, where anything under 200 Hz vanishes.
-
-## When to apply
-
-Launch films, feature sizzles, logo reveals, onboarding hero moments, and any marketing motion where the audience expects sound. Not product UI — route that to [[sound-decision-framework]].
+2. **Write the sound map** — one row per visual event with its contact frame and its box on the canvas — before generating anything. [[sound-from-motion]] renders that map deterministically: `bed` for register B, `click` / `thud` / `type` / `flicker` for stepped reveals, `land` / `tick` / `whoosh` for register A.
+3. **Place transients on contact frames**, not file starts — [[sound-motion-sync]].
+4. **In register B, write the bed's arc as gain points** (an act table in dB) and its dropouts (start, length, whether the pad stays). Duck it 3–4 dB under every thud.
+5. **Master to −14 LUFS, −1 dBTP** for social; both OpenAI films sit 5–6 LU under that and let the platform normalize. Check on phone speakers — anything under 200 Hz vanishes there, which is why the clicks carry the sync and the bed carries the feeling.
 
 ## Gotcha
 
-A music bed is the AI-default of launch videos: it hides the sync work. Try the cut with **no bed** and only designed hits first. If it holds up, add a bed at −24 LUFS or leave it out — the OpenAI-register pieces that feel most expensive are the ones where you can hear the silence.
+A stock music bed is the AI-default of launch videos because it hides the sync work. The OpenAI bed is not that: it is one drone in one key with no beat, and every click is on a frame. If you cannot place the clicks, cut the bed and use register A — a wrong bed with unsynced hits is the worst of both.
 
 ## Sources
 
-- bruno (@tvnxty), superfx.co — Base logo reveal, 2026-09-03; onset, spectral-centroid, and motion-correlation analysis by HKTITAN.
-- Studio Dumbar/DEPT — OpenAI brand motion and the ChatGPT-5 sizzle: "organic motion," sound design that makes the brand "feel alive, dynamic, and deeply human."
-- Twenty Thousand Hertz, *The Sound of Apple* — organic materials over futuristic synthesis.
-- Sonilo, *Whoosh: motion, timing, and mix*; Pro Sound Effects, *Sound editing in sync* — transient on the action frame, not file start.
-- Related: [[marketing-vs-product-ui]], [[stagger-choreography]], [[sound-spec]].
+- OpenAI, *Refreshed.* (YouTube k3d_xeVxEOE, 2025-02-04) and *Introducing GPT-5* (boJG84Jcf-4, 2025-08-08) — onset, band-energy, bed-pitch, cut, and motion-stillness analysis by HKTITAN, 2026-09-05.
+- Studio Dumbar/DEPT — OpenAI brand film case study (studiodumbar.com/work/openai-brand-film): "dots and logos animate naturally, interface elements pulse gently, and typography appears intuitively"; sound "drawing from human interactions"; D&AD pencil 2025. Creative Review, *OpenAI's brand refresh subtly signals a new era*.
+- bruno (@tvnxty), superfx.co — Base logo reveal, 2026-09-03; analysis by HKTITAN.
+- Twenty Thousand Hertz, *The Sound of Apple* — organic materials over synthesis.
+- Related: [[sound-from-motion]], [[launch-video-seams]], [[marketing-vs-product-ui]], [[sound-spec]].
