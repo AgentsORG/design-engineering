@@ -1,0 +1,37 @@
+{
+  "_": "Sound map for the demo. One row per visual event; t is the contact frame (tween start + 85% of its duration, where power3.out has visibly stopped) except for whoosh/air, where t is the tween start and the breath peaks at t + dur. x/y/w/h are the element's box on the 1920×1080 canvas; everything audible is derived from them by scripts/sound-sheet.mjs.",
+  "canvas": { "w": 1920, "h": 1080 },
+  "fps": 30,
+  "duration": 12,
+  "cues": [
+    { "id": "s1-title",   "kind": "land",   "t": 0.507,  "x": 810,  "y": 480, "w": 1300, "h": 132, "dir": "up" },
+    { "id": "s1-out",     "kind": "whoosh", "t": 2.14,   "dur": 0.22, "x": 960, "y": 540, "dir": "up" },
+
+    { "id": "s2-head",    "kind": "land",   "t": 2.84,   "x": 860,  "y": 360, "w": 1200, "h": 95,  "dir": "up" },
+    { "id": "s2-card-1",  "kind": "land",   "t": 2.995,  "x": 416,  "y": 640, "w": 512,  "h": 230, "dir": "up" },
+    { "id": "s2-card-2",  "kind": "land",   "t": 3.075,  "x": 960,  "y": 640, "w": 512,  "h": 230, "dir": "up", "semitones": 2 },
+    { "id": "s2-card-3",  "kind": "land",   "t": 3.155,  "x": 1504, "y": 640, "w": 512,  "h": 230, "dir": "up", "semitones": 4 },
+    { "id": "s2-out",     "kind": "whoosh", "t": 4.94,   "dur": 0.22, "x": 960, "y": 540, "dir": "up" },
+
+    { "id": "s3-head",    "kind": "land",   "t": 5.64,   "x": 860,  "y": 300, "w": 1300, "h": 95,  "dir": "up" },
+    { "id": "s3-term",    "kind": "land",   "t": 5.797,  "x": 604,  "y": 640, "w": 888,  "h": 330, "dir": "up" },
+    { "id": "s3-row-1",   "kind": "tick",   "t": 5.844,  "x": 604,  "y": 560, "w": 760,  "h": 60,  "dir": "right" },
+    { "id": "s3-row-2",   "kind": "tick",   "t": 5.924,  "x": 604,  "y": 640, "w": 760,  "h": 60,  "dir": "right", "semitones": 2 },
+    { "id": "s3-row-3",   "kind": "tick",   "t": 6.004,  "x": 604,  "y": 720, "w": 760,  "h": 60,  "dir": "right", "semitones": 4 },
+    { "id": "s3-overlay", "kind": "air",    "t": 6.40,   "dur": 0.20, "x": 1432, "y": 620 },
+    { "id": "s3-modal",   "kind": "land",   "t": 6.57,   "x": 1432, "y": 620, "w": 520,  "h": 420, "dir": "up" },
+    { "id": "s3-out",     "kind": "whoosh", "t": 7.94,   "dur": 0.22, "x": 960, "y": 540, "dir": "up" },
+
+    { "id": "s4-stage",   "kind": "land",   "t": 8.629,  "x": 1374, "y": 600, "w": 656,  "h": 520, "dir": "up" },
+    { "id": "s4-bar-1",   "kind": "tick",   "t": 8.712,  "x": 546,  "y": 450, "w": 700,  "h": 40,  "dir": "right" },
+    { "id": "s4-bar-2",   "kind": "tick",   "t": 8.762,  "x": 546,  "y": 512, "w": 700,  "h": 40,  "dir": "right", "semitones": 1 },
+    { "id": "s4-bar-3",   "kind": "tick",   "t": 8.812,  "x": 546,  "y": 574, "w": 700,  "h": 40,  "dir": "right", "semitones": 2 },
+    { "id": "s4-bar-4",   "kind": "tick",   "t": 8.862,  "x": 546,  "y": 636, "w": 700,  "h": 40,  "dir": "right", "semitones": 3 },
+    { "id": "s4-bar-5",   "kind": "tick",   "t": 8.912,  "x": 546,  "y": 698, "w": 700,  "h": 40,  "dir": "right", "semitones": 4 },
+    { "id": "s4-bar-6",   "kind": "tick",   "t": 8.962,  "x": 546,  "y": 760, "w": 700,  "h": 40,  "dir": "right", "semitones": 5 },
+    { "id": "s4-out",     "kind": "whoosh", "t": 10.14,  "dur": 0.22, "x": 960, "y": 540, "dir": "up" },
+
+    { "id": "s5-cmd",     "kind": "land",   "t": 10.755, "x": 660,  "y": 640, "w": 1000, "h": 100, "dir": "up" },
+    { "id": "s5-head",    "kind": "land",   "t": 10.84,  "x": 860,  "y": 440, "w": 1200, "h": 95,  "dir": "up", "semitones": 7 }
+  ]
+}

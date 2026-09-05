@@ -49,6 +49,10 @@ Distinctive techniques from Benji Taylor's body of work — Family, Honk, Liveli
 
 - [[hover-default-imperative]] — From lucide-animated.com. Hover triggers the animation by default; expose a `ref` / `trigger()` API for touch contexts.
 
+## Launch video
+
+- [[launch-video-seams]] — HeyGen's cut grammar: one ease family with mirrored exits, matched vectors at every cut, a ledger per seam, a storyboard with an act table and an audio cue map, and the HyperFrames project shape that carries it.
+
 ## Transition techniques (transitions.dev)
 
 Catalog of canonical transitions for common UI archetypes. Implementation layer under the principle layer above.

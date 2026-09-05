@@ -6,6 +6,34 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.2.0] — 2026-09-05
+
+Sound that is derived from the motion instead of placed against it, the launch-video cut grammar, a with/without benchmark run, and the AgentsORG mark.
+
+### Added — sound from motion
+
+- **`references/sound/sound-from-motion.md`** — the mapping (size → pitch and decay, x → pan, y → brightness, direction → contour, tween → length, contact frame → transient), the cue-sheet format, the workflow, and the rule that two settles on one frame are one cue.
+- **`scripts/sound-sheet.mjs`** — dependency-free, deterministic: a cue sheet → a stereo stem peak-normalized to −1 dBFS, with `--report` printing every onset's frame, pitch, length, and pan, and `--family` writing the six product one-shots from the same voices. One material (felt mallet on a wooden bar, breath through paper for travel), RBJ band-pass, constant-power pan, no randomness.
+- **The demo is rescored** with it: 25 cues, integrated −17.4 LUFS, every onset within one frame of its tween's settle, silence elsewhere. The nine library clips are gone; one clip carries the stem. `docs/demo/hyperframes/` gains the HeyGen project shape — `STORYBOARD.md` (act table + audio cue map), `ledger.json` (seams), `assets/sfx/cues.json`.
+
+### Added — launch-video seams
+
+- **`references/motion/launch-video-seams.md`** — from HeyGen's open-sourced launch compositions: one ease family with mirrored exits, matched vectors at every cut, a ledger per seam, the storyboard shape, and the HyperFrames gotchas (timeline padding, audio ids, preview autoplay). Routed from `routing-table` and `MOC-motion`.
+
+### Added — benchmark run
+
+- **`evals/run-bench.mjs`** — scores with/without-skill outputs against `design-bench.jsonl` on the fenced code each arm shipped (a Before column is not an answer). **`evals/results/2026-09-05-sonnet/`** — twenty raw outputs and the report: Sonnet alone 32/36 rules, Sonnet + the skill 35/36. The README carries the table and one fixture side by side.
+- The `gen-send-sound-01` rule now targets module-level `new AudioContext()` only; a lazy `ctx ??= new AudioContext()` inside the unlock gesture is the correct pattern, not a miss.
+
+### Added — brand
+
+- **`docs/brand/`** — the AgentsORG wordmark in light-background (the word set in ink) and dark-background variants, plus the icon; the README header and the demo's title and footer use them.
+
+### Changed
+
+- `sound-designer` (both formats), `/sound-pass`, `agents/README.md`, `AGENTS.md`, `MOC-sound`, `SKILL.md` — route launch-video sound to the cue sheet and `sound-sheet.mjs`; product families stay on `sound-family.mjs`.
+- Version 2.2.0 across all eight manifests; registry rebuilt.
+
 ## [2.1.0] — 2026-09-05
 
 Three things at once: `/design-engineering` becomes a **router** over the design-skill ecosystem; two new clusters, **sound** and **svg**; and twenty nodes distilled from Emil Kowalski's design-engineering practice that fill the graph's thin spots (typography mechanics, OKLCH color, surfaces, forms, touch, polish, performance, component APIs, marketing surfaces, prototyping, tooling, docs, the unslop passes, skill writing). Plus design benchmarks and alignment with AgentsORG `.design` contract 1.3.

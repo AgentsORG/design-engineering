@@ -347,6 +347,11 @@
           "target": "~/.agents/skills/design-engineering/references/motion/hover-default-imperative.md"
         },
         {
+          "path": "skills/design-engineering/references/motion/launch-video-seams.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/launch-video-seams.md"
+        },
+        {
           "path": "skills/design-engineering/references/motion/lerp-breathing.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/lerp-breathing.md"
@@ -492,6 +497,11 @@
           "target": "~/.agents/skills/design-engineering/references/sound/sound-decision-framework.md"
         },
         {
+          "path": "skills/design-engineering/references/sound/sound-from-motion.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/sound-from-motion.md"
+        },
+        {
           "path": "skills/design-engineering/references/sound/sound-generation-elevenlabs.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/sound/sound-generation-elevenlabs.md"
@@ -625,6 +635,11 @@
           "path": "skills/design-engineering/scripts/sound-family.mjs",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/scripts/sound-family.mjs"
+        },
+        {
+          "path": "skills/design-engineering/scripts/sound-sheet.mjs",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/scripts/sound-sheet.mjs"
         },
         {
           "path": "skills/design-engineering/scripts/svg-flipbook.mjs",

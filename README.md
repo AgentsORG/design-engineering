@@ -1,3 +1,10 @@
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/brand/agents-dark-bg.svg">
+    <img src="docs/brand/agents-light-bg.svg" alt="agents.org.in" height="56">
+  </picture>
+</p>
+
 # design-engineering
 
 [![skills.sh](https://skills.sh/b/AgentsORG/design-engineering)](https://skills.sh/AgentsORG/design-engineering)
@@ -16,12 +23,12 @@ npx skills add AgentsORG/design-engineering
 
 ![design-engineering in twelve seconds: the router, a Before / After / Why review, the sound family, the SVG mascot, the install command](docs/demo/design-engineering-demo.gif)
 
-Twelve seconds, made with the skill's own rules and tools. [Watch the MP4 with sound](docs/demo/design-engineering-demo.mp4) — every transient sits on the frame where something lands, and the holds are silent.
+Twelve seconds, made with the skill's own rules and tools. [Watch the MP4 with sound](docs/demo/design-engineering-demo.mp4) — the whole soundtrack is *derived from the motion*: every transient sits on the frame where something lands, pitch follows size, pan follows position, and the holds are silent.
 
 | What you see | What made it |
 |---|---|
-| The composition | [`docs/demo/hyperframes/index.html`](docs/demo/hyperframes/index.html), a [HyperFrames](https://www.skills.sh/heygen-com/hyperframes/hyperframes) project: one paused GSAP timeline, `data-start` clips, `check` passing with zero layout or contrast findings. Motion values come from `easing-curves` and `duration-table`; sound placement from `sound-motion-sync`. |
-| The six sounds | `scripts/sound-family.mjs` against ElevenLabs with the shipped [example manifest](skills/design-engineering/scripts/sound-family.example.json) — one material ("felt mallet on a small wooden block"), trimmed, peaked at −3 dBFS. Files and prompts in [`docs/demo/hyperframes/assets/sfx/`](docs/demo/hyperframes/assets/sfx/). |
+| The composition | [`docs/demo/hyperframes/index.html`](docs/demo/hyperframes/index.html), a [HyperFrames](https://www.skills.sh/heygen-com/hyperframes/hyperframes) project in the shape HeyGen uses for its own launches: one paused GSAP timeline, `data-start` clips, a [storyboard](docs/demo/hyperframes/STORYBOARD.md) with the act table and audio cue map, a [seam ledger](docs/demo/hyperframes/ledger.json), `check` passing with zero layout or contrast findings. Motion values come from `easing-curves`, `duration-table`, and `launch-video-seams`. |
+| The sound | One stereo stem rendered by `scripts/sound-sheet.mjs` from a [cue sheet](docs/demo/hyperframes/assets/sfx/cues.json) — 25 cues, one per visual event, each with its contact frame and its box on the canvas. Size sets pitch and decay, x sets pan, y sets brightness, direction sets the whoosh's contour; nothing is picked from a library. The six product one-shots in the same folder come from the same voices (`--family`). `sound-from-motion`, `sound-motion-sync`, `launch-video-sound`. For ElevenLabs-generated families use `scripts/sound-family.mjs` with the [example manifest](skills/design-engineering/scripts/sound-family.example.json). |
 | The mascot | Eight flat SVG frames through `scripts/svg-flipbook.mjs --vars`: one 5.7 KB file, colors lifted to CSS variables, driven by the composition timeline. |
 
 Re-render it yourself:
@@ -40,10 +47,82 @@ Frames from the demo, each a real output shape of the skill.
 <td width="50%"><img src="docs/demo/screenshots/03-review-and-modal.png" alt="A Before / After / Why review table beside the fixed modal"><br><sub><b>A review, then the fix.</b> Every UI review is a Before | After | Why table scanned against the thirteen-row checklist; the modal on the right is what the After column ships. <code>review-format</code>, <code>review-checklist</code></sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/demo/screenshots/04-sound-and-svg.png" alt="Six generated UI sounds and an SVG mascot flipbook"><br><sub><b>Sound and vectors.</b> A six-sound family from one material via <code>sound-family.mjs</code>, and a mascot flipbook from <code>svg-flipbook.mjs</code>. <code>sound-palette</code>, <code>video-to-vector-pipeline</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/04-sound-and-svg.png" alt="Six generated UI sounds and an SVG mascot flipbook"><br><sub><b>Sound and vectors.</b> A six-sound family from one material, rendered by <code>sound-sheet.mjs</code> from the same voices that score the video, and a mascot flipbook from <code>svg-flipbook.mjs</code>. <code>sound-from-motion</code>, <code>sound-palette</code>, <code>video-to-vector-pipeline</code></sub></td>
 <td width="50%"><img src="docs/demo/screenshots/05-install.png" alt="Ten clusters, nine subagents, one router, and the install command"><br><sub><b>Ten clusters, nine subagents, one router.</b> Installs into any agent that reads a <code>SKILL.md</code>; slash commands and subagents ship for Claude Code, Cursor, and Codex.</sub></td>
 </tr>
 </table>
+
+## Benchmarks: with and without the skill
+
+The skill ships its own [DesignBench](https://github.com/webpai/designbench)-style fixtures — generation, edit, and repair tasks with deterministic `must_match` / `must_not_match` rules tied to the review checklist — and a runner that scores real outputs. Same model in both arms; the only difference is whether the agent read `SKILL.md` and followed its routing before answering. Scoring looks only at the code each arm shipped, not the prose around it.
+
+| arm | rules passed | fixtures fully clean |
+| --- | --- | --- |
+| Sonnet, own knowledge | 32 / 36 (89%) | 7 / 10 |
+| Sonnet + `/design-engineering` | 35 / 36 (97%) | 9 / 10 |
+
+Run of 2026-09-05, ten scorable fixtures, one sample each — a floor check, not a leaderboard. Per-fixture results, every rule each arm missed, and all twenty raw outputs are in [`evals/results/2026-09-05-sonnet/`](evals/results/2026-09-05-sonnet/REPORT.md). What the skill fixed: the card-hover edit (named transition properties, a `hover: hover` guard, a smaller lift), the dark-mode repair (a lifted surface instead of `#000`), the icon toolbar (`hover: hover`). What it still missed: one login form shipped 15 px inputs, which zoom on iOS.
+
+<details>
+<summary><b>One fixture, both arms</b> — <code>edit-hover-01</code>: "Make the card lift on hover."</summary>
+
+Input:
+
+```css
+.card { transition: all 0.3s ease-in; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.3); }
+```
+
+Without the skill (3 of 5 rules):
+
+```css
+.card {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+}
+```
+
+With the skill (5 of 5):
+
+```css
+.card {
+  transition:
+    transform 160ms cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 160ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 1px 1px rgba(17, 17, 17, 0.04),
+      0 2px 4px rgba(17, 17, 17, 0.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: box-shadow 160ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
+```
+
+</details>
+
+Reproduce: produce the two arms with any agent that can read files (prompts are the fixture rows in [`design-bench.jsonl`](skills/design-engineering/evals/design-bench.jsonl)), then:
+
+```bash
+node evals/run-bench.mjs evals/results/<run>
+```
+
+The eve evals in `evals/` are the other half: five `defineEval()` checks (review format, motion values, sound values, the generated-modal floor, and routing) run with `npm run eval`. The methodology behind both is in `references/meta/design-benchmarks.md`.
 
 ## The four primitives
 
@@ -51,7 +130,7 @@ Since v2.0.0 the repo is organized around four primitives, each owned by an open
 
 | Primitive | What it is | Where | Spec |
 |---|---|---|---|
-| **Knowledge** | The skill graph — 105 atomic, wikilinked nodes in 10 themed clusters, plus two generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
+| **Knowledge** | The skill graph — 107 atomic, wikilinked nodes in 10 themed clusters, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
 | **Package** | The portable plugin — one manifest, portable skills, namespaced client extensions | `plugin.json` + `skills/` | [Agent Plugins v1.0.0](https://agent-plugins.org/) |
 | **Runtime** | A durable agent that *runs* the knowledge — root agent, nine specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
 | **Client extensions** | Per-host adapters — subagents, slash commands, host manifests, shadcn registry | `agents/`, `commands/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
@@ -196,8 +275,8 @@ One skill, organised into **10 themed clusters**, fronted by a router: `/design-
 | Theme | Use it when… |
 |---|---|
 | `philosophy` | Justifying polish, picking between two valid approaches, debating delight budget. The "why bother" cluster. |
-| `motion` | Adding or reviewing any animation. Easing, durations, springs, gestures, transitions, stagger. The largest cluster. |
-| `sound` | Deciding whether an interaction should make a sound (usually no), designing one material family, syncing transients to frames, generating files — ElevenLabs on demand or open-weight / procedural / CC0 without a key — and scoring launch videos in the OpenAI register. Ships `scripts/sound-family.mjs`. |
+| `motion` | Adding or reviewing any animation. Easing, durations, springs, gestures, transitions, stagger, and how a multi-scene launch video is cut. The largest cluster. |
+| `sound` | Deciding whether an interaction should make a sound (usually no), designing one material family, syncing transients to frames, generating files — ElevenLabs on demand or open-weight / procedural / CC0 without a key — scoring launch videos in the OpenAI register, and deriving a video's whole stem from its motion. Ships `scripts/sound-family.mjs` and `scripts/sound-sheet.mjs`. |
 | `svg` | Creating clean, token-aware, editable SVG; animating it with the engine its home allows (inline CSS/WAAPI, embedded keyframes or SMIL for image use); morphing paths by the command-count rule; turning flat clips into editable animated mascots. Ships `scripts/svg-flipbook.mjs`. |
 | `typography` | Picking a typeface, building a type scale, leading, tracking, wrapping, truncation, underlines, the 16px and contrast floors. Avoiding AI-default font tells. |
 | `surface` | Color palette and OKLCH ramps, dark mode, shadows and nested radii, hairlines, image outlines, visual imperfection. |
@@ -245,23 +324,26 @@ design-engineering/
 │   ├── review-format.eval.ts          ← review requests must return the Before|After|Why table
 │   ├── motion-values.eval.ts          ← easing advice must name concrete values
 │   ├── sound-values.eval.ts           ← sound advice names a duration, a level, or says "no sound"
-│   └── design-bench.eval.ts           ← generated UI passes the review-checklist floor (DesignBench-style repair)
+│   ├── design-bench.eval.ts           ← generated UI passes the review-checklist floor (DesignBench-style repair)
+│   ├── run-bench.mjs                  ← scores with/without-skill outputs against design-bench.jsonl
+│   └── results/<run>/                 ← raw outputs of both arms + REPORT.md
 ├── scripts/sync-skills.mjs            ← skills/ → agent/skills/ (single source of truth)
 ├── registry.json                      ← shadcn registry source          (com.shadcn.registry)
 ├── r/                                 ← built registry items (generated, committed for raw URLs)
 ├── scripts/build-registry.mjs         ← registry.json + r/*.json builder
 ├── spec/                              ← offline mirrors: agent-skills-spec.md, design-md-spec.md, design-file-spec.md
 ├── templates/design-engineering.design ← starter .design contract (this skill's motion + surface defaults)
-├── docs/demo/                         ← the README demo: HyperFrames source, MP4/GIF, screenshots, generated sounds
+├── docs/brand/                        ← AgentsORG wordmark (light / dark) and icon
+├── docs/demo/                         ← the README demo: HyperFrames source + storyboard + ledger, MP4/GIF, screenshots, the stem and cue sheet
 ├── template/TEMPLATE.md
 └── skills/design-engineering/         ← THE KNOWLEDGE (portable core)
     ├── SKILL.md                       ← thin Map of Content
     ├── evals/                         ← Step-0 routing fixtures (loading.jsonl, progressive-reads.jsonl)
-    ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), svg-flipbook.mjs (frames → animated SVG)
-    └── references/                    ← 10 themed clusters, 105 atomic nodes, 9 MOCs
+    ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), sound-sheet.mjs (motion cue sheet → stereo stem), svg-flipbook.mjs (frames → animated SVG)
+    └── references/                    ← 10 themed clusters, 107 atomic nodes, 9 MOCs
 ```
 
-Total: **105 atomic nodes** across 10 clusters (117 markdown files in the skill), 9 workflow subagents ×2 formats, 9 commands, 5 eve evals, 6 plugin manifests, 2 scripts.
+Total: **107 atomic nodes** across 10 clusters (119 markdown files in the skill), 9 workflow subagents ×2 formats, 9 commands, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
 
 ## Agent Plugins conformance
 
@@ -295,6 +377,7 @@ PRs welcome. The shorter the better. See [CONTRIBUTING.md](CONTRIBUTING.md), [CO
 - **Index (Emil Kowalski & Glenn Carstens-Peters)** — [index.how](https://index.how)
 - **Benji Taylor** — [benji.org](https://benji.org) + [Agentation](https://www.agentation.com)
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev)
+- **HeyGen** — [hyperframes-launches](https://github.com/heygen-com/hyperframes-launches) (launch-video seams, storyboards, audio cue maps) and [HyperFrames](https://github.com/heygen-com/hyperframes)
 - **Apple** — [Designing Audio-Haptic Experiences (WWDC19)](https://developer.apple.com/videos/play/wwdc2019/223/), [HIG: Playing audio](https://developer.apple.com/design/human-interface-guidelines/playing-audio), [Twenty Thousand Hertz: The Sound of Apple](https://www.20k.org/episodes/the-sound-of-apple)
 - **bruno (@tvnxty)** — [superfx.co](https://superfx.co); the [Base logo reveal](https://x.com/tvnxty/status/2095601307444728212) whose sound map anchors `launch-video-sound`
 - **Studio Dumbar/DEPT** — [OpenAI brand motion + sound](https://studiodumbar.com/work/openai)

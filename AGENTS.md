@@ -32,7 +32,7 @@ The graph is intentionally **Obsidian-compatible**: installers can open this rep
 
 - Filenames: lowercase, hyphenated, no extension in wikilinks, **unique across the vault** (Obsidian resolves wikilinks by basename, so theme subfolders are organizational only — they don't create namespaces).
 - Theme folders: `references/<theme>/` — one per cluster. Current themes: philosophy, motion, sound, svg, typography, surface, components, layout, anti-patterns, meta.
-- Scripts: `skills/design-engineering/scripts/` — only for work the agent cannot do by reading (today: `sound-family.mjs`, which calls ElevenLabs or synthesizes offline, with its example manifest; `svg-flipbook.mjs`, which assembles SVG frames into one animated SVG). No dependencies, Node 18+. Don't add a script for anything a node can describe.
+- Scripts: `skills/design-engineering/scripts/` — only for work the agent cannot do by reading (today: `sound-family.mjs`, which calls ElevenLabs or synthesizes offline, with its example manifest; `sound-sheet.mjs`, which renders a stereo stem from a motion cue sheet; `svg-flipbook.mjs`, which assembles SVG frames into one animated SVG). No dependencies, Node 18+. Don't add a script for anything a node can describe.
 - The router: `references/meta/skill-router.md` is the first thing `/design-engineering` runs — contract, phase, one owner, companions. New clusters and subagents get a row there and in `routing-table.md`, or they are unreachable.
 - MOCs: `references/<theme>/MOC-<theme>.md` — one per theme folder. Indexes that theme's atomic nodes.
 - Atomic nodes: `references/<theme>/<concept-name>.md`.

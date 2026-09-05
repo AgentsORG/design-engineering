@@ -43,7 +43,8 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Decide whether an interaction should make a sound | [[sound-decision-framework]] |
 | Design or generate a set of UI sounds | [[sound-palette]], then [[sound-generation-elevenlabs]] or [[sound-generation-open-source]] (or spawn [[sound-designer]]) |
 | Sync a sound to an animation, or fix one that feels late | [[sound-motion-sync]] |
-| Score a launch video or logo reveal | [[launch-video-sound]] |
+| Score a launch video or logo reveal | [[launch-video-sound]]; derive the stem from the timeline → [[sound-from-motion]] |
+| Cut a multi-scene video so it reads as one move | [[launch-video-seams]] |
 | Decide which skill or companion should own a job | [[skill-router]] |
 | Build an OKLCH palette or ramp, repair contrast by lightness | [[color-scales-oklch]] |
 | Fix pinched corners, harsh borders, dark-mode cards vanishing | [[depth-and-nesting]] |

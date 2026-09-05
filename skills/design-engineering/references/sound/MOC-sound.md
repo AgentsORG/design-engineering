@@ -32,10 +32,11 @@ Two surfaces share this cluster and have opposite defaults. **Product UI** is si
 ## Launch-video register
 
 - [[launch-video-sound]] — The OpenAI / Studio Dumbar register and a measured sound map of a bruno (@tvnxty) logo reveal: sound density mirrors motion density, holds are true silence, small things tick high and short, big things land low and long.
+- [[sound-from-motion]] — Derive the sound from the motion: size → pitch and decay, x → pan, y → brightness, direction → contour, tween → length, contact frame → transient. The cue sheet and `scripts/sound-sheet.mjs`, which renders a stereo stem from it.
 
 ## Shipped tooling
 
-`scripts/sound-family.mjs` (next to this skill's `SKILL.md`) turns one family manifest into a normalized set of files — ElevenLabs when a key is present, a dependency-free synthesizer when it is not. Spawn [[sound-designer]] when the job is the whole workflow rather than one question.
+`scripts/sound-family.mjs` (next to this skill's `SKILL.md`) turns one family manifest into a normalized set of files — ElevenLabs when a key is present, a dependency-free synthesizer when it is not. `scripts/sound-sheet.mjs` renders a launch video's whole stem from a motion cue sheet, and writes the same six product one-shots from the same voices. Spawn [[sound-designer]] when the job is the whole workflow rather than one question.
 
 ## Cross-cluster
 

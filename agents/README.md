@@ -32,7 +32,7 @@ These overlap intentionally — they're scoped to *workflows*, not themes. Use t
 - **Live dev server + annotations** → `agentation-fix-loop`.
 - **Project has DESIGN.md** → `design-md-consumer` before any UI generation.
 - **Installer wants to make the skill theirs** → `pov-curator`.
-- **Anything with audio — product or launch video** → `sound-designer` (it says no first, then generates via `skills/design-engineering/scripts/sound-family.mjs`).
+- **Anything with audio — product or launch video** → `sound-designer` (it says no first, then generates via `skills/design-engineering/scripts/sound-family.mjs`, or renders a video stem from the motion with `sound-sheet.mjs`).
 - **A vector asset to draw or clean** → `svg-creator`; **a vector asset to move, or a clip to vectorize** → `svg-animator` (which sends unnamed-group files back to `svg-creator` first).
 - **Not sure which — or the job belongs to impeccable, the `design` skill, or HyperFrames** → the main agent runs `references/meta/skill-router.md` before spawning anything.
 
