@@ -1,0 +1,188 @@
+{
+  "run": "2026-09-05-sonnet",
+  "totals": {
+    "baseline": {
+      "passed": 32,
+      "rules": 36,
+      "clean": 7,
+      "n": 10
+    },
+    "skill": {
+      "passed": 35,
+      "rules": 36,
+      "clean": 9,
+      "n": 10
+    }
+  },
+  "rows": [
+    {
+      "id": "gen-modal-01",
+      "task": "generation",
+      "rules": 5,
+      "arms": {
+        "baseline": {
+          "passed": 5,
+          "missed": []
+        },
+        "skill": {
+          "passed": 5,
+          "missed": []
+        }
+      }
+    },
+    {
+      "id": "gen-form-01",
+      "task": "generation",
+      "rules": 5,
+      "arms": {
+        "baseline": {
+          "passed": 5,
+          "missed": []
+        },
+        "skill": {
+          "passed": 4,
+          "missed": [
+            "missing `font-size: ?1[6-9]px\\|text-base`"
+          ]
+        }
+      }
+    },
+    {
+      "id": "gen-toolbar-01",
+      "task": "generation",
+      "rules": 4,
+      "arms": {
+        "baseline": {
+          "passed": 3,
+          "missed": [
+            "missing `hover: ?hover`"
+          ]
+        },
+        "skill": {
+          "passed": 4,
+          "missed": []
+        }
+      }
+    },
+    {
+      "id": "gen-send-sound-01",
+      "task": "generation",
+      "rules": 5,
+      "arms": {
+        "baseline": {
+          "passed": 5,
+          "missed": []
+        },
+        "skill": {
+          "passed": 5,
+          "missed": []
+        }
+      }
+    },
+    {
+      "id": "edit-hover-01",
+      "task": "edit",
+      "rules": 5,
+      "arms": {
+        "baseline": {
+          "passed": 3,
+          "missed": [
+            "missing `hover: ?hover`",
+            "present `translateY\\(-4px\\)`"
+          ]
+        },
+        "skill": {
+          "passed": 5,
+          "missed": []
+        }
+      }
+    },
+    {
+      "id": "edit-dropdown-01",
+      "task": "edit",
+      "rules": 6,
+      "arms": {
+        "baseline": {
+          "passed": 6,
+          "missed": []
+        },
+        "skill": {
+          "passed": 6,
+          "missed": []
+        }
+      }
+    },
+    {
+      "id": "repair-input-01",
+      "task": "repair",
+      "rules": 2,
+      "arms": {
+        "baseline": {
+          "passed": 2,
+          "missed": []
+        },
+        "skill": {
+          "passed": 2,
+          "missed": []
+        }
+      }
+    },
+    {
+      "id": "repair-darkmode-01",
+      "task": "repair",
+      "rules": 2,
+      "arms": {
+        "baseline": {
+          "passed": 1,
+          "missed": [
+            "present `background: ?#000;`"
+          ]
+        },
+        "skill": {
+          "passed": 2,
+          "missed": []
+        }
+      }
+    },
+    {
+      "id": "repair-spinner-01",
+      "task": "repair",
+      "rules": 1,
+      "arms": {
+        "baseline": {
+          "passed": 1,
+          "missed": []
+        },
+        "skill": {
+          "passed": 1,
+          "missed": []
+        }
+      }
+    },
+    {
+      "id": "repair-focus-01",
+      "task": "repair",
+      "rules": 1,
+      "arms": {
+        "baseline": {
+          "passed": 1,
+          "missed": []
+        },
+        "skill": {
+          "passed": 1,
+          "missed": []
+        }
+      }
+    },
+    {
+      "id": "arena-hero-01",
+      "task": "arena",
+      "arena": true
+    },
+    {
+      "id": "arena-mascot-01",
+      "task": "arena",
+      "arena": true
+    }
+  ]
+}

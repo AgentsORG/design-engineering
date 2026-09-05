@@ -1,0 +1,10 @@
+{
+  "_": "Vector ledger: one row per cut. exit/entry must agree on axis and dir (y -1 = upward). Every scene leaves with an 8 px upward nudge over 0.22 s and is hard-killed on the cut frame; the next scene's headline enters from below, moving up. Keep them matched when you retime anything.",
+  "fps": 30,
+  "seams": [
+    { "id": "title → router",   "cut": 2.4,  "technique": "velocity-matched cut, upward", "exit": { "selector": "#s1 .scene", "axis": "y", "dir": -1 }, "entry": { "selector": "#s2-h",  "axis": "y", "dir": -1 } },
+    { "id": "router → review",  "cut": 5.2,  "technique": "velocity-matched cut, upward", "exit": { "selector": "#s2 .scene", "axis": "y", "dir": -1 }, "entry": { "selector": "#s3-h",  "axis": "y", "dir": -1 } },
+    { "id": "review → sound",   "cut": 8.2,  "technique": "velocity-matched cut, upward", "exit": { "selector": "#s3 .scene", "axis": "y", "dir": -1 }, "entry": { "selector": "#s4-h",  "axis": "y", "dir": -1 } },
+    { "id": "sound → install",  "cut": 10.4, "technique": "velocity-matched cut, upward", "exit": { "selector": "#s4 .scene", "axis": "y", "dir": -1 }, "entry": { "selector": "#s5-h",  "axis": "y", "dir": -1 } }
+  ]
+}

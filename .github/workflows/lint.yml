@@ -71,6 +71,7 @@ jobs:
             "agents/svg-creator.md"
             "agents/svg-animator.md"
             "skills/design-engineering/scripts/sound-family.mjs"
+            "skills/design-engineering/scripts/sound-sheet.mjs"
             "skills/design-engineering/scripts/svg-flipbook.mjs"
             "plugin.json"
             "package.json"

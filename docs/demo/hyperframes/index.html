@@ -59,6 +59,10 @@
       .install .p { color: #9aa0ab; }
       .foot { position: absolute; left: 160px; bottom: 96px; font-size: 26px; color: #5a5852; display: flex; gap: 48px; }
       .hit { position: absolute; }
+      .brand { display: flex; align-items: center; gap: 20px; }
+      .mark { height: 64px; width: auto; display: block; }
+      .foot .mark { height: 44px; }
+      .foot { align-items: center; }
     </style>
   </head>
   <body>
@@ -67,7 +71,7 @@
       <!-- 1 · Title -->
       <section id="s1" class="clip" data-start="0" data-duration="2.4" data-track-index="1">
         <div class="scene">
-          <div id="s1-eye" class="eyebrow">AgentsORG · v2.1.0</div>
+          <div id="s1-eye" class="eyebrow brand"><img src="assets/brand/agents.svg" alt="agents.org.in" class="mark"><span>design‑engineering · v2.2.0</span></div>
           <h1 id="s1-h">design‑engineering</h1>
           <div id="s1-sub" class="sub">A skill graph for coding agents. It routes, it reviews, it makes sound and vectors, and it says no to most animation.</div>
         </div>
@@ -115,16 +119,16 @@
       <!-- 4 · Sound family + SVG mascot -->
       <section id="s4" class="clip" data-start="8.2" data-duration="2.2" data-track-index="1">
         <div class="scene">
-          <div id="s4-eye" class="eyebrow">sound‑family.mjs · svg‑flipbook.mjs</div>
-          <h2 id="s4-h">One material. One click to generate. Transients on the contact frame.</h2>
+          <div id="s4-eye" class="eyebrow">sound‑sheet.mjs · svg‑flipbook.mjs</div>
+          <h2 id="s4-h">One material. Pitch from size, pan from position, every transient on the contact frame.</h2>
           <div class="sound">
             <div class="bars" id="bars">
-              <div class="bar"><span class="name">tick</span><span class="wave" data-w="3,7,18,40,26,12,8,5,4,3,2,2"></span><span class="ms">66 ms</span></div>
-              <div class="bar"><span class="name">tap</span><span class="wave" data-w="4,10,24,40,34,20,12,8,6,4,3,2"></span><span class="ms">60 ms</span></div>
-              <div class="bar"><span class="name">send</span><span class="wave" data-w="6,16,30,40,28,16,22,36,30,18,10,5"></span><span class="ms">384 ms</span></div>
-              <div class="bar"><span class="name">receive</span><span class="wave" data-w="5,14,34,40,24,14,26,32,20,10,6,3"></span><span class="ms">120 ms</span></div>
-              <div class="bar"><span class="name">error</span><span class="wave" data-w="10,28,40,36,26,18,12,8,6,4,3,2"></span><span class="ms">153 ms</span></div>
-              <div class="bar"><span class="name">success</span><span class="wave" data-w="6,18,36,40,30,22,34,40,28,18,10,4"></span><span class="ms">641 ms</span></div>
+              <div class="bar"><span class="name">tick</span><span class="wave" data-w="3,7,18,40,26,12,8,5,4,3,2,2"></span><span class="ms">44 ms</span></div>
+              <div class="bar"><span class="name">tap</span><span class="wave" data-w="4,10,24,40,34,20,12,8,6,4,3,2"></span><span class="ms">136 ms</span></div>
+              <div class="bar"><span class="name">send</span><span class="wave" data-w="6,16,30,40,28,16,22,36,30,18,10,5"></span><span class="ms">240 ms</span></div>
+              <div class="bar"><span class="name">receive</span><span class="wave" data-w="5,14,34,40,24,14,26,32,20,10,6,3"></span><span class="ms">206 ms</span></div>
+              <div class="bar"><span class="name">error</span><span class="wave" data-w="10,28,40,36,26,18,12,8,6,4,3,2"></span><span class="ms">155 ms</span></div>
+              <div class="bar"><span class="name">success</span><span class="wave" data-w="6,18,36,40,30,22,34,40,28,18,10,4"></span><span class="ms">393 ms</span></div>
             </div>
             <div class="mascot-stage" id="stage">
               <svg viewBox="0 0 120 120" id="mascot" role="img" aria-label="Bouncing mascot"></svg>
@@ -141,20 +145,11 @@
           <h2 id="s5-h">Ten clusters. Nine subagents. One router.</h2>
           <div class="install mono" id="cmd"><span class="p">$</span><span>npx skills add AgentsORG/design-engineering</span></div>
         </div>
-        <div class="foot" id="foot"><span>github.com/AgentsORG/design-engineering</span><span>MIT</span></div>
+        <div class="foot" id="foot"><img src="assets/brand/agents.svg" alt="agents.org.in" class="mark"><span>github.com/AgentsORG/design-engineering</span><span>MIT</span></div>
       </section>
 
       <!-- Sound: silence is the material; a transient only where the visual makes contact -->
-      <audio id="sfx-send-1" src="assets/sfx/send.wav" data-start="0.6" data-duration="0.5" data-track-index="10"></audio>
-      <audio id="sfx-tick-1" src="assets/sfx/tick.wav" data-start="3.07" data-duration="0.1" data-track-index="11"></audio>
-      <audio id="sfx-tick-2" src="assets/sfx/tick.wav" data-start="3.15" data-duration="0.1" data-track-index="12"></audio>
-      <audio id="sfx-tick-3" src="assets/sfx/tick.wav" data-start="3.23" data-duration="0.1" data-track-index="13"></audio>
-      <audio id="sfx-tick-4" src="assets/sfx/tick.wav" data-start="5.91" data-duration="0.1" data-track-index="11"></audio>
-      <audio id="sfx-tick-5" src="assets/sfx/tick.wav" data-start="5.99" data-duration="0.1" data-track-index="12"></audio>
-      <audio id="sfx-tick-6" src="assets/sfx/tick.wav" data-start="6.07" data-duration="0.1" data-track-index="13"></audio>
-      <audio id="sfx-tap-1" src="assets/sfx/tap.wav" data-start="6.63" data-duration="0.2" data-track-index="14"></audio>
-      <audio id="sfx-receive-1" src="assets/sfx/receive.wav" data-start="8.71" data-duration="0.3" data-track-index="10"></audio>
-      <audio id="sfx-success-1" src="assets/sfx/success.wav" data-start="10.83" data-duration="1" data-track-index="15"></audio>
+      <audio id="stem" src="assets/sfx/stem.wav" data-start="0" data-duration="12" data-track-index="10"></audio>
     </div>
 
     <script>
@@ -168,7 +163,7 @@
       const OUT = "power3.out";
       const tl = gsap.timeline({ paused: true });
 
-      // 1 · Title — wordmark lands at 0.42 (send.wav)
+      // 1 · Title — the headline lands at 0.51; the stem (assets/sfx/stem.wav) carries every transient, derived from these tweens by assets/sfx/cues.json
       tl.from("#s1-eye", { autoAlpha: 0, y: 12, duration: 0.35, ease: OUT }, 0.1);
       tl.from("#s1-h", { autoAlpha: 0, y: 40, scale: 0.97, duration: 0.42, ease: OUT }, 0.15);
       tl.from("#s1-sub", { autoAlpha: 0, y: 14, duration: 0.4, ease: OUT }, 0.7);
