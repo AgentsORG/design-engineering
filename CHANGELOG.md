@@ -31,7 +31,9 @@ Three things at once: `/design-engineering` becomes a **router** over the design
 ### Added — demo
 
 - **`docs/demo/`** — a twelve-second HyperFrames composition (`hyperframes/index.html`, `check` clean) rendered to MP4 with sound and GIF for the README, five scene screenshots, the six ElevenLabs-generated sounds with their manifest, and the mascot flipbook produced by `svg-flipbook.mjs`. README gains a Demo section and a "What `/design-engineering` produces" gallery.
-- **`sound-family.example.json`** — `send` and `receive` prompts ask for damped, very-short-decay notes (verified live: 296 ms and 174 ms).
+- **`sound-family.example.json`** — `send` and `receive` prompts ask for damped, very-short-decay notes.
+- **`sound-family.mjs`** — tails are trimmed *relative to the peak* (a 5 ms RMS envelope followed until it sits 36 dB under its own peak) instead of at an absolute threshold, because generated audio's room tone lands at a different level every run; the WAV reader walks RIFF chunks. Verified live: tick 66 ms, tap 60 ms, receive 120 ms, error 153 ms, send 384 ms, success 641 ms, all at −3 dBFS.
+- **Demo motion pass** — 80 ms group staggers, exits at ~65% of the entrance with an 8 px nudge, overlay and modal paired, every transient placed one frame after its tween settles.
 
 ### Added — benchmarks and evals
 

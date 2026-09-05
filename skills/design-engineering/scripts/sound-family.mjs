@@ -68,16 +68,46 @@ function writeWav(path, samples) {
   writeFileSync(path, buf);
 }
 
+function readWav(path) {
+  // Walks RIFF chunks (ffmpeg writes a LIST chunk before "data"); expects the 16-bit mono
+  // 44.1 kHz PCM the ffmpeg pass produced.
+  const buf = readFileSync(path);
+  let pos = 12;
+  while (pos + 8 <= buf.length) {
+    const id = buf.toString("ascii", pos, pos + 4);
+    const size = buf.readUInt32LE(pos + 4);
+    if (id === "data") {
+      const n = Math.floor(Math.min(size, buf.length - pos - 8) / 2);
+      const out = new Float32Array(n);
+      for (let i = 0; i < n; i++) out[i] = buf.readInt16LE(pos + 8 + i * 2) / 32768;
+      return out;
+    }
+    pos += 8 + size + (size % 2);
+  }
+  throw new Error(`${path}: no data chunk`);
+}
+
 function finalize(samples) {
-  // Trim leading silence (below -60 dBFS), fade the last 10 ms, peak to -3 dBFS.
+  // Trim leading silence (below -60 dBFS). Then trim the tail *relative to the peak*: a
+  // 5 ms RMS envelope is followed until it stays 36 dB under its own peak — absolute
+  // thresholds fail on generated audio, whose room tone sits at a different level every run.
+  // Fade the last 10 ms, peak to -3 dBFS.
   const floor = 10 ** (-60 / 20);
   let start = 0;
   while (start < samples.length && Math.abs(samples[start]) < floor) start++;
-  // Trim the tail too: everything after the last sample above -45 dBFS is inaudible ring.
-  const tailFloor = 10 ** (-45 / 20);
-  let end = samples.length;
-  while (end > start && Math.abs(samples[end - 1]) < tailFloor) end--;
-  let out = samples.subarray(start, Math.min(samples.length, end + Math.floor(SR * 0.01)));
+  const win = Math.floor(SR * 0.005);
+  const env = [];
+  for (let i = start; i + win <= samples.length; i += win) {
+    let acc = 0;
+    for (let j = i; j < i + win; j++) acc += samples[j] * samples[j];
+    env.push(Math.sqrt(acc / win));
+  }
+  const envPeak = Math.max(...env, 1e-9);
+  const cut = envPeak * 10 ** (-36 / 20);
+  let lastLoud = env.length - 1;
+  while (lastLoud > 0 && env[lastLoud] < cut) lastLoud--;
+  const end = Math.min(samples.length, start + (lastLoud + 1) * win + Math.floor(SR * 0.02));
+  let out = samples.subarray(start, end);
   const fade = Math.min(Math.floor(SR * 0.01), out.length);
   for (let i = 0; i < fade; i++) out[out.length - 1 - i] *= i / fade;
   let peak = 0;
@@ -212,7 +242,10 @@ async function generateEleven(name, spec) {
   const r = spawnSync("ffmpeg", ["-y", "-loglevel", "error", "-i", mp3, "-af", af, "-ac", "1", "-ar", String(SR), wav]);
   if (r.status !== 0) return { file: basename(mp3), processed: false, prompt: text };
   unlinkSync(mp3);
-  return { file: basename(wav), processed: true, prompt: text };
+  // Pass 3: the same peak-relative tail trim and re-peak the synth path uses.
+  const trimmed = finalize(readWav(wav));
+  writeWav(wav, trimmed);
+  return { file: basename(wav), processed: true, prompt: text, seconds: +(trimmed.length / SR).toFixed(3) };
 }
 
 // ---------------------------------------------------------------- run
