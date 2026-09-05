@@ -6,6 +6,20 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.4.0] — 2026-09-05
+
+Motion that is alive: the demo remade on HeyGen's launch motion system, measured against Skale's reel, and the system written into the graph.
+
+### Added — the launch motion system
+
+- **`references/motion/launch-video-seams.md`** rewritten as the motion system plus the seams: one easing law (exponential arrivals with tau 0.131 s, mirrored exits, as ease *functions* because GSAP's `expo` is a different curve), a damped spring at zeta 1/3 on three channels (position 1.45 Hz, shape 1.88 Hz, rotation 2.5 Hz) with the windowed GSAP ease that ends exactly at rest, blur derived from velocity, stamp decisions vs ease curves, no idle motion; a catalogue of shared-element seams (velocity-matched cut, zoom-through, edge-on collapse → unfold, dock, conveyor, mask-open / recede, explode-out) with a ledger; the measured numbers — HeyGen's 2,300 tweens by ease and property, Skale's reel (3 cuts in 41.7 s, median move 4 frames, 32 % still, motion decaying to a tenth within 12 frames of a cut), OpenAI's stillness; and the HyperFrames lint rules that bite (same-selector hard kills, collapsed-but-visible elements, CSS initial states).
+
+### Changed — the demo
+
+- **Remade on the system.** The wordmark lands on a spring with squash and clearing blur; words pop in with their own blur; cards spring from below with a ±3° rotation ring; the terminal unfolds from the axis the cards collapsed on; cells stream with blur; a cursor arrives, flips the toggle (knob on a spring, track to blue) and presses Save (the button dips and rings back); the modal docks into the mascot stage, which grows on a spring; bars ride a conveyor in and accelerate off the top; the command pill rises, types, pops volume-conservingly and takes a shine. Four seams, zero cuts. Text reveals stay stepped, so the sound still sits on frames.
+- **Sound follows.** Cue sheet retimed to the springs' first rest crossings; four soft breaths of air under the seams (the register has no whooshes); clicks for the toggle press, the knob seating, and the Save press, with an octave-up thud at −10 dB. 81 onsets from 31 cues, −16.0 LUFS.
+- `STORYBOARD.md` and `ledger.json` carry the new acts, seams, and the system constants.
+
 ## [2.3.0] — 2026-09-05
 
 The launch-video register, measured from the films HKTITAN pointed at — OpenAI's *Refreshed.* and *Introducing GPT-5* — and built into the renderer and the demo.

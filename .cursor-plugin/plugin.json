@@ -2,7 +2,7 @@
   "$schema": "https://cursor.com/schemas/cursor-plugin/plugin.json",
   "name": "design-engineering",
   "displayName": "Design Engineering by HKTITAN",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns, sound, SVG. Plus a SOUL.md identity layer and nine workflow subagents. Distills Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
   "author": {
     "name": "HKTITAN",
