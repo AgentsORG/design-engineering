@@ -1,0 +1,72 @@
+{
+ "id": "09-buds",
+ "source": "09-buds.mp4",
+ "duration_s": 66.99,
+ "fps": 30.0,
+ "resolution": "1920x1080",
+ "aspect": 1.778,
+ "frames": 2008,
+ "cuts": 4,
+ "cuts_per_min": 3.6,
+ "cut_times_s": [
+  3.33,
+  29.43,
+  48.63,
+  53.43
+ ],
+ "flash_frames": 0,
+ "shot_len_s": {
+  "median": 13.5,
+  "p25": 4.8,
+  "p75": 19.2,
+  "max": 26.1
+ },
+ "still_frac": 0.223,
+ "calm_frac_global": 0.751,
+ "changed_area_median_when_moving": 0.005,
+ "held_in_move_frac": 0.311,
+ "moves_per_min": 109.4,
+ "move_len_s": {
+  "median": 0.067,
+  "p75": 0.233,
+  "p90": 0.997
+ },
+ "motion_after_cut_rel_at_1f_100ms_200ms_400ms_800ms": null,
+ "camera_share_of_moving_frames": {
+  "pan": 0.251,
+  "zoom": 0.107,
+  "rotate": 0.0,
+  "local": 0.642
+ },
+ "push_in_runs": 0,
+ "pull_out_runs": 0,
+ "pan_runs": 0,
+ "push_in_time_frac": 0.0,
+ "blur_ratio_fast_vs_still": 1.58,
+ "luma_median": 198.9,
+ "dark_frac_luma_lt_50": 0.27,
+ "light_frac_luma_gt_180": 0.701,
+ "colorfulness_median": 5.3,
+ "mono_frac_colorfulness_lt_15": 0.595,
+ "audio": {
+  "lufs_i": -17.7,
+  "true_peak_dbfs": -0.4,
+  "lra_lu": 1.8,
+  "silence_frac_-50dB": 0.008,
+  "band_share": {
+   "0-120": 0.667,
+   "120-500": 0.166,
+   "500-2000": 0.146,
+   "2000-6000": 0.013,
+   "6000-22050": 0.008
+  },
+  "onsets_per_s": 7.96,
+  "bpm_estimate": 166.7,
+  "beat_clarity": 0.587,
+  "speech_mod_index": 0.314,
+  "strong_hits_per_s": 1.19,
+  "cuts_within_67ms_of_strong_hit": 0.25,
+  "chance_within_67ms": 0.16,
+  "strong_hits_within_67ms_of_motion_peak": 0.2
+ }
+}

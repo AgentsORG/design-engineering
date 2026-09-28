@@ -1,0 +1,4272 @@
+{
+ "method": "Corpus statistics over HeyGen's hyperframes-launches composition source.\n\nMethod\n- Walk every tracked text file under the clone. Two file sets:\n  * ALL_HTML   : every .html (what the 2026-09-05 study counted)\n  * COMP       : composition source only = project index.html, compositions/*.html,\n                 project js/*.js, heygen-apple-motion/<template>/index.html (+hero, +examples);\n                 excludes contact sheets, mockups, boards, storyboards, previews,\n                 background studies and vendored gsap.min.js / three.\n  * COMP_DEDUP : COMP minus heygen-apple-motion/examples/* (re-brands of 01-ui-sting with\n                 identical motion) and spacex-launch/compositions/* (a re-skin of\n                 claude-paper-launch's compositions).\n- Tween calls: `.to(` `.from(` `.fromTo(` `.set(` preceded by an identifier (tl, gsap, T, inner ...).\n  Arguments are split at top level with a bracket/string-aware scanner; only object-literal\n  vars are analysed. `keyframes:[...]` arrays are analysed separately (their per-step\n  durations are NOT mixed into the tween-duration statistics).\n- Keys counted once per tween call (from-vars + to-vars union for fromTo).\n- Eases: string literal eases per tween; non-literal eases (function refs / CustomEase vars)\n  counted as \"<function>\". Tweens with no ease key are counted as \"(default)\" (GSAP default\n  power1.out unless a timeline `defaults` overrides it).\n- Raw token counts (regex over the whole file text) are reported too, because a raw count of\n  `scale` / `blur(` is what inflates numbers compared with per-tween key counts.\n",
+ "sets": {
+  "ALL_HTML": {
+   "files": 185,
+   "tween_calls": {
+    "set": 1282,
+    "to": 2108,
+    "fromTo": 460,
+    "from": 9
+   },
+   "tweens_excl_set": 2577,
+   "keyframe_tweens": 67,
+   "keyframe_steps": 706,
+   "eases_top": [
+    [
+     "power2.out",
+     434
+    ],
+    [
+     "none",
+     336
+    ],
+    [
+     "power2.in",
+     274
+    ],
+    [
+     "(default)",
+     247
+    ],
+    [
+     "power3.out",
+     235
+    ],
+    [
+     "<function>",
+     176
+    ],
+    [
+     "power2.inOut",
+     110
+    ],
+    [
+     "expo.out",
+     98
+    ],
+    [
+     "power1.inOut",
+     88
+    ],
+    [
+     "power3.inOut",
+     67
+    ],
+    [
+     "power3.in",
+     66
+    ],
+    [
+     "power1.out",
+     66
+    ],
+    [
+     "sine.inOut",
+     64
+    ],
+    [
+     "power4.out",
+     41
+    ],
+    [
+     "power1.in",
+     39
+    ],
+    [
+     "springSoft",
+     38
+    ],
+    [
+     "power4.in",
+     32
+    ],
+    [
+     "steps(1)",
+     28
+    ],
+    [
+     "back.out(2)",
+     21
+    ],
+    [
+     "back.out(1.5)",
+     11
+    ],
+    [
+     "expo.in",
+     11
+    ],
+    [
+     "springHeavy",
+     10
+    ],
+    [
+     "back.out(1.6)",
+     9
+    ],
+    [
+     "back.out(2.2)",
+     9
+    ],
+    [
+     "back.out(1.4)",
+     7
+    ]
+   ],
+   "timeline_default_eases": {
+    "power3.out": 2
+   },
+   "props_top": [
+    [
+     "opacity",
+     1785
+    ],
+    [
+     "scale",
+     852
+    ],
+    [
+     "y",
+     764
+    ],
+    [
+     "x",
+     542
+    ],
+    [
+     "filter",
+     491
+    ],
+    [
+     "autoAlpha",
+     248
+    ],
+    [
+     "transformOrigin",
+     205
+    ],
+    [
+     "width",
+     109
+    ],
+    [
+     "rotation",
+     103
+    ],
+    [
+     "left",
+     99
+    ],
+    [
+     "top",
+     93
+    ],
+    [
+     "yPercent",
+     80
+    ],
+    [
+     "xPercent",
+     79
+    ],
+    [
+     "color",
+     77
+    ],
+    [
+     "scaleX",
+     75
+    ],
+    [
+     "scaleY",
+     62
+    ],
+    [
+     "height",
+     61
+    ],
+    [
+     "svgOrigin",
+     61
+    ],
+    [
+     "backgroundColor",
+     59
+    ],
+    [
+     "borderRadius",
+     40
+    ],
+    [
+     "clipPath",
+     39
+    ],
+    [
+     "rotate",
+     29
+    ],
+    [
+     "boxShadow",
+     28
+    ],
+    [
+     "zIndex",
+     27
+    ],
+    [
+     "n",
+     25
+    ],
+    [
+     "backgroundPosition",
+     19
+    ],
+    [
+     "borderColor",
+     16
+    ],
+    [
+     "p",
+     14
+    ],
+    [
+     "display",
+     13
+    ],
+    [
+     "innerText",
+     13
+    ]
+   ],
+   "tweens_with_blur_filter": 486,
+   "duration_s": {
+    "n": 2343,
+    "p25": 0.2,
+    "median": 0.35,
+    "p75": 0.55,
+    "min": 0.01,
+    "max": 18.24
+   },
+   "duration_by_ease": {
+    "(default)": {
+     "n": 237,
+     "p25": 0.12,
+     "median": 0.2,
+     "p75": 0.32,
+     "min": 0.01,
+     "max": 18.24
+    },
+    "power2.out": {
+     "n": 416,
+     "p25": 0.18,
+     "median": 0.26,
+     "p75": 0.4,
+     "min": 0.04,
+     "max": 1.6
+    },
+    "power2.in": {
+     "n": 249,
+     "p25": 0.1,
+     "median": 0.26,
+     "p75": 0.34,
+     "min": 0.08,
+     "max": 1.7
+    },
+    "none": {
+     "n": 246,
+     "p25": 0.2,
+     "median": 0.845,
+     "p75": 1.6,
+     "min": 0.04,
+     "max": 16.46
+    },
+    "expo.out": {
+     "n": 97,
+     "p25": 0.42,
+     "median": 0.5,
+     "p75": 0.55,
+     "min": 0.16,
+     "max": 0.95
+    },
+    "<function>": {
+     "n": 135,
+     "p25": 0.4,
+     "median": 0.751,
+     "p75": 1.045,
+     "min": 0.12,
+     "max": 2.622
+    },
+    "power3.in": {
+     "n": 61,
+     "p25": 0.2,
+     "median": 0.2,
+     "p75": 0.45,
+     "min": 0.11,
+     "max": 1.45
+    },
+    "power4.in": {
+     "n": 31,
+     "p25": 0.22,
+     "median": 0.3,
+     "p75": 0.34,
+     "min": 0.05,
+     "max": 0.62
+    },
+    "power3.out": {
+     "n": 231,
+     "p25": 0.37,
+     "median": 0.46,
+     "p75": 0.55,
+     "min": 0.06,
+     "max": 4.8
+    },
+    "power3.inOut": {
+     "n": 67,
+     "p25": 0.42,
+     "median": 0.52,
+     "p75": 0.665,
+     "min": 0.2,
+     "max": 1.7
+    },
+    "power1.inOut": {
+     "n": 79,
+     "p25": 0.16,
+     "median": 0.2,
+     "p75": 0.55,
+     "min": 0.06,
+     "max": 7.59
+    },
+    "power1.out": {
+     "n": 58,
+     "p25": 0.128,
+     "median": 0.18,
+     "p75": 0.375,
+     "min": 0.06,
+     "max": 3.0
+    },
+    "power1.in": {
+     "n": 33,
+     "p25": 0.1,
+     "median": 0.2,
+     "p75": 0.3,
+     "min": 0.07,
+     "max": 3.2
+    },
+    "sine.inOut": {
+     "n": 60,
+     "p25": 0.4,
+     "median": 0.78,
+     "p75": 1.27,
+     "min": 0.18,
+     "max": 7.5
+    },
+    "power2.inOut": {
+     "n": 101,
+     "p25": 0.3,
+     "median": 0.5,
+     "p75": 0.7,
+     "min": 0.09,
+     "max": 2.3
+    },
+    "steps(1)": {
+     "n": 28,
+     "p25": 0.287,
+     "median": 0.45,
+     "p75": 0.5,
+     "min": 0.05,
+     "max": 0.5
+    },
+    "back.out(2)": {
+     "n": 21,
+     "p25": 0.1,
+     "median": 0.16,
+     "p75": 0.18,
+     "min": 0.08,
+     "max": 0.5
+    },
+    "power4.out": {
+     "n": 40,
+     "p25": 0.3,
+     "median": 0.48,
+     "p75": 0.55,
+     "min": 0.12,
+     "max": 1.0
+    },
+    "springSoft": {
+     "n": 38,
+     "p25": 0.25,
+     "median": 0.44,
+     "p75": 0.6,
+     "min": 0.14,
+     "max": 1.33
+    }
+   },
+   "stagger_s": {
+    "n": 87,
+    "p25": 0.035,
+    "median": 0.055,
+    "p75": 0.08,
+    "min": 0.004,
+    "max": 0.18
+   },
+   "stagger_top": [
+    [
+     0.055,
+     10
+    ],
+    [
+     0.05,
+     9
+    ],
+    [
+     0.025,
+     6
+    ],
+    [
+     0.07,
+     5
+    ],
+    [
+     0.03,
+     5
+    ],
+    [
+     0.075,
+     5
+    ],
+    [
+     0.06,
+     5
+    ],
+    [
+     0.08,
+     5
+    ],
+    [
+     0.09,
+     4
+    ],
+    [
+     0.035,
+     4
+    ],
+    [
+     0.04,
+     4
+    ],
+    [
+     0.16,
+     3
+    ]
+   ],
+   "blur_to_px": {
+    "n": 481,
+    "p25": 0.0,
+    "median": 6.0,
+    "p75": 12.0,
+    "min": 0.0,
+    "max": 42.0
+   },
+   "blur_to_top": [
+    [
+     0.0,
+     207
+    ],
+    [
+     8.0,
+     64
+    ],
+    [
+     20.0,
+     45
+    ],
+    [
+     10.0,
+     27
+    ],
+    [
+     14.0,
+     16
+    ],
+    [
+     16.0,
+     16
+    ],
+    [
+     7.0,
+     14
+    ],
+    [
+     6.0,
+     14
+    ],
+    [
+     18.0,
+     13
+    ],
+    [
+     12.0,
+     10
+    ],
+    [
+     2.0,
+     10
+    ],
+    [
+     24.0,
+     6
+    ]
+   ],
+   "blur_from_px": {
+    "n": 60,
+    "p25": 0.0,
+    "median": 6.5,
+    "p75": 10.0,
+    "min": 0.0,
+    "max": 22.0
+   },
+   "blur_from_top": [
+    [
+     0.0,
+     17
+    ],
+    [
+     10.0,
+     8
+    ],
+    [
+     8.0,
+     7
+    ],
+    [
+     6.0,
+     5
+    ],
+    [
+     5.0,
+     5
+    ],
+    [
+     12.0,
+     4
+    ],
+    [
+     20.0,
+     4
+    ],
+    [
+     7.0,
+     3
+    ],
+    [
+     4.0,
+     2
+    ],
+    [
+     22.0,
+     2
+    ],
+    [
+     3.0,
+     1
+    ],
+    [
+     9.0,
+     1
+    ]
+   ],
+   "entrance_scale_from": {
+    "n": 61,
+    "p25": 0.62,
+    "median": 0.86,
+    "p75": 1.07,
+    "min": 0.0,
+    "max": 3.0
+   },
+   "entrance_scale_from_top": [
+    [
+     0.75,
+     5
+    ],
+    [
+     1.12,
+     4
+    ],
+    [
+     0.86,
+     4
+    ],
+    [
+     0.62,
+     4
+    ],
+    [
+     0.5,
+     3
+    ],
+    [
+     0.94,
+     3
+    ],
+    [
+     0.4,
+     3
+    ],
+    [
+     1.07,
+     2
+    ],
+    [
+     0.55,
+     2
+    ],
+    [
+     0.92,
+     2
+    ],
+    [
+     0.72,
+     2
+    ],
+    [
+     2.6,
+     2
+    ],
+    [
+     0.96,
+     2
+    ],
+    [
+     0.8,
+     2
+    ],
+    [
+     0.985,
+     2
+    ]
+   ],
+   "entrance_scale_from_share_below1": 0.689,
+   "to_scale_non1": {
+    "n": 281,
+    "p25": 0.82,
+    "median": 0.88,
+    "p75": 1.06,
+    "min": 0.0,
+    "max": 8.2
+   },
+   "to_scale_top": [
+    [
+     0.84,
+     43
+    ],
+    [
+     0.8,
+     19
+    ],
+    [
+     0.9,
+     17
+    ],
+    [
+     0.88,
+     13
+    ],
+    [
+     1.2,
+     12
+    ],
+    [
+     0.82,
+     10
+    ],
+    [
+     0.4,
+     8
+    ],
+    [
+     0.96,
+     7
+    ],
+    [
+     1.06,
+     5
+    ],
+    [
+     0.52,
+     5
+    ],
+    [
+     0.72,
+     4
+    ],
+    [
+     1.045,
+     4
+    ],
+    [
+     1.1,
+     4
+    ],
+    [
+     1.12,
+     4
+    ],
+    [
+     0.94,
+     4
+    ]
+   ],
+   "entrance_x_offset_px": {
+    "n": 60,
+    "p25": 26.0,
+    "median": 230.0,
+    "p75": 340.0,
+    "min": -700.0,
+    "max": 2000.0
+   },
+   "entrance_x_top": [
+    [
+     340.0,
+     10
+    ],
+    [
+     280.0,
+     6
+    ],
+    [
+     -14.0,
+     5
+    ],
+    [
+     -10.0,
+     4
+    ],
+    [
+     1150.0,
+     4
+    ],
+    [
+     40.0,
+     3
+    ],
+    [
+     34.0,
+     3
+    ],
+    [
+     1250.0,
+     3
+    ],
+    [
+     1400.0,
+     2
+    ],
+    [
+     230.0,
+     2
+    ],
+    [
+     -46.0,
+     1
+    ],
+    [
+     62.0,
+     1
+    ]
+   ],
+   "rotation_deg": {
+    "n": 131,
+    "p25": 0.0,
+    "median": 8.0,
+    "p75": 68.5,
+    "min": 0.0,
+    "max": 360.0
+   },
+   "rotation_top": [
+    [
+     0.0,
+     38
+    ],
+    [
+     360.0,
+     23
+    ],
+    [
+     -8.0,
+     7
+    ],
+    [
+     90.0,
+     4
+    ],
+    [
+     -2.0,
+     3
+    ],
+    [
+     -25.0,
+     3
+    ],
+    [
+     -4.0,
+     3
+    ],
+    [
+     -3.0,
+     3
+    ],
+    [
+     -5.0,
+     2
+    ],
+    [
+     18.0,
+     2
+    ],
+    [
+     -7.0,
+     2
+    ],
+    [
+     5.0,
+     2
+    ],
+    [
+     -28.0,
+     2
+    ],
+    [
+     3.0,
+     2
+    ],
+    [
+     -4.5,
+     2
+    ]
+   ],
+   "rotation3d_deg": {
+    "n": 27,
+    "p25": 3.0,
+    "median": 25.0,
+    "p75": 75.0,
+    "min": 0.0,
+    "max": 360.0
+   },
+   "rotation3d_top": [
+    [
+     0.0,
+     7
+    ],
+    [
+     6.0,
+     2
+    ],
+    [
+     -7.0,
+     2
+    ],
+    [
+     180.0,
+     2
+    ],
+    [
+     -90.0,
+     2
+    ],
+    [
+     -55.0,
+     2
+    ],
+    [
+     30.0,
+     1
+    ],
+    [
+     60.0,
+     1
+    ],
+    [
+     90.0,
+     1
+    ],
+    [
+     -18.0,
+     1
+    ],
+    [
+     360.0,
+     1
+    ],
+    [
+     25.0,
+     1
+    ],
+    [
+     -30.0,
+     1
+    ],
+    [
+     310.0,
+     1
+    ],
+    [
+     10.0,
+     1
+    ]
+   ],
+   "tweens_touching_z_or_transformPerspective": 2,
+   "raw_token_counts": {
+    "scale": 2379,
+    "blur(": 631,
+    "rotation": 638,
+    "stagger": 110,
+    "skew": 202,
+    "clipPath": 96,
+    "perspective": 22,
+    "preserve-3d": 7,
+    "translateZ/z:": 15,
+    "PerspectiveCamera": 3,
+    "CustomEase": 32,
+    "power2.out": 446,
+    "none-ease": 338,
+    "expo.out": 114
+   },
+   "perspective_by_project": {
+    "HF-heygen-stripe": {
+     "perspective": 2,
+     "preserve-3d": 2,
+     "translateZ/z:": 3
+    },
+    "claude-design-send-hyperframes-launch": {
+     "translateZ/z:": 1
+    },
+    "cloud-render-launch": {
+     "perspective": 2
+    },
+    "figma-launch": {
+     "perspective": 1
+    },
+    "frame-md-launch-storyboard": {
+     "perspective": 3
+    },
+    "hyperframes-launch": {
+     "perspective": 3,
+     "preserve-3d": 3,
+     "translateZ/z:": 8
+    },
+    "inspector-launch": {
+     "perspective": 1,
+     "preserve-3d": 1
+    },
+    "k3-promo": {
+     "perspective": 4
+    },
+    "texture-launch-video": {
+     "perspective": 2,
+     "preserve-3d": 1,
+     "translateZ/z:": 2
+    },
+    "timeline-launch": {
+     "translateZ/z:": 1
+    },
+    "variables-launch": {
+     "perspective": 4
+    },
+    "vfx-heygen-combined": {
+     "PerspectiveCamera": 3
+    }
+   },
+   "tween_calls_by_project": [
+    [
+     "hyperframes-launch",
+     308
+    ],
+    [
+     "spacex-launch",
+     305
+    ],
+    [
+     "claude-paper-launch",
+     301
+    ],
+    [
+     "claude-design-send-hyperframes-launch",
+     274
+    ],
+    [
+     "frame-md-launch-storyboard",
+     272
+    ],
+    [
+     "inspector-launch",
+     234
+    ],
+    [
+     "pr-to-video-launch",
+     222
+    ],
+    [
+     "cloud-render-launch",
+     198
+    ],
+    [
+     "figma-launch",
+     180
+    ],
+    [
+     "timeline-launch",
+     171
+    ],
+    [
+     "sfx-music-launch",
+     162
+    ],
+    [
+     "texture-launch-video",
+     156
+    ],
+    [
+     "k3-promo",
+     140
+    ],
+    [
+     "heygen-apple-motion/03-message-sting",
+     130
+    ],
+    [
+     "vfx-heygen-combined",
+     124
+    ],
+    [
+     "HF-heygen-stripe",
+     104
+    ],
+    [
+     "variables-launch",
+     102
+    ],
+    [
+     "codex-five-hour-limit-replica",
+     94
+    ],
+    [
+     "heygen-apple-motion/04-generate-reel",
+     92
+    ],
+    [
+     "website-to-hyperframes",
+     86
+    ],
+    [
+     "heygen-apple-motion/examples/spotify",
+     62
+    ],
+    [
+     "heygen-apple-motion/01-ui-sting",
+     61
+    ],
+    [
+     "heygen-apple-motion/examples/instagram",
+     61
+    ],
+    [
+     "heygen-apple-motion/hero",
+     15
+    ],
+    [
+     "liquid-brand-refraction",
+     4
+    ],
+    [
+     "heygen-apple-motion/02-bouncy-ui",
+     1
+    ]
+   ],
+   "ease_by_project_top3": {
+    "HF-heygen-stripe": [
+     [
+      "power2.out",
+      15
+     ],
+     [
+      "(default)",
+      14
+     ],
+     [
+      "power2.in",
+      12
+     ]
+    ],
+    "claude-design-send-hyperframes-launch": [
+     [
+      "power2.out",
+      41
+     ],
+     [
+      "none",
+      35
+     ],
+     [
+      "power2.in",
+      33
+     ]
+    ],
+    "claude-paper-launch": [
+     [
+      "(default)",
+      43
+     ],
+     [
+      "power2.in",
+      31
+     ],
+     [
+      "power2.out",
+      26
+     ]
+    ],
+    "cloud-render-launch": [
+     [
+      "power3.out",
+      33
+     ],
+     [
+      "power2.out",
+      25
+     ],
+     [
+      "(default)",
+      21
+     ]
+    ],
+    "codex-five-hour-limit-replica": [
+     [
+      "none",
+      59
+     ],
+     [
+      "power1.out",
+      5
+     ]
+    ],
+    "figma-launch": [
+     [
+      "power3.out",
+      22
+     ],
+     [
+      "power2.out",
+      21
+     ],
+     [
+      "power4.out",
+      16
+     ]
+    ],
+    "frame-md-launch-storyboard": [
+     [
+      "power2.out",
+      31
+     ],
+     [
+      "power3.out",
+      25
+     ],
+     [
+      "power3.inOut",
+      24
+     ]
+    ],
+    "heygen-apple-motion/01-ui-sting": [
+     [
+      "<function>",
+      21
+     ],
+     [
+      "power2.out",
+      7
+     ],
+     [
+      "power1.out",
+      3
+     ]
+    ],
+    "heygen-apple-motion/02-bouncy-ui": [
+     [
+      "none",
+      1
+     ]
+    ],
+    "heygen-apple-motion/03-message-sting": [
+     [
+      "<function>",
+      25
+     ],
+     [
+      "power2.in",
+      19
+     ],
+     [
+      "power1.in",
+      14
+     ]
+    ],
+    "heygen-apple-motion/04-generate-reel": [
+     [
+      "power2.out",
+      11
+     ],
+     [
+      "power2.in",
+      10
+     ],
+     [
+      "power1.inOut",
+      7
+     ]
+    ],
+    "heygen-apple-motion/examples/instagram": [
+     [
+      "<function>",
+      21
+     ],
+     [
+      "power2.out",
+      7
+     ],
+     [
+      "power1.out",
+      3
+     ]
+    ],
+    "heygen-apple-motion/examples/spotify": [
+     [
+      "<function>",
+      21
+     ],
+     [
+      "power2.out",
+      7
+     ],
+     [
+      "power1.out",
+      3
+     ]
+    ],
+    "heygen-apple-motion/hero": [
+     [
+      "<function>",
+      7
+     ],
+     [
+      "none",
+      2
+     ],
+     [
+      "power2.out",
+      2
+     ]
+    ],
+    "hyperframes-launch": [
+     [
+      "power2.out",
+      56
+     ],
+     [
+      "none",
+      28
+     ],
+     [
+      "sine.inOut",
+      15
+     ]
+    ],
+    "inspector-launch": [
+     [
+      "springSoft",
+      38
+     ],
+     [
+      "none",
+      19
+     ],
+     [
+      "expo.out",
+      15
+     ]
+    ],
+    "k3-promo": [
+     [
+      "(default)",
+      14
+     ],
+     [
+      "power2.out",
+      14
+     ],
+     [
+      "power1.inOut",
+      9
+     ]
+    ],
+    "liquid-brand-refraction": [
+     [
+      "none",
+      4
+     ]
+    ],
+    "pr-to-video-launch": [
+     [
+      "none",
+      26
+     ],
+     [
+      "power3.out",
+      24
+     ],
+     [
+      "power2.out",
+      23
+     ]
+    ],
+    "sfx-music-launch": [
+     [
+      "power2.in",
+      17
+     ],
+     [
+      "power3.out",
+      17
+     ],
+     [
+      "(default)",
+      14
+     ]
+    ],
+    "spacex-launch": [
+     [
+      "(default)",
+      42
+     ],
+     [
+      "power2.out",
+      37
+     ],
+     [
+      "power2.in",
+      30
+     ]
+    ],
+    "texture-launch-video": [
+     [
+      "none",
+      19
+     ],
+     [
+      "expo.out",
+      19
+     ],
+     [
+      "power3.in",
+      16
+     ]
+    ],
+    "timeline-launch": [
+     [
+      "power2.out",
+      33
+     ],
+     [
+      "power3.out",
+      14
+     ],
+     [
+      "(default)",
+      13
+     ]
+    ],
+    "variables-launch": [
+     [
+      "power2.in",
+      16
+     ],
+     [
+      "power3.out",
+      13
+     ],
+     [
+      "power2.out",
+      12
+     ]
+    ],
+    "vfx-heygen-combined": [
+     [
+      "power2.in",
+      9
+     ],
+     [
+      "power2.out",
+      8
+     ],
+     [
+      "expo.out",
+      8
+     ]
+    ],
+    "website-to-hyperframes": [
+     [
+      "power2.out",
+      28
+     ],
+     [
+      "(default)",
+      15
+     ],
+     [
+      "power2.in",
+      9
+     ]
+    ]
+   }
+  },
+  "COMP": {
+   "files": 161,
+   "tween_calls": {
+    "set": 1281,
+    "to": 2101,
+    "fromTo": 464,
+    "from": 9
+   },
+   "tweens_excl_set": 2574,
+   "keyframe_tweens": 67,
+   "keyframe_steps": 706,
+   "eases_top": [
+    [
+     "power2.out",
+     433
+    ],
+    [
+     "none",
+     337
+    ],
+    [
+     "power2.in",
+     275
+    ],
+    [
+     "(default)",
+     247
+    ],
+    [
+     "power3.out",
+     233
+    ],
+    [
+     "<function>",
+     176
+    ],
+    [
+     "power2.inOut",
+     110
+    ],
+    [
+     "expo.out",
+     98
+    ],
+    [
+     "power1.inOut",
+     87
+    ],
+    [
+     "power3.inOut",
+     67
+    ],
+    [
+     "power3.in",
+     66
+    ],
+    [
+     "power1.out",
+     66
+    ],
+    [
+     "sine.inOut",
+     64
+    ],
+    [
+     "power4.out",
+     41
+    ],
+    [
+     "power1.in",
+     39
+    ],
+    [
+     "springSoft",
+     38
+    ],
+    [
+     "power4.in",
+     32
+    ],
+    [
+     "steps(1)",
+     28
+    ],
+    [
+     "back.out(2)",
+     21
+    ],
+    [
+     "back.out(1.5)",
+     11
+    ],
+    [
+     "expo.in",
+     11
+    ],
+    [
+     "springHeavy",
+     10
+    ],
+    [
+     "back.out(1.6)",
+     9
+    ],
+    [
+     "back.out(2.2)",
+     8
+    ],
+    [
+     "back.out(1.4)",
+     7
+    ]
+   ],
+   "timeline_default_eases": {
+    "power3.out": 2
+   },
+   "props_top": [
+    [
+     "opacity",
+     1785
+    ],
+    [
+     "scale",
+     851
+    ],
+    [
+     "y",
+     766
+    ],
+    [
+     "x",
+     538
+    ],
+    [
+     "filter",
+     491
+    ],
+    [
+     "autoAlpha",
+     248
+    ],
+    [
+     "transformOrigin",
+     205
+    ],
+    [
+     "width",
+     108
+    ],
+    [
+     "rotation",
+     101
+    ],
+    [
+     "left",
+     99
+    ],
+    [
+     "top",
+     93
+    ],
+    [
+     "yPercent",
+     80
+    ],
+    [
+     "xPercent",
+     79
+    ],
+    [
+     "color",
+     77
+    ],
+    [
+     "scaleX",
+     76
+    ],
+    [
+     "scaleY",
+     63
+    ],
+    [
+     "height",
+     61
+    ],
+    [
+     "svgOrigin",
+     61
+    ],
+    [
+     "backgroundColor",
+     59
+    ],
+    [
+     "borderRadius",
+     40
+    ],
+    [
+     "clipPath",
+     39
+    ],
+    [
+     "rotate",
+     29
+    ],
+    [
+     "boxShadow",
+     28
+    ],
+    [
+     "zIndex",
+     27
+    ],
+    [
+     "n",
+     25
+    ],
+    [
+     "backgroundPosition",
+     19
+    ],
+    [
+     "borderColor",
+     16
+    ],
+    [
+     "p",
+     14
+    ],
+    [
+     "display",
+     13
+    ],
+    [
+     "innerText",
+     13
+    ]
+   ],
+   "tweens_with_blur_filter": 486,
+   "duration_s": {
+    "n": 2340,
+    "p25": 0.2,
+    "median": 0.35,
+    "p75": 0.55,
+    "min": 0.01,
+    "max": 18.24
+   },
+   "duration_by_ease": {
+    "(default)": {
+     "n": 237,
+     "p25": 0.12,
+     "median": 0.2,
+     "p75": 0.32,
+     "min": 0.01,
+     "max": 18.24
+    },
+    "power2.out": {
+     "n": 415,
+     "p25": 0.18,
+     "median": 0.26,
+     "p75": 0.4,
+     "min": 0.04,
+     "max": 1.6
+    },
+    "power2.in": {
+     "n": 250,
+     "p25": 0.105,
+     "median": 0.26,
+     "p75": 0.338,
+     "min": 0.08,
+     "max": 1.7
+    },
+    "none": {
+     "n": 247,
+     "p25": 0.2,
+     "median": 0.85,
+     "p75": 1.6,
+     "min": 0.04,
+     "max": 16.46
+    },
+    "expo.out": {
+     "n": 97,
+     "p25": 0.42,
+     "median": 0.5,
+     "p75": 0.55,
+     "min": 0.16,
+     "max": 0.95
+    },
+    "<function>": {
+     "n": 135,
+     "p25": 0.4,
+     "median": 0.751,
+     "p75": 1.045,
+     "min": 0.12,
+     "max": 2.622
+    },
+    "power3.in": {
+     "n": 61,
+     "p25": 0.2,
+     "median": 0.2,
+     "p75": 0.45,
+     "min": 0.11,
+     "max": 1.45
+    },
+    "power4.in": {
+     "n": 31,
+     "p25": 0.22,
+     "median": 0.3,
+     "p75": 0.34,
+     "min": 0.05,
+     "max": 0.62
+    },
+    "power3.out": {
+     "n": 229,
+     "p25": 0.36,
+     "median": 0.46,
+     "p75": 0.55,
+     "min": 0.06,
+     "max": 1.35
+    },
+    "power3.inOut": {
+     "n": 67,
+     "p25": 0.42,
+     "median": 0.52,
+     "p75": 0.665,
+     "min": 0.2,
+     "max": 1.7
+    },
+    "power1.inOut": {
+     "n": 78,
+     "p25": 0.16,
+     "median": 0.21,
+     "p75": 0.55,
+     "min": 0.09,
+     "max": 7.59
+    },
+    "power1.out": {
+     "n": 58,
+     "p25": 0.128,
+     "median": 0.18,
+     "p75": 0.375,
+     "min": 0.06,
+     "max": 3.0
+    },
+    "power1.in": {
+     "n": 33,
+     "p25": 0.1,
+     "median": 0.2,
+     "p75": 0.3,
+     "min": 0.07,
+     "max": 3.2
+    },
+    "sine.inOut": {
+     "n": 60,
+     "p25": 0.4,
+     "median": 0.78,
+     "p75": 1.27,
+     "min": 0.18,
+     "max": 7.5
+    },
+    "power2.inOut": {
+     "n": 101,
+     "p25": 0.3,
+     "median": 0.5,
+     "p75": 0.7,
+     "min": 0.09,
+     "max": 2.3
+    },
+    "steps(1)": {
+     "n": 28,
+     "p25": 0.287,
+     "median": 0.45,
+     "p75": 0.5,
+     "min": 0.05,
+     "max": 0.5
+    },
+    "back.out(2)": {
+     "n": 21,
+     "p25": 0.1,
+     "median": 0.16,
+     "p75": 0.18,
+     "min": 0.08,
+     "max": 0.5
+    },
+    "power4.out": {
+     "n": 40,
+     "p25": 0.3,
+     "median": 0.48,
+     "p75": 0.55,
+     "min": 0.12,
+     "max": 1.0
+    },
+    "springSoft": {
+     "n": 38,
+     "p25": 0.25,
+     "median": 0.44,
+     "p75": 0.6,
+     "min": 0.14,
+     "max": 1.33
+    }
+   },
+   "stagger_s": {
+    "n": 87,
+    "p25": 0.035,
+    "median": 0.055,
+    "p75": 0.08,
+    "min": 0.004,
+    "max": 0.18
+   },
+   "stagger_top": [
+    [
+     0.055,
+     10
+    ],
+    [
+     0.05,
+     9
+    ],
+    [
+     0.025,
+     6
+    ],
+    [
+     0.07,
+     5
+    ],
+    [
+     0.03,
+     5
+    ],
+    [
+     0.075,
+     5
+    ],
+    [
+     0.06,
+     5
+    ],
+    [
+     0.08,
+     5
+    ],
+    [
+     0.09,
+     4
+    ],
+    [
+     0.035,
+     4
+    ],
+    [
+     0.04,
+     4
+    ],
+    [
+     0.16,
+     3
+    ]
+   ],
+   "blur_to_px": {
+    "n": 481,
+    "p25": 0.0,
+    "median": 6.0,
+    "p75": 12.0,
+    "min": 0.0,
+    "max": 42.0
+   },
+   "blur_to_top": [
+    [
+     0.0,
+     207
+    ],
+    [
+     8.0,
+     64
+    ],
+    [
+     20.0,
+     45
+    ],
+    [
+     10.0,
+     27
+    ],
+    [
+     14.0,
+     16
+    ],
+    [
+     16.0,
+     16
+    ],
+    [
+     7.0,
+     14
+    ],
+    [
+     6.0,
+     14
+    ],
+    [
+     18.0,
+     13
+    ],
+    [
+     12.0,
+     10
+    ],
+    [
+     2.0,
+     10
+    ],
+    [
+     24.0,
+     6
+    ]
+   ],
+   "blur_from_px": {
+    "n": 60,
+    "p25": 0.0,
+    "median": 6.5,
+    "p75": 10.0,
+    "min": 0.0,
+    "max": 22.0
+   },
+   "blur_from_top": [
+    [
+     0.0,
+     17
+    ],
+    [
+     10.0,
+     8
+    ],
+    [
+     8.0,
+     7
+    ],
+    [
+     6.0,
+     5
+    ],
+    [
+     5.0,
+     5
+    ],
+    [
+     12.0,
+     4
+    ],
+    [
+     20.0,
+     4
+    ],
+    [
+     7.0,
+     3
+    ],
+    [
+     4.0,
+     2
+    ],
+    [
+     22.0,
+     2
+    ],
+    [
+     3.0,
+     1
+    ],
+    [
+     9.0,
+     1
+    ]
+   ],
+   "entrance_scale_from": {
+    "n": 61,
+    "p25": 0.7,
+    "median": 0.86,
+    "p75": 1.07,
+    "min": 0.0,
+    "max": 3.0
+   },
+   "entrance_scale_from_top": [
+    [
+     0.75,
+     5
+    ],
+    [
+     0.94,
+     4
+    ],
+    [
+     1.12,
+     4
+    ],
+    [
+     0.86,
+     4
+    ],
+    [
+     0.62,
+     4
+    ],
+    [
+     0.5,
+     3
+    ],
+    [
+     1.07,
+     2
+    ],
+    [
+     0.55,
+     2
+    ],
+    [
+     0.4,
+     2
+    ],
+    [
+     0.92,
+     2
+    ],
+    [
+     0.72,
+     2
+    ],
+    [
+     2.6,
+     2
+    ],
+    [
+     0.96,
+     2
+    ],
+    [
+     0.8,
+     2
+    ],
+    [
+     0.985,
+     2
+    ]
+   ],
+   "entrance_scale_from_share_below1": 0.689,
+   "to_scale_non1": {
+    "n": 281,
+    "p25": 0.82,
+    "median": 0.88,
+    "p75": 1.06,
+    "min": 0.0,
+    "max": 8.2
+   },
+   "to_scale_top": [
+    [
+     0.84,
+     43
+    ],
+    [
+     0.8,
+     19
+    ],
+    [
+     0.9,
+     17
+    ],
+    [
+     0.88,
+     13
+    ],
+    [
+     1.2,
+     12
+    ],
+    [
+     0.82,
+     10
+    ],
+    [
+     0.4,
+     8
+    ],
+    [
+     0.96,
+     7
+    ],
+    [
+     1.06,
+     5
+    ],
+    [
+     0.52,
+     5
+    ],
+    [
+     0.72,
+     4
+    ],
+    [
+     1.045,
+     4
+    ],
+    [
+     1.1,
+     4
+    ],
+    [
+     1.12,
+     4
+    ],
+    [
+     0.94,
+     4
+    ]
+   ],
+   "entrance_x_offset_px": {
+    "n": 61,
+    "p25": 24.0,
+    "median": 230.0,
+    "p75": 340.0,
+    "min": -700.0,
+    "max": 2000.0
+   },
+   "entrance_x_top": [
+    [
+     340.0,
+     10
+    ],
+    [
+     280.0,
+     6
+    ],
+    [
+     -14.0,
+     5
+    ],
+    [
+     -10.0,
+     4
+    ],
+    [
+     1150.0,
+     4
+    ],
+    [
+     40.0,
+     3
+    ],
+    [
+     34.0,
+     3
+    ],
+    [
+     1250.0,
+     3
+    ],
+    [
+     1400.0,
+     2
+    ],
+    [
+     230.0,
+     2
+    ],
+    [
+     -46.0,
+     1
+    ],
+    [
+     62.0,
+     1
+    ]
+   ],
+   "rotation_deg": {
+    "n": 129,
+    "p25": 0.0,
+    "median": 8.0,
+    "p75": 75.0,
+    "min": 0.0,
+    "max": 360.0
+   },
+   "rotation_top": [
+    [
+     0.0,
+     37
+    ],
+    [
+     360.0,
+     23
+    ],
+    [
+     -8.0,
+     7
+    ],
+    [
+     90.0,
+     4
+    ],
+    [
+     -2.0,
+     3
+    ],
+    [
+     -4.0,
+     3
+    ],
+    [
+     -3.0,
+     3
+    ],
+    [
+     -5.0,
+     2
+    ],
+    [
+     18.0,
+     2
+    ],
+    [
+     -7.0,
+     2
+    ],
+    [
+     -25.0,
+     2
+    ],
+    [
+     5.0,
+     2
+    ],
+    [
+     -28.0,
+     2
+    ],
+    [
+     3.0,
+     2
+    ],
+    [
+     -4.5,
+     2
+    ]
+   ],
+   "rotation3d_deg": {
+    "n": 27,
+    "p25": 3.0,
+    "median": 25.0,
+    "p75": 75.0,
+    "min": 0.0,
+    "max": 360.0
+   },
+   "rotation3d_top": [
+    [
+     0.0,
+     7
+    ],
+    [
+     6.0,
+     2
+    ],
+    [
+     -7.0,
+     2
+    ],
+    [
+     180.0,
+     2
+    ],
+    [
+     -90.0,
+     2
+    ],
+    [
+     -55.0,
+     2
+    ],
+    [
+     30.0,
+     1
+    ],
+    [
+     60.0,
+     1
+    ],
+    [
+     90.0,
+     1
+    ],
+    [
+     -18.0,
+     1
+    ],
+    [
+     360.0,
+     1
+    ],
+    [
+     25.0,
+     1
+    ],
+    [
+     -30.0,
+     1
+    ],
+    [
+     310.0,
+     1
+    ],
+    [
+     10.0,
+     1
+    ]
+   ],
+   "tweens_touching_z_or_transformPerspective": 2,
+   "raw_token_counts": {
+    "scale": 1924,
+    "blur(": 583,
+    "rotation": 405,
+    "stagger": 109,
+    "skew": 6,
+    "clipPath": 93,
+    "perspective": 15,
+    "preserve-3d": 7,
+    "translateZ/z:": 15,
+    "PerspectiveCamera": 4,
+    "CustomEase": 32,
+    "power2.out": 444,
+    "none-ease": 339,
+    "expo.out": 109
+   },
+   "perspective_by_project": {
+    "HF-heygen-stripe": {
+     "perspective": 2,
+     "preserve-3d": 2,
+     "translateZ/z:": 3
+    },
+    "claude-design-send-hyperframes-launch": {
+     "translateZ/z:": 1
+    },
+    "figma-launch": {
+     "perspective": 1
+    },
+    "frame-md-launch-storyboard": {
+     "perspective": 1
+    },
+    "hyperframes-launch": {
+     "perspective": 3,
+     "preserve-3d": 3,
+     "translateZ/z:": 8
+    },
+    "inspector-launch": {
+     "perspective": 1,
+     "preserve-3d": 1
+    },
+    "k3-promo": {
+     "perspective": 4
+    },
+    "liquid-brand-refraction": {
+     "PerspectiveCamera": 1
+    },
+    "texture-launch-video": {
+     "perspective": 2,
+     "preserve-3d": 1,
+     "translateZ/z:": 2
+    },
+    "timeline-launch": {
+     "translateZ/z:": 1
+    },
+    "variables-launch": {
+     "perspective": 1
+    },
+    "vfx-heygen-combined": {
+     "PerspectiveCamera": 3
+    }
+   },
+   "tween_calls_by_project": [
+    [
+     "hyperframes-launch",
+     308
+    ],
+    [
+     "spacex-launch",
+     305
+    ],
+    [
+     "claude-paper-launch",
+     301
+    ],
+    [
+     "claude-design-send-hyperframes-launch",
+     274
+    ],
+    [
+     "frame-md-launch-storyboard",
+     272
+    ],
+    [
+     "inspector-launch",
+     234
+    ],
+    [
+     "pr-to-video-launch",
+     222
+    ],
+    [
+     "cloud-render-launch",
+     198
+    ],
+    [
+     "figma-launch",
+     180
+    ],
+    [
+     "sfx-music-launch",
+     162
+    ],
+    [
+     "timeline-launch",
+     159
+    ],
+    [
+     "texture-launch-video",
+     156
+    ],
+    [
+     "k3-promo",
+     140
+    ],
+    [
+     "heygen-apple-motion/03-message-sting",
+     130
+    ],
+    [
+     "vfx-heygen-combined",
+     124
+    ],
+    [
+     "HF-heygen-stripe",
+     104
+    ],
+    [
+     "variables-launch",
+     102
+    ],
+    [
+     "codex-five-hour-limit-replica",
+     94
+    ],
+    [
+     "heygen-apple-motion/04-generate-reel",
+     92
+    ],
+    [
+     "website-to-hyperframes",
+     86
+    ],
+    [
+     "heygen-apple-motion/examples/spotify",
+     62
+    ],
+    [
+     "heygen-apple-motion/01-ui-sting",
+     61
+    ],
+    [
+     "heygen-apple-motion/examples/instagram",
+     61
+    ],
+    [
+     "heygen-apple-motion/hero",
+     15
+    ],
+    [
+     "liquid-brand-refraction",
+     12
+    ],
+    [
+     "heygen-apple-motion/02-bouncy-ui",
+     1
+    ]
+   ],
+   "ease_by_project_top3": {
+    "HF-heygen-stripe": [
+     [
+      "power2.out",
+      15
+     ],
+     [
+      "(default)",
+      14
+     ],
+     [
+      "power2.in",
+      12
+     ]
+    ],
+    "claude-design-send-hyperframes-launch": [
+     [
+      "power2.out",
+      41
+     ],
+     [
+      "none",
+      35
+     ],
+     [
+      "power2.in",
+      33
+     ]
+    ],
+    "claude-paper-launch": [
+     [
+      "(default)",
+      43
+     ],
+     [
+      "power2.in",
+      31
+     ],
+     [
+      "power2.out",
+      26
+     ]
+    ],
+    "cloud-render-launch": [
+     [
+      "power3.out",
+      33
+     ],
+     [
+      "power2.out",
+      25
+     ],
+     [
+      "(default)",
+      21
+     ]
+    ],
+    "codex-five-hour-limit-replica": [
+     [
+      "none",
+      59
+     ],
+     [
+      "power1.out",
+      5
+     ]
+    ],
+    "figma-launch": [
+     [
+      "power3.out",
+      22
+     ],
+     [
+      "power2.out",
+      21
+     ],
+     [
+      "power4.out",
+      16
+     ]
+    ],
+    "frame-md-launch-storyboard": [
+     [
+      "power2.out",
+      31
+     ],
+     [
+      "power3.out",
+      25
+     ],
+     [
+      "power3.inOut",
+      24
+     ]
+    ],
+    "heygen-apple-motion/01-ui-sting": [
+     [
+      "<function>",
+      21
+     ],
+     [
+      "power2.out",
+      7
+     ],
+     [
+      "power1.out",
+      3
+     ]
+    ],
+    "heygen-apple-motion/02-bouncy-ui": [
+     [
+      "none",
+      1
+     ]
+    ],
+    "heygen-apple-motion/03-message-sting": [
+     [
+      "<function>",
+      25
+     ],
+     [
+      "power2.in",
+      19
+     ],
+     [
+      "power1.in",
+      14
+     ]
+    ],
+    "heygen-apple-motion/04-generate-reel": [
+     [
+      "power2.out",
+      11
+     ],
+     [
+      "power2.in",
+      10
+     ],
+     [
+      "power1.inOut",
+      7
+     ]
+    ],
+    "heygen-apple-motion/examples/instagram": [
+     [
+      "<function>",
+      21
+     ],
+     [
+      "power2.out",
+      7
+     ],
+     [
+      "power1.out",
+      3
+     ]
+    ],
+    "heygen-apple-motion/examples/spotify": [
+     [
+      "<function>",
+      21
+     ],
+     [
+      "power2.out",
+      7
+     ],
+     [
+      "power1.out",
+      3
+     ]
+    ],
+    "heygen-apple-motion/hero": [
+     [
+      "<function>",
+      7
+     ],
+     [
+      "none",
+      2
+     ],
+     [
+      "power2.out",
+      2
+     ]
+    ],
+    "hyperframes-launch": [
+     [
+      "power2.out",
+      56
+     ],
+     [
+      "none",
+      28
+     ],
+     [
+      "sine.inOut",
+      15
+     ]
+    ],
+    "inspector-launch": [
+     [
+      "springSoft",
+      38
+     ],
+     [
+      "none",
+      19
+     ],
+     [
+      "expo.out",
+      15
+     ]
+    ],
+    "k3-promo": [
+     [
+      "(default)",
+      14
+     ],
+     [
+      "power2.out",
+      14
+     ],
+     [
+      "power1.inOut",
+      9
+     ]
+    ],
+    "liquid-brand-refraction": [
+     [
+      "none",
+      5
+     ],
+     [
+      "power3.out",
+      3
+     ],
+     [
+      "power2.out",
+      2
+     ]
+    ],
+    "pr-to-video-launch": [
+     [
+      "none",
+      26
+     ],
+     [
+      "power3.out",
+      24
+     ],
+     [
+      "power2.out",
+      23
+     ]
+    ],
+    "sfx-music-launch": [
+     [
+      "power2.in",
+      17
+     ],
+     [
+      "power3.out",
+      17
+     ],
+     [
+      "(default)",
+      14
+     ]
+    ],
+    "spacex-launch": [
+     [
+      "(default)",
+      42
+     ],
+     [
+      "power2.out",
+      37
+     ],
+     [
+      "power2.in",
+      30
+     ]
+    ],
+    "texture-launch-video": [
+     [
+      "none",
+      19
+     ],
+     [
+      "expo.out",
+      19
+     ],
+     [
+      "power3.in",
+      16
+     ]
+    ],
+    "timeline-launch": [
+     [
+      "power2.out",
+      30
+     ],
+     [
+      "(default)",
+      13
+     ],
+     [
+      "none",
+      12
+     ]
+    ],
+    "variables-launch": [
+     [
+      "power2.in",
+      16
+     ],
+     [
+      "power3.out",
+      13
+     ],
+     [
+      "power2.out",
+      12
+     ]
+    ],
+    "vfx-heygen-combined": [
+     [
+      "power2.in",
+      9
+     ],
+     [
+      "power2.out",
+      8
+     ],
+     [
+      "expo.out",
+      8
+     ]
+    ],
+    "website-to-hyperframes": [
+     [
+      "power2.out",
+      28
+     ],
+     [
+      "(default)",
+      15
+     ],
+     [
+      "power2.in",
+      9
+     ]
+    ]
+   }
+  },
+  "COMP_DEDUP": {
+   "files": 147,
+   "tween_calls": {
+    "set": 1162,
+    "to": 1884,
+    "fromTo": 394,
+    "from": 6
+   },
+   "tweens_excl_set": 2284,
+   "keyframe_tweens": 66,
+   "keyframe_steps": 706,
+   "eases_top": [
+    [
+     "power2.out",
+     382
+    ],
+    [
+     "none",
+     313
+    ],
+    [
+     "power2.in",
+     249
+    ],
+    [
+     "power3.out",
+     222
+    ],
+    [
+     "(default)",
+     205
+    ],
+    [
+     "<function>",
+     121
+    ],
+    [
+     "expo.out",
+     96
+    ],
+    [
+     "power2.inOut",
+     95
+    ],
+    [
+     "power1.inOut",
+     65
+    ],
+    [
+     "sine.inOut",
+     61
+    ],
+    [
+     "power3.in",
+     60
+    ],
+    [
+     "power3.inOut",
+     60
+    ],
+    [
+     "power1.out",
+     53
+    ],
+    [
+     "power1.in",
+     39
+    ],
+    [
+     "power4.out",
+     39
+    ],
+    [
+     "springSoft",
+     38
+    ],
+    [
+     "power4.in",
+     32
+    ],
+    [
+     "steps(1)",
+     26
+    ],
+    [
+     "back.out(2)",
+     21
+    ],
+    [
+     "back.out(1.5)",
+     11
+    ],
+    [
+     "expo.in",
+     11
+    ],
+    [
+     "springHeavy",
+     10
+    ],
+    [
+     "back.out(1.6)",
+     9
+    ],
+    [
+     "back.out(1.4)",
+     7
+    ],
+    [
+     "back.out(1.7)",
+     6
+    ]
+   ],
+   "timeline_default_eases": {
+    "power3.out": 1
+   },
+   "props_top": [
+    [
+     "opacity",
+     1599
+    ],
+    [
+     "scale",
+     763
+    ],
+    [
+     "y",
+     696
+    ],
+    [
+     "x",
+     501
+    ],
+    [
+     "filter",
+     461
+    ],
+    [
+     "autoAlpha",
+     248
+    ],
+    [
+     "transformOrigin",
+     179
+    ],
+    [
+     "rotation",
+     94
+    ],
+    [
+     "width",
+     94
+    ],
+    [
+     "left",
+     74
+    ],
+    [
+     "xPercent",
+     72
+    ],
+    [
+     "yPercent",
+     70
+    ],
+    [
+     "top",
+     66
+    ],
+    [
+     "scaleX",
+     65
+    ],
+    [
+     "color",
+     63
+    ],
+    [
+     "scaleY",
+     63
+    ],
+    [
+     "svgOrigin",
+     61
+    ],
+    [
+     "height",
+     55
+    ],
+    [
+     "backgroundColor",
+     50
+    ],
+    [
+     "borderRadius",
+     38
+    ],
+    [
+     "clipPath",
+     38
+    ],
+    [
+     "boxShadow",
+     27
+    ],
+    [
+     "zIndex",
+     27
+    ],
+    [
+     "rotate",
+     27
+    ],
+    [
+     "n",
+     25
+    ],
+    [
+     "backgroundPosition",
+     15
+    ],
+    [
+     "p",
+     14
+    ],
+    [
+     "display",
+     13
+    ],
+    [
+     "borderColor",
+     12
+    ],
+    [
+     "strokeDashoffset",
+     11
+    ]
+   ],
+   "tweens_with_blur_filter": 456,
+   "duration_s": {
+    "n": 2064,
+    "p25": 0.2,
+    "median": 0.35,
+    "p75": 0.55,
+    "min": 0.01,
+    "max": 18.24
+   },
+   "duration_by_ease": {
+    "(default)": {
+     "n": 197,
+     "p25": 0.12,
+     "median": 0.2,
+     "p75": 0.32,
+     "min": 0.01,
+     "max": 18.24
+    },
+    "power2.out": {
+     "n": 364,
+     "p25": 0.18,
+     "median": 0.3,
+     "p75": 0.4,
+     "min": 0.04,
+     "max": 1.6
+    },
+    "power2.in": {
+     "n": 224,
+     "p25": 0.14,
+     "median": 0.26,
+     "p75": 0.343,
+     "min": 0.08,
+     "max": 1.7
+    },
+    "none": {
+     "n": 227,
+     "p25": 0.2,
+     "median": 0.85,
+     "p75": 1.74,
+     "min": 0.04,
+     "max": 16.46
+    },
+    "expo.out": {
+     "n": 95,
+     "p25": 0.42,
+     "median": 0.5,
+     "p75": 0.555,
+     "min": 0.16,
+     "max": 0.95
+    },
+    "<function>": {
+     "n": 86,
+     "p25": 0.4,
+     "median": 0.726,
+     "p75": 0.9,
+     "min": 0.12,
+     "max": 2.622
+    },
+    "power3.in": {
+     "n": 55,
+     "p25": 0.2,
+     "median": 0.2,
+     "p75": 0.445,
+     "min": 0.11,
+     "max": 1.45
+    },
+    "power4.in": {
+     "n": 31,
+     "p25": 0.22,
+     "median": 0.3,
+     "p75": 0.34,
+     "min": 0.05,
+     "max": 0.62
+    },
+    "power3.out": {
+     "n": 218,
+     "p25": 0.36,
+     "median": 0.46,
+     "p75": 0.55,
+     "min": 0.06,
+     "max": 1.35
+    },
+    "power3.inOut": {
+     "n": 60,
+     "p25": 0.42,
+     "median": 0.515,
+     "p75": 0.68,
+     "min": 0.2,
+     "max": 1.7
+    },
+    "power1.inOut": {
+     "n": 56,
+     "p25": 0.16,
+     "median": 0.4,
+     "p75": 0.6,
+     "min": 0.09,
+     "max": 7.59
+    },
+    "power1.out": {
+     "n": 45,
+     "p25": 0.12,
+     "median": 0.18,
+     "p75": 0.25,
+     "min": 0.06,
+     "max": 2.45
+    },
+    "power1.in": {
+     "n": 33,
+     "p25": 0.1,
+     "median": 0.2,
+     "p75": 0.3,
+     "min": 0.07,
+     "max": 3.2
+    },
+    "sine.inOut": {
+     "n": 58,
+     "p25": 0.5,
+     "median": 0.78,
+     "p75": 1.31,
+     "min": 0.18,
+     "max": 7.5
+    },
+    "power2.inOut": {
+     "n": 86,
+     "p25": 0.3,
+     "median": 0.55,
+     "p75": 0.7,
+     "min": 0.09,
+     "max": 2.3
+    },
+    "steps(1)": {
+     "n": 26,
+     "p25": 0.263,
+     "median": 0.4,
+     "p75": 0.5,
+     "min": 0.05,
+     "max": 0.5
+    },
+    "back.out(2)": {
+     "n": 21,
+     "p25": 0.1,
+     "median": 0.16,
+     "p75": 0.18,
+     "min": 0.08,
+     "max": 0.5
+    },
+    "power4.out": {
+     "n": 39,
+     "p25": 0.3,
+     "median": 0.46,
+     "p75": 0.55,
+     "min": 0.12,
+     "max": 1.0
+    },
+    "springSoft": {
+     "n": 38,
+     "p25": 0.25,
+     "median": 0.44,
+     "p75": 0.6,
+     "min": 0.14,
+     "max": 1.33
+    }
+   },
+   "stagger_s": {
+    "n": 86,
+    "p25": 0.035,
+    "median": 0.055,
+    "p75": 0.08,
+    "min": 0.004,
+    "max": 0.18
+   },
+   "stagger_top": [
+    [
+     0.055,
+     9
+    ],
+    [
+     0.05,
+     9
+    ],
+    [
+     0.025,
+     6
+    ],
+    [
+     0.07,
+     5
+    ],
+    [
+     0.03,
+     5
+    ],
+    [
+     0.075,
+     5
+    ],
+    [
+     0.06,
+     5
+    ],
+    [
+     0.08,
+     5
+    ],
+    [
+     0.09,
+     4
+    ],
+    [
+     0.035,
+     4
+    ],
+    [
+     0.04,
+     4
+    ],
+    [
+     0.16,
+     3
+    ]
+   ],
+   "blur_to_px": {
+    "n": 453,
+    "p25": 0.0,
+    "median": 6.0,
+    "p75": 12.0,
+    "min": 0.0,
+    "max": 42.0
+   },
+   "blur_to_top": [
+    [
+     0.0,
+     195
+    ],
+    [
+     8.0,
+     62
+    ],
+    [
+     20.0,
+     41
+    ],
+    [
+     10.0,
+     27
+    ],
+    [
+     14.0,
+     16
+    ],
+    [
+     16.0,
+     16
+    ],
+    [
+     18.0,
+     13
+    ],
+    [
+     6.0,
+     12
+    ],
+    [
+     12.0,
+     10
+    ],
+    [
+     7.0,
+     10
+    ],
+    [
+     2.0,
+     10
+    ],
+    [
+     24.0,
+     6
+    ]
+   ],
+   "blur_from_px": {
+    "n": 42,
+    "p25": 4.0,
+    "median": 8.0,
+    "p75": 10.0,
+    "min": 0.0,
+    "max": 22.0
+   },
+   "blur_from_top": [
+    [
+     0.0,
+     9
+    ],
+    [
+     8.0,
+     7
+    ],
+    [
+     10.0,
+     6
+    ],
+    [
+     20.0,
+     4
+    ],
+    [
+     6.0,
+     3
+    ],
+    [
+     5.0,
+     3
+    ],
+    [
+     12.0,
+     2
+    ],
+    [
+     4.0,
+     2
+    ],
+    [
+     22.0,
+     2
+    ],
+    [
+     7.0,
+     1
+    ],
+    [
+     3.0,
+     1
+    ],
+    [
+     9.0,
+     1
+    ]
+   ],
+   "entrance_scale_from": {
+    "n": 54,
+    "p25": 0.705,
+    "median": 0.86,
+    "p75": 1.055,
+    "min": 0.0,
+    "max": 2.6
+   },
+   "entrance_scale_from_top": [
+    [
+     0.75,
+     5
+    ],
+    [
+     0.94,
+     4
+    ],
+    [
+     0.86,
+     4
+    ],
+    [
+     0.62,
+     4
+    ],
+    [
+     0.5,
+     2
+    ],
+    [
+     1.07,
+     2
+    ],
+    [
+     1.12,
+     2
+    ],
+    [
+     0.4,
+     2
+    ],
+    [
+     0.92,
+     2
+    ],
+    [
+     0.72,
+     2
+    ],
+    [
+     2.6,
+     2
+    ],
+    [
+     0.96,
+     2
+    ],
+    [
+     0.8,
+     2
+    ],
+    [
+     0.0,
+     2
+    ],
+    [
+     0.55,
+     1
+    ]
+   ],
+   "entrance_scale_from_share_below1": 0.704,
+   "to_scale_non1": {
+    "n": 254,
+    "p25": 0.82,
+    "median": 0.9,
+    "p75": 1.1,
+    "min": 0.0,
+    "max": 8.2
+   },
+   "to_scale_top": [
+    [
+     0.84,
+     32
+    ],
+    [
+     0.8,
+     17
+    ],
+    [
+     0.9,
+     17
+    ],
+    [
+     0.88,
+     12
+    ],
+    [
+     1.2,
+     12
+    ],
+    [
+     0.82,
+     10
+    ],
+    [
+     0.4,
+     8
+    ],
+    [
+     0.96,
+     6
+    ],
+    [
+     0.52,
+     5
+    ],
+    [
+     1.045,
+     4
+    ],
+    [
+     1.1,
+     4
+    ],
+    [
+     1.12,
+     4
+    ],
+    [
+     0.3,
+     4
+    ],
+    [
+     2.5,
+     3
+    ],
+    [
+     0.42,
+     3
+    ]
+   ],
+   "entrance_x_offset_px": {
+    "n": 61,
+    "p25": 24.0,
+    "median": 230.0,
+    "p75": 340.0,
+    "min": -700.0,
+    "max": 2000.0
+   },
+   "entrance_x_top": [
+    [
+     340.0,
+     10
+    ],
+    [
+     280.0,
+     6
+    ],
+    [
+     -14.0,
+     5
+    ],
+    [
+     -10.0,
+     4
+    ],
+    [
+     1150.0,
+     4
+    ],
+    [
+     40.0,
+     3
+    ],
+    [
+     34.0,
+     3
+    ],
+    [
+     1250.0,
+     3
+    ],
+    [
+     1400.0,
+     2
+    ],
+    [
+     230.0,
+     2
+    ],
+    [
+     -46.0,
+     1
+    ],
+    [
+     62.0,
+     1
+    ]
+   ],
+   "rotation_deg": {
+    "n": 122,
+    "p25": 0.0,
+    "median": 8.0,
+    "p75": 71.75,
+    "min": 0.0,
+    "max": 360.0
+   },
+   "rotation_top": [
+    [
+     0.0,
+     33
+    ],
+    [
+     360.0,
+     23
+    ],
+    [
+     -8.0,
+     7
+    ],
+    [
+     -2.0,
+     3
+    ],
+    [
+     -4.0,
+     3
+    ],
+    [
+     -3.0,
+     3
+    ],
+    [
+     -5.0,
+     2
+    ],
+    [
+     18.0,
+     2
+    ],
+    [
+     -7.0,
+     2
+    ],
+    [
+     -25.0,
+     2
+    ],
+    [
+     5.0,
+     2
+    ],
+    [
+     -28.0,
+     2
+    ],
+    [
+     3.0,
+     2
+    ],
+    [
+     90.0,
+     2
+    ],
+    [
+     -4.5,
+     2
+    ]
+   ],
+   "rotation3d_deg": {
+    "n": 27,
+    "p25": 3.0,
+    "median": 25.0,
+    "p75": 75.0,
+    "min": 0.0,
+    "max": 360.0
+   },
+   "rotation3d_top": [
+    [
+     0.0,
+     7
+    ],
+    [
+     6.0,
+     2
+    ],
+    [
+     -7.0,
+     2
+    ],
+    [
+     180.0,
+     2
+    ],
+    [
+     -90.0,
+     2
+    ],
+    [
+     -55.0,
+     2
+    ],
+    [
+     30.0,
+     1
+    ],
+    [
+     60.0,
+     1
+    ],
+    [
+     90.0,
+     1
+    ],
+    [
+     -18.0,
+     1
+    ],
+    [
+     360.0,
+     1
+    ],
+    [
+     25.0,
+     1
+    ],
+    [
+     -30.0,
+     1
+    ],
+    [
+     310.0,
+     1
+    ],
+    [
+     10.0,
+     1
+    ]
+   ],
+   "tweens_touching_z_or_transformPerspective": 2,
+   "raw_token_counts": {
+    "scale": 1777,
+    "blur(": 537,
+    "rotation": 380,
+    "stagger": 106,
+    "skew": 2,
+    "clipPath": 87,
+    "perspective": 15,
+    "preserve-3d": 7,
+    "translateZ/z:": 15,
+    "PerspectiveCamera": 4,
+    "CustomEase": 22,
+    "power2.out": 392,
+    "none-ease": 315,
+    "expo.out": 105
+   },
+   "perspective_by_project": {
+    "HF-heygen-stripe": {
+     "perspective": 2,
+     "preserve-3d": 2,
+     "translateZ/z:": 3
+    },
+    "claude-design-send-hyperframes-launch": {
+     "translateZ/z:": 1
+    },
+    "figma-launch": {
+     "perspective": 1
+    },
+    "frame-md-launch-storyboard": {
+     "perspective": 1
+    },
+    "hyperframes-launch": {
+     "perspective": 3,
+     "preserve-3d": 3,
+     "translateZ/z:": 8
+    },
+    "inspector-launch": {
+     "perspective": 1,
+     "preserve-3d": 1
+    },
+    "k3-promo": {
+     "perspective": 4
+    },
+    "liquid-brand-refraction": {
+     "PerspectiveCamera": 1
+    },
+    "texture-launch-video": {
+     "perspective": 2,
+     "preserve-3d": 1,
+     "translateZ/z:": 2
+    },
+    "timeline-launch": {
+     "translateZ/z:": 1
+    },
+    "variables-launch": {
+     "perspective": 1
+    },
+    "vfx-heygen-combined": {
+     "PerspectiveCamera": 3
+    }
+   },
+   "tween_calls_by_project": [
+    [
+     "hyperframes-launch",
+     308
+    ],
+    [
+     "claude-paper-launch",
+     301
+    ],
+    [
+     "claude-design-send-hyperframes-launch",
+     274
+    ],
+    [
+     "frame-md-launch-storyboard",
+     272
+    ],
+    [
+     "inspector-launch",
+     234
+    ],
+    [
+     "pr-to-video-launch",
+     222
+    ],
+    [
+     "cloud-render-launch",
+     198
+    ],
+    [
+     "figma-launch",
+     180
+    ],
+    [
+     "sfx-music-launch",
+     162
+    ],
+    [
+     "timeline-launch",
+     159
+    ],
+    [
+     "texture-launch-video",
+     156
+    ],
+    [
+     "k3-promo",
+     140
+    ],
+    [
+     "heygen-apple-motion/03-message-sting",
+     130
+    ],
+    [
+     "vfx-heygen-combined",
+     124
+    ],
+    [
+     "HF-heygen-stripe",
+     104
+    ],
+    [
+     "variables-launch",
+     102
+    ],
+    [
+     "codex-five-hour-limit-replica",
+     94
+    ],
+    [
+     "heygen-apple-motion/04-generate-reel",
+     92
+    ],
+    [
+     "website-to-hyperframes",
+     86
+    ],
+    [
+     "heygen-apple-motion/01-ui-sting",
+     61
+    ],
+    [
+     "spacex-launch",
+     19
+    ],
+    [
+     "heygen-apple-motion/hero",
+     15
+    ],
+    [
+     "liquid-brand-refraction",
+     12
+    ],
+    [
+     "heygen-apple-motion/02-bouncy-ui",
+     1
+    ]
+   ],
+   "ease_by_project_top3": {
+    "HF-heygen-stripe": [
+     [
+      "power2.out",
+      15
+     ],
+     [
+      "(default)",
+      14
+     ],
+     [
+      "power2.in",
+      12
+     ]
+    ],
+    "claude-design-send-hyperframes-launch": [
+     [
+      "power2.out",
+      41
+     ],
+     [
+      "none",
+      35
+     ],
+     [
+      "power2.in",
+      33
+     ]
+    ],
+    "claude-paper-launch": [
+     [
+      "(default)",
+      43
+     ],
+     [
+      "power2.in",
+      31
+     ],
+     [
+      "power2.out",
+      26
+     ]
+    ],
+    "cloud-render-launch": [
+     [
+      "power3.out",
+      33
+     ],
+     [
+      "power2.out",
+      25
+     ],
+     [
+      "(default)",
+      21
+     ]
+    ],
+    "codex-five-hour-limit-replica": [
+     [
+      "none",
+      59
+     ],
+     [
+      "power1.out",
+      5
+     ]
+    ],
+    "figma-launch": [
+     [
+      "power3.out",
+      22
+     ],
+     [
+      "power2.out",
+      21
+     ],
+     [
+      "power4.out",
+      16
+     ]
+    ],
+    "frame-md-launch-storyboard": [
+     [
+      "power2.out",
+      31
+     ],
+     [
+      "power3.out",
+      25
+     ],
+     [
+      "power3.inOut",
+      24
+     ]
+    ],
+    "heygen-apple-motion/01-ui-sting": [
+     [
+      "<function>",
+      21
+     ],
+     [
+      "power2.out",
+      7
+     ],
+     [
+      "power1.out",
+      3
+     ]
+    ],
+    "heygen-apple-motion/02-bouncy-ui": [
+     [
+      "none",
+      1
+     ]
+    ],
+    "heygen-apple-motion/03-message-sting": [
+     [
+      "<function>",
+      25
+     ],
+     [
+      "power2.in",
+      19
+     ],
+     [
+      "power1.in",
+      14
+     ]
+    ],
+    "heygen-apple-motion/04-generate-reel": [
+     [
+      "power2.out",
+      11
+     ],
+     [
+      "power2.in",
+      10
+     ],
+     [
+      "power1.inOut",
+      7
+     ]
+    ],
+    "heygen-apple-motion/hero": [
+     [
+      "<function>",
+      7
+     ],
+     [
+      "none",
+      2
+     ],
+     [
+      "power2.out",
+      2
+     ]
+    ],
+    "hyperframes-launch": [
+     [
+      "power2.out",
+      56
+     ],
+     [
+      "none",
+      28
+     ],
+     [
+      "sine.inOut",
+      15
+     ]
+    ],
+    "inspector-launch": [
+     [
+      "springSoft",
+      38
+     ],
+     [
+      "none",
+      19
+     ],
+     [
+      "expo.out",
+      15
+     ]
+    ],
+    "k3-promo": [
+     [
+      "(default)",
+      14
+     ],
+     [
+      "power2.out",
+      14
+     ],
+     [
+      "power1.inOut",
+      9
+     ]
+    ],
+    "liquid-brand-refraction": [
+     [
+      "none",
+      5
+     ],
+     [
+      "power3.out",
+      3
+     ],
+     [
+      "power2.out",
+      2
+     ]
+    ],
+    "pr-to-video-launch": [
+     [
+      "none",
+      26
+     ],
+     [
+      "power3.out",
+      24
+     ],
+     [
+      "power2.out",
+      23
+     ]
+    ],
+    "sfx-music-launch": [
+     [
+      "power2.in",
+      17
+     ],
+     [
+      "power3.out",
+      17
+     ],
+     [
+      "(default)",
+      14
+     ]
+    ],
+    "spacex-launch": [
+     [
+      "power2.in",
+      4
+     ],
+     [
+      "power1.inOut",
+      2
+     ],
+     [
+      "power3.in",
+      1
+     ]
+    ],
+    "texture-launch-video": [
+     [
+      "none",
+      19
+     ],
+     [
+      "expo.out",
+      19
+     ],
+     [
+      "power3.in",
+      16
+     ]
+    ],
+    "timeline-launch": [
+     [
+      "power2.out",
+      30
+     ],
+     [
+      "(default)",
+      13
+     ],
+     [
+      "none",
+      12
+     ]
+    ],
+    "variables-launch": [
+     [
+      "power2.in",
+      16
+     ],
+     [
+      "power3.out",
+      13
+     ],
+     [
+      "power2.out",
+      12
+     ]
+    ],
+    "vfx-heygen-combined": [
+     [
+      "power2.in",
+      9
+     ],
+     [
+      "power2.out",
+      8
+     ],
+     [
+      "expo.out",
+      8
+     ]
+    ],
+    "website-to-hyperframes": [
+     [
+      "power2.out",
+      28
+     ],
+     [
+      "(default)",
+      15
+     ],
+     [
+      "power2.in",
+      9
+     ]
+    ]
+   }
+  }
+ }
+}

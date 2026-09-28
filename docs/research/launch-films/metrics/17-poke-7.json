@@ -1,0 +1,69 @@
+{
+ "id": "17-poke-7",
+ "source": "17-poke-7.mp4",
+ "duration_s": 42.86,
+ "fps": 29.97,
+ "resolution": "1440x1080",
+ "aspect": 1.333,
+ "frames": 1283,
+ "cuts": 1,
+ "cuts_per_min": 1.4,
+ "cut_times_s": [
+  40.54
+ ],
+ "flash_frames": 0,
+ "shot_len_s": {
+  "median": 21.4,
+  "p25": 11.84,
+  "p75": 30.97,
+  "max": 40.54
+ },
+ "still_frac": 0.133,
+ "calm_frac_global": 0.342,
+ "changed_area_median_when_moving": 0.0495,
+ "held_in_move_frac": 0.0,
+ "moves_per_min": 25.2,
+ "move_len_s": {
+  "median": 1.885,
+  "p75": 2.761,
+  "p90": 3.303
+ },
+ "motion_after_cut_rel_at_1f_100ms_200ms_400ms_800ms": null,
+ "camera_share_of_moving_frames": {
+  "pan": 0.45,
+  "zoom": 0.034,
+  "rotate": 0.0,
+  "local": 0.516
+ },
+ "push_in_runs": 5,
+ "pull_out_runs": 4,
+ "pan_runs": 6,
+ "push_in_time_frac": 0.08,
+ "blur_ratio_fast_vs_still": 1.57,
+ "luma_median": 237.6,
+ "dark_frac_luma_lt_50": 0.0,
+ "light_frac_luma_gt_180": 1.0,
+ "colorfulness_median": 12.5,
+ "mono_frac_colorfulness_lt_15": 0.716,
+ "audio": {
+  "lufs_i": -20.3,
+  "true_peak_dbfs": -3.2,
+  "lra_lu": 2.0,
+  "silence_frac_-50dB": 0.033,
+  "band_share": {
+   "0-120": 0.602,
+   "120-500": 0.341,
+   "500-2000": 0.047,
+   "2000-6000": 0.007,
+   "6000-22050": 0.003
+  },
+  "onsets_per_s": 7.16,
+  "bpm_estimate": 60.8,
+  "beat_clarity": 0.622,
+  "speech_mod_index": 0.284,
+  "strong_hits_per_s": 1.07,
+  "cuts_within_67ms_of_strong_hit": 0.0,
+  "chance_within_67ms": 0.14,
+  "strong_hits_within_67ms_of_motion_peak": 0.11
+ }
+}

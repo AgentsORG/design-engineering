@@ -1,0 +1,76 @@
+{
+ "id": "21-agentarcade",
+ "source": "21-agentarcade.mp4",
+ "duration_s": 81.05,
+ "fps": 24.0,
+ "resolution": "3840x2160",
+ "aspect": 1.778,
+ "frames": 1944,
+ "cuts": 2,
+ "cuts_per_min": 1.5,
+ "cut_times_s": [
+  53.46,
+  61.33
+ ],
+ "flash_frames": 0,
+ "shot_len_s": {
+  "median": 19.67,
+  "p25": 13.77,
+  "p75": 36.56,
+  "max": 53.46
+ },
+ "still_frac": 0.035,
+ "calm_frac_global": 0.513,
+ "changed_area_median_when_moving": 0.0218,
+ "held_in_move_frac": 0.005,
+ "moves_per_min": 13.3,
+ "move_len_s": {
+  "median": 2.583,
+  "p75": 5.021,
+  "p90": 10.913
+ },
+ "motion_after_cut_rel_at_1f_100ms_200ms_400ms_800ms": [
+  1.0,
+  1.07,
+  1.19,
+  1.12,
+  0.67
+ ],
+ "camera_share_of_moving_frames": {
+  "pan": 0.241,
+  "zoom": 0.037,
+  "rotate": 0.0,
+  "local": 0.723
+ },
+ "push_in_runs": 3,
+ "pull_out_runs": 4,
+ "pan_runs": 3,
+ "push_in_time_frac": 0.015,
+ "blur_ratio_fast_vs_still": 0.56,
+ "luma_median": 22.9,
+ "dark_frac_luma_lt_50": 0.983,
+ "light_frac_luma_gt_180": 0.0,
+ "colorfulness_median": 9.8,
+ "mono_frac_colorfulness_lt_15": 0.684,
+ "audio": {
+  "lufs_i": -18.1,
+  "true_peak_dbfs": -1.5,
+  "lra_lu": 7.5,
+  "silence_frac_-50dB": 0.002,
+  "band_share": {
+   "0-120": 0.47,
+   "120-500": 0.321,
+   "500-2000": 0.152,
+   "2000-6000": 0.042,
+   "6000-22050": 0.016
+  },
+  "onsets_per_s": 7.16,
+  "bpm_estimate": 90.7,
+  "beat_clarity": 0.604,
+  "speech_mod_index": 0.255,
+  "strong_hits_per_s": 1.07,
+  "cuts_within_67ms_of_strong_hit": 0.0,
+  "chance_within_67ms": 0.14,
+  "strong_hits_within_67ms_of_motion_peak": 0.11
+ }
+}

@@ -1,0 +1,78 @@
+{
+ "id": "26-tembo",
+ "source": "26-tembo.mp4",
+ "duration_s": 67.05,
+ "fps": 30.0,
+ "resolution": "1920x1080",
+ "aspect": 1.778,
+ "frames": 2010,
+ "cuts": 4,
+ "cuts_per_min": 3.6,
+ "cut_times_s": [
+  17.37,
+  21.37,
+  48.77,
+  50.33
+ ],
+ "flash_frames": 0,
+ "shot_len_s": {
+  "median": 16.67,
+  "p25": 4.0,
+  "p75": 17.37,
+  "max": 27.4
+ },
+ "still_frac": 0.097,
+ "calm_frac_global": 0.546,
+ "changed_area_median_when_moving": 0.023,
+ "held_in_move_frac": 0.009,
+ "moves_per_min": 27.8,
+ "move_len_s": {
+  "median": 1.533,
+  "p75": 3.1,
+  "p90": 4.7
+ },
+ "motion_after_cut_rel_at_1f_100ms_200ms_400ms_800ms": [
+  1.0,
+  1.2,
+  1.82,
+  2.42,
+  1.74
+ ],
+ "camera_share_of_moving_frames": {
+  "pan": 0.262,
+  "zoom": 0.019,
+  "rotate": 0.0,
+  "local": 0.718
+ },
+ "push_in_runs": 3,
+ "pull_out_runs": 5,
+ "pan_runs": 5,
+ "push_in_time_frac": 0.016,
+ "blur_ratio_fast_vs_still": 1.78,
+ "luma_median": 250.6,
+ "dark_frac_luma_lt_50": 0.083,
+ "light_frac_luma_gt_180": 0.917,
+ "colorfulness_median": 4.8,
+ "mono_frac_colorfulness_lt_15": 0.909,
+ "audio": {
+  "lufs_i": -18.9,
+  "true_peak_dbfs": -0.5,
+  "lra_lu": 4.5,
+  "silence_frac_-50dB": 0.009,
+  "band_share": {
+   "0-120": 0.622,
+   "120-500": 0.29,
+   "500-2000": 0.077,
+   "2000-6000": 0.009,
+   "6000-22050": 0.001
+  },
+  "onsets_per_s": 7.41,
+  "bpm_estimate": 77.1,
+  "beat_clarity": 0.463,
+  "speech_mod_index": 0.196,
+  "strong_hits_per_s": 1.12,
+  "cuts_within_67ms_of_strong_hit": 0.0,
+  "chance_within_67ms": 0.15,
+  "strong_hits_within_67ms_of_motion_peak": 0.17
+ }
+}

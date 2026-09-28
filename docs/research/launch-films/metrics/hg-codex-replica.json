@@ -1,0 +1,47 @@
+{
+ "id": "hg-codex-replica",
+ "source": "hg-codex-replica.mp4",
+ "duration_s": 10.15,
+ "fps": 60.0,
+ "resolution": "3840x2160",
+ "aspect": 1.778,
+ "frames": 609,
+ "cuts": 0,
+ "cuts_per_min": 0.0,
+ "cut_times_s": [],
+ "flash_frames": 0,
+ "shot_len_s": {
+  "median": 10.15,
+  "p25": 10.15,
+  "p75": 10.15,
+  "max": 10.15
+ },
+ "still_frac": 0.072,
+ "calm_frac_global": 0.601,
+ "changed_area_median_when_moving": 0.0229,
+ "held_in_move_frac": 0.097,
+ "moves_per_min": 17.7,
+ "move_len_s": {
+  "median": 1.567,
+  "p75": 4.642,
+  "p90": 6.487
+ },
+ "motion_after_cut_rel_at_1f_100ms_200ms_400ms_800ms": null,
+ "camera_share_of_moving_frames": {
+  "pan": 0.0,
+  "zoom": 0.006,
+  "rotate": 0.0,
+  "local": 0.994
+ },
+ "push_in_runs": 1,
+ "pull_out_runs": 0,
+ "pan_runs": 0,
+ "push_in_time_frac": 0.107,
+ "blur_ratio_fast_vs_still": 0.77,
+ "luma_median": 249.8,
+ "dark_frac_luma_lt_50": 0.0,
+ "light_frac_luma_gt_180": 0.977,
+ "colorfulness_median": 13.9,
+ "mono_frac_colorfulness_lt_15": 0.754,
+ "audio": {}
+}

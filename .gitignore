@@ -13,3 +13,15 @@ agent/skills/
 akshay-skill-graphs.md
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
+# research media, frames and arrays stay local; only derived numbers are committed (docs/research/launch-films/README.md)
+docs/research/**/*.mp4
+docs/research/**/*.webm
+docs/research/**/*.mov
+docs/research/**/*.m4a
+docs/research/**/*.wav
+docs/research/**/*.raw
+docs/research/**/*.npy
+docs/research/**/*.jpg
+docs/research/**/*.jpeg
+docs/research/**/*.png
+docs/research/**/frames/
