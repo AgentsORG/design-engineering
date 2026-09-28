@@ -8,7 +8,7 @@ tags: [launch-video, seams, carriers, ledger, hyperframes]
 
 A seam reads as one move when the outgoing element is still travelling on the cut frame and the incoming one carries on along the same axis, in the same direction, at the same speed. For a `cut` seam (cut-the-curve, a zoom-through) HyperFrames' vector law puts the cut mid-motion on both sides. What fails in every register is the static cut: the outgoing scene has settled, and the incoming one starts from rest and then waits. A cut to a still, readable frame that acts within a beat is not static (though inside a HyperFrames project the gate still wants a `cut` row's entry in flight), and neither is a morph whose carrier moves from the boundary. Morph-only continuity is a continuity choice, not a register and not the rule; hard cuts, including the cut to a still frame, live in [[launch-video-cuts]].
 
-Most launch films cut, and [[launch-video-cuts]] has the rates. The zero-cut ones are morph chains, where carriers do all of this work: Skale's Listen Labs, Replit Parallel Agents and Adaline; Granola 2.0 (wipes and cross-blurs); Google AI Mode (one drawn line, 0 cuts in 97 s); and HeyGen's four heygen-apple-motion templates. This repo's demo sits beside them: two of its four seams are carrier morphs and two are mid-motion swaps.
+Most launch films cut, and [[launch-video-cuts]] has the rates. The zero-cut ones are morph chains, where carriers do all of this work: Skale's Listen Labs, Replit Parallel Agents and Adaline; Granola 2.0 (wipes and cross-blurs); Google AI Mode (one drawn line, 0 cuts in 97 s); and HeyGen's four heygen-apple-motion templates. This repo's own launch film (`docs/demo/hyperframes/`) is not one: of its eight seams, three are carrier morphs and five are cuts, hidden in a fill, on a constant ground, or on a palette flip.
 
 ## The vector law
 
@@ -46,17 +46,17 @@ Use 2-3 seam types per film, one of them primary for 60-70 % of scene changes; h
 
 ## The ledger
 
-Write one row per seam before the timeline, typed `cut`, `match-cut` or `morph`. A `cut` row carries `exit` and `entry` objects, each `{selector, axis, dir}` (x −1 leftward, y −1 upward, z +1 push, z −1 pull; optional `dur` on each, `travel` on a lateral entry, `blur` on a Z row), whose axis and dir must match; it needs an exit still moving and an entry already in flight. A `morph` or `match-cut` row carries a `carrier {out, in}` whose rects agree within 12 px of centre and 5 % of size at the cut ± 1 frame; its motion may start at the boundary. 2.4.0's `dir: 0` rows described no vector at all; the second row below is such a seam, retyped as a morph:
+Write one row per seam before the timeline, typed `cut`, `match-cut` or `morph`. A `cut` row carries `exit` and `entry` objects, each `{selector, axis, dir}` (x −1 leftward, y −1 upward, z +1 push, z −1 pull; optional `dur` on each, `travel` on a lateral entry, `blur` on a Z row), whose axis and dir must match; it needs an exit still moving and an entry already in flight. A `morph` or `match-cut` row carries a `carrier {out, in}` whose rects agree within 12 px of centre and 5 % of size at the cut ± 1 frame; its motion may start at the boundary. 2.4.0's `dir: 0` rows described no vector at all; a seam like that is a morph. Two rows from this repo's film:
 
 ```json
 { "fps": 30, "seams": [
-  { "id": "title → router", "cut": 2.8, "type": "cut", "technique": "zoom-through",
-    "exit": { "selector": "#s1 .scene", "axis": "z", "dir": 1 }, "entry": { "selector": "#s2 .scene", "axis": "z", "dir": 1 } },
-  { "id": "router → review", "cut": 5.6, "type": "morph", "technique": "edge-on collapse → unfold",
-    "carrier": { "out": "#cards", "in": "#term" } } ] }
+  { "id": "name → motion", "cut": 9.9, "type": "cut", "technique": "zoom into a glyph",
+    "exit": { "selector": "#s3-cam", "axis": "z", "dir": 1 }, "entry": { "selector": "#s4-cam", "axis": "z", "dir": 1 } },
+  { "id": "cta → endcard", "cut": 30.2, "type": "morph", "technique": "collapse to a carrier dot",
+    "carrier": { "out": "#s7-dot", "in": "#s8-dot" } } ] }
 ```
 
-Typing it is not passing it: as the demo is laid out, #cards and #term share neither a centre nor a width, so the gate fails the morph row until the unfold starts from the collapse's rect. A row that mismatches is a plan bug, not an easing bug, and any edit to a scene's first or last ~1 s re-opens its seam. HyperFrames' `seam-stamp.mjs` writes seams from this ledger and `seam-gate.mjs` verifies them, but both sit in its repo-internal doctrine, which `npx skills add` does not install ([[hyperframes-reconciliation]] says how to get it).
+Typing it is not passing it: 2.4.0's demo typed its edge-on collapse as a morph whose rects shared neither a centre nor a width, and the gate fails that until the unfold starts from the collapse's rect. The 2.6.0 film puts each carrier on the pixel it hands over (the dot sits at (858, 528) on both sides of the cut, the camera's creep included). A row that mismatches is a plan bug, not an easing bug, and any edit to a scene's first or last ~1 s re-opens its seam. HyperFrames' `seam-stamp.mjs` writes seams from this ledger and `seam-gate.mjs` verifies them, but both sit in its repo-internal doctrine, which `npx skills add` does not install ([[hyperframes-reconciliation]] says how to get it).
 
 ## When to apply
 
@@ -64,7 +64,7 @@ Any multi-scene composition: launch films, sizzles, README films. The register s
 
 ## Gotcha
 
-The commonest seam error is a pull answered by a push: a receding exit followed by an entrance that grows from small, which is what most frameworks do by default. The 2.4.0 demo's dock seam (exit z −1, entry z +1) was one. 2.5.0's ledger retypes it as a morph (#mw → #stage); run the gate before calling it fixed. Match the scale sign, or hand across a carrier whose rects agree.
+The commonest seam error is a pull answered by a push: a receding exit followed by an entrance that grows from small, which is what most frameworks do by default. The 2.4.0 demo's dock seam (exit z −1, entry z +1) was one; the 2.6.0 film's Z seam pushes on both sides (1.04 → 30 out, 0.78 → 1 in). Match the scale sign, or hand across a carrier whose rects agree.
 
 ## Sources
 
@@ -72,4 +72,4 @@ The commonest seam error is a pull answered by a push: a receding exit followed 
 - HeyGen, hyperframes-launches (Apache-2.0; 20 project folders, 23 films counting the four apple-motion templates separately): `claude-design-send-hyperframes-launch/HANDOFF.md` §4, §6d, §11.1, §12.2; `claude-paper-launch/index.html` L273-322 and `compositions/outro.html`; `spacex-launch/index.html` L97-104 and `compositions/outro.html` L71-81; `texture-launch-video/index.html` L1892-1945 and L2008-2128; `inspector-launch/index.html` L2597-2598 and L3247-3308; `frame-md-launch-storyboard/HANDOFF.md` (zoom-through); `figma-launch/HANDOFF.md` (act table, standing rules); `heygen-apple-motion/03-message-sting/README.md` and `index.html` L340-345, `04-generate-reel/index.html` L256 and L288-297 and `ledger.json`; `sfx-music-launch/STORYBOARD.md` (seam grammar) and `index.html` L122-131; `codex-five-hour-limit-replica/STORYBOARD.md` beats 8-9.
 - Skale (skale.solutions/portfolio), measured by HKTITAN 2026-09-28: Listen Labs, Adaline, Replit Parallel Agents, Browserbase, the Poke anthology, Poke '7', Bud, Taste Labs, Agent Arcade, Bolt, MadeThis, Extend and the rest of the 29; counts in `docs/research/launch-films/notes/synthesis-skale.md`.
 - Google Gemini app (2024, Ordinary Folk), Google AI Mode (2025, Ordinary Folk, inferred), Perplexity Comet (2025, Studio Freight), Apple Liquid Glass (2025), Figma Motion (2026), Framer 3.0 (2026), Notion Mail (2025), Granola 2.0 (2025), measured 2026-09-28; counts in `docs/research/launch-films/notes/synthesis-acclaimed.md`.
-- This repo's demo ledger, `docs/demo/hyperframes/ledger.json`: the 2.4.0 rows at commit 8653a1c, retyped in 2.5.0; the carrier rects follow from `docs/demo/hyperframes/index.html` (the `.cards` row and the `.split` grid).
+- This repo's launch film, `docs/demo/hyperframes/ledger.json`: eight typed seams (2.6.0); the 2.4.0 demo's rows are at commit 8653a1c.
