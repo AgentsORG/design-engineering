@@ -3,307 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>design-engineering — demo</title>
+    <title>design-engineering — launch film</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="assets/film-motion.js"></script>
     <style>
+      @font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
+      :root {
+        --paper: #f4f3ee; --ink: #0f1013; --ink-2: #1b1d22;
+        --blue: #008fff; --blue-text: #0068d6; --yellow: #ffe53d;
+        --mute: #5f5e58; --line: rgba(15, 16, 19, 0.12);
+      }
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #f7f6f2; }
-      body { font-family: "Inter", sans-serif; color: #111; -webkit-font-smoothing: antialiased; }
-      .mono { font-family: "JetBrains Mono", monospace; }
-      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #f7f6f2; }
-      .clip { position: absolute; inset: 0; }
-      .scene { width: 100%; height: 100%; padding: 120px 160px; display: flex; flex-direction: column; justify-content: center; transform-origin: 50% 50%; }
-      .eyebrow { font-size: 26px; letter-spacing: 0.08em; text-transform: uppercase; color: #0B57D0; font-weight: 600; }
-      #s1-h { visibility: hidden; opacity: 0; }
-      h1 { font-size: 132px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; transform-origin: 0% 100%; }
-      h2 { font-size: 88px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; max-width: 1400px; transform-origin: 0% 100%; }
-      .sub { font-size: 40px; color: #5a5852; margin-top: 28px; max-width: 1200px; line-height: 1.35; }
-      .w { visibility: hidden; display: inline-block; transform-origin: 0% 100%; }
-      .cards { display: flex; gap: 32px; margin-top: 64px; transform-origin: 50% 50%; }
-      .card { flex: 1; background: #fff; border-radius: 20px; padding: 36px 40px; box-shadow: 0 0 0 1px rgb(0 0 0 / .05), 0 1px 3px rgb(0 0 0 / .05), 0 4px 10px -4px rgb(0 0 0 / .05); transform-origin: 50% 100%; }
-      .card .k { font-size: 24px; color: #0B57D0; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-      .card .v { font-size: 38px; font-weight: 600; margin-top: 10px; letter-spacing: -0.01em; }
-      .card .d { font-size: 26px; color: #5a5852; margin-top: 14px; line-height: 1.35; }
-      .card .k, .card .v, .card .d { visibility: hidden; }
-      .split { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; margin-top: 56px; align-items: start; }
-      .term { background: #14161a; color: #e8e6e1; border-radius: 20px; padding: 36px 40px; font-size: 26px; line-height: 1.55; box-shadow: 0 0 0 1px rgb(0 0 0 / .1), 0 12px 32px -12px rgb(0 0 0 / .25); transform: scaleX(0.03); transform-origin: 50% 50%; }
-      .term .row { display: grid; grid-template-columns: 1.2fr 1.2fr 1.6fr; gap: 24px; padding: 14px 0; border-top: 1px solid rgb(255 255 255 / .08); }
-      .term .row.head { border-top: 0; color: #bec2c9; font-size: 22px; letter-spacing: 0.06em; text-transform: uppercase; }
-      .term .row > div { visibility: hidden; }
-      .term .b { color: #f0a3a3; } .term .a { color: #9fe3b0; } .term .w2 { color: #cfd3da; font-family: "Inter", sans-serif; }
-      .term .w2 em { color: #8ab4ff; font-style: normal; }
-      .modal-wrap { position: relative; height: 560px; border-radius: 20px; background: #eceae4; display: grid; place-items: center; overflow: hidden; transform-origin: 50% 50%; }
-      .overlay { position: absolute; inset: 0; background: rgb(17 17 17 / .35); }
-      .modal { position: relative; width: 520px; background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 2px 4px rgb(0 0 0 / .04), 0 16px 40px rgb(0 0 0 / .12); transform-origin: 50% 50%; }
-      .modal h3 { font-size: 30px; font-weight: 600; letter-spacing: -0.01em; }
-      .modal p { font-size: 20px; color: #5a5852; margin-top: 8px; line-height: 1.4; }
-      .field { margin-top: 22px; }
-      .field label { display: block; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-      .field .input { height: 52px; border-radius: 10px; border: 1px solid rgb(0 0 0 / .12); background: #fff; padding: 0 16px; display: flex; align-items: center; font-size: 18px; color: #5a5852; }
-      .toggle-row { display: flex; align-items: center; justify-content: space-between; margin-top: 22px; font-size: 18px; }
-      .toggle { width: 48px; height: 28px; border-radius: 999px; background: #d9d5cc; position: relative; }
-      .toggle .knob { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgb(0 0 0 / .2); }
-      .actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 28px; }
-      .btn { height: 44px; padding: 0 18px; border-radius: 10px; font-size: 18px; font-weight: 600; display: flex; align-items: center; transform-origin: 50% 50%; }
-      .btn.ghost { color: #111; background: transparent; box-shadow: 0 0 0 1px rgb(0 0 0 / .12); }
-      .btn.filled { color: #fff; background: #0B57D0; }
-      .cursor { position: absolute; left: 0; top: 0; width: 28px; height: 36px; visibility: hidden; opacity: 0; filter: drop-shadow(0 2px 3px rgb(0 0 0 / .35)); transform-origin: 20% 10%; }
-      .sound { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; margin-top: 56px; align-items: center; }
-      .bars { display: flex; flex-direction: column; gap: 22px; }
-      .bar { display: grid; grid-template-columns: 180px 1fr 140px; align-items: center; gap: 24px; font-size: 26px; visibility: hidden; }
-      .bar .name { font-weight: 600; }
-      .bar .wave { height: 40px; display: flex; align-items: center; gap: 4px; }
-      .bar .wave i { display: block; width: 6px; border-radius: 3px; background: #0B57D0; transform-origin: center; }
-      .bar .ms { color: #5a5852; text-align: right; }
-      .mascot-stage { height: 520px; border-radius: 20px; background: #fff; box-shadow: 0 0 0 1px rgb(0 0 0 / .05), 0 1px 3px rgb(0 0 0 / .05), 0 4px 10px -4px rgb(0 0 0 / .05); display: grid; place-items: center; position: relative; transform-origin: 50% 50%; }
-      .mascot-stage svg { width: 360px; height: 360px; }
-      .mascot-stage .frame { visibility: hidden; }
-      .mascot-stage .tag { position: absolute; left: 32px; bottom: 28px; font-size: 22px; color: #5a5852; }
-      .install { position: relative; overflow: hidden; margin-top: 64px; display: inline-flex; align-items: center; gap: 20px; background: #14161a; color: #e8e6e1; border-radius: 16px; padding: 28px 36px; font-size: 40px; width: max-content; min-width: 1150px; box-shadow: 0 12px 32px -12px rgb(0 0 0 / .3); transform-origin: 50% 50%; }
-      .install .p { color: #9aa0ab; }
-      .install .c { visibility: hidden; }
-      .install .shine { position: absolute; top: 0; bottom: 0; left: 0; width: 220px; background: linear-gradient(100deg, rgb(255 255 255 / 0), rgb(255 255 255 / .14), rgb(255 255 255 / 0)); transform: translateX(-260px); pointer-events: none; }
-      .foot { position: absolute; left: 160px; bottom: 96px; font-size: 26px; color: #5a5852; display: flex; gap: 48px; align-items: center; }
-      .brand { display: flex; align-items: center; gap: 20px; }
-      .mark { height: 64px; width: auto; display: block; }
-      .foot .mark { height: 44px; }
-      .foot .icon { height: 48px; margin-left: -8px; }
+      html, body { width: 100%; height: 100%; overflow: hidden; background: var(--paper); }
+      body { font-family: "Instrument Sans", sans-serif; -webkit-font-smoothing: antialiased; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); }
+      #root > div[data-composition-src] { position: absolute; inset: 0; }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="12" data-width="1920" data-height="1080" data-layout-allow-overflow>
+    <!-- design-engineering — launch film. 34.6 s, 1920x1080, 30 fps.
+         Register, beats, seams and sound: STORYBOARD.md · seams typed in ledger.json · sound: assets/sfx/cues.json -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="34.6" data-width="1920" data-height="1080">
+      <div id="s1" data-composition-id="s1" data-composition-src="compositions/s1-hook.html" data-start="0" data-duration="2.633" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s2" data-composition-id="s2" data-composition-src="compositions/s2-review.html" data-start="2.633" data-duration="3.567" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s3" data-composition-id="s3" data-composition-src="compositions/s3-name.html" data-start="6.2" data-duration="3.7" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s4" data-composition-id="s4" data-composition-src="compositions/s4-motion.html" data-start="9.9" data-duration="4.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s5" data-composition-id="s5" data-composition-src="compositions/s5-sound.html" data-start="14.3" data-duration="4.4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s6" data-composition-id="s6" data-composition-src="compositions/s6-measured.html" data-start="18.7" data-duration="5.9" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s7" data-composition-id="s7" data-composition-src="compositions/s7-cta.html" data-start="24.6" data-duration="5.6" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s8" data-composition-id="s8" data-composition-src="compositions/s8-endcard.html" data-start="30.2" data-duration="4.4" data-track-index="1" data-width="1920" data-height="1080"></div>
 
-      <!-- 1 · Title — glyph flipbook (stepped) → the word lands on a spring → the thesis streams in -->
-      <section id="s1" class="clip" data-start="0" data-duration="2.8" data-track-index="1">
-        <div class="scene">
-          <div id="s1-eye" class="eyebrow brand"><img src="assets/brand/agents.svg" alt="agents.org.in" class="mark"><span>design‑engineering · v2.4.0</span></div>
-          <h1 id="s1-h">design‑engineering</h1>
-          <div id="s1-sub" class="sub"><span class="w">A</span> <span class="w">skill</span> <span class="w">graph</span> <span class="w">for</span> <span class="w">coding</span> <span class="w">agents.</span> <span class="w">It</span> <span class="w">routes,</span> <span class="w">reviews,</span> <span class="w">scores</span> <span class="w">sound,</span> <span class="w">draws</span> <span class="w">vectors.</span></div>
-        </div>
-      </section>
-
-      <!-- 2 · Router — zoom-through in; three cards spring up with a rotation ring; lines stepped; cards collapse edge-on to leave -->
-      <section id="s2" class="clip" data-start="2.8" data-duration="2.8" data-track-index="1">
-        <div class="scene">
-          <div id="s2-eye" class="eyebrow">/design‑engineering</div>
-          <h2 id="s2-h">A router before it is a library.</h2>
-          <div class="cards" id="cards">
-            <div class="card" id="c1"><div class="k">1 · Contract</div><div class="v mono">.design → frame.md → DESIGN.md</div><div class="d">The nearest contract outranks every taste table.</div></div>
-            <div class="card" id="c2"><div class="k">2 · Phase</div><div class="v">undecided → build → refine → check</div><div class="d">Polish before layout is thrown away with the layout.</div></div>
-            <div class="card" id="c3"><div class="k">3 · One owner</div><div class="v">node · subagent · companion</div><div class="d">impeccable, HyperFrames, ElevenLabs, shadcn — never four at once.</div></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3 · Review — the terminal unfolds from the same axis the cards collapsed on; cells stream; a cursor flips the toggle and saves; the modal docks into the next scene -->
-      <section id="s3" class="clip" data-start="5.6" data-duration="3" data-track-index="1">
-        <div class="scene">
-          <div id="s3-eye" class="eyebrow">review‑format · thirteen‑row checklist</div>
-          <h2 id="s3-h">Before · After · Why. Then the fix.</h2>
-          <div class="split">
-            <div class="term mono" id="term">
-              <div class="row head"><div>Before</div><div>After</div><div>Why</div></div>
-              <div class="row" id="r1"><div class="b cell">transition: all .3s ease-in</div><div class="a cell">transition: transform 200ms<br>cubic-bezier(.25,1,.5,1)</div><div class="w2 cell">ease‑in reads hesitant. <em>[[easing-curves]]</em></div></div>
-              <div class="row" id="r2"><div class="b cell">transform: scale(0)</div><div class="a cell">transform: scale(.95)</div><div class="w2 cell">Nothing real appears from nowhere. <em>[[never-scale-from-zero]]</em></div></div>
-              <div class="row" id="r3"><div class="b cell">new AudioContext() at load</div><div class="a cell">resume() in the first gesture</div><div class="w2 cell">Sound works on the second click otherwise. <em>[[sound-playback-web]]</em></div></div>
-            </div>
-            <div class="modal-wrap" id="mw">
-              <div class="overlay" id="ov"></div>
-              <div class="modal" id="modal">
-                <h3>Notification settings</h3>
-                <p>Choose how the workspace gets your attention.</p>
-                <div class="field"><label>Email digest</label><div class="input">Weekly, Monday 9:00</div></div>
-                <div class="toggle-row"><span>Sound on send <span id="tog-note" style="color:#5a5852">· off by default</span></span><div class="toggle" id="tog"><div class="knob" id="knob"></div></div></div>
-                <div class="actions"><div class="btn ghost">Cancel</div><div class="btn filled" id="save">Save changes</div></div>
-              </div>
-              <svg class="cursor" id="cur" viewBox="0 0 28 36" aria-hidden="true"><path d="M3 2 L3 28 L9.5 22 L14 33 L18.5 31 L14 20.5 L23 20.5 Z" fill="#111" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4 · Sound family + SVG mascot — the stage grows from where the modal docked; bars ride a conveyor in; the flipbook runs -->
-      <section id="s4" class="clip" data-start="8.6" data-duration="2" data-track-index="1">
-        <div class="scene">
-          <div id="s4-eye" class="eyebrow">sound‑sheet.mjs · svg‑flipbook.mjs</div>
-          <h2 id="s4-h">One material. A bed that breathes. Clicks on the frame.</h2>
-          <div class="sound">
-            <div class="bars" id="bars">
-              <div class="bar"><span class="name">tick</span><span class="wave" data-w="3,7,18,40,26,12,8,5,4,3,2,2"></span><span class="ms" id="ms-tick">— ms</span></div>
-              <div class="bar"><span class="name">tap</span><span class="wave" data-w="4,10,24,40,34,20,12,8,6,4,3,2"></span><span class="ms" id="ms-tap">— ms</span></div>
-              <div class="bar"><span class="name">send</span><span class="wave" data-w="6,16,30,40,28,16,22,36,30,18,10,5"></span><span class="ms" id="ms-send">— ms</span></div>
-              <div class="bar"><span class="name">receive</span><span class="wave" data-w="5,14,34,40,24,14,26,32,20,10,6,3"></span><span class="ms" id="ms-receive">— ms</span></div>
-              <div class="bar"><span class="name">error</span><span class="wave" data-w="10,28,40,36,26,18,12,8,6,4,3,2"></span><span class="ms" id="ms-error">— ms</span></div>
-              <div class="bar"><span class="name">success</span><span class="wave" data-w="6,18,36,40,30,22,34,40,28,18,10,4"></span><span class="ms" id="ms-success">— ms</span></div>
-            </div>
-            <div class="mascot-stage" id="stage">
-              <svg viewBox="0 0 120 120" id="mascot" role="img" aria-label="Bouncing mascot"></svg>
-              <div class="tag mono">8 frames → 1 editable SVG · 5.7 KB · --vars</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5 · Install — the command rises as a sent pill, types in, pops and shines on success -->
-      <section id="s5" class="clip" data-start="10.6" data-duration="1.4" data-track-index="1">
-        <div class="scene">
-          <div id="s5-eye" class="eyebrow">Install</div>
-          <h2 id="s5-h">Ten clusters. Nine subagents. One router.</h2>
-          <div class="install mono" id="cmd"><span class="p">$</span><span><span class="c">npx</span> <span class="c">skills</span> <span class="c">add</span> <span class="c">AgentsORG/</span><span class="c">design-engineering</span></span><div class="shine" id="shine"></div></div>
-        </div>
-        <div class="foot" id="foot"><img src="assets/brand/agents-icon.svg" alt="agents.org.in" class="mark icon"><span>github.com/AgentsORG/design-engineering</span><span>MIT</span></div>
-      </section>
-
-      <!-- the whole soundtrack: one stem, derived from these tweens by assets/sfx/cues.json -->
-      <audio id="stem" src="assets/sfx/stem.wav" data-start="0" data-duration="12" data-track-index="10"></audio>
+      <!-- the whole soundtrack: one stem derived from these timelines (assets/sfx/cues.json → sound-sheet.mjs) -->
+      <audio id="stem" src="assets/sfx/stem.wav" data-start="0" data-duration="34.6" data-track-index="10"></audio>
     </div>
-
     <script>
-      // Build the waveform bars from data (deterministic — no randomness).
-      document.querySelectorAll(".wave").forEach((el) => {
-        el.dataset.w.split(",").forEach((h) => { const i = document.createElement("i"); i.style.height = h + "px"; el.appendChild(i); });
-      });
-      const FAMILY_MS = window.__FAMILY_MS || { tick: 23, tap: 130, send: 93, receive: 103, error: 155, success: 313 };
-      Object.entries(FAMILY_MS).forEach(([k, v]) => { const el = document.getElementById("ms-" + k); if (el) el.textContent = v + " ms"; });
-
-      /* THE MOTION SYSTEM — one law, applied everywhere (after HeyGen's launch templates)
-         · arrivals relax exponentially with tau = 0.131 s; exits accelerate away on the mirror curve
-         · placement rings on a damped spring, zeta = 1/3: position 1.45 Hz, shape 1.88 Hz, rotation 2.5 Hz
-         · motion blur follows velocity — in with the acceleration, out with the settle
-         · reveals of *text* are stepped (a flipbook, a typed run), never tweened — the sound sits on those steps
-         · scene changes are shared-element morphs: a zoom-through, an edge-on collapse that unfolds, a dock, a conveyor
-         · no idle motion: nothing floats or breathes to fill time */
-      const TAU = 0.131;
-      const eo = (dur, tau = TAU) => (p) => (1 - Math.exp(-p * dur / tau)) / (1 - Math.exp(-dur / tau));
-      const ei = (dur, tau = TAU) => (p) => 1 - eo(dur, tau)(1 - p);
-      const ZETA = 1 / 3;
-      const spring = (dur, f = 1.45, z = ZETA) => (p) => { const u = p * dur; const wd = 2 * Math.PI * f * Math.sqrt(1 - z * z); return 1 - Math.exp(-2 * Math.PI * z * f * u) * Math.cos(wd * u) * (1 - p); };
-      const POS = 1.45, SHAPE = 1.88, ROT = 2.5;
-      const STEP = 7 / 30;
-      const tl = gsap.timeline({ paused: true });
-
-      // 1 · Title
-      const GLYPHS = [["dęsįgn‑ęngįnęęrįng", 300], ["dēsïgn‑ēngïnēērïng", 400], ["dèsígn‑èngínèèríng", 500]];
-      GLYPHS.forEach(([txt, wgt], i) => tl.set("#s1-h", { innerText: txt, fontWeight: wgt, autoAlpha: 1 }, 0.2 + i * STEP));
-      tl.set("#s1-h", { innerText: "design‑engineering", fontWeight: 600 }, 0.9);
-      tl.fromTo("#s1-h", { y: 26, scaleY: 0.93 }, { y: 0, scaleY: 1, duration: 0.75, ease: spring(0.75, POS) }, 0.9);
-      tl.fromTo("#s1-h", { filter: "blur(5px)" }, { filter: "blur(0px)", duration: 0.22, ease: eo(0.22) }, 0.9);
-      tl.fromTo("#s1-eye", { autoAlpha: 0, x: -28, filter: "blur(4px)" }, { autoAlpha: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: eo(0.45) }, 1.15);
-      document.querySelectorAll("#s1-sub .w").forEach((w, i) => {
-        const t0 = 1.3 + i * 0.11;
-        tl.set(w, { visibility: "visible" }, t0);
-        tl.fromTo(w, { scale: 0.86, y: 6, filter: "blur(3px)" }, { scale: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: eo(0.2) }, t0);
-      });
-      // seam: zoom-through — the title scene flies past the camera, the next scene arrives from behind it
-      tl.to("#s1 .scene", { scale: 1.18, autoAlpha: 0, filter: "blur(10px)", duration: 0.32, ease: ei(0.32) }, 2.5);
-      tl.set("#s1 .scene", { autoAlpha: 0 }, 2.8);
-
-      // 2 · Router
-      tl.fromTo("#s2 .scene", { scale: 0.92, filter: "blur(8px)" }, { scale: 1, filter: "blur(0px)", duration: 0.45, ease: eo(0.45) }, 2.8);
-      tl.fromTo("#s2-eye", { autoAlpha: 0, x: -24 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: eo(0.4) }, 2.85);
-      tl.fromTo("#s2-h", { autoAlpha: 0, y: 44 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: spring(0.7, POS) }, 2.85);
-      ["#c1", "#c2", "#c3"].forEach((id, i) => {
-        const t0 = 3.45 + i * 0.3;
-        tl.fromTo(id, { y: 96 }, { y: 0, duration: 0.75, ease: spring(0.75, POS) }, t0);
-        tl.fromTo(id, { rotation: i % 2 ? 3 : -3 }, { rotation: 0, duration: 0.7, ease: spring(0.7, ROT) }, t0);
-        tl.fromTo(id, { autoAlpha: 0, filter: "blur(6px)" }, { autoAlpha: 1, filter: "blur(0px)", duration: 0.3, ease: eo(0.3) }, t0);
-        [".k", ".v", ".d"].forEach((cls, j) => tl.set(id + " " + cls, { visibility: "visible" }, t0 + 0.28 + j * 0.12));
-      });
-      // seam: the cards collapse edge-on; the terminal unfolds from the same axis
-      tl.to("#cards", { scaleX: 0.02, filter: "blur(4px)", duration: 0.3, ease: ei(0.3) }, 5.3);
-      tl.to("#s2-h, #s2-eye", { y: -30, autoAlpha: 0, filter: "blur(6px)", duration: 0.3, ease: ei(0.3) }, 5.3);
-      tl.set("#s2 .scene", { autoAlpha: 0 }, 5.6);
-      tl.set("#s2-h, #s2-eye", { autoAlpha: 0 }, 5.6);
-      tl.set("#cards", { autoAlpha: 0 }, 5.6);
-
-      // 3 · Review
-      tl.set("#term .row.head > div", { visibility: "visible" }, 5.6);
-      tl.fromTo("#term", { scaleX: 0.03, filter: "blur(6px)" }, { scaleX: 1, filter: "blur(0px)", duration: 0.45, ease: eo(0.45) }, 5.6);
-      tl.fromTo("#s3-eye", { autoAlpha: 0, x: -24 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: eo(0.4) }, 5.7);
-      tl.fromTo("#s3-h", { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: spring(0.7, POS) }, 5.75);
-      document.querySelectorAll("#term .cell").forEach((c, i) => {
-        const t0 = 6.25 + i * 0.21;
-        tl.set(c, { visibility: "visible" }, t0);
-        tl.fromTo(c, { x: -8, filter: "blur(4px)" }, { x: 0, filter: "blur(0px)", duration: 0.18, ease: eo(0.18) }, t0);
-      });
-      tl.fromTo("#mw", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.3, ease: eo(0.3) }, 5.9);
-      tl.fromTo("#ov", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.25, ease: eo(0.25) }, 7.05);
-      tl.fromTo("#modal", { autoAlpha: 0, scale: 0.9, y: 18 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.6, ease: spring(0.6, POS) }, 7.05);
-      tl.fromTo("#modal", { filter: "blur(6px)" }, { filter: "blur(0px)", duration: 0.25, ease: eo(0.25) }, 7.05);
-      // the cursor: arrives, flips the toggle, saves — each a decision (stepped), each a click in the stem
-      tl.set("#cur", { visibility: "visible", x: 300, y: 520 }, 7.4);
-      tl.fromTo("#cur", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.15, ease: eo(0.15) }, 7.4);
-      tl.to("#cur", { x: 548, y: 356, duration: 0.5, ease: eo(0.5, 0.16) }, 7.45);
-      tl.to("#cur", { scale: 0.86, duration: 0.06, ease: eo(0.06) }, 7.95);
-      tl.to("#cur", { scale: 1, duration: 0.3, ease: spring(0.3, SHAPE) }, 8.01);
-      tl.to("#knob", { x: 20, duration: 0.45, ease: spring(0.45, POS) }, 7.95);
-      tl.to("#tog", { backgroundColor: "#0B57D0", duration: 0.2, ease: eo(0.2) }, 7.95);
-      tl.set("#tog-note", { innerText: "· on" }, 8.02);
-      tl.to("#cur", { x: 500, y: 430, duration: 0.4, ease: eo(0.4, 0.14) }, 8.05);
-      tl.to("#save", { scale: 0.95, duration: 0.06, ease: eo(0.06) }, 8.35);
-      tl.to("#save", { scale: 1, duration: 0.35, ease: spring(0.35, SHAPE) }, 8.41);
-      tl.to("#cur", { scale: 0.86, duration: 0.06, ease: eo(0.06) }, 8.35);
-      tl.to("#cur", { scale: 1, duration: 0.25, ease: spring(0.25, SHAPE) }, 8.41);
-      // seam: the modal docks — shrinks toward the rect where the next scene's stage grows from
-      tl.to("#mw", { scale: 0.5, filter: "blur(8px)", autoAlpha: 0, duration: 0.3, ease: ei(0.3) }, 8.35);
-      tl.to("#term, #s3-h, #s3-eye", { y: -40, autoAlpha: 0, filter: "blur(6px)", duration: 0.3, ease: ei(0.3) }, 8.32);
-      tl.set("#s3 .scene", { autoAlpha: 0 }, 8.6);
-      tl.set("#term, #s3-h, #s3-eye", { autoAlpha: 0 }, 8.6);
-      tl.set("#mw", { autoAlpha: 0 }, 8.6);
-
-      // 4 · Sound + SVG
-      tl.fromTo("#stage", { scale: 0.5, autoAlpha: 0.5, filter: "blur(8px)" }, { scale: 1, autoAlpha: 1, filter: "blur(0px)", duration: 0.6, ease: spring(0.6, POS) }, 8.6);
-      tl.fromTo("#s4-eye", { autoAlpha: 0, x: -24 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: eo(0.4) }, 8.65);
-      tl.fromTo("#s4-h", { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: spring(0.7, POS) }, 8.7);
-      document.querySelectorAll("#bars .bar").forEach((b, i) => {
-        const t0 = 9.0 + i * 0.09;
-        tl.set(b, { visibility: "visible" }, t0);
-        tl.fromTo(b, { y: 54, autoAlpha: 0, filter: "blur(5px)" }, { y: 0, autoAlpha: 1, filter: "blur(0px)", duration: 0.6, ease: spring(0.6, POS) }, t0);
-      });
-      tl.fromTo("#bars .wave i", { scaleY: 0.1 }, { scaleY: 1, duration: 0.5, ease: spring(0.5, SHAPE), stagger: 0.006 }, 9.15);
-      // seam: the conveyor accelerates off the top; the stage recedes
-      tl.to("#bars", { y: -140, autoAlpha: 0, filter: "blur(6px)", duration: 0.3, ease: ei(0.3) }, 10.3);
-      tl.to("#stage, #s4-h, #s4-eye", { scale: 0.94, y: -30, autoAlpha: 0, filter: "blur(6px)", duration: 0.3, ease: ei(0.3) }, 10.3);
-      tl.set("#s4 .scene", { autoAlpha: 0 }, 10.6);
-      tl.set("#bars", { autoAlpha: 0 }, 10.6);
-      tl.set("#stage, #s4-h, #s4-eye", { autoAlpha: 0 }, 10.6);
-
-      // 5 · Install
-      tl.fromTo("#cmd", { y: 140, scale: 0.9, autoAlpha: 0 }, { y: 0, scale: 1, autoAlpha: 1, duration: 0.7, ease: spring(0.7, POS) }, 10.6);
-      tl.fromTo("#cmd", { filter: "blur(8px)" }, { filter: "blur(0px)", duration: 0.3, ease: eo(0.3) }, 10.6);
-      tl.fromTo("#s5-eye", { autoAlpha: 0, x: -24 }, { autoAlpha: 1, x: 0, duration: 0.4, ease: eo(0.4) }, 10.7);
-      tl.fromTo("#s5-h", { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: spring(0.7, POS) }, 10.72);
-      document.querySelectorAll("#cmd .c").forEach((c, i) => {
-        const t0 = 10.95 + i * 0.12;
-        tl.set(c, { visibility: "visible" }, t0);
-        tl.fromTo(c, { filter: "blur(3px)" }, { filter: "blur(0px)", duration: 0.14, ease: eo(0.14) }, t0);
-      });
-      // success: a volume-conserving pop and a shine across the pill
-      tl.to("#cmd", { scaleX: 1.03, scaleY: 0.96, duration: 0.07, ease: eo(0.07) }, 11.55);
-      tl.to("#cmd", { scaleX: 1, scaleY: 1, duration: 0.5, ease: spring(0.5, SHAPE) }, 11.63);
-      tl.fromTo("#shine", { x: -260 }, { x: 1400, duration: 0.5, ease: "power1.inOut" }, 11.52);
-      tl.fromTo("#foot", { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: eo(0.4) }, 11.4);
-
-      window.__timelines["main"] = tl;
-    </script>
-    <script src="assets/mascot-frames.js"></script>
-    <script>
-      // Mount frames after the flipbook script loads; drive them from the same timeline (deterministic).
-      (function () {
-        const svg = document.getElementById("mascot");
-        const frames = window.__MASCOT_FRAMES || [];
-        frames.forEach((markup, i) => { const g = document.createElementNS("http://www.w3.org/2000/svg", "g"); g.setAttribute("class", "frame f" + i); g.innerHTML = markup; svg.appendChild(g); });
-        const fps = 8, start = 8.8, end = 10.6;
-        const n = frames.length; if (!n) return;
-        const tl = window.__timelines["main"];
-        let t = start, k = 0;
-        while (t < end) {
-          const cur = k % n;
-          tl.set("#mascot .f" + cur, { visibility: "visible" }, t);
-          tl.set("#mascot .f" + ((cur + n - 1) % n), { visibility: "hidden" }, t);
-          t += 1 / fps; k += 1;
-        }
-      })();
+      window.__timelines["main"] = gsap.timeline({ paused: true });
     </script>
   </body>
 </html>

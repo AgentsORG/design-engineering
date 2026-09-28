@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #0f1013; color: #f4f3ee; font-family: "Instrument Sans", sans-serif; }
+        #s7-cam { position: absolute; inset: 0; transform-origin: 1500px 560px; }
+        #s7-wrap { position: absolute; inset: 0; }
+        #s7-eye { position: absolute; left: 160px; top: 176px; font-family: "JetBrains Mono", monospace; font-size: 26px; color: #ffe53d; }
+        #s7-h { position: absolute; left: 160px; top: 232px; font-size: 104px; font-weight: 620; letter-spacing: -0.035em; line-height: 1; white-space: nowrap; }
+        #s7-h .w { display: inline-block; margin-right: 0.24em; }
+        #s7-h .mk { color: #ffe53d; }
+        /* Typed characters are display:none until their key lands, so the caret simply follows the text. */
+        #s7-pill { position: absolute; left: 160px; top: 470px; width: 1480px; height: 120px; border-radius: 24px; background: #1b1d22; box-shadow: inset 0 0 0 1px rgba(244, 243, 238, 0.1); transform-origin: 50% 50%; }
+        #s7-pill .txt { position: absolute; left: 40px; top: 0; height: 120px; display: flex; align-items: center; font-family: "JetBrains Mono", monospace; font-size: 50px; white-space: pre; }
+        #s7-pill .p { color: rgba(244, 243, 238, 0.5); }
+        #s7-caret { display: inline-block; width: 0.6em; height: 1.18em; margin-left: 2px; vertical-align: middle; background: #ffe53d; }
+        #s7-ok { position: absolute; left: 160px; top: 628px; font-family: "JetBrains Mono", monospace; font-size: 30px; color: rgba(244, 243, 238, 0.78); white-space: nowrap; }
+        #s7-ok b { color: #ffe53d; font-weight: 400; }
+        /* The carrier: where the collapsed pill sits on screen, (858, 527.9) = 1500 + (900 − 1500) × 1.07 after the camera's creep. */
+        #s7-dot { position: absolute; left: 843px; top: 513px; width: 30px; height: 30px; border-radius: 50%; background: #ffe53d; }
+      </style>
+
+      <div id="root" data-composition-id="s7" data-width="1920" data-height="1080">
+        <div id="s7-cam" data-layout-allow-overflow>
+          <div id="s7-wrap">
+            <div id="s7-eye">one command · any agent that reads SKILL.md</div>
+            <div id="s7-h"><span class="w">Give</span><span class="w">your</span><span class="w">agent</span><span class="w mk">taste.</span></div>
+            <div id="s7-pill"><div class="txt"><span class="p">$ </span><span id="s7-cmd"></span><span id="s7-caret"></span></div></div>
+            <div id="s7-ok"><b>✓</b> design-engineering added · 116 nodes · 10 subagents · 10 commands</div>
+          </div>
+        </div>
+        <div id="s7-dot"></div>
+      </div>
+
+      <script>
+        (() => {
+          const { eo, words, keys } = window.FM;
+          const tl = gsap.timeline({ paused: true });
+          const PAPER = "#f4f3ee";
+          const CMD = "npx skills add AgentsORG/design-engineering";
+
+          const box = document.getElementById("s7-cmd");
+          const spans = [...CMD].map((ch) => { const s = document.createElement("span"); s.textContent = ch; s.style.display = "none"; box.appendChild(s); return s; });
+
+          // Seam in: rising — the reserved upward vector, a conclusion (stamp: power4.out 0.42 s from 10 % at 0.35 opacity).
+          tl.fromTo("#s7-wrap", { y: 108, opacity: 0.35 }, { y: 0, opacity: 1, duration: 0.42, ease: "power4.out" }, 0);
+          tl.fromTo("#s7-cam", { scale: 1 }, { scale: 1.07, duration: 4.78, ease: "none" }, 0.42);
+
+          tl.fromTo("#s7-eye", { autoAlpha: 0, x: -24 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: eo(0.3, 0.08) }, 0.1);
+          words(tl, document.querySelectorAll("#s7-h .w"), 0.12, 0.167, { base: PAPER, y: 24 });
+          tl.fromTo("#s7-pill", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: eo(0.3, 0.08) }, 0.8);
+
+          // Typed to be read: a human hand, ~15 characters a second overall, +-30 % per key (seeded).
+          const K = keys(CMD, 1.2, 11, 18, 0.2);
+          spans.forEach((s, i) => {
+            tl.set(s, { display: "inline" }, K[i]);
+          });
+          const tEnter = K[K.length - 1] + 0.35;
+
+          // Enter: the pill takes the press, pops volume-conserving, and the confirmation stamps.
+          tl.to("#s7-pill", { scaleX: 0.985, scaleY: 0.985, duration: 0.05, ease: "none" }, tEnter);
+          tl.to("#s7-pill", { scaleX: 1.02, scaleY: 0.975, duration: 0.06, ease: eo(0.06, 0.02) }, tEnter + 0.05);
+          tl.to("#s7-pill", { scaleX: 1, scaleY: 1, duration: 0.35, ease: eo(0.35, 0.09) }, tEnter + 0.11);
+          tl.to("#s7-pill", { boxShadow: "inset 0 0 0 3px rgba(255, 229, 61, 0.9)", duration: 0.12, ease: "none" }, tEnter + 0.05);
+          tl.fromTo("#s7-ok", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.2, ease: eo(0.2, 0.05) }, tEnter + 0.1);
+
+          // Seam out: the pill swells, then collapses into a dot turning 28°; the dot holds two frames.
+          tl.to("#s7-eye, #s7-h, #s7-ok", { y: -60, opacity: 0, duration: 0.3, ease: "power3.in" }, 5.0);
+          tl.to("#s7-pill", { scaleX: 1.05, scaleY: 1.05, duration: 0.15, ease: eo(0.15, 0.04) }, 5.0);
+          tl.to("#s7-pill", { scaleX: 0.03, scaleY: 0.03, rotation: 28, duration: 0.3, ease: "power2.in" }, 5.15);
+          tl.fromTo("#s7-dot", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.001 }, 5.4);
+          tl.set("#s7-pill", { autoAlpha: 0 }, 5.45);
+
+          window.__timelines["s7"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

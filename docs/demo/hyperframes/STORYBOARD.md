@@ -1,58 +1,143 @@
-# design-engineering demo — storyboard
+# design-engineering — launch film storyboard
 
-**Format:** 1920×1080 · 30 fps · 12.0 s · one paused GSAP timeline on `window.__timelines.main`.
-**Sound register:** measured from OpenAI's *Refreshed.* and *Introducing GPT-5* — a warm sub-heavy bed in F, dry clicks ~19 dB under it across the film (band p95; at the hit they peak level with the sub or up to 7 dB under it) on every stepped reveal, a low thud when something big settles, the sub dropping out before the modal lands. `references/sound/launch-video-sound.md`.
-**Motion system:** HeyGen's bouncy-sting register (`heygen-apple-motion/02-bouncy-ui`), a motion register described in `references/launch-video/launch-video-motion.md` — arrivals relax exponentially (tau 0.131 s), exits accelerate on the family's mirror curve; placement rings on a damped spring at zeta 1/3 (position 1.45 Hz, shape 1.88 Hz, rotation 2.5 Hz); blur follows velocity; text reveals are stepped (seven frames a glyph, 110 ms a word, 210 ms a cell); no seam is a static boundary, by choice — two carrier handoffs (rects not yet matched; see `ledger.json`) and two swaps cut mid-motion on the same axis and sign; no idle motion. `references/launch-video/launch-video-seams.md`. Seams are typed in `ledger.json`.
-**Built silent.** Sound is one stereo stem, `assets/sfx/stem.wav`, rendered from `assets/sfx/cues.json` by `scripts/sound-sheet.mjs` after picture lock.
+**Format:** 1920×1080 · 30 fps · 34.6 s · eight sub-compositions in `compositions/`, one paused GSAP timeline each; `index.html` only mounts them and the stem. Built with hyperframes@0.8.82 (`npx hyperframes check`: 0 errors, 0 warnings).
+
+**Register:** Skale's UI-motion register, the default for an unspecified launch film in `references/meta/pov.md` (see `references/launch-video/launch-video-registers.md`). The UI is rebuilt as vector and the type is the script. The newest word carries the accent and settles in 0.2 s. Words build 0.167 s apart. Every hold creeps on its entry vector, so the film has no frozen frame. Hard cuts are hidden inside a fill, on a constant ground, or on a palette flip, and one montage act accelerates into a snap. Nothing decorative moves on a UI object.
+
+**Motion:** arrivals settle exponentially with a time constant sized to the move (`assets/film-motion.js`): ~0.035 s for a stamped card, ~0.09 s for a word, 0.12 s for a row, 0.35 s for a counter. Exits accelerate on `power3.in`. Seams use HyperFrames' stamp values, written by hand because the seam doctrine is not installed: lateral exit `power3.in` 0.34 s to 12 % with entry `power4.out` 0.42 s from 10 % at 0.35 opacity, and Z entry `expo.out` 0.5 s from 0.78 with 10 px blur (`references/launch-video/hyperframes-reconciliation.md`). There is no spring overshoot anywhere; bounce is a register this film does not use.
+
+**Sound:** register B (`references/sound/launch-video-sound.md`). A warm sub-heavy bed in F carries the film. Dry clicks sit on every stamp and thuds on every big landing, all derived from the motion. The sub is taken away before the name, before the counters snap and before Enter. `assets/sfx/stem.wav` is rendered from `assets/sfx/cues.json` by `skills/design-engineering/scripts/sound-sheet.mjs`, with no library files: 138 cues, 240 onsets, −15.4 LUFS integrated, 5.4 LU range, −1.4 dBTP true peak.
+
+**Beats vs the corpus** (`references/launch-video/launch-video-structure.md`):
+
+- First word on screen at 0.07 s, after a two-frame poster of the endcard lockup.
+- First seam at 2.63 s.
+- The name lands at 6.75 s, 19 % of runtime, where the problem act ends.
+- The low end comes back on it.
+- Endcard 4.4 s with a 2.4 s final hold.
 
 ## Acts
 
-| Act | id | start | dur | beat | seam out |
-|---|---|---|---|---|---|
-| 1 · Title | `s1` | 0.00 | 2.80 | glyph flipbook 0.20–0.90 → the word lands on a spring (y 26 → 0, squash 0.93 → 1) with blur clearing → mark slides in 1.15 → thirteen words pop in at 110 ms, each blur 3 → 0 | **zoom-through** @2.50: scene scales 1 → 1.18, blur 10 px, gone by 2.80 |
-| 2 · Router | `s2` | 2.80 | 2.80 | scene arrives from behind (0.92 → 1, blur 8 → 0; with the 1.18 exit, 2.4.0's zoom-through, kept because the demo is not re-rendered and retired in `references/launch-video/hyperframes-reconciliation.md`: a re-render takes the stamp's 1.18 / 0.78); headline springs up; cards spring from y 96 with a ±3° rotation ring, blur 6 → 0, at 3.45 / 3.75 / 4.05; each card's three lines step in 120 ms apart | **edge-on collapse** @5.30: cards scaleX → 0.02 |
-| 3 · Review | `s3` | 5.60 | 3.00 | terminal unfolds from the same axis (scaleX 0.03 → 1); nine cells stream at 210 ms, each blur 4 → 0; modal springs in at 7.05 under the overlay; a cursor arrives 7.40, flips the toggle 7.95 (knob on a spring, track to blue, "· on"), moves to Save, presses 8.35 (button dips 0.95 and rings back) | **dock** @8.35: modal wrap shrinks to 0.5 and blurs |
-| 4 · Sound + SVG | `s4` | 8.60 | 2.00 | mascot stage grows from 0.5 on a spring; six bars ride a conveyor in from y 54 at 90 ms, waveform bars spring up; flipbook at 8 fps | **conveyor** @10.30: bars accelerate off the top, stage recedes |
-| 5 · Install | `s5` | 10.60 | 1.40 | command pill rises from y 140 on a spring; five chunks type in at 120 ms; at 11.55 a volume-conserving pop (1.03 × 0.96 → rings back) and a shine sweeps the pill; footer rises | end |
+| # | Scene | File | Start | Dur | Beat | Seam out |
+|---|---|---|---|---|---|---|
+| 1 | Hook | `s1-hook.html` | 0.000 | 2.633 | Poster frames 0–1. "Your agent ships" builds; "UI." slams in at ~5× for 9 frames, drifting, then jumps into the sentence in one frame. "It also ships this." Nine AI-default tells stamp in, 0.167 → 0.033 s apart. A 134 px cursor presses **Review it with /design-engineering** | **Fill the frame (click as seam):** the pressed pill's ink grows over the frame, 0.35 s `power2.in`, and the cut lands inside the fill |
+| 2 | Review | `s2-review.html` | 2.633 | 3.567 | On ink: "Before. After. Why." Four review rows ride up 0.4 s apart. Each Before is struck, then its After and Why stamp in | **Constant ground:** the sheet accelerates off the top and the cut lands on unchanged ink |
+| 3 | Name | `s3-name.html` | 6.200 | 3.700 | The caret holds alone for 0.55 s, with the sub out. `/` lands, then **design-engineering** flaps in one slot a frame, each glyph growing from its baseline with a dip and settling from yellow to paper. The subline follows | **Zoom into a glyph:** the camera dives into the caret block, ×30 in 0.5 s on `power4.in`, until its paper is the next ground |
+| 4 | Motion | `s4-motion.html` | 9.900 | 4.400 | The scene arrives still pushing (0.78 → 1). "Motion, with numbers." The cursor presses **Open settings**, and on the same frame the modal opens at ¼ speed on `cubic-bezier(.23,1,.32,1)` while a dot rides the plotted curve and the readouts count 0 → 200 ms | **Cut the curve, leftward:** the film's current |
+| 5 | Sound | `s5-sound.html` | 14.300 | 4.400 | "Sound, derived from motion." A playhead sweeps five UI events at constant speed. Each one dips, stamps its waveform and plays the sound it is labelled with | **Fill the frame:** the parked playhead widens until its blue is the ground |
+| 6 | Measured | `s6-measured.html` | 18.700 | 5.900 | On blue: "Launch films, measured." Fourteen corpus findings stamp in, legible → accelerating → blur zone (0.42 → 0.07 s). They snap to a hold on three counters (47 · 3,446 · 116), which settle with a 0.35 s constant and flash on landing | **Hard cut on a palette flip:** everything rises out and the next scene rises in (the upward vector is reserved for a conclusion) |
+| 7 | CTA | `s7-cta.html` | 24.600 | 5.600 | "Give your agent taste." `npx skills add AgentsORG/design-engineering` types at 15.4 c/s, seeded ±30 % per key. The sub drops out for 0.25 s; Enter is pressed at 28.943 s; the pill pops volume-conserving and the confirmation stamps | **Carrier dot:** the pill swells, then collapses to a dot turning 28°; the dot holds two frames |
+| 8 | Endcard | `s8-endcard.html` | 30.200 | 4.400 | Paper grows out of the dot. The name flaps in again as a bookend, then the command, the URL and the AgentsORG mark; the final 2.4 s hold keeps creeping | end |
 
-## Audio cue map
+Every seam is typed in `ledger.json`.
 
-Time is the **contact frame**: for a spring arrival, start + 0.30 s (the first crossing of rest); for an exponential arrival, start + 85 % of duration; runs list their first onset and cadence. Pan, brightness, and click centre come from the element's box — `references/sound/sound-from-motion.md`.
+## Frame 1
 
-| time | cue | source event | derived |
-|---|---|---|---|
-| 0.00 → | bed in | film starts | sub F1 + F2 (43 / 86 Hz), pad on F3 · A3 · C4 · F4, −9 dB until the land |
-| 0.21 / 0.44 / 0.68 | flicker ×3 | glyph variants cut every 7 frames | 4.0 kHz clicks |
-| 0.90 | thud | `design‑engineering` lands | 86 Hz sweep-down, click on the frame, bed ducks 4 dB |
-| 1.32 … 2.63 | type ×13 | words every 110 ms (±8 ms jitter, `sound-sheet.mjs`'s default for a run with no `"jitter"`; the words pop on a fixed stagger, so no hand spread) | 5.0 kHz clicks at −22 dB |
-| 2.50–2.80 | air | zoom-through | a breath under the seam, −6 dB |
-| 3.15 | thud | `#s2-h` springs to rest | a fifth up |
-| 3.75 / 4.05 / 4.35 | click + flicker ×3 | each card crosses rest, then its k / v / d lines | 3.7 → 4.6 kHz, pan −0.40 / 0 / +0.40 |
-| 5.30–5.60 | air | edge-on collapse | |
-| 5.98, 6.05 | thud, click | the terminal unfolds; the headline crosses rest | |
-| 6.26 … 7.94 | type ×9 | Before / After / Why cells | 4.4 kHz, 210 ms cadence |
-| 6.75–7.30 | sub dropout | the room holds its breath before the modal | pad stays, sub gone |
-| 7.05 | air | overlay darkens the wrap | |
-| 7.35 | thud | modal crosses rest, sub returns | a fifth up |
-| 7.95, 8.06 | click ×2 | the toggle is pressed; the knob seats | +3 dB, then −4 dB a third up |
-| 8.35 | click + thud | Save is pressed | the thud an octave up at −10 dB |
-| 8.35–8.65 | air | dock | |
-| 8.90, 9.00 | thud, click | stage crosses rest; headline crosses rest | |
-| 9.14 … 9.59 | type ×6 | bars ride in | 4.2 → 5.5 kHz, one semitone per bar |
-| 8.80 … 10.43 | flicker ×14 | mascot frames at 8 fps | −32 dB, pan +0.30 |
-| 10.30–10.60 | air | conveyor off | |
-| 10.90, 11.02 | thud, click | the pill crosses rest; the headline crosses rest | |
-| 10.95 … 11.43 | type ×5 | command chunks | 4.5 kHz |
-| 11.55 | success | install lands | thud on the root + a mallet a fifth up; bed swells 2.5 dB then leaves |
+status: built
+src: compositions/s1-hook.html
+blueprint: kinetic-type-beats + overwhelm-surround + cta-morph-press
+rules: kinetic-beat-slam, waterfall-entry, physics-press-reaction, center-outward-expansion
 
-Stem: 81 onsets from 31 cues · integrated −16.0 LUFS · sample peak −1.0 dBFS, true peak −0.9 dBTP (the muxed MP4 measures −1.3 dBTP) · bed present 96 % of the runtime with one dropout.
+Your agent ships UI. It also ships this. Pressing **Review it with /design-engineering** fills the frame.
 
-## Build / verify
+## Frame 2
+
+status: built
+src: compositions/s2-review.html
+blueprint: comparison-split
+rules: waterfall-entry, css-marker-patterns, nudge-curve
+
+Before · After · Why, struck and stamped row by row.
+
+## Frame 3
+
+status: built
+src: compositions/s3-name.html
+blueprint: titlecard-reveal
+rules: discrete-text-sequence, hacker-flip-3d (split-flap timing without the random glyphs), coordinate-target-zoom
+
+The name, then the dive through the caret.
+
+## Frame 4
+
+status: built
+src: compositions/s4-motion.html
+blueprint: cursor-ui-demo
+rules: svg-path-draw, control-target-sync, chart-scrub-readout, physics-press-reaction
+
+A curve, a dot and a modal on the same ease.
+
+## Frame 5
+
+status: built
+src: compositions/s5-sound.html
+blueprint: panel-edit-live-sync
+rules: stat-bars-and-fills, control-target-sync
+
+A playhead turns motion into sound.
+
+## Frame 6
+
+status: built
+src: compositions/s6-measured.html
+blueprint: dataviz-countup + ticker-takeover
+rules: dynamic-content-sequencing, motion-blur-streak, counting-dynamic-scale
+
+The accelerating montage snaps to three counters.
+
+## Frame 7
+
+status: built
+src: compositions/s7-cta.html
+blueprint: prompt-type-submit-generate
+rules: typewriter pacing (per-key, seeded), press-release-spring (without overshoot)
+
+The command is typed, Enter pressed, and the pill collapses to a dot.
+
+## Frame 8
+
+status: built
+src: compositions/s8-endcard.html
+blueprint: logo-assemble-lockup
+rules: center-outward-expansion, discrete-text-sequence
+
+Paper grows from the dot and the lockup holds.
+
+## Audio cue map (summary)
+
+Each cue is placed on its motion's **contact frame**: a stamp's own frame, or the frame where an exponential arrival reaches ~90 %. The full sheet, with every box, is `assets/sfx/cues.json`.
+
+| Time | Cue | Source event |
+|---|---|---|
+| 0.00 → | bed in | sub on F1 + F2, pad; −9 dB until the name |
+| 0.67 | thud | "UI." slams |
+| 1.65 → 2.28 | click ×9, a semitone higher each | the tells stamp, accelerating |
+| 2.23 · 2.64 | click · thud | the press, then the ink lands |
+| 3.61 → 4.81 | click + stamps ×4 | review rows arrive and get struck |
+| 6.20–6.75 | sub out, pad only | stillness before the name |
+| 6.90 → 7.47 · 7.75 | flicker ×18 · thud, swell | the flaps, then the name lands |
+| 9.40 · 10.02 | air · thud | the dive, then the arrival |
+| 11.30 · 11.62 | click · click | Open is pressed; the modal lands |
+| 15.25 → 17.05 | thud · click · click + thud · ticks ×9 · type ×12 (jitter .35) | the events play the sounds they are labelled with |
+| 19.55 → 21.41 | click ×14, rising | the montage |
+| 21.30–21.50 · 21.50 | sub out · thud | the snap to the counters |
+| 22.65 / 22.77 / 22.89 | thud ×3 (root, a third up, a fifth up) | the counters land |
+| 25.80 → 28.59 | click ×43 at −17 dB | keystrokes, on their seeded onsets |
+| 28.69–28.94 · 28.94 | sub out · click + success, swell | Enter |
+| 30.00 · 30.45 · 31.40 | click · thud · thud | the dot; paper lands; the name lands |
+
+## Build and verify
 
 ```bash
-npx hyperframes@0.8.29 check .
-node ../../../skills/design-engineering/scripts/sound-sheet.mjs assets/sfx/cues.json --out assets/sfx/stem.wav --family assets/sfx --report
-npx hyperframes@0.8.29 render . --output renders/demo.mp4 --fps 30
+npx hyperframes@0.8.82 check .
+node ../../../skills/design-engineering/scripts/sound-sheet.mjs assets/sfx/cues.json --out assets/sfx/stem.wav --peak -1.6 --report
+npx hyperframes@0.8.82 render . --output renders/launch.mp4 --fps 30 --strict
+python ../../research/launch-films/measure.py renders/launch.mp4 launch-film out/
 ```
 
-Retime anything → re-read `ledger.json`, update `cues.json`, re-render the stem, then the picture.
+Retime anything, and then:
+
+1. Update `ledger.json` and `cues.json`.
+2. Re-render the stem.
+3. Re-render the picture.
+4. Measure the render at native fps against its register before it ships (`references/launch-video/launch-video-review.md`).

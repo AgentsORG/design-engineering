@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #f4f3ee; color: #0f1013; font-family: "Instrument Sans", sans-serif; }
+        #s1-cam { position: absolute; inset: 0; transform-origin: 28% 46%; }
+        #s1-poster { position: absolute; inset: 0; z-index: 30; background: #f4f3ee; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 28px; }
+        #s1-poster .lock { font-size: 150px; font-weight: 650; letter-spacing: -0.045em; line-height: 1; }
+        #s1-poster .lock b { color: #0068d6; font-weight: 650; }
+        #s1-poster .cmd { font-family: "JetBrains Mono", monospace; font-size: 34px; color: #5f5e58; }
+        .s1-line { position: absolute; left: 160px; font-size: 104px; font-weight: 620; letter-spacing: -0.035em; line-height: 1; white-space: nowrap; }
+        #s1-l1 { top: 290px; }
+        #s1-l2 { top: 410px; }
+        .s1-line .w { display: inline-block; margin-right: 0.22em; }
+        .s1-line .mk { color: #0068d6; }
+        #s1-slam { position: absolute; left: 1010px; top: 150px; font-size: 560px; font-weight: 700; letter-spacing: -0.06em; line-height: 1; color: #0068d6; transform-origin: 30% 60%; }
+        .s1-tell { position: absolute; font-family: "JetBrains Mono", monospace; font-size: 27px; color: #0f1013; background: #fff; border-radius: 12px; padding: 12px 18px; white-space: nowrap;
+          box-shadow: 0 0 0 1px rgba(15, 16, 19, 0.1), 0 1px 3px rgba(15, 16, 19, 0.06), 0 8px 18px -8px rgba(15, 16, 19, 0.18); display: flex; align-items: center; gap: 12px; }
+        .s1-tell .sw { width: 34px; height: 34px; border-radius: 8px; background: linear-gradient(135deg, #8b5cf6, #3b82f6); }
+        #s1-pill { position: absolute; left: 160px; top: 600px; height: 80px; padding: 0 34px; border-radius: 999px; background: #0f1013; color: #f4f3ee; font-size: 34px; font-weight: 560; display: flex; align-items: center; gap: 14px; transform-origin: 50% 50%; }
+        #s1-pill .m { font-family: "JetBrains Mono", monospace; color: #ffe53d; font-size: 32px; }
+        #s1-cur { position: absolute; left: 0; top: 0; width: 134px; height: 172px; z-index: 20; transform-origin: 11% 6%; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.3)); }
+        #s1-fill { position: absolute; left: 540px; top: 620px; width: 40px; height: 40px; border-radius: 50%; background: #0f1013; z-index: 25; transform-origin: 50% 50%; }
+      </style>
+
+      <div id="root" data-composition-id="s1" data-width="1920" data-height="1080">
+        <div id="s1-cam" data-layout-allow-overflow>
+          <div id="s1-l1" class="s1-line"><span class="w">Your</span><span class="w">agent</span><span class="w">ships</span><span class="w mk" id="s1-ui">UI.</span></div>
+          <div id="s1-l2" class="s1-line"><span class="w">It</span><span class="w">also</span><span class="w">ships</span><span class="w mk">this.</span></div>
+          <div id="s1-slam">UI.</div>
+
+          <div class="s1-tell" style="left:1150px;top:118px">transition: all .3s ease-in</div>
+          <div class="s1-tell" style="left:860px;top:612px">transform: scale(0)</div>
+          <div class="s1-tell" style="left:1270px;top:720px">animation: pulse 2s infinite</div>
+          <div class="s1-tell" style="left:560px;top:790px">font-family: Inter</div>
+          <div class="s1-tell" style="left:1360px;top:318px">✨ Magic</div>
+          <div class="s1-tell" style="left:1330px;top:470px"><span class="sw"></span>linear-gradient(#8b5cf6, #3b82f6)</div>
+          <div class="s1-tell" style="left:190px;top:150px">box-shadow: 0 0 40px #a855f7</div>
+          <div class="s1-tell" style="left:1080px;top:900px">bounce: true</div>
+          <div class="s1-tell" style="left:170px;top:880px">ease-in-out 1s</div>
+
+          <div id="s1-pill">Review it with <span class="m">/design-engineering</span></div>
+          <svg id="s1-cur" viewBox="0 0 28 36" aria-hidden="true"><path d="M3 2 L3 28 L9.5 22 L14 33 L18.5 31 L14 20.5 L23 20.5 Z" fill="#0f1013" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" /></svg>
+          <div id="s1-fill"></div>
+        </div>
+        <div id="s1-poster"><div class="lock"><b>/</b>design‑engineering</div><div class="cmd">npx skills add AgentsORG/design-engineering</div></div>
+      </div>
+
+      <script>
+        (() => {
+          const { eo, ei, rng, words } = window.FM;
+          const tl = gsap.timeline({ paused: true });
+          const INK = "#0f1013";
+
+          // Poster frame: two frames of the finished lockup, then the film (launch-video-structure).
+          tl.set("#s1-poster", { autoAlpha: 0 }, 0.066);
+
+          // The camera creeps on its entry vector for the whole scene: holds never freeze.
+          tl.fromTo("#s1-cam", { scale: 1 }, { scale: 1.09, duration: 2.567, ease: "none" }, 0.066);
+
+          // Line 1, built per word at 5 frames (0.167 s); "UI." is held back for the slam.
+          const l1 = document.querySelectorAll("#s1-l1 .w");
+          words(tl, [l1[0], l1[1], l1[2]], 0.066, 0.167, { base: INK });
+
+          // Slam: "UI." arrives at 5.4x, holds 9 frames while drifting, then jumps to 1x in one frame.
+          tl.fromTo("#s1-slam", { autoAlpha: 0, scale: 1.45, filter: "blur(18px)" }, { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 0.16, ease: eo(0.16, 0.045) }, 0.566);
+          tl.fromTo("#s1-slam", { x: 0 }, { x: -46, duration: 0.3, ease: "none", immediateRender: false }, 0.566);
+          tl.set("#s1-slam", { autoAlpha: 0 }, 0.866);
+          tl.fromTo("#s1-ui", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.001, immediateRender: true }, 0.866);
+          tl.to("#s1-ui", { color: INK, duration: 0.16, ease: "none" }, 1.066);
+
+          // Line 2.
+          words(tl, document.querySelectorAll("#s1-l2 .w"), 1.0, 0.167, { base: INK });
+
+          // The tells stamp in, legible then accelerating (gaps 0.167 → 0.033 s).
+          const T = [1.566, 1.733, 1.866, 1.966, 2.033, 2.1, 2.133, 2.166, 2.2];
+          const r = rng(7);
+          document.querySelectorAll("#s1-cam .s1-tell").forEach((el, i) => {
+            const rot = (r() < 0.5 ? -1 : 1) * (2 + r() * 4);
+            tl.fromTo(el, { autoAlpha: 0, scale: 1.28, rotation: rot * 1.8, filter: "blur(6px)" },
+              { autoAlpha: 1, scale: 1, rotation: rot, filter: "blur(0px)", duration: 0.12, ease: eo(0.12, 0.035) }, T[i]);
+          });
+
+          // The action: a pill to press, the cursor arrives tip-first, presses, and the press fills the frame.
+          tl.fromTo("#s1-pill", { autoAlpha: 0, scale: 0.9, y: 16 }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.25, ease: eo(0.25, 0.07) }, 1.766);
+          tl.fromTo("#s1-cur", { x: 2020, y: 1180, filter: "blur(6px)" }, { x: 540, y: 628, filter: "blur(0px)", duration: 0.27, ease: eo(0.27, 0.07) }, 1.95);
+          tl.to("#s1-cur", { scale: 0.84, duration: 0.05, ease: "none" }, 2.233);
+          tl.to("#s1-pill", { scale: 0.95, duration: 0.05, ease: "none" }, 2.233);
+          tl.to("#s1-cur", { scale: 1, duration: 0.2, ease: eo(0.2, 0.06) }, 2.283);
+          tl.fromTo("#s1-fill", { scale: 0 }, { scale: 84, duration: 0.35, ease: "power2.in" }, 2.283);
+
+          window.__timelines["s1"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

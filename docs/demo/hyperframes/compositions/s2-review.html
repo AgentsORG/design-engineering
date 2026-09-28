@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #0f1013; color: #f4f3ee; font-family: "Instrument Sans", sans-serif; }
+        #s2-cam { position: absolute; inset: 0; transform-origin: 50% 40%; }
+        #s2-wrap { position: absolute; inset: 0; }
+        #s2-eye { position: absolute; left: 160px; top: 130px; font-family: "JetBrains Mono", monospace; font-size: 26px; color: #ffe53d; }
+        #s2-h { position: absolute; left: 160px; top: 184px; font-size: 92px; font-weight: 620; letter-spacing: -0.035em; line-height: 1; white-space: nowrap; }
+        #s2-h .w { display: inline-block; margin-right: 0.24em; }
+        #s2-h .mk { color: #ffe53d; }
+        #s2-table { position: absolute; left: 160px; top: 350px; width: 1600px; }
+        .s2-row { display: grid; grid-template-columns: 0.9fr 1.3fr 1.1fr; gap: 40px; padding: 26px 0; border-top: 1px solid rgba(244, 243, 238, 0.12); align-items: start; }
+        .s2-row.head { border-top: 0; padding: 0 0 16px; font-family: "JetBrains Mono", monospace; font-size: 21px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244, 243, 238, 0.62); }
+        .s2-b { position: relative; font-family: "JetBrains Mono", monospace; font-size: 25px; color: rgba(244, 243, 238, 0.62); white-space: nowrap; justify-self: start; }
+        .s2-b .strike { position: absolute; left: -4px; right: -4px; top: 52%; height: 3px; background: #ffe53d; transform-origin: 0% 50%; }
+        .s2-a { font-family: "JetBrains Mono", monospace; font-size: 25px; color: #f4f3ee; white-space: nowrap; }
+        .s2-y { font-size: 27px; line-height: 1.3; color: rgba(244, 243, 238, 0.78); }
+        .s2-y .l { display: block; font-family: "JetBrains Mono", monospace; font-size: 23px; color: #ffe53d; margin-top: 6px; }
+      </style>
+
+      <div id="root" data-composition-id="s2" data-width="1920" data-height="1080">
+        <div id="s2-cam" data-layout-allow-overflow>
+          <div id="s2-wrap">
+            <div id="s2-eye">/design-engineering review</div>
+            <div id="s2-h"><span class="w mk">Before.</span><span class="w mk">After.</span><span class="w mk">Why.</span></div>
+            <div id="s2-table">
+              <div class="s2-row head" id="s2-head"><div>before</div><div>after</div><div>why</div></div>
+              <div class="s2-row" id="s2-r1"><div class="s2-b">transition: all .3s ease-in<span class="strike"></span></div><div class="s2-a">transform .2s cubic-bezier(.23,1,.32,1)</div><div class="s2-y">ease-in reads as hesitation<span class="l">[[easing-curves]]</span></div></div>
+              <div class="s2-row" id="s2-r2"><div class="s2-b">transform: scale(0)<span class="strike"></span></div><div class="s2-a">scale(.95) → 1 · opacity 0 → 1</div><div class="s2-y">nothing real appears from nowhere<span class="l">[[never-scale-from-zero]]</span></div></div>
+              <div class="s2-row" id="s2-r3"><div class="s2-b">animation: pulse infinite<span class="strike"></span></div><div class="s2-a">— deleted</div><div class="s2-y">decoration is not a purpose<span class="l">[[animation-decision-framework]]</span></div></div>
+              <div class="s2-row" id="s2-r4"><div class="s2-b">font-family: Inter<span class="strike"></span></div><div class="s2-a">a face with a point of view</div><div class="s2-y">the default reads as generated<span class="l">[[typography-humanity]]</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const { eo, words } = window.FM;
+          const tl = gsap.timeline({ paused: true });
+          const PAPER = "#f4f3ee";
+
+          // Constant ink ground carried over from the fill; the camera keeps creeping.
+          tl.fromTo("#s2-cam", { scale: 1, x: 0 }, { scale: 1.07, x: -30, duration: 3.567, ease: "none" }, 0);
+
+          tl.fromTo("#s2-eye", { autoAlpha: 0, x: -24 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: eo(0.3, 0.08) }, 0.05);
+          words(tl, document.querySelectorAll("#s2-h .w"), 0.1, 0.167, { base: PAPER, y: 26 });
+          tl.fromTo("#s2-head", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2, ease: "none" }, 0.55);
+
+          // Conveyor: rows surface from below on a long settle, 0.4 s apart; each Before is struck,
+          // then its After and Why are stamped — decisions, not tweens.
+          ["#s2-r1", "#s2-r2", "#s2-r3", "#s2-r4"].forEach((id, i) => {
+            const t = 0.7 + i * 0.4;
+            tl.fromTo(id, { autoAlpha: 0, y: 120, filter: "blur(8px)" }, { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: eo(0.45, 0.12) }, t);
+            tl.fromTo(`${id} .strike`, { scaleX: 0 }, { scaleX: 1, duration: 0.14, ease: eo(0.14, 0.04) }, t + 0.25);
+            tl.fromTo(`${id} .s2-a`, { autoAlpha: 0, x: -12 }, { autoAlpha: 1, x: 0, duration: 0.15, ease: eo(0.15, 0.04) }, t + 0.35);
+            tl.fromTo(`${id} .s2-y`, { autoAlpha: 0, x: -12 }, { autoAlpha: 1, x: 0, duration: 0.15, ease: eo(0.15, 0.04) }, t + 0.45);
+          });
+          tl.fromTo("#s2-table", { y: 0 }, { y: -40, duration: 2.5, ease: "none" }, 0.7);
+
+          // Exit: the whole sheet accelerates off the top (the conveyor leaving), fade on its own tween.
+          tl.to("#s2-wrap", { y: -150, duration: 0.34, ease: "power3.in" }, 3.1);
+          tl.to("#s2-wrap", { opacity: 0, duration: 0.34, ease: "none" }, 3.1);
+
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

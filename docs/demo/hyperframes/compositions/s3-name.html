@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #0f1013; color: #f4f3ee; font-family: "Instrument Sans", sans-serif; }
+        /* The camera's origin sits on the caret's centre, so the creep and the dive both close in on it. */
+        #s3-cam { position: absolute; inset: 0; transform-origin: 1469px 474px; }
+        #s3-eye { position: absolute; left: 160px; top: 300px; display: flex; align-items: center; gap: 18px; font-family: "JetBrains Mono", monospace; font-size: 26px; color: rgba(244, 243, 238, 0.7); }
+        #s3-eye img { height: 44px; width: auto; display: block; }
+        /* Right-aligned so the caret after it sits at a fixed, known coordinate; the right edge (1418 px) puts the
+           left edge on the 160 px column (the name measures 1258 px wide in Instrument Sans 650 at 140 px). */
+        #s3-mark { position: absolute; right: 502px; top: 400px; font-size: 140px; font-weight: 650; letter-spacing: -0.045em; line-height: 1; white-space: nowrap; text-align: right; }
+        #s3-mark .g { display: inline-block; color: #ffe53d; transform-origin: 50% 90%; }
+        #s3-mark .sl { display: inline-block; color: #ffe53d; }
+        #s3-caret { position: absolute; left: 1430px; top: 418px; width: 78px; height: 112px; background: #f4f3ee; }
+        #s3-sub { position: absolute; left: 160px; top: 612px; font-size: 46px; font-weight: 520; letter-spacing: -0.02em; color: rgba(244, 243, 238, 0.86); white-space: nowrap; }
+        #s3-sub .w { display: inline-block; margin-right: 0.24em; }
+        #s3-sub .mk { color: #ffe53d; }
+      </style>
+
+      <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
+        <div id="s3-cam" data-layout-allow-overflow>
+          <div id="s3-eye"><img src="assets/brand/agents-dark-bg.svg" alt="AgentsORG" /><span>AgentsORG · skill graph</span></div>
+          <div id="s3-mark"><span class="sl" id="s3-slash">/</span><span class="g">d</span><span class="g">e</span><span class="g">s</span><span class="g">i</span><span class="g">g</span><span class="g">n</span><span class="g">-</span><span class="g">e</span><span class="g">n</span><span class="g">g</span><span class="g">i</span><span class="g">n</span><span class="g">e</span><span class="g">e</span><span class="g">r</span><span class="g">i</span><span class="g">n</span><span class="g">g</span></div>
+          <div id="s3-caret"></div>
+          <div id="s3-sub"><span class="w">Design</span><span class="w">engineering</span><span class="w">your</span><span class="w">agent</span><span class="w">can</span><span class="w mk">load.</span></div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const { eo, words } = window.FM;
+          const tl = gsap.timeline({ paused: true });
+          const PAPER = "#f4f3ee";
+          const F = 1 / 30;
+
+          // The camera creeps toward the caret for the whole hold, then dives through it.
+          tl.fromTo("#s3-cam", { scale: 1 }, { scale: 1.09, duration: 3.2, ease: "none" }, 0);
+
+          // Stillness before the climax: the caret alone, blinking on its own clock (a real state, not decoration).
+          tl.set("#s3-caret", { autoAlpha: 0 }, 0.266);
+          tl.set("#s3-caret", { autoAlpha: 1 }, 0.533);
+
+          // The slash lands first, then the name flaps in slot by slot, one frame apart:
+          // each glyph grows from its baseline with a small dip, enters in the accent and settles to paper.
+          tl.fromTo("#s3-slash", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.001 }, 0.55);
+          const GROW = [0, 0.37, 0.6, 0.76, 0.86, 0.92, 0.96, 0.97, 0.99, 0.995, 1];
+          const DIP = [0, 4, 8, 8, 7, 5, 3, 1, 0, 0, 0];
+          document.querySelectorAll("#s3-mark .g").forEach((g, i) => {
+            const t = 0.6 + i * F;
+            tl.fromTo(g, { autoAlpha: 0, scaleY: 0, y: 0 }, { autoAlpha: 1, duration: 0.001 }, t);
+            tl.to(g, { keyframes: { scaleY: GROW, y: DIP, easeEach: "none" }, duration: 11 * F, ease: "none" }, t);
+            tl.to(g, { color: PAPER, duration: 6 * F, ease: "none" }, t + 4 * F);
+          });
+
+          tl.fromTo("#s3-eye", { autoAlpha: 0, x: -24 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: eo(0.3, 0.08) }, 1.3);
+          words(tl, document.querySelectorAll("#s3-sub .w"), 1.75, 0.167, { base: PAPER, y: 18 });
+
+          // The caret keeps blinking through the hold, visible when the dive starts.
+          [[2.3, 0], [2.566, 1], [2.833, 0], [3.1, 1]].forEach(([t, v]) => tl.set("#s3-caret", { autoAlpha: v }, t));
+
+          // Seam: zoom into the caret until its paper fills the frame (a push; the next scene keeps pushing).
+          tl.to("#s3-cam", { scale: 30, duration: 0.5, ease: "power4.in" }, 3.2);
+          tl.fromTo("#s3-cam", { filter: "blur(0px)" }, { filter: "blur(8px)", duration: 0.5, ease: "power4.in", immediateRender: false }, 3.2);
+
+          window.__timelines["s3"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

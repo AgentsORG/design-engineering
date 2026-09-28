@@ -39,11 +39,23 @@ A companion is installed when its `SKILL.md` exists under `.agents/skills/`, `.c
 |---|---|---|
 | Discover, follow, update, verify a `.design`; bootstrap one | AgentsORG `design` skill | It owns the contract; this graph never redefines a token |
 | A named pass: polish, critique, audit, typeset, layout, colorize, animate, distill, harden, onboard, clarify, adapt, optimize | impeccable (`/impeccable <command>`) | Its output still passes [[review-checklist]]; a DESIGN.md it writes imports per [[using-design-md]] |
-| A launch film, sting, sizzle, or any rendered motion piece | HyperFrames: `/hyperframes` front door → `product-launch-video` (a product or URL; strongest at 30–90 s, up to ~3 min), `music-to-video` (a track's beat grid drives an unnarrated piece), `motion-graphics` (unnarrated sting, under ~10 s, up to ~30 s), `general-video` (sizzles, montages, anything past ~3 min); `hyperframes-animation` owns rules, blueprints and transitions | This graph decides register, structure and type cadence, picks the seams and cuts ([[launch-video-seams]], [[launch-video-cuts]]), and owns the sound ([[MOC-launch-video]], [[launch-video-sound]], [[sound-from-motion]]) and the frame.md export. Inside a HyperFrames project the seam stamp's eases, zoom values and exit timings win whether or not the repo-internal doctrine (`motion-doctrine`, `cut-the-curve`, `oversized-cursor`) is installed. `npx skills add` skips that doctrine, so check `.agents/skills/`, and if it is missing write the stamp's values by hand. Every other value conflict → [[hyperframes-reconciliation]] |
+| A launch film, sting, sizzle, or any rendered motion piece | HyperFrames: `/hyperframes` front door → `product-launch-video` (a product or URL; strongest at 30–90 s, up to ~3 min), `music-to-video` (a track's beat grid drives an unnarrated piece), `motion-graphics` (unnarrated sting, under ~10 s, up to ~30 s), `general-video` (sizzles, montages, anything past ~3 min, and every `flow: companion` build); `hyperframes-animation` owns rules, blueprints and transitions | This graph decides register, structure and type cadence, picks the seams and cuts ([[launch-video-seams]], [[launch-video-cuts]]), and owns the sound ([[MOC-launch-video]], [[launch-video-sound]], [[sound-from-motion]]) and the frame.md export. Inside a HyperFrames project the seam stamp's eases, zoom values and exit timings win whether or not the repo-internal doctrine (`motion-doctrine`, `cut-the-curve`, `oversized-cursor`) is installed. `npx skills add` skips that doctrine, so check `.agents/skills/`, and if it is missing write the stamp's values by hand. Every other value conflict → [[hyperframes-reconciliation]] |
 | Generating audio files | ElevenLabs `sound-effects` / `text-to-speech` | [[sound-palette]] material is the prompt prefix; [[sound-spec]] is the acceptance test |
 | One of the thirty-two canonical CSS transitions | `transitions-dev` | Values still checked against [[easing-curves]] and [[duration-table]] |
 | Installing or theming components | shadcn CLI / MCP (`info`, `search`, `view`, `add --dry-run`, `apply --preset`, `migrate`) | Driven by the contract's `integrations.shadcn`; tokens win over `css_vars` |
 | A curated UI sound file | `soundcn` via `npx shadcn add @soundcn/<name>` | Re-pitch into the family; never ship raw |
+
+## 5. A launch film, end to end
+
+This graph directs the film and HyperFrames builds it. When the sound is derived from the motion and there is no stock bed or voice-over, host the build in HyperFrames' `general-video` with `flow: companion`. `product-launch-video` runs its own capture, voice-over and library-music pipeline, so use it only when the user wants that pipeline.
+
+1. **Contract, then taste.** `frame.md` → `design.md` → `DESIGN.md` ([[using-design-md]]). Then [[pov]], which names the default register for an unspecified launch film.
+2. **Decide the film.** Pick the register first ([[launch-video-registers]]), then [[launch-video-structure]], [[launch-video-type]] and [[launch-video-ui-demo]].
+3. **Write the plan before the timeline.** Record the motion ([[launch-video-motion]]) and one ledger row per seam ([[launch-video-seams]], [[launch-video-cuts]]) in `STORYBOARD.md` and `ledger.json`. Build and gate it in HyperFrames (`check` must pass); inside the project, [[hyperframes-reconciliation]] settles value conflicts.
+4. **Lock the picture, then score it.** Write one cue per contact frame and render the stem with `sound-sheet.mjs` ([[sound-from-motion]], [[launch-video-sound]]).
+5. **Measure the render against its register** before anyone calls it done ([[launch-video-review]], or spawn [[launch-film-analyst]]).
+
+This repo's own launch film, `docs/demo/hyperframes/`, is the worked example: its `STORYBOARD.md`, `ledger.json` and `assets/sfx/cues.json` follow these five steps.
 
 ## Rules
 

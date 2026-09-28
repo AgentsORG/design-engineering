@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #008fff; color: #0f1013; font-family: "Instrument Sans", sans-serif; }
+        #s6-cam { position: absolute; inset: 0; transform-origin: 50% 58%; }
+        #s6-wrap { position: absolute; inset: 0; }
+        #s6-eye { position: absolute; left: 160px; top: 118px; font-family: "JetBrains Mono", monospace; font-size: 26px; color: #0f1013; }
+        #s6-h { position: absolute; left: 160px; top: 166px; font-size: 92px; font-weight: 620; letter-spacing: -0.035em; line-height: 1; white-space: nowrap; }
+        #s6-h .w { display: inline-block; margin-right: 0.24em; }
+        #s6-h .mk { color: #fff; }
+        #s6-stack { position: absolute; left: 600px; top: 330px; width: 720px; height: 405px; }
+        .s6-tile { position: absolute; inset: 0; background: #0f1013; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 60px -24px rgba(15, 16, 19, 0.55); }
+        .s6-tile .shape { position: absolute; border-radius: 10px; }
+        .s6-tile .lab { position: absolute; left: 40px; bottom: 112px; font-family: "JetBrains Mono", monospace; font-size: 25px; color: rgba(244, 243, 238, 0.78); }
+        .s6-tile .stat { position: absolute; left: 40px; bottom: 36px; font-size: 62px; font-weight: 650; letter-spacing: -0.03em; color: #ffe53d; white-space: nowrap; }
+        #s6-count { position: absolute; left: 230px; top: 390px; width: 1560px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .s6-c .n { display: block; font-size: 160px; font-weight: 650; letter-spacing: -0.05em; line-height: 1; font-variant-numeric: tabular-nums; transform-origin: 0% 100%; color: #0f1013; }
+        .s6-c .l span { display: block; }
+        .s6-c .l { display: block; margin-top: 22px; font-family: "JetBrains Mono", monospace; font-size: 26px; line-height: 1.35; color: #0f1013; }
+      </style>
+
+      <div id="root" data-composition-id="s6" data-width="1920" data-height="1080">
+        <div id="s6-cam" data-layout-allow-overflow>
+          <div id="s6-wrap">
+            <div id="s6-eye">references/launch-video</div>
+            <div id="s6-h"><span class="w">Launch</span><span class="w">films,</span><span class="w mk">measured.</span></div>
+            <div id="s6-stack"></div>
+            <div id="s6-count">
+              <div class="s6-c"><span class="n" data-to="47">0</span><span class="l"><span>launch films measured</span><span>frame by frame</span></span></div>
+              <div class="s6-c"><span class="n" data-to="3446">0</span><span class="l"><span>tweens counted in</span><span>HeyGen's open source</span></span></div>
+              <div class="s6-c"><span class="n" data-to="116">0</span><span class="l"><span>nodes in the graph,</span><span>one skill to install</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const { eo, rng, words } = window.FM;
+          const tl = gsap.timeline({ paused: true });
+          const INK = "#0f1013";
+
+          // The montage: what the corpus measured, one register or finding per card (docs/research/launch-films).
+          const CARDS = [
+            ["UI motion graphics", "4 cuts/min · 9 % still"], ["Product camera", "14 cuts/min · 49 % still"],
+            ["Beat-cut sizzle", "31 cuts/min"], ["Kinetic type", "3.3 cuts/min"], ["Keynote cards", "12 cuts/min"],
+            ["Founder hybrid", "voice-led · −21 LUFS"], ["Live action", "22 cuts/min"], ["Material world", "one camera"],
+            ["First word on screen", "0.2 s"], ["Name lands", "early · 29 % · 70 %"], ["Endcard", "4.4–6.3 s"],
+            ["Subtract before the reveal", "23 of 28"], ["Idle motion on UI", "0 of 18"], ["Loudness, median", "−18 LUFS"],
+          ];
+          const stack = document.getElementById("s6-stack");
+          const r = rng(23);
+          const PAL = ["#f4f3ee", "#ffe53d", "#008fff", "#3a3d45"];
+          CARDS.forEach(([lab, stat], i) => {
+            const t = document.createElement("div");
+            t.className = "s6-tile";
+            for (let k = 0; k < 3; k++) {
+              const s = document.createElement("div");
+              s.className = "shape";
+              const w = 60 + r() * 220, h = 24 + r() * 120;
+              Object.assign(s.style, { left: `${40 + r() * (640 - w)}px`, top: `${30 + r() * (170 - h)}px`, width: `${w}px`, height: `${h}px`, background: PAL[(i + k) % PAL.length] });
+              t.appendChild(s);
+            }
+            // Cards pile up on purpose (each covers the one under it), so their text is marked as deliberate layering.
+            t.insertAdjacentHTML("beforeend", `<div class="lab" data-layout-allow-overlap>${lab}</div><div class="stat" data-layout-allow-overlap>${stat}</div>`);
+            stack.appendChild(t);
+          });
+
+          tl.fromTo("#s6-cam", { scale: 1, x: 0 }, { scale: 1.08, x: -16, duration: 5.56, ease: "none" }, 0);
+          tl.fromTo("#s6-eye", { autoAlpha: 0, x: -24 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: eo(0.3, 0.08) }, 0.1);
+          words(tl, document.querySelectorAll("#s6-h .w"), 0.12, 0.167, { base: INK });
+
+          // Legible → accelerating → blur zone → snap to a hold (the firehose from HeyGen's timeline launch).
+          const T = [0.8, 1.22, 1.64, 1.81, 1.98, 2.15, 2.25, 2.32, 2.39, 2.46, 2.51, 2.56, 2.61, 2.66];
+          const rr = rng(41);
+          stack.querySelectorAll(".s6-tile").forEach((el, i) => {
+            const dx = (rr() - 0.5) * 90, dy = (rr() - 0.5) * 50, rot = (rr() - 0.5) * 6;
+            tl.fromTo(el, { autoAlpha: 0, x: dx + 70, y: dy, rotation: rot, scale: 1.08 },
+              { autoAlpha: 1, x: dx, y: dy, rotation: rot, scale: 1, duration: 0.12, ease: eo(0.12, 0.035) }, T[i]);
+          });
+          tl.fromTo("#s6-stack", { filter: "blur(0px)" }, { filter: "blur(2.5px)", duration: 0.46, ease: "none" }, 2.2);
+          tl.fromTo("#s6-stack", { x: 0 }, { x: -60, duration: 2.0, ease: "none", immediateRender: false }, 0.8);
+          tl.set("#s6-stack", { autoAlpha: 0 }, 2.8);
+
+          // The hold: three counters settle on an exponential with a slow constant (tau 0.35 s, ~3x an object's),
+          // grow to size on the same ease, and flash on landing.
+          document.querySelectorAll("#s6-count .s6-c").forEach((c, i) => {
+            const n = c.querySelector(".n"), l = c.querySelector(".l");
+            const to = Number(n.dataset.to), t = 2.8 + i * 0.12, D = 1.2;
+            const st = { v: 0 };
+            tl.fromTo(c, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.001 }, t);
+            tl.fromTo(st, { v: 0 }, { v: to, duration: D, ease: eo(D, 0.35), onUpdate: () => { n.textContent = Math.round(st.v).toLocaleString("en-US"); } }, t);
+            tl.fromTo(n, { scale: 0.72 }, { scale: 1, duration: D, ease: eo(D, 0.35) }, t);
+            tl.fromTo(l, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.25, ease: eo(0.25, 0.07) }, t + 0.3);
+            tl.fromTo(n, { color: "#ffffff" }, { color: INK, duration: 0.3, ease: "none", immediateRender: false }, t + D - 0.05);
+          });
+
+          // The hold keeps moving: the row drifts on the film's leftward current (~1.5 px a frame).
+          tl.fromTo("#s6-count", { x: 0 }, { x: -64, duration: 2.0, ease: "none" }, 3.56);
+
+          // Seam out: everything rises and leaves; the next scene rises in on a new ground (a palette flip is where a hard cut belongs).
+          tl.to("#s6-wrap", { y: -160, duration: 0.34, ease: "power3.in" }, 5.56);
+          tl.to("#s6-wrap", { opacity: 0, duration: 0.34, ease: "none" }, 5.56);
+
+          window.__timelines["s6"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

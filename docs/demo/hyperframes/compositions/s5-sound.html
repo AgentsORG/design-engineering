@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #f4f3ee; color: #0f1013; font-family: "Instrument Sans", sans-serif; }
+        #s5-cam { position: absolute; inset: 0; transform-origin: 50% 55%; }
+        #s5-eye { position: absolute; left: 160px; top: 150px; font-family: "JetBrains Mono", monospace; font-size: 26px; color: #0068d6; }
+        #s5-h { position: absolute; left: 160px; top: 200px; font-size: 92px; font-weight: 620; letter-spacing: -0.035em; line-height: 1; white-space: nowrap; }
+        #s5-h .w { display: inline-block; margin-right: 0.24em; }
+        #s5-h .mk { color: #0068d6; }
+        #s5-lane { position: absolute; left: 160px; top: 430px; width: 1600px; height: 2px; background: rgba(15, 16, 19, 0.16); }
+        .s5-ev { position: absolute; top: 392px; height: 78px; border-radius: 16px; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 27px; font-weight: 560; transform-origin: 50% 50%;
+          box-shadow: 0 0 0 1px rgba(15, 16, 19, 0.08), 0 1px 3px rgba(15, 16, 19, 0.05), 0 8px 18px -8px rgba(15, 16, 19, 0.16); }
+        .s5-wave { position: absolute; top: 520px; height: 180px; display: flex; align-items: center; gap: 6px; }
+        .s5-wave i { display: block; width: 8px; border-radius: 4px; background: #008fff; transform-origin: 50% 50%; }
+        .s5-lab { position: absolute; top: 718px; font-family: "JetBrains Mono", monospace; font-size: 23px; color: #0f1013; white-space: nowrap; }
+        #s5-head { position: absolute; left: 160px; top: 382px; width: 3px; height: 420px; background: #008fff; }
+        #s5-map { position: absolute; left: 160px; top: 830px; font-family: "JetBrains Mono", monospace; font-size: 28px; color: #0f1013; display: flex; gap: 30px; }
+        #s5-map em { font-style: normal; color: #0068d6; }
+        #s5-foot { position: absolute; left: 160px; top: 890px; font-family: "JetBrains Mono", monospace; font-size: 23px; color: #5f5e58; }
+        /* on-screen x of the parked playhead: 960 + (1760 − 960) × 1.0706 (the camera's creep at 4.05 s) */
+        #s5-fill { position: absolute; left: 1814px; top: 0; width: 4px; height: 1080px; background: #008fff; transform-origin: 50% 50%; }
+      </style>
+
+      <div id="root" data-composition-id="s5" data-width="1920" data-height="1080">
+        <div id="s5-cam" data-layout-allow-overflow>
+          <div id="s5-eye">sound-from-motion · sound-sheet.mjs</div>
+          <div id="s5-h"><span class="w">Sound,</span><span class="w">derived</span><span class="w">from</span><span class="w mk">motion.</span></div>
+          <div id="s5-lane"></div>
+
+          <div class="s5-ev" style="left:260px;width:250px">card lands</div>
+          <div class="s5-ev" style="left:560px;width:130px">toggle</div>
+          <div class="s5-ev" style="left:860px;width:170px">save</div>
+          <div class="s5-ev" style="left:1160px;width:190px">counter</div>
+          <div class="s5-ev" style="left:1460px;width:230px">type ×12</div>
+
+          <div class="s5-wave" style="left:270px" data-h="150,178,160,120,92,70,52,40,30,22,16,12"></div>
+          <div class="s5-wave" style="left:570px" data-h="80,120,66,34,18,10"></div>
+          <div class="s5-wave" style="left:870px" data-h="110,140,96,60,120,90,54,30,18"></div>
+          <div class="s5-wave" style="left:1170px" data-h="70,40,72,40,74,40,76,40,78"></div>
+          <div class="s5-wave" style="left:1470px" data-h="40,18,52,16,36,20,58,14,44,18,50,22"></div>
+
+          <div class="s5-lab" style="left:270px">thud · 86 Hz</div>
+          <div class="s5-lab" style="left:570px">click · 4.4 kHz</div>
+          <div class="s5-lab" style="left:870px">click + thud</div>
+          <div class="s5-lab" style="left:1170px">tick ×9</div>
+          <div class="s5-lab" style="left:1470px">type · jitter .35</div>
+
+          <div id="s5-head"></div>
+          <div id="s5-map"><span><em>size</em> → pitch</span><span><em>x</em> → pan</span><span><em>contact frame</em> → transient</span></div>
+          <div id="s5-foot">every sound in this film came out of sound-sheet.mjs · 0 library files</div>
+        </div>
+        <div id="s5-fill"></div>
+      </div>
+
+      <script>
+        (() => {
+          const { eo, words } = window.FM;
+          const tl = gsap.timeline({ paused: true });
+          const INK = "#0f1013";
+
+          // Bars from data (deterministic).
+          document.querySelectorAll("#root .s5-wave").forEach((w) => {
+            w.dataset.h.split(",").forEach((h) => { const i = document.createElement("i"); i.style.height = `${h}px`; w.appendChild(i); });
+          });
+
+          // Seam in: the lateral cut-the-curve arrives already moving left (stamp: power4.out 0.42 s from 10 % at 0.35 opacity).
+          tl.fromTo("#s5-cam", { x: 192, opacity: 0.35 }, { x: 0, opacity: 1, duration: 0.42, ease: "power4.out" }, 0);
+          tl.fromTo("#s5-cam", { scale: 1 }, { scale: 1.07, duration: 3.6, ease: "none", immediateRender: false }, 0.42);
+
+          tl.fromTo("#s5-eye", { autoAlpha: 0, x: -24 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: eo(0.3, 0.08) }, 0.1);
+          words(tl, document.querySelectorAll("#s5-h .w"), 0.12, 0.167, { base: INK });
+          tl.fromTo("#s5-lane", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: eo(0.4, 0.1) }, 0.45);
+          tl.fromTo("#root .s5-ev", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.35, ease: eo(0.35, 0.1), stagger: 0.06 }, 0.5);
+          tl.fromTo("#s5-head", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.12, ease: "none" }, 0.75);
+
+          // The playhead sweeps at constant speed; at each event's contact frame the chip dips,
+          // its waveform stamps up (taller and longer for bigger things) and its label lands.
+          const SWEEP0 = 0.8, SWEEP = 2.4;
+          tl.fromTo("#s5-head", { x: 0 }, { x: 1600, duration: SWEEP, ease: "none", immediateRender: false }, SWEEP0);
+          const evs = document.querySelectorAll("#root .s5-ev"), waves = document.querySelectorAll("#root .s5-wave"), labs = document.querySelectorAll("#root .s5-lab");
+          [260, 560, 860, 1160, 1460].forEach((x, i) => {
+            const t = SWEEP0 + ((x - 160) / 1600) * SWEEP;
+            tl.to(evs[i], { scale: 0.95, duration: 0.05, ease: "none" }, t);
+            tl.to(evs[i], { scale: 1, duration: 0.2, ease: eo(0.2, 0.06) }, t + 0.05);
+            tl.fromTo(waves[i].children, { scaleY: 0 }, { scaleY: 1, duration: 0.14, ease: eo(0.14, 0.04), stagger: 0.018 }, t);
+            tl.fromTo(labs[i], { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.15, ease: eo(0.15, 0.04) }, t + 0.08);
+          });
+
+          tl.fromTo("#s5-map span", { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.2, ease: eo(0.2, 0.05), stagger: 0.15 }, 3.25);
+          tl.fromTo("#s5-foot", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2, ease: "none" }, 3.55);
+
+          // Seam out: the playhead, parked at the end of the lane, widens until its blue is the next ground.
+          tl.fromTo("#s5-fill", { autoAlpha: 0, scaleX: 1 }, { autoAlpha: 1, duration: 0.001 }, 4.05);
+          tl.to("#s5-fill", { scaleX: 900, duration: 0.35, ease: "power2.in" }, 4.05);
+
+          window.__timelines["s5"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
