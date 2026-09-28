@@ -1,12 +1,12 @@
 ---
 title: agents
-summary: Nine workflow subagents that ship with the design-engineering skill. Each handles a narrow, high-frequency task and loads its own slice of the skill graph.
+summary: Ten workflow subagents that ship with the design-engineering skill. Each handles a narrow, high-frequency task and loads its own slice of the skill graph.
 tags: [meta, agents, subagents]
 ---
 
 # Subagents
 
-Nine narrow-purpose subagents ship with this skill. Each is a single markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`) and a system-prompt body — the standard format read by Claude Code, Cursor, Codex, and any harness that supports the [Claude Code subagent spec](https://docs.claude.com/en/docs/claude-code/sub-agents).
+Ten narrow-purpose subagents ship with this skill. Each is a single markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`) and a system-prompt body — the standard format read by Claude Code, Cursor, Codex, and any harness that supports the [Claude Code subagent spec](https://docs.claude.com/en/docs/claude-code/sub-agents).
 
 ## When to spawn
 
@@ -21,6 +21,7 @@ Nine narrow-purpose subagents ship with this skill. Each is a single markdown fi
 | [[sound-designer]] | The user wants sound in a product UI or a launch video — "should this have a sound?", a generated family of UI sounds (ElevenLabs, or open-weight / procedural / CC0 without a key), sounds synced to animation frames, or a review of sounds that feel stock, late, or annoying. Returns a sound map table plus files. |
 | [[svg-creator]] | The user wants an SVG made or fixed — icon, illustration, logo mark, mascot pose, generative art — or a generated SVG made clean, editable, token-aware, optimized, and labelled. Returns the file plus a Before / After / Why table. |
 | [[svg-animator]] | The user wants an SVG to move — animated icon, logo reveal, stroke draw, morph, mascot loop — or a frame sequence / flat clip turned into one editable animated SVG. Picks the engine for where the file lives; returns a motion plan plus the file. |
+| [[launch-film-analyst]] | The user hands over a reference launch film or their own render and wants it measured (cut rate, still share, first word, name timing, type cadence, typing speed, seams, endcard, loudness, onsets vs motion) or reviewed against the measured corpus. Returns the [[launch-video-review]] rubric table plus a per-film JSON. |
 
 ## Pick the right one
 
@@ -34,6 +35,7 @@ These overlap intentionally — they're scoped to *workflows*, not themes. Use t
 - **Installer wants to make the skill theirs** → `pov-curator`.
 - **Anything with audio — product or launch video** → `sound-designer` (it says no first, then generates via `skills/design-engineering/scripts/sound-family.mjs`, or renders a video stem from the motion with `sound-sheet.mjs`).
 - **A vector asset to draw or clean** → `svg-creator`; **a vector asset to move, or a clip to vectorize** → `svg-animator` (which sends unnamed-group files back to `svg-creator` first).
+- **A launch film to measure or review** → `launch-film-analyst`; **deciding how to make one** → the main agent walks [[MOC-launch-video]].
 - **Not sure which — or the job belongs to impeccable, the `design` skill, or HyperFrames** → the main agent runs `references/meta/skill-router.md` before spawning anything.
 
 ## What they all share
@@ -46,7 +48,7 @@ Every subagent ships its own `## Soul` section at the bottom of its file — nar
 
 ## What they are not
 
-- **Not theme parrots.** There is no `motion-agent`, `typography-agent`, `surface-agent`. The skill itself navigates themes — subagents only exist where a *workflow* (review, audit, fix-loop, fork, generate-and-wire) earns its context cost. `sound-designer` qualifies because generation, post-processing, and wiring are tool calls, not reading.
+- **Not theme parrots.** There is no `motion-agent`, `typography-agent`, `surface-agent`. The skill itself navigates themes — subagents only exist where a *workflow* (review, audit, fix-loop, fork, generate-and-wire) earns its context cost. `sound-designer` qualifies because generation, post-processing, and wiring are tool calls, not reading. `launch-film-analyst` qualifies because ffprobe and ffmpeg runs and dozens of contact sheets read as images would flood the main context.
 - **Not autonomous.** Each one returns a structured result to the main agent. They don't push code without explicit user instruction.
 - **Not replacements for the skill.** A subagent loads ~5–10 nodes for its workflow. The main agent still owns the full graph and handles questions that don't match any subagent.
 

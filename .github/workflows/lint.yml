@@ -70,6 +70,7 @@ jobs:
             "agents/sound-designer.md"
             "agents/svg-creator.md"
             "agents/svg-animator.md"
+            "agents/launch-film-analyst.md"
             "skills/design-engineering/scripts/sound-family.mjs"
             "skills/design-engineering/scripts/sound-sheet.mjs"
             "skills/design-engineering/scripts/svg-flipbook.mjs"

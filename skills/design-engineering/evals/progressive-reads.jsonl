@@ -50,3 +50,14 @@
 {"query": "our agent keeps inventing button variants, document the system", "expected_nodes": ["design-system-docs"], "forbidden_nodes": ["using-design-md"]}
 {"query": "why does the agent ignore my animation skill file?", "expected_nodes": ["skill-writing-rules"], "forbidden_nodes": ["pov"]}
 {"query": "how do we measure whether the new motion node made output better?", "expected_nodes": ["design-benchmarks"], "forbidden_nodes": ["cross-model-testing"]}
+{"query": "which style of launch film fits our AI coding agent — product demo, keynote cards or kinetic type — and how fast should it cut?", "expected_nodes": ["launch-video-registers"], "forbidden_nodes": ["marketing-vs-product-ui"]}
+{"query": "when should the product name appear in a 60-second launch video, and how long should the endcard hold?", "expected_nodes": ["launch-video-structure"], "forbidden_nodes": ["launch-video-sound"]}
+{"query": "how fast should the headline words build on screen in our launch film, and how long should each line hold?", "expected_nodes": ["launch-video-type"], "forbidden_nodes": ["stagger-choreography"]}
+{"query": "how big should the cursor be in our product demo video, and how fast should the prompt type?", "expected_nodes": ["launch-video-ui-demo"], "forbidden_nodes": ["responsive-feedback"]}
+{"query": "the cards in my launch video bounce on every entrance and a held card keeps breathing — it looks cheap", "expected_nodes": ["launch-video-motion"], "forbidden_nodes": ["spring-animations"]}
+{"query": "write the zoom-through between two headline scenes in our HyperFrames film so the seam gate passes", "expected_nodes": ["launch-video-seams"], "forbidden_nodes": ["cross-blur-transitions"]}
+{"query": "our walkthrough has twelve hard cuts — should I replace them all with morphs?", "expected_nodes": ["launch-video-cuts"], "forbidden_nodes": ["fly-not-teleport"]}
+{"query": "review this launch film render against what good launch videos do", "expected_nodes": ["launch-video-review"], "forbidden_nodes": ["review-checklist"]}
+{"query": "HyperFrames' launch workflow defaults to a crossfade but its motion doctrine says never — which one goes in this composition?", "expected_nodes": ["hyperframes-reconciliation"], "forbidden_nodes": ["cross-blur-transitions"]}
+{"query": "what loudness should a 60-second launch walkthrough be mastered to, and does it need UI click sounds?", "expected_nodes": ["launch-video-sound"], "forbidden_nodes": ["sound-spec"]}
+{"query": "we're using a licensed music track under the launch video with a voice-over — where should the drop go and how loud is the bed?", "expected_nodes": ["launch-video-music"], "forbidden_nodes": ["sound-palette"]}

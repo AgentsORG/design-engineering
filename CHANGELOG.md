@@ -6,6 +6,62 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.5.0] — 2026-09-28
+
+Launch films, measured. Skale's whole portfolio (28 client films and the 2025 reel), 18 acclaimed 2024–2026 launch films (Linear, Raycast, Cursor, Notion, Figma, Framer, Arc, Spline, Granola, Apple, Anthropic, Google; studios BUCK, Studio Freight, Ordinary Folk) and HeyGen's open launch source and HyperFrames skills, studied frame by frame at native frame rate. The result is a new cluster, and a correction of what 2.4.0 said about launch films.
+
+### Added — `references/launch-video/` (new cluster: a MOC and nine nodes)
+
+- **`MOC-launch-video`** — a launch film as an ordered run of decisions, each with one owner: register → beats → words → UI demo → motion → seams and cuts → sound → review. HyperFrames builds the film; this cluster decides it.
+- **`launch-video-registers`** — pick the register first, because cut rate, stillness, move length and loudness belong to it: Skale's UI-motion films cut 4.0 times a minute and are 9 % still; product-camera films (Linear Agent, Raycast, Claude Cowork) cut 14 and are 49 % still; beat-cut sizzles cut 31. Six more rows with medians and ranges, the studio-vs-in-house split, and why a studio's reel is not its client work.
+- **`launch-video-structure`** — measured beats: a readable word by 0.2–0.7 s, the name early, at the end of a problem act or at ~70 % once the product has shown itself, the low end arriving on the first reveal, proof, a payoff before the endcard, and an endcard of 4.4–6.3 s holding ~2 s.
+- **`launch-video-type`** — words built per word at ~0.2 s, the newest word marked then settled, holds of 1.15–1.5 s, statements at video sizes, the slam word, stamped type moves.
+- **`launch-video-ui-demo`** — rebuilt UI cropped tight, a cursor big enough to read with a visible press, prompts typed at ~15 characters a second to be read or ~53 to be recognised, human and agent text told apart, and the agent's wait stepped or cut.
+- **`launch-video-motion`** — exponential settles chosen per move (~0.1–0.15 s for objects, ~0.43 s for one measured crane, 0.6–0.8 s for counters), cameras exempt, overshoot and velocity blur as registers with base rates, no decorative idle on UI objects, liveliness from creep, accelerating rhythm and causes that ignite their effects.
+- **`launch-video-cuts`** — launch films cut; the craft is where the cut lands (on a cause, a constant ground, the element being read, inside a fill), and the two cuts that fail everywhere (the dead cut, and a crossfade whose midpoint exposes a different ground).
+- **`launch-video-review`** — review at native fps against the film's register: recount cuts by eye, check seams and onsets on frames, then taste; the measurement traps and an eleven-row film rubric.
+- **`hyperframes-reconciliation`** — where this graph and HyperFrames give different values (seam eases, zoom-through, springs, crossfades, idle motion, blur, cursor, captions, clip timing, sound) and which to use inside a HyperFrames project; notes that HyperFrames' seam doctrine is repo-internal and not installed by `npx skills add`.
+- **`launch-video-seams`** moved here from `motion/` (same basename) and rewritten: the vector law, one current per film, measured carriers (fill the frame, zoom-through, inverse zoom, zoom into a glyph, cut the curve, dock, carrier dot, conveyor), a seam budget, and a typed ledger (`cut` / `match-cut` / `morph`).
+
+### Added — sound
+
+- **`references/sound/launch-video-music.md`** — placing a licensed track or a voice on the picture: the drop on the reveal, breakdowns under anything read, locked cuts on the onset frame, the voice as the clock with the bed 10–13 dB under it.
+- **`launch-video-sound`** rewritten around five measured registers (dry reveal, OpenAI's one-key bed with derived clicks, Skale's beat track, voice-led, product-camera pad with consequence foley), subtraction before the reveal (23 of 28 Skale films, 14 of 18 acclaimed), and loudness as a stated register choice with −1 dBTP the only fixed number.
+- **`sound-from-motion`** and **`sound-motion-sync`** — the picture places a bed's or a track's structure; cuts land on the onset frame; library files are placed by their measured onset, not their file start; human typing spreads about ±30 % of the interval, not ±8 ms.
+- **`scripts/sound-sheet.mjs`** — an opt-in `jitter` on type runs (a fraction of `every`; 0.35 gives the measured human spread) and a `--report` warning for runs faster than ten keys a second. The default is unchanged, so existing cue sheets, including the demo's, render byte-identical.
+
+### Added — the analyst
+
+- **`agents/launch-film-analyst.md`** (+ eve twin in `agent/subagents/launch-film-analyst/`) and **`/film-review`** — measure a reference film or your own render at native fps with ffmpeg and ffprobe (the full `measure.py` when run from a repo checkout), recount cuts by eye, and return the `launch-video-review` rubric plus a per-film JSON. It never downloads without the user's approval and never commits media or frames. Ten subagents, ten commands.
+
+### Added — research harness
+
+- **`docs/research/launch-films/`** — `measure.py` (native-fps measurer: cuts, shots, still share, move runs, camera share, blur, luma, colour, loudness, onsets, cut and hit sync, contact sheets), `aggregate.py`, per-film metrics for 50 films (29 Skale, 18 acclaimed, 3 HeyGen renders), corpus tables, the stats scripts behind every count, the two syntheses, the HeyGen tween census (3,446 calls) and the HyperFrames doctrine digest. Films contribute derived numbers and short descriptions only; `.gitignore` now keeps research media, frames and arrays out of the repo.
+
+### Added — evals
+
+- 11 `progressive-reads` rows and 4 `loading` rows for the new nodes and the description change; 6 `design-bench` fixtures (an opaque crossfade with a breathe loop, the corrected zoom-through, a Z-sign seam, read-speed typing, onset-audited click placement, a drop placed by moving the track); `evals/launch-values.eval.ts` (launch-film advice names measured numbers).
+
+### Corrected — what 2.4.0 said
+
+- **"No cuts."** 26 of 29 Skale films and 14 of 18 acclaimed films hard-cut. What fails is the static cut and the opaque crossfade, not the cut. A zero-cut morph chain is one continuity choice.
+- **The Skale reel as house style.** Its "median move 4 frames" was partly an artifact of resampling 24/25 fps footage to 30 fps, which inserts duplicate frames; measured at its native 60 fps the median move run is 0.19 s. Its 32 % stillness is real but the reel is not the client work, which is 12 % still. The reel's 3 hard cuts stand. Skale's portfolio lists Google DeepMind and Polymarket, but neither is among the 28 films.
+- **zeta 1/3 as the bounce, one tau (0.131 s) for everything.** Both are HeyGen's bouncy-sting template (`heygen-apple-motion/02-bouncy-ui`), now a named register; visible overshoot appears in 4 of 29 Skale films and 3 of 18 acclaimed. Tau is chosen per move.
+- **Blur "never authored" and unscoped "no idle motion".** Authored focus is a scene tool in 13 Skale films; nothing decorative moves on a UI object, but camera creep under holds is common (10 of 29, 10 of 18).
+- **Zoom-through 1 → 1.18 / 0.92 → 1 and exits at 60–70 %.** The reused HeyGen recipe is 1 → 1.2 out and 0.75 → 1 in (blur ~20 px, `power3.in` / `expo.out`); exit/entry ratios run 36–82 % by seam type.
+- **The property census.** Per tween call, opacity (46 %), scale (22 %), y (20 %), x (15 %) and blur (13 %) do the work; skew is never tweened. "Twenty-one compositions" is 20 project folders. The ledger's `dir: 0` row is now a typed morph.
+- **HyperFrames specifics** that disagreed with HyperFrames' own docs moved into `hyperframes-reconciliation`, with file and date per row.
+- **Sound.** −14 LUFS is one option, not the launch master (medians ≈ −18 LUFS; ≤ 38 s sizzles −12 to −13; walkthroughs near −33). A 3–5 kHz click layer and "nothing sits on a grid" describe OpenAI's register only; Skale's music films run a beat whose drop lands on the reveal. The stock-bed gotcha is rescoped to unstructured beds.
+- **The router's HyperFrames row** named only `hyperframes-creative` and `hyperframes-audio`; it now names the front door (`/hyperframes`) and the owning workflows (`product-launch-video`, `motion-graphics`, `general-video`).
+
+### Changed
+
+- `SKILL.md` — a Launch video section linking the new MOC; the description's launch clause now reads "planning, cutting, or reviewing a product launch video".
+- `MOC-motion`, `MOC-sound`, `skill-router`, `routing-table`, `stacking-chains`, `review-checklist`, `disambiguation`, `design-vocabulary`, `sound-spec`, `ai-default-tells` — point at the new cluster; twelve dated gotchas.
+- `sound-designer` and `motion-auditor` (both formats) route film work to the new nodes.
+- The demo is unchanged on screen; its STORYBOARD, ledger and README text now call its motion HeyGen's bouncy-sting register, one choice among the measured registers.
+- Version 2.5.0 across all eight manifests; registry rebuilt.
+
 ## [2.4.0] — 2026-09-05
 
 Motion that is alive: the demo remade on HeyGen's launch motion system, measured against Skale's reel, and the system written into the graph.

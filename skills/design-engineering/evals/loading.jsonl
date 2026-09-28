@@ -35,3 +35,7 @@
 {"query": "write a DESIGN.md our agents will actually follow", "should_load": true, "reason": "design-system-docs"}
 {"query": "convert this SVG to PNG at 3 sizes", "should_load": false, "reason": "asset conversion; no craft decision"}
 {"query": "set up a postgres schema for user settings", "should_load": false, "reason": "backend"}
+{"query": "storyboard our 60-second product launch video — when does the name land and how long is the endcard?", "should_load": true, "reason": "launch-video-structure"}
+{"query": "review the pacing of our launch film render — does it feel like a slideshow?", "should_load": true, "reason": "launch-video-review"}
+{"query": "render my HyperFrames composition to mp4 at 4K", "should_load": false, "reason": "hyperframes-cli owns rendering — no craft decision"}
+{"query": "transcribe the voiceover in this launch video", "should_load": false, "reason": "speech-to-text — transcription, not launch-film craft"}

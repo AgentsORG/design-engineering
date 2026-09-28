@@ -1,8 +1,8 @@
 # design-engineering demo — storyboard
 
 **Format:** 1920×1080 · 30 fps · 12.0 s · one paused GSAP timeline on `window.__timelines.main`.
-**Sound register:** measured from OpenAI's *Refreshed.* and *Introducing GPT-5* — a warm sub-heavy bed in F, dry clicks 10–20 dB under it on every stepped reveal, a low thud when something big settles, the sub dropping out before the modal lands. `references/sound/launch-video-sound.md`.
-**Motion system:** HeyGen's launch grammar — arrivals relax exponentially (tau 0.131 s), exits accelerate on the mirror curve; placement rings on a damped spring at zeta 1/3 (position 1.45 Hz, shape 1.88 Hz, rotation 2.5 Hz); blur follows velocity; text reveals are stepped (seven frames a glyph, 110 ms a word, 210 ms a cell); every scene change is a shared-element morph, never a cut; no idle motion. `references/motion/launch-video-seams.md`. Seams are in `ledger.json`.
+**Sound register:** measured from OpenAI's *Refreshed.* and *Introducing GPT-5* — a warm sub-heavy bed in F, dry clicks ~19 dB under it across the film (band p95; at the hit they peak level with the sub or up to 7 dB under it) on every stepped reveal, a low thud when something big settles, the sub dropping out before the modal lands. `references/sound/launch-video-sound.md`.
+**Motion system:** HeyGen's bouncy-sting register (`heygen-apple-motion/02-bouncy-ui`), a motion register described in `references/launch-video/launch-video-motion.md` — arrivals relax exponentially (tau 0.131 s), exits accelerate on the family's mirror curve; placement rings on a damped spring at zeta 1/3 (position 1.45 Hz, shape 1.88 Hz, rotation 2.5 Hz); blur follows velocity; text reveals are stepped (seven frames a glyph, 110 ms a word, 210 ms a cell); no seam is a static boundary, by choice — two carrier handoffs (rects not yet matched; see `ledger.json`) and two swaps cut mid-motion on the same axis and sign; no idle motion. `references/launch-video/launch-video-seams.md`. Seams are typed in `ledger.json`.
 **Built silent.** Sound is one stereo stem, `assets/sfx/stem.wav`, rendered from `assets/sfx/cues.json` by `scripts/sound-sheet.mjs` after picture lock.
 
 ## Acts
@@ -10,7 +10,7 @@
 | Act | id | start | dur | beat | seam out |
 |---|---|---|---|---|---|
 | 1 · Title | `s1` | 0.00 | 2.80 | glyph flipbook 0.20–0.90 → the word lands on a spring (y 26 → 0, squash 0.93 → 1) with blur clearing → mark slides in 1.15 → thirteen words pop in at 110 ms, each blur 3 → 0 | **zoom-through** @2.50: scene scales 1 → 1.18, blur 10 px, gone by 2.80 |
-| 2 · Router | `s2` | 2.80 | 2.80 | scene arrives from behind (0.92 → 1, blur 8 → 0); headline springs up; cards spring from y 96 with a ±3° rotation ring, blur 6 → 0, at 3.45 / 3.75 / 4.05; each card's three lines step in 120 ms apart | **edge-on collapse** @5.30: cards scaleX → 0.02 |
+| 2 · Router | `s2` | 2.80 | 2.80 | scene arrives from behind (0.92 → 1, blur 8 → 0; with the 1.18 exit, 2.4.0's zoom-through, kept because the demo is not re-rendered and retired in `references/launch-video/hyperframes-reconciliation.md`: a re-render takes the stamp's 1.18 / 0.78); headline springs up; cards spring from y 96 with a ±3° rotation ring, blur 6 → 0, at 3.45 / 3.75 / 4.05; each card's three lines step in 120 ms apart | **edge-on collapse** @5.30: cards scaleX → 0.02 |
 | 3 · Review | `s3` | 5.60 | 3.00 | terminal unfolds from the same axis (scaleX 0.03 → 1); nine cells stream at 210 ms, each blur 4 → 0; modal springs in at 7.05 under the overlay; a cursor arrives 7.40, flips the toggle 7.95 (knob on a spring, track to blue, "· on"), moves to Save, presses 8.35 (button dips 0.95 and rings back) | **dock** @8.35: modal wrap shrinks to 0.5 and blurs |
 | 4 · Sound + SVG | `s4` | 8.60 | 2.00 | mascot stage grows from 0.5 on a spring; six bars ride a conveyor in from y 54 at 90 ms, waveform bars spring up; flipbook at 8 fps | **conveyor** @10.30: bars accelerate off the top, stage recedes |
 | 5 · Install | `s5` | 10.60 | 1.40 | command pill rises from y 140 on a spring; five chunks type in at 120 ms; at 11.55 a volume-conserving pop (1.03 × 0.96 → rings back) and a shine sweeps the pill; footer rises | end |
@@ -24,7 +24,7 @@ Time is the **contact frame**: for a spring arrival, start + 0.30 s (the first c
 | 0.00 → | bed in | film starts | sub F1 + F2 (43 / 86 Hz), pad on F3 · A3 · C4 · F4, −9 dB until the land |
 | 0.21 / 0.44 / 0.68 | flicker ×3 | glyph variants cut every 7 frames | 4.0 kHz clicks |
 | 0.90 | thud | `design‑engineering` lands | 86 Hz sweep-down, click on the frame, bed ducks 4 dB |
-| 1.32 … 2.63 | type ×13 | words every 110 ms (±8 ms hand jitter) | 5.0 kHz clicks at −22 dB |
+| 1.32 … 2.63 | type ×13 | words every 110 ms (±8 ms jitter, `sound-sheet.mjs`'s default for a run with no `"jitter"`; the words pop on a fixed stagger, so no hand spread) | 5.0 kHz clicks at −22 dB |
 | 2.50–2.80 | air | zoom-through | a breath under the seam, −6 dB |
 | 3.15 | thud | `#s2-h` springs to rest | a fifth up |
 | 3.75 / 4.05 / 4.35 | click + flicker ×3 | each card crosses rest, then its k / v / d lines | 3.7 → 4.6 kHz, pan −0.40 / 0 / +0.40 |
@@ -45,7 +45,7 @@ Time is the **contact frame**: for a spring arrival, start + 0.30 s (the first c
 | 10.95 … 11.43 | type ×5 | command chunks | 4.5 kHz |
 | 11.55 | success | install lands | thud on the root + a mallet a fifth up; bed swells 2.5 dB then leaves |
 
-Stem: 81 onsets from 31 cues · integrated −16.0 LUFS · peak −0.9 dBFS · bed present 96 % of the runtime with one dropout.
+Stem: 81 onsets from 31 cues · integrated −16.0 LUFS · sample peak −1.0 dBFS, true peak −0.9 dBTP (the muxed MP4 measures −1.3 dBTP) · bed present 96 % of the runtime with one dropout.
 
 ## Build / verify
 

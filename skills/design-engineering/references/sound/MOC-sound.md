@@ -1,6 +1,6 @@
 ---
 title: MOC-sound
-summary: When an interface should make a sound, how to design a family of sounds that belong together, how to sync them to motion, and how to generate them — ElevenLabs on demand, or open-weight and CC0 without a key.
+summary: When an interface should make a sound, how to design a family of sounds that belong together, how to sync them to motion, and how to generate them — ElevenLabs on demand, or open-weight and CC0 without a key — plus the five measured launch-film sound registers and how a track or a voice is placed on the picture.
 tags: [moc, sound, audio, launch-video]
 ---
 
@@ -31,8 +31,9 @@ Two surfaces share this cluster and have opposite defaults. **Product UI** is si
 
 ## Launch-video register
 
-- [[launch-video-sound]] — Two measured registers: the sparse logo reveal (no bed, every hit on a motion peak, true silence) and the OpenAI brand film (a sub-heavy bed in F, dry clicks 10–20 dB under it on stepped reveals, silences as punctuation). Numbers from *Refreshed.* and *Introducing GPT-5*.
-- [[sound-from-motion]] — Derive the sound from the motion: size → pitch and decay, x → pan, y → brightness, direction → contour, tween → length, contact frame → transient. The cue sheet and `scripts/sound-sheet.mjs`, which renders a stereo stem from it.
+- [[launch-video-sound]] — Five measured registers (dry reveal, OpenAI one-key bed with clicks, beat track, voice-led, product-camera pad with consequence foley), subtraction before the reveal, loudness by register with −1 dBTP fixed.
+- [[launch-video-music]] — Placing a track or a voice on the picture: drop on the reveal, breakdowns under reading, cuts on onsets, moves landing on spoken onsets.
+- [[sound-from-motion]] — Derive the sound from the motion: size → pitch and decay, x → pan, y → brightness, direction → contour, tween → length, contact frame → transient; or structurally, where the picture places a track's drop and dropouts. The cue sheet and `scripts/sound-sheet.mjs`, which renders a stereo stem from it.
 
 ## Shipped tooling
 
@@ -44,3 +45,4 @@ Two surfaces share this cluster and have opposite defaults. **Product UI** is si
 - [[prefers-reduced-motion]] has no audio twin in CSS — [[sound-playback-web]] explains why you treat the mute toggle as that twin.
 - [[ai-default-tells]] carries the sound rows: stock library sounds, a beep on every click, a whoosh on every transition.
 - [[review-checklist]] rows 12–13 are the sound gate for any UI review.
+- The whole launch-film decision flow: [[MOC-launch-video]].

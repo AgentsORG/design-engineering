@@ -7,7 +7,7 @@
       "name": "design-engineering",
       "type": "registry:file",
       "title": "Design Engineering skill graph",
-      "description": "The full design-engineering skill graph — 10 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
+      "description": "The full design-engineering skill graph — 11 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, launch video, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
       "author": "HKTITAN",
       "categories": [
         "design",
@@ -155,6 +155,56 @@
           "path": "skills/design-engineering/references/components/ui-polish-pass.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/ui-polish-pass.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/MOC-launch-video.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/MOC-launch-video.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/hyperframes-reconciliation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/hyperframes-reconciliation.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/launch-video-cuts.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-cuts.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/launch-video-motion.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-motion.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/launch-video-registers.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-registers.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/launch-video-review.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-review.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/launch-video-seams.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-seams.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/launch-video-structure.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-structure.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/launch-video-type.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-type.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/launch-video-ui-demo.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-ui-demo.md"
         },
         {
           "path": "skills/design-engineering/references/layout/MOC-layout.md",
@@ -347,11 +397,6 @@
           "target": "~/.agents/skills/design-engineering/references/motion/hover-default-imperative.md"
         },
         {
-          "path": "skills/design-engineering/references/motion/launch-video-seams.md",
-          "type": "registry:file",
-          "target": "~/.agents/skills/design-engineering/references/motion/launch-video-seams.md"
-        },
-        {
           "path": "skills/design-engineering/references/motion/lerp-breathing.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/lerp-breathing.md"
@@ -485,6 +530,11 @@
           "path": "skills/design-engineering/references/sound/MOC-sound.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/sound/MOC-sound.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/launch-video-music.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/launch-video-music.md"
         },
         {
           "path": "skills/design-engineering/references/sound/launch-video-sound.md",
@@ -652,7 +702,7 @@
       "name": "design-engineering-agents",
       "type": "registry:file",
       "title": "Design Engineering subagents and commands",
-      "description": "Nine workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator) and their slash commands, in Claude Code format.",
+      "description": "Ten workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator, launch-film-analyst) and their slash commands, in Claude Code format.",
       "author": "HKTITAN",
       "categories": [
         "design",
@@ -682,6 +732,11 @@
           "path": "agents/design-md-consumer.md",
           "type": "registry:file",
           "target": "~/.claude/agents/design-md-consumer.md"
+        },
+        {
+          "path": "agents/launch-film-analyst.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/launch-film-analyst.md"
         },
         {
           "path": "agents/motion-auditor.md",
@@ -722,6 +777,11 @@
           "path": "commands/apply-design-md.md",
           "type": "registry:file",
           "target": "~/.claude/commands/apply-design-md.md"
+        },
+        {
+          "path": "commands/film-review.md",
+          "type": "registry:file",
+          "target": "~/.claude/commands/film-review.md"
         },
         {
           "path": "commands/fork-pov.md",

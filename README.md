@@ -23,13 +23,13 @@ npx skills add AgentsORG/design-engineering
 
 ![design-engineering in twelve seconds: a glyph flipbook lands the wordmark, three cards spring up, a review table streams in and a cursor saves the modal, a sound family and an SVG mascot, the install command types itself](docs/demo/design-engineering-demo.gif?v=2.4.0)
 
-Twelve seconds, made with the skill's own rules and tools. [Watch the MP4 with sound](docs/demo/design-engineering-demo.mp4?v=2.4.0).
+Twelve seconds, made with the skill's 2.4.0 rules and tools. [Watch the MP4 with sound](docs/demo/design-engineering-demo.mp4?v=2.4.0).
 
-**The motion** is HeyGen's launch grammar, measured against Skale's reel: arrivals relax exponentially (tau 0.131 s), placement rings on a damped spring at zeta 1/3 (position 1.45 Hz, shape 1.88 Hz, rotation 2.5 Hz), blur follows velocity, text reveals are stepped, and every scene change is a shared-element morph — a zoom-through, an edge-on collapse that unfolds, a dock, a conveyor — never a cut. No idle motion. **The sound** is the register measured from OpenAI's *Refreshed.* and *Introducing GPT-5*: a warm sub-heavy bed in F that carries the piece, dry clicks 10–20 dB under it on every stepped reveal, a low thud when something big settles on its spring, and the sub dropping out for half a second before the modal lands. The whole soundtrack is *derived from the motion* — nothing is picked from a library.
+**The motion** is HeyGen's bouncy-sting register (`heygen-apple-motion/02-bouncy-ui`): arrivals relax exponentially (tau 0.131 s), placement rings on a damped spring at zeta 1/3 (position 1.45 Hz, shape 1.88 Hz, rotation 2.5 Hz), blur follows velocity, text reveals are stepped, nothing idles on a UI object, and every scene change keeps moving through its seam — a zoom-through, an edge-on collapse that unfolds, a dock, a conveyor. That is one register chosen for this demo, not a law: most of the 47 launch films measured for 2.5.0 hard-cut, on a cause or a constant ground ([`references/launch-video/`](skills/design-engineering/references/launch-video/)). **The sound** is the register measured from OpenAI's *Refreshed.* and *Introducing GPT-5*: a warm sub-heavy bed in F that carries the piece, dry clicks sitting well under it (about 19 dB below the bed across the film) on every stepped reveal, a low thud when something big settles on its spring, and the sub dropping out for half a second before the modal lands. The whole soundtrack is *derived from the motion* — nothing is picked from a library.
 
 | What you see | What made it |
 |---|---|
-| The composition | [`docs/demo/hyperframes/index.html`](docs/demo/hyperframes/index.html), a [HyperFrames](https://www.skills.sh/heygen-com/hyperframes/hyperframes) project in the shape HeyGen uses for its own launches. The ease functions, the spring, and the seams are written once at the top of the file. A [storyboard](docs/demo/hyperframes/STORYBOARD.md) carries the act table and the audio cue map, a [seam ledger](docs/demo/hyperframes/ledger.json) the four seams and the system constants, and `check` passes with zero layout or contrast findings. `launch-video-seams`, `easing-curves`, `spring-animations`. |
+| The composition | [`docs/demo/hyperframes/index.html`](docs/demo/hyperframes/index.html), a [HyperFrames](https://www.skills.sh/heygen-com/hyperframes/hyperframes) project in the shape HeyGen uses for its own launches. The ease functions, the spring, and the seams are written once at the top of the file. A [storyboard](docs/demo/hyperframes/STORYBOARD.md) carries the act table and the audio cue map, a [seam ledger](docs/demo/hyperframes/ledger.json) the four seams and the system constants, and `check` passes with zero layout or contrast findings. `launch-video-motion`, `launch-video-seams`. |
 | The sound | One stereo stem rendered by `scripts/sound-sheet.mjs` from a [cue sheet](docs/demo/hyperframes/assets/sfx/cues.json): a bed with its act-by-act gain arc, one dropout, and ducking under every thud, plus 81 onsets from 31 cues, each with its contact frame and its box on the canvas. Size sets pitch, x sets pan, y sets brightness, a stepped reveal sets the click cadence. The six product one-shots in the same folder come from the same voices (`--family`). The register's numbers were measured from the two OpenAI films with the scripts in [`docs/research/launch-register/`](docs/research/launch-register/). `sound-from-motion`, `launch-video-sound`, `sound-motion-sync`. |
 | The mascot | Eight flat SVG frames through `scripts/svg-flipbook.mjs --vars`: one 5.7 KB file, colors lifted to CSS variables, driven by the composition timeline. |
 
@@ -45,7 +45,7 @@ Frames from the demo, each a real output shape of the skill.
 
 <table>
 <tr>
-<td width="50%"><img src="docs/demo/screenshots/01-title.png?v=2.4.0" alt="The wordmark, just landed on a spring, with the thesis streaming in word by word"><br><sub><b>The wordmark lands.</b> A glyph flipbook at seven frames a step, then the word settles on a damped spring with its blur clearing; the thesis pops in a word every 110 ms, each a click in the stem. <code>launch-video-seams</code>, <code>sound-from-motion</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/01-title.png?v=2.4.0" alt="The wordmark, just landed on a spring, with the thesis streaming in word by word"><br><sub><b>The wordmark lands.</b> A glyph flipbook at seven frames a step, then the word settles on a damped spring with its blur clearing; the thesis pops in a word every 110 ms, each a click in the stem. <code>launch-video-motion</code>, <code>sound-from-motion</code></sub></td>
 <td width="50%"><img src="docs/demo/screenshots/02-router.png?v=2.4.0" alt="The router: contract, phase, one owner"><br><sub><b>The router.</b> Before reading anything, <code>/design-engineering</code> resolves the design contract, classifies the phase, and hands the job to one owner — a node, a subagent, or an installed companion. The cards sprang up with a rotation ring and built line by line. <code>references/meta/skill-router.md</code></sub></td>
 </tr>
 <tr>
@@ -54,7 +54,7 @@ Frames from the demo, each a real output shape of the skill.
 </tr>
 <tr>
 <td width="50%"><img src="docs/demo/screenshots/04-sound-and-svg.png?v=2.4.0" alt="Six generated UI sounds and an SVG mascot flipbook"><br><sub><b>Sound and vectors.</b> A six-sound family from the same voices that score the video — dry clicks and a low thud on the bed's root — rendered by <code>sound-sheet.mjs</code>, riding in on a conveyor; and a mascot flipbook from <code>svg-flipbook.mjs</code> whose stage grew from where the modal docked. <code>sound-from-motion</code>, <code>launch-video-sound</code>, <code>video-to-vector-pipeline</code></sub></td>
-<td width="50%"><img src="docs/demo/screenshots/05-install.png?v=2.4.0" alt="Ten clusters, nine subagents, one router, and the install command"><br><sub><b>Ten clusters, nine subagents, one router.</b> The command rose as a sent pill, typed itself in five chunks, and popped on success. Installs into any agent that reads a <code>SKILL.md</code>; slash commands and subagents ship for Claude Code, Cursor, and Codex.</sub></td>
+<td width="50%"><img src="docs/demo/screenshots/05-install.png?v=2.4.0" alt="Ten clusters, nine subagents, one router, and the install command"><br><sub><b>Ten clusters, nine subagents, one router</b> (the 2.4.0 frame; 2.5.0 ships eleven clusters and ten subagents). The command rose as a sent pill, typed itself in five chunks, and popped on success. Installs into any agent that reads a <code>SKILL.md</code>; slash commands and subagents ship for Claude Code, Cursor, and Codex.</sub></td>
 </tr>
 </table>
 
@@ -128,7 +128,7 @@ Reproduce: produce the two arms with any agent that can read files (prompts are 
 node evals/run-bench.mjs evals/results/<run>
 ```
 
-The eve evals in `evals/` are the other half: five `defineEval()` checks (review format, motion values, sound values, the generated-modal floor, and routing) run with `npm run eval`. The methodology behind both is in `references/meta/design-benchmarks.md`.
+The eve evals in `evals/` are the other half: five `defineEval()` checks (review format, motion values, sound values, launch-film numbers, and the generated-modal floor) run with `npm run eval`. The methodology behind both is in `references/meta/design-benchmarks.md`.
 
 ## The four primitives
 
@@ -136,9 +136,9 @@ Since v2.0.0 the repo is organized around four primitives, each owned by an open
 
 | Primitive | What it is | Where | Spec |
 |---|---|---|---|
-| **Knowledge** | The skill graph — 107 atomic, wikilinked nodes in 10 themed clusters, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
+| **Knowledge** | The skill graph — 116 atomic, wikilinked nodes in 11 themed clusters, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
 | **Package** | The portable plugin — one manifest, portable skills, namespaced client extensions | `plugin.json` + `skills/` | [Agent Plugins v1.0.0](https://agent-plugins.org/) |
-| **Runtime** | A durable agent that *runs* the knowledge — root agent, nine specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
+| **Runtime** | A durable agent that *runs* the knowledge — root agent, ten specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
 | **Client extensions** | Per-host adapters — subagents, slash commands, host manifests, shadcn registry | `agents/`, `commands/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
 
 The knowledge is the core; everything else is a delivery mechanism for it. `plugin.json` declares the client extensions under reverse-domain namespaces (`com.anthropic.claude-code`, `com.openai.codex`, `com.cursor.editor`, `dev.vercel.plugins`, `dev.eve.agent`) so any Agent Plugins client can discover what this repo ships and ignore what it doesn't implement.
@@ -149,7 +149,7 @@ The fastest path is the one-liner at the top — `npx skills add AgentsORG/desig
 
 ### Plugins CLI (Claude Code + Cursor + Codex)
 
-Install the full plugin bundle — skill graph, nine workflow subagents, and slash commands — in one step via [vercel-labs/plugins](https://github.com/vercel-labs/plugins):
+Install the full plugin bundle — skill graph, ten workflow subagents, and slash commands — in one step via [vercel-labs/plugins](https://github.com/vercel-labs/plugins):
 
 ```bash
 npx plugins add AgentsORG/design-engineering
@@ -158,7 +158,7 @@ npx plugins add AgentsORG/design-engineering
 npx plugins discover AgentsORG/design-engineering
 ```
 
-Restart your agent tools after install. Slash commands (when your host supports them) include `/design-engineering:review-ui`, `/design-engineering:motion-audit`, `/design-engineering:scan-ai-tells`, `/design-engineering:agentation-fix`, `/design-engineering:apply-design-md`, `/design-engineering:fork-pov`, `/design-engineering:sound-pass`, `/design-engineering:svg-create`, and `/design-engineering:svg-animate`.
+Restart your agent tools after install. Slash commands (when your host supports them) include `/design-engineering:review-ui`, `/design-engineering:motion-audit`, `/design-engineering:scan-ai-tells`, `/design-engineering:agentation-fix`, `/design-engineering:apply-design-md`, `/design-engineering:fork-pov`, `/design-engineering:sound-pass`, `/design-engineering:svg-create`, `/design-engineering:svg-animate`, and `/design-engineering:film-review`.
 
 ### Per-agent install
 
@@ -194,8 +194,8 @@ Four items ship:
 
 | Item | Installs | Into |
 |---|---|---|
-| `design-engineering` | The full skill graph (markdown, eval fixtures, and both scripts) | `.agents/skills/design-engineering/` |
-| `design-engineering-agents` | Nine subagents + nine slash commands | `.claude/agents/`, `.claude/commands/` |
+| `design-engineering` | The full skill graph (markdown, eval fixtures, and all three scripts) | `.agents/skills/design-engineering/` |
+| `design-engineering-agents` | Ten subagents + ten slash commands | `.claude/agents/`, `.claude/commands/` |
 | `design-engineering-design-file` | The starter `.design` contract | `.design` at project root |
 | `design-engineering-motion` | Motion tokens as theme CSS variables | your global CSS |
 
@@ -211,7 +211,7 @@ Registry sources live in [`registry.json`](registry.json); the built, content-em
 
 ### Run it as an agent (eve)
 
-The repo is also a runnable [eve](https://eve.dev/) project — a durable backend design-engineering agent with the skill graph seeded into its sandbox and nine specialist subagents it can delegate to:
+The repo is also a runnable [eve](https://eve.dev/) project — a durable backend design-engineering agent with the skill graph seeded into its sandbox and ten specialist subagents it can delegate to:
 
 ```bash
 npm install
@@ -255,8 +255,9 @@ Navigation:
 - When two intents blur, references/meta/disambiguation.md names the
   tiebreaker; multi-cluster jobs follow references/meta/stacking-chains.md.
 - SKILL.md is a thin Map of Content with [[wikilinks]] to atomic nodes in
-  10 themed folders: philosophy, motion, sound, svg, typography, surface,
-  components, layout, anti-patterns, meta. Wikilinks resolve by basename.
+  11 themed folders: philosophy, motion, sound, svg, launch-video,
+  typography, surface, components, layout, anti-patterns, meta. Wikilinks
+  resolve by basename.
 
 Rules:
 1. For any UI code review, use the Before | After | Why table from
@@ -276,14 +277,15 @@ references/meta/review-format.md first, then the relevant motion nodes
 
 ## What's included
 
-One skill, organised into **10 themed clusters**, fronted by a router: `/design-engineering` resolves the project's design contract, classifies the phase of the work, and hands the job to one owner — a node here, one of nine subagents, or an installed companion skill (AgentsORG `design`, [impeccable](https://impeccable.style/), HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI). See `references/meta/skill-router.md`. Each cluster has its own MOC (meta indexes from SKILL.md directly).
+One skill, organised into **11 themed clusters**, fronted by a router: `/design-engineering` resolves the project's design contract, classifies the phase of the work, and hands the job to one owner — a node here, one of ten subagents, or an installed companion skill (AgentsORG `design`, [impeccable](https://impeccable.style/), HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI). See `references/meta/skill-router.md`. Each cluster has its own MOC (meta indexes from SKILL.md directly).
 
 | Theme | Use it when… |
 |---|---|
 | `philosophy` | Justifying polish, picking between two valid approaches, debating delight budget. The "why bother" cluster. |
-| `motion` | Adding or reviewing any animation. Easing, durations, springs, gestures, transitions, stagger, and the launch-video motion system (one easing law, springs at zeta 1/3, derived blur, shared-element seams). The largest cluster. |
-| `sound` | Deciding whether an interaction should make a sound (usually no), designing one material family, syncing transients to frames, generating files — ElevenLabs on demand or open-weight / procedural / CC0 without a key — scoring launch videos in the OpenAI register, and deriving a video's whole stem from its motion. Ships `scripts/sound-family.mjs` and `scripts/sound-sheet.mjs`. |
+| `motion` | Adding or reviewing any animation. Easing, durations, springs, gestures, transitions, stagger. The largest cluster. |
+| `sound` | Deciding whether an interaction should make a sound (usually no), designing one material family, syncing transients to frames, generating files — ElevenLabs on demand or open-weight / procedural / CC0 without a key — scoring a launch video in the register its picture sets, placing a music track or a voice under it, and deriving a video's whole stem from its motion. Ships `scripts/sound-family.mjs` and `scripts/sound-sheet.mjs`. |
 | `svg` | Creating clean, token-aware, editable SVG; animating it with the engine its home allows (inline CSS/WAAPI, embedded keyframes or SMIL for image use); morphing paths by the command-count rule; turning flat clips into editable animated mascots. Ships `scripts/svg-flipbook.mjs`. |
+| `launch-video` | Planning, cutting, scoring and reviewing a launch film: registers measured across 47 films, beat timings, seams and cuts, film motion, type, UI demo, HyperFrames reconciliation. These are film numbers; they don't transfer to product UI. |
 | `typography` | Picking a typeface, building a type scale, leading, tracking, wrapping, truncation, underlines, the 16px and contrast floors. Avoiding AI-default font tells. |
 | `surface` | Color palette and OKLCH ramps, dark mode, shadows and nested radii, hairlines, image outlines, visual imperfection. |
 | `components` | Buttons, hovers, empty/loading states, cards, forms (validation and behavior), touch and focus, the polish pass, component APIs, avatars, icons, a11y, copy. |
@@ -318,18 +320,19 @@ design-engineering/
 ├── .codex-plugin/                     ← OpenAI Codex manifest                (com.openai.codex)
 ├── .cursor-plugin/                    ← Cursor IDE manifest                  (com.cursor.editor)
 ├── .plugin/                           ← vendor-neutral plugins-CLI manifest  (dev.vercel.plugins)
-├── agents/                            ← nine workflow subagents (Claude Code subagent format)
-├── commands/                          ← nine slash-command workflows
+├── agents/                            ← ten workflow subagents (Claude Code subagent format)
+├── commands/                          ← ten slash-command workflows
 ├── agent/                             ← eve runtime                          (dev.eve.agent)
 │   ├── agent.ts                       ← defineAgent() — model + runtime config
 │   ├── instructions.md                ← base system prompt, distilled from SOUL.md
 │   ├── skills/                        ← generated: skill graph synced in (gitignored)
-│   └── subagents/<name>/              ← agent.ts (description + model) + instructions.md × 9
+│   └── subagents/<name>/              ← agent.ts (description + model) + instructions.md × 10
 ├── evals/                             ← eve evals: defineEval() scored checks
 │   ├── evals.config.ts
 │   ├── review-format.eval.ts          ← review requests must return the Before|After|Why table
 │   ├── motion-values.eval.ts          ← easing advice must name concrete values
 │   ├── sound-values.eval.ts           ← sound advice names a duration, a level, or says "no sound"
+│   ├── launch-values.eval.ts          ← launch-film advice names seconds or a share of runtime and a cut rate per minute
 │   ├── design-bench.eval.ts           ← generated UI passes the review-checklist floor (DesignBench-style repair)
 │   ├── run-bench.mjs                  ← scores with/without-skill outputs against design-bench.jsonl
 │   └── results/<run>/                 ← raw outputs of both arms + REPORT.md
@@ -341,16 +344,17 @@ design-engineering/
 ├── templates/design-engineering.design ← starter .design contract (this skill's motion + surface defaults)
 ├── docs/brand/                        ← AgentsORG wordmark (light / dark) and icon
 ├── docs/research/launch-register/     ← the scripts and summaries that measured the OpenAI launch-film register
+├── docs/research/launch-films/        ← the native-fps measurements behind the launch-video cluster: 29 Skale pieces, 18 acclaimed films, 3 HeyGen renders
 ├── docs/demo/                         ← the README demo: HyperFrames source + storyboard + ledger, MP4/GIF, screenshots, the stem and cue sheet
 ├── template/TEMPLATE.md
 └── skills/design-engineering/         ← THE KNOWLEDGE (portable core)
     ├── SKILL.md                       ← thin Map of Content
     ├── evals/                         ← Step-0 routing fixtures (loading.jsonl, progressive-reads.jsonl)
     ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), sound-sheet.mjs (motion cue sheet → stereo stem), svg-flipbook.mjs (frames → animated SVG)
-    └── references/                    ← 10 themed clusters, 107 atomic nodes, 9 MOCs
+    └── references/                    ← 11 themed clusters, 116 atomic nodes, 10 MOCs
 ```
 
-Total: **107 atomic nodes** across 10 clusters (119 markdown files in the skill), 9 workflow subagents ×2 formats, 9 commands, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
+Total: **116 atomic nodes** across 11 clusters (129 markdown files in the skill), 10 workflow subagents ×2 formats, 10 commands, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
 
 ## Agent Plugins conformance
 
@@ -385,8 +389,10 @@ PRs welcome. The shorter the better. See [CONTRIBUTING.md](CONTRIBUTING.md), [CO
 - **Benji Taylor** — [benji.org](https://benji.org) + [Agentation](https://www.agentation.com)
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev)
 - **OpenAI / Studio Dumbar/DEPT** — [*Refreshed.*](https://www.youtube.com/watch?v=k3d_xeVxEOE) and [*Introducing GPT-5*](https://www.youtube.com/watch?v=boJG84Jcf-4), measured for the bed-and-clicks register; [case study](https://studiodumbar.com/work/openai-brand-film)
-- **Skale** — [skale.solutions](https://skale.solutions/), Mark Vassilevskiy's studio reel, measured for cut rate, stillness, and move length
-- **HeyGen** — [hyperframes-launches](https://github.com/heygen-com/hyperframes-launches) (launch-video seams, storyboards, audio cue maps) and [HyperFrames](https://github.com/heygen-com/hyperframes)
+- **Skale** — 28 client films and the 2025 reel from [skale.solutions/portfolio](https://skale.solutions/portfolio), measured for cuts, stillness, structure and sound (2026-09-28)
+- **Acclaimed launch films, 2024–2026** — Linear Agent, Raycast, Claude Cowork and Claude Opus 4.6 (Anthropic; Opus 4.6 by BUCK per brief), Cursor 2.0, Notion Mail, Notion 3.0, Granola 2.0, Figma glass, Figma Motion, Framer 3.0 (maker uncredited), Spline Hana, Arc on Windows (The Browser Company), Apple Liquid Glass, Material 3 Expressive (Google Design), Perplexity Comet (Studio Freight), Google Gemini app and Google AI Mode (Ordinary Folk; inferred for AI Mode) — 18 films measured on 2026-09-28; the film list and every number in [`docs/research/launch-films/`](docs/research/launch-films/)
+- **HeyGen** — [hyperframes-launches](https://github.com/heygen-com/hyperframes-launches) (launch-video seams, storyboards, audio cue maps, a 3,446-call tween census, three verification renders; Apache-2.0 code and timing only, no bundled media, marks or fonts)
+- **HeyGen HyperFrames skills** — [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) (Apache-2.0), the build owner for rendered films; its repo-internal `.agents/skills/` doctrine is not installed by `npx skills add`, and `hyperframes-reconciliation` says where its values differ from this graph's
 - **Apple** — [Designing Audio-Haptic Experiences (WWDC19)](https://developer.apple.com/videos/play/wwdc2019/223/), [HIG: Playing audio](https://developer.apple.com/design/human-interface-guidelines/playing-audio), [Twenty Thousand Hertz: The Sound of Apple](https://www.20k.org/episodes/the-sound-of-apple)
 - **bruno (@tvnxty)** — [superfx.co](https://superfx.co); the [Base logo reveal](https://x.com/tvnxty/status/2095601307444728212) whose sound map anchors `launch-video-sound`
 - **Studio Dumbar/DEPT** — [OpenAI brand motion + sound](https://studiodumbar.com/work/openai)

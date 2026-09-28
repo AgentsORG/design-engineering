@@ -23,13 +23,13 @@ Precedence: user prompt → nearest `.design` → the `design` skill procedure �
 | Foundation | "build this screen", "lay this out" | [[feeling-right]] → [[stacking-chains]] |
 | Pieces | card, form, component, landing page, sound, SVG | the material node below, or its subagent |
 | Works, feels off | "feels cheap", "janky", "broken on mobile" | [[ui-polish-pass]] / [[motion-auditor]] / [[touch-and-focus]] |
-| Done | "does this look right", "review before I ship" | [[ui-reviewer]] or [[review-format]] |
+| Done | "does this look right", "review before I ship" | [[ui-reviewer]] or [[review-format]]; a film → [[launch-video-review]] (or spawn [[launch-film-analyst]]) |
 | The words | "what's it called when…" | [[design-vocabulary]] — answer and stop |
 | Keeps missing | "closer, but not quite" after a round or two | [[build-a-tool]] |
 
 ## 3. Pick the material
 
-Type → [[typography-humanity]], [[type-scale-and-rhythm]]. Color → [[color-scales-oklch]]. Depth → [[depth-and-nesting]]. Motion → [[animation-decision-framework]]. Sound → [[sound-decision-framework]] / [[sound-designer]]. SVG → [[svg-creation]] / [[svg-creator]], [[svg-animation]] / [[svg-animator]]. Forms → [[forms-behavior]]. Props → [[component-api-design]]. Marketing → [[marketing-surface-rules]]. Generated look → [[unslop-pass]] / [[anti-pattern-scanner]]. Speed → [[performance-discipline]]. Docs for agents → [[design-system-docs]].
+Type → [[typography-humanity]], [[type-scale-and-rhythm]]. Color → [[color-scales-oklch]]. Depth → [[depth-and-nesting]]. Motion → [[animation-decision-framework]]. Sound → [[sound-decision-framework]] / [[sound-designer]]. SVG → [[svg-creation]] / [[svg-creator]], [[svg-animation]] / [[svg-animator]]. Forms → [[forms-behavior]]. Props → [[component-api-design]]. Marketing → [[marketing-surface-rules]]. Generated look → [[unslop-pass]] / [[anti-pattern-scanner]]. Speed → [[performance-discipline]]. Docs for agents → [[design-system-docs]]. Launch film → [[MOC-launch-video]].
 
 ## 4. Hand off to installed companions
 
@@ -39,7 +39,7 @@ A companion is installed when its `SKILL.md` exists under `.agents/skills/`, `.c
 |---|---|---|
 | Discover, follow, update, verify a `.design`; bootstrap one | AgentsORG `design` skill | It owns the contract; this graph never redefines a token |
 | A named pass: polish, critique, audit, typeset, layout, colorize, animate, distill, harden, onboard, clarify, adapt, optimize | impeccable (`/impeccable <command>`) | Its output still passes [[review-checklist]]; a DESIGN.md it writes imports per [[using-design-md]] |
-| A launch film, reveal, or any rendered motion piece | HyperFrames (`hyperframes-creative`, `hyperframes-audio`) | This graph supplies [[launch-video-sound]] and the frame.md export from the contract |
+| A launch film, sting, sizzle, or any rendered motion piece | HyperFrames: `/hyperframes` front door → `product-launch-video` (a product or URL; strongest at 30–90 s, up to ~3 min), `music-to-video` (a track's beat grid drives an unnarrated piece), `motion-graphics` (unnarrated sting, under ~10 s, up to ~30 s), `general-video` (sizzles, montages, anything past ~3 min); `hyperframes-animation` owns rules, blueprints and transitions | This graph decides register, structure and type cadence, picks the seams and cuts ([[launch-video-seams]], [[launch-video-cuts]]), and owns the sound ([[MOC-launch-video]], [[launch-video-sound]], [[sound-from-motion]]) and the frame.md export. Inside a HyperFrames project the seam stamp's eases, zoom values and exit timings win whether or not the repo-internal doctrine (`motion-doctrine`, `cut-the-curve`, `oversized-cursor`) is installed. `npx skills add` skips that doctrine, so check `.agents/skills/`, and if it is missing write the stamp's values by hand. Every other value conflict → [[hyperframes-reconciliation]] |
 | Generating audio files | ElevenLabs `sound-effects` / `text-to-speech` | [[sound-palette]] material is the prompt prefix; [[sound-spec]] is the acceptance test |
 | One of the thirty-two canonical CSS transitions | `transitions-dev` | Values still checked against [[easing-curves]] and [[duration-table]] |
 | Installing or theming components | shadcn CLI / MCP (`info`, `search`, `view`, `add --dry-run`, `apply --preset`, `migrate`) | Driven by the contract's `integrations.shadcn`; tokens win over `css_vars` |
@@ -60,4 +60,5 @@ Polishing a screen whose layout is still wrong wastes the pass — the polish is
 
 - HKTITAN — routing distilled from operating this graph beside its companions.
 - AgentsORG `.design` spec §5 (precedence) and `skills/design` §8 (companion skills); impeccable command surface; HyperFrames `references/design-spec.md`.
+- heygen-com/hyperframes skills (HEAD 2026-09-28, Apache-2.0): `skills/hyperframes/SKILL.md` (the front door's routes and length bands), `skills/motion-graphics/SKILL.md`, `skills/general-video/SKILL.md`, `.agents/skills/motion-doctrine` (internal, `metadata.internal: true`), `.agents/skills/README.md` (internal skills skipped by `npx skills add`).
 - Related: [[routing-table]], [[disambiguation]], [[stacking-chains]].
