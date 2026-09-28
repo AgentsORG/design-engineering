@@ -276,12 +276,23 @@ The words for what an interface sounds like. This category is the skill's own ex
 - **One-shot / loop** — a sound that plays once vs one that sustains a state (processing, recording). → [[sound-spec]]
 - **Sprite** — several sounds in one file addressed by offset; one decode for the whole family. → [[sound-spec]]
 - **LUFS / dBFS / true peak** — perceived loudness, sample level, and the reconstructed peak; the three numbers a spec names. → [[sound-spec]]
-- **Ducking** — lowering one track (a bed) while another (a hit, a voice) plays. → [[launch-video-sound]]
+- **Ducking** — lowering one track (a bed) while another (a hit, a voice) plays. → [[launch-video-music]], [[sound-from-motion]]
 - **Pre-roll** — silence before a file's transient; a sync bug disguised as an asset. → [[sound-motion-sync]]
 - **Whoosh / riser / stinger / braam** — the motion-graphics vocabulary: movement, tension build, a brand hit, a cinematic drone. Product UI uses none of them. → [[launch-video-sound]]
 - **Audio-haptic harmony** — Apple's term for sound, haptic, and visual describing the same physical event at the same instant. → [[sound-motion-sync]]
 
+## 14 — Launch film
+
+The words for a rendered film's editorial choices. Like Sound, this category is the skill's own extension of the Index module; see [[MOC-launch-video]].
+
+- **Register** — the editorial mode that fixes a film's cut rate, stillness and loudness; pick it before anything else. → [[launch-video-registers]]
+- **Poster frame** — 1-4 frames of the finished title or hero at t = 0, then a cut; it fixes the autoplay thumbnail. → [[launch-video-structure]]
+- **Cut the curve** — HyperFrames' lateral hard cut taken at peak speed: the exit accelerates into the cut and the entry decelerates out of it on mirrored curves, so the speed is equal on both sides. Inside a HyperFrames project the stamped eases win ([[hyperframes-reconciliation]]). → [[launch-video-seams]]
+- **Scale cut** — scale changed by a cut rather than a zoom: a one- or two-frame jump of ~2-3× on the element being read. → [[launch-video-cuts]]
+- **Subtractive punctuation** — the low end or the whole mix taken away just before a key beat, so the reveal lands on something withheld. → [[launch-video-sound]]
+
 ## Sources
 
 - *Index — Say Precisely What You Mean*, Emil Kowalski & Glenn Carstens-Peters — [index.how/to/articulate](https://index.how/to/articulate). The 188-term articulate module this lexicon is seeded from; the canonical reference, arriving fall 2026. Glosses here are this skill's own.
-- Cross-linked throughout to this skill's own clusters: [[MOC-philosophy]], [[MOC-motion]], [[MOC-surface]], [[MOC-typography]], [[MOC-components]], [[MOC-layout]], [[MOC-anti-patterns]].
+- Launch film terms: HKTITAN's launch-film corpus (Skale and acclaimed films, measured 2026-09-28, `docs/research/launch-films/`) and heygen-com/hyperframes `.agents/skills/cut-the-curve/SKILL.md` (Apache-2.0, repo-internal).
+- Cross-linked throughout to this skill's own clusters: [[MOC-philosophy]], [[MOC-motion]], [[MOC-surface]], [[MOC-typography]], [[MOC-components]], [[MOC-layout]], [[MOC-anti-patterns]], [[MOC-sound]], [[MOC-launch-video]].

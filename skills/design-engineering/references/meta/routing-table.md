@@ -43,8 +43,12 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Decide whether an interaction should make a sound | [[sound-decision-framework]] |
 | Design or generate a set of UI sounds | [[sound-palette]], then [[sound-generation-elevenlabs]] or [[sound-generation-open-source]] (or spawn [[sound-designer]]) |
 | Sync a sound to an animation, or fix one that feels late | [[sound-motion-sync]] |
-| Score a launch video or logo reveal | [[launch-video-sound]]; derive the stem from the timeline → [[sound-from-motion]] |
-| Cut a multi-scene video so it reads as one move | [[launch-video-seams]] |
+| Plan a launch film — register, beats, when the name lands, endcard | [[launch-video-registers]], then [[launch-video-structure]] |
+| Time words, typed prompts, a cursor or an agent's wait in a launch film | [[launch-video-type]]; prompts, cursor and agent output → [[launch-video-ui-demo]] |
+| Make launch-film motion feel alive — settles, springs, blur, holds, rhythm | [[launch-video-motion]] |
+| Cut a multi-scene video — seams, hard cuts, the ledger | [[launch-video-seams]]; hard cuts → [[launch-video-cuts]] |
+| Score a launch video or logo reveal | [[launch-video-sound]] (pick the register); a music track or a voice → [[launch-video-music]]; derive the stem → [[sound-from-motion]] |
+| Review a launch film, or measure a reference film | [[launch-video-review]] (or spawn [[launch-film-analyst]]); inside HyperFrames → [[hyperframes-reconciliation]] |
 | Decide which skill or companion should own a job | [[skill-router]] |
 | Build an OKLCH palette or ramp, repair contrast by lightness | [[color-scales-oklch]] |
 | Fix pinched corners, harsh borders, dark-mode cards vanishing | [[depth-and-nesting]] |

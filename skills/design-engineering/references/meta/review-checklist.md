@@ -36,7 +36,7 @@ A pre-flight checklist for UI code review. Scan the user's code against each row
 
 ## When to use
 
-Every UI code review. This is the systematic pass *before* the taste-driven pass.
+Every UI code review. This is the systematic pass *before* the taste-driven pass. A launch film is not UI code: review it with [[launch-video-review]].
 
 ## Gotcha
 

@@ -21,6 +21,12 @@ Some questions sound identical but route to different nodes. Misrouting here is 
 
 Tiebreaker: scope. One element → decide/build nodes. One diff → judge posture. Whole codebase → audit plan. Absence of motion → the delight nodes, and the burden of proof is on *adding*.
 
+## Film seam vs UI transition
+
+A **product state change** routes to [[fly-not-teleport]] and [[cross-blur-transitions]]; a **scene change in a rendered film** routes to [[launch-video-seams]] and [[launch-video-cuts]].
+
+Tiebreaker: is there a timeline the viewer cannot interrupt? If yes, it is a film, and UI durations (under 300 ms) do not transfer to it.
+
 ## Looks right vs. feels finished vs. should ship
 
 - **Looks right** — hierarchy, spacing, restraint, while designing → [[feeling-right]], [[unseen-details-compound]].

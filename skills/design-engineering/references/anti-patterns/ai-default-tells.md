@@ -61,7 +61,7 @@ The frame: *could this UI have been generated in 30 seconds with a prompt?* If y
 | Recognizable stock-pack sounds (Kenney raw, the Discord ping) | One material, one generated or re-pitched family | [[sound-palette]] |
 | "Futuristic UI blip" with reverb tail | Dry, short, a physical material | [[sound-spec]] |
 | Sound on by default, no toggle | Off by default, discoverable persisted toggle | [[sound-playback-web]] |
-| Music bed hiding unsynced hits in a launch video | Transients on contact frames, bed last or not at all | [[launch-video-sound]] |
+| Unstructured bed in a launch video (from 0 s, flat level, no drop on the reveal, library blips on top) | Trim the head so the drop lands on the reveal and break down under reading, or a one-key bed with derived clicks, or none | [[launch-video-music]] |
 
 ## Microcopy
 

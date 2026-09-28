@@ -29,7 +29,7 @@ The Toptal rule ties duration to motion: **a sound should not last more than ~30
 |---|---|---|
 | Taps, ticks, toggles | −18 to −14 LUFS | Below speech, above silence |
 | Notifications | ≈ −12 LUFS | The one class allowed to be louder |
-| Launch-video master | −14 LUFS, −1 dBTP | Social platforms normalize here |
+| Launch-video master | −1 dBTP true peak; integrated loudness stated for the register (medians ≈ −18 LUFS; beat-cut sizzles median ≈ −13, 3 of 4 at −12 to −13; the three quietest films, Linear Agent, Cursor 2.0 and Claude Cowork, sit at −33 to −36) | Loudness-normalizing players (YouTube-style) turn loud masters down and do not raise quiet ones — [[launch-video-sound]] |
 
 Peak every file at **−3 dBFS** (−1 dBTP for delivered video). Set the *design* level in the file and the *user* level in the mixer — never bake "a bit quieter" into the asset. Interface sounds stay subordinate to speech and media; convey urgency with timbre and rhythm, not volume.
 
@@ -62,5 +62,5 @@ Loudness normalization tools (`loudnorm`, streaming platforms) measure *integrat
 - Envato, *UI sound design with AI* — LUFS targets by class, duration bands, mono, the 0–5 ms trim.
 - Toptal, *A Quick Guide to Designing UX Sounds* — the 300 ms-over-animation rule; mid-range guidance.
 - uisfx.com, *UI Sound Design* — subordinate to speech, urgency by timbre not volume, one-shots vs loops.
-- EBU R 128 / streaming practice — −14 LUFS, −1 dBTP for delivered social video.
+- EBU R 128 (−23 LUFS, −1 dBTP max) and streaming practice (≈ −14 LUFS): platform reference levels, not what launch films ship at (medians −18.1 LUFS for 28 Skale client films and −18.4 for 18 acclaimed films, measured by HKTITAN 2026-09-28, `docs/research/launch-films/`).
 - Related: [[duration-table]], [[sound-palette]].

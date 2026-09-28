@@ -54,7 +54,7 @@ Every file still needs [[sound-spec]]: trim leading silence to zero, high-pass a
 
 ## When to apply
 
-An installer has the key and the [[sound-decision-framework]] has said yes to at least one sound. Also for launch videos — the same endpoint produces whooshes, risers, and impacts; see [[launch-video-sound]] for those prompts.
+An installer has the key and the [[sound-decision-framework]] has said yes to at least one sound. For a launch video, [[launch-video-sound]] picks the register first: under a beat track the track carries the pops, and in the dry, bed and foley registers (A, B, E) [[sound-from-motion]] synthesizes the cues from the motion. Generate only a one-off that the cue sheet's kinds do not cover, such as a riser or a cinematic impact. Use the same prompt formula and trim its lead-in; an impact's transient lands on the contact frame per [[sound-motion-sync]], and a riser ends where the gap before the reveal opens.
 
 ## Gotcha
 

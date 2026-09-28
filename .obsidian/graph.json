@@ -10,6 +10,7 @@
     { "query": "file:MOC-",                 "color": { "a": 1, "rgb": 16739179 } },
     { "query": "path:references/philosophy", "color": { "a": 1, "rgb": 11898851 } },
     { "query": "path:references/motion",     "color": { "a": 1, "rgb": 16032353 } },
+    { "query": "path:references/launch-video", "color": { "a": 1, "rgb": 15122985 } },
     { "query": "path:references/typography", "color": { "a": 1, "rgb": 9283450  } },
     { "query": "path:references/surface",    "color": { "a": 1, "rgb": 10265519 } },
     { "query": "path:references/components", "color": { "a": 1, "rgb": 6273182  } },

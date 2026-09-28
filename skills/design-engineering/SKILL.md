@@ -1,11 +1,11 @@
 ---
 name: design-engineering
-description: "Load when reviewing UI code, designing a component or page layout, picking an easing curve or transition pattern, deciding whether something should animate at all, choosing an avatar/typography/color system, building an OKLCH palette or fixing contrast, writing UI copy or error messages, auditing for AI-default tells, code tells, or a11y misses, making a screen look less generated, consuming a project's DESIGN.md or .design tokens, writing design-system docs for agents, giving feedback through Agentation or a similar annotation tool, asking why a UI feels flat or unfinished, judging when delight earns its weight, deciding whether an interaction should make a sound, designing or generating UI sound effects (ElevenLabs or open-source), syncing sound to animation, scoring a product launch video or deriving its sound stem from the motion, cutting a multi-scene launch video so it reads as one camera move, creating or animating SVG (icons, mascots, logo reveals, video-to-vector), prototyping several directions behind a picker, building a tool instead of re-prompting for an artifact, or choosing which design skill should own a job. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated, Google Labs design.md, AgentsORG .design, Agentation, Index (index.how — Emil Kowalski and Glenn Carstens-Peters), Apple's audio-haptic principles, Josh Comeau's use-sound, bruno (@tvnxty) on launch-video sound, and Adrian Abelarde's video-to-vector pipeline."
+description: "Load when reviewing UI code, designing a component or page layout, picking an easing curve or transition pattern, deciding whether something should animate at all, choosing an avatar/typography/color system, building an OKLCH palette or fixing contrast, writing UI copy or error messages, auditing for AI-default tells, code tells, or a11y misses, making a screen look less generated, consuming a project's DESIGN.md or .design tokens, writing design-system docs for agents, giving feedback through Agentation or a similar annotation tool, asking why a UI feels flat or unfinished, judging when delight earns its weight, deciding whether an interaction should make a sound, designing or generating UI sound effects (ElevenLabs or open-source), syncing sound to animation, planning, cutting, scoring, or reviewing a product launch video or deriving its sound stem from the motion, creating or animating SVG (icons, mascots, logo reveals, video-to-vector), prototyping several directions behind a picker, building a tool instead of re-prompting for an artifact, or choosing which design skill should own a job. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated, Google Labs design.md, AgentsORG .design, Agentation, Index (index.how — Emil Kowalski and Glenn Carstens-Peters), Apple's audio-haptic principles, Josh Comeau's use-sound, bruno (@tvnxty) on launch-video sound, and Adrian Abelarde's video-to-vector pipeline."
 license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: HKTITAN
-  version: "2.4.0"
+  version: "2.5.0"
   graph: true
   subagents: agents/
   soul: SOUL.md
@@ -35,7 +35,7 @@ How to think about taste, delight, and the difference between marketing and prod
 
 The largest cluster. Animation is the most overused tool in modern UI; this cluster tells you when *not* to animate as much as when to.
 
-- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[launch-video-seams]]
+- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]]
 
 ## Transition techniques — Jakub Antalik's catalog
 
@@ -50,7 +50,13 @@ A subset of motion focused on **canonical** transitions for common UI archetypes
 
 The sense the web forgot. Product UI is silent by default; a launch video is the reverse. This cluster decides which, designs one material family, syncs it to motion, and generates the files — ElevenLabs on demand, or open-weight / procedural / CC0 without a key.
 
-- `[[MOC-sound]]` → [[sound-decision-framework]], [[sound-motion-sync]], [[sound-palette]], [[sound-spec]], [[sound-playback-web]], [[sound-generation-elevenlabs]], [[sound-generation-open-source]], [[launch-video-sound]], [[sound-from-motion]]
+- `[[MOC-sound]]` → [[sound-decision-framework]], [[sound-motion-sync]], [[sound-palette]], [[sound-spec]], [[sound-playback-web]], [[sound-generation-elevenlabs]], [[sound-generation-open-source]], [[launch-video-sound]], [[launch-video-music]], [[sound-from-motion]]
+
+## Launch video — planning, cutting, scoring and reviewing a launch film
+
+A rendered film is its own surface: name the register, time the beats, set the words and the UI demo, make the seams and cuts, place the sound, review against the register. HyperFrames builds; this cluster decides the register, beats, words and sound, and [[hyperframes-reconciliation]] settles seams inside a HyperFrames project.
+
+- `[[MOC-launch-video]]` → [[launch-video-registers]], [[launch-video-structure]], [[launch-video-type]], [[launch-video-ui-demo]], [[launch-video-motion]], [[launch-video-seams]], [[launch-video-cuts]], [[launch-video-review]], [[hyperframes-reconciliation]]
 
 ## SVG — creating, animating, morphing, and vectorizing
 
@@ -115,7 +121,7 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 
 ## Workflow subagents — sibling `agents/` directory
 
-Nine narrow-purpose subagents live in `agents/` next to this file. Spawn one when its specific workflow matches the user's ask. Each subagent loads its own slice of the graph and returns to the main agent with a structured result.
+Ten narrow-purpose subagents live in `agents/` next to this file. Spawn one when its specific workflow matches the user's ask. Each subagent loads its own slice of the graph and returns to the main agent with a structured result.
 
 - [[ui-reviewer]] — Runs the `[[review-format]]` table + `[[review-checklist]]` audit on a UI snippet.
 - [[motion-auditor]] — Animation/transition critique against the motion cluster + transitions.dev nodes.
@@ -126,6 +132,7 @@ Nine narrow-purpose subagents live in `agents/` next to this file. Spawn one whe
 - [[sound-designer]] — Runs the sound cluster end to end: decide, palette, generate (`scripts/sound-family.mjs` for a product family, `scripts/sound-sheet.mjs` for a video stem derived from the motion), spec, wire up. Returns a sound map.
 - [[svg-creator]] — Authors or refactors an SVG asset: grid, named groups, token colors, SVGO with the right flags, accessible name.
 - [[svg-animator]] — Animates an SVG or builds a vector flipbook from frames (`scripts/svg-flipbook.mjs`), engine chosen by where the file lives.
+- [[launch-film-analyst]] — Measures a reference launch film or your own render at native fps and returns the [[launch-video-review]] rubric plus a per-film JSON.
 
 See `agents/README.md` for the full directory and selection guide.
 

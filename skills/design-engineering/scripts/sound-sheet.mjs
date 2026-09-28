@@ -36,7 +36,8 @@
 //               { "id": "s1-out","kind": "whoosh","t": 2.14, "dur": 0.22, "x": 960, "y": 540, "dir": "up" } ] }
 //
 // kinds: click | thud | type | flicker | land | tick | whoosh | air | success | error.
-// Optional per cue: "pitch" (Hz), "semitones", "gain" (dB), "lag" (s, default 0.01), "n", "every".
+// Optional per cue: "pitch" (Hz), "semitones", "gain" (dB), "lag" (s, default 0.01), "n", "every",
+// and on a type run "jitter" (fraction of every; 0.35 = a human hand). Faster than ~10 keys/s, use one typing bed.
 // --family <dir> also writes six product one-shots (tick, tap, send, receive, error, success)
 // from the same voices, mono, so a product UI and its launch video share one material.
 
@@ -221,7 +222,10 @@ function expand(cues) {
       const every = c.every ?? (c.kind === "flicker" ? 7 / FPS : 0.21);
       const noise = makeNoise(seedFor(c.id));
       for (let i = 0; i < n; i++) {
-        const jitter = c.kind === "type" ? noise() * 0.008 : 0; // a human hand is not a metronome; a cut is
+        // A human hand is not a metronome; a cut is. "jitter" is a fraction of `every`: 0.35 gives the
+        // measured spread of hand-typed keys (interval sd ~0.29 x every) and never reorders two keys.
+        // Without it a run keeps the older +-8 ms, so existing cue sheets render byte-identical.
+        const jitter = c.kind === "type" ? noise() * (c.jitter != null ? clamp(c.jitter, 0, 0.45) * every : 0.008) : 0;
         out.push({ ...c, id: `${c.id}-${i + 1}`, kind: "click", t: c.t + i * every + jitter, gain: (c.gain ?? -4) + noise() * 1.5, semitones: (c.semitones ?? 0) + (c.step ?? 0) * i, run: c.id });
       }
     } else out.push(c);
@@ -364,6 +368,7 @@ if (has("--report")) {
   console.log(`stem ${basename(OUT)} · ${DURATION}s · ${report.length} onsets (${sheet.cues.length} cues) · bed ${sheet.bed ? `root ${BED_ROOT} Hz, ${(sheet.bed.dropouts ?? []).length} dropouts` : "none"} · peak ${PEAK_DB} dBFS`);
   console.log("id".padEnd(16), "kind".padEnd(8), "at".padStart(7), "frame".padStart(6), "hz".padStart(6), "ms".padStart(5), "pan".padStart(6), "peak".padStart(6));
   for (const r of report) console.log(String(r.id).padEnd(16), r.kind.padEnd(8), r.at.toFixed(3).padStart(7), String(r.frame).padStart(6), String(r.hz).padStart(6), String(r.ms).padStart(5), r.pan.toFixed(2).padStart(6), (r.peakDb + 20 * Math.log10(g)).toFixed(1).padStart(6));
+  for (const c of sheet.cues) if (c.kind === "type" && (c.every ?? 0.21) < 0.1) console.log(`warning: ${c.id} types faster than a hand (${(1 / c.every).toFixed(0)} keys/s); use one typing bed instead of per-key clicks`);
 }
 if (has("--json")) writeFileSync(OUT.replace(/\.wav$/, ".report.json"), JSON.stringify({ masterGainDb: +(20 * Math.log10(g)).toFixed(1), onsets: report }, null, 2) + "\n");
 

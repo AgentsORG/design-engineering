@@ -50,9 +50,9 @@ Decide before designing, design before generating, spec before wiring. Or spawn 
 
 ### Launch video or logo reveal
 
-[[marketing-vs-product-ui]] → [[stagger-choreography]] (lock picture) → [[launch-video-sound]] (write the sound map) → [[sound-palette]] → generation node → [[sound-motion-sync]] (transients on contact frames) → [[sound-spec]] (master to −14 LUFS)
+[[launch-video-registers]] (name the register) → [[launch-video-structure]] (beats) → [[launch-video-type]] + [[launch-video-ui-demo]] + [[launch-video-motion]] (words, product, in-shot motion) → [[launch-video-seams]] + [[launch-video-cuts]] (lock picture) → [[launch-video-sound]] (pick the sound register) → [[sound-from-motion]] or [[launch-video-music]] → [[sound-motion-sync]] (transients and cuts on onsets) → [[launch-video-review]] (≤ −1 dBTP, loudness stated)
 
-Picture locks first; sound is placed on frames and cannot be placed on frames that move.
+Picture locks first; sound is placed on frames and cannot be placed on frames that move. Under a voice-over the voice locks before picture: re-time scenes to its word onsets, then lock picture ([[launch-video-music]]).
 
 ### Don't know what it should look like yet
 
