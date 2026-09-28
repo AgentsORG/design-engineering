@@ -1,0 +1,80 @@
+{
+ "id": "figma-glass-2025",
+ "source": "figma-glass-2025.mp4",
+ "duration_s": 29.63,
+ "fps": 30.001,
+ "resolution": "1920x1080",
+ "aspect": 1.778,
+ "frames": 887,
+ "cuts": 6,
+ "cuts_per_min": 12.2,
+ "cut_times_s": [
+  3.8,
+  7.6,
+  11.4,
+  15.17,
+  18.3,
+  20.17
+ ],
+ "flash_frames": 0,
+ "shot_len_s": {
+  "median": 3.8,
+  "p25": 3.45,
+  "p75": 3.8,
+  "max": 9.4
+ },
+ "still_frac": 0.13,
+ "calm_frac_global": 0.312,
+ "changed_area_median_when_moving": 0.0286,
+ "held_in_move_frac": 0.031,
+ "moves_per_min": 20.3,
+ "move_len_s": {
+  "median": 3.333,
+  "p75": 3.725,
+  "p90": 3.767
+ },
+ "motion_after_cut_rel_at_1f_100ms_200ms_400ms_800ms": [
+  1.0,
+  0.54,
+  0.34,
+  0.23,
+  0.18
+ ],
+ "camera_share_of_moving_frames": {
+  "pan": 0.252,
+  "zoom": 0.091,
+  "rotate": 0.0,
+  "local": 0.657
+ },
+ "push_in_runs": 4,
+ "pull_out_runs": 2,
+ "pan_runs": 3,
+ "push_in_time_frac": 0.062,
+ "blur_ratio_fast_vs_still": 34.88,
+ "luma_median": 41.2,
+ "dark_frac_luma_lt_50": 0.552,
+ "light_frac_luma_gt_180": 0.0,
+ "colorfulness_median": 32.8,
+ "mono_frac_colorfulness_lt_15": 0.185,
+ "audio": {
+  "lufs_i": -12.1,
+  "true_peak_dbfs": -0.6,
+  "lra_lu": 1.2,
+  "silence_frac_-50dB": 0.002,
+  "band_share": {
+   "0-120": 0.803,
+   "120-500": 0.149,
+   "500-2000": 0.041,
+   "2000-6000": 0.003,
+   "6000-22050": 0.004
+  },
+  "onsets_per_s": 8.57,
+  "bpm_estimate": 129.2,
+  "beat_clarity": 0.416,
+  "speech_mod_index": 0.169,
+  "strong_hits_per_s": 1.28,
+  "cuts_within_67ms_of_strong_hit": 0.0,
+  "chance_within_67ms": 0.17,
+  "strong_hits_within_67ms_of_motion_peak": 0.24
+ }
+}

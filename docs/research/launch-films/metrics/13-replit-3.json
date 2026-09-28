@@ -1,0 +1,65 @@
+{
+ "id": "13-replit-3",
+ "source": "13-replit-3.mp4",
+ "duration_s": 76.29,
+ "fps": 29.97,
+ "resolution": "1920x1080",
+ "aspect": 1.778,
+ "frames": 2286,
+ "cuts": 0,
+ "cuts_per_min": 0.0,
+ "cut_times_s": [],
+ "flash_frames": 0,
+ "shot_len_s": {
+  "median": 76.28,
+  "p25": 76.28,
+  "p75": 76.28,
+  "max": 76.28
+ },
+ "still_frac": 0.06,
+ "calm_frac_global": 0.509,
+ "changed_area_median_when_moving": 0.0254,
+ "held_in_move_frac": 0.004,
+ "moves_per_min": 24.4,
+ "move_len_s": {
+  "median": 1.134,
+  "p75": 3.036,
+  "p90": 5.372
+ },
+ "motion_after_cut_rel_at_1f_100ms_200ms_400ms_800ms": null,
+ "camera_share_of_moving_frames": {
+  "pan": 0.237,
+  "zoom": 0.136,
+  "rotate": 0.003,
+  "local": 0.625
+ },
+ "push_in_runs": 9,
+ "pull_out_runs": 8,
+ "pan_runs": 5,
+ "push_in_time_frac": 0.073,
+ "blur_ratio_fast_vs_still": 2.3,
+ "luma_median": 242.3,
+ "dark_frac_luma_lt_50": 0.0,
+ "light_frac_luma_gt_180": 0.956,
+ "colorfulness_median": 16.0,
+ "mono_frac_colorfulness_lt_15": 0.45,
+ "audio": {
+  "lufs_i": -23.5,
+  "true_peak_dbfs": -4.9,
+  "lra_lu": 2.9,
+  "silence_frac_-50dB": 0.004,
+  "band_share": {
+   "0-120": 0.725,
+   "120-500": 0.163,
+   "500-2000": 0.086,
+   "2000-6000": 0.021,
+   "6000-22050": 0.005
+  },
+  "onsets_per_s": 7.48,
+  "bpm_estimate": 126.0,
+  "beat_clarity": 0.627,
+  "speech_mod_index": 0.143,
+  "strong_hits_per_s": 1.13,
+  "strong_hits_within_67ms_of_motion_peak": 0.22
+ }
+}

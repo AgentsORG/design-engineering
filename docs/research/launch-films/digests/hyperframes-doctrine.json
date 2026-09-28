@@ -1,0 +1,544 @@
+{
+ "meta": {
+  "subject": "HeyGen HyperFrames skills (Apache-2.0), repo heygen-com/hyperframes at HEAD 2026-09-28, digested for the design-engineering graph",
+  "extracted_at": "heygen-com/hyperframes (clone at 93ab289, HEAD 2026-09-28)",
+  "read_completely": [
+   ".agents/skills/README.md",
+   ".agents/skills/motion-doctrine/SKILL.md",
+   ".agents/skills/motion-doctrine/references/seam-gate.md",
+   ".agents/skills/motion-doctrine/scripts/seam-stamp.mjs",
+   ".agents/skills/motion-doctrine/scripts/seam-gate.mjs (constants + verify logic)",
+   ".agents/skills/cut-the-curve/SKILL.md",
+   ".agents/skills/cut-the-curve/examples/gsap-implementation.md",
+   ".agents/skills/seam-craft/SKILL.md",
+   ".agents/skills/oversized-cursor/SKILL.md",
+   ".agents/skills/captions-overlay/SKILL.md",
+   ".agents/skills/changelog-video/SKILL.md + references/build-spec.md, script-voice.md, visualization-registry.md, lexicon.json, examples/script-tokens.json, master-skeleton.html (skimmed), scripts/align-captions.mjs (header)",
+   "skills/hyperframes/SKILL.md + references/routes/product-launch-video.md, frame-worker-core.md",
+   "skills/product-launch-video/SKILL.md + references/story-design.md, motion-language.md, cut-catalog.md, visual-design.md, sub-agents/frame-worker.md, scripts/lib/transitions.json, scripts/lib/bgm-volume.mjs",
+   "skills/general-video/SKILL.md + sub-agents/frame-worker.md",
+   "skills/motion-graphics/SKILL.md + references/motion-vocabulary.md, builder-contract.md, shot-plan-ir.md, agents/director.md, agents/builder.md, categories/kinetic-type, logo-reveal, webpage, stat",
+   "skills/hyperframes-animation/SKILL.md, rules-index.md, blueprints-index.md, techniques.md, references/motion-blur.md, transitions/overview.md, catalog.md, TRANSITION-REGISTRY.md, css-blur.md, css-scale.md, css-push.md, adapters/gsap-easing-and-stagger.md (spring section)",
+   "rules: spring-pop-entrance, sine-wave-loop, multi-phase-camera (full); values + constraints of cursor-click-ripple, press-release-spring, kinetic-beat-slam, card-morph-anchor, motion-blur-streak, depth-of-field-blur, 3d-camera-flight, coordinate-target-zoom, physics-press-reaction, ambient-glow-bloom, dynamic-content-sequencing",
+   "hyperframes-creative/references: narration.md, typography.md (reading time), motion-principles.md, beat-direction.md (transition numbers), story-spine.md (grep)"
+  ],
+  "graph_nodes_read": [
+   "skills/design-engineering/references/motion/launch-video-seams.md",
+   "skills/design-engineering/references/sound/launch-video-sound.md",
+   "skills/design-engineering/references/sound/sound-from-motion.md",
+   "skills/design-engineering/references/meta/skill-router.md (companion row: launch film -> HyperFrames hyperframes-creative, hyperframes-audio)",
+   "skills/design-engineering/references/meta/routing-table.md (rows: score a launch video; cut a multi-scene video)"
+  ],
+  "two_layers_note": "HyperFrames ships two doctrine layers that disagree in places. The repo-native layer (.agents/skills, metadata.internal: true, not distributed by npx skills add) declares that it SUPERSEDES generic/upstream motion guidance: motion-doctrine, cut-the-curve, seam-craft, oversized-cursor, captions-overlay, changelog-video. The distributed layer (skills/) is what installers actually get: hyperframes, product-launch-video, general-video, motion-graphics, hyperframes-animation, hyperframes-creative, etc. Where they disagree, the repo-native doctrine is the newer, stricter one."
+ },
+ "doctrine_digest": [
+  {
+   "principle": "Doctrine precedence and authoring order",
+   "statement": "motion-doctrine is the gateway, loaded before composing; its rules supersede generic/upstream motion guidance. Order: write the vector ledger (ledger.json) -> stamp the master seams from it -> name a sustained-motion route per phase -> carriers and causes -> build comps -> verify with the seam gate. Hand-author only Tier-A morphs / match-cuts; stamped seams pass by construction.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md",
+   "numbers": "n/a"
+  },
+  {
+   "principle": "The vector law",
+   "statement": "How scene A exits determines how scene B enters: same axis (x stays x, y stays y, Z stays Z), same direction (never mirror), matched speed (entry initial velocity ~ exit final velocity via mirrored eases, same distance and duration), and the cut lands mid-motion on both sides; settling before the cut or starting from rest after it is a dead beat.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md (Part 1)",
+   "numbers": "exit power4.in + entry power4.out, same distance and duration; incoming side picks up >=50% through the notional path"
+  },
+  {
+   "principle": "Z direction is the sign of scale change",
+   "statement": "On Z, growing = push (camera forward), shrinking = pull (camera back). A receding exit answered by a grow-from-small entry is a mirrored vector, the most common violation because grow-from-small is the default entrance. The rule binds the incoming scene's own entrances during the seam window, not just the wrapper tween: arrive composed or match the sign.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md; .agents/skills/cut-the-curve/SKILL.md (Z direction is a sign)",
+   "numbers": "push: exit 1 -> 1.2, entry 0.75 -> 1; pull: exit 1 -> 0.8, entry 1.25 -> 1; seam window = cut + ~0.5s; combined lateral+zoom pull: exit 1 -> 0.92, entry 1.08 -> 1"
+  },
+  {
+   "principle": "The current",
+   "statement": "Every film picks ONE dominant direction and every ordinary seam uses it. Other vectors are reserved and spending one means something. Never run consecutive seams in opposing directions (ping-pong reads as an error); a direction change needs a visible cause (click, bounce, impact) or a chapter boundary.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md (The Current)",
+   "numbers": "house default LEFT; reserved: Upward = elevation (a conclusion or reveal rises), Z forward = deeper into the same thought, Z backward (inverse zoom) = ARRIVAL, scale-burst = leaving a world"
+  },
+  {
+   "principle": "Vector ledger as data",
+   "statement": "ledger.json at the project root, one row per seam: cut time, exit and entry vectors (axis + signed dir; Z rows carry the scale sign), selectors, technique. If a row mismatches, fix the plan, not the easing. Types: cut (full vector checks) or match-cut / morph (carrier continuity + overlap only; motion may start at the boundary).",
+   "source": ".agents/skills/motion-doctrine/SKILL.md; references/seam-gate.md",
+   "numbers": "fps default 30; dir: x -1 = leftward, y -1 = upward, z +1 = push, z -1 = pull; carrier out/in rects must match at cut +/-1 frame within 12px centre / 5% size, ancestors included"
+  },
+  {
+   "principle": "Carriers",
+   "statement": "The eye follows objects, not abstractions. The strongest seams hand a concrete carrier across the cut at matched position AND velocity: a cursor mid-path, a container that shrinks/docks into the next layout, a mark that flies into its exact slot, the word group of a waterfall cut. With no natural carrier, the scene heroes carry it (partial travel + early fade, entry mid-flight). Never a crossfade: it has no carrier.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md (Carriers)",
+   "numbers": "n/a"
+  },
+  {
+   "principle": "Causal motion",
+   "statement": "Chain motion so each move is visibly launched by the last: click -> squash -> release spring -> flight -> impact -> recoil -> reveal. Effects start ON the causing frame (same timeline position, never shortly after). Reactions scale with implied mass: big elements rebound slower, small ones snap. A force is a license to change direction; an uncaused flip is a ping-pong.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md (Causal Motion)",
+   "numbers": "same-frame ignition (0 frames delay)"
+  },
+  {
+   "principle": "The Seam Gate (numeric build gate)",
+   "statement": "seam-gate.mjs verify must exit 0: ledger-row consistency, exit still moving at the cut, entry mid-flight, measured direction = ledger direction, speed match (WARN), zero overlap (one side visible per frame; the cut is not a dissolve), Z-sign scan of the incoming scene's own entrances, carrier rect continuity. probe --t <cut> discovers true carrier selectors.",
+   "source": ".agents/skills/motion-doctrine/scripts/seam-gate.mjs; references/seam-gate.md",
+   "numbers": "samples at cut-0.1s, cut-1f, cut+1f, cut+0.1s; static below 15 px/s (x/y) or 0.04 scale-units/s (z); speed-match WARN when entry/exit velocity ratio > 3 or < 1/3; invisible below cumulative opacity 0.04; carrier tol 12px / 5%; Z-scan ignores elements at opacity <= 0.1"
+  },
+  {
+   "principle": "Seam-stamp defaults (what the generator actually writes)",
+   "statement": "seam-stamp.mjs writes the master seam block from the ledger. Lateral seams: exit tweens xPercent/yPercent to 12 x dir with autoAlpha -> 0; entry fromTo from -travel x dir at autoAlpha 0.35. Z seams: exit scale + blur with a separate linear autoAlpha tween, hard tl.set at the cut, entry from oversized/undersized at 0.15 opacity. Match-cut/morph rows get visibility sets only.",
+   "source": ".agents/skills/motion-doctrine/scripts/seam-stamp.mjs",
+   "numbers": "lateral: exit 0.34s power3.in to 12%, entry 0.42s power4.out from 10% (8 = soft), start alpha 0.35; Z pull: exit 0.21s power3.in to 0.8, entry 0.5s expo.out from 1.25; Z push: exit to 1.18, entry from 0.78; blur default 18px (10 for text-scale); note the stamp uses power3.in on the exit while the SKILL text says power4.in"
+  },
+  {
+   "principle": "Rules the gate cannot check",
+   "statement": "Edits re-open the seam: any change to a scene's first/last ~1s (including re-timing to new VO) invalidates that boundary's audit. Audio is the clock: re-time scenes to the VO's real word timestamps, never rush a read to fit a slot; a VO regen re-opens its seams. Clip-gating gotcha: a clip whose data-start precedes its entry tween un-hides at its initial opacity.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md (Seam Gate, rules 1-3)",
+   "numbers": "first/last ~1s of each scene; set initial autoAlpha: 0 AND data-start = the cut time, never earlier"
+  },
+  {
+   "principle": "No idle wobble; sustained-motion routes",
+   "statement": "Idle sine loops (breathe, float, drift, glow pulse) are banned as sustained motion; they read as the video waiting. A scene that finishes entering with seconds left is a planning bug: add story, not wobble. Every phase between entry and exit is owned by a named route: staged reveals (default for >=2 content groups), camera with intent (establish wide -> travel -> arrive), sequenced UI life (progress advances, highlights step, counts tick), animated sequences (a card files into a stack, an item is dragged), cursor-led action. Test: pause at any second and something meaningful is mid-flight.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md (Part 2)",
+   "numbers": "n/a"
+  },
+  {
+   "principle": "Stillness before climax",
+   "statement": "Schedule a pause between the major action and its result: the dramatic comma. Jumping straight from action to result loses it.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md (Stillness before climax)",
+   "numbers": "0.3-0.75s"
+  },
+  {
+   "principle": "Timing intents",
+   "statement": "Single entry short; longer buildup = multi-element stagger, not one slow element. Exit shorter than entry. Total stagger capped. Similar elements share one ease+duration intent, never a unique pair per element. Bounce/elastic forbidden; mild back overshoot on an entry is allowed.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md (Timing intents)",
+   "numbers": "single entry <= ~800ms; exit ~75% of entry (cut-the-curve inverts: entry ~127% of exit); total stagger <= 500ms, with 8+ elements tighten per-item delay; forbidden bounce.out / elastic.out; entry back.out(1.4-1.7) allowed"
+  },
+  {
+   "principle": "Transition vocabulary budget",
+   "statement": "Use only 2-3 inter-scene transitions per film and repeat them; the default boundary is cut-the-curve in the current's direction. Hand-written shared-element morphs (intent: morph) do not count against the budget.",
+   "source": ".agents/skills/motion-doctrine/SKILL.md; hyperframes-animation/transitions/TRANSITION-REGISTRY.md",
+   "numbers": "2-3 types per film; overview.md: one primary for 60-70% of scene changes + 1-2 accents"
+  },
+  {
+   "principle": "Cut the curve (default boundary)",
+   "statement": "Outgoing hero accelerates one way, the cut lands mid-motion, incoming hero continues the SAME direction and decelerates. Partial travel, never full off-screen. Fade trick: exit opacity completes early in its travel so the element vanishes while still accelerating; entry ignites mid-path. Time the last fading element to die right at the cut; a gap where nothing moves is dead air. Stage ground must be opaque.",
+   "source": ".agents/skills/cut-the-curve/SKILL.md sec.3; skills/product-launch-video/references/cut-catalog.md sec.3",
+   "numbers": "travel ~12% of frame (~230px at 1920; tuning 150-300px); exit power4.in / entry power4.out mirrored halves of power4.inOut; exit 0.2-0.4s (default 0.33), entry >= exit (0.33-0.42); exit fade 0.18-0.3s vs motion 0.3-0.34s, done at ~25-30% of travel; entry ignites at ~0.35 opacity; optional blur 8-10px (6-10, default 8); total ~0.6s; e.g. 230px / 0.3s ~ 3,070 px/s at the cut on both sides"
+  },
+  {
+   "principle": "Zoom-through (forward Z swap)",
+   "statement": "Never both texts visible. Everything grows: outgoing accelerates toward camera, a hard swap at peak blur, incoming keeps growing into the focal plane. Exit opacity MUST be its own linear tween (power3.in holds opacity near 1 too long). Headlines and short phrases only; used for a STATE CHANGE (hook -> context, chapter turns).",
+   "source": ".agents/skills/cut-the-curve/SKILL.md sec.1; product-launch-video/references/cut-catalog.md",
+   "numbers": "exit 0.2s power3.in scale 1 -> 1.2, blur 0 -> 10px, opacity 1 -> 0.15 (linear); cut: in at 0.75 scale, 10px, 0.15 opacity; entry 0.5s expo.out 0.75 -> 1; tuning exit 0.15-0.3s, entry 0.4-0.6s, opacity at cut 0.1-0.2"
+  },
+  {
+   "principle": "Inverse zoom-through (arrival)",
+   "statement": "Pull-back mirror: outgoing recedes, incoming arrives oversized as if just behind camera and retracts. Everything shrinks. Spend only on ARRIVAL/payoff beats (a payoff line, a giant reply, a held end-state), never ordinary boundaries. Staged entrances happen after the retraction settles.",
+   "source": ".agents/skills/cut-the-curve/SKILL.md sec.2",
+   "numbers": "exit ~0.2s power3.in 1 -> 0.8, blur 10px; cut in at 1.25; entry ~0.5s expo.out 1.25 -> 1; total ~0.7s (30% exit / 70% entry)"
+  },
+  {
+   "principle": "Blur scales with subject size",
+   "statement": "Peak blur sells speed at the cut but must scale with the subject: text smears into illegibility at full-frame values; big surfaces need more blur or it reads as a rendering hiccup. Same peak on both sides at the swap frame. Blur the wrapper, never children; never blur + opacity in one tween on one element (headless compositing bug); never blur a video directly.",
+   "source": ".agents/skills/cut-the-curve/SKILL.md (Blur logic); product-launch-video/references/cut-catalog.md (learned 2026-06-10: 20px on text read mushy)",
+   "numbers": "text-scale peak 10px; full-frame surface 18-20px"
+  },
+  {
+   "principle": "Waterfall cut (word-level seam)",
+   "statement": "Cut-the-curve at word granularity: outgoing words ramp out on their own curves in reading order, incoming words cascade in mid-flight with accelerating gaps; a wave the eye rides across the seam. One direction per chain riding the current; inverse zoom only as the chain's arrival beat. Pre-set all words hidden and offset at build time.",
+   "source": ".agents/skills/cut-the-curve/SKILL.md sec.4; examples/gsap-implementation.md",
+   "numbers": "travel +/-230px; exit 0.34s power4.in; exit fade 0.18s (power1.in) starting with x; exit stagger +0.022s; entry 0.3s power4.out from opacity 0.35; entry gaps start 0.05s x 0.84 decay per word; whole-line fade ends ~0.02s before the cut"
+  },
+  {
+   "principle": "Rack-focus blur-cut (the visible cut)",
+   "statement": "The one cut you want SEEN: a defocus spike hides a single-frame hard swap of the SAME surface. Outgoing stays fully opaque until the cut; soft optical eases; a subtle lens-breathing scale; same direction both sides. Occasional flourish only, at a narrative beat, never mid-caption or during a hold.",
+   "source": ".agents/skills/cut-the-curve/SKILL.md sec.5",
+   "numbers": "power2.in / power2.out; <= once per ~8s; cut at peak blur >= 6px (peak 8-12px, max 16-18px); scale ~1.06; entry >= exit (example 0.3s / 0.35s, x +/-80px, 12px)"
+  },
+  {
+   "principle": "Waterfall entry (in-scene arrival)",
+   "statement": "Staggered arrival cascade from below, each element starting before the previous settles; gaps shrink, the last element snaps. Opacity is BINARY (tl.set) for arrivals; fading fights the snap. Velocity varies by weight. Split the final word into fragments to extend the climax. Never .inOut on an entry.",
+   "source": ".agents/skills/cut-the-curve/SKILL.md sec.6; hyperframes-animation/rules/waterfall-entry.md",
+   "numbers": "anchor 60-80px / 0.16-0.20s / 0-2f gap; normal word 40-50px / 0.13-0.16s / 1f overlap; light/punctuation 30-48px / 0.10-0.13s / 1-2f overlap; power4.out (expo.out for extra snap); next starts within +/-2 frames of previous settle"
+  },
+  {
+   "principle": "Nudge curve (in-scene group slide)",
+   "statement": "Slow-fast-slow reposition of a composed group, chained as three tweens on one property; reveal new content during the burst, which masks its appearance. No single built-in ease does it (power4.inOut smacks to a stop).",
+   "source": ".agents/skills/cut-the-curve/SKILL.md sec.7; hyperframes-animation/rules/nudge-curve.md",
+   "numbers": "ramp power3.in ~10% distance / ~20% time; burst linear ~65% / ~18%; tail power4.out ~25% / ~62%; tail >= 3x ramp-in time; reference 270px in 0.57s: -30 at 0.12s, -210 over 0.10s, -270 over 0.35s"
+  },
+  {
+   "principle": "Which seam when",
+   "statement": "Unfinished phrase (one idea building across visually distinct scenes, multi-line text, a run of cards) -> cut-the-curve / waterfall. State change (a new part of the video, typically hook -> context) -> zoom-through. Arrival/payoff -> inverse zoom-through. Chain them so internal seams feel like one camera moving through the content.",
+   "source": "skills/product-launch-video/references/cut-catalog.md (Choosing which at a seam)",
+   "numbers": "n/a"
+  },
+  {
+   "principle": "Opaque stage ground (white-flash guard)",
+   "statement": "Several templates open a window where the two wrappers' summed opacity < 1 (cut-the-curve mid-window, zoom-through's 0.15 floor, crossfade dip). Without an opaque #root the renderer composites over white: a white flash at every seam, glaring on dark films. Injector mechanics: extend the outgoing wrapper by the transition duration (holds its last frame), pull the incoming wrapper earlier, ping-pong track indices 0/1, stamp at overlap start.",
+   "source": ".agents/skills/seam-craft/SKILL.md; hyperframes-animation/transitions/TRANSITION-REGISTRY.md",
+   "numbers": "#root background: var(--canvas-deep, var(--canvas, #000))"
+  },
+  {
+   "principle": "Oversized cursor: size and look",
+   "statement": "A deliberately oversized macOS-style pointer is a visible protagonist and the cheapest high-yield motion source in a launch video. One arrow geometry per film, one fill per film. Brand-motif cursors (a Figma-style multiplayer arrow with name tag, a precision crosshair) when genuinely referenceable, same laws.",
+   "source": ".agents/skills/oversized-cursor/SKILL.md",
+   "numbers": "full-frame 7cqw (~134px at 1920); in-mock 4.6-5.5cqw; never smaller; fills: white body + black stroke, or #1c1c1c body + 1.4px white stroke; drop-shadow(0 4px 6px rgba(0,0,0,.3))"
+  },
+  {
+   "principle": "Oversized cursor: entry, click, exit",
+   "statement": "Always enters from off-screen on one decelerating glide (never fade or mask-revealed at rest); straight up the y-axis by default. Tip-targeting: land the arrow tip on the target centre and pivot presses on the tip. Click is an asymmetric compress/expand; the target reaction is a separate parallel tween. The click IGNITES the next beat same-frame. During beats it does not own it drifts aside, never frozen, never wobbling. Exits physically: off the nearest edge, or a cut-the-curve handoff where it becomes the seam's carrier.",
+   "source": ".agents/skills/oversized-cursor/SKILL.md",
+   "numbers": "entry from top 115-120%, 0.4-0.92s power3.out, immediateRender:false; transformOrigin '21% 14%'; click scale 0.84 over 0.1s power2.in then 1 over 0.22s power2.out (1:2); target button scale 0.94 at the same t; drift aside 0.5-0.9s power2.out; exit power2.in 0.5-0.7s to left 118% / -12% or top 116%; handoff: last ~0.3s power2.in covering ~1/3 of the path, next scene continues power2.out from the same pose"
+  },
+  {
+   "principle": "Captions: drop / rail / embed",
+   "statement": "Every spoken phrase is dropped (filler), rides the verbatim rail (the default, in front, readable; punch words get inline emphasis), or is promoted to an embed (one big word composited behind the subject). Rail-first; embed is the scarce earned peak. Cinematic mode (everything embed-style) only for pure-cinematic asks, never explainer/VO.",
+   "source": ".agents/skills/captions-overlay/SKILL.md (quoting embedded-captions)",
+   "numbers": "embed <= 1 per sentence/beat, never two adjacent or co-visible, >= a beat apart, at most one apex; embedded climax font ~0.16-0.22 x frame height (embedded-captions composition-craft.md); rail ~0.045h"
+  },
+  {
+   "principle": "Captions are an overlay, not a reserved band",
+   "statement": "The caption line is composited on top of the finished film; never shift content up to make room. Centre the composition on the true vertical centre; content may run to the canvas bottom. One courtesy rule: keep critical small readable text out of the caption line's span. The old keep-out gate is retired; judge legibility visually.",
+   "source": ".agents/skills/captions-overlay/SKILL.md (constraint #13)",
+   "numbers": "caption line ~ bottom 5-8% of canvas height; centre at y = H/2 (540 landscape, 960 portrait); avoid critical small text in the bottom ~80px centre span (changelog: ~100px)"
+  },
+  {
+   "principle": "Visualize, don't list",
+   "statement": "Every changelog theme is illustrated by an animated mock of the actual UI (or an honest analog) acting out the change, never text bullets. Routing classes, strongest first: ui-recreate, ui-analog, terminal, checklist (last resort). An analog depicts behavior (speed, batching, caching), never a fake product page.",
+   "source": ".agents/skills/changelog-video/SKILL.md; references/visualization-registry.md",
+   "numbers": "checklist: <= 6 rows, ticks back.out(1.5) 0.3s on each item's VO word; terminal chars stagger 0.02s, result after a 0.3-0.5s beat; render bar power2.in (slow -> fast reads as faster); variant cascade stagger <= 0.15s"
+  },
+  {
+   "principle": "Changelog beat economics",
+   "statement": "Cutting is the job: one hero visualization and at most three spoken items per theme; everything else lives behind the outro's digest pointer. Order themes by story: marquee feature -> product surface -> performance -> reliability.",
+   "source": ".agents/skills/changelog-video/SKILL.md (Parse + editorial cut)",
+   "numbers": "45-60s total; title <= 2s; outro <= 3.5s; 4 themes ~9-12s each; <= 3 spoken items per theme; a 30-item changelog still yields <= 14 spoken beats"
+  },
+  {
+   "principle": "Two-layer script and TTS phonetics",
+   "statement": "The script is token lines: the VO reads the spoken layer, captions render the display layer; a caption showing phonetics or a VO misreading an acronym are both build failures. Conversational, informational, one breath per beat. Teach the simple command: the typed command is the visible cause of the result. Never guess a pronunciation: ask, add to the lexicon, listen.",
+   "source": ".agents/skills/changelog-video/references/script-voice.md; lexicon.json",
+   "numbers": "sentences <= ~14 words; one caption line <= ~40 display characters; initialisms spaced (C L I), acronyms respelled (jay-sawn), compounds hyphenated lowercase (ff-mpeg); em-dashes not ellipses for pauses"
+  },
+  {
+   "principle": "Scene internal timing around stamped seams",
+   "statement": "Each scene's shell is composed at local t=0 and the wrapper flies it in; internal reveals keep clear of both seams; every internal beat lands on a VO word; one rationed accent moment per scene.",
+   "source": ".agents/skills/changelog-video/references/build-spec.md",
+   "numbers": "internal reveals start >= 0.4s after the cut and end >= 0.45s before the next cut (stamped exits begin at cut - 0.34s); caption rail 32px at top 990 on 1080 square, words fade in 0.12s; dim text >= 0.66 alpha (contrast gate); BGM data-volume 0.14 under VO; safe margins x/y 76-1004"
+  },
+  {
+   "principle": "Smooth beats bouncy (power3 default)",
+   "statement": "Long-tail decel curves that settle smoothly; power3 is enough in most cases, expo.out on a fast arrival. Bouncy is the #1 instant turn-off in agent-made videos; overshoot is a rare, explicitly-playful exception. The exact settle is a critically-damped spring.",
+   "source": "skills/product-launch-video/references/motion-language.md (Part 2 rule 1); hyperframes-animation/rules/spring-pop-entrance.md; adapters/gsap-easing-and-stagger.md",
+   "numbers": "timeline defaults duration 0.6, ease power3.out; springEase response 0.3-0.6s for entrances; dampingFraction 1.0 house default (no overshoot), 0.80-0.85 iOS register (~1-1.5% overshoot), 0.60-0.70 playful (~5-10%); back.out N <= 2 playful only; ~3 easing characters per composition, varied within smooth families (sine/power1 calm -> power3 -> power4/expo punch)"
+  },
+  {
+   "principle": "Sequential reveal in the back ~50%, timed to the VO",
+   "statement": "The anti-PowerPoint mechanism: never dump content on screen in the first ~25% of a scene; reveal each piece (a line, a card, even the h1) when the voiceover names it, spread across the later ~50%. Fewer things on screen, each on its cue. The window count equals the number of spoken cues. End on a held read.",
+   "source": "skills/product-launch-video/references/motion-language.md (rule 2); references/visual-design.md; hyperframes/references/frame-worker-core.md",
+   "numbers": "nothing front-loaded in the first ~25%; reveals across the back ~50%; hero visible by t <= 0.5s"
+  },
+  {
+   "principle": "No lazy breathing, no back-half pan/push",
+   "statement": "Circular breathing as aliveness is the cheap tell; a slow pan or push in the later half of a scene disrupts the sightline and causes eye discomfort. Governing line: rather no motion than bad motion. In the distributed layer the only sanctioned aliveness is subtle jitter; everything else holds.",
+   "source": "skills/product-launch-video/references/motion-language.md (rule 3); hyperframes-animation/rules/sine-wave-loop.md",
+   "numbers": "jitter defaults: scale amp 0.008-0.015, y 2-3px, period 1.5-3s; N concurrent elements: amp / sqrt(N) with staggered periods; idle > 6s: halve amplitude, period 3-4s, fade the last ~20%"
+  },
+  {
+   "principle": "Seek-safe core",
+   "statement": "The frame is a paused GSAP timeline seeked frame-by-frame: no infinite/forever motion (repeat/yoyo), no randomness or wall-clock, entrances use fromTo with explicit from-states, no CSS transition/@keyframes for motion, and no mid-video exits (the injected transition IS the exit; only the final frame exits).",
+   "source": "skills/product-launch-video/references/motion-language.md (Part 3); hyperframes-animation/rules-index.md (contract)",
+   "numbers": "items x stagger <= ~0.5s; transforms/paint-only properties, never width/height/top/left"
+  },
+  {
+   "principle": "Launch story arcs and hook",
+   "statement": "Pick ONE arc; it fixes the beat order. The opening needs one hook creating tension, curiosity, or desire in viewer-outcome language; the promise lands by beat 2 and features after it are evidence. A UI demo is a sequence of consecutive beats on the same surface. Write VO as discrete cues so each on-screen piece has a reveal point. Vary blueprints; never bend story truth to fit one.",
+   "source": "skills/product-launch-video/references/story-design.md; hyperframes-creative/references/story-spine.md",
+   "numbers": "arcs: PAS, Future Pacing, Demo Loop, BAB, Feature-Benefit Cascade; hook in the opening 3-5s; promise by beat 2; UI demo = 3+ consecutive feature/benefit beats; VO 1-2 sentences per spoken beat, usually 6-20 words"
+  },
+  {
+   "principle": "Launch length, format, narration pace",
+   "statement": "Specialized narrative workflows are strongest at 30-90s; route clearly longer pieces to general-video. Format follows destination. Real voice duration wins over estimates (sync-durations is mechanical). The script should feel shorter than the video.",
+   "source": "skills/hyperframes/SKILL.md; references/routes/product-launch-video.md; hyperframes-creative/references/narration.md; media-use/audio/references/tts.md",
+   "numbers": "sweet spot 30-90s, hard cap ~3 min; 16:9 1920x1080 (YouTube/embed), 1:1 1080x1080 (X/LinkedIn/Instagram feed), 9:16 1080x1920 (Shorts/TikTok); 2.5 words/s (15s ~37 words, 30s ~75, 60s ~150); TTS pace 145-155 wpm"
+  },
+  {
+   "principle": "Time-coded shot sequence and video direction",
+   "statement": "Each frame is a sequence of Scene windows paced to the VO, each naming what is on screen, what moves, and where it sits, with layout and motion named inline from shared vocabularies (never px/ease/ms at plan time). A Video direction block written once binds the film: palette roles, motion grammar + reveal model, held-frame allocation (often before a climax), negative list including both failure modes (slideshow = front-load then freeze; screensaver = everything floating).",
+   "source": "skills/product-launch-video/references/visual-design.md",
+   "numbers": "primary visual >= 40% of canvas; >= 3 depth layers; hierarchy from >= 2 of size (3:1), weight (800 vs 400), contrast, position, motion; background media dimmed 30-50%"
+  },
+  {
+   "principle": "Numeric cross-frame handoffs",
+   "statement": "When an element visibly continues across a frame boundary, both parallel workers get the same numeric contract (handoff_out / handoff_in): element, x/y, scale, opacity, motion direction and speed at the cut. Every field is stated, even constants. Verified at Step 6 by snapshots bracketing each cut.",
+   "source": "skills/product-launch-video/SKILL.md (Step 4, Step 6); sub-agents/frame-worker.md",
+   "numbers": "snapshots at frame midpoints and each cut - 0.1s and + 0.2s"
+  },
+  {
+   "principle": "Blueprints: proven shot shapes by role",
+   "statement": "22 product-agnostic time-coded shot templates with slots and one signature move, reverse-engineered from 178 golden launch clips; a SOFT role -> blueprint menu (Hook, Problem, Product_Intro, Key_Feature, Benefits, Social_Proof, CTA, Brand_Outro). Postures: Reproduce, Adapt (never drop the signature move), Compose.",
+   "source": "skills/hyperframes-animation/blueprints-index.md",
+   "numbers": "e.g. kinetic-type-beats 3.0-12.9s (6 roles); titlecard-reveal 3-5s, card chains 2-3s per card; logo-assemble-lockup 4.4-11s; cursor-ui-demo 4.0-12.9s; camera-journey 5.6-11.1s; dataviz-countup 4-12s"
+  },
+  {
+   "principle": "Between-frame transition registry (PLV injector)",
+   "statement": "The distributed launch workflow names transition_in from a curated Tier-B registry stamped on the two frame wrappers. Default crossfade (blur-crossfade when backgrounds clash), zoom-through at section boundaries; pick 2-3 and repeat. The catalog names cut-the-curve / inverse-zoom / waterfall are NOT valid transition_in values in the distributed layer; they are within-frame seams.",
+   "source": "skills/product-launch-video/references/story-design.md (transition_in); scripts/lib/transitions.json; hyperframes-animation/transitions/TRANSITION-REGISTRY.md",
+   "numbers": "crossfade 0.5s power2.inOut; blur-crossfade 0.6s blur 10px, scale 1.03 / 0.97; push-slide 0.5s power3.inOut full-frame (x 1920); zoom-through 0.4s exit scale 2.5 + blur 8px power3.in, entry 0.5 -> 1 power3.out; squeeze 0.4s power3.inOut; max 2.0s; default_high_energy zoom-through, default_calm blur-crossfade"
+  },
+  {
+   "principle": "Transition energy, position, blur",
+   "statement": "Choose transitions by what the content does emotionally. Narrative position: opening = most distinctive; between related points = the primary; topic change = something different; climax = boldest accent; wind-down gentle; outro slowest and simplest. Exit animations banned except on the final scene; the transition is the exit.",
+   "source": "skills/hyperframes-animation/transitions/overview.md",
+   "numbers": "calm 0.5-0.8s sine.inOut/power1; medium 0.3-0.5s power2/power3; high 0.15-0.3s power4/expo; blur calm 20-30px (0.8-1.2s, hold 0.3-0.5s), medium 8-15px (0.4-0.6s), high 3-6px (0.2-0.3s); opening 0.4-0.6s, between related 0.3s, wind-down 0.5-0.7s, outro 0.6-1.0s"
+  },
+  {
+   "principle": "Motion blur is shutter smear, not polish",
+   "statement": "Blur only beats that snap (a slam, a whip, a hard positional cut, a spin, a scale punch); never text meant to be read at that moment, slow drift, fades, or whole containers. Blur the approach, land sharp, hold. Directional-streak blur peaks at peak speed and resolves at the settle, on out-family eases only.",
+   "source": "skills/hyperframes-animation/references/motion-blur.md; rules/motion-blur-streak.md",
+   "numbers": "1-3 blurred beats per composition; shutter 720 deg (two frames, measured off an After Effects export), phase -360, 16 samples; streak move 0.25-0.6s (over ~0.7s reads as a focus pull), peak blur 8-30 (default 18, ~18-20 cap at wrapper), ghosts 2-4, dwell >= 1s sharp after the snap"
+  },
+  {
+   "principle": "Camera moves",
+   "statement": "One camera wraps everything; one writer of the transform. Targeted zoom = outer scale + inner counter-translate sharing duration and ease. 3D flight: fixed transform order, reads happen at landings, dives land on power4.out, repositioning on power2.inOut; spring/back on a camera reads as the world wobbling on a string. Four identical pushes read as a slideshow.",
+   "source": "skills/hyperframes-animation/rules/coordinate-target-zoom.md, multi-phase-camera.md, 3d-camera-flight.md, depth-of-field-blur.md",
+   "numbers": "zoom 1.5x modest / 3x dominant / 5x+ extreme, 1.0-2.0s (<0.8s teleport, >2.5s drags), dwell >= 1.0s (1.5-2s ideal), target <= ~88% of canvas; phase scales 0.88-0.96 / 0.98-1.02 / 1.04-1.15; 3D perspective 700-1400px, dive/land 0.6-1.0s, flatten 1.2-2.0s, holds >= 0.8s between legs, final dwell >= 1s, |rx| <= ~65 deg, |ry| <= ~30 deg, cam.z + propZ <= 0.6 x perspective; DoF 3-6px per depth step, max 8/16/24px, dim 0.4/0.55/0.7, focus 0.5-1.2s"
+  },
+  {
+   "principle": "Press, click, ripple, climax dwell",
+   "statement": "Move before click; cursor compresses more than the target; ripple from the click point; linear press then spring release; after a press/reveal the composition must keep running so the result can be seen.",
+   "source": "skills/hyperframes-animation/rules/cursor-click-ripple.md, press-release-spring.md, physics-press-reaction.md",
+   "numbers": "move 0.4-1.0s; click at move end + 0-0.3s; press 0.06-0.12s half; cursor press 0.80-0.90, target 0.92-0.97; ripple x3-6 over 0.5-1.0s; button press 0.88 / 0.92 / 0.96, press 0.10-0.30s < release 0.40-0.90s; button footprint >= 3-5% of canvas; climax dwell >= 1s (>= 2s dramatic)"
+  },
+  {
+   "principle": "Kinetic type rhythm",
+   "statement": "Percussive taglines time off ONE shared beat array with a distinct entrance per phrase (vary the axis, keep the ease family), one accent hue, heavy display face. Content-driven sequencing gives longer text more read time; flurries of unread states are texture.",
+   "source": "skills/hyperframes-animation/rules/kinetic-beat-slam.md, dynamic-content-sequencing.md; techniques.md sec.4",
+   "numbers": "beat spacing 1.2-1.8s (<0.8 frantic, >2.5 loses the pulse); entrance 0.35-0.6s, exits <= 0.25s; display 150px+; per-entry base read time 0.6-1.5s + chars x secPerChar + hold; read threshold ~0.5s; flurry floor 0.15-0.3s, brake >= 4x the floor; per-word slide decay 80 -> 12px"
+  },
+  {
+   "principle": "Reading time and video type sizes",
+   "statement": "Fixed reading time: fewer words, larger type. Video sizes, not web sizes; scale up again for in-feed viewing. Extreme weight contrast. Tighter tracking than web. Time is hierarchy: the first element to appear is the most important. Visible frame text is short motion-graphics copy, never a narration sentence (captions carry the words).",
+   "source": "skills/hyperframes-creative/references/typography.md; hyperframes/references/frame-worker-core.md; motion-graphics/agents/director.md; embedded-captions/SKILL.md",
+   "numbers": "3s on screen must be readable in 2s; full-screen body >= 20px, headlines >= 60px, labels 16px; in-feed body >= 32px, headlines >= 90px, labels >= 24px; weight 300 vs 900; display tracking -0.03 to -0.05em; key element readable >= ~0.3s (motion-graphics); each caption >= 0.5s; BBC 160-180 wpm (0.33-0.38s/word)"
+  },
+  {
+   "principle": "Short motion-graphics heuristics",
+   "statement": "Motion is the message; hook lands fast; one dominant motif; a pattern interrupt on longer pieces changes exactly one thing; asset-first, reuse-first (search the ~400-block catalog before hand-building any named look).",
+   "source": "skills/motion-graphics/agents/director.md; SKILL.md",
+   "numbers": "3-30s (usually < 10s); hook ~first 0.5s; pattern-interrupt if > ~2.5s; beats may be anticipated ~0.1s for perceived sync; default canvas 1080x1920, 30fps; stat count-up ~1.2-1.6s then hold, label after the number; kinetic-type scenes ~3-7 words (EN), 1-2 emphasis words, Hook -> Build -> Punch -> Resolve"
+  },
+  {
+   "principle": "Motion craft guardrails (hyperframes-creative)",
+   "statement": "Vary eases, speeds, directions, and staggers across scenes; don't start at t=0; stagger by importance, overlap entries; entrances longer than exits; stillness after motion is powerful.",
+   "source": "skills/hyperframes-creative/references/motion-principles.md",
+   "numbers": "slowest scene 3x slower than fastest; first animation offset 0.1-0.3s; total stagger < 500ms; entry ~0.4s vs exit ~0.25s; speed classes fast 0.15-0.3s, medium 0.3-0.5s, slow 0.5-0.8s, very slow 0.8-2.0s; scene phases build 0-30% / breathe 30-70% / resolve 70-100%"
+  },
+  {
+   "principle": "Launch audio defaults",
+   "statement": "The distributed launch workflow retrieves (not generates) a BGM bed from HeyGen's library by the storyboard's music mood, fetches named SFX per frame (an impact for a slam, a whoosh for a push, a riser into a reveal), mounts audio at the root only, and carves the bed under voice. Check the music against the final cut: trim to a stronger later section when the track opens on a quiet build.",
+   "source": "skills/product-launch-video/SKILL.md (Step 3.1, Step 5); references/visual-design.md (sfx); scripts/lib/bgm-volume.mjs; general-video/SKILL.md (carve)",
+   "numbers": "BGM bed volume 0.12 with voice, 0.9 without; changelog house BGM 0.14; fully-silent marker = music: none + no SCRIPT.md; short fade-in, longer fade-out"
+  },
+  {
+   "principle": "Dispatch economics (general-video)",
+   "statement": "Packetized parallel workers only pay for themselves at scale; up to ~6 short scenes build faster inline. When dispatching, give each worker 2-3 scenes and spawn all in one wave. Workers write a motion sidecar with measured exit/entry vectors that the orchestrator translates into the seam ledger when the doctrine chain is installed.",
+   "source": "skills/general-video/SKILL.md sec.5; sub-agents/frame-worker.md",
+   "numbers": "5 short scenes ~9 min inline vs ~21 min packetized; sidecar exit {vector, still_moving: true}, entry {vector, from_rest: false}"
+  }
+ ],
+ "launch_video_workflow": "Front door: /hyperframes resolves project state (edit vs resume vs fresh), runs the intent interview, writes BRIEF.md (the only routing artifact), then routes by deliverable: a URL/site/product being marketed -> /product-launch-video; short unnarrated motion-first unit (logo sting, stat hit, kinetic title, typically < 10s, up to ~30s) -> /motion-graphics; sizzle/brand reel, montage, longer than ~3 min, or anything custom -> /general-video. Narrative workflows are strongest at 30-90s.\n\nproduct-launch-video (orchestrator does every step except Step 5; user gates at 0, 3, 6; autonomous mode turns gates into heads-ups): Step 0 setup (init, BRIEF.md, auth status) -> Step 1 capture (npx hyperframes capture URL; hard stop on BLOCKED.md / ok:false; asset-descriptions.md is the canonical inventory; for site tours the real screenshot is the source of truth, never a rebuilt page) -> Step 2 design system (pick one frame preset; build-frame.mjs remixes it onto captured brand tokens into frame.md + caption skin) -> Step 3 storyboard + script (pick ONE arc: PAS / Future Pacing / Demo Loop / BAB / Feature-Benefit Cascade; hook in the first 3-5s; promise by beat 2; each beat one role with persuasion + emotional beat; VO written in the candidate blueprint's script shape from a bank of reversed golden clips, 1-2 sentences / 6-20 words per beat, cue-segmented; transition_in from the 5-type registry, 2-3 types repeated; plan review with optional sketches) -> Step 3.1 audio in background (TTS with word timings, retrieved BGM by music mood, silent marker = music: none + no SCRIPT.md) -> Step 4 visual design (sketch sheet in collaborative mode; per frame a time-coded shot sequence whose windows equal the spoken cues, reveals in the back ~50% on VO cues, blueprint Reproduce/Adapt/Compose keeping its signature move, focal + roles + sfx tags, layout and motion named inline from shared vocabularies with no px/ms; one Video direction block with palette roles, motion grammar, held-frame allocation, negative list; numeric handoff_out/handoff_in for elements that continue across a boundary; catalog search before any named look) -> Step 5 build (sync durations to real voice; fetch SFX; one sub-agent per frame from bounded packets = storyboard block + blueprint body + cited rule recipes; workers write only compositions/frames/NN-*.html; captions.mjs + assemble-index.mjs) -> Step 6 finalize (inject transitions, lint, check, contact-sheet snapshots at midpoints and cut -0.1s / +0.2s, one review question, render only on approval).\n\nBeat economics: 30-90s films; narration 2.5 words/s (60s ~150 words) and the script should feel shorter than the video; within a frame nothing front-loaded in the first ~25%, each piece revealed on its VO cue across the back half, then a held read; held/breather frames allocated deliberately (often before a climax); UI demos run 3+ consecutive beats on one surface; blueprint durations run ~3-13s per shot (titlecard 3-5s, kinetic-type-beats 3-12.9s). Motion-graphics: hook in the first ~0.5s, one dominant motif, one pattern interrupt past ~2.5s, key element readable >= ~0.3s. Changelog (repo-native application of the doctrine): 45-60s, title <= 2s, outro <= 3.5s, ~9-12s per theme, <= 3 spoken items per theme, <= 14 spoken beats, internal reveals >= 0.4s after a cut and >= 0.45s before the next.\n\nText rules: visible frame text is short motion-graphics copy (a hero word, a stat), never a narration sentence (the caption track shows spoken words); sentences <= ~14 words; one caption phrase <= ~40 display characters; 3s on screen must read in 2s; video sizes (full-screen headlines >= 60px, in-feed >= 90px); weight contrast 300 vs 900; kinetic taglines on one beat array spaced 1.2-1.8s; captions drop/rail/embed with embed scarce, and (repo-native) captions as an overlay centred on true frame centre, while the distributed frame-worker core still reserves the bottom ~17%.\n\nThe repo-native overlay (motion-doctrine + cut-the-curve + oversized-cursor + seam-craft + captions-overlay) sits on top: write ledger.json first, stamp seams with seam-stamp.mjs (cut-the-curve in the film's one current, reserved vectors spent on meaning), name a sustained-motion route per phase (no idle wobble), chain causal motion with same-frame ignition, schedule 0.3-0.75s stillness before each climax, and gate with seam-gate.mjs verify (exit 0) plus hyperframes check. general-video bridges the two by collecting worker motion sidecars (measured exit/entry vectors) and translating them into the ledger when /motion-doctrine is installed.",
+ "overlap_with_graph": [
+  "Velocity-matched cut: graph seam row 'exit up -> enter from below, moving up; exit left -> enter from the right, moving left' and 'the outgoing element is still travelling... the incoming one enters already in flight on the same axis, in the same direction' = motion-doctrine's vector law (axis, direction, speed, phase) and cut-the-curve sec.3.",
+  "Zoom-through: graph row 'scale 1 -> 1.18, blur up, fade; next arrives 0.92 -> 1' overlaps cut-the-curve sec.1 (1 -> 1.2, 0.75 -> 1) and seam-stamp.mjs (1.18, 0.78); graph's 1.18 is the stamp's exit value.",
+  "Seam ledger: the graph's ledger JSON (fps, seams[], id, cut, technique, exit/entry {selector, axis, dir}) is literally HyperFrames' ledger.json schema from motion-doctrine/references/seam-gate.md; HyperFrames adds the generator (seam-stamp.mjs), the verifier (seam-gate.mjs), types (cut / match-cut / morph) and carrier rows.",
+  "No idle motion: graph 'nothing floats, breathes, or pulses to fill time; if a beat feels empty, the fix is more information' = motion-doctrine 'No idle wobble... add story, not wobble' and its five sustained-motion routes; also PLV motion-language 'no lazy breathing'.",
+  "One object carries the eye / shared-element morphs / dock: graph seams section = motion-doctrine Carriers (a container that docks into the next layout, a mark that flies into its slot), Tier-A shared-element morphs exempt from the transition budget, rules/card-morph-anchor.md, and oversized-cursor's cut-the-curve handoff.",
+  "No crossfades between scenes: graph matches motion-doctrine ('Never a crossfade: it has no carrier').",
+  "Blur tied to velocity: graph 'Blur is derived, never authored... peaks exactly when the element is fastest' overlaps rules/motion-blur-streak.md (blur peaks at peak speed, resolves to 0 at the settle, shares the ease) and references/motion-blur.md (blur only snapping beats); graph's explode-out blur 18px matches seam-stamp's default 18px full-frame; graph's CSS-blur-scales-with-transform gotcha relates to cut-the-curve's 'blur the wrapper, never children'.",
+  "Exit shorter than entry: graph 'exits at 60-70% of the entrance' vs motion-doctrine 'exit ~75% of entry' and seam-stamp 0.34s / 0.42s.",
+  "Hard kill on the cut frame: graph 'the hard kill (tl.set) exactly on the cut frame' = seam-stamp's tl.set(exit, {autoAlpha: 0}, cut) and seam-gate's zero-overlap check.",
+  "Stamp decisions, ease curves: graph rule 4 overlaps HyperFrames' discrete-text-sequence (text state thresholds), waterfall entry's binary tl.set opacity for arrivals, build-spec 'tl.set backgroundColor at each cut... never tl.call for state', and chart-scrub-readout 'text writes only on index change'.",
+  "Templates as slots: graph 'a finished sting is a set of slots' = blueprints with [slots] and a named signature move that must be kept (blueprints-index.md, visual-design.md Reproduce/Adapt).",
+  "HyperFrames specifics: graph's audio-needs-an-id and timeline-padding notes also appear in changelog-video build-spec (every <audio> carries an id; master tl padded with tl.to({}, {duration: TOTAL}, 0)).",
+  "Project shape: graph's STORYBOARD.md + ledger.json + compositions/ + assets/ matches PLV and changelog layouts (STORYBOARD.md, SCRIPT.md, ledger.json, compositions/frames/, audio_meta.json).",
+  "Sound cue map: graph's sound-from-motion cue sheet (contact frame, box, kind) is the renderable form of PLV's per-frame sfx: tag + fetch-sfx + audio_meta.json; both mount audio at the root, never inside scenes; both lock picture/VO timing before placing sound (motion-doctrine 'audio is the clock' for VO; graph 'lock picture first' for SFX).",
+  "Stillness as a tool: graph's stillness measurements (Skale 32%, OpenAI 61-64% nearly still frames) and 'lively is not more motion' overlap motion-doctrine's stillness-before-climax and PLV's held frames / 'no motion over bad motion'.",
+  "Router: graph skill-router already hands launch films to HyperFrames and keeps sound and the frame.md export for itself; routing-table rows 'Score a launch video' and 'Cut a multi-scene video' point at the graph nodes."
+ ],
+ "gaps_graph_could_fill": [
+  "Measured film statistics: HyperFrames mined 178 golden clips into shot templates but publishes no measured distributions. The graph owns numbers HyperFrames lacks: cut counts per film, share of nearly-still frames (Skale 32%, OpenAI 61-64%), move length (Skale median 4 frames, p75 11), motion decay after a cut (0.67 -> 0.39 by frame 3 -> 0.1 by frame 12), and the ease/property census of HeyGen's own launches (power2.out 434, none 338, power2.in 275, power3.out 237, expo.out 89; scale 1,840, filter/blur 1,695). These can serve as a stillness budget and pacing targets that HyperFrames' 'allocate held frames' leaves unquantified.",
+  "Sound derived from motion: HyperFrames fetches named SFX from a library and carves a retrieved BGM bed; it has no mapping from size/position/direction to pitch/pan/decay, no bed register (drone in one key, dropouts, act-by-act gain points), no onset-within-two-frames acceptance test, no mastering target (-14 LUFS / -1 dBTP), and no 'audio may lag, never lead' threshold (ITU-R BT.1359). The graph's sound-from-motion, launch-video-sound, and sound-motion-sync fill this completely.",
+  "Text-beat economics: motion-doctrine's route map points at overlays named text-beat-economics and brand-faithful, but neither exists in the repo (dangling). HyperFrames' reading-speed numbers are scattered (2.5 words/s narration, 3s readable in 2s, >= 0.3s legibility, >= 0.5s per caption, BBC 160-180 wpm, 0.6-1.5s base read time per entry). A single graph node on on-screen text economics (words per beat, hold per word, when a word is message vs texture) would fill a real hole without duplicating.",
+  "Cross-studio taste lineage: HyperFrames' doctrine is house-internal. The graph can own the comparative layer: Skale's reel, Studio Dumbar/DEPT's OpenAI films, bruno's logo-reveal register, HeyGen's launch READMEs, and which patterns recur across them.",
+  "A single reconciliation of HyperFrames' internal contradictions for agents: jitter allowed (distributed motion-language, sine-wave-loop, multi-phase-camera drift) vs idle banned (motion-doctrine); crossfade as default transition_in vs never a crossfade; caption keep-out bottom ~17% (frame-worker-core, visual-design) vs overlay with keep-out retired (captions-overlay); bounce_in / scale_punch back.out(2.2) / scale_pulse yoyo in motion-graphics vocabulary vs smooth-beats-bouncy; cursor 48-96px at 1080p (physics-press-reaction) vs 7cqw ~134px (oversized-cursor); velocity-matched transitions at 30px blur, power2, 1.0s entry (techniques.md sec.10, beat-direction.md) vs 10px text / 18-20px full-frame on mirrored power4 (cut-the-curve). A gotchas line that states 'motion-doctrine supersedes' is cheap and high value.",
+  "Availability pointer for the doctrine: the strongest doctrine (motion-doctrine, cut-the-curve, oversized-cursor, seam-craft, captions-overlay) is metadata.internal and skipped by npx skills add (even --all); installers only get the distributed layer. The graph can route to it with the install path (INSTALL_INTERNAL_SKILLS=1, or clone and use .agents/skills) instead of restating it.",
+  "Continuity between product UI and film: the graph owns fly-not-teleport, cross-blur, spring-animations and the sound family shared between app and launch film; HyperFrames has no notion that the film's motion and sound should match the shipped product's.",
+  "The design contract upstream of frame.md: .design tokens.motion / tokens.sound and the frame.md export (the graph's using-design-file / using-design-md) sit upstream of HyperFrames' build-frame.mjs preset remix.",
+  "A judge-posture rubric for films: HyperFrames has build gates (lint, check, seam-gate, snapshots) but no reviewer table for 'does this feel expensive'; the graph's review-format could carry a launch-film row set (current held, carriers present, stillness before climax, no idle, sound on contact frames).",
+  "Spring character as taste: HyperFrames standardizes on critically damped (zeta = 1) and treats overshoot as playful-only. If the graph keeps its zeta 1/3 multi-channel spring, it must reposition it as a deliberately playful register (the bouncy-ui sting) rather than the default; the knowledge of per-channel frequencies (1.45 / 1.88 / 2.5 Hz) is not in HyperFrames."
+ ],
+ "route_map": [
+  {
+   "need": "Any fresh request to make, edit, or render a video; routing between workflows",
+   "owner": "/hyperframes (skills/hyperframes/SKILL.md sec.1-2; references/intent-interview.md; references/routes/<workflow>.md)"
+  },
+  {
+   "need": "Launch / promo / feature reveal / site tour from a URL, script, or brief",
+   "owner": "/product-launch-video (skills/product-launch-video/SKILL.md)"
+  },
+  {
+   "need": "Short unnarrated sting: logo reveal, stat hit, kinetic title, lower third, map, tweet/news card (< ~10s, up to ~30s)",
+   "owner": "/motion-graphics (SKILL.md; categories/<id>/module.md; references/motion-vocabulary.md)"
+  },
+  {
+   "need": "Sizzle or brand reel, montage, longer than ~3 min, footage remix, or custom composition",
+   "owner": "/general-video (SKILL.md)"
+  },
+  {
+   "need": "Story arc, hook, beat roles, VO shaped by proven scripts",
+   "owner": "product-launch-video/references/story-design.md; hyperframes-creative/references/story-spine.md, narration.md"
+  },
+  {
+   "need": "Per-frame time-coded shot sequence, layout vocabulary, Video direction block, handoffs",
+   "owner": "product-launch-video/references/visual-design.md"
+  },
+  {
+   "need": "Motion vocabulary and distributed doctrine (smooth over bouncy, VO-paced reveals, no lazy breathing, seek-safe core)",
+   "owner": "product-launch-video/references/motion-language.md"
+  },
+  {
+   "need": "Seam law: vector law, the current, reserved vectors, carriers, causal motion, no idle wobble, stillness before climax, timing intents",
+   "owner": ".agents/skills/motion-doctrine/SKILL.md (repo-native, internal)"
+  },
+  {
+   "need": "Generate and verify seams from a ledger",
+   "owner": ".agents/skills/motion-doctrine/scripts/seam-stamp.mjs + seam-gate.mjs; references/seam-gate.md"
+  },
+  {
+   "need": "Seam technique parameters: cut-the-curve, zoom-through, inverse zoom, waterfall cut, rack-focus, waterfall entry, nudge curve",
+   "owner": ".agents/skills/cut-the-curve/SKILL.md + examples/gsap-implementation.md (distributed subset: product-launch-video/references/cut-catalog.md; rules/waterfall-entry.md, rules/nudge-curve.md)"
+  },
+  {
+   "need": "White flash at a cut; how the injector overlaps wrappers and stamps transitions",
+   "owner": ".agents/skills/seam-craft/SKILL.md; hyperframes-animation/transitions/TRANSITION-REGISTRY.md"
+  },
+  {
+   "need": "Between-frame transition_in choice (distributed launch pipeline)",
+   "owner": "hyperframes-animation/transitions/TRANSITION-REGISTRY.md; product-launch-video/scripts/lib/transitions.json"
+  },
+  {
+   "need": "Wider transition catalog, energy/mood mapping, shader transitions",
+   "owner": "hyperframes-animation/transitions/overview.md, catalog.md, css-*.md; @hyperframes/shader-transitions"
+  },
+  {
+   "need": "Shot template for a beat role (hook, problem, product intro, feature, benefit, proof, CTA, outro)",
+   "owner": "hyperframes-animation/blueprints-index.md -> blueprints/<id>.md"
+  },
+  {
+   "need": "Atomic motion recipe with values",
+   "owner": "hyperframes-animation/rules-index.md -> rules/<id>.md"
+  },
+  {
+   "need": "Cursor-led action, click ignition, cursor as seam carrier",
+   "owner": ".agents/skills/oversized-cursor/SKILL.md; rules/cursor-click-ripple.md, cursor-drag.md, multi-cursor-choreography.md, physics-press-reaction.md"
+  },
+  {
+   "need": "Camera: push, targeted zoom, pan, 3D flight, depth of field",
+   "owner": "hyperframes-animation/rules/multi-phase-camera.md, coordinate-target-zoom.md, viewport-change.md, 3d-camera-flight.md, depth-of-field-blur.md, camera-cursor-tracking.md"
+  },
+  {
+   "need": "Motion blur on snapping beats",
+   "owner": "hyperframes-animation/references/motion-blur.md; rules/motion-blur-streak.md; registry motion-blur / shutter-slam"
+  },
+  {
+   "need": "Eases and springs (springEase, house defaults)",
+   "owner": "hyperframes-animation/adapters/gsap-easing-and-stagger.md; rules/spring-pop-entrance.md"
+  },
+  {
+   "need": "Kinetic type, typewriter, word-by-word reveals",
+   "owner": "rules/kinetic-beat-slam.md, discrete-text-sequence.md, dynamic-content-sequencing.md, waterfall-entry.md, asr-keyword-glow.md; techniques.md sec.4, sec.7; blueprints/kinetic-type-beats.md, typewriter-reveal.md"
+  },
+  {
+   "need": "Count-ups, stats, charts",
+   "owner": "rules/counting-dynamic-scale.md, stat-bars-and-fills.md, chart-scrub-readout.md; motion-graphics/categories/stat, charts; blueprints/dataviz-countup.md"
+  },
+  {
+   "need": "Logo sting / lockup",
+   "owner": "blueprints/logo-assemble-lockup.md; motion-graphics/categories/logo-reveal/module.md; registry block logo-outro; rules/svg-path-draw.md"
+  },
+  {
+   "need": "A named look or effect (glitch, grain, shimmer, confetti) before hand-building",
+   "owner": "npx hyperframes catalog --query ... --json (/hyperframes-registry)"
+  },
+  {
+   "need": "Design system for the film (frame.md, presets, brand-token remix)",
+   "owner": "hyperframes-creative/references/design-spec.md + frame-presets/; product-launch-video/scripts/build-frame.mjs"
+  },
+  {
+   "need": "Type sizes, reading time, font embedding for video",
+   "owner": "hyperframes-creative/references/typography.md"
+  },
+  {
+   "need": "Captions on a launch film",
+   "owner": ".agents/skills/captions-overlay/SKILL.md (overlay law) + /embedded-captions (rail/embed model, grouping); product-launch-video/scripts/captions.mjs"
+  },
+  {
+   "need": "Weekly changelog video",
+   "owner": ".agents/skills/changelog-video/SKILL.md"
+  },
+  {
+   "need": "Narration/TTS, BGM retrieval, SFX sourcing, logos",
+   "owner": "/media-use (audio/references/tts.md, references/resolve.md); product-launch-video/scripts/audio.mjs"
+  },
+  {
+   "need": "Mixing: carve a bed under voice, duck, automation, effect chains",
+   "owner": "/hyperframes-audio (scripts/carve.mjs)"
+  },
+  {
+   "need": "Composition contract: data attributes, tracks, sub-compositions, determinism",
+   "owner": "/hyperframes-core"
+  },
+  {
+   "need": "Seek-safe keyframes, masks, paths, 3D keyframes",
+   "owner": "/hyperframes-keyframes"
+  },
+  {
+   "need": "lint, check, snapshot contact sheets, preview, render",
+   "owner": "/hyperframes-cli"
+  },
+  {
+   "need": "Audit an existing composition's choreography (dead zones, stagger)",
+   "owner": "hyperframes-animation/scripts/animation-map.mjs"
+  },
+  {
+   "need": "Figma source for a film",
+   "owner": "/figma"
+  },
+  {
+   "need": "Derive the sound stem from the timeline; bed register; sync acceptance; mastering",
+   "owner": "design-engineering graph: [[sound-from-motion]], [[launch-video-sound]], [[sound-motion-sync]] (scripts/sound-sheet.mjs)"
+  },
+  {
+   "need": "Cross-studio taste and measured pacing numbers for launch films",
+   "owner": "design-engineering graph: [[launch-video-seams]]"
+  }
+ ],
+ "installed_vs_latest": "Latest repo (HEAD 2026-09-28) distributes 21 skills under skills/. 13 are installed at ~/.claude/skills on the measuring machine and are byte-identical to HEAD (diff -rq reports 0 differences for each; installed copies were refreshed 2026-09-28 17:19): general-video, hyperframes, hyperframes-animation, hyperframes-audio, hyperframes-cli, hyperframes-core, hyperframes-creative, hyperframes-keyframes, hyperframes-registry, hyperframes-studio, media-use, product-launch-video, remotion-to-hyperframes. So product-launch-video/SKILL.md and hyperframes/SKILL.md have NO diff. Not installed (expected: workflow skills install lazily via npx hyperframes skills update <name>): embedded-captions, faceless-explainer, figma, motion-graphics, music-to-video, pr-to-video, slideshow, talking-head-recut. ~/.agents/skills also carries 12 of the core set (no media-use). The six repo-native doctrine skills in .agents/skills (motion-doctrine, cut-the-curve, seam-craft, oversized-cursor, captions-overlay, changelog-video) declare metadata.internal: true, are skipped by npx skills add even with --all, and are installed nowhere locally; installing them elsewhere needs INSTALL_INTERNAL_SKILLS=1 (a byte-identical .claude/skills mirror exists inside the hyperframes repo). Router-relevant names: the graph's router row names only hyperframes-creative and hyperframes-audio, but the front door is /hyperframes and the owning workflows are product-launch-video, motion-graphics, and general-video; hyperframes-animation owns rules/blueprints/transitions; hyperframes-media no longer exists (absorbed into media-use; changelog-video still cites the stale path skills/hyperframes-media/scripts/heygen-tts.mjs, actual file media-use/audio/scripts/heygen-tts.mjs); motion-doctrine's route map cites overlays text-beat-economics and brand-faithful that do not exist in the repo.",
+ "conflicts_with_graph": [
+  "Easing law: the graph mandates one exponential law (tau 0.131 s, custom mirror functions eo/ei) and warns that GSAP expo.out is a different polynomial not to be mixed; HyperFrames' house default is power3.out (motion-language.md, gsap-easing-and-stagger.md timeline defaults), seams run on mirrored power4.in / power4.out (cut-the-curve), Z seams on power3.in / expo.out, and seam-stamp.mjs emits power3.in / power4.out / expo.out. Inside a HyperFrames project the stamped eases are what the seam gate measures, so the graph's law can only govern hand-authored non-seam moves, if at all.",
+  "Spring character: the graph presents a damped spring at zeta = 1/3 (position 1.45 Hz, shape 1.88 Hz, rotation 2.5 Hz) as 'the entire bouncy quality'; HyperFrames says bouncy is the #1 instant turn-off, defaults to a critically damped springEase (zeta 1.0), allows 0.80-0.85 (iOS, ~1-1.5% overshoot) and 0.60-0.70 only for explicitly playful registers; motion-doctrine forbids bounce/elastic and caps entry overshoot at back.out(1.4-1.7). zeta 1/3 is below even HyperFrames' playful band.",
+  "Zoom-through values: graph entry 0.92 -> 1 (with exit 1 -> 1.18); cut-the-curve 0.75 -> 1 (exit 1 -> 1.2); seam-stamp 0.78 -> 1 (exit 1.18); PLV registry 0.5 -> 1 (exit 2.5). The graph's entry is far gentler than any HyperFrames value, so its incoming speed would not match the exit (seam-gate speed-match would WARN).",
+  "The current: HyperFrames mandates ONE dominant direction per film (house LEFT), reserves Upward for elevation/conclusion, Z-back for arrival, scale-burst for leaving a world, and bans consecutive opposing seams; the graph's seam table offers 'exit up' and 'exit left' as interchangeable ordinary seams and has no current or reserved-vector rule.",
+  "Crossfades: the graph bans crossfades between scenes, matching motion-doctrine, but contradicting the distributed PLV default (story-design.md: transition_in defaults to crossfade, blur-crossfade on a background clash; registry default_calm = blur-crossfade; transitions/overview.md: crossfade = 'this continues').",
+  "Cuts: the graph says 'no cuts' and 'almost nothing is a cut'; HyperFrames' seams ARE hard cuts, taken mid-motion (seam-gate zero-overlap: one side visible per frame, the cut is not a dissolve), and blueprints use instant hard cuts on purpose (titlecard end-card chains, kinetic-type hard-cut word swaps, rack-focus as the visible cut). The graph should say 'no static cuts' instead.",
+  "Idle motion: the graph bans all idle motion, matching motion-doctrine; the distributed layer sanctions subtle jitter as the one allowed aliveness (motion-language.md rule 3, sine-wave-loop.md), multi-phase-camera.md overlays continuous micro-drift (2-8px), constellation-hub has a scatter-drift end card, ambient-glow-bloom allows a bounded breathe, and hyperframes-creative motion-principles.md gives each scene a 'breathe' phase with ONE ambient motion.",
+  "Ledger row with dir 0: the graph's ledger example ('edge-on collapse -> unfold', dir 0, no type) would FAIL seam-gate: rows default to type 'cut', which requires a signed direction (plus exit-moving / entry-moving checks). HyperFrames expects a shape morph like that to be type 'morph' (or 'match-cut') with a carrier {out, in}.",
+  "Hidden initial states: the graph says initial hidden states go in CSS because 'a zero-duration set at 0 does not render on frame 0'; HyperFrames says entrances must use fromTo with explicit from-states, never a CSS-hidden start (motion-language.md seek-safe core, frame-worker-core self-check), and changelog build-spec reports the opposite mechanism: a stamped zero-duration tl.set immediate-renders at BUILD time, so an entry without immediateRender:false tweens 0 -> 0. (The changelog scaffold does keep a CSS opacity:0 base on the .swrap, so both mechanisms coexist; the graph's stated reason is contradicted.)",
+  "Composition length: the graph says a sub-composition is visible for its GSAP timeline's duration, not its data-duration, so pad short timelines; hyperframes-animation's critical constraints say data-duration governs length and motion-graphics' builder says never change a fixed data-duration. Needs a check against the current runtime before either statement is trusted.",
+  "Clip boundary timing: the graph sets clip boundaries just below their frame time (1.166, never 1.1667); motion-doctrine and changelog build-spec set data-start = exactly the cut time (and the stamped tl.set at the cut).",
+  "Exit/entry ratio (minor): graph exits at 60-70% of entry; motion-doctrine ~75%; seam-stamp 0.34/0.42 ~81%; cut-the-curve text: entry ~127% of exit (~79%).",
+  "Blur authorship (minor): the graph says blur is derived and ramps into a seam on power2.in; HyperFrames authors fixed peak blurs matched on both sides of the swap (10px text, 18-20px full-frame) on the motion's own eases (power3.in / expo.out), with opacity on a separate linear tween. Same intent, different mechanism; distributed techniques.md and beat-direction.md use 30px blur and a 1.0s power2.out entry, which conflicts with both.",
+  "Launch sound register: PLV retrieves a stock BGM bed by mood from HeyGen's library at volume 0.12 and fetches named SFX per beat (impact, whoosh for a push, riser into a reveal); the graph calls a stock music bed the AI-default of launch videos, wants either a derived one-key drone bed or the dry no-bed register, and says the brand-film register needs no whooshes because the bed carries every cut.",
+  "Ease census vs doctrine (internal to HyperFrames, relevant to the graph's numbers): the graph's census of HeyGen's own hyperframes-launches shows power2.out as the most used ease (434) with power3.out fourth (237), while the distributed doctrine now names power3 the house default; cite the census as what shipped, not as HyperFrames' current rule.",
+  "Audio lead/lag (check, not settled): motion-graphics director allows beats 'anticipated ~0.1s for perceived sync'; consistent with the graph's sound-motion-sync (audio may lag video, never lead) only if the visual leads the audio beat."
+ ]
+}
