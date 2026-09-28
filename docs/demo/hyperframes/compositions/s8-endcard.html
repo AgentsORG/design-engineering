@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #0f1013; color: #0f1013; font-family: "Instrument Sans", sans-serif; }
+        /* The carrier arrives where the last scene left it, and paper grows out of it. */
+        #s8-paper { position: absolute; left: 838px; top: 508px; width: 40px; height: 40px; border-radius: 50%; background: #f4f3ee; transform-origin: 50% 50%; }
+        #s8-dot { position: absolute; left: 843px; top: 513px; width: 30px; height: 30px; border-radius: 50%; background: #ffe53d; }
+        #s8-cam { position: absolute; inset: 0; transform-origin: 50% 50%; }
+        #s8-lock { position: absolute; left: 0; right: 0; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; }
+        #s8-mark { height: 58px; width: auto; display: block; margin-bottom: 44px; }
+        #s8-word { font-size: 150px; font-weight: 650; letter-spacing: -0.045em; line-height: 1; white-space: nowrap; }
+        #s8-word .g { display: inline-block; transform-origin: 50% 90%; color: #0f1013; }
+        #s8-word .sl { color: #0068d6; }
+        #s8-cmd { margin-top: 56px; background: #0f1013; color: #f4f3ee; border-radius: 18px; padding: 22px 34px; font-family: "JetBrains Mono", monospace; font-size: 36px; white-space: nowrap; }
+        #s8-cmd .p { color: rgba(244, 243, 238, 0.5); }
+        #s8-url { margin-top: 30px; font-family: "JetBrains Mono", monospace; font-size: 26px; color: #5f5e58; }
+      </style>
+
+      <div id="root" data-composition-id="s8" data-width="1920" data-height="1080">
+        <div id="s8-paper"></div>
+        <div id="s8-dot"></div>
+        <div id="s8-cam" data-layout-allow-overflow>
+          <div id="s8-lock">
+            <img id="s8-mark" src="assets/brand/agents-light-bg.svg" alt="AgentsORG" />
+            <div id="s8-word"><span class="g sl">/</span><span class="g">d</span><span class="g">e</span><span class="g">s</span><span class="g">i</span><span class="g">g</span><span class="g">n</span><span class="g">-</span><span class="g">e</span><span class="g">n</span><span class="g">g</span><span class="g">i</span><span class="g">n</span><span class="g">e</span><span class="g">e</span><span class="g">r</span><span class="g">i</span><span class="g">n</span><span class="g">g</span></div>
+            <div id="s8-cmd"><span class="p">$ </span>npx skills add AgentsORG/design-engineering</div>
+            <div id="s8-url">github.com/AgentsORG/design-engineering · MIT</div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const { eo } = window.FM;
+          const tl = gsap.timeline({ paused: true });
+          const F = 1 / 30;
+
+          // Paper grows out of the carrier dot and becomes the ground (a fill that arrives, so it decelerates).
+          tl.fromTo("#s8-paper", { scale: 0.75 }, { scale: 64, duration: 0.45, ease: eo(0.45, 0.1) }, 0);
+          tl.set("#s8-dot", { autoAlpha: 0 }, 0.1);
+
+          // Bookend: the name flaps in again, one slot a frame, as it did at 6.75 s.
+          const GROW = [0, 0.37, 0.6, 0.76, 0.86, 0.92, 0.96, 0.97, 0.99, 0.995, 1];
+          const DIP = [0, 4, 8, 8, 7, 5, 3, 1, 0, 0, 0];
+          document.querySelectorAll("#s8-word .g").forEach((g, i) => {
+            const t = 0.45 + i * F;
+            tl.fromTo(g, { autoAlpha: 0, scaleY: 0, y: 0 }, { autoAlpha: 1, duration: 0.001 }, t);
+            tl.to(g, { keyframes: { scaleY: GROW, y: DIP, easeEach: "none" }, duration: 11 * F, ease: "none" }, t);
+          });
+          tl.fromTo("#s8-cmd", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: eo(0.3, 0.08) }, 1.35);
+          tl.fromTo("#s8-url", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: eo(0.3, 0.08) }, 1.55);
+          tl.fromTo("#s8-mark", { autoAlpha: 0, y: -14 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: eo(0.3, 0.08) }, 1.7);
+
+          // The hold still creeps, so the last frames are never frozen.
+          tl.fromTo("#s8-cam", { scale: 1, y: 0 }, { scale: 1.13, y: -36, duration: 3.95, ease: "none" }, 0.45);
+
+          window.__timelines["s8"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

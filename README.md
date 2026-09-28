@@ -11,7 +11,7 @@
 [![CI](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml/badge.svg)](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Design engineering for AI agents — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight + [Agentation](https://www.agentation.com)), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), [DiceBear](https://www.dicebear.com) (avatars), [Index](https://index.how) (design vocabulary), Apple's audio-haptic principles, [Josh Comeau](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/) (use-sound), and [bruno / superfx](https://superfx.co) (launch-video sound) into one navigable skill graph.
+Design engineering for AI agents — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight + [Agentation](https://www.agentation.com)), [Jakub Antalik](https://transitions.dev) (transitions), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), [DiceBear](https://www.dicebear.com) (avatars), [Index](https://index.how) (design vocabulary), Apple's audio-haptic principles, [Josh Comeau](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/) (use-sound), [bruno / superfx](https://superfx.co) (launch-video sound), and 47 launch films measured frame by frame ([Skale](https://skale.solutions/portfolio)'s portfolio, HeyGen's [HyperFrames](https://github.com/heygen-com/hyperframes-launches) launches, and 18 acclaimed 2024–26 films) into one navigable skill graph.
 
 Not a tutorial. Not a doc site. **A working memory the agent loads** when you're reviewing UI code, picking an easing curve, designing a component, deciding whether a send button should make a sound, or asking "why does this feel flat?"
 
@@ -19,19 +19,37 @@ Not a tutorial. Not a doc site. **A working memory the agent loads** when you're
 npx skills add AgentsORG/design-engineering
 ```
 
-## Demo
+## Launch film
 
-![design-engineering in twelve seconds: a glyph flipbook lands the wordmark, three cards spring up, a review table streams in and a cursor saves the modal, a sound family and an SVG mascot, the install command types itself](docs/demo/design-engineering-demo.gif?v=2.4.0)
+![The first ten seconds of the launch film: "Your agent ships UI." with "UI." slamming in, AI-default tells stamping in faster and faster, a cursor pressing Review and the ink filling the frame, a Before / After / Why review striking each tell, and the name flapping in slot by slot](docs/demo/design-engineering-demo.gif?v=2.6.0)
 
-Twelve seconds, made with the skill's 2.4.0 rules and tools. [Watch the MP4 with sound](docs/demo/design-engineering-demo.mp4?v=2.4.0).
+The first ten seconds of a 34.6 s launch film for this repo, made with the skill's own rules. [Watch the whole film with sound](docs/demo/design-engineering-demo.mp4?v=2.6.0). It ends on one command: `npx skills add AgentsORG/design-engineering`.
 
-**The motion** is HeyGen's bouncy-sting register (`heygen-apple-motion/02-bouncy-ui`): arrivals relax exponentially (tau 0.131 s), placement rings on a damped spring at zeta 1/3 (position 1.45 Hz, shape 1.88 Hz, rotation 2.5 Hz), blur follows velocity, text reveals are stepped, nothing idles on a UI object, and every scene change keeps moving through its seam — a zoom-through, an edge-on collapse that unfolds, a dock, a conveyor. That is one register chosen for this demo, not a law: most of the 47 launch films measured for 2.5.0 hard-cut, on a cause or a constant ground ([`references/launch-video/`](skills/design-engineering/references/launch-video/)). **The sound** is the register measured from OpenAI's *Refreshed.* and *Introducing GPT-5*: a warm sub-heavy bed in F that carries the piece, dry clicks sitting well under it (about 19 dB below the bed across the film) on every stepped reveal, a low thud when something big settles on its spring, and the sub dropping out for half a second before the modal lands. The whole soundtrack is *derived from the motion* — nothing is picked from a library.
+**The picture** is Skale's UI-motion register, which [`pov.md`](skills/design-engineering/references/meta/pov.md) names as the default for an unspecified launch film:
+
+- The UI is rebuilt as vector and the type carries the script.
+- The newest word lands in the accent, then settles.
+- Every hold creeps on its entry vector, so no frame freezes.
+- Hard cuts hide inside a fill, on a constant ground, or on a palette flip.
+- One montage accelerates into a snap.
+- No spring overshoot and no decorative idle motion.
+
+**The sound** is OpenAI's register, derived from the motion: a warm sub-heavy bed in F, dry clicks on every stamp and thuds on the big landings. The sub is pulled before the name, before the counters snap and before Enter. Nothing is picked from a library.
+
+**Measured like the corpus.** The render was measured at its native frame rate with the same script that measured the 47 reference films ([`docs/research/launch-films/`](docs/research/launch-films/)):
+
+- One detectable hard cut in 34.6 s (the palette flip); the others sit inside fills.
+- 6.8 % of frames still (Skale's UI-motion films: 9 %).
+- 45 moves a minute, with a 0.52 s median.
+- The first word at 0.07 s, the name at 6.75 s (19 % of the runtime), a 4.4 s endcard.
+- −18.5 LUFS integrated, −2.2 dBTP; half of the strong hits land within 67 ms of a motion peak.
 
 | What you see | What made it |
 |---|---|
-| The composition | [`docs/demo/hyperframes/index.html`](docs/demo/hyperframes/index.html), a [HyperFrames](https://www.skills.sh/heygen-com/hyperframes/hyperframes) project in the shape HeyGen uses for its own launches. The ease functions, the spring, and the seams are written once at the top of the file. A [storyboard](docs/demo/hyperframes/STORYBOARD.md) carries the act table and the audio cue map, a [seam ledger](docs/demo/hyperframes/ledger.json) the four seams and the system constants, and `check` passes with zero layout or contrast findings. `launch-video-motion`, `launch-video-seams`. |
-| The sound | One stereo stem rendered by `scripts/sound-sheet.mjs` from a [cue sheet](docs/demo/hyperframes/assets/sfx/cues.json): a bed with its act-by-act gain arc, one dropout, and ducking under every thud, plus 81 onsets from 31 cues, each with its contact frame and its box on the canvas. Size sets pitch, x sets pan, y sets brightness, a stepped reveal sets the click cadence. The six product one-shots in the same folder come from the same voices (`--family`). The register's numbers were measured from the two OpenAI films with the scripts in [`docs/research/launch-register/`](docs/research/launch-register/). `sound-from-motion`, `launch-video-sound`, `sound-motion-sync`. |
-| The mascot | Eight flat SVG frames through `scripts/svg-flipbook.mjs --vars`: one 5.7 KB file, colors lifted to CSS variables, driven by the composition timeline. |
+| The composition | [`docs/demo/hyperframes/`](docs/demo/hyperframes/): a [HyperFrames](https://www.skills.sh/heygen-com/hyperframes/hyperframes) 0.8.82 project with one sub-composition per scene. The eases are in [`assets/film-motion.js`](docs/demo/hyperframes/assets/film-motion.js): exponential settles sized to each move and seeded typing. The [storyboard](docs/demo/hyperframes/STORYBOARD.md) carries the register, the acts, the cue map and HyperFrames blueprint citations for every scene. `check` passes with 0 errors, 0 warnings and 75/75 contrast checks. `launch-video-registers`, `launch-video-structure`, `launch-video-type` |
+| The seams | Eight, typed in the [ledger](docs/demo/hyperframes/ledger.json): a click that fills the frame, a cut on a constant ground, a dive through the caret, cut-the-curve on the film's leftward current, a playhead that widens into a fill, a rising hard cut on a palette flip, and a carrier dot that paper grows out of. Seam values are HyperFrames' stamp values, written by hand. `launch-video-seams`, `launch-video-cuts`, `hyperframes-reconciliation` |
+| The sound | One stereo stem rendered by `scripts/sound-sheet.mjs` from a [cue sheet](docs/demo/hyperframes/assets/sfx/cues.json): 138 cues, 240 onsets, three dropouts, keystrokes on their seeded onsets. Each cue sits on its motion's contact frame; size sets pitch and x sets pan. In the sound scene, the on-screen events play the sounds they are labelled with. `launch-video-sound`, `sound-from-motion`, `sound-motion-sync` |
+| The type | Instrument Sans (OFL, shipped in `assets/fonts/`) with JetBrains Mono as the system voice. Words land 0.167 s apart, and the command types at 15.4 characters a second, read speed. |
 
 Re-render it yourself:
 
@@ -41,20 +59,24 @@ cd docs/demo/hyperframes && npm run check && npm run render
 
 ## What `/design-engineering` produces
 
-Frames from the demo, each a real output shape of the skill.
+Frames from the film, each an output shape of the skill.
 
 <table>
 <tr>
-<td width="50%"><img src="docs/demo/screenshots/01-title.png?v=2.4.0" alt="The wordmark, just landed on a spring, with the thesis streaming in word by word"><br><sub><b>The wordmark lands.</b> A glyph flipbook at seven frames a step, then the word settles on a damped spring with its blur clearing; the thesis pops in a word every 110 ms, each a click in the stem. <code>launch-video-motion</code>, <code>sound-from-motion</code></sub></td>
-<td width="50%"><img src="docs/demo/screenshots/02-router.png?v=2.4.0" alt="The router: contract, phase, one owner"><br><sub><b>The router.</b> Before reading anything, <code>/design-engineering</code> resolves the design contract, classifies the phase, and hands the job to one owner — a node, a subagent, or an installed companion. The cards sprang up with a rotation ring and built line by line. <code>references/meta/skill-router.md</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/01-hook.png?v=2.6.0" alt="Your agent ships UI. It also ships this. AI-default tells scattered around a Review pill"><br><sub><b>The hook.</b> A word on screen at 0.07 s. "UI." slams in at about 5× and jumps into its sentence in one frame; nine AI-default tells stamp in faster and faster; the press on Review fills the frame. <code>launch-video-structure</code>, <code>launch-video-type</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/02-review.png?v=2.6.0" alt="A Before / After / Why review table on ink, each Before struck through"><br><sub><b>A review.</b> Every UI review is a Before | After | Why table. Each tell is struck and its fix stamped row by row, with the node that owns the rule. <code>review-format</code>, <code>ai-default-tells</code></sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/demo/screenshots/03-review-and-modal.png?v=2.4.0" alt="A Before / After / Why review table beside the fixed modal, the cursor pressing Save"><br><sub><b>A review, then the fix.</b> Every UI review is a Before | After | Why table scanned against the thirteen-row checklist; the modal on the right is what the After column ships — and a cursor presses Save. <code>review-format</code>, <code>review-checklist</code></sub></td>
-<td width="50%"><img src="docs/demo/screenshots/06-cursor-toggle.png?v=2.4.0" alt="The cursor flipping the sound toggle in the modal"><br><sub><b>An interaction, stepped.</b> The cursor arrives on an exponential curve and the toggle is a decision: the knob seats on a spring, the track turns blue, and the stem gets two clicks — the press and the seat. <code>responsive-feedback</code>, <code>sound-motion-sync</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/03-name.png?v=2.6.0" alt="/design-engineering in yellow and paper on ink, a caret block after it"><br><sub><b>The name.</b> Half a second of held stillness with the sub pulled. Then the name flaps in one slot a frame, and the camera dives through the caret into the next scene. <code>launch-video-seams</code>, <code>launch-video-sound</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/04-motion.png?v=2.6.0" alt="A settings modal beside a plotted cubic-bezier curve with a dot at its end"><br><sub><b>Motion, with numbers.</b> A press opens the modal on the same frame, on <code>cubic-bezier(.23,1,.32,1)</code>, shown at ¼ speed while a dot rides the curve and the readouts count to 200 ms. <code>easing-curves</code>, <code>duration-table</code></sub></td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/demo/screenshots/04-sound-and-svg.png?v=2.4.0" alt="Six generated UI sounds and an SVG mascot flipbook"><br><sub><b>Sound and vectors.</b> A six-sound family from the same voices that score the video — dry clicks and a low thud on the bed's root — rendered by <code>sound-sheet.mjs</code>, riding in on a conveyor; and a mascot flipbook from <code>svg-flipbook.mjs</code> whose stage grew from where the modal docked. <code>sound-from-motion</code>, <code>launch-video-sound</code>, <code>video-to-vector-pipeline</code></sub></td>
-<td width="50%"><img src="docs/demo/screenshots/05-install.png?v=2.4.0" alt="Ten clusters, nine subagents, one router, and the install command"><br><sub><b>Ten clusters, nine subagents, one router</b> (the 2.4.0 frame; 2.5.0 ships eleven clusters and ten subagents). The command rose as a sent pill, typed itself in five chunks, and popped on success. Installs into any agent that reads a <code>SKILL.md</code>; slash commands and subagents ship for Claude Code, Cursor, and Codex.</sub></td>
+<td width="50%"><img src="docs/demo/screenshots/05-sound.png?v=2.6.0" alt="Five UI events on a lane, a waveform under each, a playhead at the end"><br><sub><b>Sound from motion.</b> A playhead crosses five UI events, and each plays the sound its size, position and contact frame produce. The same renderer scored this film. <code>sound-from-motion</code>, <code>sound-motion-sync</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/06-measured.png?v=2.6.0" alt="Launch films, measured: 47, 3,446, 116 on blue"><br><sub><b>Launch films, measured.</b> Fourteen findings from 47 films stamp in, accelerate into a blur, and snap to three counters that settle and flash on landing. <code>launch-video-registers</code>, <code>docs/research/launch-films/</code></sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/demo/screenshots/07-install.png?v=2.6.0" alt="Give your agent taste. The install command in a terminal pill with a confirmation line"><br><sub><b>The call to action.</b> <code>npx skills add AgentsORG/design-engineering</code> is typed at read speed with a seeded human rhythm. The sub drops out, Enter lands, and the pill pops. <code>launch-video-ui-demo</code></sub></td>
+<td width="50%"><img src="docs/demo/screenshots/08-endcard.png?v=2.6.0" alt="Endcard: the AgentsORG mark, /design-engineering, the install command and the repository URL"><br><sub><b>The endcard.</b> The pill collapses to a dot, paper grows out of it, and the name flaps in again as a bookend. The endcard runs 4.4 s, with a 2.4 s hold that still creeps. Installs into any agent that reads a <code>SKILL.md</code>.</sub></td>
 </tr>
 </table>
 
@@ -345,7 +367,7 @@ design-engineering/
 ├── docs/brand/                        ← AgentsORG wordmark (light / dark) and icon
 ├── docs/research/launch-register/     ← the scripts and summaries that measured the OpenAI launch-film register
 ├── docs/research/launch-films/        ← the native-fps measurements behind the launch-video cluster: 29 Skale pieces, 18 acclaimed films, 3 HeyGen renders
-├── docs/demo/                         ← the README demo: HyperFrames source + storyboard + ledger, MP4/GIF, screenshots, the stem and cue sheet
+├── docs/demo/                         ← the launch film: HyperFrames source + storyboard + ledger, MP4/GIF, screenshots, the stem and cue sheet
 ├── template/TEMPLATE.md
 └── skills/design-engineering/         ← THE KNOWLEDGE (portable core)
     ├── SKILL.md                       ← thin Map of Content

@@ -6,6 +6,42 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.6.0] — 2026-09-28
+
+This repo's own launch film, built on the 2.5.0 rules and measured the way the 47 reference films were. HKTITAN's launch-film taste is written into `pov.md`, the router's launch-film path is spelled out, and the description is trimmed under the Agent Skills limit.
+
+### Added — the launch film
+
+- **`docs/demo/hyperframes/`** is rebuilt as a 34.6 s launch film in eight sub-compositions, on hyperframes 0.8.82. `check` passes with 0 errors, 0 warnings and 75/75 contrast.
+  - **Arc:** a hook with a slammed "UI." and nine AI-default tells, a Before / After / Why review, and the name flapping in slot by slot. Then motion with numbers (a modal and a plotted curve on one ease), sound derived from motion, 47 films measured (an accelerating montage that snaps to counters), the CTA `npx skills add AgentsORG/design-engineering` typed at read speed, and a bookend endcard.
+  - **Seams:** eight, typed in `ledger.json` using HyperFrames' stamp values. They are a click that fills the frame, a constant ground, a dive through the caret, cut-the-curve on a leftward current, a playhead that widens into a fill, a rising cut on a palette flip, and a carrier dot.
+  - **Storyboard:** `STORYBOARD.md` carries the register, the acts, the cue map and a HyperFrames blueprint citation per scene. Shared eases and seeded typing live in `assets/film-motion.js`. Instrument Sans (OFL) ships with its licence.
+- **Sound:** one stem from `assets/sfx/cues.json` through `sound-sheet.mjs`. It has 138 cues and 240 onsets, a bed in F with three dropouts (before the name, before the snap, before Enter), and keystrokes on their seeded onsets, with no library files.
+- **Measured** with `docs/research/launch-films/measure.py` at native fps:
+  - one detectable hard cut in 34.6 s;
+  - 6.8 % of frames still (Skale's UI-motion films: 9 %);
+  - 45 moves a minute, with a 0.52 s median;
+  - the name at 19 % of the runtime and a 4.4 s endcard;
+  - −18.5 LUFS and −2.2 dBTP in the rendered file, with half of the strong hits within 67 ms of a motion peak.
+- **README:** "Demo" becomes "Launch film", with the first ten seconds as a GIF, the whole film as an MP4 with sound, the measured numbers, and eight gallery frames.
+
+### Changed
+
+- **`pov.md`** gains "Launch films (HKTITAN)", plus a row in the override table:
+  - An unspecified launch film gets Skale's UI-motion register, with bounce only on request.
+  - "Lively" means creep, accelerating rhythm and causality.
+  - Sound is OpenAI's register B, derived from motion; a beat track only when its drop can be placed on the picture.
+  - Every film ships with its numbers.
+- **`skill-router`** gains "5. A launch film, end to end": the contract, then taste; decide the film; plan, then build in HyperFrames; lock the picture, then score it; measure the render. A film this graph directs builds in `general-video` with `flow: companion`; `product-launch-video` runs its own voice-over and library-music pipeline.
+- **`SKILL.md` description** trimmed from 1,515 to 1,010 characters, under the Agent Skills limit of 1,024. The trigger clauses are kept and the source list compressed. Four blind judges (Claude Opus and Sonnet, each on the old and the new description) scored 51/51 on the 41 `loading.jsonl` rows plus 10 new hard cases, with identical decisions. The 10 cases are added to `loading.jsonl`, and the report is in `evals/results/2026-09-28-routing/`. No GPT-class judge was run.
+- **`launch-video-seams`** and **`sound-from-motion`** take their examples and numbers from the new film.
+- **HyperFrames CLI pin:** 0.8.29 → 0.8.82. The 2.4.0 composition passed `check` on 0.8.82 before it was replaced.
+- Version 2.6.0 across all eight manifests; registry rebuilt.
+
+### Removed
+
+- The 2.4.0 demo's mascot flipbook, its six product one-shots and its six screenshots. They remain in git history, and `svg-flipbook.mjs` and `sound-sheet.mjs --family` still make them.
+
 ## [2.5.0] — 2026-09-28
 
 Launch films, measured. Skale's whole portfolio (28 client films and the 2025 reel), 18 acclaimed 2024–2026 launch films (Linear, Raycast, Cursor, Notion, Figma, Framer, Arc, Spline, Granola, Apple, Anthropic, Google; studios BUCK, Studio Freight, Ordinary Folk) and HeyGen's open launch source and HyperFrames skills, studied frame by frame at native frame rate. The result is a new cluster, and a correction of what 2.4.0 said about launch films.

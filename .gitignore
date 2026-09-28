@@ -25,3 +25,7 @@ docs/research/**/*.jpg
 docs/research/**/*.jpeg
 docs/research/**/*.png
 docs/research/**/frames/
+
+# HyperFrames project outputs: the master render and snapshots stay local (the README carries a re-encoded MP4)
+docs/demo/hyperframes/renders/
+docs/demo/hyperframes/snapshots/

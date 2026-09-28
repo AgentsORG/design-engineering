@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Instrument Sans"; src: url("assets/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; font-stretch: 75% 100%; font-display: block; }
+        #root { position: absolute; inset: 0; overflow: hidden; background: #f4f3ee; color: #0f1013; font-family: "Instrument Sans", sans-serif; }
+        #s4-cam { position: absolute; inset: 0; transform-origin: 50% 50%; }
+        #s4-eye { position: absolute; left: 160px; top: 168px; font-family: "JetBrains Mono", monospace; font-size: 26px; color: #0068d6; }
+        #s4-h { position: absolute; left: 160px; top: 218px; width: 780px; font-size: 92px; font-weight: 620; letter-spacing: -0.035em; line-height: 1; white-space: nowrap; }
+        #s4-h .w { display: inline-block; margin-right: 0.24em; }
+        #s4-h .br { display: block; height: 0; }
+        #s4-h .mk { color: #0068d6; }
+        #s4-open { position: absolute; left: 160px; top: 440px; height: 76px; padding: 0 32px; border-radius: 999px; background: #0f1013; color: #f4f3ee; font-size: 32px; font-weight: 560; display: flex; align-items: center; transform-origin: 50% 50%; }
+        #s4-modal { position: absolute; left: 160px; top: 562px; width: 660px; background: #fff; border-radius: 22px; padding: 34px 36px; transform-origin: 50% 50%;
+          box-shadow: 0 0 0 1px rgba(15, 16, 19, 0.06), 0 2px 4px rgba(15, 16, 19, 0.04), 0 24px 48px -16px rgba(15, 16, 19, 0.18); }
+        #s4-modal h3 { font-size: 36px; font-weight: 620; letter-spacing: -0.02em; }
+        #s4-modal p { font-size: 24px; color: #5f5e58; margin-top: 10px; line-height: 1.35; }
+        #s4-modal .row { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; font-size: 24px; }
+        #s4-modal .tog { width: 60px; height: 34px; border-radius: 999px; background: #0068d6; position: relative; }
+        #s4-modal .tog i { position: absolute; top: 4px; right: 4px; width: 26px; height: 26px; border-radius: 50%; background: #fff; }
+        #s4-modal .act { display: flex; justify-content: flex-end; gap: 14px; margin-top: 30px; }
+        #s4-modal .btn { height: 54px; padding: 0 22px; border-radius: 12px; font-size: 24px; font-weight: 600; display: flex; align-items: center; }
+        #s4-modal .btn.g { box-shadow: 0 0 0 1px rgba(15, 16, 19, 0.14); }
+        #s4-modal .btn.f { background: #0068d6; color: #fff; }
+        #s4-plot { position: absolute; left: 1000px; top: 150px; width: 760px; height: 720px; background: #fff; border-radius: 26px;
+          box-shadow: 0 0 0 1px rgba(15, 16, 19, 0.06), 0 2px 4px rgba(15, 16, 19, 0.04), 0 24px 48px -16px rgba(15, 16, 19, 0.16); }
+        #s4-plot .lab { position: absolute; left: 40px; top: 34px; font-family: "JetBrains Mono", monospace; font-size: 26px; color: #0f1013; }
+        #s4-plot svg { position: absolute; left: 100px; top: 110px; overflow: visible; }
+        #s4-plot .axis { font-family: "JetBrains Mono", monospace; font-size: 20px; fill: #5f5e58; }
+        #s4-read { position: absolute; left: 40px; top: 598px; display: flex; gap: 44px; font-family: "JetBrains Mono", monospace; font-size: 28px; }
+        #s4-read span b { font-weight: 400; color: #5f5e58; margin-right: 10px; }
+        #s4-slow { position: absolute; right: 40px; top: 40px; font-family: "JetBrains Mono", monospace; font-size: 21px; color: #5f5e58; }
+        #s4-cur { position: absolute; left: 0; top: 0; width: 134px; height: 172px; z-index: 20; transform-origin: 11% 6%; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.3)); }
+      </style>
+
+      <div id="root" data-composition-id="s4" data-width="1920" data-height="1080">
+        <div id="s4-cam" data-layout-allow-overflow>
+          <div id="s4-eye">easing-curves · duration-table</div>
+          <div id="s4-h"><span class="w">Motion,</span><span class="br"></span><span class="w">with</span><span class="w mk">numbers.</span></div>
+          <div id="s4-open">Open settings</div>
+          <div id="s4-modal">
+            <h3>Notification settings</h3>
+            <p>Choose how the workspace gets your attention.</p>
+            <div class="row"><span>Sound on send</span><span class="tog"><i></i></span></div>
+            <div class="act"><span class="btn g">Cancel</span><span class="btn f">Save changes</span></div>
+          </div>
+          <div id="s4-plot">
+            <div class="lab">cubic-bezier(.23, 1, .32, 1)</div>
+            <div id="s4-slow">shown at ¼ speed</div>
+            <svg width="560" height="440" viewBox="0 0 560 440" aria-hidden="true">
+              <line x1="0" y1="440" x2="560" y2="440" stroke="rgba(15,16,19,.18)" stroke-width="2" />
+              <line x1="0" y1="0" x2="0" y2="440" stroke="rgba(15,16,19,.18)" stroke-width="2" />
+              <line x1="0" y1="0" x2="560" y2="0" stroke="rgba(15,16,19,.08)" stroke-width="2" stroke-dasharray="6 8" />
+              <text class="axis" x="0" y="474">0</text><text class="axis" x="500" y="474">200 ms</text>
+              <line id="s4-gx" x1="0" y1="440" x2="0" y2="440" stroke="#008fff" stroke-width="2" stroke-dasharray="4 6" />
+              <line id="s4-gy" x1="0" y1="440" x2="0" y2="440" stroke="#008fff" stroke-width="2" stroke-dasharray="4 6" />
+              <path id="s4-curve" d="M0 440 C128.8 0 179.2 0 560 0" fill="none" stroke="#0f1013" stroke-width="5" stroke-linecap="round" />
+              <circle id="s4-dot" cx="0" cy="440" r="13" fill="#008fff" />
+            </svg>
+            <div id="s4-read"><span><b>t</b><em id="s4-ms" style="font-style:normal">0 ms</em></span><span><b>scale</b><em id="s4-sc" style="font-style:normal">0.95</em></span><span><b>opacity</b><em id="s4-op" style="font-style:normal">0.00</em></span></div>
+          </div>
+          <svg id="s4-cur" viewBox="0 0 28 36" aria-hidden="true"><path d="M3 2 L3 28 L9.5 22 L14 33 L18.5 31 L14 20.5 L23 20.5 Z" fill="#0f1013" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" /></svg>
+        </div>
+      </div>
+
+      <script>
+        (() => {
+          const { eo, words, bezier } = window.FM;
+          const tl = gsap.timeline({ paused: true });
+          const INK = "#0f1013";
+          const UI = bezier(0.23, 1, 0.32, 1);
+
+          // Seam in: still pushing forward from the caret dive (Z seam: 0.78 → 1, expo.out, text-scale blur 10 px).
+          tl.fromTo("#s4-cam", { scale: 0.78, opacity: 0.15, filter: "blur(10px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 0);
+          tl.fromTo("#s4-cam", { scale: 1, x: 0 }, { scale: 1.07, x: -60, duration: 3.53, ease: "none", immediateRender: false }, 0.5);
+
+          tl.fromTo("#s4-eye", { autoAlpha: 0, x: -24 }, { autoAlpha: 1, x: 0, duration: 0.3, ease: eo(0.3, 0.08) }, 0.15);
+          words(tl, document.querySelectorAll("#s4-h .w"), 0.2, 0.167, { base: INK });
+          tl.fromTo("#s4-plot", { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: eo(0.45, 0.12) }, 0.35);
+          tl.fromTo("#s4-open", { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1, duration: 0.25, ease: eo(0.25, 0.07) }, 0.7);
+
+          // The curve draws itself.
+          const curve = document.getElementById("s4-curve");
+          const len = curve.getTotalLength();
+          curve.style.strokeDasharray = `${len}`;
+          tl.fromTo(curve, { strokeDashoffset: len }, { strokeDashoffset: 0, duration: 0.5, ease: eo(0.5, 0.14) }, 0.55);
+
+          // The cursor arrives tip-first and presses; the modal opens on the same frame, on the same curve,
+          // at a quarter of its 200 ms while the dot rides the plot and the readouts count.
+          tl.fromTo("#s4-cur", { x: 700, y: 1240, filter: "blur(6px)" }, { x: 380, y: 472, filter: "blur(0px)", duration: 0.3, ease: eo(0.3, 0.08) }, 1.0);
+          tl.to("#s4-cur", { scale: 0.84, duration: 0.05, ease: "none" }, 1.4);
+          tl.to("#s4-open", { scale: 0.95, duration: 0.05, ease: "none" }, 1.4);
+          tl.to("#s4-cur", { scale: 1, duration: 0.2, ease: eo(0.2, 0.06) }, 1.45);
+          tl.to("#s4-open", { scale: 1, duration: 0.2, ease: eo(0.2, 0.06) }, 1.45);
+          tl.fromTo("#s4-modal", { autoAlpha: 0, scale: 0.95 }, { autoAlpha: 1, scale: 1, duration: 0.8, ease: UI }, 1.45);
+          tl.to("#s4-cur", { x: 560, y: 1200, duration: 0.35, ease: "power3.in" }, 2.35);
+
+          const dot = document.getElementById("s4-dot"), gx = document.getElementById("s4-gx"), gy = document.getElementById("s4-gy");
+          const ms = document.getElementById("s4-ms"), sc = document.getElementById("s4-sc"), op = document.getElementById("s4-op");
+          const st = { u: 0 };
+          const draw = () => {
+            const e = UI(st.u), x = st.u * 560, y = 440 - e * 440;
+            dot.setAttribute("cx", x.toFixed(2)); dot.setAttribute("cy", y.toFixed(2));
+            gx.setAttribute("x1", x.toFixed(2)); gx.setAttribute("x2", x.toFixed(2)); gx.setAttribute("y2", y.toFixed(2));
+            gy.setAttribute("y1", y.toFixed(2)); gy.setAttribute("y2", y.toFixed(2)); gy.setAttribute("x2", x.toFixed(2));
+            ms.textContent = `${Math.round(st.u * 200)} ms`;
+            sc.textContent = (0.95 + 0.05 * e).toFixed(2);
+            op.textContent = e.toFixed(2);
+          };
+          tl.fromTo(st, { u: 0 }, { u: 1, duration: 0.8, ease: "none", onUpdate: draw }, 1.45);
+
+          // Seam out: cut the curve, leftward (the film's current). Stamp values: power3.in 0.34 s to 12 %.
+          tl.to("#s4-cam", { x: -230, duration: 0.34, ease: "power3.in" }, 4.06);
+          tl.to("#s4-cam", { opacity: 0, duration: 0.34, ease: "none" }, 4.06);
+
+          window.__timelines["s4"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

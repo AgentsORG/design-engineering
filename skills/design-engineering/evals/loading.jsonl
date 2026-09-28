@@ -39,3 +39,13 @@
 {"query": "review the pacing of our launch film render — does it feel like a slideshow?", "should_load": true, "reason": "launch-video-review"}
 {"query": "render my HyperFrames composition to mp4 at 4K", "should_load": false, "reason": "hyperframes-cli owns rendering — no craft decision"}
 {"query": "transcribe the voiceover in this launch video", "should_load": false, "reason": "speech-to-text — transcription, not launch-film craft"}
+{"query": "make our settings modal animation feel less janky", "should_load": true, "reason": "motion review: animation-decision-framework + duration-table + easing-curves"}
+{"query": "what would Emil Kowalski change about this toast animation?", "should_load": true, "reason": "named source: Emil Kowalski (sonner-principles, easing-curves)"}
+{"query": "how would Benji Taylor design this bottom tray?", "should_load": true, "reason": "named source: Benji Taylor (tray-rules)"}
+{"query": "score our launch video with sound derived from the animation", "should_load": true, "reason": "launch-video-sound + sound-from-motion"}
+{"query": "give me an OKLCH palette for dark mode with accessible contrast", "should_load": true, "reason": "color-scales-oklch + contrast-and-color-scheme"}
+{"query": "turn this MP4 logo animation into an editable animated SVG", "should_load": true, "reason": "video-to-vector-pipeline"}
+{"query": "trim the silence at the start of this podcast episode", "should_load": false, "reason": "audio editing, not UI sound design"}
+{"query": "write a SQL migration that adds a column to the users table", "should_load": false, "reason": "backend data work — no design decision"}
+{"query": "set up Clerk authentication in a Next.js app", "should_load": false, "reason": "auth integration — no design decision"}
+{"query": "our launch film feels like a slideshow — how many cuts per minute should it have?", "should_load": true, "reason": "launch-video-registers + launch-video-cuts"}

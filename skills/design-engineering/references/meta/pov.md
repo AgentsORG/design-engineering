@@ -1,7 +1,7 @@
 ---
 title: pov
-summary: Installer's opinions and taste calls. This install is forked to Duolingo's design language — physical buttons, meaning-bearing color, rounded lowercase type, celebration on the reward beat.
-tags: [pov, opinion, customizable, duolingo]
+summary: Installer's opinions and taste calls. This install is forked to Duolingo's design language — physical buttons, meaning-bearing color, rounded lowercase type, celebration on the reward beat — plus HKTITAN's launch-film calls (Skale's UI-motion register, sound derived from motion).
+tags: [pov, opinion, customizable, duolingo, launch-video]
 ---
 
 # Point of View
@@ -177,6 +177,7 @@ Two things outrank every taste call above.
 | [[delight-impact-curve]] | Daily moments get a tick | Daily reward beat gets medium-tier celebration |
 | [[hover-states-subtle]] | 1px shifts, no lift | Press compresses 4px; hover lightens the fill |
 | [[visual-imperfection]] | Imperfection lives on marketing surfaces | Warmth comes from rounded geometry and characters, not from texture or wobble |
+| [[launch-video-registers]] | Pick the register from the product and the brief | Unspecified launch films default to Skale's UI-motion register; bounce only on request |
 
 Everything not listed is unchanged. [[states-are-the-work]], [[data-is-content]], [[dependency-discipline]], [[transform-opacity-only]], [[never-scale-from-zero]], and [[feeling-right]] apply exactly as written.
 
@@ -191,6 +192,15 @@ When reviewing UI in a product built on this language, the [[review-format]] tab
 > - I always prefer ____ over ____.
 > - In my products, ____ is non-negotiable.
 > - Skip ____, even if the rest of the skill recommends it. The reason is ____.
+
+### Launch films (HKTITAN)
+
+The Duolingo sections above govern product UI. A rendered launch film follows these calls instead:
+
+- **Default register.** An unspecified "make a launch video" gets Skale's UI-motion register ([[launch-video-registers]]): rebuilt UI on a light ground with one accent, type as the script, the newest word in the accent before it settles, holds that creep on their entry vector (still share near 10 %), and hard cuts hidden on a cause, a constant ground or inside a fill ([[launch-video-cuts]]). HeyGen's bouncy sting (zeta 1/3) only when someone asks for bounce.
+- **"Lively" and "crazy" mean density and causality, not bounce.** Camera creep under every hold, rhythm that accelerates into a snap, a click that starts its consequence on the same frame, a glyph the camera dives through ([[launch-video-motion]], [[launch-video-seams]]).
+- **Sound is OpenAI's register B, derived from the motion:** a bed in one key, clicks on the stamps, thuds on the landings, something taken away just before the name ([[launch-video-sound]], [[sound-from-motion]]). A licensed beat track only when its drop and breakdowns can be placed on picture events ([[launch-video-music]]). Never library blips dropped on frames.
+- **Every film ships with its numbers** (cuts a minute, still share, loudness), measured on the render before it goes out ([[launch-video-review]]).
 
 ## Gotcha
 
