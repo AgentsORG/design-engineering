@@ -68,7 +68,7 @@ Deriving is not the same as sonifying. If a scene has forty tweens, it does not 
 
 ## Sources
 
-- HKTITAN — `sound-sheet.mjs` and the demo cue sheet in `docs/demo/hyperframes/assets/sfx/cues.json` (81 onsets from 31 cues, a bed with one dropout, integrated −16.0 LUFS, true peak −0.9 dBTP).
+- HKTITAN — `sound-sheet.mjs` and the launch film's cue sheet in `docs/demo/hyperframes/assets/sfx/cues.json` (240 onsets from 138 cues, a bed with three dropouts, stem −15.4 LUFS integrated and −1.4 dBTP true peak; −18.5 LUFS in the rendered film).
 - OpenAI, *Refreshed.* and *Introducing GPT-5* — the bed-and-clicks register, measured; hit-versus-sub levels and band p95 in `docs/research/launch-register/*-summary.json` (analysis3), the rest in [[launch-video-sound]].
 - HeyGen, *hyperframes-launches* (Apache-2.0) — some storyboards (sfx-music-launch, hyperframes-launch, website-to-hyperframes) carry an audio cue map, but most sources shipped silent with the mix done in post; three soundtracks were recovered from published renders (commits 2a439ec, dd128ad); `claude-paper-launch/index.html` L168–252 for typing-tick timing (74 typing clips over 227 typed characters, 71 intervals) and `claude-paper-launch/compositions/chat-response.html` L325–338 for the humanizing formula.
 - Linear Agent (2026), Raycast (2025) — foley band, levels and harmony; Skale's Contra Indy (sub pulled 0.25–0.5 s before reveals) and Taste Labs (0.9 s at −42 dB before the raise is named). Measured by HKTITAN 2026-09-28; `docs/research/launch-films/notes/synthesis-acclaimed.md`, `notes/synthesis-skale.md`.
