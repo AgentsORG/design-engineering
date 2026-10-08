@@ -61,3 +61,9 @@
 {"query": "HyperFrames' launch workflow defaults to a crossfade but its motion doctrine says never — which one goes in this composition?", "expected_nodes": ["hyperframes-reconciliation"], "forbidden_nodes": ["cross-blur-transitions"]}
 {"query": "what loudness should a 60-second launch walkthrough be mastered to, and does it need UI click sounds?", "expected_nodes": ["launch-video-sound"], "forbidden_nodes": ["sound-spec"]}
 {"query": "we're using a licensed music track under the launch video with a voice-over — where should the drop go and how loud is the bed?", "expected_nodes": ["launch-video-music"], "forbidden_nodes": ["sound-palette"]}
+{"query": "draw an architecture diagram of our deploy pipeline for the docs", "expected_nodes": ["diagram-decision"], "forbidden_nodes": ["svg-animation"]}
+{"query": "our diagram has eleven boxes, diagonal arrows and labels sitting on the lines — what's wrong with it?", "expected_nodes": ["diagram-craft"], "forbidden_nodes": ["svg-path-morphing"]}
+{"query": "diagram-design wants warm off-white paper but our .design surface token is pure white — which wins?", "expected_nodes": ["diagram-design-reconciliation"], "forbidden_nodes": ["dark-mode"]}
+{"query": "the steps in our animated diagram run at 480ms and the motion review says that's too slow for UI", "expected_nodes": ["diagram-design-reconciliation"], "forbidden_nodes": ["duration-table"]}
+{"query": "connect the cards on my tldraw board so the arrows stay attached when people drag them", "expected_nodes": ["tldraw-canvas"], "forbidden_nodes": ["fly-not-teleport"]}
+{"query": "draw this logo path on with GSAP DrawSVG", "expected_nodes": ["svg-animation"], "forbidden_nodes": ["svg-path-morphing"]}

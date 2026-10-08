@@ -25,7 +25,7 @@ An SVG is markup, not a picture, and the quality of the markup decides everythin
 
 ## Optimize, carefully
 
-Run SVGO (`npx svgo file.svg --multipass`), but keep `viewBox` (`removeViewBox: false`), keep the ids and `data-*` you animate against (`cleanupIds` off for those), and keep `<title>`/`<desc>`. Round path precision to 1–2 decimals; strip editor metadata, empty groups, and default attributes. Check the result renders identically before committing.
+Run SVGO (`npx svgo file.svg --multipass`), but keep `viewBox` (`removeViewBox: false`), keep the ids and `data-*` you animate against (`cleanupIds` off for those), and keep `<title>`/`<desc>`. When several SVGs are inlined on one page, prefix their ids (`prefixIds`) so markers and gradients don't collide. Round path precision to 1–2 decimals; strip editor metadata, empty groups, and default attributes. Check the result renders identically before committing.
 
 ## Accessibility
 
@@ -47,4 +47,5 @@ Inline `<style>` inside an SVG becomes global CSS the moment the SVG is inlined 
 
 - W3C SVG 2; SVGO documentation.
 - supermemoryai/skills `svg-animations` — viewBox, defs, and grouping practices; HKTITAN — token-aware authoring and the generated-SVG tells.
+- iart-ai/web-animation-skills (MIT) `svg-animation`, and Cathryn Lavery's `diagram-design` `export_svg.py` (namespaced `<defs>` ids) — prefixing ids on inlined SVGs.
 - Related: [[icon-systems]], [[svg-animation]], [[svg-path-morphing]], [[vibe-to-generator]].

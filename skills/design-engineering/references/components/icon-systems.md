@@ -14,6 +14,8 @@ The single most important rule: **never mix icon packs**. The eye notices instan
 
 If you started with Material Icons and now want a feature that needs a custom icon, draw the custom icon to match Material's style (rounded, filled, 24px viewbox). Don't reach for Heroicons "just for this one."
 
+To fetch icons, `better-icons` searches Iconify's sets from the CLI or an MCP server. Always pass `--prefix <your pack>`: its similar-icon tool and usage ranking pull from other packs, which this rule forbids. It never shows a set's license, so check the license yourself. Then run the [[svg-creation]] cleanup.
+
 ## Packs worth considering
 
 | Pack | Style | Best for |
@@ -70,3 +72,4 @@ Icon stroke is `stroke-width`, not `border-width`. Setting `stroke-width: 2` on 
 - guidelines.sh — "Never mix icon packs; match stroke to font weight; Lucide is overused."
 - lucide-animated.com — icon animation patterns.
 - Phosphor Icons — weight system documentation.
+- better-auth/better-icons (MIT, 1.0.5) — Iconify search and retrieval; the cross-pack pull is HKTITAN's reading of its tools.

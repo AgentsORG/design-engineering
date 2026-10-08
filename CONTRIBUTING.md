@@ -76,6 +76,7 @@ tags: [<theme>, <topic>, <topic>]
 | Motion | `references/motion/` | Animation, easing, transition, gesture |
 | Sound | `references/sound/` | Whether to make a sound, the palette, spec, playback, sound–motion sync, generation, launch-video sound registers and music placement |
 | SVG | `references/svg/` | Authoring clean SVG, animating it, morphing paths, video-to-vector mascots |
+| Diagram | `references/diagram/` | Whether to draw, which surface (figure, canvas, docs-as-code), figure craft, diagram-design reconciliation, tldraw canvases |
 | Launch video | `references/launch-video/` | Launch films, sizzles, reveals: register, structure, type, UI demo, film motion, seams, cuts, review, HyperFrames reconciliation |
 | Typography | `references/typography/` | Type, tracking, weight, hierarchy |
 | Surface | `references/surface/` | Color, shadow, radius, dark mode, imperfection |

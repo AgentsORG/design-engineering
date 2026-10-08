@@ -6,6 +6,55 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.7.0] — 2026-10-08
+
+Diagrams, canvases and SVG companions. A new `diagram/` cluster decides whether a picture earns its place and which surface it lives on. Cathryn Lavery's `diagram-design` draws the finished figures and tldraw's agent surfaces edit the canvases, both routed as companions and never copied. GreenSock's GSAP skills and `better-icons` join the router for SVG tweens and icon lookup.
+
+### Added — `references/diagram/` (new cluster: a MOC and four nodes)
+
+- **`MOC-diagram`** — a diagram as a run of decisions: whether to draw at all, which surface, the figure's craft, the contract handoff, the canvas rules.
+- **`diagram-decision`** — prose, a table or a picture; then the surface, chosen by who touches it next:
+  - readers get a finished figure from diagram-design;
+  - a team that keeps editing gets a tldraw canvas;
+  - text versioned in a repo gets a Mermaid block;
+  - a Figma team gets FigJam.
+
+  The budget is 9 nodes, 12 connectors and 2 accents, and past it the figure splits in two.
+- **`diagram-craft`** — the figure rules, for drawing without diagram-design and for reviewing a figure made with it. Delete before adding; put an accent on one or two elements; give hierarchy by node treatment; follow the six connector rules (orthogonal r=8 elbows, masked labels 6–10px clear, no stacked strokes, one attach point per connector, no transit behind a box, mask before node); keep a 4px grid and a bottom legend; use mono only for technical text; make the SVG accessible, with slug-prefixed ids.
+- **`diagram-design-reconciliation`** — inside a diagram-design file, its geometry, type ramp and motion controller win, and the project's `.design` supplies only the color roles and the type families:
+  - The contract maps onto `paper` / `ink` / `muted` / `accent` / `link` through onboarding option (d), because diagram-design's own discovery doesn't parse a `.design` file.
+  - A pure-white surface wins over its warm-paper rule.
+  - Its 480 ms step is reading pace, not a UI duration to flag.
+  - Its 8–9px labels hold only at the viewBox width.
+  - The Duolingo `pov` sections don't reach a figure.
+- **`tldraw-canvas`** — which tldraw surface owns the job: the Desktop app's `tldraw-offline` skill and subagent, the tldraw MCP app for hosted clients, or the SDK with `tldraw-migrate`. The canvas rules are bound arrows, Mermaid for structure, one shape per card, the editor's own arrange calls, lints before done, one named accent color, anchored comments, and board scripts treated as code. The two surfaces speak different shape formats.
+
+### Changed
+
+- **`skill-router`** gains four companion rows, each with its boundary: `diagram-design`, tldraw (Desktop skill, MCP app, `tldraw-migrate`), GreenSock's `gsap-plugins` for DrawSVG / MorphSVG / MotionPath, and `better-icons` for Iconify lookup. better-icons always gets a pinned `--prefix` and a hand-configured MCP server, never its config-rewriting `setup`. A "diagram or whiteboard" material route is added.
+- **`routing-table`** — three rows: should this be a diagram, draw or review a figure, edit a board.
+- **`svg-animation`** routes GSAP plugin work to `gsap-plugins`; durations, easing and reduced motion stay in the graph. **`svg-creation`** adds `prefixIds` for SVGs inlined side by side. **`icon-systems`** routes lookup to `better-icons`, with the one-pack and license caveats.
+- **`gotchas`** — supermemoryai's "bounce" `keySplines="0.34 1.56 0.64 1"` is out of SMIL's 0–1 range, so the browser rejects the animation.
+- **`SKILL.md` description** gains "drawing a diagram or tldraw canvas" and drops "'s audio-haptic principles" after "Apple" to stay under the limit (1,010 → 1,020 characters).
+  - Four blind judges (Claude Opus and Sonnet, each on the old and the new description) ran 61 `loading.jsonl` rows beside 12 competing skills, including diagram-design, tldraw-offline, tldraw-migrate, gsap-plugins and better-icons.
+  - Scores were 55/61 on the old description and 60/61 on the new one.
+  - There were no regressions on the 51 earlier rows, and every judge declined the three new negatives.
+  - The one row every arm declined, an icon lookup in an already-chosen pack, was mislabelled and is now `should_load: false`.
+  - The report is in `evals/results/2026-10-08-routing/`; no GPT-class judge was run.
+- **Evals:** 10 `loading.jsonl` rows and 6 `progressive-reads.jsonl` rows for diagrams, canvases and the SVG companions.
+- **Counts:** 12 clusters, 120 atomic nodes, 11 MOCs, across README, AGENTS.md, CONTRIBUTING.md, the Codex manifest and the registry item.
+- Version 2.7.0 across all eight manifests; registry rebuilt.
+
+### Considered and not adopted
+
+Nine other skills.sh SVG skills were read on 2026-10-08:
+
+- **Generic:** `svg-logo-designer`, `svg-icon-generator` and `svg-illustration`. `svg-logo-designer` also defaults to the indigo-to-violet gradient that `ai-default-tells` flags.
+- **Unlicensed:** `SVG-skills`, `svg-art` and `pixel2motion`.
+- **Deleted:** `svg-assembly-animator`.
+- **License conflict:** `svg-character-animation` is AGPL at the repo level and MIT in its frontmatter.
+- **Overlapping:** iart-ai's `svg-animation` overlaps `svg-animation` by about 70 %. It is cited for `prefixIds` only.
+
 ## [2.6.0] — 2026-09-28
 
 This repo's own launch film, built on the 2.5.0 rules and measured the way the 47 reference films were. HKTITAN's launch-film taste is written into `pov.md`, the router's launch-film path is spelled out, and the description is trimmed under the Agent Skills limit.

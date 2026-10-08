@@ -1,11 +1,11 @@
 ---
 name: design-engineering
-description: "Load when reviewing UI code, designing a component or layout, picking an easing curve or transition, deciding whether something should animate or make a sound, choosing typography, color (OKLCH, contrast) or avatars, writing UI copy or errors, auditing for AI-default tells, code tells or a11y misses, making a screen look less generated, consuming DESIGN.md or .design tokens, writing design-system docs for agents, giving Agentation feedback, asking why a UI feels flat or unfinished, judging when delight earns its weight, designing or generating UI sound effects and syncing them to motion, planning, cutting, scoring or reviewing a product launch video, creating or animating SVG (icons, mascots, logo reveals, video-to-vector), prototyping directions behind a picker, building a tool instead of re-prompting, or choosing which design skill should own a job. Distills Emil Kowalski, Benji Taylor, transitions.dev, guidelines.sh, Vercel, Index, Apple's audio-haptic principles and 47 measured launch films."
+description: "Load when reviewing UI code, designing a component or layout, picking an easing curve or transition, deciding whether something should animate or make a sound, choosing typography, color (OKLCH, contrast) or avatars, writing UI copy or errors, auditing for AI-default tells, code tells or a11y misses, making a screen look less generated, consuming DESIGN.md or .design tokens, writing design-system docs for agents, giving Agentation feedback, asking why a UI feels flat or unfinished, judging when delight earns its weight, designing or generating UI sound effects and syncing them to motion, planning, cutting, scoring or reviewing a product launch video, creating or animating SVG (icons, mascots, logo reveals, video-to-vector), drawing a diagram or tldraw canvas, prototyping directions behind a picker, building a tool instead of re-prompting, or choosing which design skill should own a job. Distills Emil Kowalski, Benji Taylor, transitions.dev, guidelines.sh, Vercel, Index, Apple and 47 measured launch films."
 license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: HKTITAN
-  version: "2.6.0"
+  version: "2.7.0"
   graph: true
   subagents: agents/
   soul: SOUL.md
@@ -17,7 +17,7 @@ metadata:
 
 ## How to use this skill
 
-0. `/design-engineering` is a router before it is a library: `[[skill-router]]` resolves the design contract, classifies the phase (undecided → build → refine → check → name), and hands the job to one owner — a node here, a subagent, or an installed companion skill (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI). One or two owners, never five.
+0. `/design-engineering` is a router before it is a library: `[[skill-router]]` resolves the design contract, classifies the phase (undecided → build → refine → check → name), and hands the job to one owner — a node here, a subagent, or an installed companion skill (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons). One or two owners, never five.
 1. Route first: `[[routing-table]]` maps intent → entry node for most single questions. If two intents blur, `[[disambiguation]]` names the tiebreaker. Multi-cluster jobs follow `[[stacking-chains]]`.
 2. Otherwise scan the MOCs below, pick the cluster, and open its `MOC-*.md` for the atomic nodes under it.
 3. Read only the atomic nodes that match. Each node is standalone — you don't need siblings.
@@ -64,6 +64,12 @@ The only image format that is also an interface. Author it on the token system, 
 
 - `[[MOC-svg]]` → [[svg-creation]], [[svg-animation]], [[svg-path-morphing]], [[video-to-vector-pipeline]]
 
+## Diagrams — figures, canvases, and whether to draw at all
+
+A diagram is the costliest way to say something. Decide whether a picture earns its place and who touches it next. Then draw a finished figure (Cathryn Lavery's diagram-design) or edit a live canvas (tldraw's Desktop skill or MCP app). Map the project's contract onto the figure, and review it by the connector rules.
+
+- `[[MOC-diagram]]` → [[diagram-decision]], [[diagram-craft]], [[diagram-design-reconciliation]], [[tldraw-canvas]]
+
 ## Typography — humanizing text
 
 The font defaults of the AI era are tells. Better choices and the rules around them.
@@ -98,7 +104,7 @@ What looks "AI default" and what to do instead. High-value because it's about de
 
 Procedural rules and growing files. `[[review-format]]` is mandatory when doing UI code reviews.
 
-- [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI).
+- [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw, GSAP, better-icons).
 - [[routing-table]] — Intent → entry-node router with the four postures (build / judge / decide / name). Open this before anything else on a single question.
 - [[prototype-picker]] — Undecided? Three to five genuinely different versions behind a live picker, numbers on controls, then write the decision and delete the harness.
 - [[build-a-tool]] — "Closer, but not quite" twice? Stop re-prompting; diagnose the gap and build the small tool that produces the artifact.

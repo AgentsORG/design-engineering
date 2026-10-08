@@ -49,3 +49,13 @@
 {"query": "write a SQL migration that adds a column to the users table", "should_load": false, "reason": "backend data work — no design decision"}
 {"query": "set up Clerk authentication in a Next.js app", "should_load": false, "reason": "auth integration — no design decision"}
 {"query": "our launch film feels like a slideshow — how many cuts per minute should it have?", "should_load": true, "reason": "launch-video-registers + launch-video-cuts"}
+{"query": "draw an architecture diagram of our services for the README", "should_load": true, "reason": "diagram-decision → diagram-design"}
+{"query": "turn this Mermaid flowchart into something presentable for the blog post", "should_load": true, "reason": "diagram-craft; diagram-design redraws Mermaid"}
+{"query": "should our onboarding flow be a diagram or a table in the docs?", "should_load": true, "reason": "diagram-decision"}
+{"query": "make a sequence diagram of the OAuth handshake for the security review doc", "should_load": true, "reason": "diagram-decision → diagram-design"}
+{"query": "lay out our sprint plan on my open tldraw board and connect the dependencies", "should_load": true, "reason": "tldraw-canvas → tldraw-offline"}
+{"query": "animate this SVG logo drawing itself on with GSAP DrawSVG", "should_load": true, "reason": "svg-animation → gsap-plugins"}
+{"query": "find a settings icon in our Phosphor set and add it to the toolbar", "should_load": false, "reason": "better-icons lookup in a pack already chosen — no design decision; icon-systems applies when choosing the pack"}
+{"query": "fix the TypeScript errors after upgrading the tldraw SDK to the latest version", "should_load": false, "reason": "tldraw-migrate owns SDK upgrades — no design decision"}
+{"query": "count how many shapes are on each page of this .tldraw file", "should_load": false, "reason": "tldraw-offline inspection — no design decision"}
+{"query": "set up CI to export the PlantUML files in docs/ to PNG on every push", "should_load": false, "reason": "build tooling — no design decision"}
