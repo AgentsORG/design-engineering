@@ -63,6 +63,9 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | "Looks AI-generated" — run the pass | [[unslop-pass]]; copy → [[copy-tells]]; code → [[code-tells]] |
 | Create or clean up an SVG | [[svg-creation]] (or spawn [[svg-creator]]) |
 | Animate an SVG, morph a path, vectorize a clip | [[svg-animation]], [[svg-path-morphing]], [[video-to-vector-pipeline]] (or spawn [[svg-animator]]) |
+| Decide whether something should be a diagram, and where it lives (a figure, a canvas, a Mermaid block) | [[diagram-decision]] |
+| Draw or review an architecture, flow, sequence or chart figure | [[diagram-craft]]; with diagram-design and a `.design` → [[diagram-design-reconciliation]] |
+| Edit a whiteboard, a planning board, or a `.tldraw` / `.tldr` file | [[tldraw-canvas]] |
 | Explore several directions before deciding | [[prototype-picker]] |
 | Stop re-prompting; build the tool that makes the artifact | [[build-a-tool]]; no target yet → [[vibe-to-generator]] |
 | Write design docs an agent can follow | [[design-system-docs]] |

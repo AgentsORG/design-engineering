@@ -7,7 +7,7 @@
       "name": "design-engineering",
       "type": "registry:file",
       "title": "Design Engineering skill graph",
-      "description": "The full design-engineering skill graph — 11 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, launch video, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
+      "description": "The full design-engineering skill graph — 12 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
       "author": "HKTITAN",
       "categories": [
         "design",
@@ -155,6 +155,31 @@
           "path": "skills/design-engineering/references/components/ui-polish-pass.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/ui-polish-pass.md"
+        },
+        {
+          "path": "skills/design-engineering/references/diagram/MOC-diagram.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/diagram/MOC-diagram.md"
+        },
+        {
+          "path": "skills/design-engineering/references/diagram/diagram-craft.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/diagram/diagram-craft.md"
+        },
+        {
+          "path": "skills/design-engineering/references/diagram/diagram-decision.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/diagram/diagram-decision.md"
+        },
+        {
+          "path": "skills/design-engineering/references/diagram/diagram-design-reconciliation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/diagram/diagram-design-reconciliation.md"
+        },
+        {
+          "path": "skills/design-engineering/references/diagram/tldraw-canvas.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/diagram/tldraw-canvas.md"
         },
         {
           "path": "skills/design-engineering/references/launch-video/MOC-launch-video.md",

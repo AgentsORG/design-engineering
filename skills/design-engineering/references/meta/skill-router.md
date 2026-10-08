@@ -1,6 +1,6 @@
 ---
 title: skill-router
-summary: What `/design-engineering` does first — classify the phase and the material, resolve the design contract, then hand the job to the owning node, subagent, or installed companion skill (AgentsORG design, impeccable, HyperFrames, ElevenLabs, the transitions catalog, the shadcn CLI). One or two owners, never five.
+summary: What `/design-engineering` does first — classify the phase and the material, resolve the design contract, then hand the job to the owning node, subagent, or installed companion skill (AgentsORG design, impeccable, HyperFrames, ElevenLabs, the transitions catalog, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons). One or two owners, never five.
 tags: [meta, routing, ecosystem, skills]
 ---
 
@@ -29,7 +29,7 @@ Precedence: user prompt → nearest `.design` → the `design` skill procedure �
 
 ## 3. Pick the material
 
-Type → [[typography-humanity]], [[type-scale-and-rhythm]]. Color → [[color-scales-oklch]]. Depth → [[depth-and-nesting]]. Motion → [[animation-decision-framework]]. Sound → [[sound-decision-framework]] / [[sound-designer]]. SVG → [[svg-creation]] / [[svg-creator]], [[svg-animation]] / [[svg-animator]]. Forms → [[forms-behavior]]. Props → [[component-api-design]]. Marketing → [[marketing-surface-rules]]. Generated look → [[unslop-pass]] / [[anti-pattern-scanner]]. Speed → [[performance-discipline]]. Docs for agents → [[design-system-docs]]. Launch film → [[MOC-launch-video]].
+Type → [[typography-humanity]], [[type-scale-and-rhythm]]. Color → [[color-scales-oklch]]. Depth → [[depth-and-nesting]]. Motion → [[animation-decision-framework]]. Sound → [[sound-decision-framework]] / [[sound-designer]]. SVG → [[svg-creation]] / [[svg-creator]], [[svg-animation]] / [[svg-animator]]. Diagram or whiteboard → [[diagram-decision]], then [[diagram-craft]] or [[tldraw-canvas]]. Forms → [[forms-behavior]]. Props → [[component-api-design]]. Marketing → [[marketing-surface-rules]]. Generated look → [[unslop-pass]] / [[anti-pattern-scanner]]. Speed → [[performance-discipline]]. Docs for agents → [[design-system-docs]]. Launch film → [[MOC-launch-video]].
 
 ## 4. Hand off to installed companions
 
@@ -44,6 +44,10 @@ A companion is installed when its `SKILL.md` exists under `.agents/skills/`, `.c
 | One of the thirty-two canonical CSS transitions | `transitions-dev` | Values still checked against [[easing-curves]] and [[duration-table]] |
 | Installing or theming components | shadcn CLI / MCP (`info`, `search`, `view`, `add --dry-run`, `apply --preset`, `migrate`) | Driven by the contract's `integrations.shadcn`; tokens win over `css_vars` |
 | A curated UI sound file | `soundcn` via `npx shadcn add @soundcn/<name>` | Re-pitch into the family; never ship raw |
+| A diagram for readers: architecture, flow, sequence, state, ER, timeline, journey, chart — or redrawing Mermaid, draw.io or Excalidraw | `diagram-design` (Cathryn Lavery) | This graph decides whether to draw and on which surface ([[diagram-decision]]), maps the contract onto its color roles and families ([[diagram-design-reconciliation]]) and reviews against [[diagram-craft]]; inside its file, its geometry, type ramp and motion controller win |
+| An editable canvas: a whiteboard, a planning board, a `.tldraw` or `.tldr` file | tldraw: Desktop's `tldraw-offline` skill (spawn its subagent for long jobs), or the tldraw MCP app in hosted clients; `tldraw-migrate` for SDK upgrades | [[tldraw-canvas]]'s rules (bound arrows, Mermaid for structure, lints before done, anchored comments); the surface's own skill owns the API |
+| A GSAP SVG tween: DrawSVG, MorphSVG, MotionPath | GreenSock's `gsap-plugins` (with `gsap-core`) | Whether a library is justified ([[dependency-discipline]]), swap or morph ([[svg-path-morphing]]), durations, easing and reduced motion stay here |
+| Fetching icons from a set | `better-icons` (Iconify, CLI or MCP) | One pack, passed as `--prefix` ([[icon-systems]]); token cleanup ([[svg-creation]]); check the set's license yourself; add its MCP server by hand at a pinned version, not through `setup`, which edits every agent's config |
 
 ## 5. A launch film, end to end
 
@@ -73,4 +77,5 @@ Polishing a screen whose layout is still wrong wastes the pass — the polish is
 - HKTITAN — routing distilled from operating this graph beside its companions.
 - AgentsORG `.design` spec §5 (precedence) and `skills/design` §8 (companion skills); impeccable command surface; HyperFrames `references/design-spec.md`.
 - heygen-com/hyperframes skills (HEAD 2026-09-28, Apache-2.0): `skills/hyperframes/SKILL.md` (the front door's routes and length bands), `skills/motion-graphics/SKILL.md`, `skills/general-video/SKILL.md`, `.agents/skills/motion-doctrine` (internal, `metadata.internal: true`), `.agents/skills/README.md` (internal skills skipped by `npx skills add`).
+- Cathryn Lavery, `diagram-design` (MIT; HEAD `f4547ee`, 2026-10-08): README "Install", SKILL.md §0, §11, §12. tldraw: Desktop's `tldraw-offline` agent skill (cited only), `tldraw/tldraw` `apps/mcp-app` and `skills/tldraw-migrate`. greensock/gsap-skills (MIT) `gsap-plugins`; better-auth/better-icons (MIT, 1.0.5) README.
 - Related: [[routing-table]], [[disambiguation]], [[stacking-chains]].

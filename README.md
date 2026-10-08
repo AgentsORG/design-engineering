@@ -158,7 +158,7 @@ Since v2.0.0 the repo is organized around four primitives, each owned by an open
 
 | Primitive | What it is | Where | Spec |
 |---|---|---|---|
-| **Knowledge** | The skill graph — 116 atomic, wikilinked nodes in 11 themed clusters, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
+| **Knowledge** | The skill graph — 120 atomic, wikilinked nodes in 12 themed clusters, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
 | **Package** | The portable plugin — one manifest, portable skills, namespaced client extensions | `plugin.json` + `skills/` | [Agent Plugins v1.0.0](https://agent-plugins.org/) |
 | **Runtime** | A durable agent that *runs* the knowledge — root agent, ten specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
 | **Client extensions** | Per-host adapters — subagents, slash commands, host manifests, shadcn registry | `agents/`, `commands/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
@@ -299,7 +299,7 @@ references/meta/review-format.md first, then the relevant motion nodes
 
 ## What's included
 
-One skill, organised into **11 themed clusters**, fronted by a router: `/design-engineering` resolves the project's design contract, classifies the phase of the work, and hands the job to one owner — a node here, one of ten subagents, or an installed companion skill (AgentsORG `design`, [impeccable](https://impeccable.style/), HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI). See `references/meta/skill-router.md`. Each cluster has its own MOC (meta indexes from SKILL.md directly).
+One skill, organised into **12 themed clusters**, fronted by a router: `/design-engineering` resolves the project's design contract, classifies the phase of the work, and hands the job to one owner — a node here, one of ten subagents, or an installed companion skill (AgentsORG `design`, [impeccable](https://impeccable.style/), HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, [diagram-design](https://github.com/cathrynlavery/diagram-design), tldraw, GSAP, better-icons). See `references/meta/skill-router.md`. Each cluster has its own MOC (meta indexes from SKILL.md directly).
 
 | Theme | Use it when… |
 |---|---|
@@ -307,6 +307,7 @@ One skill, organised into **11 themed clusters**, fronted by a router: `/design-
 | `motion` | Adding or reviewing any animation. Easing, durations, springs, gestures, transitions, stagger. The largest cluster. |
 | `sound` | Deciding whether an interaction should make a sound (usually no), designing one material family, syncing transients to frames, generating files — ElevenLabs on demand or open-weight / procedural / CC0 without a key — scoring a launch video in the register its picture sets, placing a music track or a voice under it, and deriving a video's whole stem from its motion. Ships `scripts/sound-family.mjs` and `scripts/sound-sheet.mjs`. |
 | `svg` | Creating clean, token-aware, editable SVG; animating it with the engine its home allows (inline CSS/WAAPI, embedded keyframes or SMIL for image use); morphing paths by the command-count rule; turning flat clips into editable animated mascots. Ships `scripts/svg-flipbook.mjs`. |
+| `diagram` | Deciding whether a picture earns its place and which surface it lives on: a finished figure for readers, an editable tldraw canvas, a Mermaid block or FigJam. The craft of a figure (deletion, focal accents, the six connector rules), how a `.design` contract maps into Cathryn Lavery's diagram-design, and the canvas rules for tldraw's Desktop skill and MCP app. |
 | `launch-video` | Planning, cutting, scoring and reviewing a launch film: registers measured across 47 films, beat timings, seams and cuts, film motion, type, UI demo, HyperFrames reconciliation. These are film numbers; they don't transfer to product UI. |
 | `typography` | Picking a typeface, building a type scale, leading, tracking, wrapping, truncation, underlines, the 16px and contrast floors. Avoiding AI-default font tells. |
 | `surface` | Color palette and OKLCH ramps, dark mode, shadows and nested radii, hairlines, image outlines, visual imperfection. |
@@ -373,10 +374,10 @@ design-engineering/
     ├── SKILL.md                       ← thin Map of Content
     ├── evals/                         ← Step-0 routing fixtures (loading.jsonl, progressive-reads.jsonl)
     ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), sound-sheet.mjs (motion cue sheet → stereo stem), svg-flipbook.mjs (frames → animated SVG)
-    └── references/                    ← 11 themed clusters, 116 atomic nodes, 10 MOCs
+    └── references/                    ← 12 themed clusters, 120 atomic nodes, 11 MOCs
 ```
 
-Total: **116 atomic nodes** across 11 clusters (129 markdown files in the skill), 10 workflow subagents ×2 formats, 10 commands, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
+Total: **120 atomic nodes** across 12 clusters (134 markdown files in the skill), 10 workflow subagents ×2 formats, 10 commands, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
 
 ## Agent Plugins conformance
 
@@ -424,9 +425,11 @@ PRs welcome. The shorter the better. See [CONTRIBUTING.md](CONTRIBUTING.md), [CO
 - **ITU-R BT.1359** — audio/video sync thresholds
 - **Emil Kowalski's design-engineering practice** — the typography, color, surfaces, forms, touch, polish, performance, component-API, marketing, prototyping, tooling, docs, unslop, and skill-writing nodes are distilled from studying it; glosses and rules are this graph's own
 - **supermemoryai/skills** — [svg-animations](https://github.com/supermemoryai/skills/blob/main/svg-animations/SKILL.md) (engine choice, stroke drawing, SMIL timing, morphing rule)
+- **Cathryn Lavery** — [diagram-design](https://github.com/cathrynlavery/diagram-design) (MIT): the deletion-first figure rules, connector rules, type ramp and motion clock behind the `diagram` cluster
+- **tldraw** — [tldraw offline](https://github.com/tldraw/tldraw-offline)'s agent skill (cited, not copied; the app is not open source) and the [tldraw MCP app](https://github.com/tldraw/tldraw/tree/main/apps/mcp-app), behind `tldraw-canvas`
 - **Adrian Abelarde** — [Anim8](https://www.tryanim8.com/), the MP4 → editable animated SVG pipeline behind `video-to-vector-pipeline`; **visioncortex/vtracer**, Potrace, SVGO
 - **WebPAI DesignBench** — [arXiv 2506.06251](https://arxiv.org/abs/2506.06251) (generation / edit / repair tasks and metrics); **Design Arena** — [methodology](https://notes.designarena.ai/methodology/) (anonymous pairwise votes, Bradley-Terry)
-- **Companions the router hands off to** — [AgentsORG `.design`](https://github.com/AgentsORG/DESIGN), [impeccable](https://impeccable.style/), [HyperFrames](https://www.hyperframes.dev/design), ElevenLabs, [shadcn CLI](https://ui.shadcn.com/docs/cli)
+- **Companions the router hands off to** — [AgentsORG `.design`](https://github.com/AgentsORG/DESIGN), [impeccable](https://impeccable.style/), [HyperFrames](https://www.hyperframes.dev/design), ElevenLabs, [shadcn CLI](https://ui.shadcn.com/docs/cli), [diagram-design](https://github.com/cathrynlavery/diagram-design), [tldraw](https://github.com/tldraw/tldraw) (Desktop's agent skill, the MCP app, `tldraw-migrate`), [GSAP skills](https://github.com/greensock/gsap-skills), [better-icons](https://github.com/better-auth/better-icons)
 - **James Frewin** — [guidelines.sh](https://guidelines.sh)
 - **Vercel** — [vercel.com/design/guidelines](https://vercel.com/design/guidelines)
 - **Ben DC** — [github.com/bendc/frontend-guidelines](https://github.com/bendc/frontend-guidelines)

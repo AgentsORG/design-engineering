@@ -21,6 +21,8 @@ Where does the SVG render?
 └── Needs a runtime anyway (rich after-effects export) → Lottie/Rive, and only then
 ```
 
+When the library is GSAP, its official `gsap-plugins` skill owns the plugin API. That covers DrawSVG's visible-segment values, MorphSVG and MotionPath, all free on the public `gsap` package with no auth token. Durations, easing and reduced motion still come from this graph ([[skill-router]]).
+
 CSS keyframes baked into the file are the most portable option in 2026; SMIL still wins for `<animateMotion>` along a path and for animating attributes CSS can't. Native SVG with CSS or SMIL is usually 5–10× smaller than the Lottie export of the same thing and carries `<title>`/`<desc>` that Lottie JSON cannot.
 
 ## The techniques
@@ -47,5 +49,6 @@ Inline SVG inherits the page's `prefers-reduced-motion` handling only if you wro
 ## Sources
 
 - supermemoryai/skills `svg-animations` — engine choice, stroke drawing, SMIL timing, transform-origin.
+- greensock/gsap-skills (MIT) `gsap-plugins` — DrawSVG, MorphSVG and MotionPath semantics; every plugin free since Webflow's acquisition.
 - MDN Web Animations API, SMIL Animation; svg.dog engine comparison.
 - Related: [[animation-decision-framework]], [[morphing-icons]], [[svg-path-morphing]], [[performance-discipline]], [[prefers-reduced-motion]].

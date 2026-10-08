@@ -73,7 +73,7 @@ const items = [
     type: "registry:file",
     title: "Design Engineering skill graph",
     description:
-      "The full design-engineering skill graph — 11 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, launch video, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
+      "The full design-engineering skill graph — 12 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
     author: "HKTITAN",
     categories: ["design", "agents", "skills"],
     docs: "Restart your coding agent after installing so it picks up the new skill. Start at .agents/skills/design-engineering/SKILL.md; the router is references/meta/routing-table.md. Fork references/meta/pov.md to record your own taste overrides.",
