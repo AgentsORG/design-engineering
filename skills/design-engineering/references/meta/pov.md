@@ -1,7 +1,7 @@
 ---
 title: pov
-summary: Installer's opinions and taste calls. This install is forked to Duolingo's design language — physical buttons, meaning-bearing color, rounded lowercase type, celebration on the reward beat — plus HKTITAN's launch-film calls (Skale's UI-motion register, sound derived from motion).
-tags: [pov, opinion, customizable, duolingo, launch-video]
+summary: Installer's opinions and taste calls. This install is forked to Duolingo's design language — physical buttons, meaning-bearing color, rounded lowercase type, celebration on the reward beat — plus HKTITAN's launch-film calls (Skale's UI-motion register, sound derived from motion) and diagram calls (diagram-design's own skin, ask then figure, static unless order is the point).
+tags: [pov, opinion, customizable, duolingo, launch-video, diagram]
 ---
 
 # Point of View
@@ -178,6 +178,8 @@ Two things outrank every taste call above.
 | [[hover-states-subtle]] | 1px shifts, no lift | Press compresses 4px; hover lightens the fill |
 | [[visual-imperfection]] | Imperfection lives on marketing surfaces | Warmth comes from rounded geometry and characters, not from texture or wobble |
 | [[launch-video-registers]] | Pick the register from the product and the brief | Unspecified launch films default to Skale's UI-motion register; bounce only on request |
+| [[diagram-decision]] | Pick the surface by who touches it next | Ask who edits it next; with no answer, a finished diagram-design figure |
+| [[diagram-design-reconciliation]] | Contract, then profile, then diagram-design | With no contract, diagram-design's shipped skin, not the Duolingo language; static, with `step` only when the order is the point |
 
 Everything not listed is unchanged. [[states-are-the-work]], [[data-is-content]], [[dependency-discipline]], [[transform-opacity-only]], [[never-scale-from-zero]], and [[feeling-right]] apply exactly as written.
 
@@ -201,6 +203,14 @@ The Duolingo sections above govern product UI. A rendered launch film follows th
 - **"Lively" and "crazy" mean density and causality, not bounce.** Camera creep under every hold, rhythm that accelerates into a snap, a click that starts its consequence on the same frame, a glyph the camera dives through ([[launch-video-motion]], [[launch-video-seams]]).
 - **Sound is OpenAI's register B, derived from the motion:** a bed in one key, clicks on the stamps, thuds on the landings, something taken away just before the name ([[launch-video-sound]], [[sound-from-motion]]). A licensed beat track only when its drop and breakdowns can be placed on picture events ([[launch-video-music]]). Never library blips dropped on frames.
 - **Every film ships with its numbers** (cuts a minute, still share, loudness), measured on the render before it goes out ([[launch-video-review]]).
+
+### Diagrams (HKTITAN)
+
+The Duolingo sections above govern product UI. A diagram follows these calls instead. A project's `.design` or DESIGN.md still outranks all three ([[diagram-design-reconciliation]]).
+
+- **The default skin is diagram-design's.** With no contract, a figure keeps diagram-design's shipped editorial skin: off-white paper, ink strokes, one tangerine accent, Instrument Serif titles, Geist names and Geist Mono labels. The Duolingo hues, rounded lowercase display type and button lips never reach a figure. Answer diagram-design's first-run gate with "keep default", and offer the `profile: default` marker, writing it only with consent.
+- **Ask who edits it next; with no answer, make a figure.** "Make a diagram" that names no reader or editor gets one question ([[diagram-decision]]). If nobody can answer it, as in a run with no one to reply, draw a finished diagram-design figure and note the assumption beside it. Open a tldraw board only when someone names one or says the team will keep editing it ([[tldraw-canvas]]).
+- **Static by default; `step` when the order is the point.** A flow, a lifecycle or a policy trace whose meaning is the sequence gets diagram-design's `step` mode, where the reader clicks through. Everything else is static. No `reveal`, no `loop` and no autoplay unless someone asks. The launch-film "lively" taste does not carry over, because a figure is read, not watched ([[animation-decision-framework]]).
 
 ## Gotcha
 
