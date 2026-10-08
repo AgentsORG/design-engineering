@@ -6,6 +6,19 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.7.1] — 2026-10-08
+
+HKTITAN's diagram taste, written into `pov.md`.
+
+### Changed
+
+- **`pov.md`** gains "Diagrams (HKTITAN)", plus two rows in the override table:
+  - With no `.design` or DESIGN.md, a figure keeps diagram-design's shipped editorial skin. The Duolingo language stays in product UI.
+  - "Make a diagram" with no reader or editor named gets one question; with no answer, a finished diagram-design figure, its assumption noted.
+  - Figures are static, with diagram-design's `step` mode only when the order is the point; no `reveal`, `loop` or autoplay unless asked.
+- **`diagram-design-reconciliation`** — the pov row points at the new section.
+- Version 2.7.1 across all eight manifests; registry rebuilt.
+
 ## [2.7.0] — 2026-10-08
 
 Diagrams, canvases and SVG companions. A new `diagram/` cluster decides whether a picture earns its place and which surface it lives on. Cathryn Lavery's `diagram-design` draws the finished figures and tldraw's agent surfaces edit the canvases, both routed as companions and never copied. GreenSock's GSAP skills and `better-icons` join the router for SVG tweens and icon lookup.

@@ -1,7 +1,7 @@
 {
   "name": "design-engineering",
   "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns, sound, SVG, launch films. Plus a SOUL.md identity layer and ten workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator, launch-film-analyst). Distills Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "author": {
     "name": "HKTITAN",
     "email": "harshitkhemani@gmail.com",

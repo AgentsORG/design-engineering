@@ -28,7 +28,7 @@ diagram-design's first-run gate asks where the skin comes from. Its own discover
 | Motion | static by default; `reveal` runs once, `step` waits for the reader; clock 160 / 480 / 720 ms, ease `cubic-bezier(.2,.8,.2,1)`, ≤8 steps, ≤24px travel; the controller copied verbatim | UI under 300 ms ([[duration-table]]) | diagram-design's clock: a 480 ms step is reading pace, not UI feedback, so don't flag it against the duration table; this graph still decides whether to animate |
 | Reduced motion | the complete static frame, controls hidden | [[prefers-reduced-motion]] | the same; no conflict |
 | Export | manual only; `export_svg.py` carries class CSS and namespaces `<defs>` ids | [[svg-creation]]'s SVGO pass | export with `export_svg.py` only when asked; SVGO afterwards keeping `viewBox`, `<title>` and `<desc>` |
-| [[pov]] | none | the Duolingo sections govern product UI | a figure follows contract → profile → diagram-design; a pov call applies only when it names diagrams |
+| [[pov]] | none | the Duolingo sections govern product UI | a figure follows contract → profile → diagram-design; pov's "Diagrams (HKTITAN)" sets the defaults where all three are silent |
 
 ## When to apply
 
