@@ -6,6 +6,16 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.7.2] — 2026-10-08
+
+A wrong version number for better-icons, corrected.
+
+### Fixed
+
+- **`icon-systems`** and **`skill-router`** cited better-icons 1.0.5, the version in its repo's `package.json`, but npm's latest is 1.0.4 and 1.0.5 was never published, so a server pinned from those lines could not install. Both now say 1.0.4 with the date, and the router row tells you to pin from `npm view better-icons version`.
+- **`gotchas`** — pin from `npm view <pkg> version`, never from a repo manifest.
+- Version 2.7.2 across all eight manifests; registry rebuilt.
+
 ## [2.7.1] — 2026-10-08
 
 HKTITAN's diagram taste, written into `pov.md`.

@@ -72,4 +72,4 @@ Icon stroke is `stroke-width`, not `border-width`. Setting `stroke-width: 2` on 
 - guidelines.sh — "Never mix icon packs; match stroke to font weight; Lucide is overused."
 - lucide-animated.com — icon animation patterns.
 - Phosphor Icons — weight system documentation.
-- better-auth/better-icons (MIT, 1.0.5) — Iconify search and retrieval; the cross-pack pull is HKTITAN's reading of its tools.
+- better-auth/better-icons (MIT; npm 1.0.4 on 2026-10-08, the repo's 1.0.5 is unpublished) — Iconify search and retrieval; the cross-pack pull is HKTITAN's reading of its tools.
