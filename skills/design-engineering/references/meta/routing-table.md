@@ -27,6 +27,10 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Decide whether something should animate at all | [[animation-decision-framework]] |
 | Pick easing / duration for one animation | [[easing-curves]], then [[duration-table]] |
 | Build drag / swipe / momentum interactions | [[gesture-momentum]], [[spring-animations]] |
+| Rapid presses miss moving items; a dragged card slides under its neighbours on release | [[animated-hit-testing]] |
+| An animation lands differently at 30, 60 and 120 fps, or jumps after a stalled tab | [[frame-rate-independence]] |
+| The reading position jumps when content above it loads or reflows | [[scroll-anchoring]] |
+| A dropdown hides under the header; `z-index: 9999` | [[z-index-strategy]] |
 | Fix jank, stutter, or layout thrash | [[transform-opacity-only]], then [[debugging-animations]] |
 | Pick or fix a typeface, wrapping, tracking | [[typography-humanity]], [[line-length-tracking]] |
 | Build a palette, fix contrast, derive dark mode | [[color-monochromatic]], [[contrast-and-color-scheme]], [[dark-mode]] |
@@ -48,7 +52,11 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Make launch-film motion feel alive — settles, springs, blur, holds, rhythm | [[launch-video-motion]] |
 | Cut a multi-scene video — seams, hard cuts, the ledger | [[launch-video-seams]]; hard cuts → [[launch-video-cuts]] |
 | Score a launch video or logo reveal | [[launch-video-sound]] (pick the register); a music track or a voice → [[launch-video-music]]; derive the stem → [[sound-from-motion]] |
-| Review a launch film, or measure a reference film | [[launch-video-review]] (or spawn [[launch-film-analyst]]); inside HyperFrames → [[hyperframes-reconciliation]] |
+| Review a launch film, or measure a reference film | [[launch-video-review]] (or spawn [[launch-film-analyst]]); inside HyperFrames → [[hyperframes-reconciliation]]; in Remotion with cinetic → [[cinetic-reconciliation]] |
+| Make a loop, a logo sting, or a 9:16 / 1:1 cut of a film | [[launch-video-formats]] |
+| Design a whoosh, riser, impact, sting, ding or pop that sounds designed, not stock | [[designed-sfx-anatomy]] |
+| Listen to a sound or a film's soundtrack with a tool; pick or trim a recording | [[earshot-reconciliation]] |
+| Check whether a recording or track may go in a launch film; write its credit | [[sound-licensing]] |
 | Decide which skill or companion should own a job | [[skill-router]] |
 | Build an OKLCH palette or ramp, repair contrast by lightness | [[color-scales-oklch]] |
 | Fix pinched corners, harsh borders, dark-mode cards vanishing | [[depth-and-nesting]] |
@@ -59,6 +67,9 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | "Feels unfinished" with nothing obviously wrong | [[ui-polish-pass]] |
 | Design a component's props API | [[component-api-design]] |
 | Build a landing page, docs site, blog, changelog | [[marketing-surface-rules]] |
+| "It's pushed to one side", "random empty space", "no clear title" — fix a page's frame | [[page-frame]] |
+| Critique a rendered page from screenshots, round by round | [[screenshot-critique]] |
+| Build or review a dashboard: KPIs, deltas, tables of numbers | [[dashboard-tells]] |
 | Fix jank, layout shift, slow lists (measured slowness) | [[performance-discipline]] |
 | "Looks AI-generated" — run the pass | [[unslop-pass]]; copy → [[copy-tells]]; code → [[code-tells]] |
 | Create or clean up an SVG | [[svg-creation]] (or spawn [[svg-creator]]) |

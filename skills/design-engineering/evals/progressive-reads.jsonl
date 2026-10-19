@@ -67,3 +67,16 @@
 {"query": "the steps in our animated diagram run at 480ms and the motion review says that's too slow for UI", "expected_nodes": ["diagram-design-reconciliation"], "forbidden_nodes": ["duration-table"]}
 {"query": "connect the cards on my tldraw board so the arrows stay attached when people drag them", "expected_nodes": ["tldraw-canvas"], "forbidden_nodes": ["fly-not-teleport"]}
 {"query": "draw this logo path on with GSAP DrawSVG", "expected_nodes": ["svg-animation"], "forbidden_nodes": ["svg-path-morphing"]}
+{"query": "the whoosh on my card entrance feels backwards, where should its peak go", "expected_nodes": ["sound-motion-sync", "designed-sfx-anatomy"], "forbidden_nodes": ["sound-playback-web"]}
+{"query": "make the riser and the impact on my logo reveal sound designed, not like stock", "expected_nodes": ["designed-sfx-anatomy"], "forbidden_nodes": ["sound-playback-web"]}
+{"query": "can I use this CC BY-NC track from Free Music Archive in our launch video", "expected_nodes": ["sound-licensing"], "forbidden_nodes": ["sound-spec"]}
+{"query": "earshot is installed — check whether the soundtrack in my render lands on the cuts", "expected_nodes": ["earshot-reconciliation"], "forbidden_nodes": ["sound-playback-web"]}
+{"query": "turn our launch film into a seamless landing-page loop and a 9:16 cut for the feeds", "expected_nodes": ["launch-video-formats"], "forbidden_nodes": ["viewport-custom-design"]}
+{"query": "we're building the launch film in Remotion with cinetic, and it bans our cream background", "expected_nodes": ["cinetic-reconciliation"], "forbidden_nodes": ["hyperframes-reconciliation"]}
+{"query": "users say the landing page looks pushed to one side with random empty space", "expected_nodes": ["page-frame"], "forbidden_nodes": ["sticky-and-scroll-tells"]}
+{"query": "critique this landing page from the screenshots and tell me what to fix first", "expected_nodes": ["screenshot-critique"], "forbidden_nodes": ["review-checklist"]}
+{"query": "our dashboard KPI cards have icon circles, sparklines and green +100% pills — is that right", "expected_nodes": ["dashboard-tells"], "forbidden_nodes": ["marketing-surface-rules"]}
+{"query": "clicking the same spot fast on my toast stack only closes one toast while they slide up", "expected_nodes": ["animated-hit-testing"], "forbidden_nodes": ["sonner-principles"]}
+{"query": "my drag-to-dismiss sheet lands in a different place at 120 Hz than at 60 Hz", "expected_nodes": ["frame-rate-independence"], "forbidden_nodes": ["duration-table"]}
+{"query": "when older chat messages load above, the message I'm reading jumps down", "expected_nodes": ["scroll-anchoring"], "forbidden_nodes": ["sticky-and-scroll-tells"]}
+{"query": "the dropdown keeps rendering under the sticky header even with z-index 9999", "expected_nodes": ["z-index-strategy"], "forbidden_nodes": ["shadows-whisper"]}

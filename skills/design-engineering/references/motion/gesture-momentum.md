@@ -27,6 +27,8 @@ const onPointerUp = (e) => {
 
 `0.11 px/ms` is roughly the threshold below which a release reads as "the user stopped" and above which it reads as "the user threw it." Tune for your context.
 
+Two samples make a noisy velocity: one late `pointermove` can halve or double it. Keep the last ~20 pointer samples and measure over the last ~100 ms before the release, timed from the event's `timeStamp`. On release the spring starts from that velocity toward its new destination, and the next press tests against that destination ([[animated-hit-testing]]).
+
 ## Damping at boundaries
 
 When the user drags past the edge, don't stop hard. Apply diminishing returns:
@@ -72,6 +74,8 @@ Any drag, swipe, dismiss, pull-to-refresh, slider, or carousel. If the interacti
 Touch events and pointer events are different APIs and produce slightly different velocity numbers. Always normalize to `px/ms` and tune your thresholds against the slower of the two. iOS Safari's touch event timing is notably noisier than mouse pointer timing on macOS.
 
 ## Sources
+
+- Cheng Lou, chenguini (MIT): `docs/Input.md` "Velocity Estimation" (the ~100 ms window over a sample buffer).
 
 - Emil Kowalski — gesture and drag interactions (Sonner, Vaul).
 - iOS Human Interface Guidelines — rubberband / damping behavior.

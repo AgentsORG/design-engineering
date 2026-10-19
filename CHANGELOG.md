@@ -6,6 +6,100 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.8.0] — 2026-10-19
+
+Three of Leon Lin's (Leonxlnx) repos and two of Cheng Lou's, distilled and routed. **earshot** gives an agent ears and measured what designed motion sound effects are made of. **cinetic** builds launch films in Remotion. **taste-skill** measured hundreds of gallery pages. **chenguini** and **handwired** measured how interaction state behaves while things move. The graph also corrects a wrong rule: a whoosh peaks on the move's fastest frame, not on the settle.
+
+### Fixed
+
+- **`sound-from-motion`**, **`sound-motion-sync`**, `sound-sheet.mjs`, `sound-family.mjs` said a whoosh "peaks on the settle". A moving thing is loudest at its fastest, so an entrance's whoosh peaked on its slowest frame. earshot measured whoosh peaks within ±150 ms of the cut, cinetic puts the apex on the visual peak, and the practitioner sources agree. The rule is now: peak on the fastest frame (the cut, for an exit that accelerates into one), with the onset 0.1–0.45 s ahead. A decelerating entrance gets an early whoosh and a separate landing on the settle.
+
+### Added — sound (earshot)
+
+- **`designed-sfx-anatomy`** — what a designed effect is made of, from earshot's study of 58 bed-subtracted events in 8 professional films:
+  - one gesture per sound, in pitch or a gate that speeds up into the cut;
+  - each sound in its own band, leaving 300 Hz–1 kHz to voice and chords;
+  - hard ends; mono objects and wide textures;
+  - a sync point per kind;
+  - targets for whoosh, riser, impact, sub drop, sting, ding, pop-in, click, typing and zip;
+  - tuning to the track's key; the design chain.
+- **`earshot-reconciliation`** — earshot's commands (describe, match, find, realness, timeline, sheet, critique, and the code-rendered `sfx` / `kit` bank) and what each costs to run. Where this graph wins:
+  - loudness by register, not −14 LUFS;
+  - sound derived from the motion, not real recordings only;
+  - never lead the picture.
+
+  MotionVideo's launch film is the worked build.
+- **`sound-licensing`** — what may go into a commercial, edited, published film:
+  - CC0 and CC BY yes; NC, ND and SA no;
+  - verify on the item's own page; aggregators are not authoritative;
+  - Content ID claims on CC BY music; the credit line;
+  - audit the final mix, not the brief.
+- **`sound-sheet.mjs`** gains six designed cue kinds built to those targets:
+  - `riser` and `zip` end on the cut;
+  - `impact` and `sting` are tuned by a top-level `key`;
+  - `ding` runs climb a semitone;
+  - `pop` is an element appearing (`double`, `step`).
+
+  A whoosh takes `apex` (where the move is fastest). Existing cue sheets render byte-identical, and the report prints each effect's peak or end frame.
+
+### Added — launch films (cinetic)
+
+- **`launch-video-formats`** — the short forms beside a launch film:
+  - a feature loop: a cycle, with a seam gate and lossless intermediates; frame 0 is the poster; GIF at 25 or 50 fps, because 30 plays 11 % fast;
+  - a logo sting: assemble the mark, one tuned hit, hold ≥ 1.5 s, ~−16 LUFS;
+  - 9:16, 1:1 and 4:5 cuts: re-laid out, never cropped; feed safe zones and type minimums.
+- **`cinetic-reconciliation`** — cinetic owns a Remotion build and its checks; this graph keeps register, structure, cadence and sound. Ten value conflicts are settled for the graph's measured corpus. Its unnamed-corpus pacing claims are listed as awaiting measurement, not adopted: the energy arc, px-per-frame speeds, fragment flow, the effects census.
+
+### Added — pages and screens (taste-skill)
+
+- **`page-frame`** — the frame readers judge first, measured on 97 Awwwards Sites of the Day:
+  - equal margins; text at least 16 px from the edge;
+  - no half-empty sections, no holes (≥ 28 % of the first screen empty);
+  - a first screen that says what this is; a heading on every section;
+  - few left edges.
+- **`screenshot-critique`** — critique the render, not the code:
+  - eight single-purpose passes at three widths;
+  - a fixed `ROUND n` write-up;
+  - fix idea → hierarchy → composition → type → imagery → colour → detail → motion;
+  - stop at three rounds.
+- **`dashboard-tells`** — from 23 product screens:
+  - KPIs with no icon circles or sparklines, at 16–40 px;
+  - deltas coloured good or bad, not up or down; zero change in grey;
+  - tabular, right-aligned figures; one grotesk.
+
+### Added — interaction engineering (chenguini, handwired)
+
+- **`animated-hit-testing`** — a press on something still animating goes to where it is heading. Three presses 80 ms apart on one spot dismiss three sliding toasts against destinations, one against drawn positions. Drags grab what is drawn and pin the spring to the pointer; the just-released item stays above the rest until it settles; a touch-scrolled list selects on release.
+- **`frame-rate-independence`** — fixed 4 ms spring steps or closed forms; a ~300-step catch-up cap with a named fallback; events applied at their timestamps (the usual order differed by up to 359 px between 10 and 120 fps); store what the user placed and derive what fits; never a decision from last frame's value (a 533 px column jump).
+- **`scroll-anchoring`** — anchor to the row at the top of the view: detect user scrolls by comparing values, not events; keep the screen offset from when the anchor was picked (a per-frame delta drifted 3–4 px); store the read-back `scrollTop`; `overflow-anchor: none` when code owns it.
+- **`z-index-strategy`** — DOM order, then one global file of sequential layers, then local values inside `isolation: isolate`; no magic numbers; never mix global and local; which properties create a stacking context or a containing block.
+
+### Changed
+
+- **`gesture-momentum`** measures release velocity over the last ~100 ms of samples, not two. **`spring-animations`**, **`touch-and-focus`** (rule 11, select on release), **`ui-polish-pass`** and **`sticky-and-scroll-tells`** link the new nodes; **`routing-table`** gains four more rows; **`gotchas`** two more entries.
+- **`review-checklist`** goes from 13 rows to 22. New greppable rows: gradient text, tiny tracked caps, the generated-page purple, framework status colours, emoji as UI, placeholder data, `100vh`, looping attention animations, the em-dash habit. `ui-reviewer` and `SKILL.md` say twenty-two.
+- **`ai-default-tells`** — device prevalence on top versus weak gallery sites. Some tells get evidence; backdrop blur, thin rules and the italic accent word turn out not to be tells.
+- **`line-length-tracking`** no longer endorses tiny uppercase eyebrows (16 % of top sites against 57 % of weak ones).
+- **`type-scale-and-rhythm`** — display scale on marketing pages, and the headline character budget.
+- **`marketing-surface-rules`**:
+  - readable on first paint; no preloader (60 of 99 award sites open on one);
+  - hijacking's usability cost;
+  - two new checklist items.
+- **`prefers-reduced-motion`** — the reduced state is the finished state, never a hidden one.
+- **`sound-palette`** — counted runs climb, repeated runs cycle takes, the click stays one voice. **`launch-video-music`** — edit on bars, tune to the key. **`launch-video-sound`** — earshot's −14.8 LUFS median, put in its register.
+- **`skill-router`** gains three companion rows: cinetic for Remotion films, earshot for listening and effects, and taste-skill, opt-in, with its conflicts named. The end-to-end film steps now cite the new nodes. **`routing-table`** gains seven rows.
+- **`sound-designer`**, **`anti-pattern-scanner`** and **`launch-film-analyst`** (and their eve twins) point at the new nodes.
+- **`gotchas`** — six entries: the whoosh correction, −14 LUFS borrowed from music-led corpora, two Chromium render traps lines, the 30 fps GIF, and subtraction that leaves a page thin.
+- **`progressive-reads.jsonl`** — thirteen routing fixtures, one per new node and two for the whoosh fix.
+- **AGENTS.md** sources, README counts (132 atomic nodes) and companions. Version 2.8.0 across all eight manifests; registry rebuilt.
+
+### Not adopted
+
+- taste-skill's mono, numbering, hairline, shadow, radius and violet bans; its 8-moving-elements floor.
+- cinetic's hard bans on serif and cream, and its −14 LUFS default.
+- earshot's real-recordings-only rule.
+- MotionVideo's paid skill pack, which is private.
+
 ## [2.7.2] — 2026-10-08
 
 A wrong version number for better-icons, corrected.

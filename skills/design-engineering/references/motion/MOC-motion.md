@@ -18,6 +18,8 @@ The largest cluster. Read [[animation-decision-framework]] first — it tells yo
 - [[easing-curves]] — Custom cubic-bezier > built-in CSS easings. Never `ease-in` for UI.
 - [[duration-table]] — Specific durations by element type. UI < 300ms. Buttons 100–160ms.
 - [[spring-animations]] — When springs beat curves. Apple's spring configuration. Interruptibility.
+- [[frame-rate-independence]] — The same gesture ends in the same place at any frame rate: fixed 4 ms steps or closed forms, a capped catch-up, events at their timestamps, store what the user placed, no decisions from last frame's value.
+- [[animated-hit-testing]] — A press on something still animating goes to where it's heading; drags grab what's drawn, pin the spring to the pointer, keep the released item on top until it settles; select list rows on release.
 - [[transform-opacity-only]] — The only two properties that are cheap to animate. The hardware acceleration rule.
 - [[performance-discipline]] — The rest of the discipline: named transition properties, `will-change` as a targeted fix, virtualization past ~50 rows, frames out of React state, reserved space, preload, off-screen pause, muted theme swaps.
 - [[transform-mastery]] — translateY percentages, scale() scales children, 3D transforms, transform-origin fundamentals.

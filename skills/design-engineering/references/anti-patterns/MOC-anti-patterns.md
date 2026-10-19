@@ -17,6 +17,7 @@ This MOC is short on purpose — most anti-patterns are subtle enough to live as
 - [[content-authenticity]] — Real data not lorem. Specific odd numbers ("127 customers", not "100+"). Written copy that sounds like a person. Real photos. Dates with context.
 - [[copy-tells]] — The statistical habits of generated prose (model vocabulary, not-just-X, rule of three, em dashes, puffery, chatbot residue) and the two tests every product sentence must pass.
 - [[code-tells]] — Narrated comments, catch theater, silent fallbacks, casts, V2 names, dead scaffolding; the default fix is deletion.
+- [[screenshot-critique]] — Critique the render, not the code: single-purpose passes at three widths, a fixed write-up per round, fix idea → hierarchy → composition → … → motion, stop at three rounds.
 
 ## Cross-cluster
 

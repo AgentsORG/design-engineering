@@ -72,6 +72,10 @@ The frame: *could this UI have been generated in 30 seconds with a prompt?* If y
 | "Oops!" error message | Plain: "Couldn't save. Try again." |
 | AI-generated tooltip phrasing ("Click here to view...") | Imperative, short: "View details" |
 
+## What the prevalence data says
+
+taste-skill measured 246 gallery sites and split them by a model panel's scores into top and weak. These devices are at least twice as common on weak sites (top / weak): icon-topped feature cards 1 % / 28 %, tiny tracked caps 16 % / 57 % (three or more on a page: 6 % / 43 %), gradient text 2 % / 13 %, pill labels above a heading 5 % / 26 %, five or more resting shadows 10 % / 30 %, emoji 10 % / 26 %, gradient fills 22 % / 52 %. One site in 246 has a terracotta button and none has a violet one. Some devices are *not* tells: backdrop blur (32 % / 39 %), the italic-serif accent word (4 % / 7 %) and thin rules (61 % / 52 %) show no real difference, and monospace labels are more common on top sites (44 % / 24 %). Delete the first group on sight. The second group is a choice, not a defect. Most of these can be found with a grep: [[review-checklist]] rows 14–22.
+
 ## When to apply
 
 Use this as a **review checklist** when auditing a UI that "feels generated." Most pages have 3–5 tells from this list. Removing them transforms the feel.
@@ -85,3 +89,4 @@ This list is not anti-AI — it's anti-default. Many AI-generated UIs are excell
 - guidelines.sh — the bulk of this list.
 - Benji Taylor — content authenticity, real data.
 - Emil Kowalski — animation tells.
+- Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/research.md` §6–7, device prevalence measured in the page on 246 One Page Love and Awwwards sites collected 2026-10-05. "Top" is a model-panel score of 7.5 or more (82 sites) and "weak" under 6.5 (23 sites): model judgements of screenshots, one capture per site, fashion as much as quality.

@@ -158,7 +158,7 @@ Since v2.0.0 the repo is organized around four primitives, each owned by an open
 
 | Primitive | What it is | Where | Spec |
 |---|---|---|---|
-| **Knowledge** | The skill graph — 120 atomic, wikilinked nodes in 12 themed clusters, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
+| **Knowledge** | The skill graph — 132 atomic, wikilinked nodes in 12 themed clusters, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
 | **Package** | The portable plugin — one manifest, portable skills, namespaced client extensions | `plugin.json` + `skills/` | [Agent Plugins v1.0.0](https://agent-plugins.org/) |
 | **Runtime** | A durable agent that *runs* the knowledge — root agent, ten specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
 | **Client extensions** | Per-host adapters — subagents, slash commands, host manifests, shadcn registry | `agents/`, `commands/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
@@ -373,11 +373,11 @@ design-engineering/
 └── skills/design-engineering/         ← THE KNOWLEDGE (portable core)
     ├── SKILL.md                       ← thin Map of Content
     ├── evals/                         ← Step-0 routing fixtures (loading.jsonl, progressive-reads.jsonl)
-    ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), sound-sheet.mjs (motion cue sheet → stereo stem), svg-flipbook.mjs (frames → animated SVG)
-    └── references/                    ← 12 themed clusters, 120 atomic nodes, 11 MOCs
+    ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), sound-sheet.mjs (motion cue sheet → stereo stem, designed effects tuned to the track), svg-flipbook.mjs (frames → animated SVG)
+    └── references/                    ← 12 themed clusters, 132 atomic nodes, 11 MOCs
 ```
 
-Total: **120 atomic nodes** across 12 clusters (134 markdown files in the skill), 10 workflow subagents ×2 formats, 10 commands, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
+Total: **132 atomic nodes** across 12 clusters (146 markdown files in the skill), 10 workflow subagents ×2 formats, 10 commands, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
 
 ## Agent Plugins conformance
 
@@ -429,7 +429,7 @@ PRs welcome. The shorter the better. See [CONTRIBUTING.md](CONTRIBUTING.md), [CO
 - **tldraw** — [tldraw offline](https://github.com/tldraw/tldraw-offline)'s agent skill (cited, not copied; the app is not open source) and the [tldraw MCP app](https://github.com/tldraw/tldraw/tree/main/apps/mcp-app), behind `tldraw-canvas`
 - **Adrian Abelarde** — [Anim8](https://www.tryanim8.com/), the MP4 → editable animated SVG pipeline behind `video-to-vector-pipeline`; **visioncortex/vtracer**, Potrace, SVGO
 - **WebPAI DesignBench** — [arXiv 2506.06251](https://arxiv.org/abs/2506.06251) (generation / edit / repair tasks and metrics); **Design Arena** — [methodology](https://notes.designarena.ai/methodology/) (anonymous pairwise votes, Bradley-Terry)
-- **Companions the router hands off to** — [AgentsORG `.design`](https://github.com/AgentsORG/DESIGN), [impeccable](https://impeccable.style/), [HyperFrames](https://www.hyperframes.dev/design), ElevenLabs, [shadcn CLI](https://ui.shadcn.com/docs/cli), [diagram-design](https://github.com/cathrynlavery/diagram-design), [tldraw](https://github.com/tldraw/tldraw) (Desktop's agent skill, the MCP app, `tldraw-migrate`), [GSAP skills](https://github.com/greensock/gsap-skills), [better-icons](https://github.com/better-auth/better-icons)
+- **Companions the router hands off to** — [AgentsORG `.design`](https://github.com/AgentsORG/DESIGN), [impeccable](https://impeccable.style/), [HyperFrames](https://www.hyperframes.dev/design), ElevenLabs, [shadcn CLI](https://ui.shadcn.com/docs/cli), [diagram-design](https://github.com/cathrynlavery/diagram-design), [tldraw](https://github.com/tldraw/tldraw) (Desktop's agent skill, the MCP app, `tldraw-migrate`), [GSAP skills](https://github.com/greensock/gsap-skills), [better-icons](https://github.com/better-auth/better-icons), [cinetic](https://github.com/Leonxlnx/cinetic) (Remotion builds), [earshot](https://github.com/Leonxlnx/earshot) (listening and the effects bank), [taste-skill](https://github.com/Leonxlnx/taste-skill) (opt-in)
 - **James Frewin** — [guidelines.sh](https://guidelines.sh)
 - **Vercel** — [vercel.com/design/guidelines](https://vercel.com/design/guidelines)
 - **Ben DC** — [github.com/bendc/frontend-guidelines](https://github.com/bendc/frontend-guidelines)

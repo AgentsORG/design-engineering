@@ -184,7 +184,8 @@ const archetypes = {
     }
     return out;
   },
-  // Filtered breath: noise through a one-pole low-pass whose cutoff and level peak on the settle.
+  // Filtered breath: noise through a one-pole low-pass whose cutoff and level peak together at `peakAt`.
+  // Put the peak on the move's fastest frame: late (0.75) for an exit, 0.5 for a cross, early for an entrance.
   whoosh({ seconds = 0.4, peakAt = 0.75, cutoff = 2500 }) {
     const n = secs(seconds), out = new Float32Array(n);
     let y = 0;

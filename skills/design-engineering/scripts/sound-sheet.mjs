@@ -10,7 +10,8 @@
 //   x         → stereo pan        (constant-power, ±0.7 at the canvas edges)
 //   y         → brightness        (higher on screen = brighter attack)
 //   direction → contour           (a whoosh sweeps up when the element leaves upward)
-//   tween     → whoosh length     (the breath peaks on the settle frame, not the start)
+//   tween     → whoosh length     (the breath peaks on the move's fastest frame: "apex", a fraction
+//                                  of the tween; default 1, the cut at the end of an accelerating exit)
 //   t         → the transient     (placed on the contact frame; audio may lag, never lead)
 //
 // Two registers share the renderer:
@@ -35,9 +36,14 @@
 //               { "id": "row-1", "kind": "click", "t": 5.85, "x": 604, "y": 560, "w": 760, "h": 60 },
 //               { "id": "s1-out","kind": "whoosh","t": 2.14, "dur": 0.22, "x": 960, "y": 540, "dir": "up" } ] }
 //
-// kinds: click | thud | type | flicker | land | tick | whoosh | air | success | error.
+// kinds: click | thud | type | flicker | land | tick | whoosh | air | success | error
+//        | riser | impact | sting | ding | pop | zip   (designed effects, built to earshot's measured targets:
+//          one gesture each, band-limited, hard ends; riser and zip END on t + dur, the rest put their attack on t)
 // Optional per cue: "pitch" (Hz), "semitones", "gain" (dB), "lag" (s, default 0.01), "n", "every",
-// and on a type run "jitter" (fraction of every; 0.35 = a human hand). Faster than ~10 keys/s, use one typing bed.
+// on a type run "jitter" (fraction of every; 0.35 = a human hand), on a whoosh "apex" (0-1, where the move is
+// fastest: 0.5 for an ease-in-out cross, ~0.15 for a decelerating entrance), on a pop "double": true, and on a
+// ding or pop run "step" (semitones per member; dings default to 1). Faster than ~10 keys/s, use one typing bed.
+// Top level: "key" (tonic in Hz) tunes the tonal effects (ding, sting, impact sub) to the track; default the bed's root.
 // --family <dir> also writes six product one-shots (tick, tap, send, receive, error, success)
 // from the same voices, mono, so a product UI and its launch video share one material.
 
@@ -193,8 +199,163 @@ function air({ dur, level, seed }) {
   return out;
 }
 
+// ---------- designed effects (earshot's measured targets: one gesture, own band, hard end) ----------
+const fadeTail = (out, ms = 10) => { const f = Math.min(out.length, Math.round(ms / 1000 * SR)); for (let i = 0; i < f; i++) out[out.length - 1 - i] *= i / f; return out; };
+
+// A pass with a peak on the fastest frame: the level accelerates into the apex (power 2.5), then falls
+// about twice as fast; the band's centre follows the level (loudness and brightness track speed), and a
+// big element adds a low swell under 150 Hz, the designed whoosh's real weight.
+function sweep({ dur, apex, level, dirSign, bright, size, seed }) {
+  const rise = Math.max(0.03, dur * clamp(apex, 0.05, 1));
+  const fall20 = Math.max(0.06, rise * 0.5); // -20 dB this long after the apex
+  const n = Math.ceil((rise + fall20 * 3) * SR);
+  const out = new Float32Array(n);
+  const noise = makeNoise(seed), bpA = bandpass(), bpB = bandpass(), lp = onePoleLP();
+  const fLo = 350 + 300 * bright, fHi = 1800 + 2400 * bright;
+  const low = clamp((size - 300) / 500, 0, 1);
+  for (let i = 0; i < n; i++) {
+    const t = i / SR;
+    const env = t <= rise ? (t / rise) ** 2.5 : 10 ** (-(t - rise) / fall20);
+    const after = t > rise ? 1 - env : 0; // settles toward the direction of travel
+    const fc = fLo + (fHi - fLo) * env ** 0.7 + (dirSign > 0 ? 0.5 : -0.2) * fLo * after;
+    const x = noise();
+    const air = bpA(x, fc, 1.8) + 0.6 * bpB(x, fc * 1.6, 2.4);
+    out[i] = (air * 2.2 + low * lp(x, 150) * 5) * env * level;
+  }
+  return fadeTail(out);
+}
+
+// Riser: concave (most of the rise in the last third), a noise band opening upward, a tonal layer
+// climbing two octaves, a gate whose period tightens from 24 to 20 ms, a quiet drone under it.
+// It is placed to END on t + dur, the hit or the cut.
+function riser({ dur, level, root, seed }) {
+  const n = Math.ceil(dur * SR);
+  const out = new Float32Array(n);
+  const noise = makeNoise(seed), bp = bandpass();
+  const f0 = inKey(2000);
+  let ph = 0, gp = 0;
+  for (let i = 0; i < n; i++) {
+    const t = i / SR, p = t / dur, curve = p ** 3;
+    const amp = db(-20 + 20 * curve);
+    const fN = 400 * 20 ** (p ** 1.5);
+    const f = f0 * 4 ** (p ** 2);
+    ph += TAU * f / SR;
+    const tone = Math.sin(ph) + 0.4 * Math.sin(2 * ph) + 0.2 * Math.sin(3 * ph);
+    gp += 1 / (SR * (0.024 - 0.004 * p));
+    const gate = (gp % 1) < 0.55 ? 1 : 1 - 0.75 * p;
+    const drone = Math.sin(TAU * root * 2 * t) * 0.25;
+    out[i] = (bp(noise(), fN, 1.6) * 1.8 + tone * 0.18) * gate * amp * level + drone * level * 0.3;
+  }
+  return fadeTail(out, 5);
+}
+
+// Impact: a 6 ms bright transient on the contact frame, a sub body that swells for ~60 ms while its
+// pitch drops onto the key's root, a grainy tail (grains every ~30 ms, slowing), then a hard gate.
+function impact({ level, root, seed, bright }) {
+  const total = 0.95, n = Math.ceil(total * SR);
+  const out = new Float32Array(n);
+  const noise = makeNoise(seed), bp = bandpass(), lp = onePoleLP();
+  let f = root < 40 ? root * 2 : root; while (f > 70) f /= 2;
+  let ph = 0, grain = 0, nextGrain = 0.12, gap = 0.028;
+  for (let i = 0; i < n; i++) {
+    const t = i / SR;
+    const trans = t < 0.006 ? bp(noise(), 3000 + 2000 * bright, 0.7) * (1 - t / 0.006) ** 4 * 3 : 0;
+    ph += TAU * f * (1 + 2.5 * Math.exp(-t / 0.05)) / SR;
+    const bodyEnv = (t < 0.06 ? t / 0.06 : Math.exp(-(t - 0.06) / 0.22));
+    const body = Math.tanh(Math.sin(ph) * 1.6) * bodyEnv; // tanh adds the 2nd/3rd harmonics phones need
+    if (t >= nextGrain && t < total - 0.1) { grain = 1; nextGrain = t + gap; gap *= 1.04; }
+    grain *= Math.exp(-1 / (SR * 0.008));
+    const tail = lp(noise(), 260) * grain * Math.exp(-(t - 0.1) / 0.35) * (t > 0.1 ? 1.5 : 0);
+    out[i] = (trans + body + tail) * level;
+  }
+  return fadeTail(out, 15); // the gate: a designed impact ends, it does not ring out
+}
+
+// Sting: a chirp falling 1.5 kHz -> 150 Hz in 85 ms, landing on a hum on the key's root
+// (64-80 Hz octave) with two harmonics, sinking slightly as it rings ~0.8 s.
+function sting({ level, root, seed }) {
+  let hum = root; while (hum < 60) hum *= 2; while (hum > 90) hum /= 2;
+  const total = 1.0, n = Math.ceil(total * SR);
+  const out = new Float32Array(n);
+  let phC = 0, phH = 0;
+  for (let i = 0; i < n; i++) {
+    const t = i / SR;
+    let s = 0;
+    if (t < 0.1) {
+      const fC = 1500 * (0.1) ** Math.min(1, t / 0.085);
+      phC += TAU * fC / SR;
+      s += Math.sin(phC) * (t < 0.002 ? t / 0.002 : 1) * (t > 0.085 ? 1 - (t - 0.085) / 0.015 : 1) * 0.8;
+    }
+    if (t >= 0.07) {
+      const th = t - 0.07;
+      const fH = hum * 2 ** (-0.3 * th);
+      phH += TAU * fH / SR;
+      const env = Math.min(1, th / 0.01) * Math.exp(-th / 0.22);
+      s += (Math.sin(phH) + 0.5 * Math.sin(2 * phH) + 0.25 * Math.sin(3 * phH)) * env * 0.7;
+    }
+    out[i] = s * level;
+  }
+  return fadeTail(out, 20);
+}
+
+// Ding: a struck tone near 2 kHz in the key, one inharmonic partial at 3.4x that dies first,
+// -20 dB within ~35 ms and stopped by 0.3 s. A run steps up one semitone per ding.
+function ding({ f0, level }) {
+  const n = Math.ceil(0.3 * SR);
+  const out = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    const t = i / SR;
+    const att = t < 0.003 ? t / 0.003 : 1;
+    const env = Math.exp(-t / 0.015) + 0.03 * Math.exp(-t / 0.08);
+    out[i] = (Math.sin(TAU * f0 * t) + 0.3 * Math.sin(TAU * f0 * 3.4 * t) * Math.exp(-t / 0.008)) * env * att * level;
+  }
+  return fadeTail(out, 20);
+}
+
+// Pop-in: a thump at 80-150 Hz (bigger elements lower) with a short 1-10 kHz tick ~32 dB under it;
+// convex, -20 dB ~20 ms after its 10 ms rise; "double" adds a second, smaller body 65 ms later.
+function pop({ f0, level, seed, double }) {
+  const n = Math.ceil(0.22 * SR);
+  const out = new Float32Array(n);
+  const noise = makeNoise(seed), bp = bandpass();
+  const body = (t) => {
+    if (t < 0) return 0;
+    const env = t < 0.01 ? t / 0.01 : Math.exp(-(t - 0.01) / 0.0087);
+    return Math.sin(TAU * f0 * (t + 0.15 * 0.01 * (1 - Math.exp(-t / 0.01)))) * env;
+  };
+  for (let i = 0; i < n; i++) {
+    const t = i / SR;
+    const tick = t < 0.03 ? bp(noise(), 4000, 0.8) * Math.exp(-t / 0.006) * db(-32) * 6 : 0;
+    out[i] = (body(t) + (double ? 0.6 * body(t - 0.065) : 0) + tick) * level;
+  }
+  return fadeTail(out, 10);
+}
+
+// Zip: an exponential glide (constant octaves per second, ~20-30 oct/s) with two harmonics,
+// up from ~120 Hz or down from ~7 kHz, ending on t + dur, the cut. It sits under the hits.
+function zip({ dur, level, dirSign }) {
+  const n = Math.ceil(dur * SR);
+  const out = new Float32Array(n);
+  const [a, b] = dirSign > 0 ? [120, 6000] : [7000, 420];
+  let ph = 0;
+  for (let i = 0; i < n; i++) {
+    const t = i / SR;
+    ph += TAU * a * (b / a) ** (t / dur) / SR;
+    const env = Math.min(1, t / 0.025);
+    out[i] = (Math.sin(ph) + 0.4 * Math.sin(2 * ph) + 0.2 * Math.sin(3 * ph)) * env * level;
+  }
+  return fadeTail(out, 8);
+}
+
 // ---------- derive audio from geometry ----------
 const BED_ROOT = sheet.bed?.root ?? 43.1; // F1
+// Tonal effects sit in the track's key: snap to the nearest major-pentatonic degree of the tonic.
+const KEY = sheet.key ?? BED_ROOT;
+function inKey(f) {
+  const n = Math.round(12 * Math.log2(f / KEY));
+  for (let d = 0; d < 7; d++) for (const m of [n - d, n + d]) if ([0, 2, 4, 7, 9].includes(((m % 12) + 12) % 12)) return KEY * 2 ** (m / 12);
+  return f;
+}
 function derive(c) {
   const size = Math.sqrt(Math.max(1, (c.w ?? 200) * (c.h ?? 60)));
   let f0 = clamp(5200 * (60 / size) ** 0.75, 450, 5200);
@@ -228,6 +389,10 @@ function expand(cues) {
         const jitter = c.kind === "type" ? noise() * (c.jitter != null ? clamp(c.jitter, 0, 0.45) * every : 0.008) : 0;
         out.push({ ...c, id: `${c.id}-${i + 1}`, kind: "click", t: c.t + i * every + jitter, gain: (c.gain ?? -4) + noise() * 1.5, semitones: (c.semitones ?? 0) + (c.step ?? 0) * i, run: c.id });
       }
+    } else if ((c.kind === "ding" || c.kind === "pop") && (c.n ?? 1) > 1) {
+      // a counted run: dings climb a semitone each (measured), pops climb only if asked ("step")
+      const step = c.step ?? (c.kind === "ding" ? 1 : 0);
+      for (let i = 0; i < c.n; i++) out.push({ ...c, n: 1, id: `${c.id}-${i + 1}`, t: c.t + i * (c.every ?? 0.2), semitones: (c.semitones ?? 0) + step * i, run: c.id });
     } else out.push(c);
   }
   return out;
@@ -246,6 +411,7 @@ function voice(c) {
     case "tick":
       return { samples: mallet({ f0: d.f0, t60: d.t60, level: d.level, bright: d.bright, seed }), at, pan: d.pan, d, duck: c.kind === "land" ? 3 : 0 };
     case "whoosh":
+      if (c.apex != null) return { samples: sweep({ dur: c.dur ?? 0.25, apex: c.apex, level: db(-22 + (c.gain ?? 0)), dirSign: d.dirSign, bright: d.bright, size: d.size, seed }), at: c.t, pan: d.pan, d, duck: 0, peak: c.t + (c.dur ?? 0.25) * clamp(c.apex, 0.05, 1) };
       return { samples: breath({ dur: c.dur ?? 0.25, level: db(-22 + (c.gain ?? 0)), dirSign: d.dirSign, bright: d.bright, seed }), at: c.t, pan: d.pan, d, duck: 0 };
     case "air":
       return { samples: air({ dur: c.dur ?? 0.2, level: db(-27 + (c.gain ?? 0)), seed }), at: c.t, pan: d.pan, d, duck: 0 };
@@ -261,6 +427,25 @@ function voice(c) {
       const b = mallet({ f0: d.f0 * 2 ** (1 / 12), t60: Math.min(d.t60, 0.14), level: d.level, bright: d.bright, seed: seed + 1 });
       return { samples: mix([{ s: a, at: 0 }, { s: b, at: 0.05 }]), at, pan: d.pan, d, duck: 2 };
     }
+    case "riser":
+      return { samples: riser({ dur: c.dur ?? 1.0, level: db(-20 + (c.gain ?? 0)), root: KEY, seed }), at: c.t, pan: 0, d, duck: 0, hz: inKey(2000), peak: c.t + (c.dur ?? 1.0) };
+    case "impact": {
+      const root = KEY * 2 ** ((c.semitones ?? 0) / 12);
+      let body = root < 40 ? root * 2 : root; while (body > 70) body /= 2; // the body settles on this octave
+      return { samples: impact({ level: db(-12 + (c.gain ?? 0)), root, seed, bright: d.bright }), at, pan: d.pan * 0.3, d, duck: 6, hz: body };
+    }
+    case "sting":
+      return { samples: sting({ level: db(-16 + (c.gain ?? 0)), root: KEY * 2 ** ((c.semitones ?? 0) / 12), seed }), at, pan: 0, d, duck: 4, hz: Math.round(KEY) };
+    case "ding": {
+      const f0 = (c.pitch ?? inKey(2000)) * 2 ** ((c.semitones ?? 0) / 12);
+      return { samples: ding({ f0, level: db(-24 + (c.gain ?? 0)) }), at, pan: d.pan * 0.5, d, duck: 0, hz: f0 };
+    }
+    case "pop": {
+      const f0 = (c.pitch ?? clamp(130 - (d.size - 60) * 0.08, 80, 130)) * 2 ** ((c.semitones ?? 0) / 12);
+      return { samples: pop({ f0, level: db(-18 + (c.gain ?? 0)), seed, double: !!c.double }), at, pan: d.pan * 0.6, d, duck: 0, hz: f0 };
+    }
+    case "zip":
+      return { samples: zip({ dur: c.dur ?? 0.22, level: db(-28 + (c.gain ?? 0)), dirSign: d.dirSign }), at: c.t, pan: d.pan * 0.3, d, duck: 0, peak: c.t + (c.dur ?? 0.22) };
     default:
       throw new Error(`unknown cue kind: ${c.kind}`);
   }
@@ -335,7 +520,7 @@ for (const { c, v } of voiced) {
     L[o + i] += s * gl; R[o + i] += s * gr;
     if (Math.abs(s) > peak) peak = Math.abs(s);
   }
-  report.push({ id: c.id, kind: c.kind, run: c.run, at: +v.at.toFixed(3), frame: Math.round(v.at * FPS), hz: Math.round(c.kind === "click" ? v.d.fc : c.kind === "thud" || c.kind === "success" ? BED_ROOT * 2 : v.d.f0), ms: Math.round(v.samples.length / SR * 1000), pan: +v.pan.toFixed(2), peakDb: +(20 * Math.log10(peak || 1e-9)).toFixed(1) });
+  report.push({ id: c.id, kind: c.kind, run: c.run, at: +v.at.toFixed(3), frame: Math.round(v.at * FPS), hz: Math.round(v.hz ?? (c.kind === "click" ? v.d.fc : c.kind === "thud" || c.kind === "success" ? BED_ROOT * 2 : v.d.f0)), ...(v.peak != null ? { peakAt: +v.peak.toFixed(3), peakFrame: Math.round(v.peak * FPS) } : {}), ms: Math.round(v.samples.length / SR * 1000), pan: +v.pan.toFixed(2), peakDb: +(20 * Math.log10(peak || 1e-9)).toFixed(1) });
 }
 let peak = 0;
 for (let i = 0; i < total; i++) peak = Math.max(peak, Math.abs(L[i]), Math.abs(R[i]));
@@ -367,7 +552,7 @@ if (FAMILY) {
 if (has("--report")) {
   console.log(`stem ${basename(OUT)} · ${DURATION}s · ${report.length} onsets (${sheet.cues.length} cues) · bed ${sheet.bed ? `root ${BED_ROOT} Hz, ${(sheet.bed.dropouts ?? []).length} dropouts` : "none"} · peak ${PEAK_DB} dBFS`);
   console.log("id".padEnd(16), "kind".padEnd(8), "at".padStart(7), "frame".padStart(6), "hz".padStart(6), "ms".padStart(5), "pan".padStart(6), "peak".padStart(6));
-  for (const r of report) console.log(String(r.id).padEnd(16), r.kind.padEnd(8), r.at.toFixed(3).padStart(7), String(r.frame).padStart(6), String(r.hz).padStart(6), String(r.ms).padStart(5), r.pan.toFixed(2).padStart(6), (r.peakDb + 20 * Math.log10(g)).toFixed(1).padStart(6));
+  for (const r of report) console.log(String(r.id).padEnd(16), r.kind.padEnd(8), r.at.toFixed(3).padStart(7), String(r.frame).padStart(6), String(r.hz).padStart(6), String(r.ms).padStart(5), r.pan.toFixed(2).padStart(6), (r.peakDb + 20 * Math.log10(g)).toFixed(1).padStart(6), r.peakFrame != null ? ` peak/end f${r.peakFrame}` : "");
   for (const c of sheet.cues) if (c.kind === "type" && (c.every ?? 0.21) < 0.1) console.log(`warning: ${c.id} types faster than a hand (${(1 / c.every).toFixed(0)} keys/s); use one typing bed instead of per-key clicks`);
 }
 if (has("--json")) writeFileSync(OUT.replace(/\.wav$/, ".report.json"), JSON.stringify({ masterGainDb: +(20 * Math.log10(g)).toFixed(1), onsets: report }, null, 2) + "\n");
