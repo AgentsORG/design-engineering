@@ -225,7 +225,10 @@ jobs:
       - name: Validate against the shadcn schemas
         run: |
           set -e
-          npm install ajv@8 ajv-formats@3 --no-save --no-fund --no-audit
+          # Install the validators outside the project so npm never resolves the root
+          # package.json's devDependencies (npm 10 on Node 20 crashed there: "reading 'edgesOut'").
+          npm install --prefix /tmp/validate ajv@8 ajv-formats@3 --no-fund --no-audit --no-package-lock
+          export NODE_PATH=/tmp/validate/node_modules
           curl -sSL https://ui.shadcn.com/schema/registry-item.json -o /tmp/item.schema.json
           curl -sSL https://ui.shadcn.com/schema/registry.json -o /tmp/reg.schema.json
           node -e "
