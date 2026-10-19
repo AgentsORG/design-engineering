@@ -13,6 +13,7 @@ tags: [layout, marketing, landing, docs, blog, performance]
 - **Motion maps to user input.** No scroll-triggered fade-ups, no scroll hijacking, no parallax that isn't 1:1 with scroll, no auto-advancing carousels. If the user didn't cause it, cut it.
 - **Intro animations play once per session.** Gate hero reveals and logo sequences with `sessionStorage` so internal navigation skips them but a genuinely new visit sees them. `localStorage` would kill them forever.
 - Hover-revealed content still obeys [[touch-and-focus]]: gated, and never the only route.
+- **Readable on the first frame.** In taste-skill's capture of 99 Awwwards Sites of the Day (October 2026), 60 opened on a loading screen and a third were still unreadable 4.5 s after load. The model panel's design marks were the same whatever the wait; only usability fell. No preloader; the title readable on first paint; any load sequence over by 1.2 s. Scroll hijacking scored 6.01 on usability against 6.50 for pages that scroll. Only 35 of 99 had any `prefers-reduced-motion` rule, and under it the finished state must show, never a hidden one ([[prefers-reduced-motion]]).
 
 ## Performance
 
@@ -34,6 +35,8 @@ tags: [layout, marketing, landing, docs, blog, performance]
 ## Pre-ship checklist
 
 - [ ] No scroll-triggered animation, hijacking, non-1:1 parallax, or auto-carousel
+- [ ] No preloader; the `h1` readable on first paint, under reduced motion too
+- [ ] The frame holds at 1440, 768 and 390: equal margins, no holes ([[page-frame]])
 - [ ] Intro gated behind `sessionStorage`
 - [ ] Fonts and hero image preloaded; no shift on load
 - [ ] Content pages statically generated with revalidation
@@ -50,9 +53,10 @@ Creating or reviewing any public-facing page, and any time parallax, a carousel,
 
 ## Gotcha
 
-"Marketing tolerates more motion" is read by agents as "marketing wants more motion". The permitted extra is one first-run hero moment. A page where every section animates in is the AI-default look, not expression.
+"Marketing tolerates more motion" is read by agents as "marketing wants more motion". The permitted extra is one first-run hero moment. A page where every section animates in is the AI-default look, not expression. taste-skill's inspector fails a page where fewer than 8 elements move; this graph does not adopt that floor.
 
 ## Sources
 
 - Emil Kowalski's design-engineering practice on marketing pages, distilled by HKTITAN.
+- Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/motion.md` §2 and §9 (99 Sites of the Day captured October 2026: preloaders, readable time, reduced-motion rules, hijacking's usability score; scores are model-panel judgements) and `scripts/lib/rules.mjs` (`still-page`, not adopted).
 - Related: [[marketing-vs-product-ui]], [[performance-discipline]], [[unslop-pass]], [[viewport-custom-design]].

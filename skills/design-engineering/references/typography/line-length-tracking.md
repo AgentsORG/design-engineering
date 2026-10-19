@@ -59,7 +59,7 @@ Browser support is now broad enough (Chrome 114+, Safari 17.4+) to ship without 
 
 Uppercase text is harder to read because all letters are the same height. Rules:
 
-- **OK at small sizes** (10–12px) with **wide tracking** (+0.05em to +0.1em). Common for eyebrow labels, navigation, badges.
+- **OK at small sizes** (10–12px) with **wide tracking** (+0.05em to +0.1em) for navigation, badges and table headers. Not for eyebrow labels over headings: tiny tracked caps sit on 57 % of weak gallery sites against 16 % of top ones, and three or more on a page on 43 % against 6 %. Fold the eyebrow's words into the heading instead ([[ai-default-tells]]).
 - **OK for short phrases** (under 4 words) at any size.
 - **Avoid** uppercase for body prose, multi-sentence content, or anything users need to skim.
 
@@ -79,4 +79,5 @@ Every time you build a typography system. Build these into your token set:
 
 - Bringhurst, *Elements of Typographic Style*.
 - guidelines.sh — tracking rules, line length, `text-wrap: pretty`.
+- Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/research.md` §6 — tiny tracked caps on 16 % of top and 57 % of weak gallery sites (model-panel tiers).
 - web.dev — text-wrap balance/pretty.

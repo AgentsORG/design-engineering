@@ -68,7 +68,10 @@ const reducedMotion = useReducedMotion();
 
 Loading spinners are *the* worst offender for reduced motion. A perpetual spinner is exactly the kind of motion the setting exists to suppress. Provide a "Loading..." text label or a progress bar instead. See [[empty-loading-states]].
 
+The second worst: an entrance that starts from `opacity: 0` and only runs under `no-preference`. With reduced motion on, the text never arrives. The reduced state is the *finished* state. taste-skill fails a page whose first screen has two or more text blocks invisible under reduced motion; test it by rendering with the setting on.
+
 ## Sources
 
 - WCAG 2.1 — Animation from Interactions.
 - Emil Kowalski — prefers-reduced-motion as a first-class concern, not an afterthought.
+- Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/scripts/lib/rules.mjs` (`reduced-hidden`) and `references/motion.md` §2 (35 of 99 award sites have any reduced-motion rule).

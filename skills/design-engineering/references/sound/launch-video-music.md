@@ -31,6 +31,10 @@ In a product-launch-video project, assemble-index.mjs rewrites the bed with `dat
 
 Keep a beat map of `{time, strength}` beside the timeline. HeyGen's spacex-launch map holds 310 beats (median inter-onset 0.32 s). 2 of its 5 root seams sit within 4 ms of mapped beats (strengths 0.78 and 0.85, map median 0.81); in that stretch after the drop, a random time lands within ±10 ms of such a beat ~4.5 % of the time.
 
+## Edit on bars, tune to the key
+
+To shorten a track, cut whole bars out of the middle, splice on downbeats where the harmony continues (V → I, or the same chord), and keep the track's own ending. Stretch only when the tempo is off by more than ~0.2 %, and by at most ~6 %. Everything tonal laid over the track — a chime, a bell, the sting's tail, a boom or a sub — sits in its key: on the root or tonic, or a chord tone near the recording's own pitch (resample within ±2 st). MotionVideo lands one kalimba note on its track's tonic, A-flat, on the lockup ([[designed-sfx-anatomy]], [[earshot-reconciliation]]).
+
 ## Break down under reading
 
 The beat thins or the sub leaves under anything the viewer must read:
@@ -77,4 +81,5 @@ A flat 0.12 bed started at 0 s is the unstructured bed, however good the track; 
 - Granola 2.0 (2025), Arc on Windows (The Browser Company, 2024), Claude Opus 4.6 (Anthropic, 2026, BUCK per brief), Figma Motion (2026), Material 3 Expressive (Google Design, 2025), Google AI Mode (2025, Ordinary Folk, inferred), Google Gemini app (2024, Ordinary Folk), Figma glass (2025), Spline Hana (2025), Framer 3.0 (2026, maker uncredited), Cursor 2.0 (2025): measured by HKTITAN 2026-09-28; docs/research/launch-films/notes/synthesis-acclaimed.md.
 - HeyGen, hyperframes-launches (Apache-2.0): website-to-hyperframes/README.md (Credits: the 3 s trim), index.html L197-257 (the flat 0.11 bed), STORYBOARD.md L6 and L533-546 (the planned ducking; superseded by index.html); spacex-launch/beats/launch-music-trimmed.mp3.json and index.html; HF-heygen-stripe/compositions/rotary.html L60-85 and HANDOFF-V7.md §4; frame-md-launch-storyboard/assets/vo-timing-cues.json.
 - heygen-com/hyperframes (Apache-2.0): skills/product-launch-video/SKILL.md Step 3.1 (bed by mood) and Step 5 (the music check), scripts/lib/bgm-volume.mjs and scripts/assemble-index.mjs (the bed stamp); skills/hyperframes-audio/SKILL.md (Voiceover carve) and skills/hyperframes/references/production-loop.md (Audio stage); skills/hyperframes-animation/adapters/gsap.md (no volume tweens); skills/hyperframes-core/SKILL.md (media ids) and references/tracks-and-clips.md (`data-media-start`); skills/motion-graphics/agents/director.md (beat anticipation); .agents/skills/motion-doctrine/SKILL.md (audio is the clock; repo-internal, not installed by `npx skills add`).
-- Related: [[launch-video-sound]], [[sound-motion-sync]], [[launch-video-structure]].
+- Leon Lin, earshot (MIT): `skills/real-sound/references/sound-design.md` §3 and §7 (bar-line edits, the stretch limits, tuning to the key). Aniket Pawar, MotionVideo (MIT): `launch-video/audio/sounddesign.json`.
+- Related: [[launch-video-sound]], [[sound-motion-sync]], [[launch-video-structure]], [[sound-licensing]].

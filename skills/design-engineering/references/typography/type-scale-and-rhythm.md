@@ -31,6 +31,10 @@ Display sizes slightly negative (≈ −0.015em); small uppercase labels slightl
 
 Every font reserves headroom above the cap height and legroom below the baseline, which is why a label never sits dead-centre in its button. `text-box: trim-both cap alphabetic` crops it. Ship as progressive enhancement; the layout must survive where the trim never happens.
 
+## Display on a marketing page
+
+On 202 measured gallery sites the hero headline runs a median 72 px (5.0 vw; middle half 43–109 px; 40 px on a phone), at leading ~1.0, about 4.3× body (4.7× on top-scored sites). The largest type is 8.4 vw on top-scored sites against 5.0 vw on weak ones. Size alone separates them, and weight doesn't have to: 48 % of heroes are regular weight. Budget the words before the size. Characters per line ≈ line width ÷ (size × k), with k ≈ 0.40 condensed, 0.50 most faces, 0.58 wide or caps, so a two-line headline at 44 px on a 390 px phone holds about 32 characters (four to six words). Over that, cut words before shrinking type. Product UI never gets this scale ([[dashboard-tells]]).
+
 ## Pairing and count
 
 Two faces cover most products; three is the ceiling. Pair across categories (serif display over sans text), never within. Two lookalike grotesques read as a version-control accident. Weights and sizes obey the same economy: each exists to mark hierarchy, and stacking too many erases the distinctions they were meant to draw. Two families at the same `font-size` rarely look the same size — x-height decides — so re-tune sizes when swapping faces and match the fallback stack's x-height to avoid a jolt on load.
@@ -47,4 +51,5 @@ Never change font weight on hover or selection. The text reflows by a pixel and 
 
 - Emil Kowalski's design-engineering practice on typography, distilled by HKTITAN.
 - CSS Fonts Level 4 (`font-synthesis`, `font-optical-sizing`), CSS Inline Layout (`text-box`).
+- Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/type.md` (202 sites measured at 1440 × 900 and 390 × 844, 2026-10-05; top and weak are model-panel tiers) and `references/copy.md` §2 (the headline budget; k values are its rule of thumb).
 - Related: [[typography-humanity]], [[line-length-tracking]], [[line-behavior]].
