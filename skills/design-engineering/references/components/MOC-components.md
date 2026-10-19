@@ -25,6 +25,7 @@ Components are where craft lives because users *touch* them. Their states are wh
 - [[touch-and-focus]] — Hover enhances, never enables; 44px hit areas; `touch-action`; `playsinline`; labelled icon buttons; hidden content out of the tab order; focus moved and restored; the mobile-native fixes table.
 - [[ui-polish-pass]] — The finishing pass after it works: antialiasing, constant weight, tabular numbers, no layout shift, real characters, states that stay put, a z-index scale, optical alignment, designed empty states, no flash on refresh.
 - [[component-api-design]] — Composition over configuration, compound parts with context, variants → size → className → asChild, platform prop names, controlled and uncontrolled, refs forwarded and props spread.
+- [[dashboard-tells]] — An app screen is not a landing page: KPIs with no icon circles or sparklines at 16–40 px, deltas coloured good or bad (not up or down), zero change in grey, tabular right-aligned figures.
 
 ## Cross-cluster
 

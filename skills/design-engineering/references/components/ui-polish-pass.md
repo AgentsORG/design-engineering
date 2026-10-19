@@ -16,7 +16,7 @@ A finished interface is mostly invisible work: text that renders crisply, number
 4. **No layout shift from dynamic content.** Skeletons, placeholders, and images carry the dimensions (or `aspect-ratio`) of the loaded state.
 5. **Real typographic characters** and `text-wrap: balance` on headings — see [[line-behavior]].
 6. **Interaction states that stay put.** Hover transitions only the properties that change, ~150ms ease-out. Press is `scale(0.96)`, never below 0.95. Focus rings stay neutral (grey, black, white) and never disappear. `::selection`, if styled, stays a legible tint. `will-change` only for transform/opacity/filter, only after observing a first-frame hitch.
-7. **A fixed z-index scale** (`--z-dropdown: 100`, `--z-modal: 200`, `--z-tooltip: 300`, `--z-toast: 400`) — or avoid it with `isolation: isolate` so children can't leak above unrelated UI.
+7. **A fixed z-index scale** (`--z-dropdown: 100`, `--z-modal: 200`, `--z-tooltip: 300`, `--z-toast: 400`) — or avoid it with `isolation: isolate` so children can't leak above unrelated UI. DOM order first, then one global file of sequential layers ([[z-index-strategy]]).
 8. **Hit areas ≥ 44×44 touch / 40×40 desktop**, extended with a pseudo-element, never overlapping — see [[touch-and-focus]].
 9. **Align by eye.** Trailing-icon padding = text-side padding − 2px; play triangles nudge 1–2px toward the point; asymmetric SVGs are fixed in the viewBox.
 10. **Native scrollbar on the page.** Customize only inside small scrollers (code blocks): 8px, translucent rounded thumb.

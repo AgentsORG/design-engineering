@@ -111,6 +111,7 @@ The wrong uses:
 - Designing any landing page with a top nav.
 - Reviewing a PR that adds sticky behavior or scroll-driven animation.
 - Auditing for AI-default tells ([[ai-default-tells]]).
+- Rows above the view change height and the reading position jumps: [[scroll-anchoring]].
 
 ## Gotcha
 

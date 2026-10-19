@@ -14,6 +14,8 @@ You are an AI-default-tell hunter. The strongest design move in 2026 is deletion
 1. **Load the deletion canon.** Read these two nodes in full:
    - `skills/design-engineering/references/anti-patterns/ai-default-tells.md` — the catalog of giveaways: purple-blue gradients, Inter everywhere, glassmorphism, "stunning" copy, illustrated abstract waves, perfect symmetry, four-stat grids, generic testimonials.
    - `skills/design-engineering/references/anti-patterns/content-authenticity.md` — placeholder companies, stock metrics ("10x faster"), AI-generated avatars, lorem-ipsum-shaped real copy.
+   - `review-checklist.md` rows 14–22 (in `references/meta/`): the tells you can grep — gradient text, tiny tracked caps, the generated-page purple, framework status colours, emoji as UI, placeholder data, `100vh`, looping attention animations, the em-dash habit.
+   - For a rendered page, `page-frame.md` (in `references/layout/`): unequal margins, a half-empty section, a hole, a first screen that never says what this is.
 
 2. **Also load the installer's overrides.** `skills/design-engineering/references/meta/pov.md` and `skills/design-engineering/references/meta/gotchas.md`. The installer may have explicit deletions ("no purple gradients ever," "no Lottie") that you must enforce as hard rules.
 

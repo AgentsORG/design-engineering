@@ -21,6 +21,8 @@ Evidence: 29 Skale pieces (28 client films and the 2025 reel), 18 acclaimed film
 7. [[launch-video-sound]] — pick the sound register (-1 dBTP is its only fixed number); [[launch-video-music]] places a track or a voice; [[sound-from-motion]] derives the stem; [[sound-motion-sync]] lands every transient on its contact frame, at most one frame late (0-30 ms), never ahead of it.
 8. [[launch-video-review]] — review a render or a reference against its own register. The cut detector agreed with a frame reading in only 9/29 and 5/18 films, so recount by eye, or spawn [[launch-film-analyst]] to measure the file.
 
+Around the film: [[launch-video-formats]] for the loop, the sting and the vertical cuts; [[cinetic-reconciliation]] when cinetic builds it in Remotion.
+
 ## What every register keeps
 
 - No dead cut (a settled frame followed by a scene that waits): the outgoing scene is still moving on the cut frame, or the incoming frame acts within ~0.3-0.4 s. Hard cuts are fine (26/29 Skale and 14/18 acclaimed films cut); a crossfade fails only when its midpoint exposes a ground neither scene has (the dip law, [[launch-video-cuts]]); a dip through a shared ground, or a straight mix of the two frames, is fine (11/29 Skale and 6/18 acclaimed films dip or dissolve).

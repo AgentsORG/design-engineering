@@ -72,6 +72,11 @@
           "target": "~/.agents/skills/design-engineering/references/anti-patterns/copy-tells.md"
         },
         {
+          "path": "skills/design-engineering/references/anti-patterns/screenshot-critique.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/anti-patterns/screenshot-critique.md"
+        },
+        {
           "path": "skills/design-engineering/references/anti-patterns/unslop-pass.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/anti-patterns/unslop-pass.md"
@@ -110,6 +115,11 @@
           "path": "skills/design-engineering/references/components/copy-voice.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/copy-voice.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/dashboard-tells.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/dashboard-tells.md"
         },
         {
           "path": "skills/design-engineering/references/components/empty-loading-states.md",
@@ -187,6 +197,11 @@
           "target": "~/.agents/skills/design-engineering/references/launch-video/MOC-launch-video.md"
         },
         {
+          "path": "skills/design-engineering/references/launch-video/cinetic-reconciliation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/cinetic-reconciliation.md"
+        },
+        {
           "path": "skills/design-engineering/references/launch-video/hyperframes-reconciliation.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/launch-video/hyperframes-reconciliation.md"
@@ -195,6 +210,11 @@
           "path": "skills/design-engineering/references/launch-video/launch-video-cuts.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-cuts.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/launch-video-formats.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-formats.md"
         },
         {
           "path": "skills/design-engineering/references/launch-video/launch-video-motion.md",
@@ -240,6 +260,16 @@
           "path": "skills/design-engineering/references/layout/marketing-surface-rules.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/layout/marketing-surface-rules.md"
+        },
+        {
+          "path": "skills/design-engineering/references/layout/page-frame.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/page-frame.md"
+        },
+        {
+          "path": "skills/design-engineering/references/layout/scroll-anchoring.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/scroll-anchoring.md"
         },
         {
           "path": "skills/design-engineering/references/layout/sticky-and-scroll-tells.md",
@@ -357,6 +387,11 @@
           "target": "~/.agents/skills/design-engineering/references/motion/MOC-motion.md"
         },
         {
+          "path": "skills/design-engineering/references/motion/animated-hit-testing.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/animated-hit-testing.md"
+        },
+        {
           "path": "skills/design-engineering/references/motion/animation-decision-framework.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/animation-decision-framework.md"
@@ -410,6 +445,11 @@
           "path": "skills/design-engineering/references/motion/fly-not-teleport.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/fly-not-teleport.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/frame-rate-independence.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/frame-rate-independence.md"
         },
         {
           "path": "skills/design-engineering/references/motion/gesture-momentum.md",
@@ -557,6 +597,16 @@
           "target": "~/.agents/skills/design-engineering/references/sound/MOC-sound.md"
         },
         {
+          "path": "skills/design-engineering/references/sound/designed-sfx-anatomy.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/designed-sfx-anatomy.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/earshot-reconciliation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/earshot-reconciliation.md"
+        },
+        {
           "path": "skills/design-engineering/references/sound/launch-video-music.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/sound/launch-video-music.md"
@@ -585,6 +635,11 @@
           "path": "skills/design-engineering/references/sound/sound-generation-open-source.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/sound/sound-generation-open-source.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/sound-licensing.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/sound-licensing.md"
         },
         {
           "path": "skills/design-engineering/references/sound/sound-motion-sync.md",
@@ -650,6 +705,11 @@
           "path": "skills/design-engineering/references/surface/visual-imperfection.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/surface/visual-imperfection.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/z-index-strategy.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/z-index-strategy.md"
         },
         {
           "path": "skills/design-engineering/references/svg/MOC-svg.md",

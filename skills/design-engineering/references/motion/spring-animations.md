@@ -64,6 +64,10 @@ Pretty much anywhere the user's input drives motion: drag handles, dismissible c
 
 Springs without a `stiffness` and `damping` set produce slow, floaty defaults. Always set both. The Apple feel comes from a relatively *high* stiffness and *high* damping — not the other way around.
 
+## Hand-written springs
+
+Step them on a fixed 4 ms clock or sample a closed form, cap the catch-up after a stall, and apply events at their timestamps, or the same gesture lands in different places at different frame rates ([[frame-rate-independence]]). A press on a spring still in flight goes to its destination ([[animated-hit-testing]]).
+
 ## Sources
 
 - Emil Kowalski — Sonner spring config, interruptibility argument.

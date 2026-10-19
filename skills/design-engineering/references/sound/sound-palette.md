@@ -18,7 +18,7 @@ Earcons (Blattner, Sumikawa & Greenberg, 1989) are learned, not mimetic: meaning
 | **Direction → meaning** | Rising figure = success, open, join. Falling = dismiss, leave, error. | Discord's join/leave pair; every OS you have used. |
 | **Interval → valence** | Major third or perfect fifth for confirmation. Minor second or tritone for error. | Consonance reads as safe; dissonance as tense (IWC study on earcon dissonance and perceived hazard). |
 | **Complexity → priority** | Simple, single-hit for frequent actions. Multi-note only for rare or urgent moments. | Frequent complex sounds fatigue in a day (Toptal). |
-| **Repeat → variation** | Rapid repeats step pitch up (`playbackRate` +5–10% per hit) or randomize ±3%. | Identical repeats read as a machine; Josh Comeau's "glug" pattern. |
+| **Repeat → variation** | A run that *counts* (pops, stacking blocks, dings) steps pitch up (`playbackRate` +5–10% per hit, about +1 st). A run that *repeats* (keys, steps) cycles 4+ recorded takes, never the same twice in a row, ±1–2 dB, at most ±3 % (½ st) of pitch. The click is the exception: one voice, one level, every time. | Identical repeats read as a machine; Josh Comeau's "glug" pattern. Random pitch on typing is its own tell: real keys vary in take, not pitch ([[designed-sfx-anatomy]]). |
 
 ## A minimal family
 
@@ -54,4 +54,5 @@ Do not tune the family in isolation with headphones at midnight. Laptop speakers
 - Twenty Thousand Hertz, *The Sound of Apple* (Hugo Verweij) — real instruments, organic over sci-fi, the Watch case experiment.
 - Toptal, *A Quick Guide to Designing UX Sounds* — simple for frequent, complex for high-priority; mid-range frequencies.
 - Josh Comeau, *use-sound* — rising `playbackRate` on repeats.
+- Leon Lin, earshot (MIT): `skills/real-sound/references/sound-design.md` §6 — take pools cycled, ±1–2 dB, ±0.3–0.5 st at most, the one-voice click.
 - Related: [[color-monochromatic]], [[typography-humanity]], [[ai-default-tells]].

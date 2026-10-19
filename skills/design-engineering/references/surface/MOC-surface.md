@@ -18,6 +18,7 @@ The decisions that look invisible but determine whether the UI feels considered 
 - [[contrast-and-color-scheme]] — APCA over WCAG 2 for contrast math. `<meta name="theme-color">` + `color-scheme: dark`. Interactions raise contrast. Avoid gradient banding.
 - [[color-scales-oklch]] — Author in OKLCH: one hue per ramp, L anchored and evenly spaced, chroma as a clamped curve, siblings at the same fraction of their own ceiling, dark mode by remapping steps, contrast repaired by moving L only.
 - [[depth-and-nesting]] — Inner radius = outer − padding; shadows elevate, borders separate; dark mode collapses shadows to a ring; 0.5px hairlines, pure black/white image outlines, mask fades, themes flip variables.
+- [[z-index-strategy]] — DOM order first, then one global file of sequential layers, local values inside `isolation: isolate`; no magic numbers; what creates a stacking context or escapes a clip.
 
 ## Cross-cluster
 

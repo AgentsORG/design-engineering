@@ -34,6 +34,9 @@ Two surfaces share this cluster and have opposite defaults. **Product UI** is si
 - [[launch-video-sound]] — Five measured registers (dry reveal, OpenAI one-key bed with clicks, beat track, voice-led, product-camera pad with consequence foley), subtraction before the reveal, loudness by register with −1 dBTP fixed.
 - [[launch-video-music]] — Placing a track or a voice on the picture: drop on the reveal, breakdowns under reading, cuts on onsets, moves landing on spoken onsets.
 - [[sound-from-motion]] — Derive the sound from the motion: size → pitch and decay, x → pan, y → brightness, direction → contour, tween → length, contact frame → transient; or structurally, where the picture places a track's drop and dropouts. The cue sheet and `scripts/sound-sheet.mjs`, which renders a stereo stem from it.
+- [[designed-sfx-anatomy]] — What a designed effect is made of, measured: one gesture, its own band, a hard end, a sync point per kind. Targets for whoosh, riser, impact, sub drop, sting, ding, pop-in, click, typing and zip, tuned to the track's key.
+- [[earshot-reconciliation]] — earshot, the agent's ears: describe, match, trim, realness, a listening timeline and scorecard, a code-rendered effects bank. What it owns, and where this graph's values win.
+- [[sound-licensing]] — What may go into a commercial, edited, published film: CC0 and CC BY yes; NC, ND and SA no; verify on the item's page; Content ID; credits.
 
 ## Shipped tooling
 

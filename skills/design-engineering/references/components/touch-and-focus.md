@@ -20,6 +20,7 @@ A large share of users experience the interface through a thumb, a keyboard, or 
 8. **Timers pause when the tab is hidden** (`visibilitychange`), resuming with the remaining time.
 9. **Shortcuts show the user's OS**: Cmd on macOS, Ctrl elsewhere, bound to match.
 10. **Feedback is on the page.** Errors, confirmations, and status never live only behind hover or inside a modal the user has to find.
+11. **In a touch-scrolled list, select on release.** The press that starts a scroll ends in `pointercancel`, so selecting on press fires on every scroll; a release over the list, when the press started there too, never does ([[animated-hit-testing]]).
 
 ## Tooltips and menus
 
