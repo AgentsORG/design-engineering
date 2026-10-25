@@ -1,6 +1,6 @@
 ---
 title: review-checklist
-summary: Audit table — twenty-two common UI issues, each with a grep and a fix. Scan against this before signing off.
+summary: Audit table — twenty-six common UI issues, each with a grep and a fix. Scan against this before signing off.
 tags: [meta, review, checklist]
 ---
 
@@ -16,7 +16,7 @@ A pre-flight checklist for UI code review. Scan the user's code against each row
 | 2 | `scale(0)` entrance | Grep for `scale(0)`, `scale: 0` | Use `scale(0.95)` + opacity | [[never-scale-from-zero]] |
 | 3 | `ease-in` on UI | Grep for `ease-in` (not `ease-in-out`) | Use `ease-out` or custom cubic-bezier | [[easing-curves]] |
 | 4 | Animation duration > 400ms | Search durations | Most UI is <300ms; reserve longer for rare moments | [[duration-table]] |
-| 5 | Crossfade between two icons | Two icons in same slot with opacity transitions | Transform a single icon (rotate, morph) | [[fly-not-teleport]] |
+| 5 | Crossfade between two icons | Two icons in same slot with opacity transitions | Transform a single icon (rotate, morph); unrelated glyphs cross-fade with scale 0.25 → 1 and blur 4px → 0 ([[interfaces-reconciliation]]) | [[fly-not-teleport]] |
 | 6 | No `prefers-reduced-motion` guard | Grep for `@media (prefers-reduced-motion` | Add for any translate/scale animation | [[prefers-reduced-motion]] |
 | 7 | `:hover` on touch | Grep for `:hover` without media query gate | Wrap in `@media (hover: hover)` | [[hover-states-subtle]] |
 | 8 | Default Bootstrap shadow | Grep for `box-shadow: 0 2px` (or similar) | Layered shadows at 4–6% opacity | [[shadows-whisper]] |
@@ -34,6 +34,10 @@ A pre-flight checklist for UI code review. Scan the user's code against each row
 | 20 | `100vh` / `h-screen` | Grep `h-screen`, `height: 100vh` | `100svh` / `100dvh`; size a section to its content | [[viewport-custom-design]] |
 | 21 | Looping attention animation | `animate-(bounce\|ping\|pulse)` | Delete; a pulse is for a live state only | [[animation-decision-framework]] |
 | 22 | Em-dash habit | More than ~4 `—` across the page's copy | A full stop or a comma; one or two a page | [[copy-tells]] |
+| 23 | A custom widget with no keyboard | `role="button"`, `role="tab"`, `role="menuitem"` with no `onKeyDown`; `<div onClick`; a positive `tabIndex` | The native element, or the APG key map; tabindex 0 or −1 only | [[keyboard-patterns]] |
+| 24 | A live region mounted with its text | `{msg && <div role="status"`, or `aria-live="assertive"` on a success toast | Render the region empty first, then set its text; success is `role="status"` | [[screen-reader-announcements]] |
+| 25 | Submit disabled until valid | `disabled={!isValid}` on a submit button | Keep it enabled; validate on submit, focus the first invalid field | [[forms-validation]] |
+| 26 | Primitive colour in a component | `var(--blue-600)` or `bg-blue-600` in a component file; `--color-primary` beside `--color-text-primary` | A semantic role token; the brand is `accent` | [[color-token-tiers]] |
 
 ## Workflow
 
@@ -56,5 +60,6 @@ Also: the checklist is not exhaustive. The most valuable reviews catch what's *n
 ## Sources
 
 - Emil Kowalski — Review Checklist section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
+- Jakub Krehel, interfaces skills (MIT, HEAD `592aedc`): the Before-you-finish tables in `better-accessibility`, `better-colors` and `better-ui` — rows 23–26 and the row-5 fix.
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/scripts/lint.mjs` — the patterns behind rows 14–22. Its mono, numbering, hairline, shadow and terracotta rules are its owner's taste and are not adopted (`references/research.md` §6).
 - Related: [[review-format]] for the output format, [[ai-default-tells]] for broader visual audit.

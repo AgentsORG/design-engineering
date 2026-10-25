@@ -80,3 +80,15 @@
 {"query": "my drag-to-dismiss sheet lands in a different place at 120 Hz than at 60 Hz", "expected_nodes": ["frame-rate-independence"], "forbidden_nodes": ["duration-table"]}
 {"query": "when older chat messages load above, the message I'm reading jumps down", "expected_nodes": ["scroll-anchoring"], "forbidden_nodes": ["sticky-and-scroll-tells"]}
 {"query": "the dropdown keeps rendering under the sticky header even with z-index 9999", "expected_nodes": ["z-index-strategy"], "forbidden_nodes": ["shadows-whisper"]}
+{"query": "review my PR for UI regressions, only what this branch changed", "expected_nodes": ["change-scoped-review"], "forbidden_nodes": ["review-checklist"]}
+{"query": "my toast says Saved but VoiceOver never reads it", "expected_nodes": ["screen-reader-announcements"], "forbidden_nodes": ["sonner-principles"]}
+{"query": "arrow keys don't move between my custom tabs and tab goes through every one", "expected_nodes": ["keyboard-patterns"], "forbidden_nodes": ["touch-and-focus"]}
+{"query": "is a 32px icon button an accessibility failure or just a recommendation", "expected_nodes": ["wcag-thresholds"], "forbidden_nodes": ["icon-systems"]}
+{"query": "should my tokens be called blue-600 or color-accent-solid, and what about primary", "expected_nodes": ["color-token-tiers"], "forbidden_nodes": ["color-scales-oklch"]}
+{"query": "the blue to orange gradient goes muddy grey in the middle", "expected_nodes": ["gradient-interpolation"], "forbidden_nodes": ["color-monochromatic"]}
+{"query": "the German translation overflows the button and the grid column blows out", "expected_nodes": ["growth-and-overflow"], "forbidden_nodes": ["viewport-custom-design"]}
+{"query": "make this layout work in Arabic right to left", "expected_nodes": ["logical-properties-rtl"], "forbidden_nodes": ["line-length-tracking"]}
+{"query": "\"You have \" + n + \" messages\" and dates built from getMonth, fix the strings", "expected_nodes": ["strings-and-locale"], "forbidden_nodes": ["copy-tells"]}
+{"query": "delete workspace dialog: Are you sure? Yes / No", "expected_nodes": ["destructive-actions"], "forbidden_nodes": ["component-confusables"]}
+{"query": "render this card with an empty name, a 300 character name, 500 items and a 320px container", "expected_nodes": ["stress-scenarios"], "forbidden_nodes": ["prototype-picker"]}
+{"query": "how did linear.app build the glow behind its hero", "expected_nodes": ["reading-others-interfaces"], "forbidden_nodes": ["ai-default-tells"]}

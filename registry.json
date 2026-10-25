@@ -122,6 +122,11 @@
           "target": "~/.agents/skills/design-engineering/references/components/dashboard-tells.md"
         },
         {
+          "path": "skills/design-engineering/references/components/destructive-actions.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/destructive-actions.md"
+        },
+        {
           "path": "skills/design-engineering/references/components/empty-loading-states.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/empty-loading-states.md"
@@ -152,9 +157,24 @@
           "target": "~/.agents/skills/design-engineering/references/components/interaction-personality.md"
         },
         {
+          "path": "skills/design-engineering/references/components/keyboard-patterns.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/keyboard-patterns.md"
+        },
+        {
           "path": "skills/design-engineering/references/components/optimistic-updates.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/optimistic-updates.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/screen-reader-announcements.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/screen-reader-announcements.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/strings-and-locale.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/strings-and-locale.md"
         },
         {
           "path": "skills/design-engineering/references/components/touch-and-focus.md",
@@ -165,6 +185,11 @@
           "path": "skills/design-engineering/references/components/ui-polish-pass.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/ui-polish-pass.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/wcag-thresholds.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/wcag-thresholds.md"
         },
         {
           "path": "skills/design-engineering/references/diagram/MOC-diagram.md",
@@ -257,6 +282,21 @@
           "target": "~/.agents/skills/design-engineering/references/layout/MOC-layout.md"
         },
         {
+          "path": "skills/design-engineering/references/layout/grouping-by-space.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/grouping-by-space.md"
+        },
+        {
+          "path": "skills/design-engineering/references/layout/growth-and-overflow.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/growth-and-overflow.md"
+        },
+        {
+          "path": "skills/design-engineering/references/layout/logical-properties-rtl.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/logical-properties-rtl.md"
+        },
+        {
           "path": "skills/design-engineering/references/layout/marketing-surface-rules.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/layout/marketing-surface-rules.md"
@@ -297,6 +337,11 @@
           "target": "~/.agents/skills/design-engineering/references/meta/build-a-tool.md"
         },
         {
+          "path": "skills/design-engineering/references/meta/change-scoped-review.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/change-scoped-review.md"
+        },
+        {
           "path": "skills/design-engineering/references/meta/cross-model-testing.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/cross-model-testing.md"
@@ -327,6 +372,11 @@
           "target": "~/.agents/skills/design-engineering/references/meta/gotchas.md"
         },
         {
+          "path": "skills/design-engineering/references/meta/interfaces-reconciliation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/interfaces-reconciliation.md"
+        },
+        {
           "path": "skills/design-engineering/references/meta/pov.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/pov.md"
@@ -335,6 +385,11 @@
           "path": "skills/design-engineering/references/meta/prototype-picker.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/prototype-picker.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/reading-others-interfaces.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/reading-others-interfaces.md"
         },
         {
           "path": "skills/design-engineering/references/meta/review-checklist.md",
@@ -365,6 +420,11 @@
           "path": "skills/design-engineering/references/meta/stacking-chains.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/stacking-chains.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/stress-scenarios.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/stress-scenarios.md"
         },
         {
           "path": "skills/design-engineering/references/meta/using-design-file.md",
@@ -682,6 +742,11 @@
           "target": "~/.agents/skills/design-engineering/references/surface/color-scales-oklch.md"
         },
         {
+          "path": "skills/design-engineering/references/surface/color-token-tiers.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/color-token-tiers.md"
+        },
+        {
           "path": "skills/design-engineering/references/surface/contrast-and-color-scheme.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/surface/contrast-and-color-scheme.md"
@@ -695,6 +760,16 @@
           "path": "skills/design-engineering/references/surface/depth-and-nesting.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/surface/depth-and-nesting.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/gradient-interpolation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/gradient-interpolation.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/palette-step-roles.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/palette-step-roles.md"
         },
         {
           "path": "skills/design-engineering/references/surface/shadows-whisper.md",

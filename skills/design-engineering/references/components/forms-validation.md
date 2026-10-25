@@ -110,4 +110,4 @@ Also: don't disable the submit button until the form is valid. It tells the user
 - guidelines.sh — "Validate forms inline at input."
 - Material Design — form patterns.
 - Stripe — best-in-class form copy.
-- Related: [[multi-segment-shake]], [[states-are-the-work]], [[empty-loading-states]].
+- Related: [[multi-segment-shake]], [[states-are-the-work]], [[empty-loading-states]], [[screen-reader-announcements]] (how the error is heard), [[interfaces-reconciliation]] (blur vs submit timing).
