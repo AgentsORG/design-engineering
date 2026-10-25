@@ -50,4 +50,4 @@ Divergence is not an excuse to drop the craft bar. A sloppy variant doesn't wide
 ## Sources
 
 - Emil Kowalski's design-engineering practice on prototyping, distilled by HKTITAN; Josh Puckett's DialKit for the control panel.
-- Related: [[taste-is-trained]], [[stacking-chains]], [[build-a-tool]], [[vibe-to-generator]].
+- Related: [[taste-is-trained]], [[stacking-chains]], [[build-a-tool]], [[vibe-to-generator]], [[stress-scenarios]] (the isolated harness, for robustness rather than direction), [[interfaces-reconciliation]] (hosting variants on the real page).

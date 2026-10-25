@@ -40,6 +40,20 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Write UI copy or error messages | [[copy-voice]] |
 | Review a UI diff before shipping | [[review-format]] + [[review-checklist]] (or spawn [[ui-reviewer]]) |
 | Review a diff that is *specifically* motion | [[motion-auditor]] |
+| Review a PR, branch or uncommitted change for what it broke | [[change-scoped-review]]; with Jakub Krehel's skills → `/interface-review` ([[interfaces-reconciliation]]) |
+| Make a custom widget keyboard-operable — tabs, menu, combobox, dialog | [[keyboard-patterns]] |
+| Toasts, "Saved", result counts or errors a screen reader never hears | [[screen-reader-announcements]] |
+| Is this an accessibility finding or a preference? Contrast, target size, zoom, reflow numbers | [[wcag-thresholds]] |
+| Name colour tokens, split primitives from semantics, theme without touching components | [[color-token-tiers]] |
+| Decide which palette steps and ramps exist; audit a palette with too many colours | [[palette-step-roles]] |
+| A gradient goes grey in the middle, bands, or carries text | [[gradient-interpolation]] |
+| Things don't read as groups; separators everywhere; controls look like text | [[grouping-by-space]] |
+| German breaks the button; a grid overflows; container queries; breakpoints | [[growth-and-overflow]] |
+| Mirror a layout for Arabic or Hebrew; mixed-direction text | [[logical-properties-rtl]] |
+| Plurals, string concatenation, dates and currency per locale; button and link labels | [[strings-and-locale]] |
+| Delete, archive, revoke — undo or confirm, and the dialog's words | [[destructive-actions]] |
+| Render a component under worst-case content and widths, or every state it has | [[stress-scenarios]] |
+| "How did they build that?" — explain another site, effect or screenshot | [[reading-others-interfaces]] |
 | Audit "does this look AI-generated?" | [[ai-default-tells]] (or spawn [[anti-pattern-scanner]]) |
 | Build a marketing / landing surface | [[marketing-vs-product-ui]] |
 | Consume a project's DESIGN.md tokens | [[using-design-md]] (or spawn [[design-md-consumer]]) |

@@ -88,4 +88,4 @@ Also: don't put microcopy decisions in code reviews. Microcopy lives in design f
 - Vercel Web Interface Guidelines — Copywriting and Content sections.
 - Erika Hall — *Conversational Design* on tone, voice, error messages.
 - Material Design — writing guidelines.
-- Related: [[content-authenticity]] (real data, real numbers), [[empty-loading-states]] (empty-state patterns), [[accessibility-baseline]] (aria-live), [[typography-humanity]] (typographic quotes, em-dashes).
+- Related: [[strings-and-locale]] (ICU plurals, `Intl`, label rules), [[destructive-actions]] (confirmation copy), [[interfaces-reconciliation]] (Title Case vs sentence case), [[content-authenticity]] (real data, real numbers), [[empty-loading-states]] (empty-state patterns), [[accessibility-baseline]] (aria-live), [[typography-humanity]] (typographic quotes, em-dashes).

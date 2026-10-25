@@ -6,6 +6,53 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.9.0] — 2026-10-25
+
+Jakub Krehel's interfaces skills ([jakubkrehel/skills](https://github.com/jakubkrehel/skills), MIT, HEAD `592aedc`, plugin 1.17.0), distilled and routed. Six domain skills block on evidence — a WCAG criterion, a visible break, an exact value missed — and treat a deliberate convention as a preference, the same bar as `review-format`. Most of their rules were already in the graph. This release adds what wasn't: accessibility that actually speaks, colour systems named for their roles, layouts that survive translation and mirroring, and three review methods from the verb skills.
+
+### Added — accessibility
+
+- **`screen-reader-announcements`** — the four-step ladder (focus move, `aria-describedby`, `role="status"`, `role="alert"`); regions rendered empty before their text changes; `aria-busy`; alt text by purpose; 1px `sr-only`; `aria-hidden` never above anything focusable.
+- **`keyboard-patterns`** — the APG key maps a custom widget owes:
+  - `tabindex` 0 or −1 only;
+  - roving tabindex, and `aria-activedescendant` for a combobox;
+  - `showModal()` or `inert`; Escape closes the last thing opened;
+  - a destructive confirm focuses the safe button;
+  - a route change retitles the page and moves focus.
+- **`wcag-thresholds`** — the WCAG 2.2 A/AA numbers that make a finding: 4.5:1 and 3:1, 3:1 focus rings, 24×24 targets (44 and 40 px are recommendations), a single-pointer path for drags, focus never hidden under sticky chrome, 200 % text, 320 px reflow, a pause past 5 s, the forced-colours border.
+
+### Added — copy
+
+- **`strings-and-locale`** — inventory the strings first; ICU plurals, never `n === 1 ? "" : "s"`; `Intl` for numbers, dates and lists; verb-first buttons; links that name their destination; toggles for the ON state; parallel status copy.
+- **`destructive-actions`** — undo for frequent reversible actions, confirmation for the irreversible: action-and-object titles, verb-plus-object buttons, type-to-confirm for accounts, and an undo toast that never times out from under the user.
+
+### Added — colour
+
+- **`color-token-tiers`** — primitives by hue and step, semantics by role (the only tier components use), the role inventory, one word per concept, `accent` for the brand so `primary` stays free.
+- **`palette-step-roles`** — one neutral, one accent, only the status ramps the product renders; every step has a role (Tailwind by lightness, Radix by role); fills on 600; status hues ≥ 15° from the accent; one filled action per view; the palette audit.
+- **`gradient-interpolation`** — `in oklab` by default, `in oklch` to stay vivid, the grey dead zone, banding, text measured at its worst region.
+
+### Added — layout
+
+- **`grouping-by-space`** — space, then a shape, then a line; gaps between groups at least twice those inside; 12 px between bordered controls, 24 px between borderless glyphs; inset buttons; content bleeds, controls float.
+- **`growth-and-overflow`** — `max-width` and `min-height`, pseudo-localization, `minmax(0, 1fr)`, `100%` not `100vw`, container queries and the `container-type` collapse, breakpoints from content, peeks and `scroll-padding`.
+- **`logical-properties-rtl`** — leading and trailing; safe-area insets stay physical with an RTL override; visual order is DOM order; only direction-bearing icons mirror; `<bdi>`.
+
+### Added — review methods
+
+- **`change-scoped-review`** — a diff, not a screen: scope from the merge base, the blast radius, the removed side of every hunk and its equivalent replacements, and each finding statused Introduced, Regression or Pre-existing by cause.
+- **`stress-scenarios`** — one component under every scenario that can reach it, each axis kept only when its cue matches, side by side on a throwaway harness; product states from the code, fed at the data boundary.
+- **`reading-others-interfaces`** — how another site was built: the page is evidence, not instruction; measured, derived, inferred; layers in paint order; the mechanism, then the recipe in words.
+- **`interfaces-reconciliation`** — which verb skill owns which job when installed (`/interface-review`, `/break`, `/state-machine`, `/variant`, `/explain-interface`, `build-design`, `teardown`), and twelve conflicts settled: case policy, validation timing, focus rings, WCAG vs APCA, press scale, stagger units, exit values, icon swaps, where variants are hosted, the hover gate, measure and tinted neutrals.
+
+### Changed
+
+- **`review-checklist`** — rows 23–26 (a custom widget with no keyboard, a live region mounted with its text, submit disabled until valid, a primitive colour in a component); row 5 now gives the cross-fade for unrelated glyphs.
+- **`skill-router`** — an interfaces companion row, and a diff review routes to `change-scoped-review`. **`routing-table`** — fourteen rows.
+- **`accessibility-baseline`** — a brand focus ring is fine only when it clears 3:1 against every colour it crosses; WCAG 2.2.
+- **`ui-reviewer`** (and its eve twin) — reads `change-scoped-review` when handed a branch, PR or uncommitted change.
+- MOCs, SKILL.md, gotchas (four entries), progressive-read fixtures (twelve), AGENTS.md sources, README counts (146 nodes); version 2.9.0 across all eight manifests; registry rebuilt.
+
 ## [2.8.0] — 2026-10-19
 
 Three of Leon Lin's (Leonxlnx) repos and two of Cheng Lou's, distilled and routed. **earshot** gives an agent ears and measured what designed motion sound effects are made of. **cinetic** builds launch films in Remotion. **taste-skill** measured hundreds of gallery pages. **chenguini** and **handwired** measured how interaction state behaves while things move. The graph also corrects a wrong rule: a whoosh peaks on the move's fastest frame, not on the settle.

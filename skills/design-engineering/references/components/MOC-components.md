@@ -26,6 +26,11 @@ Components are where craft lives because users *touch* them. Their states are wh
 - [[ui-polish-pass]] — The finishing pass after it works: antialiasing, constant weight, tabular numbers, no layout shift, real characters, states that stay put, a z-index scale, optical alignment, designed empty states, no flash on refresh.
 - [[component-api-design]] — Composition over configuration, compound parts with context, variants → size → className → asChild, platform prop names, controlled and uncontrolled, refs forwarded and props spread.
 - [[dashboard-tells]] — An app screen is not a landing page: KPIs with no icon circles or sparklines at 16–40 px, deltas coloured good or bad (not up or down), zero change in grey, tabular right-aligned figures.
+- [[screen-reader-announcements]] — The four-step ladder (focus move → `aria-describedby` → `role="status"` → `role="alert"`), live regions rendered empty first, `aria-busy`, alt text by purpose, 1px `sr-only`, `aria-hidden` never above focusable.
+- [[keyboard-patterns]] — The APG key maps a custom widget owes: tabindex 0 or −1 only, roving tabindex, `aria-activedescendant`, `showModal()` or `inert`, Escape closes the last thing opened, focus on route change.
+- [[wcag-thresholds]] — The WCAG 2.2 A/AA numbers that make a finding: 4.5:1 / 3:1, 24×24 targets, a single-pointer path for drags, focus never hidden under sticky chrome, 320px reflow, a pause past 5 s.
+- [[strings-and-locale]] — Inventory the strings first, build sentences whole in ICU, format through `Intl`, verb-first buttons, links that name the destination, toggles for the ON state, parallel status copy.
+- [[destructive-actions]] — Undo for frequent reversible actions; confirm the irreversible with action-and-object titles, verb-plus-object buttons, focus on the safe button, type-to-confirm for accounts.
 
 ## Cross-cluster
 

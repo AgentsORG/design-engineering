@@ -1,6 +1,6 @@
 ---
 title: skill-router
-summary: What `/design-engineering` does first — classify the phase and the material, resolve the design contract, then hand the job to the owning node, subagent, or installed companion skill (AgentsORG design, impeccable, HyperFrames, cinetic, earshot, ElevenLabs, the transitions catalog, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, taste-skill on request). One or two owners, never five.
+summary: What `/design-engineering` does first — classify the phase and the material, resolve the design contract, then hand the job to the owning node, subagent, or installed companion skill (AgentsORG design, impeccable, HyperFrames, cinetic, earshot, ElevenLabs, the transitions catalog, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills, taste-skill on request). One or two owners, never five.
 tags: [meta, routing, ecosystem, skills]
 ---
 
@@ -23,7 +23,7 @@ Precedence: user prompt → nearest `.design` → the `design` skill procedure �
 | Foundation | "build this screen", "lay this out" | [[feeling-right]] → [[stacking-chains]] |
 | Pieces | card, form, component, landing page, sound, SVG | the material node below, or its subagent |
 | Works, feels off | "feels cheap", "janky", "broken on mobile" | [[ui-polish-pass]] / [[motion-auditor]] / [[touch-and-focus]] |
-| Done | "does this look right", "review before I ship" | [[ui-reviewer]] or [[review-format]]; a film → [[launch-video-review]] (or spawn [[launch-film-analyst]]) |
+| Done | "does this look right", "review before I ship" | [[ui-reviewer]] or [[review-format]]; a branch, PR or uncommitted change → [[change-scoped-review]]; a film → [[launch-video-review]] (or spawn [[launch-film-analyst]]) |
 | The words | "what's it called when…" | [[design-vocabulary]] — answer and stop |
 | Keeps missing | "closer, but not quite" after a round or two | [[build-a-tool]] |
 
@@ -43,6 +43,7 @@ A companion is installed when its `SKILL.md` exists under `.agents/skills/`, `.c
 | A launch film or loop in **Remotion** (or when the user names cinetic) | cinetic (`npx skills add Leonxlnx/cinetic`): scaffold, `timeline.ts` beat grid, render, delivery, layout / sync / forensics checks | This graph keeps register, structure, type cadence and sound; its measured values go into `BRIEF.md` as brand-supplied exceptions. One engine per project: a HyperFrames film stays with HyperFrames. Conflicts → [[cinetic-reconciliation]]. Remotion needs a company licence from 4 people |
 | Listening: describe, match, rank or trim a sound; real or code-made; a film's listening timeline or scorecard; effects rendered from a bank and aimed at the picture | earshot (CLI, Python or MCP server; `sfx` and `kit` need no models) | Never say how audio sounds without a reading behind it. Register, placement and loudness stay here; its −14 LUFS and real-recordings-only rules do not override [[pov]] → [[earshot-reconciliation]] |
 | A full art-directed landing page from a brief, when the user asks for taste-skill | taste-skill (`design-taste-frontend`) | Opt-in only. Its gate fails resting shadows, 9–16 px radii, violet and pages where under 8 things move, which conflicts with [[pov]] and [[marketing-surface-rules]]; those win. Its measured rules already live here: [[page-frame]], [[review-checklist]] rows 14–22, [[screenshot-critique]], [[dashboard-tells]] |
+| Review a PR, branch or uncommitted change; review a whole screen across domains; stress one component; walk its states; three variants; explain how another site was built; build from Figma; a technical drawing | Jakub Krehel's interfaces skills: `/interface-review`, `better-interface`, `/break`, `/state-machine`, `/variant`, `/explain-interface`, `build-design`, `teardown` (`npx skills add jakubkrehel/skills`) | The slash-command ones are user-invoked: name the command and stop. Exact values and WCAG criteria are its; [[pov]], motion ratios and APCA-for-design stay here. Without it: [[change-scoped-review]], [[stress-scenarios]], [[prototype-picker]], [[reading-others-interfaces]]. Conflicts → [[interfaces-reconciliation]] |
 | Generating audio files | ElevenLabs `sound-effects` / `text-to-speech` | [[sound-palette]] material is the prompt prefix; [[sound-spec]] is the acceptance test |
 | One of the thirty-two canonical CSS transitions | `transitions-dev` | Values still checked against [[easing-curves]] and [[duration-table]] |
 | Installing or theming components | shadcn CLI / MCP (`info`, `search`, `view`, `add --dry-run`, `apply --preset`, `migrate`) | Driven by the contract's `integrations.shadcn`; tokens win over `css_vars` |
@@ -82,4 +83,5 @@ Polishing a screen whose layout is still wrong wastes the pass — the polish is
 - heygen-com/hyperframes skills (HEAD 2026-09-28, Apache-2.0): `skills/hyperframes/SKILL.md` (the front door's routes and length bands), `skills/motion-graphics/SKILL.md`, `skills/general-video/SKILL.md`, `.agents/skills/motion-doctrine` (internal, `metadata.internal: true`), `.agents/skills/README.md` (internal skills skipped by `npx skills add`).
 - Cathryn Lavery, `diagram-design` (MIT; HEAD `f4547ee`, 2026-10-08): README "Install", SKILL.md §0, §11, §12. tldraw: Desktop's `tldraw-offline` agent skill (cited only), `tldraw/tldraw` `apps/mcp-app` and `skills/tldraw-migrate`. greensock/gsap-skills (MIT) `gsap-plugins`; better-auth/better-icons (MIT; npm 1.0.4 on 2026-10-08, the repo's 1.0.5 is unpublished) README.
 - Leon Lin, earshot (MIT, HEAD 925ebe5) and cinetic (MIT, HEAD ecfa660, `README.md` Install and Requirements); Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3). All read 2026-10-19.
+- Jakub Krehel, interfaces skills (MIT, HEAD `592aedc`, plugin 1.17.0, read 2026-10-25): `AGENTS.md` (rule ownership, the invocation rule), `README.md` (install).
 - Related: [[routing-table]], [[disambiguation]], [[stacking-chains]].

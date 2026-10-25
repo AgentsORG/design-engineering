@@ -14,7 +14,7 @@ These are the rules every component should pass before any design judgment is ap
 
 - **Everything interactive is reachable by Tab** in source order. If you can't get to it without a mouse, it doesn't exist for ~10% of users.
 - **`:focus-visible` rings**, not `:focus` rings — the latter triggers on click, the former only on keyboard. Don't show a focus ring after a mouse click.
-- **Custom focus rings beat `outline: 2px solid blue`.** Match your brand — a 2px solid + 1px shadow ring in the brand accent is the modern pattern.
+- **Custom focus rings beat `outline: 2px solid blue`.** Match your brand — a 2px solid + 1px shadow ring in the brand accent is the modern pattern — as long as it clears 3:1 against every colour it crosses and survives forced colours ([[wcag-thresholds]]).
 - **Trap focus in modals and dialogs.** Tab can't escape. `Esc` closes. Focus returns to the trigger element on close.
 - **Skip links** at the top of every page for screen-reader and keyboard users. `<a href="#main">Skip to content</a>` — visually hidden until focused.
 - **Enter submits forms**, `⌘+Enter` (or `Ctrl+Enter`) submits in textareas. Never break these.
@@ -33,7 +33,7 @@ A 16px icon button needs *padding* to hit these — don't make the visible chrom
 - **HTML semantics first**, ARIA second. `<button>` beats `<div role="button" tabindex="0">` every time.
 - **Icon-only buttons need an `aria-label`.** A `<button><Icon /></button>` is a button with no name.
 - **`<label for="…">` on every form input.** A `placeholder` is not a label.
-- **`aria-live="polite"`** for async status updates ("Saved", "Uploading", "Error"). `assertive` only for errors.
+- **`aria-live="polite"`** for async status updates ("Saved", "Uploading", "Error"). `assertive` only for errors. Which mechanism, and how to make it actually speak: [[screen-reader-announcements]].
 - **`alt=""` on decorative images** — empty alt, not missing alt. Screen readers skip them.
 
 ## Color and contrast
@@ -61,5 +61,5 @@ Don't ship custom `<select>` or `<combobox>` components unless you've truly impl
 
 - Vercel Web Interface Guidelines — Interactions and Content sections.
 - bendc/frontend-guidelines — "Don't rely on color alone."
-- WCAG 2.1 + Apple HIG hit-target guidance.
+- WCAG 2.2 + Apple HIG hit-target guidance; the criterion numbers are in [[wcag-thresholds]], custom-widget key maps in [[keyboard-patterns]].
 - Related: [[hover-states-subtle]], [[forms-validation]], [[prefers-reduced-motion]], [[contrast-and-color-scheme]].

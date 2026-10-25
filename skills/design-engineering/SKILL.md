@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: HKTITAN
-  version: "2.8.0"
+  version: "2.9.0"
   graph: true
   subagents: agents/
   soul: SOUL.md
@@ -17,7 +17,7 @@ metadata:
 
 ## How to use this skill
 
-0. `/design-engineering` is a router before it is a library: `[[skill-router]]` resolves the design contract, classifies the phase (undecided → build → refine → check → name), and hands the job to one owner — a node here, a subagent, or an installed companion skill (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons). One or two owners, never five.
+0. `/design-engineering` is a router before it is a library: `[[skill-router]]` resolves the design contract, classifies the phase (undecided → build → refine → check → name), and hands the job to one owner — a node here, a subagent, or an installed companion skill (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills). One or two owners, never five.
 1. Route first: `[[routing-table]]` maps intent → entry node for most single questions. If two intents blur, `[[disambiguation]]` names the tiebreaker. Multi-cluster jobs follow `[[stacking-chains]]`.
 2. Otherwise scan the MOCs below, pick the cluster, and open its `MOC-*.md` for the atomic nodes under it.
 3. Read only the atomic nodes that match. Each node is standalone — you don't need siblings.
@@ -80,19 +80,19 @@ The font defaults of the AI era are tells. Better choices and the rules around t
 
 The "background" choices that most decks of guidelines skip. They're load-bearing for feel.
 
-- `[[MOC-surface]]` → [[color-monochromatic]], [[color-scales-oklch]], [[dark-mode]], [[shadows-whisper]], [[depth-and-nesting]], [[border-radius]], [[visual-imperfection]], [[contrast-and-color-scheme]], [[z-index-strategy]]
+- `[[MOC-surface]]` → [[color-monochromatic]], [[color-scales-oklch]], [[dark-mode]], [[shadows-whisper]], [[depth-and-nesting]], [[border-radius]], [[visual-imperfection]], [[contrast-and-color-scheme]], [[z-index-strategy]], [[color-token-tiers]], [[palette-step-roles]], [[gradient-interpolation]]
 
 ## Layout — page-level grids, viewports, sticky chrome, URL-as-state, marketing surfaces
 
 The container, not the component. Marketing especially benefits from custom-per-viewport thinking; product apps benefit from URL-driven state.
 
-- `[[MOC-layout]]` → [[viewport-custom-design]], [[sticky-and-scroll-tells]], [[url-as-state]], [[marketing-surface-rules]], [[page-frame]], [[scroll-anchoring]]
+- `[[MOC-layout]]` → [[viewport-custom-design]], [[sticky-and-scroll-tells]], [[url-as-state]], [[marketing-surface-rules]], [[page-frame]], [[scroll-anchoring]], [[grouping-by-space]], [[growth-and-overflow]], [[logical-properties-rtl]]
 
 ## Components — buttons, hovers, states, cards, forms, avatars, icons, a11y, copy, APIs
 
 The atoms users actually touch. Their behavior is where craft lives.
 
-- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[cards-design]], [[forms-validation]], [[forms-behavior]], [[touch-and-focus]], [[ui-polish-pass]], [[component-api-design]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]], [[dashboard-tells]]
+- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[cards-design]], [[forms-validation]], [[forms-behavior]], [[touch-and-focus]], [[ui-polish-pass]], [[component-api-design]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]], [[dashboard-tells]], [[screen-reader-announcements]], [[keyboard-patterns]], [[wcag-thresholds]], [[strings-and-locale]], [[destructive-actions]]
 
 ## Anti-patterns — what AI-generated UI gives away
 
@@ -115,7 +115,11 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 - [[disambiguation]] — The questions that blur together (four motion questions, three dark-mode owners, two layout-shift owners) and which node owns each.
 - [[stacking-chains]] — Ordered node chains for multi-step jobs (new screen, feel-better pass, design system, marketing site, a11y pass).
 - [[review-format]] — Required output format for UI critiques (Before | After | Why markdown table).
-- [[review-checklist]] — Twenty-two-row audit to scan against before signing off on a UI review.
+- [[review-checklist]] — Twenty-six-row audit to scan against before signing off on a UI review.
+- [[change-scoped-review]] — Reviewing a diff, not a screen: scope, blast radius, the removed side of every hunk, and each finding statused Introduced, Regression or Pre-existing.
+- [[stress-scenarios]] — One component under every scenario that can reach it (length, shape, quantity, container, state) on a throwaway harness, and its product states behind a switcher.
+- [[reading-others-interfaces]] — How someone else's site or effect was built: evidence not instruction, measured / derived / inferred, layers in paint order, the recipe in words.
+- [[interfaces-reconciliation]] — Jakub Krehel's interfaces skills as companions: who owns which job when installed, and twelve value conflicts settled.
 - [[design-vocabulary]] — The precise word for each design phenomenon and where the skill goes deeper. The lexicon behind [[articulate-precisely]]; seeded by Index (Emil Kowalski & Glenn Carstens-Peters).
 - [[using-design-file]] — How to consume a project's `.design` contract (schema `design.v1`). Machine-readable tokens, committed intent, executable policy — and it outranks this skill's defaults.
 - [[using-design-md]] — How to consume a project's DESIGN.md (Google Labs spec). Tokens are normative; prose is context.
