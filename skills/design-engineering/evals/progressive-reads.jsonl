@@ -92,3 +92,6 @@
 {"query": "delete workspace dialog: Are you sure? Yes / No", "expected_nodes": ["destructive-actions"], "forbidden_nodes": ["component-confusables"]}
 {"query": "render this card with an empty name, a 300 character name, 500 items and a 320px container", "expected_nodes": ["stress-scenarios"], "forbidden_nodes": ["prototype-picker"]}
 {"query": "how did linear.app build the glow behind its hero", "expected_nodes": ["reading-others-interfaces"], "forbidden_nodes": ["ai-default-tells"]}
+{"query": "draw a coin sticker that bounces, isometric, with a thick outline", "expected_nodes": ["isometric-stickers"], "forbidden_nodes": ["video-to-vector-pipeline"]}
+{"query": "fun-isometric pops stickers in from scale 0.2, doesn't that break never scale from zero?", "expected_nodes": ["fun-isometric-reconciliation"], "forbidden_nodes": ["svg-path-morphing"]}
+{"query": "our fun-isometric stickers are in pink and yellow but our brand is two blues", "expected_nodes": ["fun-isometric-reconciliation"], "forbidden_nodes": ["color-scales-oklch"]}

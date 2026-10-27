@@ -59,3 +59,5 @@
 {"query": "fix the TypeScript errors after upgrading the tldraw SDK to the latest version", "should_load": false, "reason": "tldraw-migrate owns SDK upgrades — no design decision"}
 {"query": "count how many shapes are on each page of this .tldraw file", "should_load": false, "reason": "tldraw-offline inspection — no design decision"}
 {"query": "set up CI to export the PlantUML files in docs/ to PNG on every push", "should_load": false, "reason": "build tooling — no design decision"}
+{"query": "make an animated isometric sticker of a mailbox for our empty inbox state", "should_load": true, "reason": "isometric-stickers + fun-isometric companion routing"}
+{"query": "the fun-isometric sticker looks off next to our other illustrations, why?", "should_load": true, "reason": "isometric-stickers check (line weight, leaning faces, thickness) + fun-isometric-reconciliation palette mapping"}

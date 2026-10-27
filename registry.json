@@ -792,6 +792,16 @@
           "target": "~/.agents/skills/design-engineering/references/svg/MOC-svg.md"
         },
         {
+          "path": "skills/design-engineering/references/svg/fun-isometric-reconciliation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/svg/fun-isometric-reconciliation.md"
+        },
+        {
+          "path": "skills/design-engineering/references/svg/isometric-stickers.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/svg/isometric-stickers.md"
+        },
+        {
           "path": "skills/design-engineering/references/svg/svg-animation.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/svg/svg-animation.md"
