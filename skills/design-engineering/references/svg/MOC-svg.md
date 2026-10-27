@@ -19,6 +19,11 @@ Read [[svg-creation]] before drawing anything and [[svg-animation]] before anima
 - [[svg-animation]] — the engine decision (inline + CSS/WAAPI vs `<img>` + SMIL vs library), stroke drawing with `dasharray`/`dashoffset`, `transform-origin` (SVG defaults to 0,0), `transform-box: fill-box`, composite-only properties, group choreography, reduced motion, and the size discipline that keeps an animated SVG smaller than the Lottie it replaces.
 - [[svg-path-morphing]] — native `d` interpolation needs the same command count and order; how to author matching paths, when to reach for flubber or a library, and why icon swaps usually beat morphs.
 
+## Stickers
+
+- [[isometric-stickers]] — animated isometric slab stickers for empty states, onboarding and feature cards: one ink outline, faces that lean, colours as palette roles, three to six parts, motion from After Effects keys picked by the verb, and a still hold after the action.
+- [[fun-isometric-reconciliation]] — Kelvin Adithya's fun-isometric as the companion that draws and exports them; who owns what, ten conflicts settled.
+
 ## Produce it
 
 - [[video-to-vector-pipeline]] — flat 2D clip → frames → vectorize → clean and match paths → one single-file animated SVG (a vector flipbook), then optional Lottie or Rive; the constraints that make it work (flat, no gradients, simple characters) and the artifacts that break it. Ships with `scripts/svg-flipbook.mjs`.

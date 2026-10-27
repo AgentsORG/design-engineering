@@ -158,7 +158,7 @@ Since v2.0.0 the repo is organized around four primitives, each owned by an open
 
 | Primitive | What it is | Where | Spec |
 |---|---|---|---|
-| **Knowledge** | The skill graph — 146 atomic, wikilinked nodes in 12 themed clusters, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
+| **Knowledge** | The skill graph — 148 atomic, wikilinked nodes in 12 themed clusters, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
 | **Package** | The portable plugin — one manifest, portable skills, namespaced client extensions | `plugin.json` + `skills/` | [Agent Plugins v1.0.0](https://agent-plugins.org/) |
 | **Runtime** | A durable agent that *runs* the knowledge — root agent, ten specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
 | **Client extensions** | Per-host adapters — subagents, slash commands, host manifests, shadcn registry | `agents/`, `commands/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
@@ -299,7 +299,7 @@ references/meta/review-format.md first, then the relevant motion nodes
 
 ## What's included
 
-One skill, organised into **12 themed clusters**, fronted by a router: `/design-engineering` resolves the project's design contract, classifies the phase of the work, and hands the job to one owner — a node here, one of ten subagents, or an installed companion skill (AgentsORG `design`, [impeccable](https://impeccable.style/), HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, [diagram-design](https://github.com/cathrynlavery/diagram-design), tldraw, GSAP, better-icons). See `references/meta/skill-router.md`. Each cluster has its own MOC (meta indexes from SKILL.md directly).
+One skill, organised into **12 themed clusters**, fronted by a router: `/design-engineering` resolves the project's design contract, classifies the phase of the work, and hands the job to one owner — a node here, one of ten subagents, or an installed companion skill (AgentsORG `design`, [impeccable](https://impeccable.style/), HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, [diagram-design](https://github.com/cathrynlavery/diagram-design), tldraw, GSAP, better-icons, [fun-isometric](https://skills.klvn.dev/fun-isometric)). See `references/meta/skill-router.md`. Each cluster has its own MOC (meta indexes from SKILL.md directly).
 
 | Theme | Use it when… |
 |---|---|
@@ -374,10 +374,10 @@ design-engineering/
     ├── SKILL.md                       ← thin Map of Content
     ├── evals/                         ← Step-0 routing fixtures (loading.jsonl, progressive-reads.jsonl)
     ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), sound-sheet.mjs (motion cue sheet → stereo stem, designed effects tuned to the track), svg-flipbook.mjs (frames → animated SVG)
-    └── references/                    ← 12 themed clusters, 146 atomic nodes, 11 MOCs
+    └── references/                    ← 12 themed clusters, 148 atomic nodes, 11 MOCs
 ```
 
-Total: **146 atomic nodes** across 12 clusters (160 markdown files in the skill), 10 workflow subagents ×2 formats, 10 commands, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
+Total: **148 atomic nodes** across 12 clusters (162 markdown files in the skill), 10 workflow subagents ×2 formats, 10 commands, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
 
 ## Agent Plugins conformance
 
