@@ -17,7 +17,7 @@ metadata:
 
 ## How to use this skill
 
-0. `/design-engineering` is a router before it is a library: `[[skill-router]]` resolves the design contract, classifies the phase (undecided → build → refine → check → name), and hands the job to one owner — a node here, a subagent, or an installed companion skill (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills). One or two owners, never five.
+0. `/design-engineering` is a router before it is a library: `[[skill-router]]` resolves the design contract, classifies the phase (undecided → build → refine → check → name), and hands the job to one owner — a node here, a subagent, or an installed companion skill (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills, fun-isometric). One or two owners, never five.
 1. Route first: `[[routing-table]]` maps intent → entry node for most single questions. If two intents blur, `[[disambiguation]]` names the tiebreaker. Multi-cluster jobs follow `[[stacking-chains]]`.
 2. Otherwise scan the MOCs below, pick the cluster, and open its `MOC-*.md` for the atomic nodes under it.
 3. Read only the atomic nodes that match. Each node is standalone — you don't need siblings.
@@ -62,7 +62,7 @@ A rendered film is its own surface: name the register, time the beats, set the w
 
 The only image format that is also an interface. Author it on the token system, move it with the engine its home allows, morph it by the command-count rule, and turn flat clips into editable mascots.
 
-- `[[MOC-svg]]` → [[svg-creation]], [[svg-animation]], [[svg-path-morphing]], [[video-to-vector-pipeline]]
+- `[[MOC-svg]]` → [[svg-creation]], [[svg-animation]], [[svg-path-morphing]], [[video-to-vector-pipeline]], [[isometric-stickers]], [[fun-isometric-reconciliation]]
 
 ## Diagrams — figures, canvases, and whether to draw at all
 
@@ -104,7 +104,7 @@ What looks "AI default" and what to do instead. High-value because it's about de
 
 Procedural rules and growing files. `[[review-format]]` is mandatory when doing UI code reviews.
 
-- [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw, GSAP, better-icons).
+- [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw, GSAP, better-icons, fun-isometric).
 - [[routing-table]] — Intent → entry-node router with the four postures (build / judge / decide / name). Open this before anything else on a single question.
 - [[prototype-picker]] — Undecided? Three to five genuinely different versions behind a live picker, numbers on controls, then write the decision and delete the harness.
 - [[build-a-tool]] — "Closer, but not quite" twice? Stop re-prompting; diagnose the gap and build the small tool that produces the artifact.

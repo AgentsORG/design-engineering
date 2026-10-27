@@ -1,6 +1,6 @@
 ---
 title: skill-router
-summary: What `/design-engineering` does first — classify the phase and the material, resolve the design contract, then hand the job to the owning node, subagent, or installed companion skill (AgentsORG design, impeccable, HyperFrames, cinetic, earshot, ElevenLabs, the transitions catalog, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills, taste-skill on request). One or two owners, never five.
+summary: What `/design-engineering` does first — classify the phase and the material, resolve the design contract, then hand the job to the owning node, subagent, or installed companion skill (AgentsORG design, impeccable, HyperFrames, cinetic, earshot, ElevenLabs, the transitions catalog, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills, fun-isometric, taste-skill on request). One or two owners, never five.
 tags: [meta, routing, ecosystem, skills]
 ---
 
@@ -29,7 +29,7 @@ Precedence: user prompt → nearest `.design` → the `design` skill procedure �
 
 ## 3. Pick the material
 
-Type → [[typography-humanity]], [[type-scale-and-rhythm]]. Color → [[color-scales-oklch]]. Depth → [[depth-and-nesting]]. Motion → [[animation-decision-framework]]. Sound → [[sound-decision-framework]] / [[sound-designer]]. SVG → [[svg-creation]] / [[svg-creator]], [[svg-animation]] / [[svg-animator]]. Diagram or whiteboard → [[diagram-decision]], then [[diagram-craft]] or [[tldraw-canvas]]. Forms → [[forms-behavior]]. Props → [[component-api-design]]. Marketing → [[marketing-surface-rules]]. Generated look → [[unslop-pass]] / [[anti-pattern-scanner]]. Speed → [[performance-discipline]]. Docs for agents → [[design-system-docs]]. Launch film → [[MOC-launch-video]].
+Type → [[typography-humanity]], [[type-scale-and-rhythm]]. Color → [[color-scales-oklch]]. Depth → [[depth-and-nesting]]. Motion → [[animation-decision-framework]]. Sound → [[sound-decision-framework]] / [[sound-designer]]. SVG → [[svg-creation]] / [[svg-creator]], [[svg-animation]] / [[svg-animator]]. Animated sticker or spot illustration → [[isometric-stickers]]. Diagram or whiteboard → [[diagram-decision]], then [[diagram-craft]] or [[tldraw-canvas]]. Forms → [[forms-behavior]]. Props → [[component-api-design]]. Marketing → [[marketing-surface-rules]]. Generated look → [[unslop-pass]] / [[anti-pattern-scanner]]. Speed → [[performance-discipline]]. Docs for agents → [[design-system-docs]]. Launch film → [[MOC-launch-video]].
 
 ## 4. Hand off to installed companions
 
@@ -51,6 +51,7 @@ A companion is installed when its `SKILL.md` exists under `.agents/skills/`, `.c
 | A diagram for readers: architecture, flow, sequence, state, ER, timeline, journey, chart — or redrawing Mermaid, draw.io or Excalidraw | `diagram-design` (Cathryn Lavery) | This graph decides whether to draw and on which surface ([[diagram-decision]]), maps the contract onto its color roles and families ([[diagram-design-reconciliation]]) and reviews against [[diagram-craft]]; inside its file, its geometry, type ramp and motion controller win |
 | An editable canvas: a whiteboard, a planning board, a `.tldraw` or `.tldr` file | tldraw: Desktop's `tldraw-offline` skill (spawn its subagent for long jobs), or the tldraw MCP app in hosted clients; `tldraw-migrate` for SDK upgrades | [[tldraw-canvas]]'s rules (bound arrows, Mermaid for structure, lints before done, anchored comments); the surface's own skill owns the API |
 | A GSAP SVG tween: DrawSVG, MorphSVG, MotionPath | GreenSock's `gsap-plugins` (with `gsap-core`) | Whether a library is justified ([[dependency-discipline]]), swap or morph ([[svg-path-morphing]]), durations, easing and reduced motion stay here |
+| An animated isometric sticker: empty-state art, onboarding illustration, feature sticker, a playful moving icon | fun-isometric (`npx skills add kelvinkn17/skills@fun-isometric`): draw, rig, `fi check`, export to canvas or alpha video | Whether it moves at all, the palette from the contract, [[pov]] and reduced motion stay here; its craft bar is [[isometric-stickers]]. Conflicts → [[fun-isometric-reconciliation]] |
 | Fetching icons from a set | `better-icons` (Iconify, CLI or MCP) | One pack, passed as `--prefix` ([[icon-systems]]); token cleanup ([[svg-creation]]); check the set's license yourself; add its MCP server by hand pinned to a version npm has (`npm view better-icons version`; 1.0.4 on 2026-10-08), not through `setup`, which edits every agent's config |
 
 ## 5. A launch film, end to end
@@ -84,4 +85,5 @@ Polishing a screen whose layout is still wrong wastes the pass — the polish is
 - Cathryn Lavery, `diagram-design` (MIT; HEAD `f4547ee`, 2026-10-08): README "Install", SKILL.md §0, §11, §12. tldraw: Desktop's `tldraw-offline` agent skill (cited only), `tldraw/tldraw` `apps/mcp-app` and `skills/tldraw-migrate`. greensock/gsap-skills (MIT) `gsap-plugins`; better-auth/better-icons (MIT; npm 1.0.4 on 2026-10-08, the repo's 1.0.5 is unpublished) README.
 - Leon Lin, earshot (MIT, HEAD 925ebe5) and cinetic (MIT, HEAD ecfa660, `README.md` Install and Requirements); Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3). All read 2026-10-19.
 - Jakub Krehel, interfaces skills (MIT, HEAD `592aedc`, plugin 1.17.0, read 2026-10-25): `AGENTS.md` (rule ownership, the invocation rule), `README.md` (install).
+- Kelvin Adithya, fun-isometric (MIT, HEAD `7c8a752`, read 2026-10-27): `README.md` (install), `skills/fun-isometric/SKILL.md`.
 - Related: [[routing-table]], [[disambiguation]], [[stacking-chains]].

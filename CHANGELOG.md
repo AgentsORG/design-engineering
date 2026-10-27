@@ -6,6 +6,25 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.10.0] — 2026-10-27
+
+Kelvin Adithya's fun-isometric ([kelvinkn17/skills](https://github.com/kelvinkn17/skills), MIT, HEAD `7c8a752`; generator at [skills.klvn.dev/fun-isometric](https://skills.klvn.dev/fun-isometric)), distilled and routed as a companion. It draws isometric slab stickers and plays them on After Effects keys, interpolated the way lottie-web plays them, and exports to live canvas or alpha video.
+
+### Added
+
+- **`isometric-stickers`** (svg) — the craft bar for an animated sticker, with or without the companion:
+  - a 500-unit square, one 5-unit ink outline, faces that lean rather than rotate;
+  - every body a slab with its side falling one way, three to six parts per hero object;
+  - colours as palette roles mapped from the contract;
+  - motion picked by the object's verb, children 4–6 frames late, sparkles on the peak frame;
+  - a still hold after the action, scale pops instead of fades, checked at 160 px.
+- **`fun-isometric-reconciliation`** (svg) — who owns a sticker job when it is installed, and ten conflicts settled: its scale-0.2 pop against `never-scale-from-zero`, frame loops against `duration-table`, its baked spring against stiffness and damping, idle loops against the delight curve, its default inks against the contract, sharp corners, grey and shape count against this install's `pov`, canvas and video against SVG-first, and its self-installing Chromium.
+
+### Changed
+
+- `skill-router`: a companion row for fun-isometric and a sticker entry in the material list; `routing-table`: one row; `MOC-svg`: a Stickers section; SKILL.md: the SVG cluster line and the companion lists.
+- Evals: 2 loading and 3 progressive-reads rows. AGENTS.md sources; README counts (148 nodes); version 2.10.0 across all seven manifests; registry rebuilt.
+
 ## [2.9.0] — 2026-10-25
 
 Jakub Krehel's interfaces skills ([jakubkrehel/skills](https://github.com/jakubkrehel/skills), MIT, HEAD `592aedc`, plugin 1.17.0), distilled and routed. Six domain skills block on evidence — a WCAG criterion, a visible break, an exact value missed — and treat a deliberate convention as a preference, the same bar as `review-format`. Most of their rules were already in the graph. This release adds what wasn't: accessibility that actually speaks, colour systems named for their roles, layouts that survive translation and mirroring, and three review methods from the verb skills.
