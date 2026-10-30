@@ -27,7 +27,9 @@ const flag = (name, fallback) => { const i = args.indexOf(name); return i === -1
 const fps = Number(flag("--fps", "12"));
 const out = resolve(flag("--out", "flipbook.svg"));
 const name = flag("--name", basename(out, ".svg")).replace(/[^a-zA-Z0-9_-]/g, "-");
-const title = flag("--title", "");
+// Escaped: the title lands inside SVG markup.
+const title = flag("--title", "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+if (!Number.isFinite(fps) || fps < 1 || fps > 120) { console.error("--fps must be from 1 to 120"); process.exit(1); }
 const loop = !args.includes("--no-loop");
 const lift = args.includes("--vars");
 
