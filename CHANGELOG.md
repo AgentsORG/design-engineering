@@ -6,6 +6,19 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [3.1.1] — 2026-10-30
+
+Hardens the three generation scripts after the skills.sh Socket audit (Oct 28, 2026, one LOW anomaly) flagged `scripts/sound-family.mjs`. Valid manifests and cue sheets produce the same output as before: the demo stem renders byte-for-byte identically.
+
+### Security
+
+- **`sound-family.mjs`: path traversal fixed.** Sound names from the manifest were joined into output paths unchecked. A name like `../../x` could write a WAV, or on the ElevenLabs path write and then delete an MP3, outside `--out`. Names must now match `^[a-z0-9][a-z0-9_-]{0,63}$` and must not be `manifest`. Every write and delete is resolved and refused unless it lands inside the output directory.
+- **`sound-family.mjs`: bounded inputs.** Limits are 64 sounds, prompts of 1,000 characters, request seconds from 0.5 to 30 and `--influence` from 0 to 1. Synth seconds, decay and stagger are at most 10, a chime takes at most 16 notes from 20 Hz to 20 kHz, and every other synth number must be finite. Validation runs before anything is created on disk.
+- **`sound-sheet.mjs`: bounded inputs.** Limits are 1 to 5,000 cues, cue times up to 600 s, a stem duration of 0.1 to 600 s, fps from 1 to 240, and a canvas up to 16,384 px. An unbounded `duration` could previously allocate an arbitrarily large sample buffer.
+- **`svg-flipbook.mjs`:** `--title` is escaped before it goes into the SVG markup, and `--fps` must be from 1 to 120.
+
+The ElevenLabs request itself, which sends the prompt and `ELEVENLABS_API_KEY` to api.elevenlabs.io only when that provider is chosen, is the documented behaviour and is unchanged.
+
 ## [3.1.0] — 2026-10-30
 
 This release distils Emil Kowalski's design-engineering practice and his public [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT, HEAD `a81dbca`). Every rule was checked against the graph before it went in. The main results are a whole-app production pass, four new verbs, fourteen new nodes, and a round of corrections where the graph's own values had drifted or were misattributed.

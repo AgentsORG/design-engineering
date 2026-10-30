@@ -69,7 +69,18 @@ const PEAK_DB = Number(flag("--peak", "-1"));
 const W = sheet.canvas?.w ?? 1920;
 const H = sheet.canvas?.h ?? 1080;
 const FPS = sheet.fps ?? 30;
+// The cue sheet is input: bound everything that sizes a buffer before rendering.
+const sheetFail = (msg) => { console.error(`cue sheet: ${msg}`); process.exit(1); };
+const inRange = (v, lo, hi) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
+if (!Array.isArray(sheet.cues) || sheet.cues.length < 1 || sheet.cues.length > 5000) sheetFail("cues must be an array of 1 to 5000 cues");
+for (const [i, c] of sheet.cues.entries()) {
+  if (!inRange(c.t, 0, 600)) sheetFail(`cues[${i}].t must be from 0 to 600 seconds`);
+  if (c.dur !== undefined && !inRange(c.dur, 0, 60)) sheetFail(`cues[${i}].dur must be from 0 to 60 seconds`);
+}
 const DURATION = sheet.duration ?? Math.max(...sheet.cues.map((c) => c.t + (c.dur ?? 0))) + 1;
+if (!inRange(DURATION, 0.1, 600)) sheetFail("duration must be from 0.1 to 600 seconds (a 10-minute stem is about 200 MB of samples)");
+if (!inRange(FPS, 1, 240)) sheetFail("fps must be from 1 to 240");
+if (!inRange(W, 1, 16384) || !inRange(H, 1, 16384)) sheetFail("canvas w and h must be from 1 to 16384");
 
 // ---------- deterministic noise ----------
 function makeNoise(seed) {
