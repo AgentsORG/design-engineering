@@ -69,7 +69,7 @@ The web platform has shipped a lot in the last decade. Many libraries that "ever
 | `moment.js` (300KB) | `Intl.DateTimeFormat`, `Intl.RelativeTimeFormat` |
 | `axios` | `fetch()` (with a thin wrapper for JSON parsing) |
 | `lodash` (most uses) | `Array.from`, `.flat`, `.includes`, `.at`, `Object.fromEntries` |
-| `classnames` | One-line `filter(Boolean).join(' ')` helper |
+| `classnames` | `clsx` (~240 B, same API) — or the one-line `filter(Boolean).join(' ')` helper when every input is a plain string. Variant-shaped styling (size × intent × state) earns `cva` on top |
 | `uuid` | `crypto.randomUUID()` |
 | `query-string` | `URLSearchParams` |
 | jQuery | DOM API + `closest()`, `matches()`, `querySelector()` |
@@ -101,4 +101,5 @@ This rule applies in proportion to the project's expected lifetime and audience.
 - Ben DC — [frontend-guidelines](https://github.com/bendc/frontend-guidelines) — "Favor native methods."
 - Vercel — bundle-size as a design dimension.
 - web.dev — "Tame third parties," bundle audits.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/pick-ui-library/SKILL.md (clsx for conditional classes, cva for real variants).
 - Related: [[transform-opacity-only]] and [[debugging-animations]] (the performance-is-design framing lives in those motion nodes), [[unseen-details-compound]].

@@ -21,7 +21,7 @@ Buttons must visibly respond to `:active`. The minimum:
 }
 ```
 
-Why 0.97 and not 0.95? At 0.95 the button feels squishy. At 0.97 it feels firm. The difference is small and worth caring about. Avoid scale below 0.95 unless you're going for a juicy mobile feel.
+**Canonical press scale:** `0.97` for buttons, `0.96` for small controls (icon buttons, chips, toggles), and `0.95` as the floor — below it the press looks squishy and cartoonish. Duration stays 100–160ms with an ease-out; the transition lets a mid-press release glide back. `scale()` takes the label and icon with it, which is what reads as physical. Dense or 100+/day controls can skip it — bake a `still` opt-out into the Button.
 
 For touch targets, add a subtle background dimming as well — a 4% darker overlay on press. This compensates for the fact that the user's finger covers the button.
 
@@ -50,20 +50,13 @@ Radix UI, React Aria, and Floating UI all expose the trigger position — use it
 
 The first tooltip in a group should have a 400–700ms delay before appearing (so casual hovers don't trigger it). Subsequent tooltips in the same UI cluster should appear *instantly*.
 
-```ts
-// pseudocode
-const TOOLTIP_DELAY = 600;
-const SKIP_WINDOW = 1500; // ms after last close in which next is instant
+The first tooltip animates in ~125ms (`scale(0.97)` + opacity, from `var(--transform-origin)`). The skip applies to the animation as well as the delay:
 
-let lastClosedAt = 0;
-const onHover = () => {
-  const sinceLast = Date.now() - lastClosedAt;
-  const delay = sinceLast < SKIP_WINDOW ? 0 : TOOLTIP_DELAY;
-  setTimeout(showTooltip, delay);
-};
+```css
+.tooltip[data-instant] { transition-duration: 0ms; } /* Radix / Base UI set this */
 ```
 
-Radix's `Tooltip.Provider skipDelayDuration={300}` does this for you.
+Radix's `Tooltip.Provider skipDelayDuration={300}` handles the delay side.
 
 This is the single most reused micro-interaction in well-designed UIs. Without it, exploring a toolbar feels gluey. With it, the user gets the tooltip exactly when they want it.
 
@@ -83,3 +76,5 @@ Don't set `:active` on form `<input>` elements the same way — scaling an input
 
 - Emil Kowalski — tooltips, popovers, origin-awareness from Sonner / Vaul.
 - Radix UI — `Tooltip.Provider skipDelay` implementation.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/RECIPES.md (button press, tooltip `data-instant`).
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN (0.96 small-control press, 0.95 floor, `still` opt-out).

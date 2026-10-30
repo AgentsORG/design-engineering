@@ -13,7 +13,9 @@ A monochromatic palette — one hue across a wide range of lightness values, plu
 1. Pick **one neutral hue** as your base. Pure gray is fine. A subtle warm gray (slight yellow undertone) or cool gray (slight blue undertone) is better.
 2. Generate **8–12 steps** of that hue from near-white to near-black. Tailwind's `slate`, `zinc`, `stone`, `gray`, and `neutral` are good starting points. Linear, Vercel, Notion all use this approach.
 3. Pick **one true accent** for primary actions. Saturated, intentional. Don't dilute it across the UI — earn its use.
-4. Optionally pick **one second accent** for warnings or success states. These should be subdued, not loud.
+4. Optionally pick **one second accent** for warnings or success states. These should be subdued, not loud. If the brand accent is green, success takes a different hue, or users can't tell "primary action" from "it worked".
+
+Three derivation rules keep the set coherent: neutrals share the brand's temperature (a blue brand wants cool greys; warm greys fight it, and an untinted `#808080` reads as placeholder); light tints come from lowering chroma in OKLCH, not lowering opacity, which greys them out; and disabled gets its own muted token rather than `opacity`, which passes contrast on one background and fails on the next ([[color-token-tiers]]).
 
 That's it. The whole palette is ~14 tokens. Most "design systems" with 60 color tokens are overcomplicating.
 
@@ -44,3 +46,4 @@ See also [[dark-mode]] for the dark-mode variant of these tokens, [[ai-default-t
 
 - guidelines.sh — "Monochromatic with subtle accents; avoid bright/purple gradients."
 - Linear, Vercel, Notion — examples of monochrome-with-one-accent in production.
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN — status hue, neutral temperature, tints and disabled tokens.

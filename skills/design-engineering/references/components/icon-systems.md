@@ -57,6 +57,19 @@ When toggling an icon (e.g., chevron expand/collapse, play/pause, sun/moon), **r
 
 See [[animations-dev-curriculum]] for the canonical resource on icon animation.
 
+## Drawing and meaning
+
+- Below ~12px, swap outline icons for the filled variant; 1px strokes vanish. Snap coordinates to whole pixels so 1× screens don't blur.
+- Round caps by default; square caps read unfinished. Union multipath icons into one path with one fill.
+- Don't upscale: a 16px icon at 48px keeps its spindly stroke. Redraw it heavier. Favicons get a simplified mark hinted for 16px ([[svg-creation]]).
+- One icon, one meaning: a chevron can't mean both "expand" and "next page"; a star can't mean both favourite and rating (heart for favourite).
+- Pairs that differ only by a 180° turn (upload/download) need a second cue, such as a label or a baseline bar.
+- 6–8px between an icon and its label; ambiguous metaphors (the floppy disk) get the text label.
+
+## Illustration cohesion
+
+Illustrations obey the icon system: same stroke weight, about three colours recoloured to the UI's tokens, light falling from the same side as the UI's shadows, one perspective per scene, negative space drawn in rather than padded on afterwards. Complexity matches the spot (a tooltip gets a small mark, not a scene), and they get redrawn, not scaled, for larger slots. Generic blob-and-character packs read as no budget; a typographic treatment or nothing beats them.
+
 ## When to apply
 
 - Setting up a new design system: pick the pack, document it, lock it.
@@ -72,4 +85,5 @@ Icon stroke is `stroke-width`, not `border-width`. Setting `stroke-width: 2` on 
 - guidelines.sh — "Never mix icon packs; match stroke to font weight; Lucide is overused."
 - lucide-animated.com — icon animation patterns.
 - Phosphor Icons — weight system documentation.
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN — the drawing, meaning and illustration rules.
 - better-auth/better-icons (MIT; npm 1.0.4 on 2026-10-08, the repo's 1.0.5 is unpublished) — Iconify search and retrieval; the cross-pack pull is HKTITAN's reading of its tools.
