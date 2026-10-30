@@ -75,11 +75,11 @@ Use rotation when the geometric difference is purely angular (arrows by 90°, pl
 - Icons that need filled shapes (the constraint here is stroke-only).
 - Icon sets larger than ~20 icons. The 3-line constraint gets restrictive past that.
 
-## The metaphysical point
+Constraints are the engine: forcing every icon into one 3-line schema is what makes every icon morph-compatible with every other.
 
-Constraints are the engine. By forcing every icon into a 3-line schema, every icon becomes *morph-compatible* with every other one. The constraint isn't a limitation; it's what enables the system to work at all.
+## When the icons can't share a schema: the contextual swap
 
-You couldn't ship this with a heterogeneous icon set. The whole approach depends on uniformity at the data layer.
+For a stock icon pair (copy → check, like → liked), swap them with a deep scale, not a plain fade: `scale 0.3 → 1`, opacity `0 → 1`, `blur(3px) → 0`, spring `{ type: "spring", duration: 0.35, bounce: 0 }`, inside `AnimatePresence mode="popLayout" initial={false}`. A timid 0.8–0.9 scale reads as a glitch. Without Motion, render both icons stacked and cross-fade classes over ~300ms with `cubic-bezier(0.25, 0.1, 0, 1)`. Keep it for state toggles and contextual toolbars, never always-on navigation icons.
 
 ## Gotcha
 
@@ -90,4 +90,5 @@ Also: opacity-collapsed lines still render in the SVG. If you have hundreds of i
 ## Sources
 
 - Benji Taylor — *Morphing Icons with Claude*, [benji.org/morphing-icons-with-claude](https://benji.org/morphing-icons-with-claude).
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN (contextual icon swap values).
 - Related: [[icon-systems]], [[transform-mastery]], [[fly-not-teleport]], [[animations-dev-curriculum]].

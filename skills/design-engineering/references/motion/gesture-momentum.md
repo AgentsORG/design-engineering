@@ -31,14 +31,14 @@ Two samples make a noisy velocity: one late `pointermove` can halve or double it
 
 ## Damping at boundaries
 
-When the user drags past the edge, don't stop hard. Apply diminishing returns:
+When the user drags past the edge, don't stop hard. Resist more the further they go — Apple's rubber band:
 
 ```ts
-// pull-to-refresh / overscroll
-const damped = (delta) => Math.sign(delta) * Math.pow(Math.abs(delta), 0.7);
+// x = distance past the bound, d = the container's size along that axis
+const rubberband = (x, d, c = 0.55) => (x * d * c) / (d + c * Math.abs(x));
 ```
 
-The `0.7` exponent makes each pixel of drag input produce diminishing pixels of motion. iOS uses something close to this. Without it, the boundary feels like hitting a wall.
+Near the edge it follows at about `c` (55%) of the finger; far past it the offset levels off and never exceeds `d`, so no drag can throw the content off-screen. An unbounded power curve (`|x|^0.7`) keeps growing and is not what iOS ships. Without resistance, the boundary feels like hitting a wall.
 
 ## Pointer capture
 
@@ -63,7 +63,7 @@ onPointerDown(e) {
 
 ## Friction instead of hard stops
 
-When a draggable element reaches its target, don't hard-stop at the target value. Let it overshoot slightly and settle. This is what springs are for — see [[spring-animations]].
+Past a boundary, allow the drag with rising friction (the rubber band above) instead of blocking it; on release, spring back to the bound. At a normal target, **overshoot only when the gesture carried momentum**: a flicked card may bounce slightly (damping ratio ~0.8), a slow release or a programmatic move settles critically damped with no overshoot. Where it lands after a flick is [[momentum-projection]]; the spring itself is [[spring-animations]].
 
 ## When to apply
 
@@ -79,3 +79,4 @@ Touch events and pointer events are different APIs and produce slightly differen
 
 - Emil Kowalski — gesture and drag interactions (Sonner, Vaul).
 - iOS Human Interface Guidelines — rubberband / damping behavior.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/apple-design/SKILL.md (the 0.55 rubber-band constant, overshoot only after momentum).

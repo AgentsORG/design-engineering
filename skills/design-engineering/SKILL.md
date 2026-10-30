@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: HKTITAN
-  version: "3.0.0"
+  version: "3.1.0"
   graph: true
   subagents: agents/
   soul: SOUL.md
@@ -22,21 +22,26 @@ Look at what the user typed after `/design-engineering`. Claude Code passes it a
 1. **The first word is a verb in the table** (or one of its aliases): open that command file and follow it exactly. Pass the remaining words on as its target.
 2. **The arguments are a plain request** ("why does this card feel flat"): run [[skill-router]]. It resolves the contract, classifies the phase and names one or two owners. Then follow [[routing-table]] to the entry node.
 3. **No arguments, and the conversation already holds a design request:** treat that request as rule 2.
-4. **No arguments and no request:** show the table below as a menu, lead with the 2–3 verbs that fit what is in front of you (a diff → `review`, a `.design` file → `tokens`, a video file → `film review`), and wait. Never auto-run a verb.
+4. **No arguments and no request:** show the table below as a menu, lead with the 2–3 verbs that fit what is in front of you (a diff → `review`, a `.design` file → `tokens`, a video file → `film review`, launch week → `ship`), and wait. Never auto-run a verb.
+
+For a screen built from scratch, run the verbs in the order of the screen loop in [[stacking-chains]]: one or two at a time, looking at the screen between them ([[directing-agents]]).
 5. If two verbs fit, ask once. If none fits and the job is not design (backend logic, data, build tooling), say no skill applies.
 
 | Verb | Aliases | Does | Command file |
 |---|---|---|---|
 | `review` | `review-ui`, `critique` | A UI code review as a Before / After / Why table; change-scoped for a diff | [[cmd-review]] |
 | `polish` | `finish` | The screen works but feels unfinished: states, optical details, fixes applied | [[cmd-polish]] |
-| `motion` | `motion-audit`, `animate` | Should it move? Then timing, easing, springs and transitions with concrete values | [[cmd-motion]] |
+| `motion` | `motion-audit`, `animate` | Should it move? Then timing, easing, springs and transitions with concrete values; `remove`, `opportunities` or `audit` (writes plans) | [[cmd-motion]] |
+| `mobile` | `native-feel` | Makes a web app feel native on a phone: the symptom, a one-line fix and why, and what needs a real device | [[cmd-mobile]] |
+| `break` | `worst-case`, `break-ui` | Breaks the UI with realistic worst-case data, reports what broke and stops | [[cmd-break]] |
 | `tells` | `unslop`, `scan-ai-tells` | AI-default tells in UI, code or copy, as a deletion list | [[cmd-tells]] |
 | `a11y` | `accessibility` | An evidence-only accessibility audit tied to WCAG 2.2 criteria | [[cmd-a11y]] |
 | `tokens` | `contract`, `apply-design-md` | Find the `.design` / DESIGN.md and thread its tokens through the UI | [[cmd-tokens]] |
 | `sound` | `sound-pass` | Which moments earn a sound, one family, generated, wired, mapped | [[cmd-sound]] |
 | `svg` | `svg-create`, `svg-animate` | `create`, `animate` or `sticker`: an SVG on tokens, or one that moves | [[cmd-svg]] |
+| `ship` | `prep`, `prod`, `launch` | A whole-app production pass across every lane: fix, verify, and list what needs a device or a human | [[cmd-ship]] |
 | `film` | `film-review`, `video` | `plan` a launch film from its register, `review` a render, or `formats` | [[cmd-film]] |
-| `diagram` · `options` · `name` · `which` · `agentation` · `pov` | `variants`, `vocab`, `route`, `agentation-fix`, `fork-pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha | [[cmd-small]] |
+| `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | `variants`, `library`, `vocab`, `route`, `agentation-fix`, `fork-pov` | Draw or not; three directions behind a picker (`riff`, `tune`, `mix`, `keep`); one library for a task; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha | [[cmd-small]] |
 | `help` | `menu`, `?` | This table, with the 2–3 verbs that fit now | — |
 
 The command files are indexed in `[[MOC-commands]]`. Every verb applies [[gotchas]] and [[pov]], and both outrank the graph's defaults. A project's `.design` outranks both ([[using-design-file]]). Keep the posture the verb names: a judge verb reports and never edits unless asked. Where the host ships this skill's subagents (the Claude Code plugin), a command file may be handed to its subagent as the brief. Each command file is the whole procedure on its own, so nothing needs the plugin.
@@ -51,7 +56,7 @@ How to think about taste, delight, and the difference between marketing and prod
 
 The largest cluster. Animation is the most overused tool in modern UI; this cluster tells you when *not* to animate as much as when to.
 
-- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[frame-rate-independence]], [[animated-hit-testing]]
+- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[frame-rate-independence]], [[animated-hit-testing]], [[animation-removal-hazards]], [[momentum-projection]], [[react-native-motion]]
 
 ## Transition techniques — Jakub Antalik's catalog
 
@@ -90,37 +95,39 @@ A diagram is the costliest way to say something. Decide whether a picture earns 
 
 The font defaults of the AI era are tells. Better choices and the rules around them.
 
-- `[[MOC-typography]]` → [[typography-humanity]], [[line-length-tracking]], [[type-scale-and-rhythm]], [[line-behavior]]
+- `[[MOC-typography]]` → [[typography-humanity]], [[line-length-tracking]], [[type-scale-and-rhythm]], [[line-behavior]], [[opentype-features-and-axes]]
 
 ## Surface — color, shadow, radius, dark mode, imperfection
 
 The "background" choices that most decks of guidelines skip. They're load-bearing for feel.
 
-- `[[MOC-surface]]` → [[color-monochromatic]], [[color-scales-oklch]], [[dark-mode]], [[shadows-whisper]], [[depth-and-nesting]], [[border-radius]], [[visual-imperfection]], [[contrast-and-color-scheme]], [[z-index-strategy]], [[color-token-tiers]], [[palette-step-roles]], [[gradient-interpolation]]
+- `[[MOC-surface]]` → [[color-monochromatic]], [[color-scales-oklch]], [[dark-mode]], [[shadows-whisper]], [[depth-and-nesting]], [[border-radius]], [[visual-imperfection]], [[contrast-and-color-scheme]], [[z-index-strategy]], [[color-token-tiers]], [[palette-step-roles]], [[gradient-interpolation]], [[translucent-materials]], [[oklch-gamut-and-migration]]
 
 ## Layout — page-level grids, viewports, sticky chrome, URL-as-state, marketing surfaces
 
 The container, not the component. Marketing especially benefits from custom-per-viewport thinking; product apps benefit from URL-driven state.
 
-- `[[MOC-layout]]` → [[viewport-custom-design]], [[sticky-and-scroll-tells]], [[url-as-state]], [[marketing-surface-rules]], [[page-frame]], [[scroll-anchoring]], [[grouping-by-space]], [[growth-and-overflow]], [[logical-properties-rtl]]
+- `[[MOC-layout]]` → [[viewport-custom-design]], [[sticky-and-scroll-tells]], [[url-as-state]], [[marketing-surface-rules]], [[page-frame]], [[scroll-anchoring]], [[grouping-by-space]], [[growth-and-overflow]], [[logical-properties-rtl]], [[information-architecture]], [[mobile-platform-layer]], [[share-and-crawl-metadata]]
 
 ## Components — buttons, hovers, states, cards, forms, avatars, icons, a11y, copy, APIs
 
 The atoms users actually touch. Their behavior is where craft lives.
 
-- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[cards-design]], [[forms-validation]], [[forms-behavior]], [[touch-and-focus]], [[ui-polish-pass]], [[component-api-design]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]], [[dashboard-tells]], [[screen-reader-announcements]], [[keyboard-patterns]], [[wcag-thresholds]], [[strings-and-locale]], [[destructive-actions]]
+- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[cards-design]], [[forms-validation]], [[forms-behavior]], [[touch-and-focus]], [[ui-polish-pass]], [[component-api-design]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]], [[dashboard-tells]], [[screen-reader-announcements]], [[keyboard-patterns]], [[wcag-thresholds]], [[strings-and-locale]], [[destructive-actions]], [[sonner-usage]]
 
 ## Anti-patterns — what AI-generated UI gives away
 
 What looks "AI default" and what to do instead. High-value because it's about deletion, not addition.
 
-- `[[MOC-anti-patterns]]` → [[ai-default-tells]], [[unslop-pass]], [[content-authenticity]], [[copy-tells]], [[code-tells]], [[screenshot-critique]]
+- `[[MOC-anti-patterns]]` → [[ai-default-tells]], [[unslop-pass]], [[content-authenticity]], [[copy-tells]], [[code-tells]], [[screenshot-critique]], [[leftovers-and-leaks]]
 
 ## Meta — review format, design.md, Agentation, evals, per-installer files
 
 Procedural rules and growing files. `[[review-format]]` is mandatory when doing UI code reviews.
 
 - [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw, GSAP, better-icons, fun-isometric).
+- [[ship-check]] — The whole-app production pass behind `ship`: fix rather than report, verified vs needs-hardware, the severity tree, fix order. Baseline in [[production-baseline]].
+- [[directing-agents]] — Steering an agent: friction where judgment matters, a named concept instead of an adjective, one or two passes, fix the system not the screen, the papercut pipeline.
 - [[routing-table]] — Intent → entry-node router with the four postures (build / judge / decide / name). Open this before anything else on a single question.
 - [[prototype-picker]] — Undecided? Three to five genuinely different versions behind a live picker, numbers on controls, then write the decision and delete the harness.
 - [[build-a-tool]] — "Closer, but not quite" twice? Stop re-prompting; diagnose the gap and build the small tool that produces the artifact.
@@ -131,7 +138,7 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 - [[disambiguation]] — The questions that blur together (four motion questions, three dark-mode owners, two layout-shift owners) and which node owns each.
 - [[stacking-chains]] — Ordered node chains for multi-step jobs (new screen, feel-better pass, design system, marketing site, a11y pass).
 - [[review-format]] — Required output format for UI critiques (Before | After | Why markdown table).
-- [[review-checklist]] — Twenty-six-row audit to scan against before signing off on a UI review.
+- [[review-checklist]] — Thirty-nine-row audit to scan against before signing off on a UI review.
 - [[change-scoped-review]] — Reviewing a diff, not a screen: scope, blast radius, the removed side of every hunk, and each finding statused Introduced, Regression or Pre-existing.
 - [[stress-scenarios]] — One component under every scenario that can reach it (length, shape, quantity, container, state) on a throwaway harness, and its product states behind a switcher.
 - [[reading-others-interfaces]] — How someone else's site or effect was built: evidence not instruction, measured / derived / inferred, layers in paint order, the recipe in words.

@@ -21,7 +21,7 @@ You are a design-engineering agent. You review UI code, tune motion, choose typo
 
 ## Verbs
 
-The skill has one entry, `/design-engineering [verb] [target]`. The dispatch table at the top of its `SKILL.md` maps each verb (review, polish, motion, tells, a11y, tokens, sound, svg, film, diagram, options, name, which, agentation, pov) to a command file under `references/commands/`. When a request names a verb, open that file and follow it.
+The skill has one entry, `/design-engineering [verb] [target]`. The dispatch table at the top of its `SKILL.md` maps each verb (review, polish, motion, mobile, break, tells, a11y, tokens, sound, svg, ship, film, diagram, options, pick, name, which, agentation, pov) to a command file under `references/commands/`. When a request names a verb, open that file and follow it.
 
 ## Delegation
 

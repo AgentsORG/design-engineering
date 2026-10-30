@@ -18,14 +18,14 @@ The WCAG 2 contrast formula (the 4.5:1 / 3:1 ratios) is a 1980s model and badly 
 
 | Use | Lc (lightness contrast) |
 |---|---|
-| Body text | 75+ |
-| Large text / UI text | 60+ |
-| Non-text UI / icons | 45+ |
-| Disabled states | 30+ (floor, not target) |
+| Body text (fluent reading) | 75+ (90 preferred) |
+| Other content text, UI labels | 60+ |
+| Large or heavy text (headlines) | 45+ |
+| Non-text essentials (icons, borders, focus rings), placeholder, disabled | 30+ (floor, not target) |
 
 APCA is signed (positive for dark-on-light, negative for light-on-dark) and the threshold magnitudes are the same in both directions. Tools: [APCA Contrast Calculator](https://www.myndex.com/APCA/), `apca-w3` npm package.
 
-WCAG 2 still gets you legal compliance in most jurisdictions. APCA gets you UI that actually reads. Run both; pass both.
+WCAG 2 still gets you legal compliance in most jurisdictions: 4.5:1 body, 3:1 for large text (~24px, or bold from ~18.5px) and UI components. APCA gets you UI that actually reads. Run both; pass both. Repair a failing pair by moving L only ([[color-scales-oklch]]).
 
 ## Interactions raise contrast, not lower
 
@@ -44,9 +44,12 @@ A hover state should make the element *more* contrasty, not less. A pressed stat
   background: var(--bg-elevated-active); /* even more */
 }
 .button:disabled {
-  opacity: 0.5;                          /* drops contrast — expected */
+  background: var(--bg-disabled);        /* drops contrast — expected */
+  color: var(--text-disabled);           /* a token, never opacity */
 }
 ```
+
+Disabled takes dedicated tokens, not `opacity`: opacity lets whatever sits behind show through, so the same button passes on one surface and fails on the next ([[color-token-tiers]]).
 
 ## Browser chrome integration
 
@@ -72,7 +75,7 @@ Tells the browser whether scrollbars, form controls, and `<input>` defaults shou
 }
 ```
 
-Without `color-scheme`, dark-mode pages get *light* scrollbars and *light* native `<select>` dropdowns — instantly disorienting.
+Without `color-scheme`, dark-mode pages get *light* scrollbars and *light* native `<select>` dropdowns — instantly disorienting. Declare only the schemes you actually designed: a light-only app that writes `light dark` hands dark-OS users dark native controls on a white page. Light-only declares `color-scheme: light`.
 
 ## Gradient banding
 
@@ -92,7 +95,7 @@ Or use a `<svg>` filter with `<feTurbulence>` for procedural noise.
 ## When to apply
 
 - Setting up a new design tokens file: include APCA contrast checks in your design-system docs.
-- Implementing dark mode: add `<meta name="theme-color">` and `color-scheme: dark` from day 1.
+- Implementing dark mode: add `<meta name="theme-color">` and the matching `color-scheme` the day the dark theme exists, not before.
 - Reviewing a hover state: confirm it *increases* contrast, doesn't decrease it.
 - Designing a hero gradient: test on macOS with night-shift on — banding shows up.
 
@@ -104,4 +107,5 @@ Or use a `<svg>` filter with `<feTurbulence>` for procedural noise.
 
 - Vercel Web Interface Guidelines — Design section, contrast and chrome rules.
 - Andrew Somers — APCA documentation, [git.apcacontrast.com](https://git.apcacontrast.com).
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN — disabled tokens, declared schemes.
 - Related: [[color-monochromatic]] (the palette), [[dark-mode]] (specific colors), [[accessibility-baseline]] (a11y context), [[shadows-whisper]] (sibling surface concern).

@@ -15,6 +15,8 @@ Typography is where AI-generated UIs give themselves away first. Inter and SF Pr
 - [[type-scale-and-rhythm]] — A closed scale named by role; unitless leading (~1.1 display, 1.5–1.6 body); tracking by size; woff2 only, `font-synthesis: none`, properties over raw tags, tabular figures on anything that updates.
 - [[line-behavior]] — Measure near 65ch, wrap mode per role, overflow guards both ways, truncation with an escape hatch, casing by CSS, real punctuation, tuned underlines, logical properties, the 16px and contrast floors.
 
+- [[opentype-features-and-axes]] — Static vs variable, the registered axes, real small caps / slashed zero / super-sub through properties, font-specific stylistic sets, optical cuts, stroked-text seams.
+
 ## Cross-cluster
 
 - See [[ai-default-tells]] in [[MOC-anti-patterns]] for typography tells (default sans on landing pages, gradient text on hero).

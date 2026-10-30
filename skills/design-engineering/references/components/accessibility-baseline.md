@@ -18,6 +18,12 @@ These are the rules every component should pass before any design judgment is ap
 - **Trap focus in modals and dialogs.** Tab can't escape. `Esc` closes. Focus returns to the trigger element on close.
 - **Skip links** at the top of every page for screen-reader and keyboard users. `<a href="#main">Skip to content</a>` — visually hidden until focused.
 - **Enter submits forms**, `⌘+Enter` (or `Ctrl+Enter`) submits in textareas. Never break these.
+- **DOM order is visual order.** `order`, `row-reverse` or absolute positioning that reorders the screen makes Tab jump around it; reorder the markup, not the CSS. A positive `tabindex` is always wrong.
+- **Tooltips hold no interactive content.** A tooltip can't take focus, so a link inside it is unreachable; that content belongs in a click-opened popover.
+
+## Page structure
+
+Screen-reader users jump by landmark and heading. Every route has one `<main>`, one `h1`, and heading levels that never skip (pick the level from the outline, the size from the type scale). `<html lang>` is set, and a client-side route change updates `document.title`, or every tab reads the same.
 
 ## Hit targets
 
@@ -44,6 +50,7 @@ A 16px icon button needs *padding* to hit these — don't make the visible chrom
 ## Motion
 
 - **`prefers-reduced-motion`** is non-negotiable. See [[prefers-reduced-motion]].
+- **Media follows it too.** An animated GIF or AVIF sits in a `<picture>` whose animated `<source>` has `media="(prefers-reduced-motion: no-preference)"`, with a static `<img>` fallback. A looping CSS animation pauses on a representative frame (`animation-play-state: paused` plus a negative `animation-delay`), not on frame 0.
 
 ## When to apply
 
@@ -61,5 +68,6 @@ Don't ship custom `<select>` or `<combobox>` components unless you've truly impl
 
 - Vercel Web Interface Guidelines — Interactions and Content sections.
 - bendc/frontend-guidelines — "Don't rely on color alone."
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN — DOM order, tooltips, page structure, reduced-motion media.
 - WCAG 2.2 + Apple HIG hit-target guidance; the criterion numbers are in [[wcag-thresholds]], custom-widget key maps in [[keyboard-patterns]].
 - Related: [[hover-states-subtle]], [[forms-validation]], [[prefers-reduced-motion]], [[contrast-and-color-scheme]].

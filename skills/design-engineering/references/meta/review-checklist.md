@@ -1,6 +1,6 @@
 ---
 title: review-checklist
-summary: Audit table — twenty-six common UI issues, each with a grep and a fix. Scan against this before signing off.
+summary: Audit table — thirty-nine common UI issues, each with a grep and a fix. Scan against this before signing off.
 tags: [meta, review, checklist]
 ---
 
@@ -15,13 +15,13 @@ A pre-flight checklist for UI code review. Scan the user's code against each row
 | 1 | `transition: all` | Grep for `transition: all`, Tailwind `transition-all` (and bare `transition`, which is `all` too) | Specify `transform, opacity` (or other GPU-safe properties) | [[transform-opacity-only]] |
 | 2 | `scale(0)` entrance | Grep for `scale(0)`, `scale: 0` | Use `scale(0.95)` + opacity | [[never-scale-from-zero]] |
 | 3 | `ease-in` on UI | Grep for `ease-in` (not `ease-in-out`) | Use `ease-out` or custom cubic-bezier | [[easing-curves]] |
-| 4 | Animation duration > 400ms | Search durations | Most UI is <300ms; reserve longer for rare moments | [[duration-table]] |
+| 4 | Animation duration > 300ms on product UI | Search durations in app routes and components | Most UI is <300ms; exits shorter than entries; longer only for rare or marketing moments | [[duration-table]] |
 | 5 | Crossfade between two icons | Two icons in same slot with opacity transitions | Transform a single icon (rotate, morph); unrelated glyphs cross-fade with scale 0.25 → 1 and blur 4px → 0 ([[interfaces-reconciliation]]) | [[fly-not-teleport]] |
 | 6 | No `prefers-reduced-motion` guard | Grep for `@media (prefers-reduced-motion` | Add for any translate/scale animation | [[prefers-reduced-motion]] |
-| 7 | `:hover` on touch | Grep for `:hover` without media query gate | Wrap in `@media (hover: hover)` | [[hover-states-subtle]] |
+| 7 | `:hover` on touch | Grep for `:hover` (and Tailwind `hover:` with motion) without a media query gate | Wrap hover-driven motion in `@media (hover: hover) and (pointer: fine)` | [[hover-states-subtle]] |
 | 8 | Default Bootstrap shadow | Grep for `box-shadow: 0 2px` (or similar) | Layered shadows at 4–6% opacity | [[shadows-whisper]] |
 | 9 | Pure `#000` dark mode | Grep for `background: #000` (or `black`) | Use `#18181b` or `#1a1a1a` | [[dark-mode]] |
-| 10 | Spinner under 800ms expected wait | Look for `<Spinner />` on quick async calls | Skip the spinner; or use skeleton | [[empty-loading-states]] |
+| 10 | Loading indicator that flashes, or never comes | `<Spinner />` rendered immediately on async calls; a page-level spinner; a wait with no indicator at all | Delay any indicator ~150ms, show something by 400ms; skeletons for content, spinners only inside controls | [[empty-loading-states]] |
 | 11 | Inter / SF Pro on marketing page | Check font-family on landing/marketing routes | Use a less-default sans (Geist, Pangram, Displaay) | [[typography-humanity]] |
 | 12 | Sound with no mute, or on by default | Grep for `AudioContext`, `new Audio(`, `useSound`; look for a persisted toggle | Off by default, discoverable toggle, persisted; never sound-only information | [[sound-playback-web]] |
 | 13 | Sound on hover / focus / keystroke, or on page load | Grep for `play(` inside `mouseenter`, `focus`, `keydown`, or module scope | Delete it; sound belongs to daily and rare moments only | [[sound-decision-framework]] |
@@ -38,6 +38,19 @@ A pre-flight checklist for UI code review. Scan the user's code against each row
 | 24 | A live region mounted with its text | `{msg && <div role="status"`, or `aria-live="assertive"` on a success toast | Render the region empty first, then set its text; success is `role="status"` | [[screen-reader-announcements]] |
 | 25 | Submit disabled until valid | `disabled={!isValid}` on a submit button | Keep it enabled; validate on submit, focus the first invalid field | [[forms-validation]] |
 | 26 | Primitive colour in a component | `var(--blue-600)` or `bg-blue-600` in a component file; `--color-primary` beside `--color-text-primary` | A semantic role token; the brand is `accent` | [[color-token-tiers]] |
+| 27 | Input text under 16px on phones | `text-sm`/`text-xs` or `font-size` < 16px on `input`, `textarea`, `select` with no mobile override; `maximum-scale=1` in the viewport meta | `text-base md:text-sm`; never lock zoom | [[line-behavior]] |
+| 28 | Arbitrary z-index | `z-index: 9999`, `z-50` scattered, any value not on the scale | A fixed scale, or `isolation: isolate` | [[z-index-strategy]] |
+| 29 | Weight changes on hover or selected | `hover:font-semibold`, `:hover { font-weight`, `.active { font-weight` | Hold weight; signal with colour or an indicator | [[type-scale-and-rhythm]] |
+| 30 | Icon-only button with no name | `<button>` whose only child is an `<svg>`/icon, with no `aria-label` or visually-hidden text | An `aria-label` naming the action ("Search", not "icon") | [[accessibility-baseline]] |
+| 31 | Core action reachable only on hover | Actions inside `group-hover:`/`:hover` reveals with no focus or touch route | Visible on `:focus-within` and on touch, or always visible | [[touch-and-focus]] |
+| 32 | Focus ring removed | `outline: none` / `outline-none` with no `:focus-visible` replacement | A neutral `:focus-visible` outline with `outline-offset: 2px` | [[accessibility-baseline]] |
+| 33 | Faked bold or italic | No `font-synthesis: none` at the root; weights requested that aren't loaded | Declare it; load the weights you use | [[type-scale-and-rhythm]] |
+| 34 | Layout properties animated | `transition` or keyframes on `width`, `height`, `top`, `left`, `margin` | `transform` and `opacity` | [[transform-opacity-only]] |
+| 35 | Unbounded list, no virtualization | `.map(` over fetched or user-growing arrays with no windowing | Virtualize past ~50 rows | [[performance-discipline]] |
+| 36 | Disabled by opacity | `opacity-50`/`opacity: .5` on `:disabled` or `disabled:` | Dedicated disabled tokens | [[contrast-and-color-scheme]] |
+| 37 | Undesigned scheme declared | `color-scheme: light dark` or a dark `theme-color` on an app with no dark theme | Declare only the schemes that exist | [[contrast-and-color-scheme]] |
+| 38 | Theme-blind SVG | `fill="#fff"`, `fill="#000"`, `stroke="white"` inline in icons or logos | `currentColor` or a CSS variable | [[dark-mode]] |
+| 39 | Truncation with no way out | `truncate`, `line-clamp-*`, `text-overflow: ellipsis` on meaningful text with no `title`, tooltip or expand | Give the full string a route | [[line-behavior]] |
 
 ## Workflow
 

@@ -61,7 +61,7 @@ Treat docs as a first-class deliverable, not an afterthought.
 
 A "spring-bouncy" component and a "crisp-fast" component shouldn't share an easing curve. Once you've picked a personality, every animation in the library should feel like it came from the same hand.
 
-Sonner is *quiet*. Vaul is *physical*. Cmdk is *snappy*. Each is consistent within itself.
+Sonner is *quiet*: its toasts use a slightly slow ~400ms `ease` transition rather than the generic ease-out budget. Vaul is *physical*. Cmdk is *snappy*. Each is consistent within itself.
 
 ## 8. Opacity + height is trial-and-error
 
@@ -82,7 +82,7 @@ This is the cheapest QA step in design engineering. Builds in a 24-hour cooling 
 
 ## 10. Asymmetric enter/exit timing
 
-Covered in [[duration-table]] and [[compose-subtract-asymmetry]]. Enter is theatrical; exit is quiet. Exit at ~60–80% of enter duration. Never reverse the entrance.
+Covered in [[duration-table]] and [[compose-subtract-asymmetry]]. Exit along the same path it entered — a toast in from the bottom leaves through the bottom, which is what makes swipe-to-dismiss obvious — but with fewer properties and at ~60–80% of the enter duration.
 
 ## When to apply
 
@@ -101,4 +101,5 @@ These principles are for components you ship to others. For one-off internal UI,
 
 - Emil Kowalski — The Sonner Principles section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
 - [sonner.emilkowal.ski](https://sonner.emilkowal.ski/) — reference implementation.
-- Related: [[duration-table]], [[compose-subtract-asymmetry]], [[responsive-feedback]].
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/RECIPES.md (toast timing, same-edge exit).
+- Related: [[duration-table]], [[compose-subtract-asymmetry]], [[responsive-feedback]], [[sonner-usage]] (setup and troubleshooting).

@@ -20,6 +20,10 @@ The page-level container, not the component level. When designing a screen — e
 - [[growth-and-overflow]] — Content grows: `max-width` and `min-height`, wrapping rows, pseudo-localization, `minmax(0, 1fr)`, `100%` not `100vw`, container queries and their collapse, breakpoints from content, peeks and `scroll-padding`.
 - [[logical-properties-rtl]] — Leading and trailing, not left and right; physical only for safe areas, with an RTL override; visual order is DOM order; mirror only direction-bearing icons; `<bdi>` for mixed direction.
 
+- [[information-architecture]] — Grouping long settings, tabs for views of one thing, flattening deep menus, search logs as navigation feedback, the primary action in reach.
+- [[mobile-platform-layer]] — The phone platform layer: viewport tag, `dvh`/`svh`, safe areas in landscape, the Android keyboard, scroll lock, overscroll, testing by LAN on a real device.
+- [[share-and-crawl-metadata]] — Titles, OG images with `metadataBase`, crawl rules left over from staging, icons, a conversion path that works end to end, analytics loaded once.
+
 ## Cross-cluster
 
 - For *component-level* layout (cards, modals), see [[MOC-components]].
