@@ -66,7 +66,8 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Make launch-film motion feel alive — settles, springs, blur, holds, rhythm | [[launch-video-motion]] |
 | Cut a multi-scene video — seams, hard cuts, the ledger | [[launch-video-seams]]; hard cuts → [[launch-video-cuts]] |
 | Score a launch video or logo reveal | [[launch-video-sound]] (pick the register); a music track or a voice → [[launch-video-music]]; derive the stem → [[sound-from-motion]] |
-| Review a launch film, or measure a reference film | [[launch-video-review]] (or spawn [[launch-film-analyst]]); inside HyperFrames → [[hyperframes-reconciliation]]; in Remotion with cinetic → [[cinetic-reconciliation]] |
+| Review a launch film, or measure a reference film | [[launch-video-review]] (or spawn [[launch-film-analyst]]); inside HyperFrames → [[hyperframes-reconciliation]]; in Remotion with cinetic → [[cinetic-reconciliation]]; with scenario-kinetic-film → [[scenario-kinetic-reconciliation]] |
+| Render a film from code: motion blur, a beat grid from generated music, a 4K master that plays everywhere | [[film-as-function-of-time]] |
 | Make a loop, a logo sting, or a 9:16 / 1:1 cut of a film | [[launch-video-formats]] |
 | Design a whoosh, riser, impact, sting, ding or pop that sounds designed, not stock | [[designed-sfx-anatomy]] |
 | Listen to a sound or a film's soundtrack with a tool; pick or trim a recording | [[earshot-reconciliation]] |

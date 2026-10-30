@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: HKTITAN
-  version: "2.10.0"
+  version: "2.11.0"
   graph: true
   subagents: agents/
   soul: SOUL.md
@@ -56,7 +56,7 @@ The sense the web forgot. Product UI is silent by default; a launch video is the
 
 A rendered film is its own surface: name the register, time the beats, set the words and the UI demo, make the seams and cuts, place the sound, review against the register. HyperFrames builds; this cluster decides the register, beats, words and sound, and [[hyperframes-reconciliation]] settles seams inside a HyperFrames project.
 
-- `[[MOC-launch-video]]` → [[launch-video-registers]], [[launch-video-structure]], [[launch-video-type]], [[launch-video-ui-demo]], [[launch-video-motion]], [[launch-video-seams]], [[launch-video-cuts]], [[launch-video-review]], [[hyperframes-reconciliation]], [[launch-video-formats]], [[cinetic-reconciliation]]
+- `[[MOC-launch-video]]` → [[launch-video-registers]], [[launch-video-structure]], [[launch-video-type]], [[launch-video-ui-demo]], [[launch-video-motion]], [[launch-video-seams]], [[launch-video-cuts]], [[launch-video-review]], [[hyperframes-reconciliation]], [[launch-video-formats]], [[cinetic-reconciliation]], [[scenario-kinetic-reconciliation]], [[film-as-function-of-time]]
 
 ## SVG — creating, animating, morphing, and vectorizing
 

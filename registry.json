@@ -227,6 +227,11 @@
           "target": "~/.agents/skills/design-engineering/references/launch-video/cinetic-reconciliation.md"
         },
         {
+          "path": "skills/design-engineering/references/launch-video/film-as-function-of-time.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/film-as-function-of-time.md"
+        },
+        {
           "path": "skills/design-engineering/references/launch-video/hyperframes-reconciliation.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/launch-video/hyperframes-reconciliation.md"
@@ -275,6 +280,11 @@
           "path": "skills/design-engineering/references/launch-video/launch-video-ui-demo.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/launch-video/launch-video-ui-demo.md"
+        },
+        {
+          "path": "skills/design-engineering/references/launch-video/scenario-kinetic-reconciliation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/launch-video/scenario-kinetic-reconciliation.md"
         },
         {
           "path": "skills/design-engineering/references/layout/MOC-layout.md",
