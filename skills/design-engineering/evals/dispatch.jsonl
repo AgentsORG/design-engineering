@@ -1,0 +1,22 @@
+{"invocation": "/design-engineering review src/components/Button.tsx", "expected_command": "cmd-review", "expected_nodes": ["review-format", "review-checklist"], "forbidden_nodes": ["change-scoped-review"]}
+{"invocation": "/design-engineering review this PR", "expected_command": "cmd-review", "expected_nodes": ["review-format", "change-scoped-review"], "forbidden_nodes": []}
+{"invocation": "/design-engineering review-ui", "expected_command": "cmd-review", "expected_nodes": ["review-format"], "forbidden_nodes": [], "note": "2.x command name still dispatches as an alias"}
+{"invocation": "/design-engineering polish the settings page", "expected_command": "cmd-polish", "expected_nodes": ["ui-polish-pass"], "forbidden_nodes": ["prototype-picker"]}
+{"invocation": "/design-engineering motion the dropdown entrance", "expected_command": "cmd-motion", "expected_nodes": ["animation-decision-framework", "easing-curves", "duration-table"], "forbidden_nodes": ["gesture-momentum"]}
+{"invocation": "/design-engineering unslop the landing page", "expected_command": "cmd-tells", "expected_nodes": ["ai-default-tells", "unslop-pass"], "forbidden_nodes": ["prototype-picker"]}
+{"invocation": "/design-engineering tells README.md", "expected_command": "cmd-tells", "expected_nodes": ["copy-tells"], "forbidden_nodes": ["ai-default-tells"]}
+{"invocation": "/design-engineering a11y the date picker", "expected_command": "cmd-a11y", "expected_nodes": ["accessibility-baseline", "wcag-thresholds", "keyboard-patterns"], "forbidden_nodes": []}
+{"invocation": "/design-engineering tokens", "expected_command": "cmd-tokens", "expected_nodes": ["using-design-file"], "forbidden_nodes": []}
+{"invocation": "/design-engineering sound for the send button", "expected_command": "cmd-sound", "expected_nodes": ["sound-decision-framework", "sound-palette"], "forbidden_nodes": ["launch-video-sound"]}
+{"invocation": "/design-engineering svg animate logo.svg", "expected_command": "cmd-svg", "expected_nodes": ["animation-decision-framework", "svg-animation"], "forbidden_nodes": []}
+{"invocation": "/design-engineering svg sticker of a mailbox", "expected_command": "cmd-svg", "expected_nodes": ["isometric-stickers"], "forbidden_nodes": ["svg-path-morphing"]}
+{"invocation": "/design-engineering film review ./render.mp4", "expected_command": "cmd-film", "expected_nodes": ["launch-video-review", "launch-video-registers"], "forbidden_nodes": []}
+{"invocation": "/design-engineering film plan a 40s launch for our CLI", "expected_command": "cmd-film", "expected_nodes": ["launch-video-registers", "launch-video-structure"], "forbidden_nodes": ["launch-video-review"]}
+{"invocation": "/design-engineering name the thing where a button sinks when pressed", "expected_command": "cmd-small", "expected_nodes": ["design-vocabulary"], "forbidden_nodes": ["responsive-feedback"]}
+{"invocation": "/design-engineering options for the pricing card", "expected_command": "cmd-small", "expected_nodes": ["prototype-picker"], "forbidden_nodes": []}
+{"invocation": "/design-engineering which skill should animate our hero video", "expected_command": "cmd-small", "expected_nodes": ["skill-router"], "forbidden_nodes": []}
+{"invocation": "/design-engineering pov gotcha the agent used scale(0) on a modal", "expected_command": "cmd-small", "expected_nodes": ["gotchas"], "forbidden_nodes": []}
+{"invocation": "/design-engineering why does this card feel flat", "expected_command": "router", "expected_nodes": ["skill-router", "feeling-right"], "forbidden_nodes": []}
+{"invocation": "/design-engineering", "expected_command": "menu", "expected_nodes": [], "forbidden_nodes": [], "note": "bare invocation with no request in context shows the menu and runs nothing"}
+{"invocation": "/design-engineering help", "expected_command": "menu", "expected_nodes": [], "forbidden_nodes": []}
+{"invocation": "/design-engineering fix the N+1 query in the orders API", "expected_command": "none", "expected_nodes": [], "forbidden_nodes": [], "note": "not a design job: say no skill applies"}
