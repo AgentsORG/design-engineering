@@ -78,7 +78,7 @@ return <div data-mounted={mounted} className="modal">…</div>;
 .modal {
   opacity: 0;
   transform: scale(0.95);
-  transition: all 200ms;
+  transition: opacity 200ms var(--ease-out-quart), transform 200ms var(--ease-out-quart); /* never `all` */
 }
 .modal[data-mounted="true"] {
   opacity: 1;

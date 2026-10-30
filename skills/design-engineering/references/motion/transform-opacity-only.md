@@ -51,19 +51,20 @@ Be aware: `scale()` scales children too. If you don't want that, use a wrapper w
 
 ## Framer Motion / Motion gotcha
 
-When using Motion's `x` and `y` props, it splits them into separate `translateX` and `translateY` style declarations, which can break hardware acceleration in some browsers. Prefer the full `transform` string when in doubt:
+Motion's `x`, `y`, `scale` and `rotate` shorthands are driven through CSS variables, and an animated CSS variable can't be hardware-accelerated, so the animation runs on the main thread. That only hurts when the page is busy while it plays (navigation, fetching, hydration). Keep the readable shorthand by default and switch to the full `transform` string for motion that must survive a busy main thread:
 
 ```tsx
-// Better for GPU stability
+// Hardware-accelerated — use when the page is busy during the animation
 <motion.div animate={{ transform: "translateY(0px)" }} />
 
-// Convenient but can fragment the transform
+// Main thread — fine when nothing else is happening
 <motion.div animate={{ y: 0 }} />
 ```
 
 ## When this breaks
 
-- **`clip-path`** is GPU-accelerated in modern browsers and is the right tool for reveals — see [[stagger-choreography]] for usage.
+- **`clip-path`** is GPU-accelerated in modern browsers and is the right tool for reveals — see [[clip-path-tricks]] for usage.
+- **`box-shadow`** repaints every frame. Animate `filter: drop-shadow()` instead, or the opacity of a pre-shadowed layer.
 - **`filter: blur()`** is GPU-accelerated but expensive on large surfaces. Use sparingly.
 - **`background-color`** is fine for hover, but don't try to animate a gradient — animate opacity of an overlay instead.
 
@@ -74,4 +75,5 @@ A `will-change: transform` on every element is *worse* than none. The browser pr
 ## Sources
 
 - Emil Kowalski — performance rules, Sonner internals.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animation-performance/SKILL.md (shorthands and CSS variables, drop-shadow swap).
 - web.dev — "High performance animations" reference table.

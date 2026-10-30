@@ -1,83 +1,61 @@
 ---
 title: dark-mode
-summary: Never pure #000. Use #18181b or #1a1a1a with 90-93% opacity white text.
+summary: Never pure #000. Near-black surfaces that get lighter as they rise, remapped from the light scale rather than inverted. Accents desaturated 20–30%. Dividers solid, white rings only for elevation. Opacity text only on one known surface. A half-finished dark mode is a blocker.
 tags: [color, dark-mode, surface]
 ---
 
 # Dark mode
 
-The single most common dark mode mistake is using pure black (`#000000`) as the background and pure white (`#ffffff`) as the text. The contrast is too high, the surfaces feel cheap, and on OLED screens you get smearing on scrolling text.
+Dark mode is its own designed theme, derived from the same scale as light mode by remapping which steps each role uses. The most common mistake is pure black (`#000000`) under pure white (`#ffffff`): the contrast is harsh, the surfaces feel cheap, and OLED screens smear scrolling text.
 
-## The rules
+## Background
 
-### Background
-
-Use a near-black with a subtle hue, not pure `#000`.
+Use a near-black with a slight hue bias.
 
 ```css
 --bg-base: #18181b;        /* Zinc 950 — most products */
---bg-elevated: #1f1f23;    /* slightly lighter for cards */
---bg-overlay: #2a2a2f;     /* further elevated, modals */
+--bg-elevated: #1f1f23;    /* +1: cards */
+--bg-overlay: #2a2a2f;     /* +2: menus, modals */
+--bg-floating: #35353a;    /* +3, rarely needed */
 ```
 
-Alternatives by mood:
-- **Warm neutral:** `#1a1a1a`, `#222220`
-- **Cool neutral:** `#0f172a` (Slate 950)
-- **Deep but soft:** `#0a0a0a`
+In light mode elevation is shadow; in dark mode it is a **lighter surface**, and the topmost layer is the lightest. Pure `#000` is for photo backdrops, video chrome, and OLED themes that opt in.
 
-Pure `#000000` is reserved for: photo backgrounds where the goal is invisibility, video player chrome, OLED-specific themes that opt in.
+## Remap, don't invert
 
-### Text
+Keep one scale and point the roles at mirrored steps (50 ↔ 950, 200 ↔ 800), as [[color-scales-oklch]] describes. That is not the same as inverting colors: re-check every pair, because warm yellows turn muddy and brand accents vibrate. **Desaturate accents 20–30%** on dark surfaces.
 
-Use white at **90–93% opacity**, not 100%.
+## Text
+
+White at 90–93% reads softer than full white:
 
 ```css
 --text-primary: rgba(255, 255, 255, 0.92);
 --text-secondary: rgba(255, 255, 255, 0.62);
---text-muted: rgba(255, 255, 255, 0.42);
 ```
 
-Full white on dark backgrounds reads as too aggressive and the chromatic aberration on most monitors (especially LCD) makes edges shimmer. ~92% softens it without losing legibility.
+Opacity text is safe only on a **single known surface**. Over an elevated card, an image or a tinted panel, the alpha mixes with whatever sits beneath and the contrast changes. Everywhere else, use specific solid tokens (`--text-secondary-on-elevated`) and check them against their real surface.
 
-### Borders
+## Borders and rings
 
-In dark mode, borders are subtle:
+- **Dividers are solid** dark greys (around `#2a2a2a` on `#18181b`): table rules, list separators, input edges. An alpha white line glows.
+- **White rings are for elevation only.** Shadows vanish on dark, so a raised card swaps its shadow stack for one ring, `0 0 0 1px rgb(255 255 255 / .09)` ([[depth-and-nesting]]). Images take a white 10% inset outline.
 
-```css
---border-default: rgba(255, 255, 255, 0.08);
---border-strong: rgba(255, 255, 255, 0.14);
-```
+## Assets
 
-In dark mode you can also use *lighter* borders to suggest elevation, where in light mode you'd use shadows. See [[shadows-whisper]] for the light-mode equivalent.
-
-## Elevation in dark mode
-
-In light mode, elevation = shadow.
-In dark mode, elevation = **lighter surface color**.
-
-```css
---bg-base: #18181b;       /* sea level */
---bg-elevated: #1f1f23;   /* +1 */
---bg-overlay: #2a2a2f;    /* +2 */
---bg-floating: #35353a;   /* +3 (rarely needed) */
-```
-
-This is the Material Design dark-mode principle, and it works.
-
-## Color tokens flip
-
-Your single accent color from [[color-monochromatic]] should usually be slightly *desaturated* in dark mode. A vibrant indigo on white can feel garish on dark — dial saturation down 10–15%.
+SVG icons and logos with a hardcoded `fill="#fff"` or `#000` break in one of the two themes. Use `fill="currentColor"` (or a CSS variable) so they follow the text color; keep a separate asset only for full-colour marks.
 
 ## When to apply
 
-Any product that supports a theme toggle. Most products do or will. Dark mode is no longer optional.
+Any product with a theme toggle or `prefers-color-scheme` support. Pair with the browser-chrome rules in [[contrast-and-color-scheme]].
 
 ## Gotcha
 
-Don't just invert your light-mode colors. Some colors that work on light don't work on dark (warm yellows often turn muddy). Build dark mode as its own first-class theme with its own tokens, not as `--text: var(--white-or-black)`.
+A half-finished dark mode that users can reach is a blocker, not a nit: one white modal, a light native `<select>`, or a black-on-dark logo makes the whole product look broken. If the theme isn't done, don't expose the toggle and don't declare `color-scheme: dark`.
 
 ## Sources
 
-- guidelines.sh — "No pure #000 dark mode (use #1a1a1a or #18181b, 90-93% opacity white text)."
+- guidelines.sh — near-black surfaces, softened white text.
 - Material Design 3 — dark theme elevation by surface tint.
-- Vercel, Linear, Anthropic — concrete dark-mode tokens.
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN — remapping, desaturation, solid dividers vs rings.
+- Related: [[color-monochromatic]], [[shadows-whisper]], [[depth-and-nesting]].

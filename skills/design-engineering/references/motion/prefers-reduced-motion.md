@@ -64,6 +64,10 @@ const reducedMotion = useReducedMotion();
 - Hero animations on marketing pages (high-motion by design — disable them).
 - Confetti and celebration moments (provide a static success state).
 
+## Fewer and gentler, or none?
+
+Emil's published skills say fewer and gentler: keep opacity and color changes that explain a state, drop movement, scale, parallax and overshoot. His practice notes go further and disable everything, opacity fades included. This node keeps the short fade as the default because it carries meaning without motion; take the stricter line when a product's audience or a client's standard asks for it. Either way, ship the reduced path with the animation, not as a follow-up.
+
 ## Gotcha
 
 Loading spinners are *the* worst offender for reduced motion. A perpetual spinner is exactly the kind of motion the setting exists to suppress. Provide a "Loading..." text label or a progress bar instead. See [[empty-loading-states]].
@@ -74,4 +78,6 @@ The second worst: an entrance that starts from `opacity: 0` and only runs under 
 
 - WCAG 2.1 — Animation from Interactions.
 - Emil Kowalski — prefers-reduced-motion as a first-class concern, not an afterthought.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md, skills/review-animations/STANDARDS.md (fewer and gentler, not zero).
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN (disable all, opacity included).
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/scripts/lib/rules.mjs` (`reduced-hidden`) and `references/motion.md` §2 (35 of 99 award sites have any reduced-motion rule).

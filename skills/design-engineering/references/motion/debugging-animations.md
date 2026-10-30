@@ -61,6 +61,10 @@ Workflow:
 
 A common shock: an animation that's flawless in desktop dev becomes choppy on a real mid-tier phone. The fix is usually reducing `filter: blur()` radius, removing `box-shadow` animations, or simplifying gradients.
 
+## 4. Record before and after, then diff
+
+A fix to one animation quietly changes three others. Record the same interaction before the change and again after it, then compare the two: duration, easing, end values and which elements moved. Line the recordings up by named moments (the click, the peak, the settle), never by milliseconds, since the two runs never start on the same frame. "One settles and the other never does" is a finding, not noise. Watch both at 25% first.
+
 ## When to apply
 
 - Any animation that "feels off" but you can't articulate why.

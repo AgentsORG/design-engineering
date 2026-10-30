@@ -10,22 +10,33 @@ The most-skipped step in design engineering is asking "should this animate at al
 
 ## The decision tree
 
-1. **How often does the user encounter this?** If it's every keystroke, every scroll, or every primary action — strong default to **no animation**. See [[delight-impact-curve]].
-2. **What is the purpose?** Valid purposes:
-   - **Continuity** — show that two states are the same component (see [[fly-not-teleport]]).
-   - **Affordance** — show the user can interact (button press, hover).
-   - **Feedback** — confirm the action happened.
-   - **Hierarchy** — direct attention to one thing over another.
-   - **Spatial** — clarify where something came from or went to.
+1. **How often does the user encounter this?** See [[delight-impact-curve]].
+
+   | Frequency | Decision |
+   |---|---|
+   | 100+ times a day (shortcuts, command palette, tab switches) | No animation |
+   | Tens of times a day (hover, list navigation) | Near-imperceptible, or nothing |
+   | Occasional (modals, drawers, toasts) | Standard animation |
+   | Rare or first-time (onboarding, success) | The delight budget lives here |
+
+   **Keyboard-triggered actions never animate** — a disqualifier, not a judgment call; Raycast's menu has no open/close motion. **Data the user is reading or acting on** (charts, tables, numbers) doesn't move for style; animate only a real change in value.
+2. **What is the purpose?** Name one, or don't build it:
+   - **Feedback** — confirm the action happened (press, hold-to-confirm fill).
+   - **Spatial consistency** — show where something came from or went (see [[fly-not-teleport]]).
+   - **State indication** — make a state change legible.
+   - **Preventing a jarring change** — bridge content that would otherwise teleport.
+   - **Explanation** — show how something works (marketing and onboarding only).
+   - **Delight** — only at the rare tier.
 
    Invalid purposes:
    - **Decoration** — animation as garnish.
    - **Filling time** — animation to mask slow code (fix the code).
    - **"Because we can"** — Framer Motion is installed and we should use it.
 
-3. **What easing curve?** Custom cubic-bezier almost always beats the built-in CSS easings. See [[easing-curves]].
-4. **How long?** UI is sub-300ms. Buttons are 100–160ms. See [[duration-table]].
-5. **What property?** Only `transform` and `opacity` are cheap. See [[transform-opacity-only]].
+3. **Which tool?** The cheapest that works: CSS transition (state you toggle) → `@starting-style` (entry on mount) → CSS animation (predetermined motion while the page is busy) → WAAPI (JS control, CSS performance) → Motion (springs, layout, exits, gestures). If the job is a whole component (toast, drawer, menu), use a library ([[dependency-discipline]]).
+4. **What easing curve?** Custom cubic-bezier almost always beats the built-in CSS easings. See [[easing-curves]].
+5. **How long?** UI is sub-300ms. Buttons are 100–160ms. See [[duration-table]].
+6. **What property?** Only `transform` and `opacity` are cheap. See [[transform-opacity-only]].
 
 ## Quick checks before adding any animation
 
@@ -47,4 +58,6 @@ The bug is almost never "this needs more animation." The bug is almost always "t
 ## Sources
 
 - Emil Kowalski — animation decision tree (frequency-first).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md (frequency tiers, purposes, tool ladder), skills/find-animation-opportunities/SKILL.md (function test).
+- Related: removing what fails this gate → [[animation-removal-hazards]].
 - Benji Taylor — "animation should serve architecture."

@@ -44,7 +44,15 @@ const STAGGER_CAP = 12;
 const delay = (i) => Math.min(i, STAGGER_CAP) * 0.05;
 ```
 
-Items past the cap appear together with the last staggered item. This avoids the "still loading row 47" feel.
+Items past the cap appear together with the last staggered item. This avoids the "still loading row 47" feel. Whatever the cap, keep the whole cascade under ~300ms; past that, drop to 30ms per item or fade the group as one ([[animation-removal-hazards]]).
+
+## Section entrances: split, then stagger
+
+For a page or hero entrance, don't move one wrapper. Split it into heading, copy and call to action, offset each by ~90–100ms (per word in a hero headline, ~80ms), and enter each with opacity, `translateY(8px)` → 0 and `blur(2px)` → 0. Section pieces are fewer and larger than list items, which is why the gap is wider than 30–80ms.
+
+## First paint is not an entrance
+
+Anything already at rest when the page paints plays nothing; motion is for changes the user causes afterward. In Motion, `initial={false}` on `AnimatePresence` covers toggles, tabs and icon swaps — but not a deliberate first-run hero, where it would wipe the entrance. Hard-refresh to check. In an exiting group, `mode="popLayout"` lets siblings close the gap while the exit plays.
 
 ## Reverse stagger on exit
 
@@ -67,5 +75,7 @@ Stagger on every state change is exhausting. Only stagger on **first appearance*
 
 ## Sources
 
-- Emil Kowalski — stagger guidance, cap-at-12.
+- Emil Kowalski — stagger guidance (30–80ms, decorative, never blocks interaction). The cap at 12 is house guidance.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/remove-animations/SKILL.md (300ms total cap).
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN (split-then-stagger sections, no entrance on first paint).
 - guidelines.sh — "stagger reveals 30–50ms."

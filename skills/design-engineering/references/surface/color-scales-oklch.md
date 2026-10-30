@@ -35,11 +35,11 @@ Keep one scale and swap which steps the roles point at: `--surface` 50 ↔ 950, 
 
 ## Contrast lives in the L gap
 
-Chroma and hue barely move contrast. To repair a failing pair, push the foreground's L away from the background's L and leave C and H alone; raising saturation "to make it pop" does nothing. Fast triage: a surface with L > 0.6 wants dark text; near-white grounds (L ≥ 0.85) want foreground L ≤ 0.45; near-black grounds (L ≤ 0.25) want L ≥ 0.75. Then run the real check: APCA |Lc| ≥ 60 for body (75 comfortable), ≥ 45 large, ≥ 30 non-text; WCAG 2 4.5:1 body, 3:1 large, when compliance language names it.
+Chroma and hue barely move contrast. To repair a failing pair, push the foreground's L away from the background's L and leave C and H alone; raising saturation "to make it pop" does nothing. Fast triage: a surface with L > 0.6 wants dark text; near-white grounds (L ≥ 0.85) want foreground L ≤ 0.45; near-black grounds (L ≤ 0.25) want L ≥ 0.75. Then run the real check: APCA |Lc| ≥ 75 for body (90 preferred), ≥ 60 other content text, ≥ 45 large, ≥ 30 non-text and disabled; WCAG 2 4.5:1 body, 3:1 large, when compliance language names it. The thresholds live in [[contrast-and-color-scheme]].
 
 ## Gamut and P3
 
-Syntactically valid values can exceed what sRGB shows. Clamp C holding L and H, and layer wide-gamut chroma behind `@media (color-gamut: p3)` on top of the sRGB-safe base. Tailwind v4 is authored in OKLCH; custom `@theme` scales should be too, and `/50` opacity suffixes compose out of the box.
+Syntactically valid values can exceed what sRGB shows. Clamp C holding L and H, and layer wide-gamut chroma behind `@media (color-gamut: p3)` on top of the sRGB-safe base; ceilings, fallbacks and migration steps are in [[oklch-gamut-and-migration]]. Tailwind v4 is authored in OKLCH; custom `@theme` scales should be too, and `/50` opacity suffixes compose out of the box.
 
 ## When to apply
 

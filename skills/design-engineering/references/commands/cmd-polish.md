@@ -21,4 +21,4 @@ The edits, followed by a short [[review-format]] table of the changes that matte
 
 ## Hand-offs
 
-Motion feels off → [[cmd-motion]]. Mobile feels like a website → [[touch-and-focus]]. Accessibility gaps → [[cmd-a11y]].
+Motion feels off → [[cmd-motion]]. Mobile feels like a website → [[cmd-mobile]]. Accessibility gaps → [[cmd-a11y]]. Launch week, the whole app → [[cmd-ship]]. Worst-case data breaks the layout → [[cmd-break]].

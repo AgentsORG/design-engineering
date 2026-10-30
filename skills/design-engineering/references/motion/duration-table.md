@@ -14,7 +14,7 @@ There is no universal "feels right" duration. The right duration depends on what
 |---|---|---|
 | Button press feedback | 100–160ms | Anything slower feels laggy |
 | Hover state change | 120–200ms | Faster on inputs, slower on cards |
-| Tooltip appearance | 0–80ms (after delay) | The *delay* is 400–700ms; the *animation* is fast |
+| Tooltip appearance | 125–200ms; 0ms for siblings | First tooltip: 400–700ms delay, then ~125ms. While one is open, neighbours skip delay and animation |
 | Popover / dropdown | 150–250ms | Should feel instant, not theatrical |
 | Modal | 200–300ms | Slightly slower because it's a hierarchy shift |
 | Tab content swap | 200–250ms | Crossfade or directional slide |
@@ -25,12 +25,16 @@ There is no universal "feels right" duration. The right duration depends on what
 
 ## Asymmetric enter/exit
 
-The exit is usually 60–80% of the enter. A panel that takes 250ms to slide in should take ~180ms to slide out. This is one of Emil's most-cited rules from Sonner.
+The exit is usually 60–80% of the enter: the user has already moved on. A panel that takes 250ms to slide in should take ~180ms to slide out. Use transitions, not keyframes, so an open interrupted by a close reverses from where it is.
 
 ```css
-[data-state="open"] { animation: slideIn 250ms var(--ease-out-quart); }
-[data-state="closed"] { animation: slideOut 180ms var(--ease-out-quart); }
+.panel { transition: transform 180ms var(--ease-out-quart); }            /* exit */
+.panel[data-state="open"] { transition-duration: 250ms; }                /* enter */
 ```
+
+A second asymmetry applies where the user is deciding: the deliberate phase is slow and the system's answer snaps (hold-to-confirm: 2s linear on press, 200ms ease-out on release; see [[clip-path-tricks]]).
+
+Sonner itself is the counter-example: its toasts run a symmetric ~400ms `ease`, slower than the UI budget on purpose to match the component's calm personality ([[sonner-principles]]). Treat that as a deliberate exception, not a default.
 
 ## How to choose
 
@@ -45,5 +49,7 @@ The exit is usually 60–80% of the enter. A panel that takes 250ms to slide in 
 
 ## Sources
 
-- Emil Kowalski — Sonner asymmetric enter/exit, button feedback timing.
+- Emil Kowalski — button feedback timing.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md and RECIPES.md (duration budgets, tooltip, toast, hold-to-confirm).
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN (exits 20–30% faster than enters).
 - Vercel Design — internal duration tokens.

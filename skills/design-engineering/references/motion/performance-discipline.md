@@ -8,18 +8,34 @@ tags: [motion, performance, jank, virtualization, layout-shift]
 
 Most jank is self-inflicted: DOM nodes nobody can see, properties the browser has to watch that never change, animation the GPU can't composite, content fetched at request time that could have been built, layout that moves after the user started reading. The fix is usually deleting or deferring work, not adding cleverness. [[transform-opacity-only]] states the property rule; this node is the rest of the discipline.
 
+## The budget and the tiers
+
+60fps leaves 16.7ms per frame; a 120Hz screen leaves 8ms — design against 8. One layout pass on a complex page can exceed 100ms, a dozen dropped frames at once.
+
+| Tier | Properties | Cost |
+|---|---|---|
+| Composite | `transform`, `opacity` (and, in current Chrome/Firefox, `filter`, `clip-path`, `background-color`) | Cheapest |
+| Paint | `box-shadow`, `border-radius`, `color` | A redraw every frame |
+| Layout | `width`, `height`, `padding`, `margin`, `top`/`left`, `border-width` | Re-measures, and moves the neighbours |
+
+Swap down a tier: size → `scale()`, position → `translate()`, `display`/`visibility` → `opacity`, `box-shadow` → `filter: drop-shadow()`. Acceleration is something the browser may grant; property choice is what you control, so keep `translateY(100%)` for unknown-size elements even where a browser declines to accelerate percentages.
+
 ## Transitions and compositing
 
 - **Name the properties.** `transition: all` makes every style change a candidate animation and forfeits the engine's optimizations. Tailwind's bare `transition` class compiles to `transition-property: all` — the same bug in disguise; use `transition-transform` or `transition-[opacity,scale]`.
 - **Composite-only.** `transform`, `opacity`, `filter`, `clip-path`. Never `height`, `width`, `padding`, `margin`, `top`/`left`. Keep animated `blur()` under 20px (Safari suffers most).
 - **`will-change` is a targeted fix.** Browsers promote layers just in time, and that occasionally eats the opening frame — a 1px hitch as motion starts. Apply `will-change: transform` (or `transform, opacity`) to the *animating element* after you observe the hitch. It does nothing for layout or paint properties, `will-change: all` defeats the hint, and every promoted layer holds GPU memory.
-- **Never animate a CSS variable on a shared parent** — every descendant recalculates style. Set the property on the moving element.
+- **Never animate a CSS variable on a shared parent** — every descendant recalculates style. Set the property on the moving element. Vaul's drag, written as a `--swipe-amount` variable read by `translateY()`, turned laggy once a drawer held ~20 items. Suspect this whenever a `transform` animation degrades as content grows.
 
 ## Rendering work
 
 - **Virtualize any list that can pass ~50 items** or grow unbounded (TanStack Virtual or equivalent). Render only what is visible.
 - **Frames never go through React state.** A per-frame `setState` is a re-render storm. Write transforms through refs, WAAPI, or the library's own loop. In Motion the string form `animate={{ transform: "translateX(100px)" }}` is hardware-accelerated; the `x: 100` shorthand runs on the main thread.
-- **CSS/WAAPI for predetermined motion** (stays smooth under load); a JS loop only for dynamic, gesture-driven, or spring values.
+- **CSS/WAAPI for predetermined motion** (stays smooth under load); a JS loop only for dynamic, gesture-driven, or spring values. Vercel's dashboard tab indicator, a Motion shared-layout animation, dropped frames because the next page was loading at that moment; a CSS animation fixed it.
+
+## Diagnosis order
+
+Name the cause before changing code. In order of likelihood: (1) a non-composite property animates (layout first, then `box-shadow`, `border-radius`); (2) the jank coincides with navigation, fetching or hydration; (3) React re-renders per frame; (4) it worsens as content grows; (5) a CSS variable animates, directly or through Motion shorthands; (6) animated `blur()` above 20px; (7) only then `will-change`. Confirm with a Performance recording on a mid-range phone over remote debugging; desktop CPU throttling doesn't model a weak GPU or a small memory budget.
 - **Pause off-screen work**: looping animations, video, timers — `IntersectionObserver` or `animation-play-state`, plus `visibilitychange` for hidden tabs.
 
 ## Loading and layout
@@ -44,4 +60,5 @@ Animating `height` triggers layout every frame. Use `grid-template-rows: 0fr →
 ## Sources
 
 - Emil Kowalski's design-engineering practice on performance, distilled by HKTITAN.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animation-performance/SKILL.md (frame budget, tiers, swaps, Vaul and Vercel cases, diagnosis order).
 - Related: [[transform-opacity-only]], [[debugging-animations]], [[empty-loading-states]], [[marketing-surface-rules]].

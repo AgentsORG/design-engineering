@@ -46,7 +46,7 @@ The frame: *could this UI have been generated in 30 seconds with a prompt?* If y
 
 | Tell | Fix | Linked node |
 |---|---|---|
-| Crossfading icons | Transform/rotate single icon | [[fly-not-teleport]] |
+| Crossfading icons (a plain opacity swap that double-exposes) | Rotate one icon when the change is angular; otherwise a deep-scale blur swap (0.3 → 1, `blur(3px)`, bounce-0 spring) is fine | [[fly-not-teleport]], [[morphing-icons]] |
 | Same-easing animations everywhere | Custom cubic-bezier scale | [[easing-curves]] |
 | Loading spinner with no eta | Skeleton, progress bar, or nothing | [[empty-loading-states]] |
 | Scroll-driven hero parallax on product UI | Reserve for marketing | [[marketing-vs-product-ui]] |

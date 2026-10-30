@@ -77,6 +77,11 @@
           "target": "~/.agents/skills/design-engineering/references/anti-patterns/copy-tells.md"
         },
         {
+          "path": "skills/design-engineering/references/anti-patterns/leftovers-and-leaks.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/anti-patterns/leftovers-and-leaks.md"
+        },
+        {
           "path": "skills/design-engineering/references/anti-patterns/screenshot-critique.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/anti-patterns/screenshot-critique.md"
@@ -97,9 +102,19 @@
           "target": "~/.agents/skills/design-engineering/references/commands/cmd-a11y.md"
         },
         {
+          "path": "skills/design-engineering/references/commands/cmd-break.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-break.md"
+        },
+        {
           "path": "skills/design-engineering/references/commands/cmd-film.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/commands/cmd-film.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-mobile.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-mobile.md"
         },
         {
           "path": "skills/design-engineering/references/commands/cmd-motion.md",
@@ -115,6 +130,11 @@
           "path": "skills/design-engineering/references/commands/cmd-review.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/commands/cmd-review.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-ship.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-ship.md"
         },
         {
           "path": "skills/design-engineering/references/commands/cmd-small.md",
@@ -230,6 +250,11 @@
           "path": "skills/design-engineering/references/components/screen-reader-announcements.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/screen-reader-announcements.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/sonner-usage.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/sonner-usage.md"
         },
         {
           "path": "skills/design-engineering/references/components/strings-and-locale.md",
@@ -362,6 +387,11 @@
           "target": "~/.agents/skills/design-engineering/references/layout/growth-and-overflow.md"
         },
         {
+          "path": "skills/design-engineering/references/layout/information-architecture.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/information-architecture.md"
+        },
+        {
           "path": "skills/design-engineering/references/layout/logical-properties-rtl.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/layout/logical-properties-rtl.md"
@@ -372,6 +402,11 @@
           "target": "~/.agents/skills/design-engineering/references/layout/marketing-surface-rules.md"
         },
         {
+          "path": "skills/design-engineering/references/layout/mobile-platform-layer.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/mobile-platform-layer.md"
+        },
+        {
           "path": "skills/design-engineering/references/layout/page-frame.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/layout/page-frame.md"
@@ -380,6 +415,11 @@
           "path": "skills/design-engineering/references/layout/scroll-anchoring.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/layout/scroll-anchoring.md"
+        },
+        {
+          "path": "skills/design-engineering/references/layout/share-and-crawl-metadata.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/layout/share-and-crawl-metadata.md"
         },
         {
           "path": "skills/design-engineering/references/layout/sticky-and-scroll-tells.md",
@@ -432,6 +472,11 @@
           "target": "~/.agents/skills/design-engineering/references/meta/design-vocabulary.md"
         },
         {
+          "path": "skills/design-engineering/references/meta/directing-agents.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/directing-agents.md"
+        },
+        {
           "path": "skills/design-engineering/references/meta/disambiguation.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/disambiguation.md"
@@ -450,6 +495,11 @@
           "path": "skills/design-engineering/references/meta/pov.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/pov.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/production-baseline.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/production-baseline.md"
         },
         {
           "path": "skills/design-engineering/references/meta/prototype-picker.md",
@@ -475,6 +525,11 @@
           "path": "skills/design-engineering/references/meta/routing-table.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/routing-table.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/ship-check.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/ship-check.md"
         },
         {
           "path": "skills/design-engineering/references/meta/skill-router.md",
@@ -525,6 +580,11 @@
           "path": "skills/design-engineering/references/motion/animation-decision-framework.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/animation-decision-framework.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/animation-removal-hazards.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/animation-removal-hazards.md"
         },
         {
           "path": "skills/design-engineering/references/motion/animations-dev-curriculum.md",
@@ -597,6 +657,11 @@
           "target": "~/.agents/skills/design-engineering/references/motion/lerp-breathing.md"
         },
         {
+          "path": "skills/design-engineering/references/motion/momentum-projection.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/momentum-projection.md"
+        },
+        {
           "path": "skills/design-engineering/references/motion/morphing-icons.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/morphing-icons.md"
@@ -620,6 +685,11 @@
           "path": "skills/design-engineering/references/motion/prefers-reduced-motion.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/prefers-reduced-motion.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/react-native-motion.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/react-native-motion.md"
         },
         {
           "path": "skills/design-engineering/references/motion/responsive-feedback.md",
@@ -837,6 +907,11 @@
           "target": "~/.agents/skills/design-engineering/references/surface/gradient-interpolation.md"
         },
         {
+          "path": "skills/design-engineering/references/surface/oklch-gamut-and-migration.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/oklch-gamut-and-migration.md"
+        },
+        {
           "path": "skills/design-engineering/references/surface/palette-step-roles.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/surface/palette-step-roles.md"
@@ -845,6 +920,11 @@
           "path": "skills/design-engineering/references/surface/shadows-whisper.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/surface/shadows-whisper.md"
+        },
+        {
+          "path": "skills/design-engineering/references/surface/translucent-materials.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/surface/translucent-materials.md"
         },
         {
           "path": "skills/design-engineering/references/surface/visual-imperfection.md",
@@ -905,6 +985,11 @@
           "path": "skills/design-engineering/references/typography/line-length-tracking.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/typography/line-length-tracking.md"
+        },
+        {
+          "path": "skills/design-engineering/references/typography/opentype-features-and-axes.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/typography/opentype-features-and-axes.md"
         },
         {
           "path": "skills/design-engineering/references/typography/type-scale-and-rhythm.md",

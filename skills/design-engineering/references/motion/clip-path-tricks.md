@@ -36,21 +36,22 @@ The text uses `color: var(--text-primary)` on transparent regions and `color: va
 
 ## Pattern 2 — hold-to-delete
 
-Press and hold a button; the destructive action fills from one side over ~1.5s, releasing aborts.
+Press and hold a button; the destructive action fills from one side over ~2s, releasing aborts.
 
 ```css
 .confirm-fill {
   position: absolute; inset: 0;
   background: var(--danger);
   clip-path: inset(0 100% 0 0);
-  transition: clip-path 1500ms linear;
+  transition: clip-path 200ms var(--ease-out-quart); /* release: snaps back */
 }
 .confirm-button:active .confirm-fill {
   clip-path: inset(0 0 0 0);
+  transition: clip-path 2s linear;                 /* press: slow, deliberate */
 }
 ```
 
-If the user releases before completion, `clip-path` snaps back. The animation is interruptible because it's a CSS transition, not a JS-driven keyframe.
+The timing is asymmetric on purpose: the press is slow because the user is deciding; the release answers fast. Put a single duration on the base rule and the abort crawls back at the same 2s. `linear` is right for the fill because it is progress, and it stays interruptible because it's a CSS transition, not a keyframe.
 
 ## Pattern 3 — image reveal on scroll
 
@@ -111,5 +112,6 @@ Also: `clip-path` on a parent affects all children. Want only one child clipped?
 ## Sources
 
 - Emil Kowalski — clip-path section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/RECIPES.md (hold-to-confirm timing).
 - MDN — `clip-path` reference.
 - Related: [[transform-opacity-only]] for the GPU-acceleration baseline.

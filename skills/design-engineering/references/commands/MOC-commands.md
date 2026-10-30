@@ -17,7 +17,10 @@ The skill has one entry point. `/design-engineering` reads its first argument, a
 - [[cmd-sound]] — decide, design, generate and wire a sound family.
 - [[cmd-svg]] — `create`, `animate` or `sticker`.
 - [[cmd-film]] — `plan`, `review` or `formats` for a launch film.
-- [[cmd-small]] — `diagram`, `options`, `name`, `which`, `agentation`, `pov`.
+- [[cmd-ship]] — the whole-app production pass: every lane, fixed and verified.
+- [[cmd-break]] — worst-case data until something breaks; reports and stops.
+- [[cmd-mobile]] — a web app that feels native on a phone.
+- [[cmd-small]] — `diagram`, `options` (`riff`, `tune`, `mix`, `keep`), `pick`, `name`, `which`, `agentation`, `pov`.
 
 ## Rules for a command file
 

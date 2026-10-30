@@ -127,6 +127,19 @@ function Avatar({ user, size = 40 }: AvatarProps) {
 }
 ```
 
+### Initials that survive real names
+
+`name.split(' ')[0][0]` breaks on real data: `🦊 Fox` yields half a surrogate pair (`�`), `👩🏽‍💻 Priya` splits into pieces, `Christopher Montgomery III` becomes `CI`, a name with leading, trailing or doubled spaces (`Sam   Lee`) finds empty words, and `王秀英` has no spaces at all.
+
+```ts
+const seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+const first = (w: string) => seg.segment(w)[Symbol.iterator]().next().value?.segment ?? '';
+const words = name.trim().split(/\s+/).filter((w) => !/^(jr|sr|i{2,3}|iv)\.?$/i.test(w));
+const initials = (words.length > 1 ? first(words[0]) + first(words.at(-1)!) : first(words[0] ?? '')).toLocaleUpperCase();
+```
+
+First and last word, by grapheme cluster, uppercased (`dana` → `D`). No usable name → the email's first grapheme, then a generic person icon. Give the image an `onError` that drops to this chain; a 404 must never show the broken-image glyph. `flex-shrink: 0` keeps the circle round in a crowded row, and `object-fit: cover` handles a 4000×200 upload.
+
 ## Style options & customization
 
 Each DiceBear style accepts options (skin colors, hair styles, background colors, etc.) as URL query params:
@@ -166,4 +179,5 @@ Also: a few styles are paid (designer-contributed). Verify license per style at 
 
 - DiceBear — [dicebear.com](https://www.dicebear.com/), [github.com/dicebear/dicebear](https://github.com/dicebear/dicebear), [github.com/dicebear/styles](https://github.com/dicebear/styles).
 - DiceBear style index — [dicebear.com/styles](https://www.dicebear.com/styles).
-- Related: [[icon-systems]], [[ai-default-tells]], [[hover-states-subtle]].
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/break-ui/SKILL.md, skills/break-ui/CATALOG.md (initials from grapheme clusters, the names that break them).
+- Related: [[icon-systems]], [[ai-default-tells]], [[hover-states-subtle]], [[stress-scenarios]].

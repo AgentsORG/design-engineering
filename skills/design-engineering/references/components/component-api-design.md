@@ -1,6 +1,6 @@
 ---
 title: component-api-design
-summary: A component API is a contract. Composition over configuration, compound parts sharing context, customization layered variants → size → className → asChild, platform prop names, controlled and uncontrolled both, refs forwarded and props spread, type="button" by default.
+summary: A component API is a contract. Composition over configuration, compound parts sharing context, customization layered variants → size → className → asChild with className restricted on styled components, platform prop names, controlled and uncontrolled both, refs forwarded and props spread, type="button" by default.
 tags: [components, api, react, composition, props]
 ---
 
@@ -25,6 +25,10 @@ When related parts share implicit state — trigger and content, title and close
 
 Never raw style props (`backgroundColor`, `paddingX`); that is a second CSS system with a worse syntax. Express variant styles in the project's existing styling stack.
 
+## Restrict the escape hatch
+
+An open `className` on every component is where an agent "fixes" spacing and colour with literals, and the system drifts one override at a time. Keep `className` on layout primitives and leaf wrappers that genuinely need placement (margin, grid area, width), and leave it off components whose look is the system: Button, Badge, Input. If a consumer needs a new look, that is a new variant, added in one place. In app code, forbid raw `<button>`, `<input>` and `<a>` styled by hand where the system ships its own component; a lint rule (`no-restricted-syntax` on those JSX elements outside `components/ui`) holds the line better than review comments.
+
 ## Name like the platform
 
 Mirror HTML: `disabled`, not `isDisabled`; `open`, not `isNotClosed` (positive booleans, never double negatives); handlers prefixed `on` (`onChange`, `onOpenChange`). Consistent across every component in the library.
@@ -45,6 +49,7 @@ Any stateful component works both ways: `defaultValue` for internal state, `valu
 - **Prop explosion** — `leftIcon`, `rightIcon`, `iconSpacing`… Use children: `<Button><Icon/> Save</Button>`.
 - **Boolean soup** — `<Button primary large rounded>` invites invalid combinations; `variant`/`size`/`radius` enums don't.
 - **Premature abstraction** — extract after the pattern has repeated two or three times, not before.
+- **No error boundary** — wrap complex widgets so one failure doesn't blank the page; keep each component in its own folder with an `index.ts` of public exports.
 - **Swallowed props / missing ref** — the two silent breakages that surface as "the tooltip doesn't position".
 
 ## When to apply
