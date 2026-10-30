@@ -8,4 +8,4 @@ tags: [meta, agents, subagents]
 
 Workflow subagents now live at the repo root so `npx plugins add` and per-host plugin manifests can discover them under `agents/`.
 
-See [agents/README.md](../../../agents/README.md) for the directory index, selection guide, and spec.
+See [docs/subagents.md](../../../docs/subagents.md) for the directory index, selection guide, and spec. The root `agents/` folder holds only subagent files, because Claude Code registers every `.md` in it as a subagent.

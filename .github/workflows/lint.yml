@@ -60,7 +60,7 @@ jobs:
           set -e
           required=(
             "skills/design-engineering/SKILL.md"
-            "agents/README.md"
+            "docs/subagents.md"
             "agents/ui-reviewer.md"
             "agents/motion-auditor.md"
             "agents/anti-pattern-scanner.md"
@@ -116,6 +116,34 @@ jobs:
             echo "Description starts with 'Load when' / 'Use when' — OK."
           fi
 
+      - name: Single entry point (dispatch table, command files, dispatch evals)
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, re, sys
+          sk = pathlib.Path("skills/design-engineering")
+          text = (sk / "SKILL.md").read_text(encoding="utf-8")
+          desc = re.search(r'^description: "(.*)"$', text, re.M).group(1)
+          errs = []
+          if len(desc) > 1024: errs.append(f"description is {len(desc)} chars (spec max 1024)")
+          body = text.split("---", 2)[2]
+          if len(body.splitlines()) > 500: errs.append("SKILL.md body over 500 lines")
+          head = text[:20000]
+          if "## Dispatch" not in head: errs.append("dispatch section must sit at the top of SKILL.md (survives compaction)")
+          files = {p.stem for p in (sk / "references/commands").glob("cmd-*.md")}
+          linked = set(re.findall(r"\[\[(cmd-[a-z0-9-]+)\]\]", text))
+          for m in files - linked: errs.append(f"{m} has no row in the SKILL.md dispatch table")
+          for m in linked - files: errs.append(f"SKILL.md links {m} but references/commands/{m}.md is missing")
+          rows = [json.loads(l) for l in (sk / "evals/dispatch.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
+          covered = {r["expected_command"] for r in rows}
+          for m in files - covered: errs.append(f"{m} has no row in evals/dispatch.jsonl")
+          for need in ("menu", "router", "none"):
+              if need not in covered: errs.append(f"evals/dispatch.jsonl needs a '{need}' row")
+          if pathlib.Path("commands").exists(): errs.append("root commands/ is back: the skill has one entry point, add a verb instead")
+          if any(p.name.lower() == "readme.md" for p in pathlib.Path("agents").glob("*.md")): errs.append("agents/ must hold only subagents (Claude Code registers every .md in it)")
+          for e in errs: print(f"::error::{e}")
+          sys.exit(1 if errs else 0)
+          PY
+          echo "One entry point: every verb has a command file and a dispatch eval."
       - name: Skill name matches folder name
         run: |
           name=$(grep -m 1 '^name:' skills/design-engineering/SKILL.md | awk '{print $2}' | tr -d '"')

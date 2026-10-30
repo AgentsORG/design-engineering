@@ -14,7 +14,7 @@
         "agents",
         "skills"
       ],
-      "docs": "Restart your coding agent after installing so it picks up the new skill. Start at .agents/skills/design-engineering/SKILL.md; the router is references/meta/routing-table.md. Fork references/meta/pov.md to record your own taste overrides.",
+      "docs": "Restart your coding agent after installing so it picks up the new skill. Invoke it as /design-engineering [verb] [target]; with no verb it shows the menu. The dispatch table is at the top of SKILL.md. Fork references/meta/pov.md to record your own taste overrides.",
       "files": [
         {
           "path": "skills/design-engineering/SKILL.md",
@@ -35,6 +35,11 @@
           "path": "skills/design-engineering/evals/design-bench.jsonl",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/evals/design-bench.jsonl"
+        },
+        {
+          "path": "skills/design-engineering/evals/dispatch.jsonl",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/evals/dispatch.jsonl"
         },
         {
           "path": "skills/design-engineering/evals/loading.jsonl",
@@ -80,6 +85,61 @@
           "path": "skills/design-engineering/references/anti-patterns/unslop-pass.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/anti-patterns/unslop-pass.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/MOC-commands.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/MOC-commands.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-a11y.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-a11y.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-film.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-film.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-motion.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-motion.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-polish.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-polish.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-review.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-review.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-small.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-small.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-sound.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-sound.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-svg.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-svg.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-tells.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-tells.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-tokens.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-tokens.md"
         },
         {
           "path": "skills/design-engineering/references/components/MOC-components.md",
@@ -881,23 +941,18 @@
     {
       "name": "design-engineering-agents",
       "type": "registry:file",
-      "title": "Design Engineering subagents and commands",
-      "description": "Ten workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator, launch-film-analyst) and their slash commands, in Claude Code format.",
+      "title": "Design Engineering subagents",
+      "description": "Ten workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator, launch-film-analyst) in Claude Code format. Optional: every /design-engineering verb runs without them.",
       "author": "HKTITAN",
       "categories": [
         "design",
         "agents"
       ],
-      "docs": "Installs into .claude/agents/ and .claude/commands/. Requires the design-engineering skill item for the reference nodes these agents load.",
+      "docs": "Installs into .claude/agents/. Requires the design-engineering skill item for the reference nodes these agents load.",
       "registryDependencies": [
         "https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r/design-engineering.json"
       ],
       "files": [
-        {
-          "path": "agents/README.md",
-          "type": "registry:file",
-          "target": "~/.claude/agents/README.md"
-        },
         {
           "path": "agents/agentation-fix-loop.md",
           "type": "registry:file",
@@ -947,56 +1002,6 @@
           "path": "agents/ui-reviewer.md",
           "type": "registry:file",
           "target": "~/.claude/agents/ui-reviewer.md"
-        },
-        {
-          "path": "commands/agentation-fix.md",
-          "type": "registry:file",
-          "target": "~/.claude/commands/agentation-fix.md"
-        },
-        {
-          "path": "commands/apply-design-md.md",
-          "type": "registry:file",
-          "target": "~/.claude/commands/apply-design-md.md"
-        },
-        {
-          "path": "commands/film-review.md",
-          "type": "registry:file",
-          "target": "~/.claude/commands/film-review.md"
-        },
-        {
-          "path": "commands/fork-pov.md",
-          "type": "registry:file",
-          "target": "~/.claude/commands/fork-pov.md"
-        },
-        {
-          "path": "commands/motion-audit.md",
-          "type": "registry:file",
-          "target": "~/.claude/commands/motion-audit.md"
-        },
-        {
-          "path": "commands/review-ui.md",
-          "type": "registry:file",
-          "target": "~/.claude/commands/review-ui.md"
-        },
-        {
-          "path": "commands/scan-ai-tells.md",
-          "type": "registry:file",
-          "target": "~/.claude/commands/scan-ai-tells.md"
-        },
-        {
-          "path": "commands/sound-pass.md",
-          "type": "registry:file",
-          "target": "~/.claude/commands/sound-pass.md"
-        },
-        {
-          "path": "commands/svg-animate.md",
-          "type": "registry:file",
-          "target": "~/.claude/commands/svg-animate.md"
-        },
-        {
-          "path": "commands/svg-create.md",
-          "type": "registry:file",
-          "target": "~/.claude/commands/svg-create.md"
         }
       ]
     },

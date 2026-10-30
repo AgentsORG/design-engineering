@@ -1,6 +1,6 @@
 {
   "name": "design-engineering",
-  "version": "2.11.0",
+  "version": "3.0.0",
   "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns, sound, SVG, launch films. Plus a SOUL.md identity layer and ten workflow subagents. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
   "author": {
     "name": "HKTITAN",
@@ -38,21 +38,23 @@
   ],
   "skills": "./skills/",
   "agents": "./agents/",
-  "commands": "./commands/",
   "interface": {
     "displayName": "Design Engineering by HKTITAN",
     "shortDescription": "Make AI-generated UI feel right",
-    "longDescription": "A navigable skill graph for design engineering. Twelve themed clusters (philosophy, motion, sound, svg, diagrams, launch films, typography, surface, components, layout, anti-patterns, meta), 120 atomic nodes, ten workflow subagents, a SOUL.md identity layer, and an AGENTS.md operating guide. Load it when reviewing UI code, choosing an easing curve, deciding whether an interaction should make a sound, auditing for AI-default tells, consuming a DESIGN.md, or asking 'why does this feel flat?' Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel design guidelines, Ben DC, DiceBear, lucide-animated, Google Labs design.md, and Agentation into one Obsidian-compatible graph.",
+    "longDescription": "One skill, one entry: /design-engineering [verb] [target] reaches a navigable graph of 150 atomic nodes in twelve clusters (philosophy, motion, sound, svg, diagrams, launch films, typography, surface, components, layout, anti-patterns, meta). Verbs: review, polish, motion, tells, a11y, tokens, sound, svg, film, diagram, options, name, which, agentation, pov. Ten optional workflow subagents, a SOUL.md identity layer and an AGENTS.md operating guide. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), Jakub Krehel, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation and 47 measured launch films.",
     "developerName": "HKTITAN",
     "category": "Design",
-    "capabilities": ["Read", "Write"],
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://github.com/AgentsORG/design-engineering",
     "defaultPrompt": [
-      "Review this component for design-engineering issues",
-      "Audit this animation against the motion cluster",
-      "Scan this page for AI-default tells",
-      "Apply our DESIGN.md tokens to this layout",
-      "Help me fork pov.md for my own taste"
+      "/design-engineering review this component",
+      "/design-engineering motion this modal entrance",
+      "/design-engineering tells on this landing page",
+      "/design-engineering tokens for this layout",
+      "/design-engineering pov fork"
     ],
     "brandColor": "#0a0a0a"
   }

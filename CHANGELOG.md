@@ -6,6 +6,45 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [3.0.0] — 2026-10-30
+
+One skill, one entry point. Everything is now reached through `/design-engineering [verb] [target]`. The ten separate slash commands are gone, and nothing else competes with the skill for its trigger. The pattern follows the skills that win with one entry (pbakaus/impeccable's command table and no-argument menu) and the Claude Code skills docs: routing goes at the top, inside the first 5,000 tokens that survive compaction, and the arguments arrive as `ARGUMENTS:` without a placeholder, so the frontmatter stays inside the portable spec.
+
+### Breaking
+
+- **Removed the root `commands/`** (`review-ui`, `motion-audit`, `scan-ai-tells`, `apply-design-md`, `sound-pass`, `svg-create`, `svg-animate`, `film-review`, `agentation-fix`, `fork-pov`). Each old name still dispatches as an alias:
+
+  | 2.x | 3.0 |
+  |---|---|
+  | `/design-engineering:review-ui` | `/design-engineering review` |
+  | `/design-engineering:motion-audit` | `/design-engineering motion` |
+  | `/design-engineering:scan-ai-tells` | `/design-engineering tells` |
+  | `/design-engineering:apply-design-md` | `/design-engineering tokens` |
+  | `/design-engineering:sound-pass` | `/design-engineering sound` |
+  | `/design-engineering:svg-create` · `svg-animate` | `/design-engineering svg create` · `svg animate` |
+  | `/design-engineering:film-review` | `/design-engineering film review` |
+  | `/design-engineering:agentation-fix` | `/design-engineering agentation` |
+  | `/design-engineering:fork-pov` | `/design-engineering pov fork` |
+
+- The `design-engineering-agents` registry item now ships the subagents only.
+
+### Added
+
+- **The dispatch section at the top of SKILL.md:** five rules (verb, plain request, request already in context, bare menu that never auto-runs, ask once on a tie) and a 15-verb table with aliases.
+- **`references/commands/`**: `cmd-review`, `cmd-polish`, `cmd-motion`, `cmd-tells`, `cmd-a11y`, `cmd-tokens`, `cmd-sound`, `cmd-svg`, `cmd-film`, `cmd-small` and `MOC-commands`. Each is the whole procedure, so a skills.sh install (which has no subagents) runs every verb. New verbs: `polish`, `a11y`, `diagram` and `options`, plus `name` and `which` as lookups.
+- **`evals/dispatch.jsonl`**: 22 invocations covering every verb, the aliases, a plain request, the bare menu and a non-design job.
+- **CI step "Single entry point"**: every verb in the table has a command file and a dispatch eval; the description stays at most 1,024 characters; the SKILL.md body stays under 500 lines with the dispatch section at the top; and the build fails if a root `commands/` or an `agents/README.md` comes back.
+
+### Fixed
+
+- `agents/README.md` was registered by Claude Code as a subagent named `design-engineering:README`. It moved to `docs/subagents.md`.
+- `ui-reviewer` (and its eve twin) described a twenty-two-row checklist; it has twenty-six rows.
+- The Codex manifest's `longDescription` said 120 nodes; it now names the 150 nodes and the verbs, and its `defaultPrompt`s use the verbs.
+
+### Changed
+
+- `skill-router`: a verb skips it. The eve `instructions.md` names the verbs. The README has a "One entry point" section, the per-host install notes no longer list slash commands, and it warns against installing both the skill and the plugin. AGENTS.md has the one-entry rule. Version 3.0.0 across all seven manifests; registry rebuilt.
+
 ## [2.11.0] — 2026-10-30
 
 Scenario's `scenario-kinetic-film` skill (zip received 2026-10-30, no licence file, so it is cited and none of its code is copied), distilled and routed as a third build engine beside HyperFrames and cinetic. It writes a beat-cut kinetic-type film as `spec.js` blocks on the music's beat grid, renders one page that is a pure function of time with sub-frame motion blur, and generates the music, sound kit and key art through Scenario MCP.

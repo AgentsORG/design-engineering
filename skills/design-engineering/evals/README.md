@@ -10,6 +10,7 @@ This folder ships starter evals. Forks should add their own.
 |---|---|---|
 | `loading.jsonl` | one query per line | Does the agent load this skill on a query that should trigger it? Does it *not* load on a query that shouldn't? |
 | `progressive-reads.jsonl` | one query per line | Once the skill is loaded, does the agent open the right atomic node for the query? |
+| `dispatch.jsonl` | one invocation per line | Does `/design-engineering <verb> [target]` open the right command file (`expected_command`: a `cmd-*` basename, `router`, `menu` or `none`), then the right nodes? CI checks that every verb in the SKILL.md table has a file and a row here. |
 | `end-to-end.md` | freeform | A handful of realistic review/design tasks with the expected gotchas the agent should cite. Run manually. |
 
 ## `loading.jsonl` format

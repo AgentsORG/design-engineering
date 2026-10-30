@@ -6,7 +6,7 @@ tags: [meta, routing, ecosystem, skills]
 
 # The skill router
 
-`/design-engineering` is a router before it is a library. Loading four craft skills at once spreads attention across four bars and applies none of them, so the first job on any request is to name **one or two owners** and hand off. [[routing-table]] maps intent to a node *inside* this graph; this node adds the phase question and the ecosystem *outside* it, and the precedence that keeps them from fighting.
+`/design-engineering` is a router before it is a library. A first argument that is a verb (`review`, `motion`, `film`…) skips this node and opens its command file straight from the SKILL.md dispatch table ([[MOC-commands]]); this node runs for a plain request, and for `which`. Loading four craft skills at once spreads attention across four bars and applies none of them, so the first job on any request is to name **one or two owners** and hand off. [[routing-table]] maps intent to a node *inside* this graph; this node adds the phase question and the ecosystem *outside* it, and the precedence that keeps them from fighting.
 
 ## 1. Resolve the contract first
 

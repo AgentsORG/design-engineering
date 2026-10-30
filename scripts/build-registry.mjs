@@ -5,7 +5,7 @@
 //
 // Items:
 //   design-engineering         the full skill graph  -> ~/.agents/skills/design-engineering/
-//   design-engineering-agents  subagents + commands  -> ~/.claude/{agents,commands}/
+//   design-engineering-agents  subagents             -> ~/.claude/agents/
 //   design-engineering-design  starter .design       -> ~/.design
 //   design-engineering-motion  motion tokens as cssVars (registry:theme)
 import { mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
@@ -48,9 +48,6 @@ const hostFiles = [
   ...walk("agents")
     .filter((p) => p.endsWith(".md"))
     .map((path) => ({ path, type: "registry:file", target: `~/.claude/${path}` })),
-  ...walk("commands")
-    .filter((p) => p.endsWith(".md"))
-    .map((path) => ({ path, type: "registry:file", target: `~/.claude/${path}` })),
 ];
 
 // Canonical motion values. Sourced from references/motion/easing-curves.md and
@@ -76,18 +73,18 @@ const items = [
       "The full design-engineering skill graph — 12 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
     author: "HKTITAN",
     categories: ["design", "agents", "skills"],
-    docs: "Restart your coding agent after installing so it picks up the new skill. Start at .agents/skills/design-engineering/SKILL.md; the router is references/meta/routing-table.md. Fork references/meta/pov.md to record your own taste overrides.",
+    docs: "Restart your coding agent after installing so it picks up the new skill. Invoke it as /design-engineering [verb] [target]; with no verb it shows the menu. The dispatch table is at the top of SKILL.md. Fork references/meta/pov.md to record your own taste overrides.",
     files: skillFiles,
   },
   {
     name: "design-engineering-agents",
     type: "registry:file",
-    title: "Design Engineering subagents and commands",
+    title: "Design Engineering subagents",
     description:
-      "Ten workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator, launch-film-analyst) and their slash commands, in Claude Code format.",
+      "Ten workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator, launch-film-analyst) in Claude Code format. Optional: every /design-engineering verb runs without them.",
     author: "HKTITAN",
     categories: ["design", "agents"],
-    docs: "Installs into .claude/agents/ and .claude/commands/. Requires the design-engineering skill item for the reference nodes these agents load.",
+    docs: "Installs into .claude/agents/. Requires the design-engineering skill item for the reference nodes these agents load.",
     registryDependencies: [`${RAW}/design-engineering.json`],
     files: hostFiles,
   },
