@@ -95,3 +95,6 @@
 {"query": "draw a coin sticker that bounces, isometric, with a thick outline", "expected_nodes": ["isometric-stickers"], "forbidden_nodes": ["video-to-vector-pipeline"]}
 {"query": "fun-isometric pops stickers in from scale 0.2, doesn't that break never scale from zero?", "expected_nodes": ["fun-isometric-reconciliation"], "forbidden_nodes": ["svg-path-morphing"]}
 {"query": "our fun-isometric stickers are in pink and yellow but our brand is two blues", "expected_nodes": ["fun-isometric-reconciliation"], "forbidden_nodes": ["color-scales-oklch"]}
+{"query": "scenario-kinetic-film says fades are the tell of template motion, so should I cut the dissolve into our endcard?", "expected_nodes": ["scenario-kinetic-reconciliation"], "forbidden_nodes": ["cross-blur-transitions"]}
+{"query": "finish.py fails our product walkthrough for 48 percent still frames", "expected_nodes": ["scenario-kinetic-reconciliation"], "forbidden_nodes": ["launch-video-ui-demo"]}
+{"query": "the whip pans render sharp on the last frame before each cut", "expected_nodes": ["film-as-function-of-time"], "forbidden_nodes": ["cross-blur-transitions"]}

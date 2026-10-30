@@ -61,3 +61,5 @@
 {"query": "set up CI to export the PlantUML files in docs/ to PNG on every push", "should_load": false, "reason": "build tooling — no design decision"}
 {"query": "make an animated isometric sticker of a mailbox for our empty inbox state", "should_load": true, "reason": "isometric-stickers + fun-isometric companion routing"}
 {"query": "the fun-isometric sticker looks off next to our other illustrations, why?", "should_load": true, "reason": "isometric-stickers check (line weight, leaning faces, thickness) + fun-isometric-reconciliation palette mapping"}
+{"query": "make a 20 second kinetic type teaser for our game, huge words on every beat, whip pans, a hard drop", "should_load": true, "reason": "launch-video registers (beat-cut) + scenario-kinetic-film companion routing"}
+{"query": "my 4K render plays in VLC but QuickTime and my phone refuse it", "should_load": true, "reason": "film-as-function-of-time delivery gates (H.264 level)"}
