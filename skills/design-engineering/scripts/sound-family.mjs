@@ -23,7 +23,7 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync, unlinkSync } from "node:fs";
 import { spawnSync } from "node:child_process";
-import { basename, join, resolve } from "node:path";
+import { basename, resolve, sep } from "node:path";
 
 const SR = 44100;
 const PEAK = 10 ** (-3 / 20); // -3 dBFS
@@ -51,10 +51,46 @@ if (provider === "elevenlabs" && !apiKey && !dryRun) {
 }
 
 const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
-const material = (manifest.material ?? "").trim();
+const material = String(manifest.material ?? "").trim();
 const sounds = Object.entries(manifest.sounds ?? {});
 if (!sounds.length) { console.error("manifest has no sounds"); process.exit(1); }
+
+// ---------------------------------------------------------------- manifest limits
+// The manifest is input, so its names become file names only after validation, and every
+// number is bounded before it sizes a buffer or an API request.
+const NAME = /^[a-z0-9][a-z0-9_-]{0,63}$/i;
+const LIMITS = { sounds: 64, prompt: 1000, requestSeconds: [0.5, 30], synthSeconds: 10, notes: 16 };
+const fail = (msg) => { console.error(`manifest: ${msg}`); process.exit(1); };
+const finite = (v, key, lo, hi) => {
+  if (typeof v !== "number" || !Number.isFinite(v) || v < lo || v > hi) fail(`${key} must be a number from ${lo} to ${hi} (got ${JSON.stringify(v)})`);
+};
+if (sounds.length > LIMITS.sounds) fail(`at most ${LIMITS.sounds} sounds (got ${sounds.length})`);
+if (material.length > LIMITS.prompt) fail(`material is over ${LIMITS.prompt} characters`);
+for (const [name, spec] of sounds) {
+  if (!NAME.test(name) || name.toLowerCase() === "manifest") fail(`sound name "${name}" must match ${NAME} (letters, digits, - and _ only) and not be "manifest"`);
+  if (typeof spec !== "object" || spec === null) fail(`${name}: spec must be an object`);
+  if (spec.prompt !== undefined && (typeof spec.prompt !== "string" || spec.prompt.length > LIMITS.prompt)) fail(`${name}.prompt must be a string of at most ${LIMITS.prompt} characters`);
+  if (spec.seconds !== undefined) finite(spec.seconds, `${name}.seconds`, ...LIMITS.requestSeconds);
+  if (spec.influence !== undefined) finite(spec.influence, `${name}.influence`, 0, 1);
+  for (const [key, v] of Object.entries(spec.synth ?? {})) {
+    if (key === "type") continue;
+    if (key === "notes") {
+      if (!Array.isArray(v) || v.length < 1 || v.length > LIMITS.notes) fail(`${name}.synth.notes must hold 1 to ${LIMITS.notes} frequencies`);
+      v.forEach((f, i) => finite(f, `${name}.synth.notes[${i}]`, 20, 20000));
+    } else if (["seconds", "decay", "stagger"].includes(key)) finite(v, `${name}.synth.${key}`, 0.001, LIMITS.synthSeconds);
+    else if (key === "peakAt") finite(v, `${name}.synth.peakAt`, 0, 1);
+    else finite(v, `${name}.synth.${key}`, 1, 20000);
+  }
+}
+if (!Number.isFinite(influence) || influence < 0 || influence > 1) fail("--influence must be from 0 to 1");
+
 mkdirSync(outDir, { recursive: true });
+// Every file this script writes or deletes resolves inside outDir; anything else is refused.
+const inOut = (file) => {
+  const path = resolve(outDir, file);
+  if (!path.startsWith(outDir + sep)) throw new Error(`refusing to touch ${path}: outside ${outDir}`);
+  return path;
+};
 
 // ---------------------------------------------------------------- WAV I/O
 function writeWav(path, samples) {
@@ -227,7 +263,7 @@ async function generateEleven(name, spec) {
     body: JSON.stringify(body),
   });
   if (!res.ok) throw new Error(`${name}: ElevenLabs ${res.status} ${await res.text()}`);
-  const mp3 = join(outDir, `${name}.mp3`);
+  const mp3 = inOut(`${name}.mp3`);
   writeFileSync(mp3, Buffer.from(await res.arrayBuffer()));
   if (!ffmpeg) return { file: basename(mp3), processed: false, prompt: text };
 
@@ -237,7 +273,7 @@ async function generateEleven(name, spec) {
   const trim = "silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,highpass=f=150";
   const probe = spawnSync("ffmpeg", ["-i", mp3, "-af", `${trim},volumedetect`, "-f", "null", "-"], { encoding: "utf8" });
   const max = Number(/max_volume:\s*(-?[\d.]+) dB/.exec(probe.stderr)?.[1] ?? 0);
-  const wav = join(outDir, `${name}.wav`);
+  const wav = inOut(`${name}.wav`);
   // Pass 2: same chain, then peak to -3 dBFS, 10 ms fade-out, mono 44.1 kHz.
   const af = `${trim},volume=${(-3 - max).toFixed(2)}dB,areverse,afade=t=in:st=0:d=0.01:curve=tri,areverse`;
   const r = spawnSync("ffmpeg", ["-y", "-loglevel", "error", "-i", mp3, "-af", af, "-ac", "1", "-ar", String(SR), wav]);
@@ -263,7 +299,7 @@ for (const [name, spec] of sounds) {
   } else {
     const samples = synthesize(name, spec);
     const file = `${name}.wav`;
-    writeWav(join(outDir, file), samples);
+    writeWav(inOut(file), samples);
     results.push({ name, provider, file, processed: true, seconds: +(samples.length / SR).toFixed(3), synth: spec.synth ?? { type: "tick" }, license: "generated locally — no third-party rights" });
   }
   console.log(`${provider.padEnd(10)} ${name.padEnd(12)} ${results.at(-1).file ?? ""}`);
@@ -272,7 +308,7 @@ for (const [name, spec] of sounds) {
 if (dryRun) {
   console.table(results);
 } else {
-  writeFileSync(join(outDir, "manifest.json"), JSON.stringify({ material, generatedAt: new Date().toISOString(), provider, sounds: results }, null, 2) + "\n");
+  writeFileSync(inOut("manifest.json"), JSON.stringify({ material, generatedAt: new Date().toISOString(), provider, sounds: results }, null, 2) + "\n");
   console.log(`\n${results.length} sound(s) → ${outDir}\nmanifest.json records prompts, recipes, and licenses. Check LUFS per references/sound/sound-spec.md.`);
   if (provider === "elevenlabs" && !ffmpeg) console.log("ffmpeg not found: MP3s kept unprocessed. Install ffmpeg and rerun to trim and normalize.");
 }
