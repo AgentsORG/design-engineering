@@ -6,6 +6,24 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [2.11.0] — 2026-10-30
+
+Scenario's `scenario-kinetic-film` skill (zip received 2026-10-30, no licence file, so it is cited and none of its code is copied), distilled and routed as a third build engine beside HyperFrames and cinetic. It writes a beat-cut kinetic-type film as `spec.js` blocks on the music's beat grid, renders one page that is a pure function of time with sub-frame motion blur, and generates the music, sound kit and key art through Scenario MCP.
+
+### Added
+
+- **`film-as-function-of-time`** (launch-video) — what any film rendered from code needs, whichever engine builds it:
+  - no `Math.random`, `Date` or carried state, so sub-frame samples agree;
+  - a 180° / 4-sample shutter, stretched to ~600° / 24 samples inside whips, and slid back so it never crosses a hard cut;
+  - the beat grid measured on the track (intended tempo given, only the used stretch fitted, the drop-offset formula), and why a 0.15 % tempo error breaks the 0–30 ms sync budget by the end card;
+  - delivery gates: frame count, H.264 Level ≤ 5.2 at 4K, under 1 GB, a hardware-decoder pass, no `-shortest`; headless capture traps.
+- **`scenario-kinetic-reconciliation`** (launch-video) — who owns what when it is installed. Its references sit at or past the fast edge of the beat-cut sizzle row, not in this graph's kinetic-type row, so its energy gates hold only there, and its still share is counted differently. Five conflicts are settled: fades, a sound on every cut, −14 LUFS, a letterboxed 9:16, and type size. It also adds four devices and the paid-run rules (price with `dry_run`, wait for a go, never write "no watermark" with a reference image).
+
+### Changed
+
+- `skill-router`: a companion row; `routing-table`: two rows; `MOC-launch-video` and SKILL.md: the cluster line; `gotchas`: three entries (generated-track tempo, H.264 level, gates outside their register).
+- Evals: 2 loading and 3 progressive-reads rows. AGENTS.md sources; README counts (150 nodes); version 2.11.0 across all seven manifests; registry rebuilt.
+
 ## [2.10.0] — 2026-10-27
 
 Kelvin Adithya's fun-isometric ([kelvinkn17/skills](https://github.com/kelvinkn17/skills), MIT, HEAD `7c8a752`; generator at [skills.klvn.dev/fun-isometric](https://skills.klvn.dev/fun-isometric)), distilled and routed as a companion. It draws isometric slab stickers and plays them on After Effects keys, interpolated the way lottie-web plays them, and exports to live canvas or alpha video.

@@ -21,7 +21,7 @@ Evidence: 29 Skale pieces (28 client films and the 2025 reel), 18 acclaimed film
 7. [[launch-video-sound]] — pick the sound register (-1 dBTP is its only fixed number); [[launch-video-music]] places a track or a voice; [[sound-from-motion]] derives the stem; [[sound-motion-sync]] lands every transient on its contact frame, at most one frame late (0-30 ms), never ahead of it.
 8. [[launch-video-review]] — review a render or a reference against its own register. The cut detector agreed with a frame reading in only 9/29 and 5/18 films, so recount by eye, or spawn [[launch-film-analyst]] to measure the file.
 
-Around the film: [[launch-video-formats]] for the loop, the sting and the vertical cuts; [[cinetic-reconciliation]] when cinetic builds it in Remotion.
+Around the film: [[launch-video-formats]] for the loop, the sting and the vertical cuts; [[cinetic-reconciliation]] when cinetic builds it in Remotion; [[scenario-kinetic-reconciliation]] when scenario-kinetic-film builds a beat-cut type teaser as one page; [[film-as-function-of-time]] for any film rendered from code (sub-frame motion blur, the beat grid fitted to the track, the delivery gates).
 
 ## What every register keeps
 
