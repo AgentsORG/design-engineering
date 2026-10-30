@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: HKTITAN
-  version: "2.11.0"
+  version: "3.0.0"
   graph: true
   subagents: agents/
   soul: SOUL.md
@@ -13,17 +13,33 @@ metadata:
 
 # design-engineering
 
-> This skill is a graph, not a file. The body below is the **Map of Content**. Follow the `[[wikilinks]]` only as needed — that's the whole point of progressive disclosure.
+> One skill, one entry: `/design-engineering [verb] [target]`. Everything below is reachable from it. The body is the **Map of Content**: follow a `[[wikilink]]` only when the job needs it. A `[[name]]` is the file `references/**/name.md` (names are unique), and paths such as `scripts/` are relative to this skill's folder.
 
-## How to use this skill
+## Dispatch — read this first, every time
 
-0. `/design-engineering` is a router before it is a library: `[[skill-router]]` resolves the design contract, classifies the phase (undecided → build → refine → check → name), and hands the job to one owner — a node here, a subagent, or an installed companion skill (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills, fun-isometric). One or two owners, never five.
-1. Route first: `[[routing-table]]` maps intent → entry node for most single questions. If two intents blur, `[[disambiguation]]` names the tiebreaker. Multi-cluster jobs follow `[[stacking-chains]]`.
-2. Otherwise scan the MOCs below, pick the cluster, and open its `MOC-*.md` for the atomic nodes under it.
-3. Read only the atomic nodes that match. Each node is standalone — you don't need siblings.
-4. Before reviewing UI code, also load `[[gotchas]]` and `[[pov]]`.
+Look at what the user typed after `/design-engineering`. Claude Code passes it as `ARGUMENTS:`; other hosts pass the rest of the message. Then:
 
-If the user asks for a UI code review, use the format defined in `[[review-format]]` and scan against `[[review-checklist]]`.
+1. **The first word is a verb in the table** (or one of its aliases): open that command file and follow it exactly. Pass the remaining words on as its target.
+2. **The arguments are a plain request** ("why does this card feel flat"): run [[skill-router]]. It resolves the contract, classifies the phase and names one or two owners. Then follow [[routing-table]] to the entry node.
+3. **No arguments, and the conversation already holds a design request:** treat that request as rule 2.
+4. **No arguments and no request:** show the table below as a menu, lead with the 2–3 verbs that fit what is in front of you (a diff → `review`, a `.design` file → `tokens`, a video file → `film review`), and wait. Never auto-run a verb.
+5. If two verbs fit, ask once. If none fits and the job is not design (backend logic, data, build tooling), say no skill applies.
+
+| Verb | Aliases | Does | Command file |
+|---|---|---|---|
+| `review` | `review-ui`, `critique` | A UI code review as a Before / After / Why table; change-scoped for a diff | [[cmd-review]] |
+| `polish` | `finish` | The screen works but feels unfinished: states, optical details, fixes applied | [[cmd-polish]] |
+| `motion` | `motion-audit`, `animate` | Should it move? Then timing, easing, springs and transitions with concrete values | [[cmd-motion]] |
+| `tells` | `unslop`, `scan-ai-tells` | AI-default tells in UI, code or copy, as a deletion list | [[cmd-tells]] |
+| `a11y` | `accessibility` | An evidence-only accessibility audit tied to WCAG 2.2 criteria | [[cmd-a11y]] |
+| `tokens` | `contract`, `apply-design-md` | Find the `.design` / DESIGN.md and thread its tokens through the UI | [[cmd-tokens]] |
+| `sound` | `sound-pass` | Which moments earn a sound, one family, generated, wired, mapped | [[cmd-sound]] |
+| `svg` | `svg-create`, `svg-animate` | `create`, `animate` or `sticker`: an SVG on tokens, or one that moves | [[cmd-svg]] |
+| `film` | `film-review`, `video` | `plan` a launch film from its register, `review` a render, or `formats` | [[cmd-film]] |
+| `diagram` · `options` · `name` · `which` · `agentation` · `pov` | `variants`, `vocab`, `route`, `agentation-fix`, `fork-pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha | [[cmd-small]] |
+| `help` | `menu`, `?` | This table, with the 2–3 verbs that fit now | — |
+
+The command files are indexed in `[[MOC-commands]]`. Every verb applies [[gotchas]] and [[pov]], and both outrank the graph's defaults. A project's `.design` outranks both ([[using-design-file]]). Keep the posture the verb names: a judge verb reports and never edits unless asked. Where the host ships this skill's subagents (the Claude Code plugin), a command file may be handed to its subagent as the brief. Each command file is the whole procedure on its own, so nothing needs the plugin.
 
 ## Philosophy — when, where, and why polish matters
 
@@ -144,7 +160,7 @@ Ten narrow-purpose subagents live in `agents/` next to this file. Spawn one when
 - [[svg-animator]] — Animates an SVG or builds a vector flipbook from frames (`scripts/svg-flipbook.mjs`), engine chosen by where the file lives.
 - [[launch-film-analyst]] — Measures a reference launch film or your own render at native fps and returns the [[launch-video-review]] rubric plus a per-film JSON.
 
-See `agents/README.md` for the full directory and selection guide.
+See `docs/subagents.md` in the repo for the full directory and selection guide. Every [dispatch](#dispatch--read-this-first-every-time) verb runs without them.
 
 ## Identity — SOUL.md
 

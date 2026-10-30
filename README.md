@@ -19,6 +19,25 @@ Not a tutorial. Not a doc site. **A working memory the agent loads** when you're
 npx skills add AgentsORG/design-engineering
 ```
 
+## One entry point
+
+Everything is reached through one skill: `/design-engineering [verb] [target]`. A plain request (`/design-engineering why does this card feel flat`) goes through the router to one owner node. With no arguments, it shows the menu and suggests the two or three verbs that fit what is in front of it.
+
+| Verb | Does |
+|---|---|
+| `review` | A UI code review as a Before / After / Why table, change-scoped for a diff |
+| `polish` | The screen works but feels unfinished: states, optical details, fixes applied |
+| `motion` | Whether it should move, then timing, easing and springs with concrete values |
+| `tells` | AI-default tells in UI, code or copy, as a deletion list |
+| `a11y` | An evidence-only accessibility audit tied to WCAG 2.2 criteria |
+| `tokens` | Find the `.design` / DESIGN.md and thread its tokens through the UI |
+| `sound` | Which moments earn a sound; one family, generated, wired, mapped |
+| `svg` | `create`, `animate` or `sticker` |
+| `film` | `plan` a launch film, `review` a render, or `formats` |
+| `diagram` · `options` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha |
+
+The 2.x slash commands (`/design-engineering:review-ui` and the rest) are gone. Their names still work as aliases: `/design-engineering review-ui` runs `review`. Install the skill **one** way, either skills.sh or the plugin. Installing both lists it twice.
+
 ## Launch film
 
 ![The first ten seconds of the launch film: "Your agent ships UI." with "UI." slamming in, AI-default tells stamping in faster and faster, a cursor pressing Review and the ink filling the frame, a Before / After / Why review striking each tell, and the name flapping in slot by slot](docs/demo/design-engineering-demo.gif?v=2.6.0)
@@ -158,10 +177,10 @@ Since v2.0.0 the repo is organized around four primitives, each owned by an open
 
 | Primitive | What it is | Where | Spec |
 |---|---|---|---|
-| **Knowledge** | The skill graph — 150 atomic, wikilinked nodes in 12 themed clusters, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
+| **Knowledge** | The skill graph — 150 atomic, wikilinked nodes in 12 themed clusters, one `/design-engineering` entry with 15 verbs, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
 | **Package** | The portable plugin — one manifest, portable skills, namespaced client extensions | `plugin.json` + `skills/` | [Agent Plugins v1.0.0](https://agent-plugins.org/) |
 | **Runtime** | A durable agent that *runs* the knowledge — root agent, ten specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
-| **Client extensions** | Per-host adapters — subagents, slash commands, host manifests, shadcn registry | `agents/`, `commands/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
+| **Client extensions** | Per-host adapters — optional subagents, host manifests, shadcn registry | `agents/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
 
 The knowledge is the core; everything else is a delivery mechanism for it. `plugin.json` declares the client extensions under reverse-domain namespaces (`com.anthropic.claude-code`, `com.openai.codex`, `com.cursor.editor`, `dev.vercel.plugins`, `dev.eve.agent`) so any Agent Plugins client can discover what this repo ships and ignore what it doesn't implement.
 
@@ -171,16 +190,16 @@ The fastest path is the one-liner at the top — `npx skills add AgentsORG/desig
 
 ### Plugins CLI (Claude Code + Cursor + Codex)
 
-Install the full plugin bundle — skill graph, ten workflow subagents, and slash commands — in one step via [vercel-labs/plugins](https://github.com/vercel-labs/plugins):
+Install the full plugin bundle (the skill and ten optional workflow subagents) in one step via [vercel-labs/plugins](https://github.com/vercel-labs/plugins):
 
 ```bash
 npx plugins add AgentsORG/design-engineering
 
-# Dry run — see skills, agents, and commands before installing
+# Dry run — see the skill and agents before installing
 npx plugins discover AgentsORG/design-engineering
 ```
 
-Restart your agent tools after install. Slash commands (when your host supports them) include `/design-engineering:review-ui`, `/design-engineering:motion-audit`, `/design-engineering:scan-ai-tells`, `/design-engineering:agentation-fix`, `/design-engineering:apply-design-md`, `/design-engineering:fork-pov`, `/design-engineering:sound-pass`, `/design-engineering:svg-create`, `/design-engineering:svg-animate`, and `/design-engineering:film-review`.
+Restart your agent tools after install, then run `/design-engineering`. The subagents are delegation targets, not entry points: every verb runs without them.
 
 ### Per-agent install
 
@@ -217,7 +236,7 @@ Four items ship:
 | Item | Installs | Into |
 |---|---|---|
 | `design-engineering` | The full skill graph (markdown, eval fixtures, and all three scripts) | `.agents/skills/design-engineering/` |
-| `design-engineering-agents` | Ten subagents + ten slash commands | `.claude/agents/`, `.claude/commands/` |
+| `design-engineering-agents` | Ten optional subagents | `.claude/agents/` |
 | `design-engineering-design-file` | The starter `.design` contract | `.design` at project root |
 | `design-engineering-motion` | Motion tokens as theme CSS variables | your global CSS |
 
@@ -344,7 +363,6 @@ design-engineering/
 ├── .cursor-plugin/                    ← Cursor IDE manifest                  (com.cursor.editor)
 ├── .plugin/                           ← vendor-neutral plugins-CLI manifest  (dev.vercel.plugins)
 ├── agents/                            ← ten workflow subagents (Claude Code subagent format)
-├── commands/                          ← ten slash-command workflows
 ├── agent/                             ← eve runtime                          (dev.eve.agent)
 │   ├── agent.ts                       ← defineAgent() — model + runtime config
 │   ├── instructions.md                ← base system prompt, distilled from SOUL.md
@@ -377,7 +395,7 @@ design-engineering/
     └── references/                    ← 12 themed clusters, 150 atomic nodes, 11 MOCs
 ```
 
-Total: **150 atomic nodes** across 12 clusters (164 markdown files in the skill), 10 workflow subagents ×2 formats, 10 commands, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
+Total: **150 atomic nodes** across 12 clusters (164 markdown files in the skill), 10 workflow subagents ×2 formats, 10 command files behind one entry, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
 
 ## Agent Plugins conformance
 
