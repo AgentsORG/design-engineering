@@ -12,6 +12,7 @@ The on-submit error summary is dead. Modern forms validate at the field level, i
 
 1. **While typing — soft signals only.** Don't fire red borders or error text on keystroke. The user is still composing. The only allowed feedback while typing is *positive* — a green check appearing when the field becomes valid.
 2. **On blur — hard validation.** When the user leaves the field, validate. Fire the error if it fails. This matches user intent: "I'm done with this field; tell me if it's wrong."
+2a. **After an error has shown, re-validate on change.** Once a field is in error, check it on every keystroke so the message clears the moment the value is fixed. Making the user blur again to see that they fixed it reads as the form still being cross.
 3. **On submit — final pass.** Catch anything blur-validation missed (cross-field rules, server-side checks). If errors exist, scroll to the *first* invalid field and focus it.
 
 The cardinal sin: validating on every keystroke and showing errors mid-typing. This punishes the user for an in-progress action and reads as nagging.

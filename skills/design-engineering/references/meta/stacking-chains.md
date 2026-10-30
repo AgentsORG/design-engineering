@@ -10,6 +10,12 @@ Single questions route to single nodes ([[routing-table]]). Real jobs — "build
 
 ## The chains
 
+### Screen loop (the order for one screen)
+
+decide, if you can't describe it yet (`options`, [[prototype-picker]]) → foundations: hierarchy, spacing and alignment, deleting what adds nothing ([[feeling-right]]) → **one** material pass for what the screen is made of: forms ([[forms-behavior]]), surfaces ([[depth-and-nesting]]), type ([[type-scale-and-rhythm]]), a reusable component's API ([[component-api-design]]) or a landing page ([[marketing-surface-rules]]) → refine: `polish`, then `motion`, `mobile` or `a11y` only if that is the problem → `review` → once every screen is done, `ship` on the whole app ([[ship-check]]).
+
+Look at the screen between passes ([[directing-agents]]). Product UI aims at correctness over novelty, so a screen that looks conventional after foundations is working as intended.
+
 ### New feature screen, start to ship
 
 [[feeling-right]] → [[typography-humanity]] + [[color-monochromatic]] + [[shadows-whisper]] → [[forms-validation]] (if inputs) → [[animation-decision-framework]] → [[accessibility-baseline]] → [[review-checklist]] → [[review-format]]

@@ -20,3 +20,13 @@
 {"invocation": "/design-engineering", "expected_command": "menu", "expected_nodes": [], "forbidden_nodes": [], "note": "bare invocation with no request in context shows the menu and runs nothing"}
 {"invocation": "/design-engineering help", "expected_command": "menu", "expected_nodes": [], "forbidden_nodes": []}
 {"invocation": "/design-engineering fix the N+1 query in the orders API", "expected_command": "none", "expected_nodes": [], "forbidden_nodes": [], "note": "not a design job: say no skill applies"}
+{"invocation": "/design-engineering ship", "expected_command": "cmd-ship", "expected_nodes": ["ship-check", "production-baseline"], "forbidden_nodes": ["change-scoped-review"]}
+{"invocation": "/design-engineering prep audit", "expected_command": "cmd-ship", "expected_nodes": ["ship-check"], "forbidden_nodes": [], "note": "audit variant makes no edits"}
+{"invocation": "/design-engineering launch quick", "expected_command": "cmd-ship", "expected_nodes": ["ship-check"], "forbidden_nodes": []}
+{"invocation": "/design-engineering break the members table", "expected_command": "cmd-break", "expected_nodes": ["stress-scenarios"], "forbidden_nodes": ["prototype-picker"]}
+{"invocation": "/design-engineering worst-case the invoice list", "expected_command": "cmd-break", "expected_nodes": ["stress-scenarios"], "forbidden_nodes": []}
+{"invocation": "/design-engineering mobile the composer hides under the keyboard", "expected_command": "cmd-mobile", "expected_nodes": ["mobile-platform-layer"], "forbidden_nodes": ["spring-animations"]}
+{"invocation": "/design-engineering motion remove the section fade-ins", "expected_command": "cmd-motion", "expected_nodes": ["animation-removal-hazards"], "forbidden_nodes": ["delight-impact-curve"]}
+{"invocation": "/design-engineering motion opportunities on the settings page", "expected_command": "cmd-motion", "expected_nodes": ["animation-decision-framework"], "forbidden_nodes": []}
+{"invocation": "/design-engineering pick a date picker", "expected_command": "cmd-small", "expected_nodes": ["dependency-discipline"], "forbidden_nodes": []}
+{"invocation": "/design-engineering options mix", "expected_command": "cmd-small", "expected_nodes": ["prototype-picker"], "forbidden_nodes": []}

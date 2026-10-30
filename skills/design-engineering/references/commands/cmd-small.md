@@ -16,6 +16,16 @@ Decide whether to draw at all, and on which surface ([[diagram-decision]]). A fi
 
 Aliases: `variants`, `explore`. The user is undecided. Build three to five genuinely different directions behind a live picker, record the decision, then delete the harness ([[prototype-picker]]). "Something like…" with no spec → [[vibe-to-generator]].
 
+Sub-modes of `options`:
+- `riff`: three more directions near the one you kept.
+- `tune`: add a control panel to the kept direction and nothing else.
+- `mix`: take parts of other variants onto the chosen base, as a matrix of portable features ([[prototype-picker]]).
+- `keep`: record the decision and delete the harness. Keep the worst-case data as a fixture.
+
+## /design-engineering pick "a task"
+
+Aliases: `library`. Name the task, not the library the user named. Read `package.json` first: never add a competitor to something already installed. Recommend one maintained library, with its install line and the reason, and say so when the best fit is off your trusted list. If a few lines of code would do, say that instead ([[dependency-discipline]]).
+
 ## /design-engineering name "the thing"
 
 Aliases: `word`, `vocab`. **Posture: name.** Give the precise term from [[design-vocabulary]] and the node that goes deeper, in one line, then stop. Write no code.

@@ -64,6 +64,12 @@ Catalog of canonical transitions for common UI archetypes. Implementation layer 
 - [[distance-falloff-propagation]] — Per-element lift via `lift * pow(falloff, distance)` for grouped hover.
 - [[multi-segment-shake]] — Form-error shake at 0%, 28.57%, 57.14%, 78.57%, 100% over 280ms.
 
+## Removing, projecting, native
+
+- [[animation-removal-hazards]] — Taking motion out safely: delete the start state with it, unhook what waited on it, keep layout animations that hide a jump, the reduce table.
+- [[momentum-projection]] — Where a flick would come to rest, snapping to the nearest target, handing the release velocity to the spring, one spring per axis, grab offset.
+- [[react-native-motion]] — The React Native and Expo digest: UI-thread animation, spring presets, native navigators, gesture axes, haptics on the frame.
+
 ## Required-knowledge nodes (always relevant)
 
 - [[prefers-reduced-motion]] — The one accessibility rule that everyone skips and that breaks for real users.

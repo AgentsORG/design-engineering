@@ -53,6 +53,9 @@ A companion is installed when its `SKILL.md` exists under `.agents/skills/`, `.c
 | An editable canvas: a whiteboard, a planning board, a `.tldraw` or `.tldr` file | tldraw: Desktop's `tldraw-offline` skill (spawn its subagent for long jobs), or the tldraw MCP app in hosted clients; `tldraw-migrate` for SDK upgrades | [[tldraw-canvas]]'s rules (bound arrows, Mermaid for structure, lints before done, anchored comments); the surface's own skill owns the API |
 | A GSAP SVG tween: DrawSVG, MorphSVG, MotionPath | GreenSock's `gsap-plugins` (with `gsap-core`) | Whether a library is justified ([[dependency-discipline]]), swap or morph ([[svg-path-morphing]]), durations, easing and reduced motion stay here |
 | An animated isometric sticker: empty-state art, onboarding illustration, feature sticker, a playful moving icon | fun-isometric (`npx skills add kelvinkn17/skills@fun-isometric`): draw, rig, `fi check`, export to canvas or alpha video | Whether it moves at all, the palette from the contract, [[pov]] and reduced motion stay here; its craft bar is [[isometric-stickers]]. Conflicts → [[fun-isometric-reconciliation]] |
+| Apple-style interface and motion work in depth: materials, fluid gestures, WWDC-grade springs | `apple-design` (`npx skills add emilkowalski/skills`) | The Apple numbers this graph keeps are in [[momentum-projection]], [[translucent-materials]] and [[spring-animations]]; the contract's tokens and [[pov]] still win |
+| React Native / Expo motion, or native Swift | `animate-expo` (RN/Expo) or `write-swift` (Swift language) from the same repo | This graph keeps the web rules and a short RN digest ([[react-native-motion]]); Swift language work is not design and stays with `write-swift` |
+| Sonner toasts: setup, styling, the classic bugs | `ask-sonner` from the same repo | Principles stay in [[sonner-principles]]; the usage digest is [[sonner-usage]] |
 | Fetching icons from a set | `better-icons` (Iconify, CLI or MCP) | One pack, passed as `--prefix` ([[icon-systems]]); token cleanup ([[svg-creation]]); check the set's license yourself; add its MCP server by hand pinned to a version npm has (`npm view better-icons version`; 1.0.4 on 2026-10-08), not through `setup`, which edits every agent's config |
 
 ## 5. A launch film, end to end
@@ -72,7 +75,8 @@ This repo's own launch film, `docs/demo/hyperframes/`, is the worked example: it
 1. **Two questions, then act.** Phase, then material. If you opened four nodes before answering either, start over.
 2. **Judge posture never writes; build posture never reviews silently.** Keep the posture the user asked for.
 3. **Companions inherit the contract and the overrides.** Nothing leaves this router without [[gotchas]] and [[pov]] applied.
-4. **Say when nothing fits.** Backend logic, data fetching, build tooling, and state management are not this graph's job; answer plainly and say no skill applies.
+4. **Overlaps that fool the router.** One diff → `review`; the whole app before launch → `ship` ([[ship-check]]). "Fine on desktop, wrong on my phone" → [[mobile-platform-layer]] / [[touch-and-focus]] before motion. "Feels slow" → [[performance-discipline]], not motion. Worst-case data → `break` ([[stress-scenarios]]).
+5. **Say when nothing fits.** Backend logic, data fetching, build tooling, and state management are not this graph's job; answer plainly and say no skill applies.
 
 ## Gotcha
 

@@ -1,6 +1,6 @@
 ---
 title: empty-loading-states
-summary: Empty states direct action. Skeletons hint structure. Spinners under 3s; progress bars over 3s.
+summary: Every data view has four branches — loading, empty, error, full. Empty states direct action; errors offer a specific recovery. Delay any indicator ~150ms, show one by 400ms — a skeleton for content, a spinner only inside a control, progress bars past 3s. Persisted state is correct on first paint.
 tags: [components, states, loading]
 ---
 
@@ -27,15 +27,24 @@ A bad empty state just says "Nothing here" and ends. The user is left wondering 
 />
 ```
 
+## Four branches per view
+
+Every list, table, feed and dashboard has four states: loading, empty, error, full. The seeded dev account only ever shows the last. Find all four branches in the code; a missing branch is the finding. Size the empty state like the filled one so the first item doesn't shift the layout. An empty search says what was searched and offers to clear it. An error says what happened and offers a specific recovery (retry that refetches, a link somewhere that works); the framework's default error and 404 pages count as missing.
+
 ## Loading state choice tree
 
 | Expected duration | UI |
 |---|---|
-| 0–800ms | Nothing. Spinner introduced after 800ms (avoids flash). |
-| 800ms–3s | Spinner (animated). |
+| Under ~150ms | Nothing. Delay every indicator ~150ms so fast responses never flash one. |
+| By 400ms | Something must show. Content regions get a skeleton of the loaded shape; a spinner only inside the control that started the work (a submitting button). |
 | 3s–15s | Progress bar with percentage. |
 | 15s+ | Progress bar + estimated time + cancel button. |
-| Unknown / streaming | Skeleton placeholders matching layout shape. |
+
+A centred spinner as the loading state of a list or page is a defect: it collapses the page, then everything jumps.
+
+## Persisted state on first paint
+
+A theme that flashes light, a sidebar that renders open then snaps shut: the stored value was read in an effect after the first paint. Theme: a blocking head script sets the class before paint. Server-rendered layout state (sidebar, density): a cookie read on the server. Client-only state: a lazy `useState` initializer, and nothing size-dependent renders until it is known. Banners that mount late (cookie, announcement, verify-email) overlay the page or are decided on the server.
 
 ## Skeletons
 
@@ -50,20 +59,14 @@ A skeleton placeholder hints at the **shape** of incoming content (rectangles wh
 
 Rules:
 - **Match the real layout.** A skeleton list with 3 items should reveal to a list with ~3 items, same widths, same gaps. Otherwise the layout jumps when content arrives.
-- **No skeleton for under-300ms loads.** The flash is worse than nothing.
+- **Size rows from the loaded row** (`height: 48px` because the real row is 48px, not a guess); lazy-loaded components get a sized fallback too.
 - **Pulse animation is the only animation.** Don't get clever with shimmer overlays unless your entire product has that energy.
-
-## Spinners are the wrong default
-
-A perpetually-spinning loader signals "we have no idea how long this will take." That's almost never true. Most loads are <3s. Most slow loads can show real progress.
-
-The most common "loading" mistake is reaching for `<Spinner />` when a skeleton, a progress bar, or just-wait-300ms would be better.
 
 ## When to apply
 
-- Every list, table, or content area: design the empty state.
+- Every list, table, or content area: all four branches.
 - Every async action: pick a loading pattern from the table.
-- Every form submit: provide feedback under 100ms (a disabled button state) and a loading indicator after 300ms.
+- Every form submit: feedback under 100ms (a disabled button state), the pending label by 400ms.
 
 ## Gotcha
 
@@ -71,6 +74,7 @@ Don't auto-redirect from empty states ("nothing here, going to home..."). That f
 
 ## Sources
 
-- guidelines.sh — "Spinners <3s; progress bars >3s; skeletons hint at structure."
+- guidelines.sh — progress bars past 3s; skeletons hint at structure.
+- Emil Kowalski's design-engineering practice, distilled by HKTITAN — the four branches, the 150ms delay and 400ms deadline, first-paint state.
 - Emil Kowalski — Sonner skeleton patterns.
 - Brad Frost — "loading state best practices."

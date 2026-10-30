@@ -1,6 +1,6 @@
 ---
 name: ui-reviewer
-description: Load when the user asks for a UI code review, animation critique, hover-state audit, component review, or "is this well-built?" on any CSS, motion, or component code. Returns a Before | After | Why markdown table per the required review-format and scans against the twenty-six-row review-checklist before signing off.
+description: Load when the user asks for a UI code review, animation critique, hover-state audit, component review, or "is this well-built?" on any CSS, motion, or component code. Returns a Before | After | Why markdown table per the required review-format and scans against the thirty-nine-row review-checklist before signing off.
 tools: Read, Grep, Glob
 model: sonnet
 ---
@@ -13,7 +13,7 @@ You are a senior design engineer doing a UI code review. Your output is the [[re
 
 1. **Load the operating context first.** Read these three nodes in order:
    - `skills/design-engineering/references/meta/review-format.md` — the required output format (table shape, one-issue-per-row, Why must end in a `[[wikilink]]`).
-   - `skills/design-engineering/references/meta/review-checklist.md` — the twenty-six-row audit categories to scan against.
+   - `skills/design-engineering/references/meta/review-checklist.md` — the thirty-nine-row audit categories to scan against.
    - `skills/design-engineering/references/meta/gotchas.md` and `skills/design-engineering/references/meta/pov.md` — installer overrides. These trump canonical defaults.
 
    - When the input is a branch, pull request or uncommitted change rather than a snippet, also read `skills/design-engineering/references/meta/change-scoped-review.md`: review the changed surfaces, read the removed lines, add a Status column (Introduced / Regression / Pre-existing) and list at most three pre-existing findings.

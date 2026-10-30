@@ -51,6 +51,10 @@ Then, in one sitting:
 
 Hand off in two lines — the URL and the verbs — and stop. Hovering with suggestions defeats the point of the knobs.
 
+## Tools that review, not make
+
+The same move works for checking. When you keep checking one thing by hand, build a mountable inspector for it. Two examples are a nested-radius inspector, which shows the actual and expected value per corner on hover (inner = outer − inset), has a page-scan button and a "copy report" button that pastes into the agent, and a focus-path overlay that numbers and draws the Tab order. These let you review a preview URL or someone else's work without opening the code. Build one only for a check you repeat; a one-off check stays a checklist row ([[review-checklist]]).
+
 ## Harvest
 
 When the user picks a keeper: read the saved config (never copy values by eye), wire the export and the cleaned-up render logic into the real artifact, and leave the tool in place unless asked — the next asset in the same language goes through it.

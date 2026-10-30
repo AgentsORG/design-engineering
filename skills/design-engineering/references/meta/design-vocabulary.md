@@ -25,7 +25,7 @@ How text is set, spaced, and read.
 - **Leading** — line-height; the vertical space between lines. Too tight suffocates, too loose stops reading as a paragraph.
 - **Optical kerning** — spacing judged by eye instead of the font's metric tables; closes the gaps the defaults leave.
 - **Tabular nums** — fixed-width digits so changing numbers don't jitter in a column. Essential for tables, prices, timers. → [[data-is-content]]
-- **Type scale** — a fixed set of sizes (often a ratio) you pick from rather than inventing per use. → [[typography-humanity]]
+- **Type scale** — a fixed set of sizes (often a ratio) you pick from rather than inventing per use. → [[type-scale-and-rhythm]]
 - **Weight** — stroke thickness. Bold is for hierarchy; italic is for linguistic stress or citation, not hierarchy. → [[typography-humanity]]
 - **x-height** — height of the lowercase; why two fonts at the same px read as different sizes. → [[typography-humanity]]
 - **Cap height** — height of the capitals; with x-height it governs perceived size. Matters when matching a fallback.
@@ -34,7 +34,7 @@ How text is set, spaced, and read.
 - **Text overflow / truncation** — cut at a word boundary with a real ellipsis character, never mid-word. → [[copy-voice]]
 - **Hyphenation** — breaking a word across lines; best left to the browser to place.
 - **Clamp** — fluid sizing with a min, preferred, and max in one declaration (`clamp()`); scales between breakpoints.
-- **Widow** — classically, a paragraph's lone last line carried to the top of the next column or page; colloquially also the lone word left on a last line. `text-wrap: pretty` targets the trailing-word case. → [[typography-humanity]]
+- **Widow** — classically, a paragraph's lone last line carried to the top of the next column or page; colloquially also the lone word left on a last line. `text-wrap: pretty` targets the trailing-word case. → [[line-behavior]]
 - **Orphan** — a paragraph's lone first line stranded at the bottom of a column or page — the mirror of a widow. CSS `orphans`/`widows` set the minimums, but support is uneven, so it is often fixed by hand.
 - **Font stack** — the ordered fallback list; a size-matched fallback prevents reflow when the web font loads.
 - **Line length** — the measure; ~65 characters reads comfortably, wider loses the next line. → [[line-length-tracking]]
@@ -115,6 +115,11 @@ How elements respond to input.
 - **Touch target** — the tappable area; 44×44px minimum, even when the visible element is smaller. → [[accessibility-baseline]]
 - **Copy to clipboard** — needs visible confirmation (a checkmark for a beat) or users click it again thinking it failed. → [[responsive-feedback]]
 - **Skip link** — a visually-hidden link, revealed on focus, that jumps past nav to main content. → [[accessibility-baseline]]
+- **Hydration mismatch** — server HTML and the first client render disagree (a theme, a date, a stored toggle), so the page flashes or React throws; set persisted state before first paint. → [[ui-polish-pass]]
+- **FOUC** — flash of unstyled (or wrongly themed) content before styles or fonts apply; a blocking theme script and preloaded fonts prevent it. → [[performance-discipline]]
+- **Light dismiss** — closing an overlay by clicking outside or pressing Escape, without a dedicated button; popovers and menus expect it, destructive dialogs often shouldn't. → [[keyboard-patterns]]
+- **Race condition** — two async results landing out of order, so an older response overwrites a newer one (search-as-you-type); cancel or ignore stale requests. → [[optimistic-updates]]
+- **Passive listener** — a `touchstart`/`wheel` handler marked `{ passive: true }`, promising not to call `preventDefault`, so scrolling never waits on script. → [[performance-discipline]]
 
 ## 06 — Motion
 
@@ -135,6 +140,37 @@ How things move and transition. The largest cluster in this skill — see [[anim
 - **Shared axis transition** — motion direction reflects spatial relationship: forward animates right, back animates left. → [[fly-not-teleport]]
 - **Motion as feedback** — press-compress, error-shake, success-draw: the motion *is* the response, not decoration. → [[responsive-feedback]]
 - **GPU compositing** — transform/opacity run on the GPU and skip layout recalc; animating width/top forces reflow per frame. → [[transform-mastery]]
+
+### Motion: the finer words
+
+When "make it animate" is the whole prompt, the agent guesses. One of these names usually settles which of several animations is meant.
+
+- **Fade / scale in / slide in / pop in** — four different entrances: opacity only; growing from ~0.95 to 1 together with a fade; arriving from an edge; overshooting the final size and settling. A pop is a spring with bounce, so keep it for celebratory moments. → [[never-scale-from-zero]], [[spring-animations]]
+- **Reveal** — a clip-path or mask uncovers content in place, so nothing moves. → [[clip-path-tricks]]
+- **Origin-aware animation** — a popover or menu grows out of the control that opened it (its `transform-origin` set to the trigger), not out of its own centre. → [[transform-mastery]]
+- **Transform origin** — the anchor a scale or rotation pivots on. Wrong for nearly every popover by default. → [[transform-mastery]]
+- **Skew / 3D tilt / perspective** — slanting the axes; rotating in X or Y for depth; how close the virtual viewer sits (a lower value exaggerates the depth). Use them sparingly: a tilt card is a marketing-surface move, not a product one. → [[marketing-vs-product-ui]]
+- **Keyframes / interpolation (tween)** — the stops you author versus the frames the engine fills in between them.
+- **Stepped animation** — jumps between discrete states (`steps()`), as a countdown or a sprite does; smooth easing would be wrong there.
+- **Fill mode** — whether an element holds an animation's first or last frame outside its active time (`forwards` keeps the end state).
+- **Orchestration** — sequencing several animations so they read as one gesture; it is the plan, and [[stagger-choreography]] is one technique inside it.
+- **Asymmetric easing** — a curve that accelerates and decelerates at different rates. Real motion is asymmetric, which is why `ease-in-out` often reads mechanical. → [[easing-curves]]
+- **Linear** — constant speed. Right for spinners, marquees and progress tied to time; wrong for anything that starts or stops. → [[easing-curves]]
+- **Velocity / momentum** — how fast and which way something moves at the moment you touch it, and motion that keeps going after the input ends. A spring inherits velocity; a tween restarts from zero. → [[gesture-momentum]]
+- **Stiffness · damping · mass** — the three spring dials: how hard it pulls, how fast it loses energy, how heavy it is. Name the dial instead of saying "bouncier". → [[spring-animations]]
+- **Interruptible animation** — it can be redirected mid-flight and curves toward the new target instead of jumping or finishing first. CSS transitions retarget; keyframe animations restart. → [[spring-animations]]
+- **Crossfade / morph / layout animation** — two elements swapping in one spot; one shape becoming another; an element animating to its new size or position instead of snapping. → [[cross-blur-transitions]], [[morphing-icons]], [[fly-not-teleport]]
+- **Continuity / shared element transition** — before and after are visibly the same object (a thumbnail grows into the card it opens), so the user never loses the thread. → [[fly-not-teleport]]
+- **Direction-aware transition** — forward slides one way and back slides the other. Also called a shared-axis transition (above).
+- **Scroll reveal / scroll-driven animation** — content animating as it enters the viewport, versus animation whose progress *is* the scroll position. The first is usually decoration. → [[sticky-and-scroll-tells]]
+- **Page transition / view transition** — animation between routes; the browser's View Transitions API morphs the elements two states share. → [[fly-not-teleport]]
+- **Press feedback / ripple / hold to confirm** — a scale-down while held (~0.97); a circle spreading from the tap point (Material's idiom, foreign elsewhere); a fill that completes while the button is held, guarding destructive actions. → [[responsive-feedback]], [[destructive-actions]]
+- **Number ticker / typewriter** — digits rolling to a value (with tabular figures, or the width jitters); text appearing one character at a time. Both read as gimmicks when used for routine updates. → [[line-length-tracking]]
+- **Mask** — like clip-path, but the edge can fade. A mask fade is how overflowing animated content gets clipped softly without breaking the animation. → [[clip-path-tricks]]
+- **Frame rate / dropped frame / jank** — frames drawn per second (60 is the floor and 120 is common); a frame that missed its deadline; the visible stutter of several in a row. → [[performance-discipline]]
+- **Layout thrashing** — reading and writing layout in alternation, or animating width, height, top or left, so the browser re-lays the page out every frame. → [[transform-opacity-only]], [[debugging-animations]]
+- **Opacity vs visibility** — `opacity: 0` keeps both the space and the clicks; `visibility: hidden` keeps the space and drops the clicks; `display: none` drops both. Fading something out leaves invisible click targets behind unless you also set `pointer-events: none` or `visibility`.
+- **Filled vs outlined (contextual swap)** — outlined icons for the default state and filled ones for active or selected, applied as one rule everywhere or not at all. → [[icon-systems]]
 
 ## 07 — Accessibility
 
@@ -208,6 +244,7 @@ How design is made and shared.
 - **Moodboard** — a reference collection to align on direction; the best ones make an argument, the worst are Pinterest. → [[taste-is-trained]]
 - **HiDPI / Retina** — 2×+ pixel-density screens; assets, icons, and borders must account for 2× and sometimes 3×.
 - **Open Graph** — the share-preview metadata (image, title, description); the first impression for most who don't visit.
+- **Skeuomorphism** — modelling an interface on a physical object (a leather calendar, a legal-pad notes app) to borrow familiarity. Shadows and gradients alone are depth, not skeuomorphism.
 
 ## 11 — Analysis
 

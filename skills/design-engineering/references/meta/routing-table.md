@@ -98,6 +98,17 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Write design docs an agent can follow | [[design-system-docs]] |
 | Write or fix a skill file, or [[pov]] | [[skill-writing-rules]] |
 | Measure whether a change made output better | [[design-benchmarks]] |
+| Get the app ready to launch: every lane, fixed and verified | [[ship-check]], then [[production-baseline]]; leftovers and secrets → [[leftovers-and-leaks]]; link previews, SEO, the conversion path → [[share-and-crawl-metadata]] |
+| Remove or tone down animations without breaking anything | [[animation-removal-hazards]] |
+| A flick should land where it would naturally coast; rubber-band past an edge | [[momentum-projection]], [[gesture-momentum]] |
+| Glass, translucent sidebars, dimming behind sheets | [[translucent-materials]] |
+| The keyboard covers the composer; 100vh, safe areas or landscape break on a phone | [[mobile-platform-layer]], then [[touch-and-focus]] |
+| Navigation, settings structure, tabs vs sections, search as a symptom | [[information-architecture]] |
+| Small caps, slashed zero, stylistic sets, variable axes, stroked text | [[opentype-features-and-axes]] |
+| Colours out of sRGB, P3, migrating hex/HSL to OKLCH | [[oklch-gamut-and-migration]] |
+| React Native or Expo motion | [[react-native-motion]] |
+| Set up or fix Sonner toasts | [[sonner-usage]] (principles → [[sonner-principles]]) |
+| Steer an agent: prompts, how many passes, fixing the system not the screen, papercuts | [[directing-agents]] |
 
 ## Rules
 

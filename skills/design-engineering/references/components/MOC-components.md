@@ -32,6 +32,8 @@ Components are where craft lives because users *touch* them. Their states are wh
 - [[strings-and-locale]] — Inventory the strings first, build sentences whole in ICU, format through `Intl`, verb-first buttons, links that name the destination, toggles for the ON state, parallel status copy.
 - [[destructive-actions]] — Undo for frequent reversible actions; confirm the irreversible with action-and-object titles, verb-plus-object buttons, focus on the safe button, type-to-confirm for accounts.
 
+- [[sonner-usage]] — Sonner in practice: one Toaster, theme and richColors, the styling ladder, why toasts duplicate or hide behind a modal, its defaults.
+
 ## Cross-cluster
 
 - For button *motion*, see [[responsive-feedback]] in [[MOC-motion]].

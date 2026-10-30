@@ -15,9 +15,9 @@ A large share of users experience the interface through a thumb, a keyboard, or 
 3. **`touch-action: manipulation`** on buttons, links, inputs (kills the double-tap-zoom delay); **`touch-action: none`** on surfaces that implement their own pan or drag so native gestures don't fight yours.
 4. **Autoplaying video needs `muted` and `playsinline`**, or iOS refuses or goes fullscreen. Under `prefers-reduced-motion`, swap autoplay for a poster and a play button.
 5. **Every icon-only button has an `aria-label`** that names the action ("Close dialog", never "icon"). Code-built illustrations get `role="img"` + `aria-label`, or `aria-hidden` when decorative.
-6. **Hidden content leaves the tab order**: `visibility: hidden`, `display: none`, or `inert` — never `opacity: 0` or an off-screen transform. Focus must never land off-screen; scroll focused elements into view.
-7. **Overlays move focus in and give it back.** Open: focus the first control or the dialog. Close: return focus to the trigger. Never strand focus on a removed node.
-8. **Timers pause when the tab is hidden** (`visibilitychange`), resuming with the remaining time.
+6. **Hidden content leaves the tab order**: `visibility: hidden`, `display: none`, or `inert` — never `opacity: 0` or an off-screen transform. To keep an exit animation, delay the flip: `transition: visibility 0s 200ms` on close. Focus must never land off-screen; scroll focused elements into view (`scrollIntoView({ block: "nearest" })`).
+7. **Overlays move focus in and give it back.** Open: focus the first control or the dialog. Close: return focus to the trigger. Never strand focus on a removed node: deleting the focused row moves focus to the next row, else the previous one, else the list heading.
+8. **Timers pause when the tab is hidden** (`visibilitychange`), resuming with the remaining time. Toasts and undo windows also pause on hover and focus, and their duration scales with the text (read at roughly 200–250 words a minute), never a flat 2s.
 9. **Shortcuts show the user's OS**: Cmd on macOS, Ctrl elsewhere, bound to match.
 10. **Feedback is on the page.** Errors, confirmations, and status never live only behind hover or inside a modal the user has to find.
 11. **In a touch-scrolled list, select on release.** The press that starts a scroll ends in `pointercancel`, so selecting on press fires on every scroll; a release over the list, when the press started there too, never does ([[animated-hit-testing]]).
@@ -37,10 +37,12 @@ A tooltip waits ~200ms so it doesn't fire on incidental travel; once one is open
 | Tap feels laggy | Feedback on pointer-down + `touch-action: manipulation` |
 | Pull-to-refresh hijacks scroll | `overscroll-behavior: none` on `html, body` |
 | Content stops at the notch | `viewport-fit=cover` + `env(safe-area-inset-*)` |
-| Long-press selects button text | `user-select: none` on control labels |
+| Long-press selects button text | `user-select: none` and `-webkit-touch-callout: none` on controls, never on `body` |
+| Keyboard covers the composer (Android) | `interactive-widget=resizes-content` in the viewport tag ([[production-baseline]]) |
+| Whole page pans sideways | Fix the element that overflows (`overflow-wrap`, a scroll wrapper on tables and `pre`, no `100vw`); `overflow-x: hidden` on `body` hides it and breaks sticky |
 | Carousel scrolls vertically | `touch-action: pan-y` on the gesture surface |
 | Status bar color doesn't match | `theme-color` meta per color scheme |
-| Right in Chrome, wrong on the phone | Test on real hardware |
+| Right in Chrome, wrong on the phone | Real hardware: dev server on `0.0.0.0`, open by LAN IP, Safari Web Inspector or `chrome://inspect`, a phone a few years old |
 
 ## When to apply
 

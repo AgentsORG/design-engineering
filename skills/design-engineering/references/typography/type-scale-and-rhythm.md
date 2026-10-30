@@ -13,7 +13,8 @@ Size, leading, and tracking carry more of typography's quality than any flourish
 - **Ship `woff2` and nothing else.** Brotli-compressed and universally supported; `ttf`/`otf` in `public/fonts` is a bug. Load only the weights you use and subset to the characters you use.
 - **`font-synthesis: none` at the root.** Ask for an unloaded bold or italic and the browser fakes one by thickening or slanting glyphs. Turn it off so a missing file fails visibly.
 - **High-level property over raw tag.** `font-weight: 620`, not `font-variation-settings: "wght" 620`; `font-optical-sizing: auto`, not a hand-set `"opsz"`; `font-variant-numeric: tabular-nums`, not `"tnum" 1`. Properties still do something sensible on a fallback font; raw tags silently stop. Reserve `font-variation-settings` / `font-feature-settings` for custom axes and numbered stylistic sets, and comment what the numbered slot does in *this* font.
-- **Tabular figures on anything that updates.** Timers, prices, counters nudge their neighbours on every tick without them.
+- **Tabular figures on anything that updates.** Timers, prices, counters nudge their neighbours on every tick without them. The full feature and axis inventory is [[opentype-features-and-axes]].
+- **Light weights are size-bound.** A 300 weight that looks elegant at 32px is illegible at 11px; keep light weights for display sizes. Size and baseline-shift footnote markers yourself, since the default `<sup>` is too big and pushes the line apart.
 
 ## Build a scale, then obey it
 
@@ -52,4 +53,4 @@ Never change font weight on hover or selection. The text reflows by a pixel and 
 - Emil Kowalski's design-engineering practice on typography, distilled by HKTITAN.
 - CSS Fonts Level 4 (`font-synthesis`, `font-optical-sizing`), CSS Inline Layout (`text-box`).
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/type.md` (202 sites measured at 1440 × 900 and 390 × 844, 2026-10-05; top and weak are model-panel tiers) and `references/copy.md` §2 (the headline budget; k values are its rule of thumb).
-- Related: [[typography-humanity]], [[line-length-tracking]], [[line-behavior]].
+- Related: [[typography-humanity]], [[line-length-tracking]], [[line-behavior]], [[opentype-features-and-axes]].

@@ -6,6 +6,49 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [3.1.0] — 2026-10-30
+
+This release distils Emil Kowalski's design-engineering practice and his public [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT, HEAD `a81dbca`). Every rule was checked against the graph before it went in. The main results are a whole-app production pass, four new verbs, fourteen new nodes, and a round of corrections where the graph's own values had drifted or were misattributed.
+
+### Added — verbs
+
+- **`ship`** (`prep`, `prod`, `launch`): a whole-app production pass across every lane. It fixes rather than reports. Each claim is marked verified from code or needing hardware. A severity tree runs from "locks out a group of users" down to polish. It never invents a value such as copy or a brand colour, and ends with a report of the verdict, a per-lane table, "Needs a device", "Needs a human" and the verification output. Variants: `audit`, `quick`, or a lane or path.
+- **`break`** (`worst-case`, `break-ui`): realistic or schema-limit worst-case data behind a dev toggle, checked at 320px, the widest layout, 200% zoom and RTL. It reports Broken / Ugly / Fragile, then stops until told which to fix.
+- **`mobile`** (`native-feel`): the symptom, the one-line fix and why, and what still needs a real phone.
+- **`pick`** (`library`): one maintained library for a task, checked against `package.json` first.
+- **Modes:** `motion remove`, `motion opportunities` and `motion audit` (which writes plans), plus `options riff | tune | mix | keep`.
+
+### Added — nodes (14)
+
+- meta: **`ship-check`**, **`production-baseline`** (viewport tag, root CSS, hover and reduced-motion gates at config level), **`directing-agents`** (friction where judgment matters, naming the concept, one or two passes, fixing the system rather than the screen, the papercut pipeline).
+- anti-patterns: **`leftovers-and-leaks`** (dev panels behind dynamic imports, scaffolding routes, logged sessions, secret-shaped public env vars).
+- layout: **`information-architecture`**, **`mobile-platform-layer`**, **`share-and-crawl-metadata`**.
+- motion: **`animation-removal-hazards`**, **`momentum-projection`** (where a flick comes to rest, velocity handed to the spring, one spring per axis), **`react-native-motion`**.
+- surface: **`translucent-materials`**, **`oklch-gamut-and-migration`**.
+- typography: **`opentype-features-and-axes`**.
+- components: **`sonner-usage`**.
+
+### Fixed — values the graph had wrong
+
+- **Easing:** `cubic-bezier(0.34, 1.56, 0.64, 1)` was labelled "the Apple feel". It overshoots and anticipates nothing, so the label is gone, and so is an unverified "Linear" label. The house tokens stay, alongside a named strong set: `0.23,1,0.32,1`, `0.77,0,0.175,1`, `0.32,0.72,0,1`. Ease-in is never used on UI, exits included.
+- **Springs:** stiffness 380 / damping 30 is the drawer spring, not "Apple-style". Apple's default is critically damped. Bounce comes only after a gesture with momentum. Sonner uses CSS transitions, not a spring.
+- **Rubber-banding:** Apple's `x·d·0.55 / (d + 0.55·|x|)` replaces the `pow(x, 0.7)` approximation.
+- **Durations:** tooltips run 125–200ms, and 0ms only for siblings once one is open. Exit timing is no longer credited to Sonner, which is symmetric. Checklist row 4 now flags anything over 300ms on product UI.
+- **Loading:** the 800ms silence rule is replaced. Delay ~150ms to avoid a flash, show something by 400ms, use a skeleton for content and a spinner only inside a control. The 3s and 15s tiers stay.
+- **Colour:** APCA body text is Lc 75 everywhere. Disabled states use a token, not opacity. `color-scheme` declares only the schemes that were designed. Dark mode desaturates 20–30%, with solid dividers and rings only for elevation.
+- **Press scale:** 0.97 is canonical for buttons, with 0.96 for small controls and 0.95 as the floor.
+- Also fixed: hold-to-confirm runs 2s to fill and 200ms to release; the last `transition: all` is gone; `overflow-wrap: anywhere`; `clsx` instead of `classnames`; and two stale vocabulary links.
+
+### Changed
+
+- `review`: opens with a verdict (Blocked / Approve with changes / Ship it) and a fixed triage order. Every row names its owning node.
+- `review-checklist`: rows 27–39 added, rows 4, 7 and 10 corrected.
+- `design-vocabulary`: a "Motion: the finer words" section (26 entries) plus Skeuomorphism and five engineering terms.
+- `stacking-chains`: a "Screen loop" that runs decide → foundations → one material pass → refine → review → ship.
+- Additions to `build-a-tool` (tools that review, not make), `prototype-picker` (tuning panels, mix, in-place branch), `stress-scenarios`, `line-behavior`, `avatar-systems`, `icon-systems`, `forms-behavior`, `forms-validation`, `empty-loading-states`, `touch-and-focus`, `accessibility-baseline`, `performance-discipline`, `stagger-choreography`, `animation-decision-framework` and others.
+- `skill-router`: companion rows for `apple-design`, `animate-expo`, `write-swift` and `ask-sonner`, plus overlap rules (one diff vs the whole app, phone before motion, slow before motion). The routing table gains 12 rows.
+- Gotchas: six entries. Evals: 10 dispatch rows (32 in total), 8 progressive-reads rows and 2 loading rows. AGENTS.md sources; README counts (164 nodes, 19 verbs); version 3.1.0 across all seven manifests; registry rebuilt.
+
 ## [3.0.0] — 2026-10-30
 
 One skill, one entry point. Everything is now reached through `/design-engineering [verb] [target]`. The ten separate slash commands are gone, and nothing else competes with the skill for its trigger. The pattern follows the skills that win with one entry (pbakaus/impeccable's command table and no-argument menu) and the Claude Code skills docs: routing goes at the top, inside the first 5,000 tokens that survive compaction, and the arguments arrive as `ARGUMENTS:` without a placeholder, so the frontmatter stays inside the portable spec.
@@ -466,7 +509,7 @@ Three things at once: `/design-engineering` becomes a **router** over the design
 ### Added — distilled craft nodes (20)
 
 - surface: **`color-scales-oklch`**, **`depth-and-nesting`**. typography: **`type-scale-and-rhythm`**, **`line-behavior`**. components: **`forms-behavior`**, **`touch-and-focus`** (with the mobile-native fixes table), **`ui-polish-pass`**, **`component-api-design`**. motion: **`performance-discipline`**. layout: **`marketing-surface-rules`**. anti-patterns: **`unslop-pass`**, **`copy-tells`**, **`code-tells`**. meta: **`prototype-picker`**, **`build-a-tool`**, **`vibe-to-generator`**, **`design-system-docs`**, **`skill-writing-rules`**, **`design-benchmarks`**, **`skill-router`**.
-- Every one cites "Emil Kowalski's design-engineering practice, distilled by HKTITAN" plus public references; no course material is quoted or linked.
+- Every one cites "Emil Kowalski's design-engineering practice, distilled by HKTITAN" plus public references; no source text is quoted.
 
 ### Added — demo
 

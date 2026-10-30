@@ -22,11 +22,19 @@ The selection, the files named, or the current diff. A branch, pull request or u
 
 ## Output
 
-The table only, with a one-line lede if the issues share a theme. If nothing fails, say so in one sentence: "Nothing to change" is a valid review.
+1. **A verdict on the first line**, which is one of:
+   - **Blocked**: at least one interaction or accessibility-floor failure.
+   - **Approve with changes**
+   - **Ship it**
+2. **The table.** Rank rows in this order: interaction, accessibility floor, layout stability, motion, spacing, type, surface, component API, performance, polish. Group them under **Blocking**, **Should fix** and **Nits** when there are more than three.
+3. **A one-line lede** if the issues share a theme.
+
+Every row names its owning node, so "fix it" can route to that node. If nothing fails, the verdict is "Ship it" with one sentence of reason; nothing to change is a valid review.
 
 ## Hand-offs
 
 - Motion is most of the problem → run [[cmd-motion]] instead.
 - "Does this look AI-made?" → [[cmd-tells]].
 - A rendered film → [[cmd-film]] `review`.
+- The whole app before launch, not one diff → [[cmd-ship]]. Review judges a change; ship checks every lane and fixes as it goes.
 - Where the host has the `ui-reviewer` subagent (Claude Code plugin install), you may delegate to it with this file as the brief. Otherwise do it inline: this file is the whole procedure.

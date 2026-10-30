@@ -63,3 +63,5 @@
 {"query": "the fun-isometric sticker looks off next to our other illustrations, why?", "should_load": true, "reason": "isometric-stickers check (line weight, leaning faces, thickness) + fun-isometric-reconciliation palette mapping"}
 {"query": "make a 20 second kinetic type teaser for our game, huge words on every beat, whip pans, a hard drop", "should_load": true, "reason": "launch-video registers (beat-cut) + scenario-kinetic-film companion routing"}
 {"query": "my 4K render plays in VLC but QuickTime and my phone refuse it", "should_load": true, "reason": "film-as-function-of-time delivery gates (H.264 level)"}
+{"query": "get my app ready for production, check everything before launch", "should_load": true, "reason": "ship verb, ship-check"}
+{"query": "try to break this table with long names and huge counts", "should_load": true, "reason": "break verb, stress-scenarios"}

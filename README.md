@@ -33,8 +33,11 @@ Everything is reached through one skill: `/design-engineering [verb] [target]`. 
 | `tokens` | Find the `.design` / DESIGN.md and thread its tokens through the UI |
 | `sound` | Which moments earn a sound; one family, generated, wired, mapped |
 | `svg` | `create`, `animate` or `sticker` |
+| `mobile` | A web app that feels native on a phone: the symptom, the one-line fix, what needs a real device |
+| `break` | Realistic worst-case data until the layout breaks; reports and stops |
+| `ship` | The whole-app production pass: every lane fixed and verified, then what needs a device or a human |
 | `film` | `plan` a launch film, `review` a render, or `formats` |
-| `diagram` · `options` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha |
+| `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha |
 
 The 2.x slash commands (`/design-engineering:review-ui` and the rest) are gone. Their names still work as aliases: `/design-engineering review-ui` runs `review`. Install the skill **one** way, either skills.sh or the plugin. Installing both lists it twice.
 
@@ -177,7 +180,7 @@ Since v2.0.0 the repo is organized around four primitives, each owned by an open
 
 | Primitive | What it is | Where | Spec |
 |---|---|---|---|
-| **Knowledge** | The skill graph — 150 atomic, wikilinked nodes in 12 themed clusters, one `/design-engineering` entry with 15 verbs, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
+| **Knowledge** | The skill graph — 164 atomic, wikilinked nodes in 12 themed clusters, one `/design-engineering` entry with 19 verbs, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
 | **Package** | The portable plugin — one manifest, portable skills, namespaced client extensions | `plugin.json` + `skills/` | [Agent Plugins v1.0.0](https://agent-plugins.org/) |
 | **Runtime** | A durable agent that *runs* the knowledge — root agent, ten specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
 | **Client extensions** | Per-host adapters — optional subagents, host manifests, shadcn registry | `agents/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
@@ -392,10 +395,10 @@ design-engineering/
     ├── SKILL.md                       ← thin Map of Content
     ├── evals/                         ← Step-0 routing fixtures (loading.jsonl, progressive-reads.jsonl)
     ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), sound-sheet.mjs (motion cue sheet → stereo stem, designed effects tuned to the track), svg-flipbook.mjs (frames → animated SVG)
-    └── references/                    ← 12 themed clusters, 150 atomic nodes, 11 MOCs
+    └── references/                    ← 12 themed clusters, 164 atomic nodes, 12 MOCs, 13 command files
 ```
 
-Total: **150 atomic nodes** across 12 clusters (164 markdown files in the skill), 10 workflow subagents ×2 formats, 10 command files behind one entry, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
+Total: **164 atomic nodes** across 12 clusters (193 markdown files in the skill), 10 workflow subagents ×2 formats, 13 command files behind one entry, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
 
 ## Agent Plugins conformance
 

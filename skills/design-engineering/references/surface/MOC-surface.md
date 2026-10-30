@@ -23,6 +23,9 @@ The decisions that look invisible but determine whether the UI feels considered 
 - [[palette-step-roles]] — One neutral, one accent, only the status ramps you render; every step has a role (Tailwind by lightness, Radix by role); fills on 600; status ≥ 15° from the accent; audit before restructuring.
 - [[gradient-interpolation]] — `in oklab` by default, `in oklch` to stay vivid (shorter or longer hue), the grey dead zone, banding, text measured at its worst region.
 
+- [[translucent-materials]] — Glass by hierarchy: heavier for structure, never light on light, scrim only for modal tasks, legible text on glass, solid fallbacks for reduced transparency.
+- [[oklch-gamut-and-migration]] — Chroma ceilings by hue and lightness, clamping that holds L and H, P3 behind a media query, the hex floor, what never to convert.
+
 ## Cross-cluster
 
 - See [[ai-default-tells]] in [[MOC-anti-patterns]] for surface tells (purple gradients, neon glows on dark mode).

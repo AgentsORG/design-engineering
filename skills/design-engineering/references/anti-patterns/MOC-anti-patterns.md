@@ -19,6 +19,8 @@ This MOC is short on purpose — most anti-patterns are subtle enough to live as
 - [[code-tells]] — Narrated comments, catch theater, silent fallbacks, casts, V2 names, dead scaffolding; the default fix is deletion.
 - [[screenshot-critique]] — Critique the render, not the code: single-purpose passes at three widths, a fixed write-up per round, fix idea → hierarchy → composition → … → motion, stop at three rounds.
 
+- [[leftovers-and-leaks]] — What must not ship: dev panels behind a dynamic import, scaffolding routes, logged sessions, secret-shaped public env vars, TODOs on money and auth paths.
+
 ## Cross-cluster
 
 - Specific defaults are addressed in their own MOC: [[color-monochromatic]] for color, [[typography-humanity]] for fonts, [[dark-mode]] for `#000`, [[icon-systems]] for Lucide, [[sound-palette]] for stock-pack sounds.
