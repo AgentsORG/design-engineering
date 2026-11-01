@@ -6,6 +6,13 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [3.3.1] — 2026-11-01
+
+### Changed
+
+- **Claude Code plugin name back to `design-engineering`**, so it installs as `design-engineering@agentsorg`. 3.3.0's `agentsorg@agentsorg` doubled the install id instead. The marketplace stays `agentsorg` and the display name stays AgentsORG Design Engineering. Skills and subagents are namespaced `design-engineering:*` again.
+- `renames` is now `{ "agentsorg": "design-engineering" }`. The 3.3.0 entry was dropped, because keeping both would loop, and a looping `renames` map fails `claude plugin validate`. Installs from before 3.3.0 never left the name `design-engineering`, so they need no rename.
+
 ## [3.3.0] — 2026-11-01
 
 Renames the Claude Code plugin so it stops reading as "design-engineering by design-engineering".

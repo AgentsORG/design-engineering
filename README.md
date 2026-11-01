@@ -39,7 +39,7 @@ Everything is reached through one skill: `/design-engineering [verb] [target]`. 
 | `film` | `plan` a launch film, `review` a render, or `formats` |
 | `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha |
 
-The 2.x slash commands (`/design-engineering:review-ui` and the rest) are gone. Their names still work as aliases: `/design-engineering review-ui` runs `review`. Install the skill **one** way, either skills.sh (`/design-engineering`) or the plugin (`/agentsorg:design-engineering`). Installing both lists it twice.
+The 2.x slash commands (`/design-engineering:review-ui` and the rest) are gone. Their names still work as aliases: `/design-engineering review-ui` runs `review`. Install the skill **one** way, either skills.sh (`/design-engineering`) or the plugin (`/design-engineering:design-engineering`). Installing both lists it twice.
 
 ## Launch film
 
@@ -212,10 +212,10 @@ The repo ships host manifests so you can install via each agent's native plugin 
 
 ```bash
 /plugin marketplace add AgentsORG/design-engineering
-/plugin install agentsorg@agentsorg
+/plugin install design-engineering@agentsorg
 ```
 
-The plugin is listed as **AgentsORG Design Engineering**. Claude Code namespaces a plugin's skills and subagents under its name, so the skill runs as `/agentsorg:design-engineering` and the subagents appear as `agentsorg:ui-reviewer` and so on. Installed before 3.3.0 as `design-engineering@design-engineering`? Run `/plugin marketplace update design-engineering`, then `/plugin install agentsorg@design-engineering` once; Claude Code migrates the old entry (the marketplace keeps the name you registered it under).
+The plugin is listed as **AgentsORG Design Engineering** and installs as `design-engineering@agentsorg`. Claude Code namespaces a plugin's skills and subagents under its name, so the skill runs as `/design-engineering:design-engineering` and the subagents appear as `design-engineering:ui-reviewer` and so on. A marketplace added before 3.3.0 keeps the name it was registered under (`design-engineering`) and keeps working; a 3.3.0 install of `agentsorg` migrates through the `renames` map.
 
 **Codex** — `.codex-plugin/plugin.json` with the full `interface` block.
 
