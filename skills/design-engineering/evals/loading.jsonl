@@ -65,3 +65,7 @@
 {"query": "my 4K render plays in VLC but QuickTime and my phone refuse it", "should_load": true, "reason": "film-as-function-of-time delivery gates (H.264 level)"}
 {"query": "get my app ready for production, check everything before launch", "should_load": true, "reason": "ship verb, ship-check"}
 {"query": "try to break this table with long names and huge counts", "should_load": true, "reason": "break verb, stress-scenarios"}
+{"query": "make an animated fake product UI for our homepage hero with a cursor clicking through it", "should_load": true, "reason": "faux-ui cluster via cmd-stage (product-shot-framing, demo-story-and-loops)"}
+{"query": "plan a bento grid for our features section", "should_load": true, "reason": "bento-grids"}
+{"query": "how should our chat app show that someone is typing or has left", "should_load": true, "reason": "presence-signals"}
+{"query": "record my screen with OBS and upload it to YouTube", "should_load": false, "reason": "screen recording and publishing, not design"}

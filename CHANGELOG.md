@@ -6,6 +6,38 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [3.2.0] — 2026-11-01
+
+This release distils Benji Taylor's [Stageshow](https://github.com/benjitaylor/skills) (MIT, HEAD `8020574`; [benji.org/stageshow](https://benji.org/stageshow)), a skill for faux product UI, and the rest of [benji.org](https://benji.org) that the graph had cited but not yet distilled (Honk, Drawesome, Liveline's states, Family's simplicity). Every rule was checked against the graph before it went in; where Stageshow's values differ from the product-UI defaults, `stageshow-reconciliation` settles it.
+
+### Added — a thirteenth cluster: Faux UI
+
+- **`MOC-faux-ui`**: the one idea (a real product, simplified, framed with intent, every motion caused) and the five failures (too much, wireframe, boxed, flat, bland), each mapped to its owner.
+- **`product-shot-framing`**: design at the shown size; one hero and at most two satellites of different kinds; 10–40% of the hero off stage; crop only filler; one gutter; the page is the ground; a compact second design at 358; ten layouts; phone sizing.
+- **`faux-ui-restraint`**: 3–7 real strings with bars for the rest, fidelity as a dial, the domain's signature content, the spacing numbers (12px word inset, 8px above a button, 4–6px title-subtitle ink, 6px around a dot), icons from one set, real marks only, no AI sparkle, platform chrome kept true.
+- **`demo-story-and-loops`**: three story shapes, 3–5 beats in 10–16 s, the poster frame, a 2 s payoff hold, caused resets, data that never rewinds in view, two storytelling curves, and the kit's measured timings (Fly, Collapse, Roll, Popover, Connector, Count).
+- **`demo-cursor-and-touch`**: travel `clamp(260 + 0.9d, 300, 650)` ms on a bowed arc, a 0.9 press, kinds set by elements, never over the label; drags, I-beam selections, scroll and camera; touch, flicks and the Dynamic Island.
+- **`bento-grids`**: a third to a half UI, one hero, one component per UI tile, chrome once, contrasting neighbours, stat tiles on one line, one Stage per tile at 1:1, the planning table.
+- **`demo-rehearsal`**: prove the still, film the loop at both widths, step each beat at 40–80ms, the faults that are never intentional, the fresh-eye reviewer brief, `REHEARSAL.md`.
+- **`stageshow-reconciliation`**: ownership when installed and nine conflicts settled — illustration time vs the 300ms budget, overlapped exits that may accelerate, three press scales, typing speed, autoplay vs motion-maps-to-input, **a visible pause for any loop over 5 s (WCAG 2.2.2)**, `role="img"` labelling, placeholder bars vs content authenticity, other companies' marks.
+
+### Added — verb
+
+- **`stage`** (`faux-ui`, `demo`, `bento`, `product-shot`): `still`, `demo`, `bento` or `review`. Plans first, frames before code, films the loop, and hands the build to Stageshow when it is installed.
+
+### Added — from benji.org
+
+- **`presence-signals`** (components, from *Honkish*): here, half here and gone as three signals; live typing that resizes; reactions pinned where tapped in relative coordinates; shared activities that pause; notifications that show their lifetime; one colour per person.
+- **`drawing-toolbar`** (components, from *Drawesome*): a bar that morphs instead of swapping panels, pens whose width answers speed or direction, area erasing, export that matches the screen, a side rail on phones.
+- **`lerp-breathing`**: Liveline's loading, empty, paused and direction states, and its stress tests (reversals at 50–60ms, spikes on flat data, irregular arrival).
+- **`information-architecture`**: Family's reveal-by-relevance beside progressive disclosure.
+
+### Changed
+
+- `skill-router`: a Stageshow companion row. `routing-table`: six rows. `disambiguation`: page demo vs film demo. `stacking-chains`: product shots in the marketing chain. `marketing-surface-rules`: a demo is a figure, with its pause. Cross-links from `launch-video-ui-demo`, `viewport-custom-design`, `unslop-pass`, `MOC-motion`, `MOC-components`.
+- 3 gotchas; evals: 5 dispatch, 4 loading and 10 progressive-reads rows.
+- SKILL.md description now names faux product UI (1,018 of 1,024 characters). README counts: 173 nodes, 13 clusters, 20 verbs, 14 command files. Version 3.2.0 across seven manifests; registry rebuilt.
+
 ## [3.1.1] — 2026-10-30
 
 Hardens the three generation scripts after the skills.sh Socket audit (Oct 28, 2026, one LOW anomaly) flagged `scripts/sound-family.mjs`. Valid manifests and cue sheets produce the same output as before: the demo stem renders byte-for-byte identically.

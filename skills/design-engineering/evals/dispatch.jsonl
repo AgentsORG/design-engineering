@@ -30,3 +30,8 @@
 {"invocation": "/design-engineering motion opportunities on the settings page", "expected_command": "cmd-motion", "expected_nodes": ["animation-decision-framework"], "forbidden_nodes": []}
 {"invocation": "/design-engineering pick a date picker", "expected_command": "cmd-small", "expected_nodes": ["dependency-discipline"], "forbidden_nodes": []}
 {"invocation": "/design-engineering options mix", "expected_command": "cmd-small", "expected_nodes": ["prototype-picker"], "forbidden_nodes": []}
+{"invocation": "/design-engineering stage a looping hero demo: someone assigns an issue to a teammate", "expected_command": "cmd-stage", "expected_nodes": ["product-shot-framing", "demo-story-and-loops", "demo-cursor-and-touch", "demo-rehearsal"], "forbidden_nodes": ["launch-video-ui-demo"]}
+{"invocation": "/design-engineering faux-ui a still feature card for our invoices page", "expected_command": "cmd-stage", "expected_nodes": ["product-shot-framing", "faux-ui-restraint"], "forbidden_nodes": ["demo-cursor-and-touch"], "note": "alias; a still needs no cursor node"}
+{"invocation": "/design-engineering bento five tiles for the features section", "expected_command": "cmd-stage", "expected_nodes": ["bento-grids", "product-shot-framing"], "forbidden_nodes": []}
+{"invocation": "/design-engineering stage review http://localhost:3000/#hero", "expected_command": "cmd-stage", "expected_nodes": ["demo-rehearsal", "review-format"], "forbidden_nodes": [], "note": "judge posture: reports from frames, never edits"}
+{"invocation": "/design-engineering why does my hero demo look like a pasted screenshot", "expected_command": "router", "expected_nodes": ["skill-router", "product-shot-framing"], "forbidden_nodes": ["launch-video-ui-demo"]}

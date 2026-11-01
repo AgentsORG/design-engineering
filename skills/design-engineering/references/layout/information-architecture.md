@@ -11,7 +11,7 @@ Information architecture decides what a user can find before any pixel is styled
 ## Grouping
 
 - **Long settings get sections, not a scroll.** Past about a dozen options, split them under a side nav with named groups (Account, Billing, Notifications), each a short page. Forty toggles on one page have no hierarchy.
-- **Progressive disclosure.** Show what most users need; put the rare options behind an "Advanced" section or a detail page.
+- **Progressive disclosure.** Show what most users need; put the rare options behind an "Advanced" section or a detail page. Better still, let a feature appear when it becomes relevant (a swap control once the wallet holds two tokens): Family kept the fundamentals at hand and revealed the rest by context, so a product with hundreds of paths stayed simple for newcomers without hiding depth from experts.
 - **Name by the user's model.** "Send messages in the background", not "Enable async relay mode". Internal jargon on a label is a bug report waiting to happen.
 
 ## Navigation depth
@@ -42,4 +42,5 @@ Renaming beats restructuring. Before redrawing the sitemap, check whether the la
 ## Sources
 
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Benji Taylor, *Family Values* §Simplicity, [benji.org/family-values](https://benji.org/family-values).
 - Related: [[grouping-by-space]], [[url-as-state]], [[destructive-actions]], [[empty-loading-states]], [[design-vocabulary]].

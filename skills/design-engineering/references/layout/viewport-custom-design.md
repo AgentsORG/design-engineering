@@ -75,7 +75,7 @@ Bento boxes — irregular grid layouts where tiles vary in size and feature thei
 [ wide quote that bridges 3 cols  ]
 ```
 
-When done well, each tile is self-contained, hierarchy is clear from size alone, and the overall layout reads as composed (not random). When done poorly, it reads as a Bootstrap grid that someone broke.
+When done well, each tile is self-contained, hierarchy is clear from size alone, and the overall layout reads as composed (not random). When done poorly, it reads as a Bootstrap grid that someone broke. Planning the tiles themselves (which are UI, the one hero, neighbours of different kinds, one Stage per tile) is [[bento-grids]].
 
 ## When to apply
 

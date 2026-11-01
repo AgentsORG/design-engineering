@@ -1,6 +1,6 @@
 ---
 title: skill-router
-summary: What `/design-engineering` does first — classify the phase and the material, resolve the design contract, then hand the job to the owning node, subagent, or installed companion skill (AgentsORG design, impeccable, HyperFrames, cinetic, scenario-kinetic-film, earshot, ElevenLabs, the transitions catalog, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills, fun-isometric, taste-skill on request). One or two owners, never five.
+summary: What `/design-engineering` does first — classify the phase and the material, resolve the design contract, then hand the job to the owning node, subagent, or installed companion skill (AgentsORG design, impeccable, HyperFrames, cinetic, scenario-kinetic-film, earshot, ElevenLabs, the transitions catalog, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills, fun-isometric, Stageshow, taste-skill on request). One or two owners, never five.
 tags: [meta, routing, ecosystem, skills]
 ---
 
@@ -53,6 +53,7 @@ A companion is installed when its `SKILL.md` exists under `.agents/skills/`, `.c
 | An editable canvas: a whiteboard, a planning board, a `.tldraw` or `.tldr` file | tldraw: Desktop's `tldraw-offline` skill (spawn its subagent for long jobs), or the tldraw MCP app in hosted clients; `tldraw-migrate` for SDK upgrades | [[tldraw-canvas]]'s rules (bound arrows, Mermaid for structure, lints before done, anchored comments); the surface's own skill owns the API |
 | A GSAP SVG tween: DrawSVG, MorphSVG, MotionPath | GreenSock's `gsap-plugins` (with `gsap-core`) | Whether a library is justified ([[dependency-discipline]]), swap or morph ([[svg-path-morphing]]), durations, easing and reduced motion stay here |
 | An animated isometric sticker: empty-state art, onboarding illustration, feature sticker, a playful moving icon | fun-isometric (`npx skills add kelvinkn17/skills@fun-isometric`): draw, rig, `fi check`, export to canvas or alpha video | Whether it moves at all, the palette from the contract, [[pov]] and reduced motion stay here; its craft bar is [[isometric-stickers]]. Conflicts → [[fun-isometric-reconciliation]] |
+| Faux product UI: a hero demo, feature card, docs plate, bento tile or cursor walkthrough, in a React project | Stageshow (`npx skills add benjitaylor/skills --skill stageshow`): copy the closest gold example, build on its kit, film with `--gate` | The contract's tokens mapped onto its `--ss-*` tokens, whether it moves, the page around it, the host's pause control and `role="img"` label stay here; its craft bar is [[MOC-faux-ui]]. Conflicts → [[stageshow-reconciliation]] |
 | Apple-style interface and motion work in depth: materials, fluid gestures, WWDC-grade springs | `apple-design` (`npx skills add emilkowalski/skills`) | The Apple numbers this graph keeps are in [[momentum-projection]], [[translucent-materials]] and [[spring-animations]]; the contract's tokens and [[pov]] still win |
 | React Native / Expo motion, or native Swift | `animate-expo` (RN/Expo) or `write-swift` (Swift language) from the same repo | This graph keeps the web rules and a short RN digest ([[react-native-motion]]); Swift language work is not design and stays with `write-swift` |
 | Sonner toasts: setup, styling, the classic bugs | `ask-sonner` from the same repo | Principles stay in [[sonner-principles]]; the usage digest is [[sonner-usage]] |
@@ -91,5 +92,6 @@ Polishing a screen whose layout is still wrong wastes the pass — the polish is
 - Leon Lin, earshot (MIT, HEAD 925ebe5) and cinetic (MIT, HEAD ecfa660, `README.md` Install and Requirements); Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3). All read 2026-10-19.
 - Jakub Krehel, interfaces skills (MIT, HEAD `592aedc`, plugin 1.17.0, read 2026-10-25): `AGENTS.md` (rule ownership, the invocation rule), `README.md` (install).
 - Kelvin Adithya, fun-isometric (MIT, HEAD `7c8a752`, read 2026-10-27): `README.md` (install), `skills/fun-isometric/SKILL.md`.
+- Benji Taylor, Stageshow (MIT, github.com/benjitaylor/skills, HEAD `8020574`, read 2026-11-01): `README.md` (install), `stageshow/SKILL.md`.
 - Scenario, `scenario-kinetic-film` (zip received 2026-10-30, no licence file): `SKILL.md`, `references/scenario-mcp.md` (connection, the generation loop).
 - Related: [[routing-table]], [[disambiguation]], [[stacking-chains]].

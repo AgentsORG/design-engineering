@@ -76,6 +76,17 @@ This pattern is standard for finance charts, dashboards, multiplayer cursors —
 - Animated counters and badges.
 - Anywhere multiple visual elements derive from the same changing value.
 
+## Live data has states
+
+Real feeds don't start with data ready, and they don't arrive evenly. Liveline's states:
+
+- **Loading** is a breathing flat line, and when data arrives the flat line morphs into the real chart, never a spinner swapped for a chart.
+- **Empty** falls back to a quiet message when data never arrives.
+- **Paused** freezes what is drawn while data keeps buffering; on resume the chart catches up to real time rather than replaying.
+- **Direction** (an up, down or flat arrow on the live dot) fades the old arrow out fully before the new one fades in, so a reversal never shows two arrows.
+
+Stress-test before shipping: wild swings at 100ms updates, sharp reversals at 50–60ms (the classic breaking point), near-flat data with huge isolated spikes, and irregular arrival — 1–3 s of silence, then bursts at 40–80ms, on a random tick. A chart that only looks good on calm data has not been tested ([[stress-scenarios]]).
+
 ## When NOT to apply
 
 - Discrete UI transitions (button press, modal open). Use curves or springs ([[easing-curves]], [[spring-animations]]).
