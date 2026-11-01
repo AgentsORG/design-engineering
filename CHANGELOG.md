@@ -6,6 +6,17 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [3.3.0] — 2026-11-01
+
+Renames the Claude Code plugin so it stops reading as "design-engineering by design-engineering".
+
+### Changed
+
+- **Claude Code plugin `design-engineering` → `agentsorg`**, display name **AgentsORG Design Engineering**. Claude Code namespaces components under the plugin name, so the skill now shows as `agentsorg:design-engineering` (was `design-engineering:design-engineering`) and the subagents as `agentsorg:ui-reviewer` and so on. skills.sh installs are unaffected and still run as `/design-engineering`.
+- **Marketplace `design-engineering` → `agentsorg`**, owned by AgentsORG, with a description. New installs: `/plugin install agentsorg@agentsorg`.
+- **Migration:** `renames: { "design-engineering": "agentsorg" }` in `marketplace.json`. An existing install shows "Renamed to agentsorg"; after `/plugin marketplace update design-engineering` and one `/plugin install agentsorg@design-engineering`, Claude Code rewrites the old `enabledPlugins` key. The marketplace keeps the name it was registered under. Tested on a throwaway marketplace before release.
+- Codex and Cursor manifests: display name AgentsORG Design Engineering, publisher AgentsORG. Their plugin `name` is unchanged.
+
 ## [3.2.0] — 2026-11-01
 
 This release distils Benji Taylor's [Stageshow](https://github.com/benjitaylor/skills) (MIT, HEAD `8020574`; [benji.org/stageshow](https://benji.org/stageshow)), a skill for faux product UI, and the rest of [benji.org](https://benji.org) that the graph had cited but not yet distilled (Honk, Drawesome, Liveline's states, Family's simplicity). Every rule was checked against the graph before it went in; where Stageshow's values differ from the product-UI defaults, `stageshow-reconciliation` settles it.
