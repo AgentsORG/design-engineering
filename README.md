@@ -39,7 +39,7 @@ Everything is reached through one skill: `/design-engineering [verb] [target]`. 
 | `film` | `plan` a launch film, `review` a render, or `formats` |
 | `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha |
 
-The 2.x slash commands (`/design-engineering:review-ui` and the rest) are gone. Their names still work as aliases: `/design-engineering review-ui` runs `review`. Install the skill **one** way, either skills.sh or the plugin. Installing both lists it twice.
+The 2.x slash commands (`/design-engineering:review-ui` and the rest) are gone. Their names still work as aliases: `/design-engineering review-ui` runs `review`. Install the skill **one** way, either skills.sh (`/design-engineering`) or the plugin (`/agentsorg:design-engineering`). Installing both lists it twice.
 
 ## Launch film
 
@@ -212,8 +212,10 @@ The repo ships host manifests so you can install via each agent's native plugin 
 
 ```bash
 /plugin marketplace add AgentsORG/design-engineering
-/plugin install design-engineering
+/plugin install agentsorg@agentsorg
 ```
+
+The plugin is listed as **AgentsORG Design Engineering**. Claude Code namespaces a plugin's skills and subagents under its name, so the skill runs as `/agentsorg:design-engineering` and the subagents appear as `agentsorg:ui-reviewer` and so on. Installed before 3.3.0 as `design-engineering@design-engineering`? Run `/plugin marketplace update design-engineering`, then `/plugin install agentsorg@design-engineering` once; Claude Code migrates the old entry (the marketplace keeps the name you registered it under).
 
 **Codex** — `.codex-plugin/plugin.json` with the full `interface` block.
 
@@ -223,7 +225,7 @@ codex plugin marketplace add AgentsORG/design-engineering --sparse .codex-plugin
 
 **Cursor** — `.cursor-plugin/plugin.json`; install via the Cursor Marketplace or `Settings → Plugins → Load unpacked`.
 
-All manifests share `name`, `version`, `description`, `author`, `homepage`, `repository`, and `license`; the root `plugin.json` is canonical and CI enforces version parity across all six plus `SKILL.md`.
+All manifests share `version`, `description`, `author`, `homepage`, `repository`, and `license`; the root `plugin.json` is canonical and CI enforces version parity across all six plus `SKILL.md`.
 
 ### shadcn CLI
 
