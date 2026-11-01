@@ -1,11 +1,11 @@
 ---
 name: design-engineering
-description: "Load when reviewing UI code, designing a component or layout, picking an easing curve or transition, deciding whether something should animate or make a sound, choosing typography, color (OKLCH, contrast) or avatars, writing UI copy or errors, auditing for AI-default tells, code tells or a11y misses, making a screen look less generated, consuming DESIGN.md or .design tokens, writing design-system docs for agents, giving Agentation feedback, asking why a UI feels flat or unfinished, judging when delight earns its weight, designing or generating UI sound effects and syncing them to motion, planning, cutting, scoring or reviewing a product launch video, creating or animating SVG (icons, mascots, logo reveals, video-to-vector), drawing a diagram or tldraw canvas, prototyping directions behind a picker, building a tool instead of re-prompting, or choosing which design skill should own a job. Distills Emil Kowalski, Benji Taylor, transitions.dev, guidelines.sh, Vercel, Index, Apple and 47 measured launch films."
+description: "Load when reviewing UI code, designing a component or layout, picking an easing curve or transition, deciding whether something should animate or make a sound, choosing typography, color (OKLCH, contrast) or avatars, writing UI copy or errors, auditing for AI-default tells, code tells or a11y misses, making a screen look less generated, consuming DESIGN.md or .design tokens, writing design-system docs, giving Agentation feedback, asking why a UI feels flat or unfinished, judging when delight earns its weight, designing UI sound synced to motion, planning, cutting or reviewing a launch video, building faux product UI (hero demos, feature cards, bento grids), creating or animating SVG (icons, mascots, logo reveals, video-to-vector), drawing a diagram or tldraw canvas, prototyping directions behind a picker, building a tool instead of re-prompting, or choosing which design skill should own a job. Distills Emil Kowalski, Benji Taylor, transitions.dev, guidelines.sh, Vercel, Index, Apple and 47 launch films."
 license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: HKTITAN
-  version: "3.1.1"
+  version: "3.2.0"
   graph: true
   subagents: agents/
   soul: SOUL.md
@@ -41,6 +41,7 @@ For a screen built from scratch, run the verbs in the order of the screen loop i
 | `svg` | `svg-create`, `svg-animate` | `create`, `animate` or `sticker`: an SVG on tokens, or one that moves | [[cmd-svg]] |
 | `ship` | `prep`, `prod`, `launch` | A whole-app production pass across every lane: fix, verify, and list what needs a device or a human | [[cmd-ship]] |
 | `film` | `film-review`, `video` | `plan` a launch film from its register, `review` a render, or `formats` | [[cmd-film]] |
+| `stage` | `faux-ui`, `demo`, `bento`, `product-shot` | `still`, `demo`, `bento` or `review`: faux product UI for a landing page, feature card or docs hero, framed first, filmed and checked frame by frame | [[cmd-stage]] |
 | `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | `variants`, `library`, `vocab`, `route`, `agentation-fix`, `fork-pov` | Draw or not; three directions behind a picker (`riff`, `tune`, `mix`, `keep`); one library for a task; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha | [[cmd-small]] |
 | `help` | `menu`, `?` | This table, with the 2–3 verbs that fit now | — |
 
@@ -79,6 +80,12 @@ A rendered film is its own surface: name the register, time the beats, set the w
 
 - `[[MOC-launch-video]]` → [[launch-video-registers]], [[launch-video-structure]], [[launch-video-type]], [[launch-video-ui-demo]], [[launch-video-motion]], [[launch-video-seams]], [[launch-video-cuts]], [[launch-video-review]], [[hyperframes-reconciliation]], [[launch-video-formats]], [[cinetic-reconciliation]], [[scenario-kinetic-reconciliation]], [[film-as-function-of-time]]
 
+## Faux UI — product shots, cursor demos and bento grids
+
+A believable product, simplified to what the viewer needs, framed with intent, every motion caused, then filmed and checked frame by frame. Stageshow builds it when installed ([[stageshow-reconciliation]]); a demo inside a rendered film belongs to Launch video.
+
+- `[[MOC-faux-ui]]` → [[product-shot-framing]], [[faux-ui-restraint]], [[demo-story-and-loops]], [[demo-cursor-and-touch]], [[bento-grids]], [[demo-rehearsal]], [[stageshow-reconciliation]]
+
 ## SVG — creating, animating, morphing, and vectorizing
 
 The only image format that is also an interface. Author it on the token system, move it with the engine its home allows, morph it by the command-count rule, and turn flat clips into editable mascots.
@@ -113,7 +120,7 @@ The container, not the component. Marketing especially benefits from custom-per-
 
 The atoms users actually touch. Their behavior is where craft lives.
 
-- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[cards-design]], [[forms-validation]], [[forms-behavior]], [[touch-and-focus]], [[ui-polish-pass]], [[component-api-design]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]], [[dashboard-tells]], [[screen-reader-announcements]], [[keyboard-patterns]], [[wcag-thresholds]], [[strings-and-locale]], [[destructive-actions]], [[sonner-usage]]
+- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[cards-design]], [[forms-validation]], [[forms-behavior]], [[touch-and-focus]], [[ui-polish-pass]], [[component-api-design]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]], [[dashboard-tells]], [[screen-reader-announcements]], [[keyboard-patterns]], [[wcag-thresholds]], [[strings-and-locale]], [[destructive-actions]], [[sonner-usage]], [[presence-signals]], [[drawing-toolbar]]
 
 ## Anti-patterns — what AI-generated UI gives away
 
@@ -125,7 +132,7 @@ What looks "AI default" and what to do instead. High-value because it's about de
 
 Procedural rules and growing files. `[[review-format]]` is mandatory when doing UI code reviews.
 
-- [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw, GSAP, better-icons, fun-isometric).
+- [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw, GSAP, better-icons, fun-isometric, Stageshow).
 - [[ship-check]] — The whole-app production pass behind `ship`: fix rather than report, verified vs needs-hardware, the severity tree, fix order. Baseline in [[production-baseline]].
 - [[directing-agents]] — Steering an agent: friction where judgment matters, a named concept instead of an adjective, one or two passes, fix the system not the screen, the papercut pipeline.
 - [[routing-table]] — Intent → entry-node router with the four postures (build / judge / decide / name). Open this before anything else on a single question.

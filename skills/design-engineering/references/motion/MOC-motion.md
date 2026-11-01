@@ -40,9 +40,9 @@ The largest cluster. Read [[animation-decision-framework]] first — it tells yo
 
 ## Benji's catalog (benji.org)
 
-Distinctive techniques from Benji Taylor's body of work — Family, Honk, Liveline, Agentation.
+Distinctive techniques from Benji Taylor's body of work — Family, Honk, Liveline, Agentation, Drawesome, Stageshow. His faux-UI practice (Stageshow) is its own cluster, [[MOC-faux-ui]]; Honk's presence patterns are [[presence-signals]]; Drawesome's toolbar is [[drawing-toolbar]].
 
-- [[lerp-breathing]] — Lerp at 8% per frame applied uniformly across multiple visual elements so the UI "breathes" as one organism instead of fragments updating independently.
+- [[lerp-breathing]] — Lerp at 8% per frame applied uniformly across multiple visual elements so the UI "breathes" as one organism instead of fragments updating independently; plus Liveline's loading, empty, paused and direction states and its stress tests.
 - [[morphing-icons]] — 3-line SVG constraint system. Same-shape icons rotate; different-shape icons interpolate coordinates. Unused lines collapse to invisible center points.
 - [[shared-letter-morph]] — Continue→Confirm text-state transitions where the shared letters ("Con") stay anchored as the rest morphs.
 - [[tray-rules]] — Six rules for tray / sheet / bottom-drawer UI: user-initiated, height variation, single focus, title + dismiss, context preservation, transient actions only.

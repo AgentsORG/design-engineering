@@ -106,3 +106,13 @@
 {"query": "link previews on Slack show localhost images", "expected_nodes": ["share-and-crawl-metadata"], "forbidden_nodes": ["marketing-surface-rules"]}
 {"query": "frosted glass sidebar over a translucent sheet looks muddy", "expected_nodes": ["translucent-materials"], "forbidden_nodes": ["shadows-whisper"]}
 {"query": "keep asking the agent to fix the same spacing on every new screen", "expected_nodes": ["directing-agents"], "forbidden_nodes": ["grouping-by-space"]}
+{"query": "my landing page window mockup floats in a card with even margins", "expected_nodes": ["product-shot-framing"], "forbidden_nodes": ["launch-video-ui-demo"]}
+{"query": "how much real text should a fake dashboard illustration have", "expected_nodes": ["faux-ui-restraint"], "forbidden_nodes": ["content-authenticity"]}
+{"query": "the looping hero demo resets abruptly and the numbers rewind", "expected_nodes": ["demo-story-and-loops"], "forbidden_nodes": ["launch-video-seams"]}
+{"query": "the cursor in our product demo covers the button label it clicks", "expected_nodes": ["demo-cursor-and-touch"], "forbidden_nodes": ["launch-video-ui-demo"]}
+{"query": "every tile in our bento grid is a cropped window", "expected_nodes": ["bento-grids"], "forbidden_nodes": ["cards-design"]}
+{"query": "how do I check an animated demo for one-frame glitches before shipping", "expected_nodes": ["demo-rehearsal"], "forbidden_nodes": ["debugging-animations"]}
+{"query": "Stageshow says 0.8s arrivals but the skill says UI under 300ms", "expected_nodes": ["stageshow-reconciliation"], "forbidden_nodes": []}
+{"query": "show when a collaborator is in the doc but looking at another tab", "expected_nodes": ["presence-signals"], "forbidden_nodes": ["empty-loading-states"]}
+{"query": "add a pen and highlighter toolbar for marking up screenshots", "expected_nodes": ["drawing-toolbar"], "forbidden_nodes": ["tldraw-canvas"]}
+{"query": "a live price chart while the websocket is still connecting", "expected_nodes": ["lerp-breathing"], "forbidden_nodes": ["empty-loading-states"]}

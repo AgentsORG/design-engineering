@@ -56,6 +56,12 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | "How did they build that?" — explain another site, effect or screenshot | [[reading-others-interfaces]] |
 | Audit "does this look AI-generated?" | [[ai-default-tells]] (or spawn [[anti-pattern-scanner]]) |
 | Build a marketing / landing surface | [[marketing-vs-product-ui]] |
+| Build a faux product UI — a hero demo, feature card, docs plate or cursor walkthrough | [[product-shot-framing]], then [[faux-ui-restraint]] (or `/design-engineering stage`); with Stageshow → [[stageshow-reconciliation]] |
+| Script a looping product demo: beats, poster, reset, cursor | [[demo-story-and-loops]], then [[demo-cursor-and-touch]] |
+| Plan or fix a bento grid of feature tiles | [[bento-grids]] |
+| Check an animated demo frame by frame before handing it over | [[demo-rehearsal]] |
+| Show who is here, half here or gone in a real-time product | [[presence-signals]] |
+| Add drawing or markup to a product | [[drawing-toolbar]] |
 | Consume a project's DESIGN.md tokens | [[using-design-md]] (or spawn [[design-md-consumer]]) |
 | Put the right word to a design idea | [[design-vocabulary]] |
 | Decide whether an interaction should make a sound | [[sound-decision-framework]] |
