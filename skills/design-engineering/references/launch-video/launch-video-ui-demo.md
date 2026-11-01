@@ -64,7 +64,7 @@ A persistent interface is continuous by construction: the last settled frame of 
 
 ## When to apply
 
-Any film that shows a product surface, a cursor or a prompt, including the payoff beat before the endcard ([[launch-video-structure]]). Loading states inside the product itself follow different rules ([[empty-loading-states]]).
+Any film that shows a product surface, a cursor or a prompt, including the payoff beat before the endcard ([[launch-video-structure]]). Loading states inside the product itself follow different rules ([[empty-loading-states]]). A demo that plays on a page rather than in a film is [[MOC-faux-ui]].
 
 ## Gotcha
 

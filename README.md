@@ -11,7 +11,7 @@
 [![CI](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml/badge.svg)](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Design engineering for AI agents — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight + [Agentation](https://www.agentation.com)), [Jakub Antalik](https://transitions.dev) (transitions), [Jakub Krehel](https://jakub.kr) ([interfaces skills](https://github.com/jakubkrehel/skills): accessibility, color systems, layout, copy, review), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), [DiceBear](https://www.dicebear.com) (avatars), [Index](https://index.how) (design vocabulary), Apple's audio-haptic principles, [Josh Comeau](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/) (use-sound), [bruno / superfx](https://superfx.co) (launch-video sound), and 47 launch films measured frame by frame ([Skale](https://skale.solutions/portfolio)'s portfolio, HeyGen's [HyperFrames](https://github.com/heygen-com/hyperframes-launches) launches, and 18 acclaimed 2024–26 films) into one navigable skill graph.
+Design engineering for AI agents — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight, [Agentation](https://www.agentation.com) and [Stageshow](https://benji.org/stageshow) faux product UI), [Jakub Antalik](https://transitions.dev) (transitions), [Jakub Krehel](https://jakub.kr) ([interfaces skills](https://github.com/jakubkrehel/skills): accessibility, color systems, layout, copy, review), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), [DiceBear](https://www.dicebear.com) (avatars), [Index](https://index.how) (design vocabulary), Apple's audio-haptic principles, [Josh Comeau](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/) (use-sound), [bruno / superfx](https://superfx.co) (launch-video sound), and 47 launch films measured frame by frame ([Skale](https://skale.solutions/portfolio)'s portfolio, HeyGen's [HyperFrames](https://github.com/heygen-com/hyperframes-launches) launches, and 18 acclaimed 2024–26 films) into one navigable skill graph.
 
 Not a tutorial. Not a doc site. **A working memory the agent loads** when you're reviewing UI code, picking an easing curve, designing a component, deciding whether a send button should make a sound, or asking "why does this feel flat?"
 
@@ -180,7 +180,7 @@ Since v2.0.0 the repo is organized around four primitives, each owned by an open
 
 | Primitive | What it is | Where | Spec |
 |---|---|---|---|
-| **Knowledge** | The skill graph — 164 atomic, wikilinked nodes in 12 themed clusters, one `/design-engineering` entry with 19 verbs, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
+| **Knowledge** | The skill graph — 173 atomic, wikilinked nodes in 13 themed clusters, one `/design-engineering` entry with 20 verbs, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
 | **Package** | The portable plugin — one manifest, portable skills, namespaced client extensions | `plugin.json` + `skills/` | [Agent Plugins v1.0.0](https://agent-plugins.org/) |
 | **Runtime** | A durable agent that *runs* the knowledge — root agent, ten specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
 | **Client extensions** | Per-host adapters — optional subagents, host manifests, shadcn registry | `agents/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
@@ -321,7 +321,7 @@ references/meta/review-format.md first, then the relevant motion nodes
 
 ## What's included
 
-One skill, organised into **12 themed clusters**, fronted by a router: `/design-engineering` resolves the project's design contract, classifies the phase of the work, and hands the job to one owner — a node here, one of ten subagents, or an installed companion skill (AgentsORG `design`, [impeccable](https://impeccable.style/), HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, [diagram-design](https://github.com/cathrynlavery/diagram-design), tldraw, GSAP, better-icons, [fun-isometric](https://skills.klvn.dev/fun-isometric)). See `references/meta/skill-router.md`. Each cluster has its own MOC (meta indexes from SKILL.md directly).
+One skill, organised into **13 themed clusters**, fronted by a router: `/design-engineering` resolves the project's design contract, classifies the phase of the work, and hands the job to one owner — a node here, one of ten subagents, or an installed companion skill (AgentsORG `design`, [impeccable](https://impeccable.style/), HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, [diagram-design](https://github.com/cathrynlavery/diagram-design), tldraw, GSAP, better-icons, [fun-isometric](https://skills.klvn.dev/fun-isometric), [Stageshow](https://benji.org/stageshow)). See `references/meta/skill-router.md`. Each cluster has its own MOC (meta indexes from SKILL.md directly).
 
 | Theme | Use it when… |
 |---|---|
@@ -395,10 +395,10 @@ design-engineering/
     ├── SKILL.md                       ← thin Map of Content
     ├── evals/                         ← Step-0 routing fixtures (loading.jsonl, progressive-reads.jsonl)
     ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), sound-sheet.mjs (motion cue sheet → stereo stem, designed effects tuned to the track), svg-flipbook.mjs (frames → animated SVG)
-    └── references/                    ← 12 themed clusters, 164 atomic nodes, 12 MOCs, 13 command files
+    └── references/                    ← 13 themed clusters, 173 atomic nodes, 13 MOCs, 14 command files
 ```
 
-Total: **164 atomic nodes** across 12 clusters (193 markdown files in the skill), 10 workflow subagents ×2 formats, 13 command files behind one entry, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
+Total: **173 atomic nodes** across 13 clusters (204 markdown files in the skill), 10 workflow subagents ×2 formats, 14 command files behind one entry, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
 
 ## Agent Plugins conformance
 
@@ -430,7 +430,7 @@ PRs welcome. The shorter the better. See [CONTRIBUTING.md](CONTRIBUTING.md), [CO
 
 - **Emil Kowalski** — [emilkowalski/skill](https://github.com/emilkowalski/skill), [animations.dev](https://animations.dev), [emilkowal.ski](https://emilkowal.ski), [sonner.emilkowal.ski](https://sonner.emilkowal.ski)
 - **Index (Emil Kowalski & Glenn Carstens-Peters)** — [index.how](https://index.how)
-- **Benji Taylor** — [benji.org](https://benji.org) + [Agentation](https://www.agentation.com)
+- **Benji Taylor** — [benji.org](https://benji.org) + [Agentation](https://www.agentation.com) + [Stageshow](https://github.com/benjitaylor/skills) (MIT): the faux-ui cluster (product shots, cursor demos, bento grids, filming them), `stageshow-reconciliation`; Honk's presence patterns, Drawesome's toolbar and Liveline's live-data states
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev)
 - **Jakub Krehel** — [jakubkrehel/skills](https://github.com/jakubkrehel/skills) (MIT) and [Interfaces](https://interfaces.dev/): the screen-reader, keyboard, WCAG 2.2, colour-token, palette-role, gradient, grouping, overflow, RTL, string, destructive-action, change-scoped review, stress-scenario and reading-other-interfaces nodes; `interfaces-reconciliation` says where its values differ from this graph's
 - **OpenAI / Studio Dumbar/DEPT** — [*Refreshed.*](https://www.youtube.com/watch?v=k3d_xeVxEOE) and [*Introducing GPT-5*](https://www.youtube.com/watch?v=boJG84Jcf-4), measured for the bed-and-clicks register; [case study](https://studiodumbar.com/work/openai-brand-film)

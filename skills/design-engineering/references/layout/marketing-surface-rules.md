@@ -12,6 +12,7 @@ tags: [layout, marketing, landing, docs, blog, performance]
 
 - **Motion maps to user input.** No scroll-triggered fade-ups, no scroll hijacking, no parallax that isn't 1:1 with scroll, no auto-advancing carousels. If the user didn't cause it, cut it.
 - **Intro animations play once per session.** Gate hero reveals and logo sequences with `sessionStorage` so internal navigation skips them but a genuinely new visit sees them. `localStorage` would kill them forever.
+- **A product demo is a figure, not page motion.** One looping or play-once demo may lead a viewport: stopped offscreen, a poster under reduced motion, and a visible pause when it moves for more than 5 s ([[stageshow-reconciliation]], [[MOC-faux-ui]]).
 - Hover-revealed content still obeys [[touch-and-focus]]: gated, and never the only route.
 - **Readable on the first frame.** In taste-skill's capture of 99 Awwwards Sites of the Day (October 2026), 60 opened on a loading screen and a third were still unreadable 4.5 s after load. The model panel's design marks were the same whatever the wait; only usability fell. No preloader; the title readable on first paint; any load sequence over by 1.2 s. Scroll hijacking scored 6.01 on usability against 6.50 for pages that scroll. Only 35 of 99 had any `prefers-reduced-motion` rule, and under it the finished state must show, never a hidden one ([[prefers-reduced-motion]]).
 

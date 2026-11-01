@@ -34,7 +34,7 @@ Fix what's wrong before adding what's absent.
 
 ### Marketing surface
 
-[[marketing-vs-product-ui]] → [[typography-humanity]] → [[ai-default-tells]] (delete pass) → [[review-format]]
+[[marketing-vs-product-ui]] → [[typography-humanity]] → product shots ([[product-shot-framing]] → [[faux-ui-restraint]] → [[demo-story-and-loops]] → [[demo-rehearsal]]; a feature grid via [[bento-grids]]) → [[ai-default-tells]] (delete pass) → [[review-format]]
 
 Marketing tolerates more expression and *less* default — the deletion pass is not optional here.
 

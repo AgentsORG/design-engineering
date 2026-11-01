@@ -27,6 +27,10 @@ A **product state change** routes to [[fly-not-teleport]] and [[cross-blur-trans
 
 Tiebreaker: is there a timeline the viewer cannot interrupt? If yes, it is a film, and UI durations (under 300 ms) do not transfer to it.
 
+## Page demo vs film demo
+
+A product shot that plays **on a page** — a hero loop, a feature card, a bento tile — routes to [[MOC-faux-ui]]: shown at 1:1, cursor at real or 1.5× size, typed strings recognised at ~28 c/s, a pause button and a poster. A product demo **inside a rendered film** routes to [[launch-video-ui-demo]]: cursor at ~7cqw, prompts read at ~15 c/s, no replay. Tiebreaker: can the viewer scroll past it, pause it or replay it? Then it is a page demo.
+
 ## Looks right vs. feels finished vs. should ship
 
 - **Looks right** — hierarchy, spacing, restraint, while designing → [[feeling-right]], [[unseen-details-compound]].

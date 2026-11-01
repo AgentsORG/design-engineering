@@ -7,7 +7,7 @@
       "name": "design-engineering",
       "type": "registry:file",
       "title": "Design Engineering skill graph",
-      "description": "The full design-engineering skill graph — 12 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
+      "description": "The full design-engineering skill graph — 13 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, faux product UI, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
       "author": "HKTITAN",
       "categories": [
         "design",
@@ -147,6 +147,11 @@
           "target": "~/.agents/skills/design-engineering/references/commands/cmd-sound.md"
         },
         {
+          "path": "skills/design-engineering/references/commands/cmd-stage.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-stage.md"
+        },
+        {
           "path": "skills/design-engineering/references/commands/cmd-svg.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/commands/cmd-svg.md"
@@ -207,6 +212,11 @@
           "target": "~/.agents/skills/design-engineering/references/components/destructive-actions.md"
         },
         {
+          "path": "skills/design-engineering/references/components/drawing-toolbar.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/drawing-toolbar.md"
+        },
+        {
           "path": "skills/design-engineering/references/components/empty-loading-states.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/empty-loading-states.md"
@@ -245,6 +255,11 @@
           "path": "skills/design-engineering/references/components/optimistic-updates.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/optimistic-updates.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/presence-signals.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/presence-signals.md"
         },
         {
           "path": "skills/design-engineering/references/components/screen-reader-announcements.md",
@@ -300,6 +315,46 @@
           "path": "skills/design-engineering/references/diagram/tldraw-canvas.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/diagram/tldraw-canvas.md"
+        },
+        {
+          "path": "skills/design-engineering/references/faux-ui/MOC-faux-ui.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/faux-ui/MOC-faux-ui.md"
+        },
+        {
+          "path": "skills/design-engineering/references/faux-ui/bento-grids.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/faux-ui/bento-grids.md"
+        },
+        {
+          "path": "skills/design-engineering/references/faux-ui/demo-cursor-and-touch.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/faux-ui/demo-cursor-and-touch.md"
+        },
+        {
+          "path": "skills/design-engineering/references/faux-ui/demo-rehearsal.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/faux-ui/demo-rehearsal.md"
+        },
+        {
+          "path": "skills/design-engineering/references/faux-ui/demo-story-and-loops.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/faux-ui/demo-story-and-loops.md"
+        },
+        {
+          "path": "skills/design-engineering/references/faux-ui/faux-ui-restraint.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/faux-ui/faux-ui-restraint.md"
+        },
+        {
+          "path": "skills/design-engineering/references/faux-ui/product-shot-framing.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/faux-ui/product-shot-framing.md"
+        },
+        {
+          "path": "skills/design-engineering/references/faux-ui/stageshow-reconciliation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/faux-ui/stageshow-reconciliation.md"
         },
         {
           "path": "skills/design-engineering/references/launch-video/MOC-launch-video.md",
