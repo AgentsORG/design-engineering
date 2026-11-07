@@ -20,6 +20,22 @@ The same gesture should end in the same place at 30, 60 and 120 fps, and after t
 
 Any spring or decay you write by hand, drag-and-throw physics, window managers, resizable panels, anything with a screenshot test. Library springs (Motion, react-spring) handle rule 1 for you; rules 3–5 are yours.
 
+## Reference
+
+```ts
+// Bad: x += (target - x) * 0.08 on every rAF; tuned at 60fps, it runs twice as fast at 120.
+// Good: the same 60fps feel from elapsed time, with a stall capped.
+let last = performance.now();
+function tick(now: number) {
+  const dt = Math.min(100, now - last); last = now;
+  x += (target - x) * (1 - Math.pow(1 - 0.08, dt / (1000 / 60)));
+  requestAnimationFrame(tick);
+}
+```
+
+- Gold example: `stageshow/kit/motion/Follow.tsx`, a spring that keeps its 60Hz trajectory at any refresh rate: it accumulates elapsed time (capped at 100ms a frame), steps in fixed 1000/60 ms steps, interpolates the partial step, and retargets from the rendered position and velocity. Benji's call differs on the numbers: 16.7ms steps plus interpolation instead of 4ms steps, and a settle band of 0.05 instead of 0.01.
+- Check: log rAF timestamps against the transform on a 60Hz and a 120Hz screen; poses match at shared timestamps, and repeated poses followed by a jump mean a clock bug.
+
 ## Gotcha
 
 "Settled" is never exact: a spring oscillates forever inside a small band. End it when both the distance to the target and the velocity are under ~0.01, then set position to destination and velocity to 0. An "exactly at rest" check never fires, and a snap from a band that is too wide is a visible jump ([[spring-animations]]).
@@ -29,3 +45,5 @@ Any spring or decay you write by hand, drag-and-throw physics, window managers, 
 - Cheng Lou, chenguini (MIT, HEAD 84fb27d): `docs/Animation.md` ("Closed-Form vs Numerical", "Springs", "Spiral of Death Prevention", "Exponential Decay").
 - Cheng Lou, handwired (MIT, HEAD 257856e): `docs/behavior-choices.md` — event timestamps and the 359 px measurement, the 300-step cap and named fallbacks, "Store what the user placed", and "Read last frame's value" (the 533 px jump).
 - Related: [[spring-animations]], [[gesture-momentum]], [[animated-hit-testing]], [[performance-discipline]].
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/motion/Follow.tsx` (fixed-step spring, 100ms cap, interpolation, settle band), `references/rehearse.md` (Live pacing), `references/choreography.md` (virtual-clock export vs live playback).
+- Benji Taylor, benji.org/liveline (read 2026-11-07): the 0.08-per-frame lerp at 60fps used in the example.

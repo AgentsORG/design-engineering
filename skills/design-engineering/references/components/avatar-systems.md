@@ -163,6 +163,19 @@ See per-style options at [dicebear.com/styles](https://www.dicebear.com/styles).
 - High-trust contexts (legal, financial) where the AI-generated look might undermine credibility.
 - Products where avatar fidelity is critical (dating apps, hiring). Require real photos.
 
+## Reference
+
+- **Bad → good:** three gray 22px discs, each with a white ring that only matches one background → each named face in its own muted, opaque fill picked from the name, each cut out where the next overlaps it (22px faces, 6px overlap, 2px gap), so the toolbar or a tinted row shows through the gap.
+
+```ts
+// Six muted, opaque fills that read on light and dark (stageshow/kit/parts/Avatar.tsx)
+const PEOPLE = ['#c98f6e', '#6f9b7d', '#7b86c7', '#c47a9e', '#8c9ab0', '#c2a35a']
+const hue = (seed: string) => { let h = 0; for (const c of seed) h = (h * 31 + c.charCodeAt(0)) % 9973; return PEOPLE[h % PEOPLE.length] }
+```
+
+- **Gold example:** `stageshow/kit/parts/Facepile.tsx` (a mask per face, not a painted ring) and `stageshow/examples/presence/`: each person is one colour everywhere (face, cursor, name flag, selection, caret), and neither person takes the product's accent. Gray discs are for filler people only. Seed the fill with the same id you give DiceBear, so a rename keeps the colour.
+- **Check:** put the pile on a white toolbar and on a tinted active row and zoom to 2x: the ground shows through every gap, no two neighbours share a fill, and each initial sits centred on its own ink (`text-box: trim-both cap alphabetic`), not low in its line box.
+
 ## Gotcha
 
 DiceBear's HTTP API has rate limits. For production, either:
@@ -179,5 +192,6 @@ Also: a few styles are paid (designer-contributed). Verify license per style at 
 
 - DiceBear — [dicebear.com](https://www.dicebear.com/), [github.com/dicebear/dicebear](https://github.com/dicebear/dicebear), [github.com/dicebear/styles](https://github.com/dicebear/styles).
 - DiceBear style index — [dicebear.com/styles](https://www.dicebear.com/styles).
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/break-ui/SKILL.md, skills/break-ui/CATALOG.md (initials from grapheme clusters, the names that break them).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/break-ui/SKILL.md, skills/break-ui/CATALOG.md (initials from grapheme clusters, the names that break them).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/parts/Avatar.tsx`, `stageshow/kit/parts/Avatar.css`, `stageshow/kit/parts/Facepile.tsx`, `stageshow/examples/presence/index.tsx`, `stageshow/references/craft.md` (Restraint: named avatars take their own color).
 - Related: [[icon-systems]], [[ai-default-tells]], [[hover-states-subtle]], [[stress-scenarios]].

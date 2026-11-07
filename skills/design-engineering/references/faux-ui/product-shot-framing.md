@@ -49,7 +49,7 @@ The layouts are recipes, not a mandate: a whole window with even gutters is vali
 
 ## Phones
 
-A satellite phone starts at 40% of the window's visible width and at least 220px; let it run off rather than shrink. Notifications stay at true iOS size and native width (the screen minus 18pt a side) — size the phone around the banner, never the banner to the phone. A phone cropped at the top loses its status bar and nav bar together. In a 400px host a phone is always cropped: a gutter from one edge, off the other, screen at 1:1.
+A satellite phone starts at 40% of the window's visible width and at least 220px; let it run off rather than shrink. Notifications stay at true iOS size and native width (the screen minus 18pt a side) — size the phone around the banner, never the banner to the phone. A phone cropped at the top loses its status bar and nav bar together; one whose bottom the stage crops stacks its notifications under the clock (Stageshow's `LockScreen stack="top"`), so no banner sits on the cut. In a 400px host a phone is always cropped: a gutter from one edge, off the other, screen at 1:1.
 
 ## Compact is a second design
 
@@ -59,11 +59,24 @@ Every demo that can sit in a phone column ships a second composition at the colu
 
 Before any code for a hero illustration, feature card, docs plate or bento tile; again after anything moves.
 
+## Reference
+
+A 400 × 300 feature card, generated framing against the pinned bottom bleed:
+
+| Before | After |
+|---|---|
+| Whole window 320 × 220, centred, 40px of air on four sides, on a grey plate | Window inset 10% left, right and top, 25% past the bottom, no plate: the page is the ground |
+| Detail card beside the window, fully outside, the same width as the sidebar | Detail card straddling the sidebar edge about half outside, over chrome, not content |
+| Window runs 6px past the right edge | A full gutter in, or 15–35% past; never a sliver |
+
+Gold example: `stageshow/examples/static-card/` (pinned, bottom bleed) and `stageshow/examples/hero-demo/` (corner bleed beside copy); `stageshow/teaching/scenes.tsx` holds the crop-to-the-action and crop-filler pairs.
+Check: film one still at the shown width and one at 358 beside the gold's still. If the hero's top-left is hidden, a real word is sliced, or the bleed is under 10%, re-crop before any motion.
+
 ## Gotcha
 
 Told to "run the window off the edge", agents barely do it — a few px past, which is the worst of both. Copy an example that does it, then check the final crop: is the hero's top-left visible, is the bleed a deliberate fraction and not a sliver?
 
 ## Sources
 
-- Benji Taylor, Stageshow (MIT, github.com/benjitaylor/skills, HEAD `8020574`, read 2026-11-01): `stageshow/SKILL.md` (workflow step 1, the five failures), `references/framing.md` (rules, layouts, phones, small formats). Paraphrased; the layout table is condensed.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (workflow step 1, the five failures), `stageshow/references/framing.md` (rules, layouts and the example each names, phones, small formats), `stageshow/references/kit.md` (`LockScreen stack="top"`), `stageshow/examples/static-card/`, `stageshow/examples/hero-demo/`, `stageshow/teaching/scenes.tsx`. Paraphrased; the layout table is condensed; re-verified at `299140f`.
 - Related: [[faux-ui-restraint]], [[bento-grids]], [[page-frame]], [[stageshow-reconciliation]].

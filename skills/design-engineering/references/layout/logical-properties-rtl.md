@@ -35,6 +35,18 @@ A layout written in `left` and `right` has to be rewritten for Arabic and Hebrew
 
 Set `lang` so quotes, hyphenation and pronunciation are right, and `dir` on the document and wherever direction changes. A value that may run the other way — a username, a product name, a URL, a number in an RTL sentence — goes in `<bdi>`, so punctuation stays on the right side; never reorder digits by hand. Wrapping, casing and truncation are [[line-behavior]]'s.
 
+## Reference
+
+A list row with trailing metadata, a back button and a brand name inside Arabic copy:
+
+- Bad: `.row .meta { margin-left: auto; padding-left: 12px }` with `[dir="rtl"] svg { transform: scaleX(-1) }`, which pins the date to the wrong edge and mirrors the checkmark and the logo too.
+- Good: `.row .meta { margin-inline-start: auto; padding-inline-start: 12px }` with `[dir="rtl"] .icon-back { transform: scaleX(-1) }`, so only the back arrow turns.
+- Good: `<p dir="rtl" lang="ar"><bdi>Acme Pro</bdi> متاح الآن.</p>`, so the full stop stays at the sentence's end and the Latin name stays in one piece.
+
+Gold example: the FAB recipe in Jakub Krehel's `skills/better-layout/spacing-and-adaptivity.md`, which this node already cites.
+
+Check: screenshot the screen in LTR and RTL at 390 with real Arabic or Hebrew strings and lay the two side by side. The RTL shot is a mirror image except the play triangle, checkmark, clock and logo; then Tab through it, and focus moves right to left in the order the eye reads.
+
 ## Gotcha
 
 Testing RTL by flipping `dir` in devtools catches layout and misses content: run it with real RTL strings, mixed-direction values and an LTR brand name inside an RTL sentence ([[stress-scenarios]]). A screen that mirrors perfectly with English copy can still put the full stop on the wrong side of every Hebrew sentence.

@@ -21,6 +21,8 @@ The frame: *could this UI have been generated in 30 seconds with a prompt?* If y
 | Gradient button backgrounds with no reason | Solid color + subtle shadow | [[hover-states-subtle]] |
 | Same border-radius everywhere | Intentional scale | [[border-radius]] |
 | Asymmetric grid on a *product* page | Reserve asymmetry for marketing | [[marketing-vs-product-ui]] |
+| Sparkle, wand or gradient "AI" chip on an AI action | A plain label naming what happens ("Explain failure"); the product's own mark is fine | [[icon-systems]] |
+| Icon in a translucent ink (darker where strokes cross) | One opaque color per icon; a lighter icon is a lighter opaque gray | [[icon-systems]] |
 
 ## Layout
 
@@ -80,6 +82,23 @@ taste-skill measured 246 gallery sites and split them by a model panel's scores 
 
 Use this as a **review checklist** when auditing a UI that "feels generated." Most pages have 3–5 tells from this list. Removing them transforms the feel.
 
+## Reference
+
+One deploys card, one fault per copy, each set beside the same clean card (Benji Taylor's style pairs):
+
+| Generated | Clean |
+|---|---|
+| Violet-to-pink ground, `background-clip: text` title, tinted card | Product neutrals; the accent only on the live deploy |
+| Glow `0 0 24px #6366f166` on the card, the button and the status dot | One neutral shadow: `0 0 0 1px #0000000d, 0 6px 18px #0000000f` |
+| `RECENT DEPLOYS`, `PRODUCTION · 3 DEPLOYS`, `DEPLOY` | `Recent deploys`, `Deploy` |
+| Hand-drawn glyphs in rainbow squircles | One pack at 16px, stroke 1.75, status in color only |
+| Wand, "Ask AI", sparkle | `Explain failure` |
+| Rows at 9 to 10px | 14px names, 12px metadata |
+
+Gold example: `stageshow/teaching/style.tsx` with `stageshow/teaching/style.css`. The good card is identical in every pair, so each tell in your screen maps to exactly one bad side.
+Check: screenshot your screen at 1:1 beside the clean card. Every element you can match to a bad side is a survivor; fix one, re-shoot, repeat.
+Benji's call differs on Lucide: his pairs count it among packs chosen on purpose, used "deliberately, never reflexively". The tell is a reflexive or mixed set, not the pack.
+
 ## Gotcha
 
 This list is not anti-AI — it's anti-default. Many AI-generated UIs are excellent because the prompter knew to specify these things. The tells appear when no one specified anything. The fix is opinion, not avoidance of generation.
@@ -90,3 +109,4 @@ This list is not anti-AI — it's anti-default. Many AI-generated UIs are excell
 - Benji Taylor — content authenticity, real data.
 - Emil Kowalski — animation tells.
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/research.md` §6–7, device prevalence measured in the page on 246 One Page Love and Awwwards sites collected 2026-10-05. "Top" is a model-panel score of 7.5 or more (82 sites) and "weak" under 6.5 (23 sites): model judgements of screenshots, one capture per site, fashion as much as quality.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/style.tsx`, `stageshow/teaching/style.css`, `stageshow/references/craft.md` (Icons and logos).

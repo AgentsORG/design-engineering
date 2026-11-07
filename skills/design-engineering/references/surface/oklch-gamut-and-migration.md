@@ -49,6 +49,21 @@ In Tailwind v4, re-express every `@theme` color, then hunt the `theme()` calls a
 
 Group changes by file; list each declaration's old value beside its new one with a short clause naming the rule (out of gamut, hue drift, too little L gap). Every touched line, not a highlight reel.
 
+## Reference
+
+One migration hunk, written the way the report lists it:
+
+```css
+--accent: oklch(0.623 0.188 259.8);    /* was #3b82f6: exact conversion */
+--ink: oklch(0 0 0 / 0.06);            /* was rgba(0, 0, 0, 0.06): alpha behind the slash */
+--hover: color-mix(in srgb, var(--accent) 90%, oklch(0 0 0)); /* `in srgb` kept: a new space changes the mix */
+--cta: oklch(0.6 0.241 20);            /* was oklch(0.6 0.31 20): out of gamut, C clamped, L and H held */
+```
+
+- Bad: swapping `#3b82f6` for a punchier `oklch(0.623 0.214 259.8)` "while you're there". Good: `oklch(0.623 0.188 259.8)`. Same L and H, but C 0.214 pushes blue past sRGB at that L and H: a recolor, not a conversion.
+- Gold example: CSS Color Level 4, `oklch()`, and the `color-gamut` media feature. Re-read them before you trust a table of ceilings.
+- Check: screenshot the page before and after on an sRGB screen and diff the two. No channel should move by more than 1/255, and `git diff --word-diff` should show color values only. Only the P3 block may look different, and only on a P3 screen.
+
 ## Gotcha
 
 Raising the base token's chroma to get "more punch" breaks on sRGB screens. The punch belongs in the P3 layer; the base stays inside sRGB.

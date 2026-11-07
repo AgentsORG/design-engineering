@@ -30,12 +30,12 @@ Swap down a tier: size → `scale()`, position → `translate()`, `display`/`vis
 ## Rendering work
 
 - **Virtualize any list that can pass ~50 items** or grow unbounded (TanStack Virtual or equivalent). Render only what is visible.
-- **Frames never go through React state.** A per-frame `setState` is a re-render storm. Write transforms through refs, WAAPI, or the library's own loop. In Motion the string form `animate={{ transform: "translateX(100px)" }}` is hardware-accelerated; the `x: 100` shorthand runs on the main thread.
+- **Frames never go through React state.** A per-frame `setState` is a re-render storm. Write transforms through refs, WAAPI, or the library's own loop. In Motion the string form `animate={{ transform: "translateX(100px)" }}` is hardware-accelerated in every version, and from `motion` 14.2 so is the `x: 100` shorthand; layout animations, `onUpdate` and motion-value-driven values stay on the main thread.
 - **CSS/WAAPI for predetermined motion** (stays smooth under load); a JS loop only for dynamic, gesture-driven, or spring values. Vercel's dashboard tab indicator, a Motion shared-layout animation, dropped frames because the next page was loading at that moment; a CSS animation fixed it.
 
 ## Diagnosis order
 
-Name the cause before changing code. In order of likelihood: (1) a non-composite property animates (layout first, then `box-shadow`, `border-radius`); (2) the jank coincides with navigation, fetching or hydration; (3) React re-renders per frame; (4) it worsens as content grows; (5) a CSS variable animates, directly or through Motion shorthands; (6) animated `blur()` above 20px; (7) only then `will-change`. Confirm with a Performance recording on a mid-range phone over remote debugging; desktop CPU throttling doesn't model a weak GPU or a small memory budget.
+Name the cause before changing code. In order of likelihood: (1) a non-composite property animates (layout first, then `box-shadow`, `border-radius`); (2) the jank coincides with navigation, fetching or hydration; (3) React re-renders per frame; (4) it worsens as content grows; (5) a CSS variable animates, directly or through Motion shorthands before `motion` 14.2; (6) animated `blur()` above 20px; (7) only then `will-change`. Confirm with a Performance recording on a mid-range phone over remote debugging; desktop CPU throttling doesn't model a weak GPU or a small memory budget.
 - **Pause off-screen work**: looping animations, video, timers — `IntersectionObserver` or `animation-play-state`, plus `visibilitychange` for hidden tabs.
 
 ## Loading and layout
@@ -53,6 +53,24 @@ Animating `height` triggers layout every frame. Use `grid-template-rows: 0fr →
 
 "It's slow", "it stutters", "it jumps", any list over ~50 rows, any diff that adds a transition, a font, a hero image, or a theme toggle. Slowness is measured, not judged: if the complaint is "feels wrong" rather than "drops frames", route to [[easing-curves]] and [[duration-table]] instead.
 
+## Reference
+
+A rAF loop for something that has settled is work nobody sees. Run it only while something moves, write through a ref, and let a new target wake it. The shape of `stageshow/kit/motion/Follow.tsx`:
+
+```ts
+function step() {
+  integrate(cur, vel, target); // fixed 60Hz steps, interpolated on faster screens
+  if (Math.abs(target - cur) < 0.05 && Math.abs(vel) < 0.05) { cur = target; vel = 0; }
+  el.style.transform = `translateX(${cur}px)`; // a ref write, never setState
+  running = cur !== target || vel !== 0;
+  if (running) id = requestAnimationFrame(step);
+}
+const wake = () => { if (!running) { running = true; id = requestAnimationFrame(step); } };
+```
+
+- **Gold example:** `stageshow/kit/motion/Follow.tsx`, and `stageshow/kit/motion/Collapse.css` for `will-change` used the way this node asks: one lasting layer on the gliding content, with its reason written beside it (text moved by layout steps whole pixels, and text that ends a transform without a layer of its own hops as it lands).
+- **Check:** once the motion settles, a Performance recording shows no more rAF callbacks; scroll it offscreen or hide the tab and its work stops, and on return it resumes without skipping a beat (`stageshow/references/rehearse.md`, Live pacing).
+
 ## Gotcha
 
 `will-change` sprinkled on every card "for performance" is the most common cargo cult in generated CSS. It costs a compositor layer per card and fixes stutters the cards never had. Remove it and add it back only where a first-frame hitch is reproducible.
@@ -60,5 +78,6 @@ Animating `height` triggers layout every frame. Use `grid-template-rows: 0fr →
 ## Sources
 
 - Emil Kowalski's design-engineering practice on performance, distilled by HKTITAN.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animation-performance/SKILL.md (frame budget, tiers, swaps, Vaul and Vercel cases, diagnosis order).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animation-performance/SKILL.md (frame budget, tiers, swaps, Vaul and Vercel cases, diagnosis order).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Follow.tsx`, `stageshow/kit/motion/Collapse.css` (drop glide layer), `stageshow/references/rehearse.md` (Live pacing).
 - Related: [[transform-opacity-only]], [[debugging-animations]], [[empty-loading-states]], [[marketing-surface-rules]].

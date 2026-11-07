@@ -28,6 +28,24 @@ A client bundle is public. Hunt for public-prefixed env names (`NEXT_PUBLIC_`, `
 
 Commented-out blocks get deleted; version control remembers them. A TODO is read, not deleted: one that names unfinished work on an auth, payment, permission or deletion path ("check ownership here") is probably the most important finding in the lane, so quote it verbatim. Also hunt `.only(` and `.skip(` in tests and fresh `@ts-ignore` or `as any`.
 
+## Reference
+
+The dev panel, before and after the gate:
+
+```tsx
+// Bad: static import, hidden in production, still shipped and still feeding its defaults
+import { Leva } from 'leva'
+<Leva hidden={import.meta.env.PROD} />
+
+// Good: dev-only dynamic import; production reads the saved values
+import tuning from './tuning.json'
+const DevPanel = import.meta.env.DEV ? lazy(() => import('./DevPanel')) : () => null
+```
+
+A secret in the write-up reads: "`.env.local` is tracked by git and holds `NEXT_PUBLIC_STRIPE_SECRET_KEY` (value withheld). Rotate this now."
+Gold example: for the write-up, the hand-over template in Stageshow `references/verify.md` (Hand over), which ends on `Unresolved:` and `Not checked:` so the reader knows what nobody looked at.
+Check: build for production and search the built output, not the source, for the panel's package name, `/lab` and `sk_live_`; then request `/lab` on that build and expect a 404. Clearing a finding by hiding the thing it points at is a bug, the same rule Stageshow's gate holds (`references/rehearse.md`, Lines that are never intentional).
+
 ## Gotcha
 
 `<Panel hidden>` and a robots disallow line both look like fixes and neither is one. The first still drives values and ships bytes; the second is a polite request that leaves the route reachable by anyone with the URL.
@@ -35,4 +53,5 @@ Commented-out blocks get deleted; version control remembers them. A TODO is read
 ## Sources
 
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/verify.md` (Hand over), `stageshow/references/rehearse.md` (Lines that are never intentional).
 - Related: [[content-authenticity]], [[share-and-crawl-metadata]], [[production-baseline]].

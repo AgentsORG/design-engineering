@@ -48,6 +48,21 @@ Locking cuts to the track is optional: 7/18 acclaimed films lock stamps, cuts or
 
 Any film with more than one shot: launch films, feature sizzles, README demos. Never in product UI, where [[fly-not-teleport]] owns state changes and [[cross-blur-transitions]] masks the rare crossfade that cannot be avoided.
 
+## Reference
+
+A cut into motion (item 5) on the two curves Stageshow's kit names for it:
+
+```ts
+import { bezier } from './kit/ease'            // Stageshow kit
+const through = bezier('through'), settle = bezier('settle')
+const outX = (t: number) => lerp(0, -240, through((t - (CUT - 0.45)) / 0.9)) // 0.9 s push cut at 0.45 s, near its speed peak (~46 %)
+const inX = (t: number) => lerp(120, 0, settle((t - CUT) / 0.7))           // moving on its first frame, settled by 0.7 s
+```
+
+- Bad: the outgoing push on `ease-out` rests 0.2 s before the cut and the incoming shot waits 0.6 s: a dead cut from both sides. Good: the push is near peak speed on the last outgoing frame and the incoming one is already moving.
+- Gold example: `stageshow/kit/ease.ts` (`through` accelerates into the cut; `settle` runs 0.6 to 0.8 s after it, 1.6 s for a big pull-out; the ~46 % peak is computed from its control points); Linear Agent and Raycast (item 5) for the rhythm.
+- Check: a contact sheet stepped every 2 frames across the seam; the last outgoing and first incoming frames both differ from their neighbours.
+
 ## Gotcha
 
 Banning cuts forces every film into a zero-cut morph chain, which only 3/29 Skale and 2/18 acclaimed films chose. 2.4.0's "no cuts" came from four HeyGen templates and one studio reel, yet 26/29 Skale pieces and 14/18 acclaimed films hard-cut. Count cuts by reading frames; the detector's misses and the recount method are in [[launch-video-review]].
@@ -58,3 +73,4 @@ Banning cuts forces every film into a zero-cut morph chain, which only 3/29 Skal
 - Measured by HKTITAN 2026-09-28, all 18 acclaimed films (the n/18 counts): Linear Agent (2026), Raycast (2025), Claude Cowork (Anthropic, 2026), Cursor 2.0 (2025), Notion Mail and Notion 3.0 (2025), Granola 2.0 (2025), Figma glass (2025), Figma Motion (2026, uploaded at 12 fps), Framer 3.0 (2026, maker uncredited), Spline Hana (2025), Arc on Windows (The Browser Company, 2024), Apple Liquid Glass (2025), Material 3 Expressive (Google Design, 2025), Claude Opus 4.6 (Anthropic, 2026, BUCK per brief), Perplexity Comet (Studio Freight, 2025), Google Gemini app (Ordinary Folk, 2024), Google AI Mode (2025, Ordinary Folk, inferred). Data: tables/acclaimed.md, notes/synthesis-acclaimed.md.
 - HeyGen, hyperframes-launches (Apache-2.0): figma-launch/HANDOFF.md (act 2 zoom ladder); HF-heygen-stripe/HANDOFF-V7.md §4; cloud-render-launch/HANDOFF.md (seamless-seam fix, round 6); timeline-launch/HANDOFF.md; claude-paper-launch/index.html; pr-to-video-launch/index.html; k3-promo/index.html L321-323 and L1632-1636; codex-five-hour-limit-replica/STORYBOARD.md; frame-md-launch-storyboard/ (render: metrics/hg-frame-md-launch.json). The frame.md and k3-promo renders were measured with measure.py (metrics/hg-*.json; digests/heygen-launches.json).
 - heygen-com/hyperframes (Apache-2.0): .agents/skills/cut-the-curve/SKILL.md §3 and §5, .agents/skills/motion-doctrine/SKILL.md (anti-patterns) and .agents/skills/seam-craft/SKILL.md (repo-internal, not installed by npx skills add); skills/product-launch-video/references/story-design.md (the `transition_in` default).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/ease.ts` (`through` into a cut, `settle` after it; the ~46 % speed peak computed from its control points).

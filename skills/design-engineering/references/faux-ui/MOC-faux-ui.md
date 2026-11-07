@@ -30,7 +30,9 @@ Most of the quality is decided before code. Run `/design-engineering stage` ([[c
 4. [[demo-cursor-and-touch]] — the cursor, drags, selection, scroll, camera, phones.
 5. [[demo-rehearsal]] — film it, read every frame, a fresh-eye review, the handover note.
 
-A grid of tiles is one picture planned as a set: [[bento-grids]]. With Stageshow installed it owns the build: [[stageshow-reconciliation]].
+A grid of tiles is one picture planned as a set: [[bento-grids]]. With Stageshow installed (1.1.1) it owns the build, every button, card, draft and shortcut comes from its kit part, and nothing ships until `--gate` ends `rehearsal passed`: [[stageshow-reconciliation]].
+
+Each node ends on a **Reference**: a before/after to copy, the closest Stageshow gold example to open, and one check to run on your own output.
 
 ## Cross-cluster
 

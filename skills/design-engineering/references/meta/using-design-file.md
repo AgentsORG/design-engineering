@@ -56,6 +56,18 @@ Contract 1.3 adds `tokens.sound` (default toggle state, one material, levels, du
 
 Both can exist. `.design` is the machine-readable contract with intent and executable policy; `DESIGN.md` is prose-plus-tokens ([[using-design-md]]). When both are present, `.design` wins and `DESIGN.md` becomes rationale — offer to converge them rather than maintaining two sources.
 
+## Reference
+
+Bind by role, never by a value that looks close. For a component the contract doesn't list, map roles the way Stageshow maps a product's look from its code (`references/looks.md`, From a codebase): primary to the one accent, button or input radius to the middle radius, menu item to the small one, popover or card to the large one, input height to the control size.
+
+- Bad: `.plan-card { background: #5b5bd6; border-radius: 6px; padding: 14px; }`, because 6px "looked like" the button.
+- Good: `.plan-card { background: var(--surface); border-radius: var(--radius-lg); padding: var(--space-4); }`, the accent kept for the single primary action `intent.signature` names, plus a one-line note when `policy.if_missing` is `invent_with_note`.
+- Drift line, reported before any fix: `tokens.radius  modified  lg 10px -> 12px in app/globals.css  regression: yes`.
+
+Gold example: [`templates/design-engineering.design`](../../../../templates/design-engineering.design), whose `agent.instructions` block holds the whole read, follow, update and verify loop in one place; `stageshow/references/looks.md` for the role mapping.
+
+Check: put a still of the generated screen beside a screenshot of the product's existing screens at the same scale. Accent, gray temperature, radii and type should match at a glance; if one control looks foreign, re-read the contract and its real neighbor's computed styles rather than nudging by eye.
+
 ## Gotcha
 
 Don't let the contract's existence stop the craft work. A `.design` that pins colors and radii says nothing about whether a spinner flashes under 800ms, whether the exit is 60% of the entrance, or whether a hover shifts 1px or 4px. Silence is not permission to default — it's where [[review-checklist]] still runs.
@@ -64,4 +76,5 @@ Don't let the contract's existence stop the craft work. A `.design` that pins co
 
 - AgentsORG — [github.com/AgentsORG/design](https://github.com/AgentsORG/design), `design.v1`. Mirrored at [`spec/design-file-spec.md`](../../../../spec/design-file-spec.md).
 - Starter contract encoding this skill's defaults: [`templates/design-engineering.design`](../../../../templates/design-engineering.design).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/looks.md` (From a codebase, Check it).
 - Related: [[using-design-md]], [[copy-voice]], [[delight-impact-curve]], [[review-format]].

@@ -92,6 +92,20 @@ This pattern modifies `transform` on N elements every mouseover. Use:
 
 (CSS `pow()` requires modern browsers. Fall back to JS for legacy support.)
 
+## Reference
+
+- Bad: a five-face stack where every face takes the same `translateY(-8px)` on group hover; the row lifts as one slab and nothing says which face the pointer is on.
+- Good: the hovered face at -8px and 1.08, neighbours at -3.6px, -1.6px, -0.7px, and each face's overlap cutout moving with the face it makes room for:
+
+```ts
+// Face i's cutout tracks face i + 1 (in face i's own space), so a lifted neighbour never shows a crescent of page.
+const mask = `radial-gradient(circle at ${size - overlap + r}px calc(50% + ${shift[i + 1] - shift[i]}px),
+  transparent ${r + gap}px, #000 ${r + gap + 0.5}px)`;
+```
+
+- Gold example: transitions.dev prototype P8 for the motion; for the stack itself, Stageshow's `stageshow/kit/parts/Facepile.tsx`, which cuts each face out where the next overlaps (22px faces, 6px overlap, 2px gap) with a mask rather than a ring, so no translucent edge sits over a neighbour.
+- Check: hover the middle face of five at 25% speed and zoom the overlaps to 4x: no page colour shows between faces at the peak, and the end faces, two away, move about 1.6px.
+
 ## Gotcha
 
 The falloff coefficient matters more than the lift. A falloff of 0.8 propagates far and feels like the whole group is moving. A falloff of 0.2 dies too fast and looks like only the hovered item is reacting. **0.4–0.5 is the sweet spot.**
@@ -99,3 +113,4 @@ The falloff coefficient matters more than the lift. A falloff of 0.8 propagates 
 ## Sources
 
 - Jakub Antalik — transitions.dev, prototype P8 (avatar group).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/parts/Facepile.tsx` (mask cutout, default size, overlap and gap), `references/kit.md` (Avatar, Facepile).

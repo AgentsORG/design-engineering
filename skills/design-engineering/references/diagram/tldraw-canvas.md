@@ -37,6 +37,20 @@ Delegate long Desktop jobs to its subagent.
 
 Whiteboarding, planning boards, editable architecture sketches, design review on a canvas, and any task that names tldraw, a `.tldraw` or `.tldr` file, or a board. For a figure readers will only read, use [[diagram-decision]].
 
+## Reference
+
+| Part | Bad | Good |
+|---|---|---|
+| Connection | a raw arrow whose ends sit at `x: 320` because the card did | `helpers.createArrowBetweenShapes` from "Queue" to "Worker"; drag either card and the arrow follows |
+| Label | a `text` shape floating over the card | the card's `richText`, three to six words: "Billing worker" |
+| Groups | a grey rectangle drawn behind four cards | one frame per stage, named the way the team says it: "Intake", "Review" |
+| Color | blue, orange, green and violet across eight cards | `blue` on the one focal path, `grey` and `black` everywhere else |
+| Reply | "Done, fixed it" | "Moved 'Billing worker' into Review and bound its arrow to 'Queue'." Then resolve the thread |
+
+The reply row is Benji Taylor's pointing-beats-describing applied to a board: name the shape by what identifies it, so the next reader finds it without asking.
+Gold example: the `tldraw-offline` skill's own docs, read through `/api/search` before writing code.
+Check: on a copy of the board, drag every card you touched 200px and undo; no arrow detaches, no word stays behind. Then `helpers.getLints()` reports nothing your edit introduced.
+
 ## Gotcha
 
 The surfaces speak different shape formats. Desktop takes raw tldraw SDK records; the MCP app's `exec` goes through a focused proxy with simple string ids and flat `_type` shapes. Read the surface's own `search` before writing code, and never paste a snippet from one into the other. On Desktop, never edit a `.tldraw` archive while it is open. Save a local document yourself with `helpers.saveDoc()` instead of asking the user to.
@@ -46,3 +60,4 @@ The surfaces speak different shape formats. Desktop takes raw tldraw SDK records
 - tldraw, the `tldraw-offline` agent skill installed by tldraw Desktop (read 2026-10-08; the app is not open source, so this graph cites it and copies nothing).
 - tldraw/tldraw (HEAD `035b741`, 2026-10-06): `apps/mcp-app/README.md` and `plugins/tldraw-mcp/mcp.json` (the MCP app and its Cursor plugin); `skills/tldraw-migrate`, also served at `tldraw.dev/.well-known/agent-skills/`.
 - tldraw/tldraw-offline README, "Bring your own AI" (agent access and script trust).
+- Benji Taylor, benji.org/annotating and benji.org/agentation (read 2026-11-07): pointing beats describing; name elements by their identifying features; feedback addresses instances.

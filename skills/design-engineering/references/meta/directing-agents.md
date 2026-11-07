@@ -36,9 +36,24 @@ Probe the system with a one-sentence request for a real screen ("a dialog that p
 
 If you correct only the output, you fix one screen. Patch the hole and the next screen comes out right.
 
+- When you make the same correction twice, write it as a permanent rule with its reason and rerun the work from scratch rather than hand-fixing the output (Benji Taylor, benji.org/stageshow).
+
 ## The papercut pipeline
 
 Spot → document → delegate. Write the issue with the evidence: a screenshot with arrows, or for motion a recording scrubbed to the wrong frame together with the state at that frame. Name the cause if you know it, for example "the select renders in a portal, so the modal treats a click on it as outside". Then let the agent fix it while you keep working. It takes about two minutes to write up and saves a context switch.
+
+## Reference
+
+The same steer as an adjective and as a direction:
+
+- Bad: "The feature card looks fake, make it feel like a real product."
+- Good: "Start from a copy of `examples/static-card`. Keep its 400 × 300 stage, crop and row sizes, then swap in our product. Real words only on the selected invoice and its total; everything else stays placeholder. Show me the still at 400 and at 390 beside the gold's."
+
+The good one hands over a gold to copy, names what to keep, sets the word budget and asks for evidence the agent can't fake.
+
+Gold example: `stageshow/SKILL.md`, Workflow step 4: film the closest gold example, copy its folder, keep its structure, then replace the look and content. A copy that only changes the name is not done.
+
+Check: after each pass, watch it yourself at speed and at phone width before the next prompt. The agent checks that it works; you judge whether it feels right. If you can picture the one screenshot an exacting designer would send back, that screenshot is your next direction.
 
 ## Gotcha
 
@@ -48,3 +63,5 @@ When the agent keeps missing after two rounds, rephrasing a third time is the ca
 
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN.
 - Related: [[skill-router]], [[prototype-picker]], [[vibe-to-generator]], [[review-format]].
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Workflow step 4, How hard to press; `static-card` 400 × 300).
+- Benji Taylor, benji.org/stageshow (read 2026-11-07): corrections become permanent rules; the agent optimises for working, the human judges feel.

@@ -1,7 +1,7 @@
 {
   "name": "design-engineering",
-  "version": "3.3.1",
-  "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns, sound, SVG, launch films. Plus a SOUL.md identity layer and ten workflow subagents. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
+  "version": "4.0.0",
+  "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns, sound, SVG, launch films, faux product UI. Plus a SOUL.md identity layer and thirteen subagents (ten workflow agents plus a cross-model design council, a design judge and a design grader), generated for Claude Code, Codex, Cursor, Gemini CLI, OpenCode and eve. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
   "author": {
     "name": "HKTITAN",
     "email": "harshitkhemani@gmail.com",
@@ -41,7 +41,7 @@
   "interface": {
     "displayName": "AgentsORG Design Engineering",
     "shortDescription": "Make AI-generated UI feel right",
-    "longDescription": "One skill, one entry: /design-engineering [verb] [target] reaches a navigable graph of 173 atomic nodes in thirteen clusters (philosophy, motion, sound, svg, diagrams, launch films, faux UI, typography, surface, components, layout, anti-patterns, meta). Verbs: review, polish, motion, mobile, break, tells, a11y, tokens, sound, svg, ship, film, stage, diagram, options, pick, name, which, agentation, pov. Ten optional workflow subagents, a SOUL.md identity layer and an AGENTS.md operating guide. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), Jakub Krehel, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation and 47 measured launch films.",
+    "longDescription": "One skill, one entry: /design-engineering [verb] [target] reaches a navigable graph of 177 atomic nodes in thirteen clusters (philosophy, motion, sound, svg, diagrams, launch films, faux UI, typography, surface, components, layout, anti-patterns, meta). Verbs: review, polish, motion, mobile, break, tells, a11y, tokens, sound, svg, ship, film, stage, diagram, options, pick, name, which, agentation, pov, council, grade. Thirteen subagents (ten workflow agents plus the design council, judge and grader) in Claude Code, Codex, Cursor, Gemini CLI, OpenCode and eve forms, a SOUL.md identity layer and an AGENTS.md operating guide. Distills Emil Kowalski, Benji Taylor, Jakub Antalik (transitions.dev), Jakub Krehel, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation and 47 measured launch films.",
     "developerName": "AgentsORG",
     "category": "Design",
     "capabilities": [

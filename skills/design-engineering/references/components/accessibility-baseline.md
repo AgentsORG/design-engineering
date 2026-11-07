@@ -60,6 +60,19 @@ Every component, every PR. Run through the keyboard test at minimum:
 3. Can you Enter / Space to activate?
 4. Can you Esc to dismiss?
 
+## Reference
+
+The focus ring is a shadow, so landing focus never moves the text, and an error is said by a second ring plus a line of words, never colour alone. Adapted from Stageshow's `Field`:
+
+```css
+.field { box-shadow: inset 0 0 0 1px var(--ink-4); transition: box-shadow 0.2s ease; }
+.field:focus-visible { box-shadow: inset 0 0 0 1px var(--accent), 0 0 0 3px var(--accent-soft); }
+.field[aria-invalid="true"] { box-shadow: inset 0 0 0 1px var(--danger), 0 0 0 3px var(--danger-soft); }
+```
+
+- **Gold example:** `stageshow/kit/controls/Field.css` and `stageshow/examples/form-error/`: the hint and the error share one lane under the field from the start, so the form never shifts when the error arrives. If the soft 3px halo can't clear 3:1 on the page, thicken the inner line to 2px. Copy the geometry, not the markup: the kit's `Button` is a `span` with `role="button"` and no `tabindex` because a scripted cursor drives it; a real product ships a `<button>`.
+- **Check:** at 390px wide, Tab through the screen and film it: a ring on every stop, no label moving a pixel as focus lands, no text under 10px. Then turn on reduced motion and confirm the screen shows its finished state, not frame 0.
+
 ## Gotcha
 
 Don't ship custom `<select>` or `<combobox>` components unless you've truly implemented all of: keyboard nav, type-ahead, screen-reader announcements, mobile keyboard handling. Most "custom select" components fail half of these. Use Radix UI, React Aria, or the native `<select>` instead.
@@ -70,4 +83,5 @@ Don't ship custom `<select>` or `<combobox>` components unless you've truly impl
 - bendc/frontend-guidelines — "Don't rely on color alone."
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN — DOM order, tooltips, page structure, reduced-motion media.
 - WCAG 2.2 + Apple HIG hit-target guidance; the criterion numbers are in [[wcag-thresholds]], custom-widget key maps in [[keyboard-patterns]].
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/controls/Field.css`, `stageshow/kit/controls/Button.tsx`, `stageshow/examples/form-error/index.tsx`, `stageshow/kit/reduced-motion.ts`, `stageshow/references/verify.md` (the 10px floor at phone width).
 - Related: [[hover-states-subtle]], [[forms-validation]], [[prefers-reduced-motion]], [[contrast-and-color-scheme]].

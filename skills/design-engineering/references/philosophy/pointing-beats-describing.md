@@ -63,6 +63,22 @@ The pointing tells the agent **where**. The prose tells it **why and what**. The
 - **Chrome's Recorder** — captures a full user-flow as selectors + actions. Heavier; useful for repro steps.
 - **Screenshot annotations** (CleanShot, Figma, Loom) — visual pointing rather than DOM pointing. Works for non-web UIs.
 
+## Reference
+
+Benji Taylor's Stageshow applies the rule inside its own code: scripts aim at named elements, never at coordinates. Two real lines:
+
+```tsx
+await a.click('add')                                              // examples/hero-demo/HeroDemo.tsx
+await a.click({ at: 'cell', x: 0.7, y: 0.5 }, { double: true })   // examples/table-edit/index.tsx
+```
+
+- Bad: `a.click({ x: 412, y: 188 })`, which lands on nothing once the 720-wide stage swaps to its 358-wide `compact` design.
+- Good: `data-target="add"` on the element, measured with `rect()` at run time, aimed inside the target and off its words.
+
+Gold example: `stageshow/examples/hero-demo/HeroDemo.tsx` (every target named), and `stageshow/references/review.md` for feedback: each finding is what you would screenshot, the frame file that shows it, and the fix in one line, ranked by how much of the scene it spoils.
+
+Check: every finding carries a selector or `data-target`, a frame or file reference, and a one-line fix; Agentation's output levels (compact, standard, detailed, forensic) only set how much prose rides along.
+
 ## Gotcha
 
 Don't use this principle as an excuse to skip explanation. A bare selector with no rationale ("`.sidebar > button.primary` — fix it") is *worse* than prose, because the agent has no idea what's wrong. The principle is *pointing + reason*, not *pointing instead of reason*.
@@ -73,4 +89,6 @@ Also: brittle selectors break. `.product-card > div:nth-child(3) > span` is tech
 
 - Benji Taylor — [benji.org/annotating](https://benji.org/annotating), [benji.org/agentation](https://benji.org/agentation).
 - [Agentation](https://www.agentation.com) — the productized version.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): stageshow/SKILL.md (Workflow step 5), stageshow/examples/hero-demo/HeroDemo.tsx, stageshow/examples/table-edit/index.tsx, stageshow/references/motion.md (The cursor), stageshow/references/review.md.
+- Benji Taylor, benji.org/annotating and benji.org/agentation (read 2026-11-07).
 - Related: [[agentation-workflow]] (how to install + use Agentation), [[feeling-right]] (the prose-side of feedback), [[review-format]] (structured UI-critique format).

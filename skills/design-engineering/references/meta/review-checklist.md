@@ -64,6 +64,21 @@ A pre-flight checklist for UI code review. Scan the user's code against each row
 
 Every UI code review. This is the systematic pass *before* the taste-driven pass. A launch film is not UI code: review it with [[launch-video-review]].
 
+## Reference
+
+A finished pass, before it becomes a [[review-format]] table: every row run, hits counted, flags kept apart from findings.
+
+```text
+#1  transition-all     3 hits  Card.tsx:12, Card.tsx:40, Menu.tsx:8   finding
+#4  duration > 300ms   1 hit   Onboarding.tsx:22 (600ms, first run)   flag, kept
+#7  ungated :hover     0 hits
+#30 icon-only button   2 hits  Toolbar.tsx:31, Toolbar.tsx:44         finding
+```
+
+Gold example: `stageshow/references/verify.md`, the "What you see, what you do" table: each symptom beside its one-line fix, the shape of this checklist's Issue and Fix columns, answered from frames. Benji's call differs on row 17: Stageshow's default accent is `#3b82f6`, a starting point a product's own tokens replace; in shipped product UI the row stands.
+
+Check: re-run the greps after fixing and paste the new counts. A row cleared by hiding or deleting the thing it points at is still open (Benji's gate rule). Rows about what renders (8, 9, 17, 36, 38) also get one screenshot per theme: a clean grep proves the source, not the frame.
+
 ## Gotcha
 
 Don't run the checklist mechanically without context. Item 4 ("duration > 400ms") is fine for rare-moment animations (see [[delight-impact-curve]]) — it's a flag, not a rule. Always check the context before writing the row.
@@ -75,4 +90,5 @@ Also: the checklist is not exhaustive. The most valuable reviews catch what's *n
 - Emil Kowalski — Review Checklist section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
 - Jakub Krehel, interfaces skills (MIT, HEAD `592aedc`): the Before-you-finish tables in `better-accessibility`, `better-colors` and `better-ui` — rows 23–26 and the row-5 fix.
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/scripts/lint.mjs` — the patterns behind rows 14–22. Its mono, numbering, hairline, shadow and terracotta rules are its owner's taste and are not adopted (`references/research.md` §6).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/verify.md` (What you see, what you do), `stageshow/references/rehearse.md` (Lines that are never intentional), `stageshow/kit/stage.css` (default accent), `stageshow/references/looks.md` (mapping a product's tokens).
 - Related: [[review-format]] for the output format, [[ai-default-tells]] for broader visual audit.

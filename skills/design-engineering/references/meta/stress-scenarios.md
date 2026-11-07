@@ -55,6 +55,18 @@ A throwaway route, scenarios side by side, each in a fixed container (a box on t
 
 **Viewing modes are the user's to toggle** — dark mode, browser zoom, reduced motion, keyboard focus. Name them in the report; re-declaring dark tokens under a class on the page observes a different component. Direction is content, not a viewing mode: wrapping a scenario in `dir="rtl"` is fair. The full run, toggle and report is [[cmd-break]].
 
+## Reference
+
+One row, one hostile fixture, three boxes. The bad harness proves nothing; the good one is the report.
+
+- Bad: `<MemberRow name="Ana Silva" email="ana@acme.com" />` once, in a 1280px page, one screenshot.
+- Good: the same row fed `name: "María-José Fernández-Castellanos"`, `email: "procurement.notifications@northwind-logistics.co.uk"`, `role: "Billing admin"`, `seats: 1284`, in fixed boxes of 320, 560 and 1100px side by side, each captioned with its break as one line and one cause: `spills its slot: email past the 320 box`, `tight inset: badge 4px from the row edge`.
+- Borrow Benji's harness habit: shoot the page at the shipping width and again at 390 (`references/rehearse.md`), and when Stageshow's scripts sit beside the project, run `node scripts/layout.mjs <harness-url> --select .harness --width 390 --strict`, which checks plain UI outside a Stage. His Liveline chart was stress-tested the same way, with worst-case data.
+
+Gold example: Jakub's `skills/break/scenarios.md` for the scenario list; `stageshow/references/rehearse.md` (Lines that are never intentional) for writing each break as one named line.
+
+Check: every box carries a named break or the word "holds". A break cleared by deleting the hostile value from the fixture, or by clipping it with no decision about what yields, stays open, the way Stageshow's gate counts a line cleared by hiding the thing it points at as a bug.
+
 ## Gotcha
 
 Isolation is the point here and the trap in [[prototype-picker]]: stress tests run in a bare harness because the question is whether the component defends itself; design variants run on the real page because the question is how it looks in context. Don't swap them.
@@ -63,4 +75,6 @@ Isolation is the point here and the trap in [[prototype-picker]]: stress tests r
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/break/SKILL.md`, `break/scenarios.md`; `skills/state-machine/SKILL.md`, `state-machine/switcher.md`. With the companion installed, `/break` and `/state-machine` own the run ([[interfaces-reconciliation]]).
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/break-ui/SKILL.md, skills/break-ui/CATALOG.md (realistic values, failure signatures, keeping the fixture).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/rehearse.md` (filming at 390, the never-intentional lines, clearing by hiding), `stageshow/scripts/layout.mjs` (flags from its `--help`).
+- Benji Taylor, benji.org/liveline (read 2026-11-07).
 - Related: [[states-are-the-work]], [[content-authenticity]], [[skill-router]].

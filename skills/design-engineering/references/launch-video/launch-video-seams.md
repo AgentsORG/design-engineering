@@ -41,6 +41,7 @@ Inside a HyperFrames project the values `seam-stamp.mjs` writes win over this ta
 - An arrival or a payoff: the inverse zoom, and only there.
 - A product action: the cut on the click ([[launch-video-cuts]]), or the pressed button filling the frame.
 - An act break: a fill or a dip through a shared ground (Adaline's inverting circle, Poke '7''s one dip to white). Extend's three brand-colour dips show the same dip used as an ordinary seam.
+- A looping film's seam from its last frame back to its first: never play a navigation backwards. Undo what the loop added in place (last change first, about 70 ms apart) or cut while something covers it, start on a calm frame, and have the next action begin within about a second (Benji Taylor, Stageshow `references/motion.md`, Loops).
 
 Use 2-3 seam types per film, one of them primary for 60-70 % of scene changes; hand-authored morphs don't count against that. Zero overlap: a `tl.set` kills the outgoing element on the cut frame, so exactly one side is visible per frame.
 
@@ -62,6 +63,15 @@ Typing it is not passing it: 2.4.0's demo typed its edge-on collapse as a morph 
 
 Any multi-scene composition: launch films, sizzles, README films. The register sets the cut rate ([[launch-video-registers]]), and a zero-cut morph chain can sit inside several registers; a re-branded template keeps every seam in its slots ([[launch-video-structure]]); seams are checked on the render at native fps ([[launch-video-review]]). Motion inside a shot is [[launch-video-motion]]. Product UI transitions stay with [[fly-not-teleport]] and [[cross-blur-transitions]].
 
+## Reference
+
+- Bad: the exit scales 1 → 1.18 on an ease-out and sits still for 6 frames; the entry waits 0.2 s, then grows 0.78 → 1 from rest. That is two stills with a cut between them.
+- Good: the exit runs 1 → 1.18 on Stageshow's `through` curve, `cubic-bezier(0.8, 0, 0.1, 1)`, and the cut lands while it is still travelling (by the curve's own maths its speed peaks at ~46 % of its time). The entry runs 0.78 → 1 on `settle`, `cubic-bezier(0.05, 0.85, 0.3, 1)`, over 0.6-0.8 s from frame 0, so it starts at speed. Benji Taylor's kit (`stageshow/kit/ease.ts`) describes both as measured from launch films. Inside a HyperFrames project the stamp's eases win ([[hyperframes-reconciliation]]).
+
+Gold example: this repo's film, `docs/demo/hyperframes/ledger.json` (the `name → motion` Z row). For a looping film's seam back to the start, `stageshow/examples/subscriptions/` resets by switching scenes, never by rewinding, and snaps its data back while it is out of sight.
+
+Check: film the seam and step from 2 frames before the cut to 2 after. The moving surface or carrier changes position on all five frames, its per-frame travel agrees within ~10 % across the cut, and no frame shows both scenes at rest.
+
 ## Gotcha
 
 The commonest seam error is a pull answered by a push: a receding exit followed by an entrance that grows from small, which is what most frameworks do by default. The 2.4.0 demo's dock seam (exit z −1, entry z +1) was one; the 2.6.0 film's Z seam pushes on both sides (1.04 → 30 out, 0.78 → 1 in). Match the scale sign, or hand across a carrier whose rects agree.
@@ -73,3 +83,4 @@ The commonest seam error is a pull answered by a push: a receding exit followed 
 - Skale (skale.solutions/portfolio), measured by HKTITAN 2026-09-28: Listen Labs, Adaline, Replit Parallel Agents, Browserbase, the Poke anthology, Poke '7', Bud, Taste Labs, Agent Arcade, Bolt, MadeThis, Extend and the rest of the 29; counts in `docs/research/launch-films/notes/synthesis-skale.md`.
 - Google Gemini app (2024, Ordinary Folk), Google AI Mode (2025, Ordinary Folk, inferred), Perplexity Comet (2025, Studio Freight), Apple Liquid Glass (2025), Figma Motion (2026), Framer 3.0 (2026), Notion Mail (2025), Granola 2.0 (2025), measured 2026-09-28; counts in `docs/research/launch-films/notes/synthesis-acclaimed.md`.
 - This repo's launch film, `docs/demo/hyperframes/ledger.json`: eight typed seams (2.6.0); the 2.4.0 demo's rows are at commit 8653a1c.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/ease.ts` (`through`, `settle`), `stageshow/references/motion.md` (Loops), `stageshow/examples/subscriptions/index.tsx` (scene change as the reset, `a.snap` while hidden).

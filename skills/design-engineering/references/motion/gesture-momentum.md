@@ -29,6 +29,8 @@ const onPointerUp = (e) => {
 
 Two samples make a noisy velocity: one late `pointermove` can halve or double it. Keep the last ~20 pointer samples and measure over the last ~100 ms before the release, timed from the event's `timeStamp`. On release the spring starts from that velocity toward its new destination, and the next press tests against that destination ([[animated-hit-testing]]).
 
+The throw starts at the finger's speed. A pause at the hand-over, an ease-in from rest or a gap that snaps shut afterwards each turns one gesture into two motions.
+
 ## Damping at boundaries
 
 When the user drags past the edge, don't stop hard. Resist more the further they go — Apple's rubber band:
@@ -69,6 +71,20 @@ Past a boundary, allow the drag with rising friction (the rubber band above) ins
 
 Any drag, swipe, dismiss, pull-to-refresh, slider, or carousel. If the interaction takes a real pointer input, all five rules above apply.
 
+## Reference
+
+```ts
+// Adapted from stageshow/examples/swipe/index.tsx: a release curve whose first slope is the finger's speed.
+const v = Math.abs(lastX - firstX) / Math.max(1, lastT - firstT); // px/ms at release
+const left = row.width + dx;                                     // px still to travel
+const ms = 300, x1 = 0.25;
+const y1 = Math.min(0.95, (x1 * v * ms) / left);
+row.style.transition = `transform ${ms}ms cubic-bezier(${x1}, ${y1.toFixed(3)}, 0.35, 1)`;
+```
+
+- Gold example: `stageshow/examples/swipe/` (swipe to archive: 1:1 under the finger, thrown off at release speed, then the gap closes in one ease) and the `detail-throw` pair in `stageshow/teaching/details.tsx`. The example reads its last four scripted samples; real input wants the ~100ms window above.
+- Check: step the release at one frame apart; the row's displacement per frame neither drops (a pause) nor jumps (a step) across the release frame.
+
 ## Gotcha
 
 Touch events and pointer events are different APIs and produce slightly different velocity numbers. Always normalize to `px/ms` and tune your thresholds against the slower of the two. iOS Safari's touch event timing is notably noisier than mouse pointer timing on macOS.
@@ -79,4 +95,5 @@ Touch events and pointer events are different APIs and produce slightly differen
 
 - Emil Kowalski — gesture and drag interactions (Sonner, Vaul).
 - iOS Human Interface Guidelines — rubberband / damping behavior.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/apple-design/SKILL.md (the 0.55 rubber-band constant, overshoot only after momentum).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/apple-design/SKILL.md (the 0.55 rubber-band constant, overshoot only after momentum).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `examples/swipe/index.tsx` (velocity-matched release curve), `teaching/details.tsx` (`detail-throw`), `references/motion.md` (Phones in motion).

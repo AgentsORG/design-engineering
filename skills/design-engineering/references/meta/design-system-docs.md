@@ -31,6 +31,8 @@ Four parts, always this order:
 3. **One correct and one incorrect example**, real code from the codebase. Models follow examples better than prose, and the incorrect one inoculates against the exact mistake.
 4. **A flowchart when a choice has three or more options.** A tree gets walked the same way every run; a paragraph gets interpreted.
 
+- **Name the lookalike in the incorrect example.** The commonest drift is a hand-built twin of a part that already exists. Benji's rule is to check the part list before writing a class, because a hand-built button is where uneven padding and unsized text come from (Stageshow `SKILL.md`, The kit).
+
 For tokens, the load-bearing rule is the layer: components use semantic tokens, never primitives, never raw values — then a flowchart per role ("what background do I use").
 
 ## 4. Language rules
@@ -53,6 +55,24 @@ Fix the docs, never just the output — a corrected screen fixes one screen; a p
 
 Creating or updating design docs; an agent keeps hardcoding colors, inventing variants, or picking the wrong component; a project adopting a contract for the first time.
 
+## Reference
+
+One component entry in the four-part order, with values from Stageshow's `Button`:
+
+```md
+## Button
+Use for actions.
+Variants: `secondary` (default), `primary` (the one action a moment is about), `tertiary`, `ghost`, `danger`. Nothing else exists.
+Sizes: `small` 24px, `medium` 28px (default), `large` 32px.
+A label that changes (Resolve → Resolved) changes on the same Button; never swap in a second element.
+Correct: <Button variant="danger" icon={Trash}>Delete</Button>
+Incorrect: <button className="px-3 py-1 rounded-md">Delete</button> (hand-built: uneven padding, unsized text)
+```
+
+Gold example: the `Button` row in `stageshow/references/kit.md` (closed variants and sizes, the default named, never hand-build a button), with its specimen sheet `stageshow/examples/buttons/`. Specimen sheets are catalogs, not compositions.
+
+Check: prompt one real screen against the docs, then put its still beside the specimen sheet or the real product at the same scale (Stageshow `references/looks.md`, Check it). A control that looks foreign is a hole in the docs: read the computed styles again rather than nudging by eye.
+
 ## Gotcha
 
 A documented variant that doesn't exist is worse than an undocumented one that does. The inventory step is the whole difference.
@@ -62,3 +82,4 @@ A documented variant that doesn't exist is worse than an undocumented one that d
 - Emil Kowalski's design-engineering practice on documenting systems for agents, distilled by HKTITAN.
 - Google Labs DESIGN.md spec; AgentsORG `.design` (`rationale`, `components.when` / `when_not`).
 - Related: [[using-design-md]], [[using-design-file]], [[skill-writing-rules]], [[component-api-design]].
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (The kit: use the kit part, never a lookalike; specimen sheets are catalogs), `stageshow/references/kit.md` (`Button`), `stageshow/kit/controls/Button.tsx`, `stageshow/examples/buttons/`, `stageshow/references/looks.md` (Check it).

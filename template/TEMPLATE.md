@@ -8,7 +8,7 @@ This file is a starter template for adding a new skill to this repo. It is **del
 2. Create the folder `skills/<my-new-skill>/`.
 3. Copy the SKILL.md template block below into `skills/<my-new-skill>/SKILL.md`.
 4. Update the frontmatter — `name` (must match folder), `description` (the "Load when…" line), `metadata.author`.
-5. Decide if you're using the skill-graph pattern. If yes → create `references/<theme>/` subfolders and atomic nodes; keep `graph: true`. If no → write all content directly in `SKILL.md`; set `graph: false`; stay under 500 lines per the [agentskills spec](../spec/agent-skills-spec.md).
+5. Decide if you're using the skill-graph pattern. If yes → create `references/<theme>/` subfolders and atomic nodes; keep `graph: "true"`. If no → write all content directly in `SKILL.md`; set `graph: "false"`; stay under 500 lines per the [agentskills spec](../spec/agent-skills-spec.md).
 6. Add an entry to `.claude-plugin/marketplace.json` so the new skill is published as a Claude Code plugin.
 7. Add a CI required-files row in `.github/workflows/lint.yml` if you want CI to enforce its presence.
 
@@ -24,7 +24,7 @@ license: MIT
 metadata:
   author: YOUR_NAME
   version: "0.1.0"
-  graph: false
+  graph: "false"
 ---
 
 # my-new-skill

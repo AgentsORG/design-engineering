@@ -1,0 +1,126 @@
+/* Shared look for the design-engineering README stills.
+   One figure language (craft.md, A page of demos): the same well, gutter,
+   window shadow and radius on every scene; light stage, one solid accent,
+   quiet greys. Layouts follow hero-demo (corner and bottom bleed on a well). */
+.de {
+  & .ss-stage {
+    --gutter: 32px;
+    /* One solid accent: the kit's Meter fills with accent → accent-2, which
+       is the blue-to-purple tell. Pin the second stop to the first. */
+    --ss-accent-2: var(--ss-accent);
+    /* Terminal colors: one accent for paths and the prompt mark, status
+       green only for a real pass */
+    --ss-term-path: #8aa4dc;
+    --ss-term-sigil: #8aa4dc;
+    --ss-term-ok: #7fd6a4;
+    --ss-term-dim: #6c6c74;
+    overflow: hidden;
+    /* Square: GitHub shows the PNG on light and dark pages, and a rounded
+       tile would leave page-colored corners on one of them */
+    border-radius: 0;
+    background: var(--ss-well);
+  }
+
+  /* The hero window: pinned top-left by one gutter, off the right and the
+     bottom (corner bleed, framing.md). Sizes are set per scene. */
+  .de-win {
+    position: absolute;
+    top: var(--gutter);
+    left: var(--gutter);
+  }
+
+  /* ---- Terminal content (inside Window chrome="terminal") ---- */
+
+  .de-term {
+    font-size: 12px;
+  }
+
+  .de-term .w { color: #f1f1f3; }
+  .de-term .a { color: var(--ss-term-path); }
+  .de-term .gap { height: 6px; }
+
+  /* Claude Code's own marks, as its TUI draws them: a ⏺ before each
+     assistant turn, ⎿ under a tool call, > on the input */
+  .de-cc-turn { display: flex; gap: 8px; }
+  .de-cc-dot { color: #f1f1f3; flex: none; }
+  .de-cc-dot[data-tool] { color: var(--ss-term-ok); }
+  .de-cc-in {
+    margin-top: 10px;
+    padding: 3px 10px;
+    border: 1px solid #3a3a42;
+    border-radius: 6px;
+    color: #f1f1f3;
+  }
+  .de-cc-in .ss-term__caret { margin-left: 1ch; }
+  .de-cc-hint { padding-left: 11px; }
+
+  /* A markdown table as Claude Code renders it: ruled columns in the grid */
+  .de-cc-table {
+    display: inline-grid;
+    margin: 4px 0 2px 16px;
+    border: 1px solid #34343b;
+    border-radius: 4px;
+  }
+  .de-cc-table > div {
+    display: grid;
+    border-top: 1px solid #34343b;
+  }
+  .de-cc-table > div:first-child { border-top: 0; color: #f1f1f3; }
+  .de-cc-table span { padding: 1px 10px; white-space: pre; }
+  .de-cc-table span + span { border-left: 1px solid #34343b; }
+
+  /* ---- Light surfaces: satellites and product cards ---- */
+
+  .de-sat {
+    position: absolute;
+    right: var(--gutter);
+    bottom: var(--gutter);
+    box-shadow: var(--ss-shadow-satellite);
+  }
+
+  .de-h {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 600;
+    color: var(--ss-text-strong);
+  }
+
+  .de-sub {
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--ss-text);
+  }
+
+  .de-mono {
+    font-family: var(--ss-mono);
+    font-size: 11.5px;
+    line-height: 16px;
+    color: var(--ss-text-strong);
+  }
+
+  .de-num {
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--ss-text-strong);
+  }
+
+  .de-label {
+    font-size: 11px;
+    line-height: 14px;
+    font-weight: 500;
+    color: var(--ss-text-faint);
+  }
+
+  /* A table of rows on one grid template: fixed tracks, hairlines between */
+  .de-tr {
+    display: grid;
+    align-items: center;
+    column-gap: 16px;
+    min-height: 40px;
+    border-bottom: 1px solid var(--ss-line);
+  }
+  .de-tr[data-head] { min-height: 30px; }
+  .de-tr[data-on] { background: var(--ss-accent-soft); margin: 0 -12px; padding: 0 12px; border-radius: 8px; border-bottom-color: transparent; }
+}

@@ -62,6 +62,22 @@ Whatever the source, the [[sound-palette]] rule still applies: one material. A C
 
 Any time an installer wants sound and has no ElevenLabs key — or has one and wants deterministic, parameter-driven sounds. `sound-family.mjs` chooses automatically: key present → ElevenLabs, absent → synth.
 
+## Reference
+
+A six-sound family for a team with no key:
+
+- Bad: Kenney's `click_002.ogg` raw, a Freesound chime, a ZzFX laser and an AudioGen whoosh: four rooms, one non-commercial weight file, no licence written down.
+- Good: `node scripts/sound-family.mjs family.json --provider synth --out public/sfx` writes six mono WAVs from one manifest (a `tick` at 3200 Hz for 70 ms, an `error` thud falling 220 to 140 Hz in 160 ms), and `manifest.json` records each file's recipe and licence.
+
+| Need | Path | Licence to record |
+|---|---|---|
+| Ticks, taps, two-note tones | synth recipe | generated locally |
+| A brand material | Stable Audio 3 Small-SFX | Stability Community, flips at US $1 M |
+| Shipping today | Kenney, re-pitched | CC0 |
+
+Gold example: the `synth` blocks in `skills/design-engineering/scripts/sound-family.example.json`, the offline recipe beside every prompt.
+Check: open `manifest.json` and read the licence column; any CC BY-NC weight or non-commercial pack fails before launch. Then play the family back to back: one material, or it is a grab-bag.
+
 ## Gotcha
 
 "Open source" and "commercial use" are not the same claim. AudioGen weights are non-commercial; Stability's license flips at US $1 M revenue; soundcn mixes CC0 with a proprietary pack. Record the license next to every file in the manifest, and re-check it before a launch.

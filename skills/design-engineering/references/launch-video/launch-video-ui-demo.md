@@ -30,6 +30,7 @@ HeyGen's house values (heygen-com/hyperframes `.agents/skills/oversized-cursor`,
 - **Entry:** from below the frame (`top` 115-120 %) on one decelerating glide, 0.4-0.92 s `power3.out`. The tip, not the box centre, lands on the target, and every press pivots on it.
 - **Press:** scale 0.84 over 0.1 s `power2.in`, back to 1 over 0.22 s `power2.out` (1:2); the target dips to 0.94 in its own tween on the same frame, and a cursor-only tap, such as focusing an input, gets no target reaction. Across HeyGen's cursor-press tweens, 43 use 0.84 and 17 use 0.90.
 - **Between beats:** it drifts aside over 0.5-0.9 s during beats it does not own — never frozen on the action, never wobbling.
+- **Aim off the label.** The tip lands inside the target but off its words (Stageshow aims 85 % across and 60 % down), so the word being pressed can still be read on the press frame. Between beats the cursor rests on empty surface near its next move, never on an unused control (Benji Taylor, Stageshow `references/motion.md`, The cursor and Story).
 - **Exit:** off the nearest edge (`power2.in`, 0.5-0.7 s) or as the carrier of the next seam ([[launch-video-seams]]); never faded or masked out in place (a standing direction in the Send-to-HyperFrames handoff §8; figma-launch act11 parks its cursor, then exits it off the bottom).
 
 HyperFrames' distributed physics-press-reaction rule differs on nearly every value: a 48-96 px cursor at 1080p, a 0.7-1.3 s `power2.inOut` approach, cursor and button pressed together to 0.90 and sprung back on `back.out` over 0.4-0.7 s. Inside a project, the doctrine values above win ([[hyperframes-reconciliation]]).
@@ -66,6 +67,16 @@ A persistent interface is continuous by construction: the last settled frame of 
 
 Any film that shows a product surface, a cursor or a prompt, including the payoff beat before the endcard ([[launch-video-structure]]). Loading states inside the product itself follow different rules ([[empty-loading-states]]). A demo that plays on a page rather than in a film is [[MOC-faux-ui]].
 
+## Reference
+
+- Bad: the pointer lands dead centre on "Deploy" and covers the word. It travels a straight line in a fixed 0.5 s whatever the distance, and the toast appears before the press bottoms out.
+- Good: a 600 px trip bows about 24 px (`min(dist × 0.08, 24)`) and takes `clamp(260 + dist × 0.9, 300, 650)` = 650 ms on an ease-in-out cubic. It aims at (0.85, 0.6) of the button, off the label, settles for 120 ms, then presses for 100 ms: scale 0.9 in 80 ms, released over 260 ms on `cubic-bezier(0.22, 1, 0.36, 1)`. The toast starts only after the press, and the cursor then rests on empty surface beside its next target.
+- Benji's call differs on two values. His 0.9 press suits a product-scale pointer on a page, while HeyGen's 0.84 above is for a 7cqw film cursor. His 35 ms per character (~29 c/s, jittered 0.7-1.3×) sits between the read and recognise speeds, so a prompt that carries the argument still types at 15 c/s.
+
+Gold example: `stageshow/examples/hero-demo/HeroDemo.tsx`. Its script moves to Copy, clicks, brings the terminal in, pastes with `cmd+v`, rests and holds the payoff for 2 s. `stageshow/kit/act.ts` holds the move, click and type timings.
+
+Check: step each press at 40 ms frames. On no frame does the tip sit over the label, the consequence's first changed frame comes after the press's lowest frame (inside a HyperFrames project, on the click frame instead), and during a beat it does not own the cursor is never parked on a control.
+
 ## Gotcha
 
 A native-size pointer on a wide, full-frame shot vanishes in a feed: go to 7cqw, or crop in until it reads, as Cursor 2.0 does. A cursor that freezes while the UI animates, or fades out mid-frame, breaks the character. Skale's ~53 c/s copied into a film whose prompt carries the argument leaves the viewer reading the caption instead. A spinner looping through a hold is decoration: the wait must step or be cut.
@@ -77,3 +88,4 @@ A native-size pointer on a wide, full-frame shot vanishes in a feed: go to 7cqw,
 - Data: `docs/research/launch-films/` (tables/, metrics/, notes/synthesis-skale.md, notes/synthesis-acclaimed.md, digests/).
 - HeyGen, hyperframes-launches (Apache-2.0): claude-design-send-hyperframes-launch/HANDOFF.md §8 and README.md; figma-launch/HANDOFF.md (act11); cloud-render-launch/HANDOFF.md §3-4; pr-to-video-launch/compositions/feature-*.html; claude-paper-launch/compositions/chat-response.html L325-341 and followup-type.html L380 (prompt reveal) and index.html L168-240 (the typing-tick SFX lane); the tween census of cursor press scales (docs/research/launch-films/digests/heygen-launches.json, from heygen-corpus-stats.json).
 - heygen-com/hyperframes (Apache-2.0): .agents/skills/oversized-cursor/SKILL.md and .agents/skills/motion-doctrine/SKILL.md (internal); skills/hyperframes-animation/rules/physics-press-reaction.md; skills/product-launch-video/SKILL.md (capture).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/act.ts` (`move` bow and duration, `click` settle and press, `type` 35 ms with 0.7-1.3× jitter), `stageshow/kit/cursor.css` (press scale 0.9 in 0.08 s, release 0.26 s), `stageshow/references/motion.md` (The cursor, Story), `stageshow/examples/hero-demo/HeroDemo.tsx` (script, 2 s payoff hold).

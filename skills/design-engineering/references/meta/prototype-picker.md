@@ -48,6 +48,20 @@ Then integrate the winner per project conventions ([[component-api-design]] if i
 
 "Show me a few options", "which feels better", "not sure if". Not for reviewing existing UI ([[review-format]]) or polishing a finished component ([[ui-polish-pass]]).
 
+## Reference
+
+The presentation table for an inbox list, worst content loaded (a 38-character sender, a two-line subject, 40 rows, the empty state):
+
+| Variant | Axis | Wins when | Cost |
+|---|---|---|---|
+| Dense | density: 32px one-line rows, 13px sender, faint preview | triage of 200 mails a day | previews truncate at 390 wide |
+| Editorial | type: 15px subject over a 13px preview, 56px rows | reading, not sorting | a third as many rows per screen |
+| Swipe | interaction: swipe to archive, the row thrown at finger speed | phone-first use | needs a visible undo route on desktop |
+
+Gold example: `stageshow/playground/viewer.tsx`, Benji's own example picker: one control writes `?example=<name>` into the URL with `history.replaceState`, with Replay and Step beside it, so a shared link opens the same variant and any motion can be stepped a frame at a time.
+
+Check: film each variant at its shown size and at 390 and lay the stills on one sheet. Judge the silhouettes at thumbnail size first (Benji's restraint rule); two variants you can't tell apart there are tints of one idea, so replace one before presenting. The full-size render is still the one the user judges.
+
 ## Gotcha
 
 Divergence is not an excuse to drop the craft bar. A sloppy variant doesn't widen the exploration; the user rejects a good direction because the type was ugly, and the run taught them nothing.
@@ -56,4 +70,5 @@ Divergence is not an excuse to drop the craft bar. A sloppy variant doesn't wide
 
 - Emil Kowalski's design-engineering practice on prototyping, distilled by HKTITAN; Josh Puckett's DialKit for the control panel.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/prototype/SKILL.md, skills/prototype/PICKER.md.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/playground/viewer.tsx` (example picker, `?example=` in the URL, Replay, Step), `stageshow/references/craft.md` (Restraint: judge the silhouette at thumbnail size).
 - Related: [[taste-is-trained]], [[stacking-chains]], [[build-a-tool]], [[vibe-to-generator]], [[stress-scenarios]] (the isolated harness, for robustness rather than direction), [[interfaces-reconciliation]] (hosting variants on the real page).

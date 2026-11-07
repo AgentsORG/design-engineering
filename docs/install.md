@@ -1,0 +1,150 @@
+# Install
+
+One command sets up everything the package ships: the skill, the Claude Code plugin, the workflow agents for every harness it finds, the design-check hook, and (opt-in) the eve MCP server and companion skills.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.sh | bash
+```
+
+```powershell
+irm https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.ps1 | iex
+```
+
+See every change first, without making any:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.sh | bash -s -- --dry-run
+```
+
+```powershell
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.ps1))) -DryRun
+```
+
+## Options
+
+| `install.sh` | `install.ps1` | What it does |
+|---|---|---|
+| `--dry-run` | `-DryRun` | Print every change; change nothing |
+| `--only <parts>` | `-Only <parts>` | Comma list of `skill`, `plugin`, `agents`, `hooks`, `mcp`, `companions` |
+| `--harness <list>` | `-Harness <list>` | Comma list of `claude`, `codex`, `cursor`, `gemini`, `opencode` (default: the ones detected) |
+| `--yes` | `-Yes` | No prompt |
+| `--with-hooks` / `--no-hooks` | `-WithHooks` / `-NoHooks` | Hook on (default) or off |
+| `--with-mcp` | `-WithMcp` | Register the local eve MCP server |
+| `--with-companions` | `-WithCompanions` | Also install the Agentation skill |
+| `--uninstall` | `-Uninstall` | Remove what a previous run installed |
+
+Pin a release with `DE_REF=v4.0.0` (`$env:DE_REF = 'v4.0.0'` in PowerShell). Run either script from a checkout and it installs that checkout instead of downloading.
+
+The installer detects a harness by its CLI on `PATH` or its config folder in your home directory. It is idempotent: a second run changes only what differs. Before it replaces a file it did not write, it copies the original to `~/.config/design-engineering/backups/`. It backs up `settings.json` next to itself before merging the hook. It never reads or writes credentials. Everything it writes is listed in `~/.config/design-engineering/manifest.txt`, and `--uninstall` removes exactly those entries and puts back the copies it backed up.
+
+## What goes where
+
+| Part | Claude Code | Codex | Cursor | Gemini CLI / Antigravity | OpenCode |
+|---|---|---|---|---|---|
+| Skill | the plugin, else `~/.claude/skills/design-engineering/` | `~/.agents/skills/design-engineering/` | `~/.agents/skills/design-engineering/` | `~/.gemini/skills/design-engineering/` | `~/.config/opencode/skills/design-engineering/` |
+| Agents | the plugin, else `~/.claude/agents/*.md` from `agents/` | `~/.codex/agents/*.toml` from `harness/codex/agents/` | `~/.cursor/agents/*.md` from `harness/cursor/agents/` | `~/.gemini/agents/*.md` from `harness/gemini/agents/` | `~/.config/opencode/agents/*.md` from `harness/opencode/agents/` |
+| Hook | the plugin's `hooks/hooks.json`, else merged into `~/.claude/settings.json` | not wired yet | not wired yet | not wired yet | not wired yet |
+| eve MCP | `claude mcp add` (opt-in) | by hand, below | by hand, below | by hand, below | by hand, below |
+
+The agents in `harness/` are generated from `agents/*.md` by `scripts/build-agents.mjs`; see [harness/README.md](../harness/README.md).
+
+## Manual install
+
+### Skill
+
+```bash
+npx skills add AgentsORG/design-engineering -g -y
+```
+
+Without Node, copy the folder:
+
+```bash
+git clone --depth 1 https://github.com/AgentsORG/design-engineering
+mkdir -p ~/.agents/skills
+cp -R design-engineering/skills/design-engineering ~/.agents/skills/
+```
+
+Claude Code reads `~/.claude/skills/`, Gemini CLI `~/.gemini/skills/` and OpenCode `~/.config/opencode/skills/`; copy the same folder there for those harnesses. Codex and Cursor read `~/.agents/skills/`.
+
+### Claude Code plugin
+
+The plugin carries the skill, the agents and the hook in one install.
+
+```bash
+claude plugin marketplace add AgentsORG/design-engineering
+claude plugin install design-engineering@agentsorg -s user
+```
+
+Inside a session the same thing is `/plugin marketplace add AgentsORG/design-engineering` then `/plugin install design-engineering@agentsorg`. To pin a release, add the marketplace as `https://github.com/AgentsORG/design-engineering.git#v4.0.0`.
+
+### Agents per harness
+
+From a checkout:
+
+```bash
+cp agents/*.md ~/.claude/agents/                         # Claude Code without the plugin
+cp harness/codex/agents/*.toml ~/.codex/agents/          # Codex
+cp harness/cursor/agents/*.md ~/.cursor/agents/          # Cursor
+cp harness/gemini/agents/*.md ~/.gemini/agents/          # Gemini CLI
+cp harness/opencode/agents/*.md ~/.config/opencode/agents/  # OpenCode
+```
+
+Use the project folders instead (`.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.gemini/agents/`, `.opencode/agents/`) to scope the agents to one repo. Cursor also reads `.claude/agents/`.
+
+### Design-check hook
+
+After every `Edit` or `Write` to a `.css`, `.scss`, `.tsx`, `.jsx`, `.svg`, `.html`, `.vue` or `.svelte` file, `hooks/design-check.mjs` runs the deterministic checks from `skills/design-engineering/scripts/grade.mjs` (or a small built-in rule set when the grader is not installed) and adds any findings to the agent's context as a note. It never blocks a tool call and sends nothing over the network.
+
+The plugin wires it through `hooks/hooks.json`. Without the plugin, copy the script and merge the entry into `~/.claude/settings.json`:
+
+```bash
+mkdir -p ~/.config/design-engineering/hooks
+cp hooks/design-check.mjs hooks/merge-settings.mjs ~/.config/design-engineering/hooks/
+node ~/.config/design-engineering/hooks/merge-settings.mjs \
+  --settings ~/.claude/settings.json \
+  --command "node \"$HOME/.config/design-engineering/hooks/design-check.mjs\""
+```
+
+`merge-settings.mjs` backs up the file, adds one `PostToolUse` entry, and leaves everything else alone; `--remove` takes it out again. To edit by hand, merge [hooks/settings-snippet.json](../hooks/settings-snippet.json).
+
+Switch the hook off without uninstalling: set `DE_HOOKS=0`, or create `~/.config/design-engineering/hooks.off` (what `--no-hooks` does when the plugin is installed).
+
+### eve MCP server
+
+The eve runtime in `agent/` serves an MCP channel, so any MCP client can hand work to the design-engineering agent. Start it from a checkout with `npm install && npx eve dev`, then register it:
+
+```bash
+claude mcp add --transport http -s user design-engineering http://localhost:2000/eve/v1/mcp
+```
+
+For Codex, Cursor, Gemini CLI and OpenCode, add an HTTP MCP server named `design-engineering` with the URL `http://localhost:2000/eve/v1/mcp` in that harness's MCP settings.
+
+### Companions
+
+```bash
+npx skills add benjitaylor/agentation -g -y
+```
+
+Stageshow (faux product UI) installs from [benji.org/stageshow](https://benji.org/stageshow).
+
+## Verify
+
+| Harness | Try |
+|---|---|
+| Claude Code | `/design-engineering review`, then `@agent-design-council` or `@agent-ui-reviewer` |
+| Codex | "use the ui-reviewer agent on src/" |
+| Cursor | `/design-engineering` in Agent chat |
+| Gemini CLI | `/agents list` |
+| OpenCode | `@ui-reviewer` |
+
+## Uninstall
+
+```bash
+bash install.sh --uninstall
+```
+
+```powershell
+.\install.ps1 -Uninstall
+```
+
+Skills added with `npx skills` come out with `npx skills remove design-engineering -g`; the plugin with `claude plugin uninstall design-engineering@agentsorg`.

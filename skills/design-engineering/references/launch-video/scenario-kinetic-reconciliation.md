@@ -39,6 +39,17 @@ Its still share is not this graph's still share either: it counts a frame as sti
 - **A custom sound for the film's own joke** (a knock, a footstep, a bell) earns more than another stock impact ([[designed-sfx-anatomy]]).
 - **Generated key art:** describe the composition and never ask for empty space; darken for type in the film. Inspect every picture at 100 % for real makers' marks before it goes in.
 
+## Reference
+
+- Bad: a 60 s product-camera film goes through `finish.py`, fails "≤ 40 % still" (its register makes it about 49 % still), and gets recut faster until the gate passes.
+- Good: only the ≤ 38 s beat-cut teaser goes to scenario-kinetic-film. Its gates apply to it (≤ 40 % still, no still over 0.6 s before the end card, median motion ≥ 2.5 px a frame), it masters near −13 LUFS, and its 9:16 is re-laid out. The product film goes to [[launch-video-review]] and is judged against its own row.
+- Before any run, put one line in front of the user, such as "music bed + 12-sound kit + 4 key art: (the summed `dry_run` total). Go?". Nothing runs until they answer.
+- A gate that passes is necessary, not sufficient (Benji Taylor, Stageshow `SKILL.md`, Workflow step 7). A teaser that clears `finish.py` still has to read as the product, so watch it before you hand it over.
+
+Gold example: the Beat-cut sizzle row in [[launch-video-registers]] (Spline Hana, Material 3 Expressive, Figma glass, Arc on Windows: 30.7 cuts a minute, 26.7-38.1 s long), with per-film metrics in `docs/research/launch-films/tables/acclaimed.md`.
+
+Check: count the cuts a minute on the render and set them beside the row it was routed by. A teaser belongs at or past ~30 a minute; a film far below that was routed wrong, whatever `finish.py` says.
+
 ## Gotcha
 
 Scenario runs cost money, and a failed or blocked run can still be charged. Price every step with `dry_run`, give the user the total for the whole soundtrack and picture set, and wait for a go. Take model ids from `recommend`, never from memory. If `teams_list` returns several teams or projects, ask which one to use. Never write "no watermark" when a reference image is attached: the request is blocked as watermark removal, and charged. "No text, no logos" is enough.
@@ -47,4 +58,5 @@ Scenario runs cost money, and a failed or blocked run can still be charged. Pric
 
 - Scenario, `scenario-kinetic-film` skill (zip received 2026-10-30, no licence file: cited, never copied): `SKILL.md`, `references/method.md` §1, §5 (energy targets), `references/craft.md`, `references/sound.md`, `references/scenario-mcp.md`, `references/blocks.md`, `examples/kaiju-postal/`. Its companion skills: `npx skills add scenario-labs/skills`; its MCP server is `https://mcp.scenario.com`.
 - This graph's values: `docs/research/launch-films/` (HKTITAN, 2026-09-28).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Workflow step 7: a passing gate is necessary, not sufficient).
 - Related: [[skill-router]], [[hyperframes-reconciliation]], [[earshot-reconciliation]].

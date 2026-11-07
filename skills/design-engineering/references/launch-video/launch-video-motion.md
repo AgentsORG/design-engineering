@@ -64,6 +64,21 @@ A montage runs legible, then accelerating, then a blur zone, and snaps to a hold
 
 Every shot of a launch film, sting or README film. UI-scale springs stay in [[spring-animations]] and UI easing in [[easing-curves]]; inside a HyperFrames project the seam stamp's eases and exit timings win, and [[hyperframes-reconciliation]] settles overshoot, blur and hold motion.
 
+## Reference
+
+One push-in, specified so it reads as a single move:
+
+```ts
+gsap.to(view, { scale: 1.6, ease: 'power2.out' }); gsap.to(view, { x: -180, duration: 0.8 }) // bad: two eases read as two moves
+const a = bezier('camera')(t / 1.1)                    // good: one channel, Stageshow `camera` [0.45, 0, 0.1, 1], 1100 ms
+const scale = 1 + 0.6 * a, x = -(scale - 1) * FOCUS_X  // derived, pinned on the column the eye tracks; the cursor holds still
+```
+
+- Stageshow's camera agrees with this node and adds limits: a push-in needs a reason (the payoff unreadable at the shown size), the wide shot is a good still first, one push-in per story, in and back out, at most 2x with 32 px padding (`Camera` defaults).
+- Benji's call differs: moves inside a shot ride a bezier with a long soft tail (`house` `[0.65, 0, 0.1, 1]`, peak near 40 %, 1.4 to 2.7 s), not an exponential settle. Neither overshoots; pick one family per film.
+- Gold example: `stageshow/kit/motion/Camera.tsx` and `stageshow/kit/ease.ts`; claude-design-send (above) for the one-channel camera.
+- Check: Stageshow's motion-without-hierarchy test: cover each moving element in turn, and cut any the shot reads more clearly without.
+
 ## Gotcha
 
 A spring on every arrival reads as a toy, and a breathe loop on a held card reads as the video waiting. The films called lively are lively because the camera creeps, the rhythm accelerates and every cause visibly launches its effect; bounce is not what makes them lively.
@@ -73,3 +88,4 @@ A spring on every arrival reads as a toy, and a breathe loop on a held card read
 - HeyGen, *hyperframes-launches* (Apache-2.0): `heygen-apple-motion/02-bouncy-ui/index.html` L92-128, L474-480 (per-move taus L450-822); `01-ui-sting/index.html` L283-291, L356-361, L496-505; `03-message-sting/index.html` L332-434; `claude-paper-launch/FRAME-claude.md` L469-470, L619; `claude-design-send-hyperframes-launch/HANDOFF.md` §12.1; `timeline-launch/compositions/act2b-spiral.html` L306-380; `inspector-launch/DESIGN.md` "Motion Rules" and `index.html` L2433-2437, L2634-2644; `liquid-brand-refraction/js/liquid-pop-v2.js` L445-525. Tween census by HKTITAN (147 de-duplicated composition files, 3,446 calls; blur targets and per-ease medians over all 161 composition files): `heygen_corpus_stats.py` and `tables/heygen.md` in `docs/research/launch-films/`.
 - heygen-com/hyperframes (Apache-2.0): `.agents/skills/motion-doctrine/SKILL.md` (causal motion, no idle wobble, stillness before climax, timing intents) and `.agents/skills/cut-the-curve/SKILL.md` (Blur logic), repo-internal and not installed by `npx skills add`; `skills/product-launch-video/references/motion-language.md` (rule 3); `skills/hyperframes-animation/adapters/gsap-easing-and-stagger.md` (Spring Eases), `rules/spring-pop-entrance.md`, `rules/3d-camera-flight.md`.
 - Skale (skale.solutions/portfolio) films by client, and the acclaimed films (Linear Agent, Raycast, Apple Liquid Glass, Claude Cowork, Notion Mail, Notion 3.0, Granola 2.0), measured by HKTITAN 2026-09-28: `docs/research/launch-films/` (`notes/synthesis-skale.md`, `notes/synthesis-acclaimed.md`, `metrics/`).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/ease.ts` (`house`, `camera`), `stageshow/kit/motion/Camera.tsx` (1100 ms, pad 32, max 2), `stageshow/references/motion.md` (Scrolling and the camera; Story, motion without hierarchy).

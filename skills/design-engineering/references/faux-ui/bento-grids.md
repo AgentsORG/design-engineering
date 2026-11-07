@@ -57,11 +57,24 @@ A drawn object gets one light source and the shadow of the tiles around it. A pa
 
 Any feature grid, bento section or set of feature cards on one page. [[viewport-custom-design]] owns the page grid around it; [[cards-design]] owns product cards.
 
+## Reference
+
+A five-tile plan, generated and then fixed by the rules above:
+
+| Before | After |
+|---|---|
+| Five 1×1 tiles, each a cropped window with traffic lights | Hero UI 2×1 holding the only chrome; one component; one stat; one object; one statement |
+| "10x faster" at 32px, "faster" wrapping under the number | "14m" at 56px on one line (`white-space: nowrap`), lead "Under", label "median first reply" |
+| One `<Stage width={1000}>` around the grid in a 630px column | One `Stage` per tile at its slot width; copy at 17–24px as page HTML beside it |
+
+Gold example: `stageshow/examples/bento/` (Kite's features grid, hero and strip, its tile list written in the file before any tile was built); `stageshow/examples/hero-grid/` for an image-led grid where only one tile moves.
+Check: before building, count the UI tiles in the plan (a third to a half) and scan it for a repeated string or two same-kind neighbours; after, film the grid at a 320px host and confirm no important text renders under 10px.
+
 ## Gotcha
 
 One conversation threaded through five tiles ("Refund for order #4821" three times) feels like a story to its builder and reads as one signal repeated. Each tile gets its own specific moment.
 
 ## Sources
 
-- Benji Taylor, Stageshow (MIT, HEAD `8020574`, read 2026-11-01): `references/bento.md` (rules, tile kinds, layouts, the planning table), `references/backgrounds.md` (grounds, objects and drawings). Paraphrased and condensed.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/bento.md` (rules, tile kinds, layouts, the planning table), `stageshow/references/backgrounds.md` (grounds, objects and drawings), `stageshow/examples/bento/index.tsx` (the tile list), `stageshow/examples/hero-grid/`. Paraphrased and condensed; re-verified against 1.1.1.
 - Related: [[MOC-faux-ui]], [[marketing-surface-rules]].

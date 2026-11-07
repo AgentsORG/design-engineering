@@ -27,6 +27,7 @@ Without it installed, build to [[isometric-stickers]] as SVG ([[svg-animation]])
 | Duration | 123–180-frame loops at 60 fps (2–3 s) | [[duration-table]]: UI under 300 ms, onboarding hero 400–800 ms | Illustration time, not interface time: the action sits in the first second, the rest is the hold. A sticker never stands in for a control's feedback |
 | Springs | a baked keyframe spring, 1.448 overshoot, 91 frames | [[spring-animations]]: stiffness and damping | Different engines. Never port its keys into a UI spring or the reverse |
 | Idle motion | `wobble`, `sway` and `float` for faces and idle layers | [[delight-impact-curve]]: delight decays with frequency | Idle loops for one hero sticker on a rare screen. In a list or a frequent view, play once (`loop={false}`) and rest on `still` |
+| In a bento grid | the action loops every 123–180 frames | Benji Taylor's bento rule: a supporting tile plays one beat, once, as the grid scrolls in, 80–120 ms apart; one tile leads | Benji's rule wins in a grid: the sticker tile plays once and rests on its still; it loops only when it is the grid's lead tile |
 | Colours | `riso` inks by default | the contract ([[using-design-file]]) | The contract wins: `brand(accent, second)` from its tokens; `riso` only when there is no contract |
 | Corners | miter joins, butt caps, sharp | [[pov]] (this install: "pointy shapes are off-brand") | pov wins on a forked install: `round: true` on every part |
 | Grey | a `grey` slot | [[pov]] (this install: no grey inside illustrations) | Map `grey` to a pastel of the palette on this install |
@@ -41,4 +42,5 @@ Its default inks are a full six-accent palette. A sticker dropped into a product
 ## Sources
 
 - Kelvin Adithya, fun-isometric (MIT, github.com/kelvinkn17/skills, HEAD `7c8a752`, read 2026-10-27): `README.md` (install, requirements), `skills/fun-isometric/SKILL.md`, `kit/fun.ts` (`popBounce` and the entrance transform), `kit/Sticker.tsx`, `bin/fi.mjs`. Values are his; the settlements are this graph's.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `references/bento.md` (rule 11), `examples/staggered-bento/index.tsx`.
 - Related: [[skill-router]], [[interfaces-reconciliation]] (the same pattern for a review companion).

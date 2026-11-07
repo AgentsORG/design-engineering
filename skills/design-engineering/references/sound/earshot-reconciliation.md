@@ -37,6 +37,24 @@ Read realness as information when synthesis is the point: a clean designed chime
 
 MotionVideo's 29.5 s launch film (motionvideohq/motionvideo.xyz, MIT, `launch-video/audio/sounddesign.json`) is the whole loop in one file. A Mixkit track at 121 BPM is cut so its drop lands on the logo mark (frame 119), and the groove stops one beat early so the next downbeat lands on the lockup. The music rides −3 dB under screen recordings and −10 dB under typing. Each effect was forged and ranked with earshot: one click voice at one level, three key takes cycling with 1.5 dB jitter, the space bar −1.5 st, a whoosh aligned by peak, and one kalimba note on the track's tonic.
 
+## Reference
+
+What an agent may say about a mix it cannot hear:
+
+- Bad: "The mix is punchy and the whooshes land nicely."
+- Good: "`earshot timeline`: 31 onsets, 29 on their cut or up to 2 frames after, 2 lead by a frame (4.20 s, 9.87 s), moved 30 ms late; master -18.3 LUFS, -1.2 dBTP. `critique` flags loudness under -14; ignored, this is register B."
+
+Run it in this order, so the yardstick comes before the verdict:
+
+```sh
+earshot profile refs/ -o p.json                    # the register's own films, not the 7 unnamed ones
+earshot timeline film.wav --video film.mp4         # onsets against cuts, loudness, beat grid
+earshot find take.wav "a single key press"         # reject a trim marked head cut or tail cut
+```
+
+Gold example: MotionVideo's `launch-video/audio/sounddesign.json`, where every effect was forged and ranked with earshot and the drop is placed by frame.
+Check: in the hand-over, count every sentence that describes how the audio sounds; each must carry a command and the number it returned. One unbacked adjective fails the pass.
+
 ## Gotcha
 
 The launch scorecard describes the style of its 7 films. A dry reveal, a one-key bed or a quiet product-camera film will fail metrics that do not apply to it. Build a profile from the register's own films (`earshot profile refs/ -o p.json`) before trusting a "needs work".

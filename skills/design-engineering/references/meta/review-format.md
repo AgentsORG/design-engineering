@@ -31,6 +31,7 @@ When the user asks for a UI code review, output a markdown table with three colu
 3. **Link to nodes.** The Why should end with a `[[node-name]]` wikilink. This is how the agent invites the user to learn more without bloating the response.
 4. **Don't fix in prose around the table.** All actionable items go in the table. Prose around it is for high-level context only (e.g., "Three issues in the modal entrance:").
 5. **Order by impact.** Most-impactful issue first. Don't bury the lede.
+6. **Say what you didn't check.** End with one line naming what the review could not see (a theme, a device, the frames between states); a review that found nothing lists what it looked at (Benji Taylor's fresh-eye brief).
 
 ## When this format applies
 
@@ -64,6 +65,23 @@ When the user asks for a UI code review, output a markdown table with three colu
 
 The wrong version is unactionable. The right version tells the user exactly what to type.
 
+## Reference
+
+A visual finding keeps the table and names the frame it was seen in; the review closes on what it couldn't see:
+
+```markdown
+| Before | After | Why |
+|---|---|---|
+| `.toast { padding: 6px 8px }` (shot-390.png: text 6px from the edge) | `.toast { padding: 12px }` | Words under 8px from an edge read cramped; one value all round. See [[ui-polish-pass]]. |
+| `{saved ? <Badge>Saved</Badge> : <Badge>Draft</Badge>}` | `<Badge>{saved ? 'Saved' : 'Draft'}</Badge>` | Two elements remount and pop; one badge changing its label reads as one object. See [[cross-blur-transitions]]. |
+
+Not checked: dark theme, iOS Safari.
+```
+
+Gold example: `stageshow/references/review.md`: a ranked list (framing, then hierarchy and density, then motion, then polish), each item what you'd screenshot, the frame that shows it and a one-line fix.
+
+Check: read the first row alone. It should be the fault that spoils the most of the screen; Benji ranks by that, never by how easy the fix is. Then grep each Before in the code: one you can't find is a paraphrase.
+
 ## Gotcha
 
 Don't include the table if there are no issues. "This looks great — nothing to change" is a valid review and better than inventing nitpicks to fill rows.
@@ -71,4 +89,5 @@ Don't include the table if there are no issues. "This looks great — nothing to
 ## Sources
 
 - Emil Kowalski — Review Format (Required) section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/review.md` (ranking, items, saying what you couldn't check), `stageshow/references/craft.md` (Spacing and alignment: 12px inset), `stageshow/references/motion.md` (a label that changes changes on itself).
 - Related: [[review-checklist]] for the audit categories to scan against.

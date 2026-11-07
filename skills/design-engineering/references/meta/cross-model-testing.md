@@ -33,7 +33,7 @@ You don't need to cover every model. Cover the orchestration models your downstr
 
 The `evals/` folder in this repo has three eval files:
 
-- `loading.jsonl` — query + expected_load (true/false)
+- `loading.jsonl` — query + should_load (true/false)
 - `progressive-reads.jsonl` — query + expected_node
 - `end-to-end.md` — sample tasks + expected output structure
 
@@ -62,6 +62,21 @@ Compare results across models. Any divergence ≥5% on the same eval set is a ro
 - Before a new release / version bump.
 - Quarterly, as model behavior drifts with model updates.
 
+## Reference
+
+Two routing rows worth running on every model, in the file's real shape (`loading.jsonl` uses `should_load`):
+
+```json
+{"query": "the toast just pops in, can you fix it", "should_load": true, "reason": "enter/exit motion, phrased as a complaint"}
+{"query": "toast the bread for three minutes", "should_load": false, "reason": "noun match only: the broad-keyword failure"}
+```
+
+Take positives from real complaints in logs ("pops in", "feels cheap"), never the description's words. A row that repeats the description's nouns only proves the description matches itself.
+
+Gold example: this repo's `skills/design-engineering/evals/loading.jsonl` and `progressive-reads.jsonl`.
+
+Check: on each model, run one end-to-end task with the skill and without it and put the two outputs side by side, the way Benji compares skill against no-skill. If the with-skill output isn't visibly better on a model, routing passed there but the skill did not.
+
 ## Gotcha
 
 Don't test on synthetic queries you wrote yourself. Source from real user queries (production logs, user feedback, hero queries). Synthetic queries have a flavor that biases the model toward the answer you expect — they tell you the description matches the queries you wrote, not whether it matches reality.
@@ -71,3 +86,4 @@ Don't test on synthetic queries you wrote yourself. Source from real user querie
 - Perplexity Agents team — *"Designing, Refining, and Maintaining Agent Skills"*.
 - Anthropic — eval harness patterns.
 - Related: [[gotchas]], [[review-format]], [[../../CONTRIBUTING|CONTRIBUTING.md]].
+- Benji Taylor, benji.org/stageshow (read 2026-11-07): skill against no-skill, side by side.

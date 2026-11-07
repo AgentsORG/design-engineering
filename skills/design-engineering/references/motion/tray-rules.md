@@ -26,6 +26,8 @@ Third tray:  height 240px (final confirmation — shorter, just buttons)
 
 The variation does the heavy lifting of communicating "you're somewhere new." Without it, the stack feels frozen.
 
+- A tray is pinned by the edge it opened from and fits its content before its first frame; it never corrects its size while opening (Benji Taylor, Stageshow `references/motion.md`).
+
 ### 3. Single focus
 
 Each tray has **one primary purpose**. One question to answer. One choice to make. One form to fill. If you find yourself adding a secondary action or a second question, that's a second tray.
@@ -39,6 +41,8 @@ Every tray has:
 - A **dismiss affordance** — usually an X in the top-right corner, plus tap-outside-to-dismiss, plus swipe-down-to-dismiss on touch.
 
 Both are mandatory. A tray without a title is disorienting; a tray without a dismiss is hostile.
+
+- A released tray carries on at the finger's speed: build the dismiss curve so its first slope equals the release velocity, with no step or pause at the hand-over (Benji Taylor, Stageshow `examples/swipe/index.tsx`).
 
 ### 5. Preserve context (overlay, don't displace)
 
@@ -88,6 +92,21 @@ Things that are NOT trays:
 - Long forms. A 12-field form is not a tray — it's a screen.
 - Multi-step wizards with branching paths. Use a full screen with a progress indicator.
 
+## Reference
+
+A send-money stack, one job per tray, each a different height:
+
+| Tray | Height | Title | One primary action |
+| --- | --- | --- | --- |
+| 1 | 320px | Pick a recipient | tap a row |
+| 2 | 480px | Review payment | Confirm $24.00 |
+| 3 | 240px | Sent | Done |
+
+Bad: "Review payment" replaces "Pick a recipient" at the same 320px in one frame, the X in the same spot, so nothing says the user moved.
+Good: "Review payment" rises over it to 480px in 0.5s `cubic-bezier(0.3, 0.75, 0.1, 1)` (Stageshow's quick in-app phone response), bottom edge pinned, sized before its first frame, the first tray still visible behind the dimmed backdrop.
+Gold example: `stageshow/teaching/relationships.tsx` (surface resize: outline and content as one continuous change, even when reversed mid-way) and `stageshow/examples/swipe/index.tsx` for a release thrown at the finger's speed.
+Check: film the hand-over and a swipe-down release at 390px, stepped at 40ms. The bottom edge never lifts (the rule behind Stageshow's `anchor drift` check: an open sheet holds the edge it opened from), no frame shows the outline ahead of its content, and the release frame shows no change of speed.
+
 ## Gotcha
 
 The "varied heights" rule (#2) is the one most teams break. They build one tray component, set a fixed height, and stack it. The result feels broken even though each tray works in isolation. The fix is to allow per-tray height — content-driven, not container-driven.
@@ -97,4 +116,5 @@ Also: the dismiss interaction must respect [[gesture-momentum]]. Swipe-down-to-d
 ## Sources
 
 - Benji Taylor — *Family Values*, [benji.org/family-values](https://benji.org/family-values).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/motion.md` (Things that appear, travel and leave; Phones in motion), `stageshow/examples/swipe/index.tsx`, `stageshow/teaching/relationships.tsx` (surface resize), `stageshow/scripts/jumps-core.mjs` (`anchor drift`).
 - Related: [[fly-not-teleport]], [[gesture-momentum]], [[responsive-feedback]], [[cards-design]] (the broader modal/card-design rules).

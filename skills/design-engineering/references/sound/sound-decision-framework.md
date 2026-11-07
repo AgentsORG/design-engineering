@@ -38,6 +38,22 @@ The default is silence. A sound has to earn its place harder than an animation d
 
 Any time someone says "let's add a sound", "it needs a satisfying click", or "the OpenAI video has that nice tick". Ask how often, for what, and whether it survives the 100th time. Then, if it passes, go to [[sound-palette]] to design it and [[sound-motion-sync]] to place it.
 
+## Reference
+
+A to-do app, run through the tree as a ledger before any sound is made:
+
+| Moment | Heard per day | What the eye may miss | 100th use | Ships |
+|---|---|---|---|---|
+| Checkbox tick | ~40 | nothing | reaches for mute | No |
+| Task synced while the tab is hidden | ~3 | a state change with no visual | tolerable | Opt-in, one 180 ms two-note tone |
+| 30-day streak | once a month | nothing; it is a milestone | rare enough | A three-note figure, off with the toggle |
+
+- Bad: "add a satisfying click to every button and a whoosh on page changes."
+- Good: silent by default; one opt-in sync tone; the streak gets the only designed figure; Settings > Sound starts off.
+
+Gold example: Apple's *Designing Audio-Haptic Experiences* (WWDC19), the first-versus-hundredth-use test this tree is built on.
+Check: list every sound in the build with how often a user hears it in a day. Anything fired on every keystroke, scroll, hover or primary action fails unless the product is tactile; play each survivor 100 times in a row, and halve it or cut it at the first wince.
+
 ## Gotcha
 
 The 100th-use test is asymmetric. A sound that is *slightly* too loud or too long is annoying on the tenth use; a sound that is slightly too quiet or too short is never noticed as a flaw. When in doubt, halve the length and drop 3 dB — the same instinct as "if unsure, halve it" in [[duration-table]].

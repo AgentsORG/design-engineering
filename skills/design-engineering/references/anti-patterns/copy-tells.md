@@ -50,6 +50,17 @@ Have a reaction (real reactions are mixed). Vary the rhythm. Use "I" when it fit
 
 Any generated text a person will read; any marketing headline (the competitor paste test); every [[unslop-pass]]; error messages and empty states alongside [[copy-voice]].
 
+## Reference
+
+Three strings from one screen, before and after:
+
+- Button: wand, "Ask AI", sparkle → `Explain failure`. Name what happens (Stageshow `teaching/style.tsx`, style-sparkle).
+- Heading: `RECENT DEPLOYS` → `Recent deploys` (style-caps).
+- Answer: "It's crucial to note that several factors could potentially be impacting conversion." → "Conversion fell from 3.4% to 2.7% after the new address step went live on Tuesday." A number, a date, a cause, no hedge.
+
+Gold example: `stageshow/examples/ai-chat/index.tsx`. Its answer gives the drop, the cause (a postcode field that rejects spaces) and the fix in three sentences with no closing line, and the file lists its real strings at the top.
+Check: run the two tests on every string, then read each one in place at 390 wide. A label that truncates, wraps or sits ragged beside its neighbors fails even when the words pass (`stageshow/teaching/details.tsx`, detail-copy).
+
 ## Gotcha
 
 The pass is not "shorter". A sentence stripped to nothing but nouns reads as generated too. The target is a sentence a specific person would say about this specific product.
@@ -57,4 +68,5 @@ The pass is not "shorter". A sentence stripped to nothing but nouns reads as gen
 ## Sources
 
 - Emil Kowalski's design-engineering practice on writing, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/style.tsx` (style-sparkle, style-caps), `stageshow/teaching/details.tsx` (detail-copy), `stageshow/examples/ai-chat/index.tsx`.
 - Related: [[copy-voice]], [[content-authenticity]], [[unslop-pass]].

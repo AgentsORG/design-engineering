@@ -55,6 +55,21 @@ A second register can ride inside the primary one, as an act or as a layer: a ma
 
 This is the first decision on any launch film, sizzle or README film, and it comes before the storyboard. The beats come next, in [[launch-video-structure]]; where each cut lands is in [[launch-video-cuts]], and how things move inside a shot is in [[launch-video-motion]]. HyperFrames' `/hyperframes` front door routes by deliverable; this node picks the editorial register inside that deliverable. Where a HyperFrames default disagrees with the row, such as product-launch-video's injected crossfade or media-use's -14 LUFS socials recipe, [[hyperframes-reconciliation]] settles the motion and [[launch-video-sound]] the loudness.
 
+## Reference
+
+The register sets the numbers; inside it, each demo shot still needs a story shape:
+
+| Brief | Register | Shape of the demo shots | Gold |
+|---|---|---|---|
+| a dev tool its audience doesn't know, music only | UI motion graphics | how it feels to use: one gesture, the result under the hand | `stageshow/examples/hero-demo/` |
+| billing or infrastructure, work done out of sight | UI motion graphics | what the system does: no cursor, the consequence lands elsewhere | `stageshow/examples/subscriptions/` |
+| a phone flow of a few screens | UI motion graphics | a flow: one continuous object, payoff on the last screen | `stageshow/examples/phone-touch/` |
+| a known brand's product | product camera | no Stageshow shape; one constant world cut by scale | Linear Agent |
+
+- When two shapes fit, Benji picks the calmer, fuller, better-framed one over the one with more story (`stageshow/examples/payout-flow/`). Stageshow covers demo shots and loops; it sets no register, cut rate or loudness.
+- Gold example: the Gold column; for the known-brand row, Linear Agent as measured in this node's product-camera row.
+- Check: before the storyboard, write one line (`register: UI motion, ~4 cuts/min, ~9 % still; shape: what the system does`), then set the first finished still beside the gold's at the shown size.
+
 ## Gotcha
 
 Compare cut rate and still share only within a register, and never average two rows into a target. Averaging Skale's UI row with the product-camera row gives 9 cuts a minute at 29 % still, a film neither of those registers makes. A product-camera film judged against Skale's medians looks too still. Reach is no guide either. Across Skale's films, views track no craft metric (Spearman |ρ| ≤ 0.18; views vs cut rate 0.03), and like rate vs duration is -0.29. The posting account and suspected paid promotion are the likelier drivers.
@@ -66,3 +81,4 @@ Compare cut rate and still share only within a register, and never average two r
 - HeyGen, hyperframes-launches (Apache-2.0): the renders of `frame-md-launch-storyboard`, `k3-promo` and `codex-five-hour-limit-replica`, measured with measure.py.
 - heygen-com/hyperframes (Apache-2.0): `skills/hyperframes/SKILL.md` §2, which routes fresh work by deliverable; `skills/product-launch-video/references/story-design.md` (`transition_in`, the injected between-frame transition); `skills/media-use/references/operations.md` (the -14 LUFS socials target).
 - docs/research/launch-films/: measure.py, metrics/*.json, tables/, notes/synthesis-skale.md (§1, §2, §5, §6, §8) and notes/synthesis-acclaimed.md (§1, §2, §5, §6, §9).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/motion.md` (Story: the three shapes, beauty decides), `stageshow/examples/hero-demo/`, `stageshow/examples/subscriptions/`, `stageshow/examples/phone-touch/`, `stageshow/examples/payout-flow/`.

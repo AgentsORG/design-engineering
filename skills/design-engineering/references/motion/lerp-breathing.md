@@ -92,6 +92,19 @@ Stress-test before shipping: wild swings at 100ms updates, sharp reversals at 50
 - Discrete UI transitions (button press, modal open). Use curves or springs ([[easing-curves]], [[spring-animations]]).
 - One-shot animations triggered by a discrete event. Lerp is for continuous tracking.
 
+## Reference
+
+A lerp stepped once per `requestAnimationFrame` settles twice as fast on a 120Hz screen, so the chart breathes at a different rate on every device. Scale the step by elapsed time and run everything that shares the number through it in one loop ([[frame-rate-independence]]):
+
+```ts
+// bad: cur += (target - cur) * 0.08 every frame, whatever the frame length
+const k = 1 - Math.pow(1 - 0.08, dt / (1000 / 60)); // 0.08 per 60Hz frame, at any refresh
+for (const v of [line, yMin, yMax, badge]) v.cur += (v.target - v.cur) * k;
+```
+
+- **Gold example:** `stageshow/kit/motion/Follow.tsx`: one loop drives x, y, width and height together, keeps its 60Hz trajectory on faster screens by interpolating between fixed steps, and sleeps once settled until a new target wakes it. For an overlay retargeted cell by cell it uses a spring instead of a lerp (stiffness 0.25, damping `2 * sqrt(k) * 0.95`), because a restarted transition stutters and a spring keeps its momentum.
+- **Check:** on the real page, log rAF timestamps against the badge value at 60Hz and at 120Hz (`stageshow/references/rehearse.md`, Live pacing): the settle time matches. Then run the stress feed above, read the contact sheet, and confirm line, badge and range land on the same frame with no one-frame jump.
+
 ## Gotcha
 
 The lerp rate (8% here) must be tuned to your refresh rate. If you're updating at 30fps or running on a low-end device, 8% feels slower; bump to 12–15%. If you're tracking sub-millisecond price data, 8% may feel sluggish — try 15–20%.
@@ -100,5 +113,6 @@ Also: lerping multiple elements requires synchronizing them on the same `request
 
 ## Sources
 
-- Benji Taylor — *Liveline*, [benji.org/liveline](https://benji.org/liveline).
+- Benji Taylor — *Liveline*, [benji.org/liveline](https://benji.org/liveline) (read 2026-11-07).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Follow.tsx`, `stageshow/references/rehearse.md` (Live pacing).
 - Related: [[spring-animations]], [[stagger-choreography]], [[fly-not-teleport]].

@@ -45,6 +45,21 @@ Sort every rule into **rules** (hardcoded, what makes it this idea), **modes** (
 
 "I'm stuck", "I need inspiration", "something like…", a mood instead of an image, endless variations of one idea, a rejected round of prompted variants. Pairs with [[svg-creation]] when the output is vector art and with [[visual-imperfection]] when the vibe is texture.
 
+## Reference
+
+The keeper is a config that names the seed and every knob:
+
+```json
+{ "seed": 48213, "mode": "halftone", "inks": 2, "dotPitch": 6, "misregister": 1.5, "grain": 0.22 }
+```
+
+- Bad: the user says "too dirty behind the headline", so the exported PNG gets patched by hand.
+- Good: the note becomes a rule ("texture never sits under text"), the `grain` knob's max drops from 0.6 to 0.35, and every saved config re-renders from scratch. Benji runs his own skill this way: each correction becomes a permanent rule and the work is rerun, not hand-fixed.
+
+Gold example: `stageshow/examples/backgrounds/`, one small interface over twenty grounds (tint, fields, light, linework, material, six gradients, six textures including halftone, grain and blueprint). Read it as the sheet a generator's modes should produce: each ground changes direction, value or material, not only hue, and its halftone grows toward one corner so the texture frames the UI instead of sitting under it.
+
+Check: render twelve seeds at full size on one contact sheet. If they read as one picture, the rules are generic; if neighbors differ only in color, the knobs are moving the wrong thing.
+
 ## Gotcha
 
 The generator's job is to play the rules, not to be tasteful on its own. If the rules were generic, every seed looks the same and the knobs move nothing worth moving; go back to research.
@@ -52,4 +67,6 @@ The generator's job is to play the rules, not to be tasteful on its own. If the 
 ## Sources
 
 - Emil Kowalski's design-engineering practice on creative tooling, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/backgrounds/index.tsx`, `stageshow/references/backgrounds.md`.
+- Benji Taylor, benji.org/stageshow (read 2026-11-07).
 - Related: [[build-a-tool]], [[prototype-picker]], [[taste-is-trained]], [[svg-creation]].

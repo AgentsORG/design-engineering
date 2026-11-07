@@ -37,6 +37,24 @@ Off-screen and collapsed content needs a visible cue. A row of cards that ends e
 
 **Content scrolls under sticky chrome, never focus.** `scroll-padding-block-start: var(--header-height)` on the scroller keeps anchor targets and focused elements clear of the header ([[sticky-and-scroll-tells]]).
 
+## Reference
+
+A scroller that hints only where rows are hidden, adapted from Stageshow `teaching/edges.css`:
+
+```css
+@property --top { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --bottom { syntax: '<length>'; inherits: false; initial-value: 0px; }
+.list { overflow-y: auto; mask-image: linear-gradient(transparent, #000 var(--top), #000 calc(100% - var(--bottom)), transparent); transition: --top .15s ease, --bottom .15s ease; }
+.list[data-top] { --top: 8px; }    /* set from scroll position, not from "it overflows" */
+.list[data-bottom] { --bottom: 8px; }
+```
+
+- Bad: a stat tile at 390 where "30,000 ft" breaks and "ft" sits alone on the next line. Good: number and unit in one `white-space: nowrap` box sized to fit, or the unit moved into the lead ("Works at" over "30,000 ft").
+
+Gold example: `stageshow/teaching/edges.tsx` (`viewport-edge`): three whole rows at rest, and an edge softens only once content hides behind it.
+
+Check: film the list at rest, mid-scroll and at the end, then again at 390 with pseudo-localized copy. No fade at rest, a fade only on the side hiding rows, no unit alone on a line, no clipped label without a way back. Benji's call differs for faux UI: there he picks names and emails short enough to fit (`teaching/details.tsx`, `detail-copy`); a shipped product does not choose its strings, so this node still designs for the worst one.
+
 ## Gotcha
 
 `overflow: hidden` on a parent "fixes" a horizontal scrollbar by clipping whatever caused it — usually a `1fr` track or a `100vw`. Find the child that refused to shrink; the clip hides the bug and the content with it.
@@ -44,4 +62,5 @@ Off-screen and collapsed content needs a visible cue. A row of cards that ends e
 ## Sources
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/better-layout/SKILL.md` (**Hint at hidden content**, **Content bleeds, controls float**, **Hold structure until it breaks**, **Plan for growth and clipping**, Before-you-finish table), `spacing-and-adaptivity.md`; `better-accessibility/motion-and-zoom.md` (`rem` queries).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/edges.tsx` and `teaching/edges.css` (`viewport-edge`), `references/bento.md` (rule 14, a stat is one line), `teaching/details.tsx` (`detail-copy`).
 - Related: [[logical-properties-rtl]], [[grouping-by-space]], [[page-frame]], [[stress-scenarios]].

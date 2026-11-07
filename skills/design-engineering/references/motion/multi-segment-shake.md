@@ -81,6 +81,23 @@ The cubic-bezier `(0.36, 0.07, 0.19, 0.97)` is a "snappy" curve — it accelerat
 - High-frequency revalidation while typing. Shake should fire on a discrete event (submit, blur), not every keystroke.
 - More than once in quick succession. Debounce so users don't see two shakes overlapping.
 
+## Reference
+
+The five stops land on round times of the 280ms clock, which is how to read a filmed shake frame by frame:
+
+| Time | Wrapper `x` | Field | Message lane |
+|---|---|---|---|
+| 0ms | 0 | danger ring on | hint out over 0.15s, error in over 0.25s after 0.07s |
+| 80ms | -4px | | |
+| 160ms | +4px | | |
+| 220ms | -2px | | |
+| 280ms | 0 | ring holds | error fully in by 320ms, held until the value is fixed |
+
+Benji's call differs: his form gold does not shake at all. It says the error with the ring and one line, in a lane that exists from first paint so the hint and the error swap in place and the form never grows. Keep the shake for a blocking submit, and give the message that lane rather than inserting it under the field.
+
+- **Gold example:** `stageshow/examples/form-error/` (error `Add the domain, like name@company.com`, cleared the moment the ending is typed); the swap timings are `stageshow/kit/motion/States.css`.
+- **Check:** film the submit at 40ms a frame: the shake starts on the submit frame, the 80, 160 and 220ms frames sit at -4, +4 and -2px, and the button below is at the same y in every frame.
+
 ## Gotcha
 
 Apply the shake to the field's *wrapper*, not the `<input>` itself. Shaking the input causes the text cursor to jump, which is disorienting and can break IME composition for non-Latin scripts.
@@ -96,3 +113,4 @@ Apply the shake to the field's *wrapper*, not the `<input>` itself. Shaking the 
 
 - Jakub Antalik — transitions.dev, prototype P9 (form error).
 - Material Design — motion guidelines, multi-stop keyframes.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/form-error/index.tsx`, `stageshow/examples/form-error/form.css`, `stageshow/kit/motion/States.css`.

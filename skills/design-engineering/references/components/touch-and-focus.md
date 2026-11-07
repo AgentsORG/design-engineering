@@ -48,6 +48,19 @@ A tooltip waits ~200ms so it doesn't fire on incidental travel; once one is open
 
 Any interactive UI — buttons, modals, tooltips, menus, video, timers — and every mobile bug report. Run it even when the screen already looks finished: a failure here ships broken for someone.
 
+## Reference
+
+```css
+.icon-btn { position: relative; flex: none; width: 24px; height: 24px; touch-action: manipulation; }
+.icon-btn::after { content: ""; position: absolute; inset: -10px; } /* 44px hit, 24px visual */
+@media (hover: hover) and (pointer: fine) { .icon-btn:hover { background: var(--ink-2); } }
+.trigger[data-open] { background: var(--ink-2); } /* keeps its pressed look while its popover is open */
+```
+
+- Bad: an icon button squeezed to 18px by its flex row, a hover fill as the only sign it is a control, the trigger going flat while its menu is still open. Good: `flex: none`, a surface visible at rest, the pressed look held through `data-open`.
+- Gold example: `stageshow/examples/buttons/` and `stageshow/kit/controls/Button.css` (sizes 24, 28 and 32px, hover one step of its own colour, press `scale(0.97)`).
+- Check: Benji's own caveat applies, a narrow viewport changes width but not touch. On a real phone or with touch emulation, tap every icon button at its outer edge, then Tab through with every drawer closed and confirm no stop lands on something hidden.
+
 ## Gotcha
 
 Tabbing into a closed drawer is the classic miss. It was hidden with `opacity: 0` or `translateX(100%)`, which keeps every control focusable; the keyboard user lands inside a thing they cannot see.
@@ -55,4 +68,5 @@ Tabbing into a closed drawer is the classic miss. It was hidden with `opacity: 0
 ## Sources
 
 - Emil Kowalski's design-engineering practice on touch and accessibility, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/controls/Button.css`, `stageshow/references/craft.md` (`flex: none`, links and controls at rest, `data-open`), `stageshow/references/rehearse.md` (width is not touch).
 - Related: [[accessibility-baseline]], [[hover-states-subtle]], [[prefers-reduced-motion]], [[forms-behavior]].

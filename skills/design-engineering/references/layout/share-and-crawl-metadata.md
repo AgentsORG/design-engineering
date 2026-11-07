@@ -36,6 +36,21 @@ The one flow that pays for the launch: landing, CTA, signup or checkout, first s
 
 Loaded once, from the root layout, async or through the framework's script strategy. Whether a consent banner is legally required is the user's decision; note what tracking exists and leave it on the human list. A banner that pushes content down when it mounts is a layout-shift finding ([[empty-loading-states]]).
 
+## Reference
+
+```html
+<title>Ledger · Acme</title>
+<meta name="description" content="Close the month in an afternoon. Ledger reconciles every account as payments land.">
+<meta property="og:image" content="https://acme.com/og/ledger.png"><!-- 1200×630, absolute production URL -->
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://acme.com/ledger">
+```
+
+- Bad: `<title>Create Next App</title>` and `og:image` of `/og.png` resolving to localhost. Good: the page's `h1` through the `%s · Product` template, the hero subhead as the description, an absolute image URL.
+- The preview card is the one frame most people ever see, so Benji's poster rule for demos carries over: it tells the story on its own, with the result on screen, never caught mid-change. The favicon is the product's real mark, never a letter in a colored square.
+- Gold example: `stageshow/SKILL.md` step 7 (poster) and `stageshow/references/craft.md` (No invented logo); the checklist above for everything machines read.
+- Check: paste the production URL into two chat apps on a phone; count real strings in the card (title, description, image text) and confirm each came from the page, none truncated mid-word.
+
 ## Gotcha
 
 Deciding the CTA by reading cookies in the marketing layout opts the whole page out of static rendering. Keep the page static and resolve the signed-in state on the client.
@@ -43,4 +58,5 @@ Deciding the CTA by reading cookies in the marketing layout opts the whole page 
 ## Sources
 
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (step 7, poster), `stageshow/references/craft.md` (No invented logo).
 - Related: [[ship-check]], [[content-authenticity]], [[marketing-vs-product-ui]].

@@ -26,6 +26,7 @@ Keep `autocomplete` **on** for identity, address, and payment fields — there i
 - **Autofocus the first input when a desktop modal opens; never on touch** — it shoves the keyboard into the user's face. Gate it on `matchMedia("(pointer: coarse)")`, not on screen width.
 - **Wrap inputs in a `<form>`** so Enter submits. Textareas submit on Cmd/Ctrl+Enter.
 - **Disable the submit control while the request is in flight** and change its label to say what's happening; that is the double-submit fix. Keep its width fixed so "Saving…" doesn't shove neighbours, and re-enable it in `finally`, or one failed request locks the form for good.
+- **The pressed button answers on itself.** Its new label goes in the same button; never swap in a second button or a banner for the new state (Benji Taylor, Stageshow `references/motion.md`).
 - **A failed submit says so and keeps every value.** `fetch` does not throw on a 500, so check `ok`; a `catch` that only logs is a silent failure; calling `reset()` before the response is checked wipes the user's work. Put the message beside the form and the field-level server errors beside their fields ([[forms-validation]]).
 - **Press feedback** `scale(0.97)` on `:active` through a ~150ms transition — see [[responsive-feedback]].
 - **Surface the shortcut** in the button's tooltip ("Save (⌘S)"), bound to Cmd on macOS and Ctrl elsewhere.
@@ -42,6 +43,22 @@ Keep `autocomplete` **on** for identity, address, and payment fields — there i
 
 Any form, input, search field, login/signup, settings page, checkout, or submit handler — building or reviewing.
 
+## Reference
+
+Bad: "Create account" is replaced by a spinner and "Creating…" centred as one group, so icon and words slide as the group's width changes, then the button vanishes for a success banner.
+Good: the idle label and the busy group are two layers in one grid cell that crossfade; inside the group a 14px check holds still while "Creating account" crossfades to "Account created", and the 38px full-width button turns success green on itself.
+
+```css
+.submit { display: grid; grid-template-areas: 'stack'; place-items: center; height: 38px; }
+.submit__layer { grid-area: stack; display: inline-flex; align-items: center; gap: 8px;
+  opacity: 0; transition: opacity .25s ease; text-box: trim-both cap alphabetic; }
+.submit__layer[data-on] { opacity: 1; transition-delay: .08s; }
+```
+
+Gold example: `stageshow/examples/form-error/` (`index.tsx` and `form.css`).
+Benji's call differs: a kit `Button` that is not full width crossfades its label and eases its width so neighbours move with it, where this node fixes the width; in a full-width submit both rules hold.
+Check: film the submit at 40 to 80ms steps: the check never moves sideways, no frame shows both labels at full strength, and a forced 500 brings the idle label back with every value still in its field.
+
 ## Gotcha
 
 Auto-advancing verification-code inputs feel clever until someone needs to correct a digit. Waiting for Tab is safer; if you auto-advance, Backspace must move back and select.
@@ -49,4 +66,5 @@ Auto-advancing verification-code inputs feel clever until someone needs to corre
 ## Sources
 
 - Emil Kowalski's design-engineering practice on forms, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/form-error/index.tsx`, `stageshow/examples/form-error/form.css`, `stageshow/references/motion.md` (a button changes on itself).
 - Related: [[forms-validation]], [[accessibility-baseline]], [[touch-and-focus]], [[responsive-feedback]].

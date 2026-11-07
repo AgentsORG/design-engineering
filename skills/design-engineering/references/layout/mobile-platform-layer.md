@@ -36,6 +36,24 @@ In Next.js these are the root layout's `viewport` export (`viewportFit`, `intera
 
 Emulation reproduces none of this. Serve on `0.0.0.0`, open by LAN IP; Safari → Develop → device on iOS, `chrome://inspect` on Android. Use a phone a few years old, with the keyboard open, once in landscape, and installed as a PWA if that ships — standalone changes the viewport, insets and status bar.
 
+## Reference
+
+A checkout screen with a pinned Pay button over a form:
+
+- Bad: `main { height: 100vh } .pay { position: fixed; bottom: 0; left: 0; right: 0; height: 56px }`. On load the button sits under the URL bar, rests on the home indicator, and the last field hides behind it.
+- Good:
+
+```css
+.shell { height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; }
+.header { padding-top: env(safe-area-inset-top, 0px); }
+.form { overflow-y: auto; overscroll-behavior: contain; }
+.pay { margin: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); }
+```
+
+Gold example: Emil Kowalski's `skills/mobile-native/SKILL.md`, the source this node distils.
+
+Check: open it by LAN IP on a real phone, focus the last field with the keyboard up, then turn to landscape. Pay stays visible above the keyboard and inside the margins, and nothing sits under the notch or the island. Benji Taylor's rule for drawn phones holds for real ones too: nothing under the island, and a sheet or its grabber starts below the status bar.
+
 ## Gotcha
 
 `dvh` everywhere is the overcorrection: a hero sized in `dvh` jumps as the URL bar collapses mid-scroll, which is exactly the jank the fix was for. Shells track the chrome; first screens don't.
@@ -43,5 +61,6 @@ Emulation reproduces none of this. Serve on `0.0.0.0`, open by LAN IP; Safari �
 ## Sources
 
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/mobile-native/SKILL.md.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/mobile-native/SKILL.md.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Chrome and devices: nothing under the island, a sheet or grabber below the status bar).
 - Related: [[touch-and-focus]], [[forms-behavior]], [[growth-and-overflow]], [[sticky-and-scroll-tells]], [[cmd-mobile]].

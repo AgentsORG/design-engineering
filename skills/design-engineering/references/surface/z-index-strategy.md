@@ -34,6 +34,23 @@ tags: [surface, z-index, stacking-context, depth, layers, css]
 
 Setting up a project's layers; any "the dropdown is under the header" bug; reviewing a diff that adds a `z-index` ([[ui-polish-pass]] has the review line). During a drag, depth is local and three-banded: dragged, just released, the rest ([[animated-hit-testing]]).
 
+## Reference
+
+Benji Taylor's demo-layer order, rewritten as the one global ladder. Each line says why it sits above the line before:
+
+```ts
+let d = 1
+export const connector = d++ // lines between objects sit under anything that floats
+export const popover = d++   // an open menu covers the connectors it opened over
+export const flight = d++    // a chip leaving a menu flies above the menu
+export const cursor = d++    // the pointer is above everything it acts on
+```
+
+- Bad: `overflow: hidden` on a popover whose surface and shadow live on `::before`, so the clip cuts its own shadow off. Good: `isolation: isolate` on the popover, the surface on `::before` at a local `z-index: -1` (under the menu's text, nowhere else), `overflow: visible`, and a sliding submenu clips an inner track instead.
+- Benji's call differs: Stageshow keeps raw numbers in each part's own CSS file (20, 25, 30, 100), each with its reason, inside a stage that is its own stacking context. It doesn't use one constants file.
+- Gold example: `stageshow/kit/motion/Popover.css`, `stageshow/kit/motion/Fly.css`.
+- Check: film a chip flying out of an open popover over a connector while the cursor moves, then step through the frames. No lower rung should ever paint over a higher one.
+
 ## Gotcha
 
 A `transform` added for an animation, or `will-change: transform` added "for performance", quietly creates a stacking context and a containing block. A tooltip that used to escape its card's `overflow: hidden` is clipped, and a modal inside a transformed parent can't rise above the page. Check depth after adding any animation to a container ([[depth-and-nesting]], [[performance-discipline]]).
@@ -41,4 +58,5 @@ A `transform` added for an animation, or `will-change: transform` added "for per
 ## Sources
 
 - Cheng Lou, chenguini (MIT, HEAD 84fb27d): `docs/z-index-depth-management.md` (the three strategies, the don'ts, the stacking and clipping gotchas) and `docs/Animation.md` "Pitfalls" (no `will-change` by default).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): layer values and their comments in `stageshow/kit/motion/Connector.css`, `stageshow/kit/motion/Popover.css` (`isolation: isolate`, surface on `::before`), `stageshow/kit/motion/Fly.css`, `stageshow/kit/cursor.css` and `stageshow/kit/stage.css` (ground at -1, stage as its own stacking context).
 - Related: [[ui-polish-pass]], [[depth-and-nesting]], [[animated-hit-testing]].

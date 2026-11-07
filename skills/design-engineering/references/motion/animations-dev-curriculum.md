@@ -39,6 +39,22 @@ The Perplexity Agent Skills guide: *"Many engineers have plenty of experience wr
 
 A skill is not documentation. animations.dev is documentation, and a very good one. The skill points to it; it doesn't try to be it.
 
+## Reference
+
+Point at a working thing to copy, not a chapter to read. Pick the closest one, film it, copy its folder, then change its content:
+
+| Building | Open first |
+|---|---|
+| Toast stack, asymmetric enter and exit | Sonner source |
+| Drawer with drag and momentum | Vaul source |
+| A label, press, exit or interrupt that feels wrong | `stageshow/teaching/contrasts.tsx` (eight bad/good pairs, one change each) |
+| A value chip flying into a list, rolling totals | `stageshow/examples/subscriptions/` |
+| Overlapping responses to one change | `stageshow/examples/choreography/` |
+
+Gold example: `stageshow/examples/choreography/`. The bad halves in `stageshow/teaching/` are for diagnosis, never a starting point.
+
+Check: hold the result beside the example it was copied from on one contact sheet. If yours is the emptier or busier one, or only the name changed, it is not done.
+
 ## Gotcha
 
 If you copy and paste from animations.dev into a skill node, the node becomes stale the moment Emil updates the course. Link out instead. The exception is **vocabulary** — easing curve names, duration tokens, decision frameworks — which is durable enough to encode here as long as it's credited.
@@ -48,3 +64,4 @@ If you copy and paste from animations.dev into a skill node, the node becomes st
 - Emil Kowalski — [animations.dev](https://animations.dev), [emilkowal.ski](https://emilkowal.ski).
 - @pqoqubbw — [lucide-animated.com](https://lucide-animated.com).
 - Jakub Antalik — [transitions.dev](https://transitions.dev).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `SKILL.md` (step 4, start from an example; gold examples and `teaching/` pairs), `teaching/contrasts.tsx`, `examples/subscriptions/`, `examples/choreography/`.

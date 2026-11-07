@@ -47,6 +47,7 @@ HeyGen checks renders with numbers rather than eyes: on its Send-to-HyperFrames 
 - **Tools.** Read the transform GSAP writes, not rects read through the preview's scale, which invent sub-pixel reversals. Pass snapshot times in ascending order, because a backward seek re-renders a tween's start state and looks like a glitch.
 - **Sound on the render.** Check a continuous bed by its energy window, never by onset: a detector called theirs 1.8 frames early. Click placement is in [[sound-motion-sync]].
 - **Against a reference.** Diff scene boundaries only once both files are frame-comparable. HeyGen's Stripe study confirmed both files ran 38.7 s at 30 fps (1,161 frames) before timing each scene against the After Effects master.
+- **Say what you did not watch.** An empty, late or gapped capture is inconclusive, not a pass, and the hand-over lists the formats, looks and cases nobody checked (Stageshow, `references/rehearse.md`).
 
 ## Build gates belong to HyperFrames
 
@@ -58,6 +59,20 @@ To measure a file, whether a reference film or your own render, spawn [[launch-f
 
 Use it before shipping any launch film, sting or README film, and before copying a reference film's numbers into a brief.
 
+## Reference
+
+| Before | After | Why |
+|---|---|---|
+| 12.43 s (f 746 at 60 fps): the cut lands on a settled frame; the next shot first moves at 13.35 s | the incoming shot moves by 12.80 s, or the cut is taken mid-push | dead cut ([[launch-video-cuts]]) |
+
+```md
+Gate: seam-gate.mjs verify exit 0; all <n> frames decoded, none flat, frozen or black
+Not checked: the 9:16 cut, the endcard in dark, loudness after the final encode
+```
+
+- Gold example: `stageshow/references/verify.md` (the `REHEARSAL.md` hand-over: gold copied, beats, widths, the pasted gate line, what was not checked); this node's rubric for the targets.
+- Check: set your contact sheet beside the reference film's at the same frame step and name the one difference; ten renders with the gate green and the frame unchanged means stop and look with a fresh eye (Stageshow's verify table).
+
 ## Gotcha
 
 There are two classic misses. The first is calling a product-camera film too still against Skale's UI-film median: 0.49 against 0.09 is a difference of register ([[launch-video-registers]]), not a flaw. The second is signing off a render that sounds right while its source is silent. Three of HeyGen's launches were committed without the sound their published renders carried (sfx-music-launch and inspector-launch silent, hyperframes-launch with voice-over only), and their mixes were recovered from renders that ran 64 ms late, one frame late or 100 ms early; k3-promo's composition still never plays its committed audio ([[sound-from-motion]]).
@@ -68,3 +83,4 @@ There are two classic misses. The first is calling a product-camera film too sti
 - HeyGen, hyperframes-launches (Apache-2.0): `claude-design-send-hyperframes-launch/HANDOFF.md` §4, §10, §14.1, §17, §18; `HF-heygen-stripe/STUDY-V12-vs-TAKE6.md`; commits 2a439ec and dd128ad (sound recovered from published renders). Digest in `docs/research/launch-films/digests/`.
 - Films: Skale (skale.solutions/portfolio) and the 18 acclaimed films as listed in [[launch-video-registers]], measured by HKTITAN 2026-09-28.
 - heygen-com/hyperframes (Apache-2.0): `skills/product-launch-video/SKILL.md` Step 6; `skills/hyperframes-cli/SKILL.md` and `references/preview-render.md` (`--strict`); `.agents/skills/motion-doctrine/SKILL.md` (the comma, the seam budget) and `scripts/seam-gate.mjs`, `.agents/skills/oversized-cursor/SKILL.md` (internal).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/verify.md` (Hand over, What you see, what you do), `stageshow/references/rehearse.md` (The last pass).

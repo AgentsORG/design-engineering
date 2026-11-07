@@ -20,6 +20,7 @@ Make each pass on its own; blending them is how a page gets "looks good overall"
 6. **Phone.** Is the 390 screen its own composition, with its own crop and line breaks, or the desktop squeezed?
 7. **Fullness and substance.** Is each screen composed, or a narrow column of small text in dead ground? Does every section the brief asked for deliver its information completely, at a readable size?
 8. **Collisions.** Anything over a headline or a button at any scroll position; anything off the phone's edge.
+9. **Beside the gold.** Put the render next to the closest real reference at the same size and say the one difference. If yours is the sparser, flatter or smaller one, that is the first finding (Benji Taylor, Stageshow `references/review.md`, `references/verify.md`).
 
 ## Write it down, every round
 
@@ -37,6 +38,18 @@ Name findings the way a designer would to a colleague: "the supporting paragraph
 
 Fix **idea → hierarchy → composition → type → imagery → colour → detail → motion**. Later items cannot rescue earlier ones: no amount of kerning saves a page with no idea. Run at most three rounds: critique, fix the top three, re-shoot, critique. Stop early when a round finds nothing a stranger would notice, and if the last round still falls short, report the remaining problems plainly instead of rounding up.
 
+## Reference
+
+One finding written three ways:
+
+- Bad: "The hero could feel more premium." (no frame, no fix)
+- Bad: "`Hero.tsx` uses `max-w-5xl mx-auto`, so the window is probably boxed." (predicted from the code)
+- Good: "`shots/1440-first.png`: the dashboard window floats whole with even margins on four sides; bleed it off the right and bottom with one gutter."
+
+Gold example: Stageshow `references/review.md` (the fresh-eye brief) with the "What you see, what you do" table in `references/verify.md`. Its first question is whether the composition answers this product or could be any product in its category.
+Check: every finding quotes a screenshot file, and a frame you could not shoot is listed as not checked; a predicted pass or failure is not a finding. Anything that moves gets filmed, because a single still misses the jump between frames (benji.org/stageshow).
+Benji's fix order for product shots is framing, then hierarchy and density, then motion, then polish; it sits inside this node's order rather than replacing it.
+
 ## Gotcha
 
 Subtraction can overshoot. In taste-skill's blind tests a richer page full of template devices beat a cleaner page that was thin, every time, and its own skill lost to the no-skill baseline on average across five rounds (6.6–7.7 against 7.5–8.0). Removing tells is half the job. Passes 7–8 are where you check the page kept its substance; when a deletion leaves a gap, enlarge what remains or close the gap, and never refill it with an ornament.
@@ -44,4 +57,6 @@ Subtraction can overshoot. In taste-skill's blind tests a richer page full of te
 ## Sources
 
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/critique.md` §1, §4–6 (the passes, the round write-up, the fix order, the three-round stop) and `references/research.md` §11 (five rounds, 16 briefs, one model juror per brief, so single scores carry about half a point of noise). Its Awwwards-weighted scores and caps encode its house style and are not adopted.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/review.md`, `stageshow/references/verify.md` (Hierarchy and density; What you see, what you do).
+- Benji Taylor, benji.org/stageshow (read 2026-11-07).
 - Related: [[unslop-pass]], [[page-frame]], [[ai-default-tells]], [[review-format]].

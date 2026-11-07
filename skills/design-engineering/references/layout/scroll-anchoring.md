@@ -26,6 +26,25 @@ Rows above the view grow, an image loads, older messages prepend, the window nar
 
 Feeds, chat logs, virtualized lists, galleries that reflow on resize, any list where rows above the view change height ([[viewport-custom-design]], [[url-as-state]] for restoring position on back).
 
+## Reference
+
+The frame loop for a chat log that prepends older messages and reflows on resize:
+
+```js
+const top = scroller.scrollTop
+if (top !== lastTop) {                       // the user scrolled: pick a new anchor
+  anchor = firstRowWithBottomBelow(top); offset = anchor.offsetTop - top
+}
+layoutRows()                                 // heights and spacers first
+const want = anchor.offsetTop - offset
+if (want !== top) scroller.scrollTo({ top: want, behavior: 'instant' })
+lastTop = scroller.scrollTop                 // what the browser kept, not `want`
+```
+
+Gold example: Cheng Lou's `docs/Scrolling.md` ("Scroll Anchoring"), the source this node already cites. Inside the view the matching rule is Benji Taylor's: a new row carries the rows below it (`stageshow/teaching/relationships.tsx`, `list-reflow`).
+
+Check: film a 15-step continuous resize and a prepend of 20 messages, then step through every frame. The anchor row's top holds the same screen offset on every frame, with no `jump:` or `drift:` frames, which is how Stageshow's film reads geometry (`references/rehearse.md`).
+
 ## Gotcha
 
 When the row at the top of the view shrinks by more than its part above the fold, it leaves the view and the next row becomes the anchor. That's correct, and it looks like a jump of one row. Anchoring with fractional row tops jitters by a sub-pixel each frame, because the browser rounds `scrollTop`; whole-pixel layouts don't.
@@ -34,4 +53,5 @@ When the row at the top of the view shrinks by more than its part above the fold
 
 - Cheng Lou, chenguini (MIT, HEAD 84fb27d): `docs/Scrolling.md` "Scroll Anchoring", "React 18+ Pitfall", "Less Preferred Alternatives" (the 3–4 px drift).
 - Cheng Lou, handwired (MIT, HEAD 257856e): `docs/behavior-choices.md` "Anchor the scroll position to the row at the top of the view" (`overflow-anchor: none`; spacer height before scroll position).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/relationships.tsx` (`list-reflow`), `references/motion.md` (a new row carries the rows below it), `references/rehearse.md` (Jumps: `jump:` and `drift:` per animation frame).
 - Related: [[sticky-and-scroll-tells]], [[frame-rate-independence]], [[performance-discipline]].

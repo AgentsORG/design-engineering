@@ -42,6 +42,19 @@ A sighted user sees a change; a screen-reader user hears it only if something an
 
 A missing `alt` is worse than an empty one: readers fall back to the file name. Inline SVG: decorative → `aria-hidden="true"`; meaningful → `role="img"` + `aria-label` ([[svg-creation]]). Prerecorded video needs captions, audio a transcript, and nothing autoplays with sound.
 
+## Reference
+
+```tsx
+// In the DOM from the first render, empty until something happens
+<div role="status" className="sr-only">{announce}</div>
+// on archive: setAnnounce("Conversation archived")  on Undo: setAnnounce("Conversation restored")
+```
+
+- Bad: `{saved && <div aria-live="assertive">Saved successfully!</div>}`, mounted with its text and interrupting. Good: the empty polite region above, its text set once per change, focus left where the user is.
+- Stageshow's `Toast` keeps one `role="status"` node mounted and fades it, so it never pops: the same shape a live region needs. In a product, put the words in on show; text left in the tree at `opacity: 0` is still read. Its Gmail example draws every icon `aria-hidden`; the name belongs to the control.
+- Gold example: `stageshow/kit/parts/Toast.tsx` for the mounted-and-faded shape; Jakub's `skills/better-accessibility/SKILL.md` for the ladder.
+- Check: run VoiceOver or NVDA through archive then Undo and count: exactly one announcement per change, nothing from the hidden toast, focus never moved.
+
 ## Gotcha
 
 `aria-live="assertive"` on a success toast is the common over-correction: "Saved" now interrupts the sentence the user was hearing. Success is `role="status"`; only failure that blocks the task earns `role="alert"`.
@@ -50,4 +63,5 @@ A missing `alt` is worse than an empty one: readers fall back to the file name. 
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/better-accessibility/SKILL.md` (**Announce dynamic content**, **Alt text by purpose**), `screen-readers.md`.
 - WCAG 2.2 SC 4.1.3 Status Messages, 1.1.1 Non-text Content, 1.2.1–1.2.2, 1.4.2.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/parts/Toast.tsx`, `stageshow/examples/gmail/index.tsx`.
 - Related: [[keyboard-patterns]], [[forms-validation]], [[interfaces-reconciliation]].

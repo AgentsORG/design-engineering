@@ -116,3 +116,6 @@
 {"query": "show when a collaborator is in the doc but looking at another tab", "expected_nodes": ["presence-signals"], "forbidden_nodes": ["empty-loading-states"]}
 {"query": "add a pen and highlighter toolbar for marking up screenshots", "expected_nodes": ["drawing-toolbar"], "forbidden_nodes": ["tldraw-canvas"]}
 {"query": "a live price chart while the websocket is still connecting", "expected_nodes": ["lerp-breathing"], "forbidden_nodes": ["empty-loading-states"]}
+{"query": "score this page against reference products with a panel of model judges", "expected_nodes": ["grading-rubric"], "forbidden_nodes": ["launch-video-review"]}
+{"query": "which design decisions did the agent make well in this diff", "expected_nodes": ["design-moves", "grading-rubric"], "forbidden_nodes": []}
+{"query": "the drawer, its items and the badge all animate at once when it opens and it feels busy", "expected_nodes": ["motion-choreography"], "forbidden_nodes": ["spring-animations"]}

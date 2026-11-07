@@ -51,6 +51,8 @@ A hover state should make the element *more* contrasty, not less. A pressed stat
 
 Disabled takes dedicated tokens, not `opacity`: opacity lets whatever sits behind show through, so the same button passes on one surface and fails on the next ([[color-token-tiers]]).
 
+- **A filled button's hover is one step of its own color**, `color-mix(in srgb, var(--accent), #000 10%)`, never a swap to gray: the white label gains contrast instead of losing the button's meaning (Benji Taylor, Stageshow `kit/controls/Button.css`).
+
 ## Browser chrome integration
 
 ### `<meta name="theme-color">`
@@ -99,6 +101,19 @@ Or use a `<svg>` filter with `<feTurbulence>` for procedural noise.
 - Reviewing a hover state: confirm it *increases* contrast, doesn't decrease it.
 - Designing a hero gradient: test on macOS with night-shift on — banding shows up.
 
+## Reference
+
+Quiet is not faint. The same sharing panel on a `#e9edef` tinted ground, from Stageshow's `surface-contrast` pair:
+
+| | Panel | Heading / body | Action |
+|---|---|---|---|
+| Bad | `#e6eaec`, one step off the ground | `#a4adb3` / `#aeb7bd` | `#eef1f3` on `#c6cfd5` |
+| Good | `#fff` with a `#d9dfe2` edge | `#444` / `#777` | `#fff` on `#333` |
+
+The bad side is calm and unreadable at once; the good side is just as quiet and every word reads.
+Gold example: `stageshow/teaching/composition.tsx` (`surface-contrast`; values in `composition.css`).
+Check: measure each label against the surface it actually sits on, not the page background, then view the still at its shown size and at 390px wide without zooming. Any word you have to lean in for fails, whatever the ratio said.
+
 ## Gotcha
 
 `color-scheme: dark` is *per element*, not per page. If you set it on `.dark` and a child element doesn't inherit, native form controls inside that child render light. Set on `:root` if you want global effect.
@@ -108,4 +123,5 @@ Or use a `<svg>` filter with `<feTurbulence>` for procedural noise.
 - Vercel Web Interface Guidelines — Design section, contrast and chrome rules.
 - Andrew Somers — APCA documentation, [git.apcacontrast.com](https://git.apcacontrast.com).
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN — disabled tokens, declared schemes.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/composition.tsx` and `stageshow/teaching/composition.css` (`surface-contrast`), `stageshow/kit/controls/Button.css` (hover), `stageshow/references/craft.md` (Color and looks: quiet is not faint).
 - Related: [[color-monochromatic]] (the palette), [[dark-mode]] (specific colors), [[accessibility-baseline]] (a11y context), [[shadows-whisper]] (sibling surface concern).

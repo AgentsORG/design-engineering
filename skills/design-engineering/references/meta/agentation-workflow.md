@@ -96,6 +96,7 @@ From Agentation's own skill:
 - **Name the principle**. Visual hierarchy. Gestalt grouping. Whitespace. F-pattern scanning. These vocabulary words are how the agent looks up the right pattern.
 - **Reference comparable products**. "Like Stripe", "like Linear's command bar", "like Vercel's monochrome dashboard."
 - **Link the principle node** when applicable. `[[hover-states-subtle]]`, `[[shadows-whisper]]`, `[[color-monochromatic]]`.
+- **One instance per annotation.** Feedback addresses an instance; a guideline describes a principle. A note that would fit every page belongs in a node, not on an element (Benji Taylor, benji.org/annotating).
 
 ## When to apply
 
@@ -108,6 +109,19 @@ From Agentation's own skill:
 - Production environments — Agentation is dev-only.
 - Pre-launch marketing pages — at low frequency, manual pointing is faster than setting up the toolbar.
 - Components without a localhost preview — Agentation needs a running app to click on.
+
+## Reference
+
+One annotation on a pricing card, written badly and then well:
+
+- Bad: `div.card` → "This feels cluttered, make it cleaner and more modern."
+- Good: `[data-testid="plan-pro"] .plan-name` → "The plan name sits 16px above its price and 12px below the card above, so it reads as part of the wrong record (Gestalt proximity). Title 4–6px over its metadata, the air in the row's padding, as Gmail's rows do."
+
+The good one points at one instance by a stable selector, names the principle once and gives the number the fix lands on, in three sentences.
+
+Gold example: `stageshow/references/review.md`, where every finding is what you would screenshot, which frame shows it and the fix in one line. An annotation has the same shape.
+
+Check: hand the annotation alone to a fresh session with the page closed. If it cannot find the element from the selector and apply the fix from the sentence, rewrite it before Session 2 picks it up.
 
 ## Gotcha
 
@@ -122,3 +136,5 @@ Also: Agentation's license is PolyForm Shield 1.0.0 (non-permissive — restrict
 - [skills.sh/benjitaylor/agentation/agentation](https://www.skills.sh/benjitaylor/agentation/agentation) — installable skill.
 - Benji Taylor — [benji.org/annotating](https://benji.org/annotating), [benji.org/agentation](https://benji.org/agentation).
 - Related: [[pointing-beats-describing]] (the underlying principle), [[review-format]] (the markdown table format Agentation's output pairs with), [[using-design-md]] (companion workflow for design-token guidance).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/review.md` (finding shape: screenshot, frame, one-line fix); 4–6px title-to-metadata from `stageshow/references/craft.md`.
+- Benji Taylor, benji.org/annotating and benji.org/agentation (read 2026-11-07): pointing at instances by identifying features; guidelines versus feedback.
