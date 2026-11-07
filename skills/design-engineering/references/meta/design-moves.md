@@ -48,5 +48,5 @@ A catalog invites box-ticking: an agent that knows the list can *mention* "subtr
 - HKTITAN — the catalog, written from this graph's nodes for the grader (2026-11-07).
 - Benji Taylor, Stageshow (MIT): crop first, the word budget, filming every demo.
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN.
-- Strategy notes on Paxel's idea of naming decisions in a design episode (permitted research; no catalog, wording or rules reused).
+- Naming the decisions in an episode is a common pattern in agent-session review tools; every move, name and link here is this graph's own.
 - Related: [[grading-rubric]], [[directing-agents]], [[review-format]].

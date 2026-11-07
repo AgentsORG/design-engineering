@@ -8,20 +8,75 @@
 # design-engineering
 
 [![skills.sh](https://skills.sh/b/AgentsORG/design-engineering)](https://skills.sh/AgentsORG/design-engineering)
-[![CI](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml/badge.svg)](https://github.com/AgentsORG/design-engineering/actions/workflows/lint.yml)
+[![CI](https://github.com/AgentsORG/design-engineering/actions/workflows/ci.yml/badge.svg)](https://github.com/AgentsORG/design-engineering/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/AgentsORG/design-engineering)](https://github.com/AgentsORG/design-engineering/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Design engineering for AI agents — the invisible details that make UI feel right. Distills [Emil Kowalski](https://emilkowal.ski) (animation), [Benji Taylor](https://benji.org) (delight, [Agentation](https://www.agentation.com) and [Stageshow](https://benji.org/stageshow) faux product UI), [Jakub Antalik](https://transitions.dev) (transitions), [Jakub Krehel](https://jakub.kr) ([interfaces skills](https://github.com/jakubkrehel/skills): accessibility, color systems, layout, copy, review), [James Frewin](https://guidelines.sh) (guidelines), [Vercel](https://vercel.com/design/guidelines) (web-interface rules), [Ben DC](https://github.com/bendc/frontend-guidelines) (CSS conventions), [Google Labs design.md](https://github.com/google-labs-code/design.md) (design-token format), [lucide-animated](https://lucide-animated.com) (icon animation), [DiceBear](https://www.dicebear.com) (avatars), [Index](https://index.how) (design vocabulary), Apple's audio-haptic principles, [Josh Comeau](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/) (use-sound), [bruno / superfx](https://superfx.co) (launch-video sound), and 47 launch films measured frame by frame ([Skale](https://skale.solutions/portfolio)'s portfolio, HeyGen's [HyperFrames](https://github.com/heygen-com/hyperframes-launches) launches, and 18 acclaimed 2024–26 films) into one navigable skill graph.
+Design engineering for AI agents: the invisible details that make UI feel right, as a skill graph your coding agent loads, specialist agents that loop until the work passes, a cross-model design council, a grader for humans and agents, and benchmarks that prove each part earns its place. It runs in Claude Code, Codex, Cursor, Gemini and OpenCode.
 
-Not a tutorial. Not a doc site. **A working memory the agent loads** when you're reviewing UI code, picking an easing curve, designing a component, deciding whether a send button should make a sound, or asking "why does this feel flat?"
+It draws on Emil Kowalski's design-engineering practice, distilled by HKTITAN, [Benji Taylor](https://benji.org) ([Agentation](https://www.agentation.com), [Stageshow](https://benji.org/stageshow)), [Jakub Antalik](https://transitions.dev), [Jakub Krehel](https://jakub.kr), [James Frewin](https://guidelines.sh), [Vercel](https://vercel.com/design/guidelines), [Index](https://index.how), Apple's audio-haptic principles, and 47 launch films measured frame by frame. The full list is under [Sources](#sources).
+
+## Install
+
+One line sets up everything it finds: the skill, the Claude Code plugin, agents for every detected harness, the design-check hook, and (opt-in) the eve MCP server and companions.
 
 ```bash
-npx skills add AgentsORG/design-engineering
+curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.sh | bash
 ```
 
-## One entry point
+```powershell
+irm https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.ps1 | iex
+```
 
-Everything is reached through one skill: `/design-engineering [verb] [target]`. A plain request (`/design-engineering why does this card feel flat`) goes through the router to one owner node. With no arguments, it shows the menu and suggests the two or three verbs that fit what is in front of it.
+![A terminal running the one-line installer: it detects Claude Code, Codex, Cursor and Gemini, prints a tick per part installed, skips OpenCode because it is not installed, and ends with how to verify](docs/readme/img/de-install.png)
+
+Flags: `--dry-run` prints every change, `--only <parts>`, `--harness <list>`, `--yes`, `--with-hooks` / `--no-hooks`, `--with-mcp` (eve MCP), `--with-companions` (agentation, stageshow), `--uninstall`; on Windows the same switches are `-DryRun`, `-Only`, `-Harness`, `-Yes`, `-WithHooks` / `-NoHooks`, `-WithMcp`, `-WithCompanions`, `-Uninstall`. It is idempotent, backs up any settings file before editing it and never touches credentials. Pin a release with `curl -fsSL <url> | DE_REF=v4.0.0 bash` (or `$env:DE_REF='v4.0.0'` before `irm`). Prefer one package manager? `npx skills add AgentsORG/design-engineering` installs the skill alone. Every path the installer writes is listed under [Manual install](#manual-install).
+
+## Paste this into your coding agent
+
+Give your agent this block and it installs and checks itself:
+
+```text
+Install and verify the design-engineering skill and agents for this machine.
+
+1. Run the installer for this OS, dry run first, and show me the plan:
+   macOS/Linux: curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.sh | bash -s -- --dry-run
+   Windows:     & ([scriptblock]::Create((irm https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.ps1))) -DryRun
+2. If the plan only touches the skill, agent, hook and backup paths it lists, run it again
+   without the dry-run flag (add --yes / -Yes so it does not prompt).
+3. Verify, and report each line as pass or fail:
+   - SKILL.md exists in the harness's skill folder (~/.agents/skills, ~/.claude/skills,
+     ~/.gemini/skills or ~/.config/opencode/skills, under design-engineering/)
+   - /design-engineering with no arguments prints the verb menu
+   - the agents are listed: design-council, design-judge, design-grader, ui-reviewer, motion-auditor
+     (Claude Code: /agents; Codex: ~/.codex/agents; Cursor: ~/.cursor/agents;
+      Gemini: ~/.gemini/agents; OpenCode: ~/.config/opencode/agents)
+   - node <skill folder>/scripts/grade.mjs --self-test exits 0
+   - ~/.config/design-engineering/manifest.txt lists everything that was written
+4. Smoke test: run "/design-engineering review" on one CSS file in this repo and check the answer
+   is a Before | After | Why table that cites node names like [[easing-curves]].
+Never edit credentials. If a step fails, stop and show me the error.
+```
+
+## What you get
+
+| Part | Claude Code | Codex | Cursor | Gemini | OpenCode |
+| --- | --- | --- | --- | --- | --- |
+| Skill graph and `/design-engineering` | plugin or skill | skill | skill | skill | skill |
+| 13 specialist agents | plugin or `~/.claude/agents/` | `~/.codex/agents/*.toml` | `~/.cursor/agents/` | `~/.gemini/agents/` | `~/.config/opencode/agents/` |
+| Loops (act, verify, fix, 3 rounds) | yes | yes | yes | yes | yes |
+| Design council (`council.mjs`) | judge via `claude -p` | judge via `codex exec` | judge via `cursor-agent -p` | unscored jester via `gemini -p` | runs the runner |
+| Grader (`grade.mjs`) | yes | yes | yes | yes | yes |
+| Design-check hook | `PostToolUse`, non-blocking | not wired yet | not wired yet | not wired yet | not wired yet |
+| eve MCP hand-off (opt-in) | `claude mcp add` | MCP settings | MCP settings | MCP settings | MCP settings |
+
+Each agent is written once in `agents/<name>.md` and generated into every other harness's format by `scripts/build-agents.mjs`; CI fails on drift. Harness-by-harness detail is in [`harness/README.md`](harness/README.md).
+
+## Verbs
+
+![The /design-engineering verb menu in Claude Code: review, polish, motion, council and grade, with council highlighted](docs/readme/img/de-verbs.png)
+
+Everything is reached through one skill: `/design-engineering [verb] [target]`. A plain request (`/design-engineering why does this card feel flat`) goes through the router to one owner node. With no arguments it shows the menu and suggests the two or three verbs that fit what is in front of it.
 
 | Verb | Does |
 |---|---|
@@ -32,6 +87,8 @@ Everything is reached through one skill: `/design-engineering [verb] [target]`. 
 | `a11y` | An evidence-only accessibility audit tied to WCAG 2.2 criteria |
 | `tokens` | Find the `.design` / DESIGN.md and thread its tokens through the UI |
 | `sound` | Which moments earn a sound; one family, generated, wired, mapped |
+| `council` | Cross-model judges score before/after evidence per category; loop until every judge passes |
+| `grade` | Score a design episode, human or agent, on six axes with a band and a counterweight |
 | `svg` | `create`, `animate` or `sticker` |
 | `mobile` | A web app that feels native on a phone: the symptom, the one-line fix, what needs a real device |
 | `break` | Realistic worst-case data until the layout breaks; reports and stops |
@@ -39,7 +96,236 @@ Everything is reached through one skill: `/design-engineering [verb] [target]`. 
 | `film` | `plan` a launch film, `review` a render, or `formats` |
 | `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha |
 
-The 2.x slash commands (`/design-engineering:review-ui` and the rest) are gone. Their names still work as aliases: `/design-engineering review-ui` runs `review`. Install the skill **one** way, either skills.sh (`/design-engineering`) or the plugin (`/design-engineering:design-engineering`). Installing both lists it twice.
+![A review of Card.tsx: three findings as Before, After and Why rows, each Before struck through and each Why citing the node that owns the rule](docs/readme/img/de-review.png)
+
+The 2.x slash commands (`/design-engineering:review-ui` and the rest) are gone; their names still work as aliases. Install the skill **one** way, either skills.sh (`/design-engineering`) or the plugin (`/design-engineering:design-engineering`). Installing both lists it twice.
+
+## Agents and loops
+
+![The Codex agents view: a sidebar of five harnesses with Codex selected, and design-council, design-judge and design-grader listed with their generated .toml paths and a three-round loop each](docs/readme/img/de-agents.png)
+
+Thirteen specialists, each a delegation target rather than an entry point (every verb runs without them):
+
+| Agent | Job |
+| --- | --- |
+| `design-council` | Runs the council: fans one judge brief out to every available provider, loops to threshold |
+| `design-judge` | One read-only judge: JSON scores per category, Before/After/Why evidence, confidence |
+| `design-grader` | Grades a design episode for a human or an agent on the grading rubric |
+| `ui-reviewer` | Before / After / Why review against the checklist |
+| `motion-auditor` | Timing, easing, transform-only, reduced motion |
+| `anti-pattern-scanner` | AI-default, copy and code tells, as a deletion list |
+| `agentation-fix-loop` | Works through Agentation annotations until none are pending |
+| `design-md-consumer` | Reads `.design` / DESIGN.md and threads tokens through the UI |
+| `pov-curator` | Forks taste into `pov.md`, logs gotchas |
+| `sound-designer` | One sound family, generated, wired and mapped to motion |
+| `svg-creator`, `svg-animator` | Clean, token-aware SVG, then its animation |
+| `launch-film-analyst` | Measures a launch film against the 47-film corpus |
+
+Every agent carries a `## Loop`: act, verify with a deterministic check where one exists, fix; three rounds by default; a findings ledger (id, severity `blocker` / `should` / `nit`, outcome). A timeout or no reply is never approval, an agent never agrees just to end the loop, and the scope guard prefers deleting or narrowing over adding.
+
+## Design council
+
+![The design-council table for a pull request: Claude and GPT judges scored over three rounds, rising to 8.3 and 8.0; the Gemini jester marked no score; a satellite card shows Claude's round-three scores for typography, hierarchy, contrast and motion](docs/readme/img/de-council.png)
+
+`/design-engineering council` (or `@agent-design-council`) adapts Theo Browne's [tstack](https://github.com/t3dotgg/tstack) council (MIT) to design, the way Emil pairs a council with design and animation skills:
+
+- **Three providers.** Claude through the `design-judge` subagent, GPT through `codex exec`, Gemini through `gemini -p` as an unscored jester when present. A missing provider is reported, never substituted.
+- **Evidence, not code alone.** Judges see before/after screenshots or films plus reference products in the same panel, since isolated judging inflates scores. They never see the target threshold.
+- **Per-category scores, 1 to 10.** Typography, hierarchy, colour and contrast, spacing and layout, motion, states, accessibility, copy.
+- **Staged and looped.** Cheapest judge first; scarce judges join once it passes. Loop until every judge clears the threshold or the budget runs out; fork a fresh branch to push further. One human taste note is allowed mid-climb.
+- **Recorded.** A `## Council review` table goes in the PR description: rounds, per-judge scores, and `no score` where a judge did not answer.
+
+The runner is [`skills/design-engineering/scripts/council.mjs`](skills/design-engineering/scripts/council.mjs). It detects the `claude`, `codex`, `cursor-agent` and `gemini` CLIs, fans one judge brief out to each, and keeps a ledger of rounds (`--stage --threshold 9` runs the cheapest judge first; `--dry-run` shows the brief and sends nothing).
+
+## Grader
+
+![A grade report for episode 0142: 7.4, band crafted, agent with skill, confidence 0.82; five axes with bars, Access marked lower at 6.4; a counterweight card says the focus ring fails 3:1 on the dark card, so checks cap Access](docs/readme/img/de-grade.png)
+
+`/design-engineering grade` scores a design episode (the brief, the diff or output, rendered evidence and, optionally, the transcript) the same way for a human, an agent with the skill, and an agent without it.
+
+- **Checks first, judges second.** Deterministic signals run first: review-checklist rows, AI-default and code tells, WCAG numbers, motion values against the duration table, reduced motion, transform and opacity only, Stageshow film checks. Checks can only cap a score; only judges raise it.
+- **Axes, 1 to 10.** Craft, Motion, Restraint, Access, Verification, and Direction when a human steered an agent. Each axis gets facts (Before/After/Why rows), an interpretation, a counterweight (the case against) and a confidence.
+- **Bands.** generated (under 4), passable (4 to 6), crafted (6 to 8), refined (8 to 9), reference-grade (9 to 10). Confidence under 0.7 softens the wording, never the number.
+- **Anti-gaming and privacy.** Results are cached by input hash (no re-rolls), claims that contradict the checks are flagged, and holdout briefs stay hidden. Everything runs locally; secrets are scrubbed before any model call, and `--dry-run` shows what would be sent.
+
+The rubric is [`grading-rubric.md`](skills/design-engineering/references/meta/grading-rubric.md), the move catalog is [`design-moves.md`](skills/design-engineering/references/meta/design-moves.md), and the script is [`grade.mjs`](skills/design-engineering/scripts/grade.mjs): `node grade.mjs --files src/**/*.tsx --evidence after.png --judges claude,codex`, or `--checks-only` for the deterministic pass alone.
+
+## Benchmarks
+
+![The benchmark report for 2026-09-05 on Sonnet: the none arm passes 32 of 36 rules, the full arm 35 of 36; a card shows the per-cluster verdicts keep, slim and retire](docs/readme/img/de-bench.png)
+
+Same model in every arm; the only difference is how much of the skill the agent can see. `scripts/bench.mjs` runs three kinds of arm: `none`, `full`, and `minus-<cluster>` for each cluster on disk (plus `minus-agents`). Every run is a fresh `claude -p` in an empty workspace with an isolated plugin copy; the stream-json init line proves no user-installed copy leaked into the baseline, and a run that fails that check is excluded. It scores with the fixture rules and the grader's checks, records cost and tokens, labels any gap below the minimum detectable difference as noise, and gives each cluster a verdict: keep, slim or retire. The `claude plugin eval` suite under `evals/plugin/` runs the same with/without comparison inside Claude Code.
+
+<!-- BENCH:START -->
+| arm | rules passed | fixtures fully clean |
+| --- | --- | --- |
+| Sonnet, own knowledge | 32 / 36 (89%) | 7 / 10 |
+| Sonnet + `/design-engineering` | 35 / 36 (97%) | 9 / 10 |
+
+Run of 2026-09-05, ten scorable fixtures, one sample each: a floor check, not a leaderboard. Per-fixture results, every rule each arm missed and all twenty raw outputs are in [`evals/results/2026-09-05-sonnet/`](evals/results/2026-09-05-sonnet/REPORT.md). The skill fixed the card-hover edit (named transition properties, a `hover: hover` guard, a smaller lift), the dark-mode repair (a lifted surface instead of `#000`) and the icon toolbar (`hover: hover`). It still missed one thing: a login form shipped 15 px inputs, which zoom on iOS.
+<!-- BENCH:END -->
+
+Reproduce:
+
+```bash
+node scripts/bench.mjs --arms none,full --tries 3 --model sonnet            # with / without
+node scripts/bench.mjs --arms all --tries 3 --relevant-only --concurrency 4  # every minus-<cluster> arm
+node scripts/bench.mjs --report-only --out evals/results/<run>              # rebuild REPORT.md
+node evals/run-bench.mjs evals/results/2026-09-05-sonnet                    # score the 2026-09-05 outputs
+```
+
+The eve evals in `evals/` are the other half: `defineEval()` checks for review format, motion values, sound values, launch-film numbers, the generated-modal floor, delegation and the council, run with `npm run eval`. The methodology is in `references/meta/design-benchmarks.md`.
+
+## Sample prompts and outputs
+
+Real outputs, unedited, from `claude -p --model sonnet` with the plugin loaded (2026-11-07).
+
+<details>
+<summary><code>/design-engineering review</code> a modal that pops from <code>scale(0)</code> on <code>ease-in</code></summary>
+
+Prompt: `/design-engineering review this CSS and answer in at most 6 table rows: .modal{animation:pop .4s ease-in} @keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}} .btn:hover{transition:all .3s}`
+
+| Before | After | Why |
+|---|---|---|
+| `animation: pop .4s ease-in` | `animation: pop .22s cubic-bezier(.23,1,.32,1)` | `ease-in` starts slow, so the modal feels hesitant when it appears. Entering elements want ease-out, and a modal should take roughly 200–250ms. |
+| `from{transform:scale(0)…}` | `from{transform:scale(.95);opacity:0}` | Nothing in the real world appears from nothing, and scaling from 0 looks theatrical. Starting at about .95 with a fade reads as a quick settle. |
+| `.modal` (no origin set) | `transform-origin: center` for a centered dialog. For a popover, use the trigger's origin. | The scale should grow from where the element belongs, not from a default that happens to fit. |
+| `.btn:hover{transition:all .3s}` | `.btn{transition: background-color .15s ease-out, transform .15s ease-out}` | `all` animates layout properties and anything added later. Name the properties. 300ms is also too slow for hover feedback. |
+| `.btn:hover{…}` (ungated) | `@media (hover:hover) and (pointer:fine){.btn:hover{…}}` | Touch devices keep hover styles after a tap (sticky hover), so gate them. |
+| No reduced-motion handling | `@media (prefers-reduced-motion:reduce){.modal{animation:none}}`, or keep only the opacity fade | Scale and translate motion can trigger vestibular discomfort. Keep the fade and remove the movement. |
+
+</details>
+
+<details>
+<summary><code>/design-engineering motion</code> a dropdown opening from a button</summary>
+
+Prompt: `/design-engineering motion: a dropdown menu opens from a button. Give concrete duration, easing, transform-origin and the reduced-motion rule in under 120 words.`
+
+Dropdown open (from [[responsive-feedback]], [[duration-table]], [[easing-curves]], [[prefers-reduced-motion]]):
+
+- **Gate:** a dropdown is a popover, so it animates, but it's opened often. Keep it fast and make it interruptible.
+- **Duration:** 150ms open (budget is 150–250ms). Exit is shorter at about 100ms and fades only.
+- **Easing:** strong ease-out, `cubic-bezier(0.23, 1, 0.32, 1)`.
+- **Properties:** `opacity` 0→1 and `scale(0.96)`→`1`. Never start from `scale(0)`.
+- **Transform-origin:** the trigger's anchor, for example `top left` for a menu under a left-aligned button. Take it from Radix or Floating UI via `var(--transform-origin)`. Modals are the only element that stays centered.
+- **Reduced motion:** under `prefers-reduced-motion: reduce`, drop the scale and keep a short opacity fade. Don't remove the state change.
+- **Mechanics:** use a CSS transition, not a keyframe animation, so a rapid close/open reverses cleanly.
+
+</details>
+
+<details>
+<summary><code>/design-engineering tells</code> a purple-gradient AI hero</summary>
+
+Prompt: `/design-engineering tells: list the AI-default tells in this hero as a deletion list, max 6 bullets: <section class="bg-gradient-to-r from-purple-500 to-pink-500 text-center"><h1>✨ Supercharge your workflow with AI</h1>…`
+
+1. **Delete the purple-to-pink gradient** (`bg-gradient-to-r from-purple-500 to-pink-500` on the `<section>`). Use a monochrome ground with one real accent. [[ai-default-tells]], [[color-monochromatic]]
+2. **Delete the `✨` and `🚀` emoji** from the `<h1>` and the button. Emoji run 10% on top sites against 26% on weak ones, and they signal a generated page. [[ai-default-tells]]
+3. **Replace the headline and subline** ("Supercharge your workflow with AI", "Unlock seamless, powerful productivity"). They could describe any product. Write one specific sentence saying what it does and for whom. [[content-authenticity]], [[ai-default-tells]]
+4. **Replace "Get Started" with the action the button performs**, for example "Create project" or "Try it". [[ai-default-tells]]
+5. **Swap `shadow-2xl` for a layered shadow at 4–6% opacity.** The heavy default shadow is a tell. Drop `rounded-full` too, and pick a radius from an intentional scale instead of the pill default. [[shadows-whisper]], [[border-radius]]
+6. **Delete the layout.** A centered single column (`text-center` on a full-bleed section) with a headline, a line and a button is the default hero template. Make the layout fit your story. [[ai-default-tells]]
+
+**Keep or enlarge:** keep the one-headline, one-action structure. Enlarge the proof by replacing the generic claim with a real product screenshot or a specific number.
+
+</details>
+
+<details>
+<summary><code>/design-engineering sound</code> should Send make a sound?</summary>
+
+Prompt: `/design-engineering sound: should a "Send" button in a chat app make a sound? Answer with a verdict and values in under 100 words.`
+
+**Verdict: yes, but only as an opt-in, off-by-default confirmation, not a default press sound.**
+
+- **Why:** Send is a daily action. It earns a sound only because attention has usually moved on to the next message.
+- **Values:** one short tone, ≤250 ms. It should be soft and slightly rising, and 3 dB quieter than your first instinct. Fire it on send success, not on press.
+- **Rules:** keep a visible sent state, since sound can't be the only signal. Add a discoverable mute toggle, and skip the sound on the 100th-use test if it would make you reach for mute.
+
+</details>
+
+<details>
+<summary>One benchmark fixture, both arms: <code>edit-hover-01</code>, "Make the card lift on hover."</summary>
+
+Input:
+
+```css
+.card { transition: all 0.3s ease-in; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.3); }
+```
+
+Without the skill (3 of 5 rules):
+
+```css
+.card {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+}
+```
+
+With the skill (5 of 5):
+
+```css
+.card {
+  transition:
+    transform 160ms cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 160ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 1px 1px rgba(17, 17, 17, 0.04),
+      0 2px 4px rgba(17, 17, 17, 0.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: box-shadow 160ms cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
+```
+
+</details>
+
+## Manual install
+
+The full reference, every path and command per harness, is [`docs/install.md`](docs/install.md). In short:
+
+| Part | Command or path |
+| --- | --- |
+| Skill (any agent) | `npx skills add AgentsORG/design-engineering -g -y`, or copy `skills/design-engineering/` into the harness's skill folder |
+| Claude Code plugin | `claude plugin marketplace add AgentsORG/design-engineering` then `claude plugin install design-engineering@agentsorg -s user` |
+| Claude Code agents | copy `agents/*.md` to `~/.claude/agents/` (the plugin includes them) |
+| Codex | skill in `~/.agents/skills/`; `harness/codex/agents/*.toml` to `~/.codex/agents/` |
+| Cursor | skill in `~/.agents/skills/`; `harness/cursor/agents/*.md` to `~/.cursor/agents/` (it also reads `.claude/agents/`) |
+| Gemini CLI / Antigravity | skill in `~/.gemini/skills/`; `harness/gemini/agents/*.md` to `~/.gemini/agents/` |
+| OpenCode | skill in `~/.config/opencode/skills/`; `harness/opencode/agents/*.md` to `~/.config/opencode/agents/` |
+| Design-check hook | Claude Code `PostToolUse`: `hooks/design-check.mjs` runs the grader's checks on edited CSS, TSX, SVG and similar files as a non-blocking note; merge it with `hooks/merge-settings.mjs` or [`hooks/settings-snippet.json`](hooks/settings-snippet.json); turn it off with `DE_HOOKS=0` |
+| eve MCP | `npx eve dev` in a checkout, then `claude mcp add --transport http -s user design-engineering http://localhost:2000/eve/v1/mcp` |
+| shadcn registry | `npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r/design-engineering.json` |
+| Uninstall | `bash install.sh --uninstall` / `install.ps1 -Uninstall`: removes exactly what `~/.config/design-engineering/manifest.txt` lists and restores backups |
+
+Claude Code namespaces plugin skills and subagents under the plugin name: the skill runs as `/design-engineering:design-engineering` and the agents as `design-engineering:ui-reviewer` and so on. The shadcn registry also ships `design-engineering-motion`, four easing curves and a duration scale as theme CSS variables, the lightest way in.
+
+## Run it as an agent (eve)
+
+The repo is a runnable [eve](https://eve.dev/) project: a durable backend design-engineering agent with the skill graph synced into its root and into every subagent (eve subagents inherit nothing), and the same specialists, including an eve council with one nested subagent per provider.
+
+```bash
+npm install
+npm run dev      # syncs the skill graph into agent/ and starts eve dev
+npm run eval     # scored checks, including delegation and the council
+```
+
+`agent/channels/mcp.ts` exposes it over MCP, so Claude Code, Codex and Cursor can hand work to it (`claude mcp add --transport http design-engineering http://localhost:2000/eve/v1/mcp`), and `eve acp` serves ACP editors. Loops run on the harness loop with `limits.sessionUsage` guards.
 
 ## Launch film
 
@@ -102,335 +388,54 @@ Frames from the film, each an output shape of the skill.
 </tr>
 </table>
 
-## Benchmarks: with and without the skill
-
-The skill ships its own [DesignBench](https://github.com/webpai/designbench)-style fixtures — generation, edit, and repair tasks with deterministic `must_match` / `must_not_match` rules tied to the review checklist — and a runner that scores real outputs. Same model in both arms; the only difference is whether the agent read `SKILL.md` and followed its routing before answering. Scoring looks only at the code each arm shipped, not the prose around it.
-
-| arm | rules passed | fixtures fully clean |
-| --- | --- | --- |
-| Sonnet, own knowledge | 32 / 36 (89%) | 7 / 10 |
-| Sonnet + `/design-engineering` | 35 / 36 (97%) | 9 / 10 |
-
-Run of 2026-09-05, ten scorable fixtures, one sample each — a floor check, not a leaderboard. Per-fixture results, every rule each arm missed, and all twenty raw outputs are in [`evals/results/2026-09-05-sonnet/`](evals/results/2026-09-05-sonnet/REPORT.md). What the skill fixed: the card-hover edit (named transition properties, a `hover: hover` guard, a smaller lift), the dark-mode repair (a lifted surface instead of `#000`), the icon toolbar (`hover: hover`). What it still missed: one login form shipped 15 px inputs, which zoom on iOS.
-
-<details>
-<summary><b>One fixture, both arms</b> — <code>edit-hover-01</code>: "Make the card lift on hover."</summary>
-
-Input:
-
-```css
-.card { transition: all 0.3s ease-in; }
-.card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.3); }
-```
-
-Without the skill (3 of 5 rules):
-
-```css
-.card {
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(0,0,0,0.3);
-}
-```
-
-With the skill (5 of 5):
-
-```css
-.card {
-  transition:
-    transform 160ms cubic-bezier(0.25, 1, 0.5, 1),
-    box-shadow 160ms cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-@media (hover: hover) {
-  .card:hover {
-    transform: translateY(-1px);
-    box-shadow:
-      0 1px 1px rgba(17, 17, 17, 0.04),
-      0 2px 4px rgba(17, 17, 17, 0.04);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card {
-    transition: box-shadow 160ms cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  .card:hover {
-    transform: none;
-  }
-}
-```
-
-</details>
-
-Reproduce: produce the two arms with any agent that can read files (prompts are the fixture rows in [`design-bench.jsonl`](skills/design-engineering/evals/design-bench.jsonl)), then:
-
-```bash
-node evals/run-bench.mjs evals/results/<run>
-```
-
-The eve evals in `evals/` are the other half: five `defineEval()` checks (review format, motion values, sound values, launch-film numbers, and the generated-modal floor) run with `npm run eval`. The methodology behind both is in `references/meta/design-benchmarks.md`.
-
-## The four primitives
-
-Since v2.0.0 the repo is organized around four primitives, each owned by an open spec, each independently useful:
-
-| Primitive | What it is | Where | Spec |
-|---|---|---|---|
-| **Knowledge** | The skill graph — 173 atomic, wikilinked nodes in 13 themed clusters, one `/design-engineering` entry with 20 verbs, plus three generation scripts | `skills/design-engineering/` | [Agent Skills](https://agentskills.io/specification) |
-| **Package** | The portable plugin — one manifest, portable skills, namespaced client extensions | `plugin.json` + `skills/` | [Agent Plugins v1.0.0](https://agent-plugins.org/) |
-| **Runtime** | A durable agent that *runs* the knowledge — root agent, ten specialist subagents, scored evals | `agent/` + `evals/` | [eve](https://eve.dev/) |
-| **Client extensions** | Per-host adapters — optional subagents, host manifests, shadcn registry | `agents/`, `.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `registry.json` + `r/` | per host |
-
-The knowledge is the core; everything else is a delivery mechanism for it. `plugin.json` declares the client extensions under reverse-domain namespaces (`com.anthropic.claude-code`, `com.openai.codex`, `com.cursor.editor`, `dev.vercel.plugins`, `dev.eve.agent`) so any Agent Plugins client can discover what this repo ships and ignore what it doesn't implement.
-
-## Install
-
-The fastest path is the one-liner at the top — `npx skills add AgentsORG/design-engineering`. It uses the [skills.sh](https://skills.sh) CLI to install into your detected agent (Claude Code, Cursor, Windsurf, Codex, Gemini, Cline, Aider, and [18+ others](https://www.skills.sh/agent)). The CLI prompts for scope (project vs. global) and method (symlink vs. copy).
-
-### Plugins CLI (Claude Code + Cursor + Codex)
-
-Install the full plugin bundle (the skill and ten optional workflow subagents) in one step via [vercel-labs/plugins](https://github.com/vercel-labs/plugins):
-
-```bash
-npx plugins add AgentsORG/design-engineering
-
-# Dry run — see the skill and agents before installing
-npx plugins discover AgentsORG/design-engineering
-```
-
-Restart your agent tools after install, then run `/design-engineering`. The subagents are delegation targets, not entry points: every verb runs without them.
-
-### Per-agent install
-
-The repo ships host manifests so you can install via each agent's native plugin system:
-
-**Claude Code** — `.claude-plugin/marketplace.json` + `.claude-plugin/plugin.json`; skills under `skills/` auto-discover.
-
-```bash
-/plugin marketplace add AgentsORG/design-engineering
-/plugin install design-engineering@agentsorg
-```
-
-The plugin is listed as **AgentsORG Design Engineering** and installs as `design-engineering@agentsorg`. Claude Code namespaces a plugin's skills and subagents under its name, so the skill runs as `/design-engineering:design-engineering` and the subagents appear as `design-engineering:ui-reviewer` and so on. A marketplace added before 3.3.0 keeps the name it was registered under (`design-engineering`) and keeps working; a 3.3.0 install of `agentsorg` migrates through the `renames` map.
-
-**Codex** — `.codex-plugin/plugin.json` with the full `interface` block.
-
-```bash
-codex plugin marketplace add AgentsORG/design-engineering --sparse .codex-plugin --sparse skills
-```
-
-**Cursor** — `.cursor-plugin/plugin.json`; install via the Cursor Marketplace or `Settings → Plugins → Load unpacked`.
-
-All manifests share `version`, `description`, `author`, `homepage`, `repository`, and `license`; the root `plugin.json` is canonical and CI enforces version parity across all six plus `SKILL.md`.
-
-### shadcn CLI
-
-The repo doubles as a [shadcn registry](https://ui.shadcn.com/docs/registry), so a frontend project can pull the skill — or just its motion tokens — with the CLI it already has:
-
-```bash
-# The full skill graph → .agents/skills/design-engineering/
-npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r/design-engineering.json
-```
-
-Four items ship:
-
-| Item | Installs | Into |
-|---|---|---|
-| `design-engineering` | The full skill graph (markdown, eval fixtures, and all three scripts) | `.agents/skills/design-engineering/` |
-| `design-engineering-agents` | Ten optional subagents | `.claude/agents/` |
-| `design-engineering-design-file` | The starter `.design` contract | `.design` at project root |
-| `design-engineering-motion` | Motion tokens as theme CSS variables | your global CSS |
-
-Swap the filename in the URL for any of them. The motion item is the lightest way in — four easing curves and a duration scale, no skill install:
-
-```bash
-npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r/design-engineering-motion.json
-```
-
-That gives you `--ease-out-quart`, `--ease-out-expo`, `--ease-in-out`, `--ease-spring`, and `--duration-press` through `--duration-page`. On Tailwind v4, register the ones you want utilities for under `@theme inline`. Preview any item before installing with `--dry-run`, or read it with `npx shadcn@latest view <url>`.
-
-Registry sources live in [`registry.json`](registry.json); the built, content-embedded items in [`r/`](r/) are generated by `npm run build:registry` and committed so the raw URLs resolve.
-
-### Run it as an agent (eve)
-
-The repo is also a runnable [eve](https://eve.dev/) project — a durable backend design-engineering agent with the skill graph seeded into its sandbox and ten specialist subagents it can delegate to:
-
-```bash
-npm install
-npm run dev      # syncs the skill graph into agent/skills/ and starts eve dev
-npm run eval     # scored checks: review-format table contract, concrete motion values
-```
-
-`agent/instructions.md` is the identity (distilled from [SOUL.md](SOUL.md)), `agent/agent.ts` the runtime config, `agent/subagents/<name>/` the specialists (each with its own `agent.ts` description the root reads to decide when to delegate), and `evals/*.eval.ts` the regression gates. `agent/skills/` is generated by `scripts/sync-skills.mjs` from the canonical `skills/design-engineering/` — single source of truth, two consumers.
-
-### Recommended companions
-
-```bash
-# Obsidian — view + edit the skill graph in a real graph view
-# https://obsidian.md → "Open folder as vault" → pick this repo
-
-# Agentation — click-to-annotate design review in your localhost dev environment
-npx skills add benjitaylor/agentation
-```
-
-**Obsidian** turns the wikilinks-and-frontmatter graph into a navigable canvas. **Agentation** ([agentation.com](https://www.agentation.com)) mounts a toolbar in your dev environment so annotations become structured markdown your agent can act on — see `[[pointing-beats-describing]]` and `[[agentation-workflow]]`.
-
-## Paste this into your coding agent
-
-Drop the block below into your agent's instructions / `AGENTS.md` / `.cursorrules` / system prompt:
-
-```text
-You have access to the design-engineering skill — a navigable graph of
-opinionated, source-cited design-engineering knowledge. Load it when the
-user is reviewing UI code, designing a component or page layout, picking
-an easing curve or transition pattern, deciding "should this animate at
-all?", choosing an avatar / typography / color system, auditing for
-AI-default tells, or asking "why does this feel flat?"
-
-- Repo:        https://github.com/AgentsORG/design-engineering
-- Skill root:  skills/design-engineering/
-- Install:     npx skills add AgentsORG/design-engineering
-
-Navigation:
-- Route first: references/meta/routing-table.md maps intent → entry node
-  and names the four postures (build / judge / decide / name).
-- When two intents blur, references/meta/disambiguation.md names the
-  tiebreaker; multi-cluster jobs follow references/meta/stacking-chains.md.
-- SKILL.md is a thin Map of Content with [[wikilinks]] to atomic nodes in
-  11 themed folders: philosophy, motion, sound, svg, launch-video,
-  typography, surface, components, layout, anti-patterns, meta. Wikilinks
-  resolve by basename.
-
-Rules:
-1. For any UI code review, use the Before | After | Why table from
-   references/meta/review-format.md, scanned against
-   references/meta/review-checklist.md.
-2. Cite the node basename you used (e.g. [[easing-curves]]). Don't
-   paraphrase a node without naming it.
-3. Prefer reading a specific references/<theme>/<node>.md over the whole
-   SKILL.md — cheaper on context; the graph is built for it.
-4. Before producing UI code or a review, load references/meta/gotchas.md
-   (lived failures) and references/meta/pov.md (installer overrides).
-
-Smoke test: "review this CSS for a modal animation" → open
-references/meta/review-format.md first, then the relevant motion nodes
-([[easing-curves]], [[duration-table]], [[never-scale-from-zero]]).
-```
-
-## What's included
-
-One skill, organised into **13 themed clusters**, fronted by a router: `/design-engineering` resolves the project's design contract, classifies the phase of the work, and hands the job to one owner — a node here, one of ten subagents, or an installed companion skill (AgentsORG `design`, [impeccable](https://impeccable.style/), HyperFrames, ElevenLabs, transitions-dev, the shadcn CLI, [diagram-design](https://github.com/cathrynlavery/diagram-design), tldraw, GSAP, better-icons, [fun-isometric](https://skills.klvn.dev/fun-isometric), [Stageshow](https://benji.org/stageshow)). See `references/meta/skill-router.md`. Each cluster has its own MOC (meta indexes from SKILL.md directly).
-
-| Theme | Use it when… |
-|---|---|
-| `philosophy` | Justifying polish, picking between two valid approaches, debating delight budget. The "why bother" cluster. |
-| `motion` | Adding or reviewing any animation. Easing, durations, springs, gestures, transitions, stagger. The largest cluster. |
-| `sound` | Deciding whether an interaction should make a sound (usually no), designing one material family, syncing transients to frames, generating files — ElevenLabs on demand or open-weight / procedural / CC0 without a key — scoring a launch video in the register its picture sets, placing a music track or a voice under it, and deriving a video's whole stem from its motion. Ships `scripts/sound-family.mjs` and `scripts/sound-sheet.mjs`. |
-| `svg` | Creating clean, token-aware, editable SVG; animating it with the engine its home allows (inline CSS/WAAPI, embedded keyframes or SMIL for image use); morphing paths by the command-count rule; turning flat clips into editable animated mascots. Ships `scripts/svg-flipbook.mjs`. |
-| `diagram` | Deciding whether a picture earns its place and which surface it lives on: a finished figure for readers, an editable tldraw canvas, a Mermaid block or FigJam. The craft of a figure (deletion, focal accents, the six connector rules), how a `.design` contract maps into Cathryn Lavery's diagram-design, and the canvas rules for tldraw's Desktop skill and MCP app. |
-| `launch-video` | Planning, cutting, scoring and reviewing a launch film: registers measured across 47 films, beat timings, seams and cuts, film motion, type, UI demo, HyperFrames reconciliation. These are film numbers; they don't transfer to product UI. |
-| `typography` | Picking a typeface, building a type scale, leading, tracking, wrapping, truncation, underlines, the 16px and contrast floors. Avoiding AI-default font tells. |
-| `surface` | Color palette and OKLCH ramps, dark mode, shadows and nested radii, hairlines, image outlines, visual imperfection. |
-| `components` | Buttons, hovers, empty/loading states, cards, forms (validation and behavior), touch and focus, the polish pass, component APIs, avatars, icons, a11y, copy. |
-| `layout` | Page-level grids, viewports, sticky chrome, URL-as-state, marketing / docs / blog surface rules. |
-| `anti-patterns` | Auditing for "could this have been generated in 30s with a prompt?" tells — visual, copy, and code — and the unslop pass that removes them. The deletion cluster. |
-| `meta` | The `/design-engineering` skill router, routing (`routing-table`, `disambiguation`, `stacking-chains`), review format + checklist, `.design` and DESIGN.md consumption, design-system docs for agents, prototyping behind a picker, tools before artifacts, skill-writing rules, design benchmarks, Agentation workflow, gotchas, pov. |
-
-## Structure: a skill graph, not a SKILL.md file
-
-The skill is a **graph**, not a single file (per [Akshay Pachaar's "Skill Graphs > SKILL.md"](https://x.com/akshay_pachaar)):
-
-- **`SKILL.md`** is a *Map of Content* — short descriptions of every cluster, plus `[[wikilinks]]` to follow.
-- **`references/<theme>/MOC-<theme>.md`** is the topic hub for each theme.
-- **`references/<theme>/<node>.md`** are atomic concept files — one complete thought each, 40–80 lines, with YAML frontmatter and outbound `[[wikilinks]]`.
-- **`references/meta/routing-table.md`** is the entry router: classify the intent, open exactly one node. Most decisions happen before reading a single full node.
-- Wikilinks resolve by basename across the whole graph — themed subfolders are organizational, not namespaces.
-- The skill follows [Perplexity's progressive-disclosure pattern](https://research.perplexity.ai/articles/designing-refining-and-maintaining-agent-skills-at-perplexity) — three tiers of context cost (index → SKILL.md body → on-demand nodes).
-
 ## Repository layout
 
 ```text
 design-engineering/
-├── plugin.json                        ← canonical Agent Plugins v1.0.0 manifest (portable core + extensions)
-├── package.json                       ← eve app root (npm run dev / eval / sync:skills)
-├── tsconfig.json
-├── README.md
-├── AGENTS.md                          ← repo-level agent guidance (the "what / how")
-├── SOUL.md                            ← identity layer (the "who / why") — voice, taste lineage
-├── CONTRIBUTING.md / CODE_OF_CONDUCT.md / SECURITY.md / CHANGELOG.md / LICENSE
-├── .github/workflows/lint.yml         ← markdownlint + frontmatter + wikilinks + manifest parity
-├── .claude-plugin/                    ← Claude Code manifest + marketplace   (com.anthropic.claude-code)
-├── .codex-plugin/                     ← OpenAI Codex manifest                (com.openai.codex)
-├── .cursor-plugin/                    ← Cursor IDE manifest                  (com.cursor.editor)
-├── .plugin/                           ← vendor-neutral plugins-CLI manifest  (dev.vercel.plugins)
-├── agents/                            ← ten workflow subagents (Claude Code subagent format)
-├── agent/                             ← eve runtime                          (dev.eve.agent)
-│   ├── agent.ts                       ← defineAgent() — model + runtime config
-│   ├── instructions.md                ← base system prompt, distilled from SOUL.md
-│   ├── skills/                        ← generated: skill graph synced in (gitignored)
-│   └── subagents/<name>/              ← agent.ts (description + model) + instructions.md × 10
-├── evals/                             ← eve evals: defineEval() scored checks
-│   ├── evals.config.ts
-│   ├── review-format.eval.ts          ← review requests must return the Before|After|Why table
-│   ├── motion-values.eval.ts          ← easing advice must name concrete values
-│   ├── sound-values.eval.ts           ← sound advice names a duration, a level, or says "no sound"
-│   ├── launch-values.eval.ts          ← launch-film advice names seconds or a share of runtime and a cut rate per minute
-│   ├── design-bench.eval.ts           ← generated UI passes the review-checklist floor (DesignBench-style repair)
-│   ├── run-bench.mjs                  ← scores with/without-skill outputs against design-bench.jsonl
-│   └── results/<run>/                 ← raw outputs of both arms + REPORT.md
-├── scripts/sync-skills.mjs            ← skills/ → agent/skills/ (single source of truth)
-├── registry.json                      ← shadcn registry source          (com.shadcn.registry)
-├── r/                                 ← built registry items (generated, committed for raw URLs)
-├── scripts/build-registry.mjs         ← registry.json + r/*.json builder
-├── spec/                              ← offline mirrors: agent-skills-spec.md, design-md-spec.md, design-file-spec.md
-├── templates/design-engineering.design ← starter .design contract (this skill's motion + surface defaults)
-├── docs/brand/                        ← AgentsORG wordmark (light / dark) and icon
-├── docs/research/launch-register/     ← the scripts and summaries that measured the OpenAI launch-film register
-├── docs/research/launch-films/        ← the native-fps measurements behind the launch-video cluster: 29 Skale pieces, 18 acclaimed films, 3 HeyGen renders
-├── docs/demo/                         ← the launch film: HyperFrames source + storyboard + ledger, MP4/GIF, screenshots, the stem and cue sheet
-├── template/TEMPLATE.md
-└── skills/design-engineering/         ← THE KNOWLEDGE (portable core)
-    ├── SKILL.md                       ← thin Map of Content
-    ├── evals/                         ← Step-0 routing fixtures (loading.jsonl, progressive-reads.jsonl)
-    ├── scripts/                       ← sound-family.mjs (ElevenLabs or offline synth), sound-sheet.mjs (motion cue sheet → stereo stem, designed effects tuned to the track), svg-flipbook.mjs (frames → animated SVG)
-    └── references/                    ← 13 themed clusters, 173 atomic nodes, 13 MOCs, 14 command files
+├── install.sh / install.ps1           ← the one-line installers (docs/install.md)
+├── plugin.json                        ← canonical Agent Plugins v1.0.0 manifest
+├── package.json                       ← eve app root (npm run dev / eval)
+├── README.md, AGENTS.md, SOUL.md, CHANGELOG.md, CONTRIBUTING.md, SECURITY.md, LICENSE
+├── .claude-plugin/ .codex-plugin/ .cursor-plugin/ .plugin/   ← host manifests
+├── agents/                            ← 13 canonical agents (Claude Code format, the source of truth)
+├── harness/                           ← generated agents: codex/, cursor/, gemini/, opencode/
+├── hooks/                             ← design-check hook, settings merge, snippet
+├── agent/                             ← eve runtime: agent.ts, instructions.md, channels/, subagents/
+├── evals/                             ← eve evals, plugin/ eval suite, run-bench.mjs, results/<run>/
+├── scripts/                           ← build-agents, bench, sync-skills, build-registry
+├── registry.json + r/                 ← shadcn registry source and built items
+├── spec/ template/ templates/         ← offline specs, skill template, starter .design
+├── docs/install.md                    ← every install path per harness
+├── docs/readme/                       ← the Stageshow scenes behind this README (stage/) and their stills (img/)
+├── docs/demo/                         ← the launch film: HyperFrames source, MP4/GIF, screenshots
+├── docs/research/                     ← launch-film measurements
+└── skills/design-engineering/         ← THE KNOWLEDGE
+    ├── SKILL.md                       ← thin Map of Content, one /design-engineering entry
+    ├── references/                    ← themed clusters of atomic, wikilinked nodes + command files
+    ├── scripts/                       ← council.mjs, grade.mjs, sound-family, sound-sheet, svg-flipbook
+    └── evals/                         ← routing fixtures and design-bench.jsonl
 ```
 
-Total: **173 atomic nodes** across 13 clusters (204 markdown files in the skill), 10 workflow subagents ×2 formats, 14 command files behind one entry, 5 eve evals plus the design-bench runner, 6 plugin manifests, 3 scripts.
+The skill is a graph, not a single file: `SKILL.md` is a Map of Content, each `references/<theme>/MOC-<theme>.md` is a hub, and each node is one complete thought with YAML frontmatter and `[[wikilinks]]` that resolve by basename. Open the repo as an [Obsidian](https://obsidian.md) vault to browse it as a graph. To make it yours, edit `references/meta/pov.md` (taste overrides) and `references/meta/gotchas.md` (one line per UI detail your agent got wrong).
 
-## Agent Plugins conformance
+### The README visuals
 
-The repo follows the [Agent Plugins specification v1.0.0](https://agent-plugins.org/):
+The stills above are faux product UI built with [Stageshow](https://benji.org/stageshow) (MIT, Benji Taylor), whose kit is vendored in [`docs/readme/stage/`](docs/readme/stage/) with its license and notice. Each scene is `docs/readme/stage/examples/de-*/index.tsx`. Re-film one:
 
-- **`plugin.json`** at the root with `$schema: https://agent-plugins.org/schemas/1.0.0/plugin.schema.json` — the portable identity.
-- **`skills/`** — each immediate child directory containing a `SKILL.md` is one skill, per the [Agent Skills spec](https://agentskills.io/specification) (mirrored offline at [`spec/agent-skills-spec.md`](spec/agent-skills-spec.md)).
-- **Client extensions** are declared in `plugin.json` under `extensions`, keyed by reverse-domain namespace. Clients that don't implement a namespace ignore it — a Cursor install never parses the eve runtime; an eve deploy never parses the Codex interface block.
-- No `mcp.json` — this plugin ships no MCP servers (Agentation's MCP is a companion install, not bundled).
-
-## View and edit in Obsidian
-
-The graph of `.md` files connected by `[[wikilinks]]` with YAML frontmatter is the exact shape [Obsidian](https://obsidian.md) was built for. **Open folder as vault** → pick this repo root → `Ctrl/Cmd + G` for the graph view. `MOC-<theme>.md` files are the hubs. Recommended companion: [kepano/obsidian-skills](https://www.skills.sh/kepano/obsidian-skills).
-
-## Customize for yourself
-
-When you install this skill, edit two files to make it yours:
-
-- `skills/design-engineering/references/meta/pov.md` — your opinions, taste calls, and overrides on defaults.
-- `skills/design-engineering/references/meta/gotchas.md` — append a one-liner every time your agent gets a UI detail wrong.
-
-These two files are designed to be edited per-installer. Everything else should stay close to canonical.
+```bash
+cd docs/readme/stage && npm install
+npx vite playground --config playground/vite.config.ts --port 4711 &
+node scripts/film.mjs "http://127.0.0.1:4711/?capture=de-council" --still --out ../img/de-council.png
+node scripts/film.mjs "http://127.0.0.1:4711/?capture=de-council" --gate --count 4
+```
 
 ## Contributing
 
-PRs welcome. The shorter the better. See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [SECURITY.md](SECURITY.md), [CHANGELOG.md](CHANGELOG.md). CI runs [markdownlint, frontmatter validation, required-files, wikilink resolution, and six-manifest version parity](.github/workflows/lint.yml) on every PR.
+PRs welcome; the shorter the better. Edit agents only in `agents/` and run `node scripts/build-agents.mjs`; CI fails if `harness/` or `agent/subagents/` drift. See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [SECURITY.md](SECURITY.md) and [CHANGELOG.md](CHANGELOG.md). CI runs [markdownlint, frontmatter validation, required files, wikilink resolution, generator drift and manifest version parity](.github/workflows/ci.yml) on every PR.
 
 ## Sources
 
-- **Emil Kowalski** — [emilkowalski/skill](https://github.com/emilkowalski/skill), [animations.dev](https://animations.dev), [emilkowal.ski](https://emilkowal.ski), [sonner.emilkowal.ski](https://sonner.emilkowal.ski)
+- **Emil Kowalski** — [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT, commit `c8a7962`), [emilkowal.ski](https://emilkowal.ski), [sonner.emilkowal.ski](https://sonner.emilkowal.ski)
 - **Index (Emil Kowalski & Glenn Carstens-Peters)** — [index.how](https://index.how)
 - **Benji Taylor** — [benji.org](https://benji.org) + [Agentation](https://www.agentation.com) + [Stageshow](https://github.com/benjitaylor/skills) (MIT): the faux-ui cluster (product shots, cursor demos, bento grids, filming them), `stageshow-reconciliation`; Honk's presence patterns, Drawesome's toolbar and Liveline's live-data states
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev)
@@ -447,7 +452,7 @@ PRs welcome. The shorter the better. See [CONTRIBUTING.md](CONTRIBUTING.md), [CO
 - **ElevenLabs** — [Text to sound effects API](https://elevenlabs.io/docs/api-reference/text-to-sound-effects/convert)
 - **Stability AI** — [Stable Audio 3 Small-SFX](https://huggingface.co/stabilityai/stable-audio-3-small-sfx); **KilledByAPixel** — [ZzFX](https://github.com/KilledByAPixel/ZzFX); **Kenney** — [Interface Sounds](https://kenney.nl/assets/interface-sounds); **soundcn** — [soundcn.xyz](https://www.soundcn.xyz/); **Freesound** — [APIv2](https://freesound.org/docs/api/)
 - **ITU-R BT.1359** — audio/video sync thresholds
-- **Emil Kowalski's design-engineering practice** — the typography, color, surfaces, forms, touch, polish, performance, component-API, marketing, prototyping, tooling, docs, unslop, and skill-writing nodes are distilled from studying it; glosses and rules are this graph's own
+- **Emil Kowalski's design-engineering practice, distilled by HKTITAN** — the typography, color, surfaces, forms, touch, polish, performance, component-API, marketing, prototyping, tooling, docs, unslop, and skill-writing nodes are distilled from it; glosses and rules are this graph's own
 - **supermemoryai/skills** — [svg-animations](https://github.com/supermemoryai/skills/blob/main/svg-animations/SKILL.md) (engine choice, stroke drawing, SMIL timing, morphing rule)
 - **Cathryn Lavery** — [diagram-design](https://github.com/cathrynlavery/diagram-design) (MIT): the deletion-first figure rules, connector rules, type ramp and motion clock behind the `diagram` cluster
 - **tldraw** — [tldraw offline](https://github.com/tldraw/tldraw-offline)'s agent skill (cited, not copied; the app is not open source) and the [tldraw MCP app](https://github.com/tldraw/tldraw/tree/main/apps/mcp-app), behind `tldraw-canvas`
@@ -464,6 +469,7 @@ PRs welcome. The shorter the better. See [CONTRIBUTING.md](CONTRIBUTING.md), [CO
 - **agentskills.io** — [Agent Skills specification](https://github.com/agentskills/agentskills) (mirrored in `spec/`)
 - **Akshay Pachaar** — [Skill Graphs > SKILL.md](https://x.com/akshay_pachaar)
 - **Perplexity Agents team** — [Designing, Refining, and Maintaining Agent Skills](https://research.perplexity.ai/articles/designing-refining-and-maintaining-agent-skills-at-perplexity)
+- **Theo Browne** — [t3dotgg/tstack](https://github.com/t3dotgg/tstack) (MIT): the council pattern behind `design-council`, adapted and paraphrased, and the hill-climb in "Agents Sucked At UI (Until Today)"
 - **Anthropic** — [anthropics/skills](https://github.com/anthropics/skills) (`spec/` + `template/` layout)
 
 ## See also

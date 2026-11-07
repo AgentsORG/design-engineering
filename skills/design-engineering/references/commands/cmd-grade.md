@@ -31,5 +31,5 @@ You may delegate this to the `design-grader` subagent where the host has it.
 ## Sources
 
 - HKTITAN — the procedure and `scripts/grade.mjs`, written for this skill (2026-11-07).
-- Strategy notes on Paxel's grading of design episodes (permitted research; no code, prompts, lists or scoring rules reused).
+- Episode grading with facts, a counterweight and a confidence per result is a common pattern in agent-session review tools; the axes, bands, checks and wording here are this graph's own.
 - Benji Taylor, Stageshow (MIT): checks catch mistakes, not dull ideas.

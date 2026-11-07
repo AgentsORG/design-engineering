@@ -1,4 +1,4 @@
-import { Bar, Stage, Text, Window, Badge, Card } from '../../kit'
+import { Bar, Stage, Text, Window, Badge } from '../../kit'
 import '../_de/de.css'
 
 // A review: every finding is a Before | After | Why row, citing the node that owns the rule.
@@ -18,7 +18,7 @@ export default function Review() {
             <div className="de-body">
               <div className="de-line" style={{ width: 664 }}>
                 <Text className="de-h">3 findings</Text>
-                <Badge tone="warning" dot>Needs work</Badge>
+                <Badge tone="warning" dot>Ship after 3 fixes</Badge>
               </div>
               <div className="de-table" style={{ width: 664 }}>
                 <div className="de-tr" data-head style={{ gridTemplateColumns: COLS }}>
@@ -42,11 +42,6 @@ export default function Review() {
               </div>
             </div>
           </Window>
-          <Card className="de-sat" pad="medium" gap={8}>
-            <Text className="de-label">Verdict</Text>
-            <Text className="de-h">Ship after 3 fixes</Text>
-            <Bar w={150} h={5} tone={2} />
-          </Card>
         </>
       )}
     </Stage>

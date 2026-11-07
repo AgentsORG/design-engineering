@@ -1,4 +1,4 @@
-name: Lint and validate
+name: CI
 
 on:
   push:
@@ -6,17 +6,52 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  code:
+    name: Scripts, typecheck, one installable skill
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Every script parses
+        run: |
+          for f in scripts/*.mjs skills/design-engineering/scripts/*.mjs evals/*.mjs; do node --check "$f"; done
+      - name: Typecheck the eve runtime
+        run: |
+          npm install --no-audit --no-fund
+          npx tsc --noEmit
+      - name: Skill slots are in sync
+        run: node scripts/sync-skills.mjs && node scripts/sync-skills.mjs --check
+      - name: Release versions agree
+        run: node scripts/release.mjs --verify "$(node -p "require('./package.json').version")"
+      - name: npx skills add finds exactly one skill
+        run: |
+          out=$(npx -y skills add ./ --list 2>&1 | sed 's/\[[0-9;]*m//g')
+          echo "$out" | grep -q "Found 1 skill" || { echo "$out"; echo "::error::npx skills add must find exactly one skill"; exit 1; }
+      - name: Plugin manifest validates
+        run: |
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || true
+          if command -v claude >/dev/null; then claude plugin validate . ; else echo "claude CLI unavailable, skipped"; fi
+
   markdown-lint:
     name: Markdown lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install markdownlint-cli
         run: npm install -g markdownlint-cli@0.41.0
@@ -28,7 +63,7 @@ jobs:
     name: Frontmatter present on all nodes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Check every reference node and subagent starts with frontmatter
         run: |
@@ -53,7 +88,7 @@ jobs:
     name: Skill structure
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Verify required files exist
         run: |
@@ -234,12 +269,12 @@ jobs:
     name: Harness agents are current
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Rebuild agent twins and verify no drift
         run: |
@@ -259,12 +294,12 @@ jobs:
     name: shadcn registry is current
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Rebuild registry and verify no drift
         run: |
@@ -309,7 +344,7 @@ jobs:
     name: Internal wikilink check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Verify every [[wikilink]] in skill content resolves to a file
         run: |

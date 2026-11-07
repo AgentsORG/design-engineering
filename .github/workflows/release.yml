@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Versions match the tag
+        run: node scripts/release.mjs --verify "${GITHUB_REF_NAME#v}"
+      - name: Build assets and notes
+        run: node scripts/release.mjs --assets "${GITHUB_REF_NAME#v}" dist
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/*.zip dist/registry/*.json \
+            --title "$(head -n1 dist/NOTES.md)" --notes-file dist/NOTES-BODY.md --verify-tag

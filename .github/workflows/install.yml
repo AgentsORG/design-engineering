@@ -1,0 +1,84 @@
+name: Installer
+
+on:
+  pull_request:
+    paths: [install.sh, install.ps1, hooks/**, harness/**, agents/**, .github/workflows/install.yml]
+  push:
+    branches: [main]
+    paths: [install.sh, install.ps1, hooks/**, harness/**, agents/**]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: install-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  posix:
+    name: install.sh (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Syntax
+        run: bash -n install.sh
+      - name: Dry run changes nothing
+        env:
+          HOME: ${{ runner.temp }}/home-dry
+        run: |
+          mkdir -p "$HOME/.claude" "$HOME/.codex" "$HOME/.cursor" "$HOME/.gemini" "$HOME/.config/opencode"
+          before=$(find "$HOME" | sort | shasum)
+          bash install.sh --dry-run --yes --with-hooks
+          after=$(find "$HOME" | sort | shasum)
+          test "$before" = "$after"
+      - name: Install into a temp home, verify, uninstall
+        env:
+          HOME: ${{ runner.temp }}/home
+          DE_NO_SKILLS_CLI: '1'
+        run: |
+          mkdir -p "$HOME/.claude" "$HOME/.codex" "$HOME/.cursor" "$HOME/.gemini" "$HOME/.config/opencode"
+          echo '{"theme":"dark"}' > "$HOME/.claude/settings.json"
+          bash install.sh --yes --with-hooks
+          test -f "$HOME/.agents/skills/design-engineering/SKILL.md"
+          test -f "$HOME/.codex/agents/design_council.toml" || ls "$HOME/.codex/agents"
+          ls "$HOME/.codex/agents" | grep -q .
+          ls "$HOME/.gemini/agents" | grep -q .
+          ls "$HOME/.config/opencode/agents" | grep -q .
+          grep -q '"theme"' "$HOME/.claude/settings.json"
+          bash install.sh --yes   # idempotent
+          bash install.sh --uninstall --yes
+          test ! -e "$HOME/.agents/skills/design-engineering/SKILL.md"
+          grep -q '"theme"' "$HOME/.claude/settings.json"
+
+  windows:
+    name: install.ps1 (windows-latest)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Parse
+        shell: pwsh
+        run: |
+          $null = [System.Management.Automation.Language.Parser]::ParseFile("$PWD/install.ps1", [ref]$null, [ref]$errs)
+          if ($errs) { $errs; exit 1 }
+      - name: Dry run, install, uninstall into a temp home
+        shell: pwsh
+        env:
+          DE_NO_SKILLS_CLI: '1'
+        run: |
+          $env:DE_HOME = Join-Path $env:RUNNER_TEMP 'home'
+          foreach ($d in '.claude','.codex','.cursor','.gemini','.config/opencode') { New-Item -ItemType Directory -Force (Join-Path $env:DE_HOME $d) | Out-Null }
+          '{"theme":"dark"}' | Set-Content (Join-Path $env:DE_HOME '.claude/settings.json')
+          ./install.ps1 -DryRun -Yes -WithHooks
+          if (Test-Path (Join-Path $env:DE_HOME '.agents/skills/design-engineering')) { throw 'dry run wrote files' }
+          ./install.ps1 -Yes -WithHooks
+          if (-not (Test-Path (Join-Path $env:DE_HOME '.agents/skills/design-engineering/SKILL.md'))) { throw 'skill missing' }
+          if (-not (Get-ChildItem (Join-Path $env:DE_HOME '.codex/agents'))) { throw 'codex agents missing' }
+          ./install.ps1 -Yes
+          ./install.ps1 -Uninstall -Yes
+          if (Test-Path (Join-Path $env:DE_HOME '.agents/skills/design-engineering/SKILL.md')) { throw 'uninstall left the skill' }
+          if (-not (Select-String -Quiet '"theme"' (Join-Path $env:DE_HOME '.claude/settings.json'))) { throw 'settings clobbered' }

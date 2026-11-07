@@ -39,6 +39,20 @@ const gradeScript = join(skillDir, "scripts/grade.mjs");
 const argv = process.argv.slice(2);
 const opt = (name, dflt) => { const i = argv.indexOf(`--${name}`); return i >= 0 && argv[i + 1] && !argv[i + 1].startsWith("--") ? argv[i + 1] : dflt; };
 const flag = (name) => argv.includes(`--${name}`);
+{
+  // Never start a paid sweep on a typo: --help and unknown flags print usage and exit.
+  const VALUED = ["arms", "fixtures", "tries", "model", "concurrency", "max-turns", "timeout", "max-cost-usd", "out", "seed"];
+  const BOOL = ["relevant-only", "report-only", "dry-run", "no-nudge"];
+  const usage = () => readFileSync(fileURLToPath(import.meta.url), "utf8").split("\n").slice(1, 26).map((l) => l.replace(/^\/\/ ?/, "")).join("\n");
+  if (argv.includes("--help") || argv.includes("-h")) { console.log(usage()); process.exit(0); }
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    if (!a.startsWith("-")) { console.error(`unexpected argument ${a}\n\n${usage()}`); process.exit(2); }
+    const n = a.replace(/^--/, "");
+    if (VALUED.includes(n)) { if (!argv[i + 1] || argv[i + 1].startsWith("--")) { console.error(`${a} needs a value`); process.exit(2); } i++; continue; }
+    if (!BOOL.includes(n)) { console.error(`unknown flag ${a}\n\n${usage()}`); process.exit(2); }
+  }
+}
 const MODEL = opt("model", "sonnet");
 const TRIES = +opt("tries", 3);
 if (!Number.isInteger(TRIES) || TRIES < 1) { console.error("--tries must be a positive integer"); process.exit(1); }

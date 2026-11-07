@@ -128,14 +128,15 @@ skills-ref validate ./skills/design-engineering
 
 ## Testing
 
-CI runs six jobs on every push and PR to `main` (see [`.github/workflows/lint.yml`](.github/workflows/lint.yml)):
+CI runs seven jobs on every push and PR to `main` (see [`.github/workflows/ci.yml`](.github/workflows/ci.yml)). No job calls a model or runs an eval; evals and benchmarks run locally (`npm run bench`, `claude plugin eval .`, `npm run eval`).
 
-1. **`markdown-lint`** — `markdownlint` against `.markdownlint.jsonc` (everything but `node_modules` and `.obsidian`).
-2. **`frontmatter-check`** — every file under `skills/design-engineering/references/` and `agents/` must start with `---` YAML.
-3. **`skill-structure`** — required files exist; the SKILL.md description is one double-quoted line of at most 1,024 characters starting `Load when` or `Use when`; the body stays under 500 lines with `## Dispatch` near the top; every `cmd-<verb>.md` is linked from SKILL.md and has a `dispatch.jsonl` row; every subagent has `name` (equal to its basename), `description`, `tools`, `model` and a `## Soul`; every manifest is valid JSON and all eight version fields match.
-4. **`agents-check`** — reruns `scripts/build-agents.mjs` and fails if `agent/subagents/` or `harness/` drifts from `agents/*.md`.
-5. **`registry-check`** — reruns `scripts/build-registry.mjs`, fails on drift in `registry.json` or `r/`, and validates every item against the published shadcn schemas.
-6. **`link-check`** — every `[[wikilink]]` in skill content resolves to a real reference node or subagent file.
+1. **`code`** — every script parses (`node --check`), the eve runtime typechecks (`tsc --noEmit`), the eve skill slots are in sync, all eight version fields agree (`scripts/release.mjs --verify`), `npx skills add ./ --list` finds exactly one skill, and `claude plugin validate .` passes.
+2. **`markdown-lint`** — `markdownlint` against `.markdownlint.jsonc` (everything but `node_modules` and `.obsidian`).
+3. **`frontmatter-check`** — every file under `skills/design-engineering/references/` and `agents/` must start with `---` YAML.
+4. **`skill-structure`** — required files exist; the SKILL.md description is one double-quoted line of at most 1,024 characters starting `Load when` or `Use when`; the body stays under 500 lines with `## Dispatch` near the top; every `cmd-<verb>.md` is linked from SKILL.md and has a `dispatch.jsonl` row; every subagent has `name` (equal to its basename), `description`, `tools`, `model` and a `## Soul`; every manifest is valid JSON and all eight version fields match.
+5. **`agents-check`** — reruns `scripts/build-agents.mjs` and fails if `agent/subagents/` or `harness/` drifts from `agents/*.md`.
+6. **`registry-check`** — reruns `scripts/build-registry.mjs`, fails on drift in `registry.json` or `r/`, and validates every item against the published shadcn schemas.
+7. **`link-check`** — every `[[wikilink]]` in skill content resolves to a real reference node or subagent file.
 
 Run locally before pushing:
 
@@ -146,7 +147,9 @@ npm run check:agents
 node scripts/build-registry.mjs && git diff --stat -- registry.json r/
 ```
 
-The lint job is the authoritative gate. If it passes on your branch, the PR is mechanically clean.
+Two more workflows: [`install.yml`](.github/workflows/install.yml) dry-runs, installs, re-installs and uninstalls with `install.sh` (Ubuntu, macOS) and `install.ps1` (Windows) into a temporary home whenever the installer, hooks or agents change; [`release.yml`](.github/workflows/release.yml) publishes a GitHub release when a `v*` tag is pushed (`node scripts/release.mjs --bump x.y.z`, commit, tag, push).
+
+CI is the authoritative gate. If it passes on your branch, the PR is mechanically clean.
 
 ## skills.sh discovery
 

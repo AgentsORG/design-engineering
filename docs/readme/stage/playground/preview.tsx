@@ -8,11 +8,11 @@ class Boundary extends Component<{ children: ReactNode; onError: (message: strin
   state = { error: null as string | null }
   static getDerivedStateFromError(error: Error) { return { error: error.message } }
   componentDidCatch(error: Error) { this.props.onError(error.message) }
-  render() { return this.state.error ? <p role="alert">This example could not render: {this.state.error}. Check the console for details, then replay after fixing it.</p> : this.props.children }
+  render() { return this.state.error ? <p role="alert">This scene could not render: {this.state.error}. Check the console for details.</p> : this.props.children }
 }
 export async function mount(name: string, still: boolean, onError: (message: string) => void = () => {}) {
-  const load = name === 'contrasts' ? () => import('../teaching/contrasts') : modules[`../examples/${name}/index.tsx`]
-  if (!load) throw new Error(`Unknown example: ${name}`)
+  const load = modules[`../examples/${name}/index.tsx`]
+  if (!load) throw new Error(`Unknown scene: ${name}`)
   const { default: Demo } = await load()
   createRoot(document.getElementById('root')!).render(<StrictMode><div id="example"><Boundary onError={onError}><StillContext.Provider value={still}><Demo /></StillContext.Provider></Boundary></div></StrictMode>)
 }

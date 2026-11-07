@@ -13,7 +13,7 @@
 // ~/.config/design-engineering/ (the installer writes it for --no-hooks).
 
 import { existsSync, readFileSync, statSync } from 'node:fs';
-import { homedir } from 'node:os';
+import { homedir, tmpdir } from 'node:os';
 import { join, extname } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
@@ -54,18 +54,25 @@ function gradeChecks(file) {
   for (const root of skillRoots()) {
     const grade = join(root, 'scripts', 'grade.mjs');
     if (!existsSync(grade)) continue;
-    const r = spawnSync(process.execPath, [grade, '--checks-only', '--json', file], {
+    // --out keeps grade.mjs's report card out of the user's project (it defaults to ./.design-grade)
+    const outDir = join(tmpdir(), 'design-engineering-hook');
+    const r = spawnSync(process.execPath, [grade, '--checks-only', '--json', '--out', outDir, file], {
       encoding: 'utf8', timeout: 12000,
     });
     if (r.status !== 0 || !r.stdout) return null;
     try {
       const out = JSON.parse(r.stdout);
-      const list = Array.isArray(out) ? out : (out.findings || out.checks || []);
-      return list.map((f) => ({
-        line: f.line, severity: f.severity || 'should',
-        msg: f.message || f.msg || f.title || String(f.id || ''),
-        node: f.node || f.ref || '',
-      }));
+      // grade/1 card: facts live under axes.<id>.facts; also accept a flat list
+      const list = Array.isArray(out) ? out
+        : (out.findings || out.checks || Object.values(out.axes || {}).flatMap((a) => a.facts || []));
+      return list
+        .filter((f) => !String(f.location || '').startsWith('(')) // episode-level facts (no-evidence) are not about this edit
+        .map((f) => ({
+          line: f.line ?? Number(String(f.location || '').match(/:(\d+)$/)?.[1] || 0),
+          severity: f.severity || 'should',
+          msg: f.message || f.msg || f.title || f.why || String(f.rule || f.id || ''),
+          node: f.node || f.ref || '',
+        }));
     } catch { return null; }
   }
   return null;
@@ -133,7 +140,8 @@ const findings = gradeChecks(file) ?? builtinChecks(file, text);
 if (!findings.length) done();
 const rows = findings.slice(0, MAX_NOTES).map((f) => {
   const where = f.line ? `:${f.line}` : '';
-  const ref = f.node ? ` [[${String(f.node).split('/').pop()}]]` : '';
+  const slug = f.node ? String(f.node).split('/').pop() : '';
+  const ref = slug && !String(f.msg).includes(`[[${slug}]]`) ? ` [[${slug}]]` : '';
   return `- ${f.severity}${where}: ${f.msg}${ref}`;
 });
 const more = findings.length > MAX_NOTES ? `\n- ...and ${findings.length - MAX_NOTES} more` : '';

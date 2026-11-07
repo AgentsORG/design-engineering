@@ -7,7 +7,7 @@ const ARMS: [string, string, number, string][] = [
   ['none', 'own knowledge', 32 / 36, '32 / 36'],
   ['full', 'with the skill', 35 / 36, '35 / 36'],
 ]
-const COLS = '90px 130px 170px 60px'
+const COLS = '64px 100px 136px 56px'
 
 export default function Bench() {
   return (
@@ -16,11 +16,11 @@ export default function Bench() {
         <>
           <Window title="REPORT.md — 2026-09-05, sonnet" className="de-win">
             <div className="de-body">
-              <div className="de-line" style={{ width: 500 }}>
+              <div className="de-line" style={{ width: 404 }}>
                 <Text className="de-h">Rules passed, per arm</Text>
                 <Badge>10 fixtures</Badge>
               </div>
-              <div className="de-table" style={{ width: 500 }}>
+              <div className="de-table" style={{ width: 404 }}>
                 <div className="de-tr" data-head style={{ gridTemplateColumns: COLS }}>
                   <Text className="de-label">Arm</Text><Text className="de-label">Agent</Text><Text className="de-label">Rules</Text><Text className="de-label">Score</Text>
                 </div>
@@ -28,13 +28,13 @@ export default function Bench() {
                   <div key={a} className="de-tr" data-on={i === 1 || undefined} style={{ gridTemplateColumns: COLS }}>
                     <Text className="de-mono">{a}</Text>
                     <Text className="de-small">{d}</Text>
-                    <Meter value={v} tone={i === 1 ? 'accent' : 'ink'} className="de-meter--wide" />
+                    <Meter value={v} tone={i === 1 ? 'accent' : 'ink'} className="de-meter--mid" />
                     <Text className="de-num">{s}</Text>
                   </div>
                 ))}
                 {[0, 1, 2].map((i) => (
                   <div key={i} className="de-tr" style={{ gridTemplateColumns: COLS }}>
-                    <Bar w={70} tone={3} /><Bar w={90} tone={2} /><Bar w={130} tone={2} /><Bar w={36} tone={2} />
+                    <Bar w={50} tone={3} /><Bar w={80} tone={2} /><Bar w={110} tone={2} /><Bar w={36} tone={2} />
                   </div>
                 ))}
               </div>

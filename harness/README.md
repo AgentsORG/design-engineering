@@ -25,6 +25,9 @@ What the generator maps:
 |---|---|---|---|
 | `agentation-fix-loop` | writes | medium | 100 |
 | `anti-pattern-scanner` | read-only | medium | 30 |
+| `design-council` | writes | high | 80 |
+| `design-grader` | writes | high | 40 |
+| `design-judge` | read-only | high | 25 |
 | `design-md-consumer` | writes | medium | 40 |
 | `launch-film-analyst` | writes | high | 80 |
 | `motion-auditor` | read-only | high | 30 |

@@ -9,7 +9,7 @@ const JUDGES: [string, string, string[]][] = [
   ['Gemini', 'jester, unscored', ['no score', 'no score', 'no score']],
 ]
 const CATS: [string, number][] = [['Typography', 8], ['Hierarchy', 9], ['Contrast', 8], ['Motion', 7]]
-const COLS = '170px 70px 70px 70px'
+const COLS = '150px 60px 60px 60px'
 
 export default function Council() {
   return (
@@ -18,11 +18,11 @@ export default function Council() {
         <>
           <Window title="design-council — PR #212" className="de-win">
             <div className="de-body">
-              <div className="de-line" style={{ width: 420 }}>
+              <div className="de-line" style={{ width: 390 }}>
                 <Text className="de-h">Council review</Text>
                 <Badge tone="success" dot>Round 3 passed</Badge>
               </div>
-              <div className="de-table" style={{ width: 420 }}>
+              <div className="de-table" style={{ width: 390 }}>
                 <div className="de-tr" data-head style={{ gridTemplateColumns: COLS }}>
                   <Text className="de-label">Judge</Text><Text className="de-label">R1</Text><Text className="de-label">R2</Text><Text className="de-label">R3</Text>
                 </div>

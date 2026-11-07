@@ -35,7 +35,9 @@ export const judgeVerdictSchema = z.object({
   judge: z.string().describe("Delegate name, e.g. claude-judge."),
   provider: z.enum(["anthropic", "openai", "google"]),
   scored: z.boolean().describe("false for the unscored jester."),
-  scores: z.record(councilCategorySchema, judgeScoreSchema),
+  scores: z
+    .partialRecord(councilCategorySchema, judgeScoreSchema)
+    .describe("Only the categories the brief selects; null where evidence was missing."),
   findings: z.array(findingSchema),
   confidence: z.number().min(0).max(1),
   evidenceSeen: z.array(z.string()).describe("Screenshots, films, diffs or reference products the judge actually looked at."),
