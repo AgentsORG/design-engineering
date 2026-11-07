@@ -71,11 +71,24 @@ See [[empty-loading-states]] for full empty-state design.
 - **"Saving…"** (with ellipsis) — operation in progress.
 - **"Saved"** — complete.
 - **"Couldn't save"** — failed.
+- **Say it where it happened.** The button that saved says so on itself, and an edited cell is its own confirmation; a toast that repeats it says it twice. A toast earns its place when it carries an action, like Undo (Benji Taylor, Stageshow `examples/form-error`, `examples/table-edit`, `examples/gmail`).
 - **`aria-live="polite"`** on the status element so screen readers announce changes. See [[accessibility-baseline]].
 
 ## When to apply
 
 Every label, every error, every empty state, every tooltip. Microcopy is the highest leverage / lowest cost design intervention available.
+
+## Reference
+
+```text
+Bad:   Invalid email address.                     Good:  Add the domain, like name@company.com
+Bad:   [Submit], spinner, toast "Success!"        Good:  Create account → Creating account → Account created, on one button
+Bad:   The conversation was successfully moved.   Good:  Conversation archived.  Undo
+```
+
+- **Gold example:** `stageshow/examples/form-error/`: the hint ("We'll send a link to confirm it") and the error swap in one lane under the field, and the button's words crossfade in place while its check holds still. `stageshow/examples/gmail/` has the toast.
+- Benji's call differs on case: sentence case on titles, labels and buttons ("Create your account", "Create account") unless the real product capitalizes (`stageshow/references/craft.md`, `stageshow/teaching/style.tsx` style-caps), where this node sets Title Case for headings and buttons. Pick one per product and hold it.
+- **Check:** render every string at its real width and at 390px: no truncated chip, no wrapped name, no button label that changes the button's height (`stageshow/teaching/details.tsx`, detail-copy); then count the strings that say the same thing and cut all but one.
 
 ## Gotcha
 
@@ -88,4 +101,5 @@ Also: don't put microcopy decisions in code reviews. Microcopy lives in design f
 - Vercel Web Interface Guidelines — Copywriting and Content sections.
 - Erika Hall — *Conversational Design* on tone, voice, error messages.
 - Material Design — writing guidelines.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/form-error/index.tsx`, `stageshow/examples/gmail/index.tsx`, `stageshow/examples/table-edit/index.tsx`, `stageshow/teaching/details.tsx` (detail-copy), `stageshow/teaching/style.tsx` (style-caps), `stageshow/references/craft.md` (Type: sentence case; Restraint: say it once).
 - Related: [[strings-and-locale]] (ICU plurals, `Intl`, label rules), [[destructive-actions]] (confirmation copy), [[interfaces-reconciliation]] (Title Case vs sentence case), [[content-authenticity]] (real data, real numbers), [[empty-loading-states]] (empty-state patterns), [[accessibility-baseline]] (aria-live), [[typography-humanity]] (typographic quotes, em-dashes).

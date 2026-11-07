@@ -40,11 +40,31 @@ Press feedback is `scale: 0.97` in 100–150ms on press-in; commit on press-out.
 
 `selectionAsync` for a detent tick, `impactAsync(Light)` when something snaps home, `notificationAsync` for success or error. Fire on the causal frame, once per user action, never per frame or on an entrance the user didn't cause, and never as the only feedback.
 
+## Reference
+
+Swipe to archive: the row 1:1 under the finger, thrown off at the speed it left ([[momentum-projection]]), the list told only once it has gone:
+
+```tsx
+const pan = Gesture.Pan()
+  .activeOffsetX([-10, 10])
+  .onUpdate((e) => x.set(e.translationX))
+  .onEnd((e) => {
+    const resting = e.translationX + (e.velocityX / 1000) * 0.998 / 0.002;
+    const to = resting < -width / 2 ? -width : 0;
+    const cfg = { duration: 300, dampingRatio: 0.8, velocity: e.velocityX, overshootClamping: to !== 0 };
+    x.set(withSpring(to, cfg, (done) => { if (done && to !== 0) scheduleOnRN(archive, id); }));
+  });
+```
+
+- **Gold example:** `stageshow/examples/swipe/` for the anatomy native Mail has: Archive is the row's own back, same height and edge to edge, its mark riding the row's trailing edge, and the gap closes in one ease with the color solid, never through gray. For an in-app response no finger drives, Benji's timing is UIKit-quick, 0.5s on `cubic-bezier(0.3, 0.75, 0.1, 1)`, which is `withTiming(v, { duration: 500, easing: Easing.bezier(0.3, 0.75, 0.1, 1) })` (`stageshow/references/motion.md`, Phones in motion).
+- **Check:** on a release build on a device, screenshot the frame at the furthest point of the swipe at full size, the one people share: row text is cut only by the list's edge and the action fills the row's height. Width emulation doesn't change touch, so judge the throw on hardware.
+
 ## Gotcha
 
 Expo Go and the simulator hide exactly the problems that matter. Judge feel on a release build on the slowest device you support. On ProMotion iPhones third-party animation is capped at 60fps unless `CADisableMinimumFrameDurationOnPhone` is set in the Info.plist; once it is set, the frame budget is 8ms.
 
 ## Sources
 
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate-expo/SKILL.md, skills/animate-expo/RECIPES.md.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, unchanged since `a81dbca`): skills/animate-expo/SKILL.md, skills/animate-expo/RECIPES.md.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/swipe/index.tsx`, `stageshow/references/motion.md` (Phones in motion), `stageshow/references/rehearse.md` (What the tools can't sign off).
 - Related: [[spring-animations]], [[gesture-momentum]], [[momentum-projection]], [[prefers-reduced-motion]], [[touch-and-focus]].

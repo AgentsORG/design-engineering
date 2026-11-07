@@ -30,6 +30,18 @@ Empty space is placed when something closes it: the picture with type docked at 
 
 Reviewing any marketing page or landing page in a browser at 1440, 768 and 390, after [[marketing-surface-rules]] and before polish ([[unslop-pass]]). Asymmetry is fine *inside* the frame — an off-centre anchor line at a third or 42 % — never in the margins themselves.
 
+## Reference
+
+A landing hero at 1440 with copy on the left and the product on the right:
+
+- Bad: copy 40px from the left edge, the product window whole and centred in the right half on a `#f6f5f4` plate with 48px of air on all four sides, its right edge 96px from the viewport. Two margins, a box inside a box, and a floating window.
+- Good: one gutter (say 64px, 16px at 390) on both sides of the page; the window in a corner bleed, its top-left whole, running 15 to 35% past the right and bottom of its column; no plate, because the page is the ground; every section heading on the copy's left edge.
+- One figure language down the page: one ground, one gutter, one hero shadow, one radius set. A second shadow or radius has to mean something, or it is a mistake.
+
+Gold example: `stageshow/examples/hero-demo/` (corner bleed beside copy), with `stageshow/teaching/scenes.tsx` (`story-crop`) for why a deliberate crop beats a whole window shrunk to a thumbnail.
+
+Check: measure at 1440, 768 and 390. The left and right margins agree within 16px, the hero's top-left is in view, and no edge crosses or stops short of the gutter by under 24px (Benji's rule 11 in Stageshow `references/framing.md`). Then shrink the screenshot to a thumbnail: the subject, its support and the empty space make one picture, not a boxed screenshot.
+
 ## Gotcha
 
 Reveals cause holes. A section that fades in on scroll is bare ground until it fires, and in the motion study about a third of award sites still showed a loader or nothing readable 4.5 s after load. Content is in place on first paint; an entrance moves what is already there ([[marketing-surface-rules]], [[prefers-reduced-motion]]).
@@ -37,4 +49,5 @@ Reveals cause holes. A section that fades in on scroll is bare ground until it f
 ## Sources
 
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/layout.md` §4–5 (the 97-site October 2026 study: margins, the one-in-a-hundred half-empty section, holes and closers, 15 of 97 unsaid first screens, 82 % headed sections) and `scripts/lib/rules.mjs` (`off-centre`, `edge-text`, `lopsided`, `blank-gap`, `hero-void`, `untitled-section`, `ragged-edges`). Usability and design marks there are model-panel judgements of screenshots, not human jurors.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/framing.md` (rules 10 and 11, the layouts table, Small formats and the page), `references/craft.md` (Restraint: judge the silhouette; A page of demos: one figure language), `teaching/scenes.tsx` (`story-crop`), `examples/hero-demo/`.
 - Related: [[marketing-surface-rules]], [[viewport-custom-design]], [[type-scale-and-rhythm]], [[screenshot-critique]].

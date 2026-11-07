@@ -41,6 +41,18 @@ Nothing marks where one borderless target ends, so the space is the boundary. Ex
 
 One primary; past three secondaries, the rest go behind a menu. Prefer a short view that links deeper over one long view that shows everything at the top level. How colour marks the primary is [[palette-step-roles]]'s.
 
+## Reference
+
+Three appointments in a 284px card, each a title over its people line (Benji Taylor's `content-density` pair):
+
+- Bad: `.appt { padding-block: 5px } .appt small { margin-top: 10px }`. The people line sits 10px under its title and 10px above the next appointment, so the card reads as six equal lines.
+- Good: `.appt { padding-block: 8px } .appt small { margin-top: 1px }`. Title and people line read as one item, 16px parts the appointments, and no rule or card is needed between them.
+- Row anatomy to copy: words 12px from any card edge; a 1.3 line height plus about 2px between title and subtitle (4 to 6px of ink); neighbours held apart by a fixed `gap` of 8 to 12px, never by leftover `space-between`.
+
+Gold example: `stageshow/teaching/composition.tsx` (`content-density`, values in `teaching/composition.css`); for a whole list, the `Row` anatomy in `stageshow/examples/gmail/`.
+
+Check: shrink the screenshot to thumbnail size and count the blobs. There is one per record, not one per line. Then measure the render: the gap between groups divided by the gap inside one is 2 or more.
+
 ## Gotcha
 
 "Add more padding" is not grouping. Uniform generous padding everywhere makes every gap equal, and equal gaps say nothing belongs together — the 2× ratio is the point, not the size.
@@ -48,4 +60,5 @@ One primary; past three secondaries, the rest go behind a menu. Prefer a short v
 ## Sources
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/better-layout/SKILL.md` (**Group with space, not lines**, **Keep controls distinct from content**, **Align to shared edges**, **One primary action per view**, **Borderless controls need more clearance**, **Inset buttons from the edges**, **Content bleeds, controls float**), `grouping-and-alignment.md`, `spacing-and-adaptivity.md`.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/composition.tsx` and `teaching/composition.css` (`content-density`), `references/craft.md` (Spacing and alignment), `examples/gmail/index.tsx` (`Row`).
 - Related: [[growth-and-overflow]], [[logical-properties-rtl]], [[feeling-right]], [[interfaces-reconciliation]].

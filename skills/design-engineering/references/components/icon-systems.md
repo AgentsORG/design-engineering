@@ -65,6 +65,7 @@ See [[animations-dev-curriculum]] for the canonical resource on icon animation.
 - One icon, one meaning: a chevron can't mean both "expand" and "next page"; a star can't mean both favourite and rating (heart for favourite).
 - Pairs that differ only by a 180° turn (upload/download) need a second cue, such as a label or a baseline bar.
 - 6–8px between an icon and its label; ambiguous metaphors (the floppy disk) get the text label.
+- Each icon is one opaque colour. A translucent ink paints darker wherever strokes cross (onion skin); for a lighter icon pick a lighter opaque gray (Benji Taylor, Stageshow `teaching/style.tsx`).
 
 ## Illustration cohesion
 
@@ -76,6 +77,21 @@ Illustrations obey the icon system: same stroke weight, about three colours reco
 - Reviewing a PR that introduces a new icon: check the pack source.
 - Auditing an existing UI: grep for `<svg>` elements from different packs.
 
+## Reference
+
+Bad: deploy-status glyphs drawn for the screen, each in a different-hued squircle, one filled beside two outlined.
+Good: three icons from one pack at 16px and `strokeWidth={1.75}`, all in the one icon ink (`#707074` in Stageshow's light tokens); only the status itself carries colour; icon buttons are `flex: none`, even glyphs in even boxes.
+
+| Context | Pack |
+|---|---|
+| The product ships its own set | that set (Gmail: Material Symbols paths) |
+| Apple chrome | SF-style glyphs |
+| Anything else | one chosen on purpose: Phosphor, Iconoir, Radix, Tabler, Heroicons; Lucide deliberately |
+
+Gold example: `stageshow/teaching/style.tsx`, pairs `style-icons` and `style-onion`; `stageshow/examples/gmail/index.tsx` for a product's own family used throughout.
+Benji's call differs: filled glyphs start at 14px and under (and in tinted tiles), where this node switches at about 12px.
+Check: contact-sheet every toolbar, nav and list at the shown size: no filled glyph sits beside outlined ones (Stageshow's film names it `mixed icons`), none lands on a half pixel once motion ends, and a grep finds one icon package.
+
 ## Gotcha
 
 Icon stroke is `stroke-width`, not `border-width`. Setting `stroke-width: 2` on a 16px icon yields a different visual weight than 2px on a 24px icon (the smaller icon looks heavier). Either scale stroke proportionally or use a variable-weight icon pack like Phosphor.
@@ -86,4 +102,5 @@ Icon stroke is `stroke-width`, not `border-width`. Setting `stroke-width: 2` on 
 - lucide-animated.com — icon animation patterns.
 - Phosphor Icons — weight system documentation.
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN — the drawing, meaning and illustration rules.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Icons and logos), `stageshow/teaching/style.tsx`, `stageshow/examples/gmail/index.tsx`, `stageshow/references/rehearse.md` (`mixed icons`), `stageshow/kit/stage.css` (`--ss-icon`).
 - better-auth/better-icons (MIT; npm 1.0.4 on 2026-10-08, the repo's 1.0.5 is unpublished) — Iconify search and retrieval; the cross-pack pull is HKTITAN's reading of its tools.

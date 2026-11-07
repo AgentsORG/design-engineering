@@ -71,6 +71,24 @@ Every time you build a typography system. Build these into your token set:
 - `--tracking-body: 0;`
 - `--tracking-caps: 0.06em;`
 
+## Reference
+
+Benji Taylor's features-grid example, read off its CSS, gives the tracking table above real values to land on:
+
+| Role | Size / leading | Measure | Tracking |
+|---|---|---|---|
+| Tile copy (run-in lead) | 17px / 24px, `text-wrap: pretty` | `max-width: 380px` (460px on the hero tile) | -0.012em |
+| Stat number | 76px / 1, `tabular-nums` | one line | -0.04em |
+| Stat unit | 40px | same line as the number | -0.025em |
+| Stat label | 15px / 21px, `text-wrap: pretty` | `max-width: 240px` | 0 |
+
+- Bad: `RECENT DEPLOYS` at 12px with `letter-spacing: 0.12em`, plus a tracked `DEPLOY` button. Good: `Recent deploys` and `Deploy`, sentence case, untracked.
+- Benji's call differs: he keeps capitals only where the product itself capitalizes, and treats tracked caps on a heading, labels and a button as a fault, not a badge treatment.
+
+Gold example: `stageshow/examples/bento/bento.css` (`.kb-copy`, `.kb-stat-*`); caps pair in `stageshow/teaching/style.tsx` (style-caps).
+
+Check: put your heading beside the gold stat at the same size and take a screenshot. If yours looks looser, tighten it. Then count tracked-caps strings on the page; each one needs the product's own caps behind it.
+
 ## Gotcha
 
 `text-wrap: balance` has a node-count limit (Chrome caps at ~6 lines for performance). It silently does nothing past that — so don't apply it to long paragraphs and assume it's working.
@@ -81,3 +99,4 @@ Every time you build a typography system. Build these into your token set:
 - guidelines.sh — tracking rules, line length, `text-wrap: pretty`.
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/research.md` §6 — tiny tracked caps on 16 % of top and 57 % of weak gallery sites (model-panel tiers).
 - web.dev — text-wrap balance/pretty.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/bento/bento.css`, `stageshow/teaching/style.tsx` and `stageshow/teaching/style.css` (style-caps).

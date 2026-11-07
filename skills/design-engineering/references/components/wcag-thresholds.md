@@ -33,6 +33,22 @@ Inactive controls and logos are exempt from contrast. Measuring a pair is a colo
 - **Forced colours** — Windows High Contrast drops every `box-shadow`. A shadow ring keeps `border: 1px solid transparent` under it so an edge still draws; never `forced-color-adjust: none` without checking the control stays visible.
 - **Timed UI** — auto-dismiss only low-stakes confirmations. A toast carrying an action, an error or something the user may need stays until dismissed; one that must time out gets ≥ 5 s and pauses while hovered or focused. An undo link that vanishes on a timer is data loss on a schedule.
 
+## Reference
+
+| Pair (Stageshow light tokens) | Ratio | 1.4.3 / 1.4.11 |
+|---|---|---|
+| text-strong `#262628` on `#fff` | 15.1:1 | Pass |
+| text `#7a7a7d` on `#fff` | 4.28:1 | Fails body text |
+| text `#7a7a7d` on canvas `#f6f5f4` | 3.93:1 | Fails body text |
+| text-faint `#9a9a9d` on `#fff` | 2.81:1 | Fails even 3:1 |
+| danger `#ef4444` on `#fff` | 3.76:1 | Ring passes 3:1, fails as text |
+| danger-text `#b91c1c` on `#fff` | 6.47:1 | Pass |
+
+- Benji's call differs on purpose: these tokens are tuned for product pictures, and his own floor there is nothing under 10px at phone width. In a shipped product lift secondary ink to `#767676` or darker on white (4.54:1).
+- Copy the split: one danger hue for rings and a darker danger text token for words, as `form-error` colours its error line.
+- Gold example: `stageshow/kit/stage.css` (tokens) and `stageshow/examples/form-error/form.css`.
+- Check: measure every text token against every surface it renders on and report pair, value and threshold; with reduced motion on, anything that moves over 5s shows one complete still.
+
 ## Gotcha
 
 This graph reaches for APCA when *designing* contrast ([[contrast-and-color-scheme]]). A *finding* still cites the WCAG 2 ratio, because that is the criterion a product is held to. Pass both; report the one with a number on it. The split is settled in [[interfaces-reconciliation]].
@@ -41,4 +57,5 @@ This graph reaches for APCA when *designing* contrast ([[contrast-and-color-sche
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/better-accessibility/SKILL.md` (**Criteria, not conventions**, **Minimum hit area**, **Pair color with a second cue**, **Survive zoom and text resize**), `hit-areas.md`, `motion-and-zoom.md`, `focus-and-keyboard.md`; `skills/better-ui/SKILL.md` (the forced-colors border).
 - W3C, Web Content Accessibility Guidelines 2.2 — success criteria as numbered above.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (light tokens; ratios computed here), `stageshow/examples/form-error/form.css`, `stageshow/references/verify.md` (10px floor), `stageshow/references/kit.md` (reduced motion shows the poster).
 - Related: [[accessibility-baseline]], [[keyboard-patterns]], [[screen-reader-announcements]], [[prefers-reduced-motion]].

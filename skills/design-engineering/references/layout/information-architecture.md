@@ -35,6 +35,21 @@ Information architecture decides what a user can find before any pixel is styled
 
 Planning a new section, settings page, or nav; reviewing a product where users "can't find" things; any time a third menu level or a twelfth tab is proposed.
 
+## Reference
+
+One settings area, before and after:
+
+| | Bad | Good |
+|---|---|---|
+| Structure | One page, 40 toggles, a third-level "More" dropdown | Side nav: Account, Billing and invoices, Notifications, Advanced; each page under a dozen options |
+| Labels | "Enable async relay mode", nav item "Billing" while the search log's top query is "invoices" | "Send messages in the background", nav item "Billing and invoices" |
+| Next step | Save at the foot of the 40-toggle page | Save in a sticky bar; "Delete workspace" alone at the end of Advanced, set apart by space |
+| Dead end | "Something went wrong" with a back button | "That link expired. Request a new one" with the button that does it |
+
+Gold example: benji.org/family-values (Simplicity), which this node already cites for progressive disclosure under Grouping above.
+
+Check: put the ten most frequent search queries beside the nav. Each one should match a visible label word for word or sit one click under one; count menu levels on the deepest path, and stop at two.
+
 ## Gotcha
 
 Renaming beats restructuring. Before redrawing the sitemap, check whether the labels are the problem: a mislabeled item in the right place fails the same way as a well-labeled one in the wrong place, and the label is a one-line fix.

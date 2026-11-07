@@ -28,6 +28,7 @@ One test: **does the comment state something the code cannot?** A constraint, a 
 - `as any`, `as unknown as X`, `@ts-ignore`, a `!` that silences instead of fixes: the compiler error was information. A cast survives only with a comment stating the invariant.
 - `data`, `result`, `item`, `handler`: name what the value *means* (`unpaidInvoices`, `retryDelayMs`). `fetchDataV2`, `EnhancedButton`, `utils-new.ts`: replace the old thing and take its name; a deprecated alias only for published public API.
 - One-call wrappers, options objects with one caller, interfaces with one implementation, duplicate helpers the model didn't search for, unrequested compatibility shims, scaffolding from an abandoned approach, unused imports, `TODO: implement error handling` stubs.
+- A hand-styled lookalike of a component the repo already has (a second button class, a card `div`) is the duplicate helper in UI form, and it is where uneven padding, squeezed labels and unsized text come from. Use the existing part through its props and tokens (Benji Taylor, Stageshow `SKILL.md`).
 
 ## Logging, tests, scope
 
@@ -37,6 +38,24 @@ One test: **does the comment state something the code cannot?** A constraint, a 
 
 Before opening a PR on generated UI code, after any agent-written change, when a diff "reads like Copilot wrote it". Pair with [[review-format]] — a code tell is a row only when it changes what ships.
 
+## Reference
+
+A generated change and the same change after the pass:
+
+```tsx
+// Bad: narration, a non-null cast, a silent fallback, a V2 name, a lookalike button
+// Fetch the invoices for the user
+const data = (await fetchInvoicesV2(user!.id).catch(() => [])) as any
+return <button className="btn-new" style={{ padding: '6px 14px' }}>Pay</button>
+
+// Good: the name says what it holds, a failed fetch throws, the repo's own Button
+const unpaidInvoices = await fetchInvoices(user.id, { status: 'unpaid' })
+return <Button size="sm">Pay invoices</Button>
+```
+
+Gold example: `stageshow/examples/static-card/index.tsx`. Its few comments carry only reasons the code can't show (why the active nav item is marked by weight instead of a pill), and every part comes from the kit.
+Check: run the repo's typecheck and tests before and after the pass; pre-existing failures are reported apart and never filtered into a pass (Stageshow `references/rehearse.md`, Typecheck). Then read only the comments left in the diff: each must say something the line under it can't.
+
 ## Gotcha
 
 "Matching the room" cuts both ways. A repo with dense comments and defensive checks by convention is not slop; deleting to a standard the codebase doesn't hold is a drive-by change, which is item ten.
@@ -44,4 +63,5 @@ Before opening a PR on generated UI code, after any agent-written change, when a
 ## Sources
 
 - Emil Kowalski's design-engineering practice on generated code, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Use the kit part, never a lookalike), `stageshow/references/rehearse.md` (Typecheck), `stageshow/examples/static-card/index.tsx`.
 - Related: [[review-format]], [[dependency-discipline]], [[unslop-pass]].

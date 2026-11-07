@@ -31,9 +31,28 @@ What to borrow: **anonymous pairwise judgment.** "Which of these two is better?"
 
 The craft floor is DesignBench's *repair* task pointed at our own tells: each fixture is a broken snippet and the row the checklist should catch. The preference layer is Design Arena's protocol at PR scale: when a node changes what the agent produces, generate before-and-after candidates for three fixtures, judge them blind, and record the result in the PR. A node that loses the pairwise more than it wins is reverted, however good it reads.
 
+- Run one round as skill against no-skill on the same prompt, not only before against after. A node can beat its old self and still lose to no skill (Benji Taylor compares Stageshow output this way, benji.org/stageshow).
+
 ## When to apply
 
 Before changing the SKILL.md description or any node that alters output (motion values, palette rules, sound defaults); when comparing models for a design task; when someone asks "is this skill actually helping?"
+
+## Reference
+
+One PR's preference record, in the shape to paste into the PR body:
+
+```text
+node: motion/stagger-choreography   fixtures: arena-hero-01, edit-dropdown-01, repair-spinner-01
+judge: blind, A/B order shuffled per fixture
+evidence per candidate: poster still, 390px still, contact sheet of the motion
+result: B 2, A 1, tie 0  ->  keep
+```
+
+Judge stills and films, never code: the craft floor has already read the code.
+
+Gold example: `stageshow/scripts/film-checks.mjs`, Benji's deterministic floor, with one named detector per fault (`nearTangent` flags edges 0.75–3px apart). Every gate line is at zero before a person judges; Benji's own caveat is that checks catch mistakes, not dull ideas, and passing is necessary, not sufficient, which is why the pairwise layer exists.
+
+Check: every pairwise vote has frames from both candidates at the shown width and at 390. A vote on one wide screenshot misses what breaks at phone width.
 
 ## Gotcha
 
@@ -45,3 +64,5 @@ Compile rate and CLIP similarity reward *matching the reference*, including its 
 - Design Arena methodology notes (notes.designarena.ai/methodology) — Bradley-Terry aggregation, anonymity, vote thresholds.
 - Perplexity Agent Skills team — evals as Step 0.
 - Related: [[cross-model-testing]], [[review-checklist]], [[taste-is-trained]].
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/scripts/film-checks.mjs` (`nearTangent`), `stageshow/SKILL.md` (Workflow step 7, passing is necessary not sufficient), `stageshow/references/rehearse.md` (`--width 390`).
+- Benji Taylor, benji.org/stageshow (read 2026-11-07): checks catch mistakes, not dull ideas; skill against no-skill.

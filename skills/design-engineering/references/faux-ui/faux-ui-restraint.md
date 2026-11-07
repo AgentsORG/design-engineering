@@ -29,7 +29,9 @@ Left alone, an agent fills every row: it knows what a support inbox contains. Th
 - UI text at real sizes, 11–15px, scaled by the stage; nothing under 10px as rendered on a phone. One family; monospace only for code, identifiers and aligned numbers. Sentence case unless the product capitalises.
 - **No real headings:** a faux app's title is a `div`, never `h1`–`h6`; the demo lives inside someone else's page outline.
 - Words keep a 12px inset from any window, card, panel or hovered row edge (under 8px is a fault). Row padding 12px, 8px dense; a one-line row three times taller than its words is a fat row.
-- A button sits 8px or more from the field or line above it. A title over its subtitle has 4–6px of ink between them; the air comes from the row's padding.
+- A button sits 8–12px from the field or line above it: closer reads as touching, much further and it drifts off from the field it belongs to. A floating card (a comment popup, a toast) pads the same all round, measured to the avatar's and button's edges, not their words. A title over its subtitle has 4–6px of ink between them; the air comes from the row's padding.
+- Buttons, cards, fields, toasts and shortcuts come from a component, never a lookalike class per screen: a hand-built one is where uneven padding, squeezed labels and unsized text come from.
+- A progress ring is one track and one arc with round caps, never dashed segments; its number centres on its digits (proportional figures, trimmed to cap height).
 - A status dot, badge or ring is not a column: 6px clear of the avatar or text, inside the row's inset.
 - No near-tangents: edges 1–3px apart look accidental. Align them exactly, or part them by the gutter and never under 8px.
 - Centre a label on its letters (`text-box: trim-both cap alphabetic`), not its line box. A centred amount centres its digits; the currency sign hangs at `right: 100%`.
@@ -53,11 +55,24 @@ Left alone, an agent fills every row: it knows what a support inbox contains. Th
 
 Building or reviewing the still frame of any faux UI, and the poster frame of an animated one.
 
+## Reference
+
+A comment card at 13px, hand-built and then built on the kit's `Card` (Stageshow `examples/cards`):
+
+| Before | After |
+|---|---|
+| `padding: 20px 14px`, Resolve 4px under the body, inner quote `border-radius: 12px` | `<Card>`: 16px on every side, `gap` 12, the quote's radius `var(--ss-card-inner)` (the card's radius less its padding) |
+| Name, time, body, quote, two rows of metadata, three buttons, all real words | Mara Lind, "2m", one sentence, Reply, Resolve: five real strings; the quote is two bars at 80% and 56% |
+| Body left at the 16px page default | Body 13px at a 1.45 line height |
+
+Gold example: `stageshow/examples/cards/index.tsx` for the card; `stageshow/examples/static-card/` for a whole still on the word budget.
+Check: count the real strings in the poster (3–7), then measure the card's four paddings to the avatar and button edges; they should match to the pixel.
+
 ## Gotcha
 
-Stripping the screen to two blobs is the opposite failure. If it looks emptier, flatter or smaller than the closest reference shot, enlarge the content and add structure before adding words ([[screenshot-critique]] has the same lesson for pages).
+Stripping the screen to two blobs is the opposite failure. If it looks emptier, flatter or smaller than the closest reference shot, enlarge the content and add structure before adding words ([[screenshot-critique]] makes the same point for pages).
 
 ## Sources
 
-- Benji Taylor, Stageshow (MIT, HEAD `8020574`, read 2026-11-01): `references/craft.md` (restraint, type, spacing and alignment, icons and logos, colour, chrome and devices), `references/brands.md`, `references/teaching.md` (the style pairs). Paraphrased.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (restraint, type, spacing and alignment, icons and logos, colour, chrome and devices; the 8–12px button gap, floating-card padding and progress ring are 1.1), `stageshow/references/brands.md`, `stageshow/references/teaching.md` (the style pairs), `stageshow/SKILL.md` (use the kit part, never a lookalike), `stageshow/kit/parts/Card.css`, `stageshow/examples/cards/`, `stageshow/examples/static-card/`. Paraphrased.
 - Related: [[product-shot-framing]], [[content-authenticity]], [[stageshow-reconciliation]].

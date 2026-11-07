@@ -33,6 +33,8 @@ CSS keyframes baked into the file are the most portable option in 2026; SMIL sti
 - **Choreograph with groups.** Animate `<g>` layers (arm, eyes, body), not hundreds of paths; stagger 30–80ms; paired parts share duration and easing.
 - **Motion paths.** SMIL `<animateMotion><mpath href="#route"/></animateMotion>` with `rotate="auto"`, or CSS `offset-path: path("…")` when inline.
 - **Reduced motion.** Inline: the usual media query. Self-contained: `@media (prefers-reduced-motion: reduce)` inside the file's `<style>` still works when loaded as an image; SMIL cannot read it, so a SMIL-only file needs a static fallback asset.
+- **A draw-on carries order.** The stroke that draws is the cause; whatever depends on it (the area under a chart line, an arrowhead, an end dot) arrives as the stroke reaches it, never with it.
+- **Dashed lines draw on through a mask.** `pathLength="1"` dash tricks erase real dash spacing, so draw a solid `pathLength="1"` copy inside a `<mask>` and let the visible dashed path keep its own `stroke-dasharray: 4 4`.
 
 ## Size discipline
 
@@ -41,6 +43,24 @@ An animated SVG is a text file that ships on every load. Budget ~10–30 KB for 
 ## When to apply
 
 Animating any icon, illustration, mascot, logo reveal, chart transition, or loader that is vector; deciding between Lottie, Rive, and native SVG; reviewing an animated SVG someone dropped in.
+
+## Reference
+
+A chart line drawn on in reading order, adapted from `stageshow/teaching/details.css` (the line path has `pathLength="1"`, the area is clipped by a `.wipe` rect):
+
+```css
+.line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.wipe { transform: scaleX(0); transform-box: fill-box; transform-origin: left; }
+[data-on] .line { stroke-dashoffset: 0; transition: stroke-dashoffset 1100ms cubic-bezier(.45, 0, .3, 1); }
+[data-on] .wipe { transform: none; transition: transform 1100ms cubic-bezier(.45, 0, .3, 1) 80ms; }
+[data-on] .dot { opacity: 1; transition: opacity 240ms ease 1080ms; }
+```
+
+Bad: line, area and end dot fade in together over 600ms, so the trend is never seen. Good: the block above, where the dot lands the moment the line reaches it.
+
+Gold example: `stageshow/teaching/details.tsx` (the detail-chart pair); for a leader or connector, `stageshow/kit/motion/Connector.css` (draw-on 1s `cubic-bezier(0.65, 0, 0.35, 1)`, arrowhead and dot appear on arrival, dashed line revealed by a mask).
+
+Check: film the draw-on and step it at 40 to 80ms; the first frame the dot shows must be the frame the line reaches it, and nothing else in the file moves without a cause.
 
 ## Gotcha
 
@@ -51,4 +71,5 @@ Inline SVG inherits the page's `prefers-reduced-motion` handling only if you wro
 - supermemoryai/skills `svg-animations` — engine choice, stroke drawing, SMIL timing, transform-origin.
 - greensock/gsap-skills (MIT) `gsap-plugins` — DrawSVG, MorphSVG and MotionPath semantics; every plugin free since Webflow's acquisition.
 - MDN Web Animations API, SMIL Animation; svg.dog engine comparison.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/details.tsx`, `stageshow/teaching/details.css`, `stageshow/kit/motion/Connector.css`, `stageshow/kit/motion/Connector.tsx`, `stageshow/references/verify.md`.
 - Related: [[animation-decision-framework]], [[morphing-icons]], [[svg-path-morphing]], [[performance-discipline]], [[prefers-reduced-motion]].

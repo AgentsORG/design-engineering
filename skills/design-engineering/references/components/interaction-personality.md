@@ -62,6 +62,8 @@ Error messages, success states, and confirmations should reflect the user's spec
 
 Specificity costs you almost nothing and signals attention. The agent doing the action knows what was done — surface it.
 
+- **The answer lands on the thing that was pressed.** A button whose label changes changes on itself; a draft becomes the posted comment in place (Benji Taylor, Stageshow `references/motion.md`).
+
 ## Sound design (use sparingly)
 
 Sound is a personality lever most products skip entirely. When done well:
@@ -90,6 +92,21 @@ The sound cluster goes deeper: [[sound-decision-framework]] for whether, [[sound
 - Healthcare, finance, or other contexts where users want the product to be *calm* and reliable, not playful.
 - Anywhere the personality would conflict with the brand's primary value (a "professional" service shouldn't easter-egg about pizza).
 
+## Reference
+
+Bad: Resolve is pressed, nothing on it changes, and a generic "Success!" toast drops in at the corner 400ms later.
+Good: the press scales the button to 0.97 at once; its label crossfades to "Resolved" in the same button while its width eases over 0.5s `cubic-bezier(0.22, 1, 0.36, 1)` so neighbours make room; a reply typed in its `Draft` settles into the posted comment, and "Just now" fades in on the name's line.
+
+| Job | Timing |
+|---|---|
+| Direct feedback (press, hover, toggle) | starts on the input, as fast as the real product |
+| A state the click sets | fades in over about 150ms |
+| Storytelling (a result arriving, a number counting up) | may take longer than the action that caused it |
+
+Gold example: `stageshow/kit/controls/Draft.tsx` and `stageshow/examples/form-error/` ("Creating account" to "Account created" on one button).
+Benji's call differs: vary timing by job, not for flavour; direct feedback never waits, so a deliberate 200ms on Delete belongs in a confirmation step, not in the button's response.
+Check: film one press at 40 to 80ms steps: the response starts in the frame after the input and lands on the pressed thing, and covering the toast loses nothing the button didn't already say.
+
 ## Gotcha
 
 Personality lives in restraint. A product with one well-placed easter egg and one specific success message feels alive. A product with ten easter eggs and animated success states everywhere feels exhausting.
@@ -99,5 +116,6 @@ The Benji rule: *"A lifeless product feels like a dead product, and a dead produ
 ## Sources
 
 - Benji Taylor — *Honkish*, [benji.org/honkish](https://benji.org/honkish).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/motion.md` (Story; Pace and easing; a state the click sets), `stageshow/references/choreography.md` (Timing has different jobs), `stageshow/kit/controls/Button.tsx`, `stageshow/kit/controls/Button.css`, `stageshow/kit/motion/Roll.css`, `stageshow/kit/controls/Draft.tsx`, `stageshow/examples/form-error/index.tsx`.
 - guidelines.sh — Interaction Personality category (unique microinteractions, easter eggs, imperfect timing, contextual feedback, sound design).
 - Related: [[feeling-right]], [[delight-impact-curve]], [[forms-validation]], [[states-are-the-work]].

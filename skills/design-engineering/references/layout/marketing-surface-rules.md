@@ -52,6 +52,22 @@ tags: [layout, marketing, landing, docs, blog, performance]
 
 Creating or reviewing any public-facing page, and any time parallax, a carousel, or a scroll animation is tempting.
 
+## Reference
+
+The figure in a first viewport and a feature grid below it, as Benji Taylor's Stageshow sizes them:
+
+| Part | Spec |
+|---|---|
+| Hero demo beside copy | About 720 × 340 at 1:1; corner bleed, inset 10% top and left, 15 to 35% past right and bottom; no plate behind it on a white page |
+| Full-width hero | A 900 to 1100px window at 1:1, inset top, off the bottom |
+| Loop | 10 to 16 s, three to five beats; the payoff holds 2 s; `poster` is the payoff frame, which is also what reduced motion shows |
+| Phone column | A `compact` second design at 358 wide in a 390 viewport, recomposed rather than scaled |
+| Feature grid | One stage per tile; tile copy is page HTML at 17 to 24px outside the picture; one hero tile; window chrome at most once |
+
+Gold example: `stageshow/examples/hero-demo/` for the hero, `stageshow/examples/bento/` for the grid.
+
+Check: film the page at 1440 and 390 with reduced motion on and off. The poster alone tells the story, nothing on the first screen is hidden waiting for a reveal, and one thing moves per viewport. Benji's call differs: a supporting bento tile may play its one small motion once as the grid scrolls in, staggered 80 to 120ms in reading order (`references/bento.md` rule 11); this node still bans scroll-triggered fade-ups of page content.
+
 ## Gotcha
 
 "Marketing tolerates more motion" is read by agents as "marketing wants more motion". The permitted extra is one first-run hero moment. A page where every section animates in is the AI-default look, not expression. taste-skill's inspector fails a page where fewer than 8 elements move; this graph does not adopt that floor.
@@ -60,4 +76,5 @@ Creating or reviewing any public-facing page, and any time parallax, a carousel,
 
 - Emil Kowalski's design-engineering practice on marketing pages, distilled by HKTITAN.
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/motion.md` §2 and §9 (99 Sites of the Day captured October 2026: preloaders, readable time, reduced-motion rules, hijacking's usability score; scores are model-panel judgements) and `scripts/lib/rules.mjs` (`still-page`, not adopted).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Workflow step 1, medium and size), `references/framing.md` (rule 15, the layouts table, Small formats and the page), `references/motion.md` (Story, Loops), `references/bento.md` (rules 2, 3, 6, 11, 12), `examples/hero-demo/`, `examples/bento/`.
 - Related: [[marketing-vs-product-ui]], [[performance-discipline]], [[unslop-pass]], [[viewport-custom-design]].

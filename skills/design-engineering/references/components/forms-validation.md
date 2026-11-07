@@ -24,6 +24,7 @@ Each errored field has:
 - **Border color** — `var(--danger)` outline (1px, slightly stronger than default).
 - **Background tint** (optional) — very subtle, `rgba(danger, 0.04)`.
 - **Inline error message** — below the field, in danger color, 13px–14px. Don't bury it in a sidebar.
+- **A reserved lane** — the hint and the error swap in one fixed-height line under the field, there from the first frame, so an error never moves the form (Benji Taylor, Stageshow `examples/form-error`).
 - **Optional: shake animation on the error fire.** See [[multi-segment-shake]]. Use only on submit, not on blur (too aggressive otherwise).
 
 ```tsx
@@ -100,6 +101,21 @@ Every form: signup, login, settings, payment, anything.
 - Free-form comments / chat messages — no "wrong" answer to validate.
 - Inline edits of single fields (rename, status change) — validate on Enter or commit, not on blur (the user might be navigating elsewhere with the value intact).
 
+## Reference
+
+Bad: "Email is invalid." appears under the field on blur and pushes Password and the button down a line.
+Good: the field owns an 18px lane from the start; its hint ("We'll send a link to confirm it") gives way to "Add the domain, like name@company.com", said by the danger ring and the line together, and the moment the ending is typed the ring turns calm, a check appears and the hint comes back.
+
+```css
+.lane { height: 18px; } /* always there, so the error never moves the form */
+.box { transition: box-shadow .2s ease; }
+.field[data-focused] .box { box-shadow: inset 0 0 0 1px var(--accent), 0 0 0 3px var(--accent-soft); }
+.field[data-status="error"] .box { box-shadow: inset 0 0 0 1px var(--danger), 0 0 0 3px var(--danger-soft); }
+```
+
+Gold example: `stageshow/examples/form-error/` (type, error, fix, send) with the ring states in `stageshow/kit/controls/Field.css`.
+Check: screenshot the form clean and in error at phone width and diff them: only the ring and the lane's words differ; no label, field or button has moved, and the error copy names the fix, not the fault.
+
 ## Gotcha
 
 `required` on every field is lazy. Mark *only* the fields that genuinely require user input as required. Optional fields should clearly indicate "Optional" — don't leave the user guessing whether a missing value will fail submit.
@@ -111,4 +127,5 @@ Also: don't disable the submit button until the form is valid. It tells the user
 - guidelines.sh — "Validate forms inline at input."
 - Material Design — form patterns.
 - Stripe — best-in-class form copy.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/form-error/index.tsx`, `stageshow/examples/form-error/form.css`, `stageshow/kit/controls/Field.css`.
 - Related: [[multi-segment-shake]], [[states-are-the-work]], [[empty-loading-states]], [[screen-reader-announcements]] (how the error is heard), [[interfaces-reconciliation]] (blur vs submit timing).

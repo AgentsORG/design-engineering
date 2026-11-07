@@ -93,6 +93,18 @@ if (findings.some(f => f.severity === 'error')) process.exit(1);
 
 Any task where the user has a project with a `DESIGN.md` file. Read it once at task start; reference tokens throughout.
 
+## Reference
+
+Frontmatter tokens bind; prose picks between them. Given `rounded: { sm: 4px, md: 8px, lg: 16px }` and a body style of Public Sans 16/1.6, a settings card comes out as:
+
+- Bad: `font: 14px/1.5 Inter; border-radius: 6px; color: #6b7280;`, three values the file never defined.
+- Good: `font-family: var(--font-body); font-size: var(--text-body-md); border-radius: var(--rounded-lg);`, the field inside at `{rounded.md}` and its menu items at `{rounded.sm}`, color from `{colors.primary}` only on the one primary action.
+- A token the file lacks (`button-primary-active`) becomes a proposal comment, never a literal.
+
+Gold example: `stageshow/examples/looks/radix.css`, a public design system's tokens set as one look file. It sets only what that system defines and leaves the rest to the kit's defaults, which is how this skill fills what DESIGN.md leaves out.
+
+Check: grep the generated file for literals (`#[0-9a-fA-F]{3,8}`, `[0-9]+px`) and name the missing token behind every survivor. Then render once per color scheme the file defines; as Stageshow's craft rules put it, a light pass does not prove dark.
+
 ## Gotcha
 
 DESIGN.md is currently `version: alpha` — the spec is evolving. If the user's file uses fields you don't recognize, pass them through unchanged rather than flagging as errors. The format will expand.
@@ -103,4 +115,5 @@ Also: not every project has a DESIGN.md, and not every team wants to author one.
 
 - Google Labs Code — [github.com/google-labs-code/design.md](https://github.com/google-labs-code/design.md).
 - [`spec/design-md-spec.md`](../../../../spec/design-md-spec.md) in this repo (mirrored offline).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/looks/radix.css`, `stageshow/references/craft.md` (a light pass does not prove dark).
 - Related: [[agentation-workflow]] (the design-review feedback loop), [[review-format]] (UI critique format).

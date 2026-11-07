@@ -60,6 +60,21 @@ inbox.count = {count, plural,
 
 "Saving changes…" resolves to "Changes saved" — same object, same order. Cut "Please" from routine instructions.
 
+## Reference
+
+| Slot | String |
+|---|---|
+| Button, idle | Create account |
+| Button, in progress | Creating account |
+| Button, done | Account created |
+| Lane under the field, hint | We'll send a link to confirm it |
+
+- One object, one order through the lifecycle; the labels crossfade on the same button and the hint and error swap in one lane, so no string moves the layout.
+- Sample strings are picked to fit: a short real name and an email that fits its chip, never a truncated email or a wrapping name.
+- Benji's call differs on money in a demo: `table-edit` writes `$` plus `toLocaleString('en-US', { minimumFractionDigits: 2 })`, with the locale named, and `craft.md` hangs a centred amount's sign outside its digits. In a product keep `style: "currency"` and use `formatToParts` when the sign must be split off.
+- Gold example: `stageshow/examples/form-error/` (status labels and the message lane) and `stageshow/teaching/details.tsx` (`detail-copy`).
+- Check: count the real strings on the screen, find each in the catalogue, confirm every in-progress and done pair shares its object, and at 390 wide nothing truncates or wraps.
+
 ## Gotcha
 
 A placeholder is an example in the accepted format — `name@example.com`, `DD/MM/YYYY` — never an instruction and never the label ([[forms-behavior]]). And a deliberate brand voice is not a defect: reword only where copy is inconsistent, ambiguous, untranslatable or wrong for the stakes.
@@ -68,4 +83,5 @@ A placeholder is an example in the accepted format — `name@example.com`, `DD/M
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/better-writing/SKILL.md` (**Inventory the existing strings first**, **Build strings whole**, **Verb-first buttons**, **Links describe their destination**, **Settings describe the ON state**), `patterns.md` (status copy, plurals, locale formatting).
 - Unicode ICU MessageFormat; ECMA-402 `Intl`.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/form-error/index.tsx`, `stageshow/examples/table-edit/index.tsx`, `stageshow/teaching/details.tsx` (`detail-copy`), `stageshow/references/craft.md` (centred amounts).
 - Related: [[copy-voice]], [[copy-tells]], [[destructive-actions]], [[interfaces-reconciliation]].

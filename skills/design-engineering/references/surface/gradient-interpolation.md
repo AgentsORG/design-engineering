@@ -26,10 +26,26 @@ Two hues on opposite sides of the wheel sit either side of the neutral axis. A s
 
 - **Banding** shows on large areas with little contrast between stops on 8-bit displays: a hero-wide gradient steps visibly. Widen the stops' contrast, shrink the area, or add a faint noise layer ([[contrast-and-color-scheme]]; a rendered film bands too — see [[gotchas]]).
 - **Text on a gradient** has a different contrast at every pixel, so one number describes nothing. Measure the worst region, not the average, or put a scrim behind the text ([[wcag-thresholds]]).
+- **Strong colour stays behind an opaque surface.** A vivid ground does not also need vivid controls, a coloured shadow and a glow; give a banded ground a hierarchy of a dominant field, a supporting colour and an optional narrow highlight (Benji Taylor, Stageshow `references/backgrounds.md`).
 
 ## When to apply
 
 Any `linear-`, `radial-` or `conic-gradient`, a mesh-style hero, a chart fill, a hex → OKLCH migration of a gradient (keep its shape and stops; only add a space if the look should change).
+
+## Reference
+
+```css
+/* Bad: opposite hues mixed in sRGB, the headline set straight on the muddy middle */
+.hero { background: linear-gradient(90deg, #3b82f6, #f59e0b); }
+/* Good: one family, a chosen 122deg direction, dominant / supporting / highlight bands (Stageshow bg-ground--bands) */
+.hero { background: linear-gradient(122deg, #1c315f 0% 47%, #3d74bd 47% 82%, #cbdfee 82% 100%); }
+/* Good, smooth: the same family blended, the space named, the middle stop placed by hand */
+.hero { background: linear-gradient(122deg in oklab, #1c315f, #3d74bd 60%, #cbdfee); }
+```
+
+Hard stops leave no midpoint to interpolate, so the space question disappears; explicit middle stops shrink it to a few short spans.
+Gold example: `stageshow/examples/backgrounds/` (six vivid gradients that change direction, value and material instead of recolouring one glow), with `stageshow/teaching/style.tsx` (`style-purple`) as the fault to compare against.
+Check: render at the hero's real size and sample the midpoint: if its chroma sits well below both stops, it is the grey dead zone. Then count effects on the frame: the ground, and nothing else glowing.
 
 ## Gotcha
 
@@ -39,4 +55,5 @@ A violet-to-blue gradient across a hero is still the generated-page tell however
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/better-colors/SKILL.md` (**Pick a gradient's interpolation space**), `color-usage.md` (Gradients).
 - CSS Color Module Level 4 — interpolation colour spaces and hue-interpolation methods.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/backgrounds.md`, `stageshow/examples/backgrounds/backgrounds.css` (`bg-ground--bands`), `stageshow/teaching/style.tsx` and `stageshow/teaching/style.css` (`style-purple`).
 - Related: [[color-scales-oklch]], [[palette-step-roles]], [[interfaces-reconciliation]].

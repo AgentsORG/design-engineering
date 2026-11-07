@@ -38,6 +38,25 @@ Walk it top to bottom and stop at the first yes. Does it lock a group out (keybo
 
 Accessibility blockers, then leaks, then [[production-baseline]] (one change clears dozens of instances), then per-file fixes grouped by file, then polish while the diff is still reviewable in one sitting. Never restructure markup unless the markup *is* the finding. Anything bigger than a few lines (a hand-rolled modal that needs a focus trap, a list that needs virtualizing) goes on the human list with its owner. One root cause with forty instances is one row with a count, fixed at the root. Run typecheck and build afterwards; a ship check that breaks the build is worth less than none.
 
+## Reference
+
+The hand-over, adapted from Stageshow's `REHEARSAL.md` template, so what code proved and what needs a phone never blur:
+
+```md
+# Ship check: <app> at <commit>
+Fixed (diff): 14 (6 a11y blockers, 1 leak, production-baseline, 6 per-file)
+Proved by code: typecheck, build, review-checklist greps (counts pasted)
+Seen on: desktop Chrome at 1440 and 390 wide (emulated, not touch)
+Needs hardware: iOS Safari keyboard over the composer; VoiceOver order on /checkout
+Human list: dark theme half-built (owner: design); hero re-timing (taste)
+Skipped: marketing lane, no marketing routes
+Not checked: Android Chrome, slow network
+```
+
+Gold example: `stageshow/references/verify.md` (Hand over) for the template, and `stageshow/references/rehearse.md` (What to watch): the playground's Phone changes width but not touch, and you say which browser and device you checked.
+
+Check: every "ready" in the report names where it was seen. Benji's rule that an empty or gapped capture is inconclusive, not a pass, applies per lane: a lane with no evidence goes under Not checked, never under clean.
+
 ## Gotcha
 
 Manufacturing findings to look thorough wastes trust. "Already in good shape, small diff" is a valid and good result, and a deliberate tradeoff recorded in a comment is noted, not "fixed".
@@ -45,4 +64,5 @@ Manufacturing findings to look thorough wastes trust. "Already in good shape, sm
 ## Sources
 
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/verify.md` (Hand over), `stageshow/references/rehearse.md` (What to watch; The last pass).
 - Related: [[review-format]], [[stress-scenarios]], [[states-are-the-work]].

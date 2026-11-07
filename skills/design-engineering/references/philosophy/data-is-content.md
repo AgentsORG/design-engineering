@@ -47,6 +47,23 @@ The principle: data display IS content. Apply the same craft you'd apply to a ma
 - Dashboards, admin panels, analytics tools, finance apps, productivity apps, CRMs, log viewers.
 - Even consumer apps with rich content lists (Notion, Linear, Things) — these are "data" in disguise.
 
+## Reference
+
+An invoice table that reads as content, adapted from `stageshow/examples/table-edit/table.css`:
+
+```css
+.row  { display: grid; grid-template-columns: minmax(0, 1fr) 112px 92px 64px; gap: 16px; align-items: center;
+        height: 44px; font-size: 13px; white-space: nowrap; border-bottom: 1px solid var(--line-faint); }
+.head { height: 36px; font-size: 12px; font-weight: 500; color: var(--text); }
+.num  { text-align: right; font-variant-numeric: tabular-nums; }
+```
+
+Every row is a real string, and the table stays short (five rows) instead of being padded with placeholder bars. An edited cell keeps its value exactly where it was (the field ring is drawn inside the cell), and the total rolls 250ms after the commit, not on every key. Benji's call differs on updates: a derived total animates a beat after its cause instead of changing instantly; keep this node's instant rule for live chart data.
+
+Gold example: `stageshow/examples/table-edit/`; for a chart, the `detail-chart` pair in `stageshow/teaching/details.tsx` (the line draws left to right, the area follows, the end dot lands last).
+
+Check: edit one amount and film it close (`--slow 6 --every 40`): no digit in the column shifts sideways, and the total moves only after the cell commits.
+
 ## Gotcha
 
 Don't apply marketing-page rules to data. Asymmetric layouts and "imperfect" alignment ([[visual-imperfection]]) are wrong here — data needs predictability. See [[marketing-vs-product-ui]].
@@ -58,4 +75,5 @@ The exception: data *visualizations* (charts, diagrams) can have personality. Ta
 - guidelines.sh — "Data display is content."
 - Edward Tufte — *The Visual Display of Quantitative Information* (chartjunk, data-ink ratio).
 - Linear, Notion, Pipedrive — modern data-as-content table design.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): stageshow/examples/table-edit/ (index.tsx, table.css), stageshow/teaching/details.tsx (detail-chart), stageshow/references/rehearse.md.
 - Related: [[marketing-vs-product-ui]], [[states-are-the-work]], [[empty-loading-states]].

@@ -105,6 +105,25 @@ Almost always indicates a specificity battle that should be fixed with the casca
 
 Writing or reviewing CSS. These are taste signals, not correctness rules — but accumulating them is the difference between "this CSS works" and "this CSS feels considered."
 
+## Reference
+
+One spinner and one list, before and after (milliseconds kept, per this repo):
+
+```css
+/* before */
+@keyframes spin { to { transform: rotate(360deg); } }
+.row { line-height: 20px; color: rgb(17, 17, 17); }
+.row:nth-child(2n+1) { background: rgba(0, 0, 0, 0.04) !important; }
+/* after */
+@keyframes spin { to { transform: rotate(1turn); } }
+.row { line-height: 1.4; color: #111; }
+.row:nth-child(odd) { background: rgba(0, 0, 0, 0.04); }
+```
+
+Gold example: `stageshow/kit/stage.css`, whose spinner keyframe is `rotate(1turn)`, and `stageshow/kit/ease.ts`, which names each curve once as numbers and prints the `cubic-bezier()` string from them. Its time units are not the model: `kit/controls/Button.css` writes `180ms` where `kit/motion/Roll.css` writes `0.42s`.
+
+Check: grep the stylesheet for `deg)`, `line-height: [0-9]+px`, `2n+1`, `rgb(` and `!important`; every hit left is a deliberate exception. Then count `[0-9]ms` against `[0-9]s`: one of them should be zero.
+
 ## Gotcha
 
 These conventions are *not* universal — some teams prefer the opposite (seconds over ms, em over rem, etc.). When joining a codebase, match its existing conventions first. Only when starting fresh do you get to pick.
@@ -112,4 +131,5 @@ These conventions are *not* universal — some teams prefer the opposite (second
 ## Sources
 
 - Ben DC — [github.com/bendc/frontend-guidelines](https://github.com/bendc/frontend-guidelines).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/stage.css` (`ss-spin`), `kit/ease.ts`, `kit/controls/Button.css`, `kit/motion/Roll.css`.
 - Related: [[duration-table]] (counter-point on ms vs s), [[transform-mastery]], [[transform-opacity-only]].

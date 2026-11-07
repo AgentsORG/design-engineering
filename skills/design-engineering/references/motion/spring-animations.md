@@ -65,6 +65,25 @@ When a gesture reverses mid-flight, a spring carries its current velocity into t
 
 Pretty much anywhere the user's input drives motion: drag handles, dismissible cards, sliders, pinch-zoom, scroll-snap. For *triggered* motion (modals, toasts, page transitions), curves are simpler and usually better.
 
+## Reference
+
+A hand-written follow spring, adapted from `stageshow/kit/motion/Follow.tsx` (stepped at a fixed 60Hz):
+
+```ts
+const k = 0.25                        // stiffness: a quick, settled follow
+const damp = 2 * Math.sqrt(k) * 0.95  // damping ratio 0.95, just under critical
+function step(c: Rect, v: Rect, t: Rect) {
+  for (const key of ['x', 'y', 'width', 'height'] as const) {
+    v[key] += (t[key] - c[key]) * k - v[key] * damp
+    c[key] += v[key]
+  }
+} // a new target keeps c and v; never reset v to 0
+```
+
+Gold example: `stageshow/kit/motion/Follow.tsx`, for selection rings, drop targets and hover highlights; a CSS transition restarts from rest on every change and stutters cell by cell on a drag. The interrupt pair is in `stageshow/teaching/contrasts.tsx` (interrupt).
+Benji's call differs on bounce: the Stageshow cursor morph springs between outlines underdamped (damping ratio 0.62, angular frequency 15) with no gesture behind it, clamping color and stroke so only the geometry overshoots (`stageshow/examples/cursor-morph/README.md`).
+Check: pick Month, then Week before the highlight lands, stepped at 40ms. The second move starts where the highlight is, at its current speed, and the same input lands in the same place at 60Hz and 120Hz.
+
 ## Gotcha
 
 Springs left on library defaults produce slow, floaty motion. Always set `duration` + `bounce`, or both `stiffness` and `damping`. And don't reach for a spring because something is "polished": Sonner, the usual example, animates with CSS transitions, not a spring.
@@ -76,7 +95,8 @@ Step them on a fixed 4 ms clock or sample a closed form, cap the catch-up after 
 ## Sources
 
 - Emil Kowalski — interruptibility argument.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md (spring forms, bounce range), skills/animate-expo/SKILL.md (dampingRatio 1 settle, bounce only after momentum).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md (spring forms, bounce range), skills/animate-expo/SKILL.md (dampingRatio 1 settle, bounce only after momentum).
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN (bounce 0 default).
 - Apple Human Interface Guidelines — spring parameter ranges.
 - guidelines.sh — "Spring physics over bezier" for interactive motion.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Follow.tsx`, `stageshow/examples/cursor-morph/README.md`, `stageshow/teaching/contrasts.tsx` (interrupt).

@@ -14,6 +14,8 @@ A launch film rarely ships alone. Around it go a landing-page loop, a logo sting
 - **A whole number of bars, no tail.** Design motion so the unrendered frame `TOTAL` would equal frame 0; a duplicate of frame 0 at the end stutters every cycle. Springs are at rest before the seam, and text is fully resolved or fully gone across it.
 - **Seam gate.** The last-to-first frame difference is at most max(0.4, 1.5 × the median of the 8 steps at each end). Render lossless PNG intermediates: with JPEG frames the encoder smooths noise between neighbours but not across the seam, which then measures ~1.7× its neighbours.
 - **Frame 0 is the poster.** It is what a paused or not-yet-autoplayed page shows, so it names the product. The product and the action start in the first 2 s, and the loop reads with the sound off.
+- **A reset has a seen cause or is invisible.** What the loop added leaves as one thing, in a reverse stagger (last change first, about 70 ms apart); data never rewinds in view; the next action begins within about a second of the exit (Stageshow).
+- **10 to 16 s, three to five beats, a payoff that holds 2 s.** Nothing else sits still over 3 s, and a repeat is a short beat, never the whole flow twice (Stageshow).
 - **GIF at 25 or 50 fps.** GIF delays are whole hundredths of a second, so 30 fps plays 11 % fast. Ship MP4 and WebM for `<video autoplay muted loop playsinline>` at ≤ 4 MB per 10 s of 1080p; a GIF only when asked, ≤ 960 px wide.
 
 ## Logo sting
@@ -35,6 +37,21 @@ A launch film rarely ships alone. Around it go a landing-page loop, a logo sting
 
 In 9:16 the content's mass sits on the safe band's centre (y ≈ 885), not the frame's, and the bottom 40 % is never empty: stack the statement above the product or let the product bleed past the sides. Type and UI run 1.3–1.5× their 16:9 sizes. Burn captions into every feed cut, because feeds autoplay muted.
 
+## Reference
+
+A 12 s landing-page loop (6 bars at 120 BPM):
+
+| t (s) | beat |
+|---|---|
+| 0.0 | a finished screen with the product named; it works as the only frame |
+| 0.2-9.0 | three or four beats, each caused by the last |
+| 9.0-11.0 | the payoff arrives full and holds 2 s |
+| 11.0-12.0 | by 11.5 what the loop added has left in one reverse stagger, last change first, ~70 ms apart; frame 12.0 is frame 0, and the next action starts 0.7 s after the exit ends |
+
+- Benji's call differs: a Stageshow poster is whichever beat tells the story on its own, never one caught mid-change, not necessarily the opening. Where the page sets `<video poster>`, use that beat and keep frame 0 a finished still.
+- Gold example: `stageshow/examples/subscriptions/` (a system loop that resets by changing to a second company rather than rewinding) and `stageshow/references/motion.md` (Loops).
+- Check: film one loop plus the start of the next at 60 ms a frame and look at the seam (Stageshow's kit warns `loop seam:` when the end state or cursor differs from the start), then run the seam gate above on lossless frames.
+
 ## Gotcha
 
 The zones are snapshots of the big feeds' current overlays (header 240–290 px, action rail 120–190 px from about y 840, caption block 380–450 px, up to ~670 with a call-to-action button). They move when the apps redesign. Check the destination's overlay before a paid launch.
@@ -42,4 +59,5 @@ The zones are snapshots of the big feeds' current overlays (header 240–290 px,
 ## Sources
 
 - Leon Lin, cinetic (MIT, HEAD ecfa660): `skills/cinetic/references/formats.md` §4 (feature loop, seam gate, GIF arithmetic), §5 (logo sting), §7 (social re-layouts, feed zones, type minimums); `references/sound.md` §13 (the sting's −16 LUFS). These are practice and arithmetic, not corpus measurements.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/motion.md` (Story, Loops), `stageshow/examples/subscriptions/index.tsx`, `stageshow/kit/act.ts` (`loop seam` warnings).
 - Related: [[launch-video-structure]], [[launch-video-type]], [[launch-video-review]], [[cinetic-reconciliation]].

@@ -45,6 +45,22 @@ Status follows cause, not location. An untouched consumer of a changed token tha
 
 `| Severity | Status | Location | Before | After | Why |`, Introduced and Regression only, ranked by severity then reach. Then at most **three** pre-existing findings, plainly marked not this change's responsibility. With nothing caused by the change: "No actionable interface findings in this change." Correctness, tests, security and performance belong to the general code review — name such a concern once and drop it.
 
+- End with **Not checked:** the widths, looks and states you did not look at. A predicted pass is not a pass (Benji Taylor, Stageshow `references/review.md`).
+
+## Reference
+
+One regression row, then the close:
+
+| Severity | Status | Location | Before | After | Why |
+|---|---|---|---|---|---|
+| High | Regression | `Toolbar.tsx:42` | `<button onClick={save}>` | `<div className="btn" onClick={save}>` | Tab skips it and Enter does nothing; the after screenshot is identical, only the `-` line shows it |
+
+Below it: "Pre-existing (not this change): `Menu.tsx:88` delete is hover-only." Then "Not checked: dark theme, 390px." A review that says nothing about a width reads as a pass at that width.
+
+Gold example: Jakub's `removed-signals.md` for the `-` side; `stageshow/references/review.md` for the close, which ends every review with what could not be checked and treats a predicted pass as no pass.
+
+Check: reproduce each Introduced or Regression row on the running surface: a before-and-after frame at its shipping widths for a visual finding, a Tab press for a keyboard one. A row with nothing behind it is a prediction, so drop it or go get the evidence.
+
 ## Gotcha
 
 The most-missed regression is a `<button>` that became a styled `<div>` in a "refactor to the new design system" PR. The after state looks identical, so only the `-` side shows it.
@@ -53,3 +69,4 @@ The most-missed regression is a `<button>` that became a styled `<div>` in a "re
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/interface-review/SKILL.md`, `scope-resolution.md`, `removed-signals.md`. With the companion installed, route a diff review to `/interface-review` ([[interfaces-reconciliation]]).
 - Related: [[review-checklist]], [[ui-reviewer]], [[skill-router]].
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/review.md` (say what you could not check; a predicted failure or pass is not a finding).

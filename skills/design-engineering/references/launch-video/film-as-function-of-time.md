@@ -40,6 +40,20 @@ Hand over nothing until every file passes all of these:
 
 Render 1080p until the film passes, then the 4K master once, then run the gates again on the master. Make the 1080p and 9:16 files from the master, and lay the 9:16 one out again per [[launch-video-formats]], not as the film centred on black.
 
+## Reference
+
+```ts
+// Bad: wall time and fresh randomness differ between renders and between the samples of one frame
+const t = (Date.now() - start) / 1000, jitter = Math.random() * 2
+// Good: time from the stepped clock, noise seeded by the output frame
+const t = clock.now() / 1000, jitter = hash01(seed, Math.floor(t * fps)) * 2
+```
+
+- Stageshow's recorder solves the same problem in the browser: `installVirtualClock()` replaces the page's clocks so time moves only on `step()`, by exactly 1/fps, firing due timers in order, running one animation frame and moving every CSS transition and animation to the new time. Chrome's own virtual time is not enough: it moves timers but runs no animation frames and leaves CSS animations where they are.
+- A clock or date drawn in a scene reads a fixed `epoch`, so it shows the same time on every render.
+- Gold example: `stageshow/kit/clock.ts` (the virtual clock) and `stageshow/references/kit.md` (Timing: time scripts with `clock.now()`, never `Date.now()`).
+- Check: render the same 2 s twice and hash every frame; a mismatch is a stray wall-clock read or an unseeded random. Then log real rAF timestamps on the live page, because a virtual clock proves geometry, not frame rate (`stageshow/references/rehearse.md`).
+
 ## Gotcha
 
 Headless Chrome has capture traps of its own, separate from the render traps in [[gotchas]]. A 1920 × 1080 viewport paints only about 990 px, so use a taller viewport and clip. `captureScreenshot` returns CSS pixels unless `clip.scale` equals the device scale factor, so a "4K" render comes back at 1080p. Large 3D layers are captured half-drawn without `--run-all-compositor-stages-before-draw`. Each 4K worker needs about 11 GB of memory; six of them stalled a 36 GB machine.
@@ -47,4 +61,5 @@ Headless Chrome has capture traps of its own, separate from the render traps in 
 ## Sources
 
 - Scenario, `scenario-kinetic-film` skill (zip received 2026-10-30, no licence file, so it is cited here and none of its code is copied): `SKILL.md` (rules table, common mistakes), `references/render.md` (pipeline, traps, encode settings, gates), `references/sound.md` §1 (beat grid, offset), `references/method.md` §4.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/clock.ts` (virtual clock, `epoch`, Chrome virtual time), `stageshow/references/kit.md` (Timing), `stageshow/references/rehearse.md` (Live pacing).
 - Related: [[launch-video-review]], [[launch-video-music]], [[cinetic-reconciliation]], [[hyperframes-reconciliation]].

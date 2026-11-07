@@ -61,12 +61,29 @@ Rules:
 - **Match the real layout.** A skeleton list with 3 items should reveal to a list with ~3 items, same widths, same gaps. Otherwise the layout jumps when content arrives.
 - **Size rows from the loaded row** (`height: 48px` because the real row is 48px, not a guess); lazy-loaded components get a sized fallback too.
 - **Pulse animation is the only animation.** Don't get clever with shimmer overlays unless your entire product has that energy.
+- **Only the data loads.** The window, the title and the column heads are real from the first frame; a skeleton over the chrome reads as a page that never loaded (Benji Taylor, Stageshow `examples/loading`).
 
 ## When to apply
 
 - Every list, table, or content area: all four branches.
 - Every async action: pick a loading pattern from the table.
 - Every form submit: feedback under 100ms (a disabled button state), the pending label by 400ms.
+
+## Reference
+
+Bad: a centred spinner on a blank card, then the title, column heads and every row pop in together.
+Good: the window, "Recent orders" and the column heads are real from frame one; each row is a skeleton at its own geometry (a 28px avatar disc, an 8px bar about the name's width, a 20px pill where the badge goes), and rows resolve top to bottom 70ms apart, each whole.
+
+```css
+.slot { display: grid; align-items: center; }
+.slot > * { grid-area: 1 / 1; } /* bar and words share one cell, so nothing moves */
+.row[data-ready] .sk { opacity: 0; }
+.row[data-ready] .real { opacity: 1; transition: opacity .4s ease calc(var(--i) * 70ms + 80ms); }
+```
+
+Gold example: `stageshow/examples/loading/` (four 54px order rows; pressing Refresh is the seen cause of the reset back to skeleton).
+Benji's call differs: his skeleton carries a faint, slow shimmer (a 1.6s sweep) that stops the moment its row resolves, where this node allows only a pulse; either way, one quiet motion.
+Check: film the resolve at 40 to 80ms steps and lay the last skeleton frame over the first loaded one: no word, avatar or badge moves a pixel, and nothing above the data ever showed a bar.
 
 ## Gotcha
 
@@ -78,3 +95,4 @@ Don't auto-redirect from empty states ("nothing here, going to home..."). That f
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN — the four branches, the 150ms delay and 400ms deadline, first-paint state.
 - Emil Kowalski — Sonner skeleton patterns.
 - Brad Frost — "loading state best practices."
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/loading/index.tsx`, `stageshow/examples/loading/loading.css`.

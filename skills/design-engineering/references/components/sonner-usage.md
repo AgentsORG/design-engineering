@@ -49,11 +49,27 @@ Position `bottom-right`, 3 visible, 4000ms duration, 14px gap when expanded, 32p
 | Stuck on loading | The promise never settles |
 | Shows in every toaster | Give each Toaster an `id` and pass `toasterId` |
 
+## Reference
+
+```css
+/* toast.custom((t) => <div className="toast">Conversation archived. <button>Undo</button></div>) */
+.toast { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px;
+  background: #1c1c1f; color: #fff; font-size: 12px; }
+.toast button { margin-left: 6px; color: rgb(255 255 255 / 0.6); font-weight: 500; }
+.dark .toast { background: #26262a; } /* raised surface on dark, never near-black on near-black */
+```
+
+- Bad: a grey default pill reading "Success!" with a green check. Good: object plus past tense and the product's own action: "Conversation archived." with Undo, in a dark pill on light themes.
+- Benji's call differs on motion: his toast rises 10px over 0.6s `cubic-bezier(0.22, 1, 0.36, 1)` with opacity over 0.35s, on its own layer so the words glide with the box. With Sonner, keep Sonner's entrance and take only the look through `toast.custom`.
+- Gold example: `stageshow/kit/parts/Toast.css` and the archive toast in `stageshow/examples/gmail/`.
+- Check: shoot the toast's arrival in light and dark as a contact sheet at 50ms a frame; the text never steps whole pixels inside the moving pill, and in dark the pill sits on the raised surface.
+
 ## Gotcha
 
 `theme` defaults to `'light'` and does not follow the OS, and success and error toasts are grey until `richColors` is set. Pass `theme="system"` or the resolved theme from your provider; this one default is behind most "dark mode is broken" reports ([[dark-mode]]).
 
 ## Sources
 
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/ask-sonner/SKILL.md, skills/ask-sonner/API.md.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/ask-sonner/SKILL.md, skills/ask-sonner/API.md.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/parts/Toast.css`, `stageshow/kit/parts/Toast.tsx`, `stageshow/kit/stage.css` (`--ss-raised`), `stageshow/examples/gmail/index.tsx`.
 - Related: [[sonner-principles]], [[screen-reader-announcements]].

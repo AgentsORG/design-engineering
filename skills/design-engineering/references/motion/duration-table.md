@@ -42,6 +42,21 @@ Sonner itself is the counter-example: its toasts run a symmetric ~400ms `ease`, 
 - **More frequent, shorter duration.** See [[delight-impact-curve]].
 - **More important, slightly longer.** A modal earns more time than a tooltip.
 - **If unsure, halve it.** Most "feels slow" animations are too long. Most "feels jumpy" animations are too short.
+- **Feedback starts on the input.** A delay before a press responds reads as lag at any duration; only storytelling motion (a demo, a film) earns slower timing.
+
+## Reference
+
+One product's whole set, read from a real kit, so every part stays in proportion:
+
+| Part | In | Out |
+|---|---|---|
+| Button press | `transform` 180ms `cubic-bezier(0.2, 0.8, 0.2, 1)` to `scale(0.97)` | same |
+| Menu row under the pointer | 0ms | `background-color` 150ms `ease` |
+| Tooltip | 150ms fade with a 2px rise | 100ms |
+| Toggle knob, Segmented thumb, Tabs indicator | 250ms, 300ms, 350ms `cubic-bezier(0.22, 1, 0.36, 1)` | same |
+
+- Gold example: `stageshow/kit/controls/Button.css`, `stageshow/kit/parts/Menu.css`, `stageshow/kit/parts/Tooltip.css`, `stageshow/kit/controls/Toggle.css`, `Segmented.css` and `Tabs.css`. Benji's call differs on one: Stageshow's Popover fades in over 0.18s and out over 0.24s, because in a filmed demo a very short fade falls between frames (`stageshow/kit/motion/Popover.css`); keep this node's shorter exits for product UI.
+- Check: record the press at 60fps; the first frame after `pointerdown` already differs from the last frame before it, and the whole response lands in about 11 frames.
 
 ## Gotcha
 
@@ -50,6 +65,7 @@ Sonner itself is the counter-example: its toasts run a symmetric ~400ms `ease`, 
 ## Sources
 
 - Emil Kowalski — button feedback timing.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md and RECIPES.md (duration budgets, tooltip, toast, hold-to-confirm).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md and RECIPES.md (duration budgets, tooltip, toast, hold-to-confirm).
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN (exits 20–30% faster than enters).
 - Vercel Design — internal duration tokens.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/controls/Button.css`, `kit/controls/Toggle.css`, `kit/controls/Segmented.css`, `kit/controls/Tabs.css`, `kit/parts/Menu.css`, `kit/parts/Tooltip.css`, `kit/motion/Popover.css`, `references/choreography.md` (Timing has different jobs).

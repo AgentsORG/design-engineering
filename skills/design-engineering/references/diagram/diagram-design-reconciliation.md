@@ -34,6 +34,22 @@ diagram-design's first-run gate asks where the skin comes from. Its own discover
 
 Any diagram-design figure in a project that ships a `.design`, a DESIGN.md or a `.diagram-design` marker, and any review of such a figure by [[ui-reviewer]] or [[motion-auditor]].
 
+## Reference
+
+A figure for a page built on Stageshow's default light tokens (`kit/stage.css`) answers the gate with option (d) like this:
+
+| Role | Pasted token |
+|---|---|
+| `paper`, `paper-2` | `#fff` (surface), `#f6f5f4` (canvas) |
+| `ink`, `muted`, `soft` | `#262628`, `#7a7a7d`, `#9a9a9d` |
+| `rule` | `rgba(0,0,0,0.06)` (line) |
+| `accent`, `accent-tint`, `link` | `#3b82f6`, `rgba(59,130,246,0.12)`, `color-mix(in srgb, #3b82f6 82%, #000)` |
+| families | `system-ui` for title and names (no serif: the contract has one family), `"SF Mono", ui-monospace` for technical text |
+
+Not mapped: Stageshow's radii (6, 8, 10) and shadow tokens; nodes stay `rx` 6 with no shadow.
+Gold example: diagram-design's `onboarding.md` (option d) and `references/style-guide.md` (the role list).
+Check: grep the exported file for `#f5f5f5`, `#2d3142` and `#eb6c36`; any hit means the shipped palette leaked. Then set the figure on the page it lives on: its paper and the page surface match exactly, and the accent sits on no more than two elements.
+
 ## Gotcha
 
 Don't let diagram-design's defaults pose as the brand. Its shipped tokens (paper `#f5f5f5`, ink `#2d3142`, accent `#eb6c36`) trigger the first-run gate for a reason, and skipping the gate in a branded project ships someone else's palette. The reverse also happens: re-skinning the connector rules or the type ramp "to match the brand" breaks the checks diagram-design runs on them. The brand reaches the color roles and the families, and nothing else. diagram-design moves fast (plugin 2.6.68 on 2026-10-08), so re-read the named file before relying on a row.
@@ -42,3 +58,4 @@ Don't let diagram-design's defaults pose as the brand. Its shipped tokens (paper
 
 - Cathryn Lavery, `diagram-design` (MIT; HEAD `f4547ee`, read 2026-10-08): SKILL.md §0 (style-guide gate), §5, §10, §12; `references/style-guide.md` (roles, constraints), `onboarding.md` (§ Skill, § Folder, option d), `profiles.md` (marker, consent), `output-spec.md` (type ramp per preset), `animation.md` (modes, clock, controller), `export.md`.
 - AgentsORG `.design` spec §5 (precedence); this repo's `templates/design-engineering.design`.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (light tokens used as the worked contract).

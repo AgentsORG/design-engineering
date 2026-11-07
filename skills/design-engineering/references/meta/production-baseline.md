@@ -33,6 +33,20 @@ A dozen ship-check findings share one root: the app never set its global floor. 
 
 With `next-themes`, `disableTransitionOnChange` stops every surface tweening at its own speed on toggle, and its blocking script stops the flash on refresh. Without it, add a `no-transitions` class for two frames around the switch. Dev-only inspectors, control panels and devtools render only under the development build check and load through a dynamic import, so the package stays out of the production bundle ([[leftovers-and-leaks]]).
 
+## Reference
+
+The floor as three bad and good lines, merged into the one root the app already has:
+
+| Line | Bad | Good |
+|---|---|---|
+| Viewport | `width=device-width, initial-scale=1, maximum-scale=1` | `width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content` |
+| Scheme, light-only app | `color-scheme: light dark` | `color-scheme: light`, one `theme-color` equal to the header background |
+| Reduced motion | every duration token set to `0ms` | `--enter-y: 0px; --enter-scale: 1` under `reduce`, the opacity fade kept |
+
+Gold example: `stageshow/kit/stage.css`, the `data-still` rule: under reduced motion a stage lands on its settled poster, never a frame caught mid-fade. Benji's call differs on scope: a demo still drops every transition, opacity included; app UI keeps the short fade. Stageshow's references set no rule for head tags; those lines come from this node's own source.
+
+Check: load the app fresh at 390 and at desktop width, once per declared scheme and once with reduced motion on (Benji: a light pass does not prove dark). Every frame is complete: no dark native control under a light UI, nothing stuck half-entered, and `document.querySelectorAll('meta[name=viewport]').length` is 1.
+
 ## Gotcha
 
 Pasting `color-scheme: light dark` into a light-only app creates a bug: phones in dark mode render dark native controls and canvas under a UI that was only ever designed light. And once the tap highlight is gone, a control with no `:active` gives touch users no feedback at all, so removing the highlight raises the priority of press states ([[responsive-feedback]]).
@@ -40,4 +54,5 @@ Pasting `color-scheme: light dark` into a light-only app creates a bug: phones i
 ## Sources
 
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (the `data-still` rule), `stageshow/references/craft.md` (Color and looks: a light pass does not prove dark; Recipes: a fresh load at each width).
 - Related: [[contrast-and-color-scheme]], [[forms-behavior]], [[performance-discipline]].

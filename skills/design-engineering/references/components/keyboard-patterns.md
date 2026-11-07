@@ -43,6 +43,26 @@ A router swap resets neither focus nor the title. On every route change: set `do
 
 `:focus-visible`, never bare `:focus`. Prefer the browser's own ring — adding only `outline-offset: 2px` keeps it, and it already adapts to platform and forced colours. A custom ring is allowed when it is a verified token that clears 3:1 against **every** colour it crosses, and the focused element is never fully hidden under sticky chrome (`scroll-padding-block-start`, [[growth-and-overflow]]). The numbers are in [[wcag-thresholds]].
 
+- **A ring means focus.** Never ring a card to point at it, and never walk a ring between controls as a stand-in for a pointer (Benji Taylor, Stageshow `references/craft.md`, `references/motion.md`).
+
+## Reference
+
+```tsx
+// Roving tabindex for a toolbar or tablist: the part most custom widgets skip
+function onKeyDown(e: React.KeyboardEvent, i: number) {
+  const last = items.length - 1
+  const keys: Record<string, number> = { ArrowRight: i === last ? 0 : i + 1, ArrowLeft: i === 0 ? last : i - 1, Home: 0, End: last }
+  const next = keys[e.key]; if (next === undefined) return
+  e.preventDefault()
+  setActive(next) // active item renders tabIndex={0}, every other tabIndex={-1}
+  refs.current[next]?.focus()
+}
+```
+
+Print the shortcut as the product does: one keycap per key, 18px tall, 11px at weight 500, 4px radius, 3px apart, tabular digits (`⌘` `K`), or flat gray `⌘K` beside a menu item.
+Gold example: `stageshow/examples/raycast/index.tsx`, a keyboard-only loop (type "clip", Enter pushes the command, ↓ moves the selection, Esc pops back to root search); keycaps from `stageshow/kit/parts/Kbd.css`.
+Check: put the mouse away and run the widget: Tab enters it once, the arrows wrap end to start, Home and End jump, Escape hands focus back to the trigger, and every recorded frame shows exactly one ring.
+
 ## Gotcha
 
 `role="tab"` with no `onKeyDown` is a tab the mouse can use and the keyboard cannot: it looks finished in every screenshot. Grep for `role="button"`, `role="tab"`, `role="menuitem"` and check each has the key map above, or swap it for the native element.
@@ -51,4 +71,5 @@ A router swap resets neither focus nor the title. On every route change: set `do
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/better-accessibility/SKILL.md` (**Full keyboard support**, **Trap and restore focus**), `focus-and-keyboard.md`.
 - W3C ARIA Authoring Practices Guide — dialog, tabs, menu button, disclosure, combobox, listbox patterns.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/raycast/index.tsx`, `stageshow/kit/parts/Kbd.css`, `stageshow/kit/parts/Kbd.tsx`, `stageshow/references/craft.md` (Color and looks: a ring is for real focus), `stageshow/references/motion.md` (no cursor means no stand-in; keyboard stories show the keys).
 - Related: [[screen-reader-announcements]], [[component-confusables]], [[interfaces-reconciliation]].

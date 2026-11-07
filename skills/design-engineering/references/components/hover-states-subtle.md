@@ -23,6 +23,9 @@ The default hover effect — "lift the card by 4px and add a stronger shadow" �
 
 For most interactive rows, lists, and table cells, this is enough. The shift signals "interactive" without theatrics.
 
+- **Hover fills are inset and rounded;** negative margins go on the list, not the row. Links get no hover surface (Benji Taylor, Stageshow `references/craft.md`).
+- **A filled button keeps its colour under the pointer:** one step darker of its own colour, never a gray swap (Stageshow `kit/controls/Button.css`).
+
 ### 1px translate
 
 ```css
@@ -101,6 +104,19 @@ On touch devices, `:hover` triggers on tap and persists until the next tap elsew
 
 Every interactive element. The hover state is the first thing a power user notices.
 
+## Reference
+
+| Element | Hover | Timing |
+|---|---|---|
+| Primary button | `color-mix(in srgb, var(--accent), #000 10%)` | colours 160ms |
+| Ghost button | `rgba(0,0,0,0.06)` on transparent | colours 160ms |
+| Menu row | `rgba(0,0,0,0.06)`, 6px radius, 8px side padding | in at once, out over 150ms ease |
+| Link | no surface; colour or underline only | — |
+
+Gold example: `stageshow/kit/controls/Button.css` and `stageshow/kit/parts/Menu.css`; `stageshow/examples/gmail/gmail.css` for hover actions that cover the row's date instead of pushing it.
+Benji's call differs: when the UI copies a real product, copy its own hover even if it lifts; Gmail's row rises on a soft edge-to-edge shadow, against this node's no-lift default.
+Check: film the pointer sweeping down a menu at 40 to 80ms steps: the fill is on the row under the pointer in the same frame and trails off behind it, and no filled button turned gray.
+
 ## Gotcha
 
 Hover effects that change layout (margin, padding, width) cause adjacent elements to shift. Use only `transform`, `opacity`, `background-color`, `border-color`, `box-shadow`. See [[transform-opacity-only]].
@@ -109,3 +125,4 @@ Hover effects that change layout (margin, padding, width) cause adjacent element
 
 - guidelines.sh — "Hover isn't lift-and-shadow; 1px shifts."
 - Emil Kowalski — touch device hover gating, disabled-state layering.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Spacing and alignment; Color and looks), `stageshow/kit/controls/Button.css`, `stageshow/kit/parts/Menu.css`, `stageshow/kit/stage.css` (ink tokens), `stageshow/examples/gmail/gmail.css`.

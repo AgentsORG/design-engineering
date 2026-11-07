@@ -62,6 +62,24 @@ The brain identifies the button by its persistent letters. As long as the "Con" 
 - Long sentences. The technique works best for short labels (1–3 words). Longer text reads as a sentence, not a label, and per-character morph looks weird.
 - Localized text. "Continue" → "Confirm" works in English; the Spanish equivalent ("Continuar" → "Confirmar") shares a different prefix. Don't hard-code shared-letter assumptions.
 
+## Reference
+
+Diff the two labels by shared head and tail, not by index, so "Add file" → "Remove file" keeps " file" still too:
+
+```ts
+function splitChange(prev: string, next: string) {
+  let h = 0, t = 0
+  while (h < prev.length && h < next.length && prev[h] === next[h]) h++
+  while (t < prev.length - h && t < next.length - h && prev.at(-1 - t) === next.at(-1 - t)) t++
+  return { head: next.slice(0, h), out: prev.slice(h, prev.length - t), in: next.slice(h, next.length - t), tail: next.slice(next.length - t) }
+}
+// "Continue" -> "Confirm": head "Con", out "tinue", in "firm", tail ""
+```
+
+Gold example: `stageshow/kit/motion/Roll.tsx` with `Roll.css`. Head and tail hold still and only the middle moves; on a button (`variant="fade"`) the old part leaves in 0.16s, the new fades in over 0.35s after 0.12s, and the slot eases to its new width over 0.4s so a neighbor travels with it.
+Benji's call differs: Stageshow's `Roll` splits numbers by character ("$0.01" → "$0.0098" keeps "$0.0") but moves words whole and never splits a word, so its button would crossfade "Continue" → "Confirm" as one word while the width eases.
+Check: step the change at 40ms. The head's pixels match in every frame, and the button beside it moves with the width instead of jumping (`stageshow/teaching/relationships.tsx`, adjacent action).
+
 ## Gotcha
 
 The morph fails if you re-render the parent on state change with no AnimatePresence — React unmounts the old span and mounts a new one with no animation. Wrap the morphing text in `AnimatePresence` and use stable keys (index + char, not random uuid).
@@ -71,4 +89,5 @@ Also: a single character changing at the *start* of a word (Submit → Sub*j*ect
 ## Sources
 
 - Benji Taylor — *Family Values*, [benji.org/family-values](https://benji.org/family-values).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Roll.tsx`, `stageshow/kit/motion/Roll.css`, `stageshow/kit/controls/Button.tsx`, `stageshow/teaching/relationships.tsx` (adjacent action).
 - Related: [[fly-not-teleport]], [[cross-blur-transitions]], [[responsive-feedback]].

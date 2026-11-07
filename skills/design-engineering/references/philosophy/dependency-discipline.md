@@ -92,6 +92,19 @@ These are real reasons. "It's convenient" is not.
 - During PR review — flag new dependencies, ask whether the alternative is a 10-line utility.
 - At quarterly audits — `npx bundle-phobia` or `webpack-bundle-analyzer` on the bundle. Anything over 100KB is a budget item.
 
+## Reference
+
+Benji Taylor's Stageshow kit is a worked example of a short, deliberate dependency list: it is copied into the project rather than installed, and at runtime it needs React, react-dom and one icon set.
+
+- Bad: a motion library installed for one press scale and one toast rise.
+- Good: `transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1)` with `[data-pressed] { transform: scale(0.97) }`, and the named curves kept as numbers in one file with a small hand-written `bezier()` solver for tweens (`stageshow/kit/ease.ts`).
+
+Gold example: `stageshow/kit/` (start at The kit in `stageshow/SKILL.md` and at `stageshow/package.json`); `stageshow/kit/parts/Icon.tsx` shows where a dependency earns its place.
+
+Check: list every bare import (`grep -rhoE "from '[^.][^']*'" src | sort | uniq -c`). Each one should have a reason you can say in a line.
+
+Benji's call differs on hand-drawn shapes: icons come from a set, never your hand, because a hand-drawn glyph's weight never matches its neighbors. Stageshow takes lucide for that and hand-draws only the two card glyphs no set has. Keep CSS shapes for geometry (dots, rings, dividers), not for icons.
+
 ## Gotcha
 
 This rule applies in proportion to the project's expected lifetime and audience. A throwaway prototype can `import _ from 'lodash'` and ship in an afternoon. A production app shipping to mobile users across slow networks pays for that dependency every page load forever. Calibrate.
@@ -101,5 +114,6 @@ This rule applies in proportion to the project's expected lifetime and audience.
 - Ben DC — [frontend-guidelines](https://github.com/bendc/frontend-guidelines) — "Favor native methods."
 - Vercel — bundle-size as a design dimension.
 - web.dev — "Tame third parties," bundle audits.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/pick-ui-library/SKILL.md (clsx for conditional classes, cva for real variants).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/pick-ui-library/SKILL.md (clsx for conditional classes, cva for real variants).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): stageshow/SKILL.md (The kit), stageshow/package.json, stageshow/kit/ease.ts, stageshow/kit/controls/Button.css, stageshow/kit/parts/Icon.tsx, stageshow/references/craft.md (Icons and logos).
 - Related: [[transform-opacity-only]] and [[debugging-animations]] (the performance-is-design framing lives in those motion nodes), [[unseen-details-compound]].

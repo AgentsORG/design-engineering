@@ -22,6 +22,7 @@ An SVG is markup, not a picture, and the quality of the markup decides everythin
 - Set `fill="currentColor"` on monochrome icons and color them from CSS. The token system reaches inside the file for free.
 - Multi-color illustrations expose **CSS custom properties with fallbacks**: `fill="var(--mascot-skin, #f2c9a0)"`. Dark mode becomes a variable flip, not a second file ([[depth-and-nesting]]).
 - Keep the palette to the tokens — three colors for a spot illustration ([[icon-systems]] owns the illustration rules). Gradients only from `<defs>` and only when the brand has one.
+- An icon is **one opaque color**; to quiet it, set `opacity` on the `<svg>`, never a translucent fill or a duotone second layer.
 
 ## Optimize, carefully
 
@@ -39,6 +40,22 @@ Fixed `width`/`height` and no `viewBox`; every color a hardcoded hex; a hundred 
 
 Drawing or refactoring any icon, illustration, mascot pose, logo, chart glyph, or generative art output; any SVG a [[svg-animator]] will animate; any SVG dropped in by a generator.
 
+## Reference
+
+A 16px toolbar icon and a partner logo, spec'd the way Stageshow's craft rules want them:
+
+| | Bad | Good |
+|---|---|---|
+| Source | glyph drawn by hand to fill a gap | the product's own pack, else one set chosen on purpose (Phosphor, Radix, Tabler) |
+| Box | 15px glyph in a 16px box | even glyph in an even box, `flex: none` in a row |
+| Style at 14px and under | 1.5px outline that goes wiry | the set's filled style |
+| Color | `fill="#6b7280"` plus a 40% duotone layer | `fill="currentColor"`, quieted with `opacity` on the `<svg>` |
+| Someone else's logo | a letter in a colored square | the real artwork, original proportions, `object-fit: contain` |
+
+Benji's call differs: icons are never authored by hand; this node's drawing rules apply to mascots, illustrations and your own marks, not to a gap in an icon set. Gold example: `stageshow/examples/brand-marks/` (real marks optically sized on light and dark) and `stageshow/examples/kit-extras/` (filled icons at 16px).
+
+Check: put the new SVG at its real size beside two neighbors from the same set, as a stranger would see it; stroke weight, optical size and baseline must match, or it is a hand-drawn tell.
+
 ## Gotcha
 
 Inline `<style>` inside an SVG becomes global CSS the moment the SVG is inlined into a page. Scope selectors under a root id, or move the styles to the page. And `<use>` cannot reach into a symbol's internals from the outside — expose what must be styled as CSS variables instead.
@@ -48,4 +65,5 @@ Inline `<style>` inside an SVG becomes global CSS the moment the SVG is inlined 
 - W3C SVG 2; SVGO documentation.
 - supermemoryai/skills `svg-animations` — viewBox, defs, and grouping practices; HKTITAN — token-aware authoring and the generated-SVG tells.
 - iart-ai/web-animation-skills (MIT) `svg-animation`, and Cathryn Lavery's `diagram-design` `export_svg.py` (namespaced `<defs>` ids) — prefixing ids on inlined SVGs.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Icons and logos), `stageshow/references/brands.md`, `stageshow/examples/brand-marks/index.tsx`, `stageshow/examples/kit-extras/index.tsx`.
 - Related: [[icon-systems]], [[svg-animation]], [[svg-path-morphing]], [[vibe-to-generator]].

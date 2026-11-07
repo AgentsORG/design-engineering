@@ -26,6 +26,8 @@ Every config option is a tax: docs surface area, decision fatigue, bug surface. 
 
 > "What happens if I don't pass anything?" should always produce a good outcome.
 
+- Ship optional features off. Benji Taylor's Liveline chart starts with its features off by default: a line that moves when a number changes is already a complete component.
+
 ## 3. Naming creates identity
 
 `toast("Saved")` is recognizable. `notify({ kind: "success" })` is forgettable. Pick a verb that reads like a sentence; don't make users learn vocabulary. Sonner is named so people would *want* to say its name.
@@ -93,6 +95,20 @@ When building any reusable component, especially:
 - Date pickers, comboboxes.
 - Any small library you intend others to install.
 
+## Reference
+
+| Toast | What good looks like |
+| --- | --- |
+| Copy | "Link copied", "Snoozed until 8:00 AM": one line, the result, no "Success!" |
+| Action | one quiet word after the message ("Undo"), never a second button row |
+| Enter | rises about 10px while it fades in; never pops in whole |
+| Exit | leaves the way it came, faster, and stays mounted until the exit ends |
+| Look | dark pill on a light theme, raised surface on dark; `role="status"` |
+
+Gold example: `stageshow/examples/gmail/index.tsx` with `stageshow/kit/parts/Toast.tsx`. Archive raises the toast, and its Undo brings the row back, so the reset has a cause the viewer saw.
+Benji's call differs: Stageshow's `Toast` rises over 0.6s `cubic-bezier(0.22, 1, 0.36, 1)` with a 0.35s fade, a demo kit's pace; Sonner's ~400ms `ease` stays the product default.
+Check: fire five toasts 50ms apart and dismiss the third mid-enter, stepped at 40ms. None restarts from its first frame, none appears or vanishes in one frame, and each message fits one line at 390px wide.
+
 ## Gotcha
 
 These principles are for components you ship to others. For one-off internal UI, several rules relax (defaults matter less, naming matters less, docs aren't needed). Don't apply them with equal force in both contexts.
@@ -101,5 +117,7 @@ These principles are for components you ship to others. For one-off internal UI,
 
 - Emil Kowalski — The Sonner Principles section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
 - [sonner.emilkowal.ski](https://sonner.emilkowal.ski/) — reference implementation.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/RECIPES.md (toast timing, same-edge exit).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/RECIPES.md (toast timing, same-edge exit).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/parts/Toast.tsx`, `stageshow/kit/parts/Toast.css`, `stageshow/examples/gmail/index.tsx`.
+- Benji Taylor, benji.org/liveline (read 2026-11-07).
 - Related: [[duration-table]], [[compose-subtract-asymmetry]], [[responsive-feedback]], [[sonner-usage]] (setup and troubleshooting).

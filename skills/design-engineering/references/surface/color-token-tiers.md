@@ -49,6 +49,21 @@ Neutral roles lead with the property: `--color-{bg|text|border}-{variant}-{state
 
 Names in `@theme` become the API: declare both tiers there and you get `bg-accent-solid` beside `bg-blue-600`. The doubling in `text-text-secondary` is the price — accept it or follow the project's existing convention. Repoint semantics for dark in a `.dark` block outside `@theme`, without `inline`, so utilities read the variable at render time. A raw `bg-blue-600` in a component is the thing to flag.
 
+## Reference
+
+Bad: an icon coloured with `--neutral-alpha-3` (a primitive at 8% black): it paints darker wherever two strokes cross, and the component has to change for dark mode.
+Good: a semantic role per job, repointed per theme, with the derived ones computed from the primitive so a rebrand fixes them for free (adapted from Stageshow `kit/stage.css`):
+
+```css
+:root { --color-icon: #707074; --color-accent-solid: var(--blue-500);       /* icon opaque: strokes never stack */
+  --color-accent-text: color-mix(in srgb, var(--color-accent-solid) 82%, #000); }  /* darkened to read on white */
+.dark { --color-icon: #9a9aa0;
+  --color-accent-text: color-mix(in srgb, var(--color-accent-solid) 70%, #fff); }  /* lightened for near-black */
+```
+
+Gold example: `stageshow/examples/looks/radix.css`, where each role carries its source step in a comment (`--ss-text: #60646c; /* slate 11 */`): primitives on one side, semantics on the other, nothing applied raw.
+Check: switch every theme the product ships (Stageshow's stage ships light, dark, blueprint and glass themes off one role set) without touching a component, then grep the components for a hex or a primitive name: the count is zero.
+
 ## Gotcha
 
 `bg-accent-solid/50` is fine for a wash and wrong under text: a colour with alpha renders differently on every background, so no single contrast measurement describes it. Anything carrying text sits on a solid token ([[contrast-and-color-scheme]]).
@@ -56,4 +71,5 @@ Names in `@theme` become the API: declare both tiers there and you get `bg-accen
 ## Sources
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/better-colors/SKILL.md` (**Name primitives by hue, semantics by role**, **Use a token only in its role**), `token-naming.md`.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (`--ss-icon`, `--ss-accent-text`, the four themes), `stageshow/references/looks.md` (The tokens, From a codebase), `stageshow/examples/looks/radix.css`, `stageshow/teaching/style.tsx` (`style-onion`).
 - Related: [[palette-step-roles]], [[using-design-file]], [[design-system-docs]], [[interfaces-reconciliation]].
