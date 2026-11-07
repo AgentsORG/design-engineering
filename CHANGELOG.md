@@ -6,6 +6,62 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [4.1.0] — 2026-11-07
+
+A tidy root, the first Opus 5.5 benchmark, rendered outputs, and AgentsORG as the only name.
+
+### Added
+
+- **Opus 5.5 ablation benchmark** in `bench/results/2026-11-07-opus-ablation/`: 23 tasks, 3 tries, 270 runs across no skill, the full skill, and the full skill minus each cluster. Full scored 0.914 against 0.868 without the skill (+0.046, 95% CI −0.019 to +0.111). That gap is below the minimum detectable difference of 0.092, so on these tasks the gain is within noise, at about 3× the cost per task. Every cluster reads "slim" or "insufficient data"; none earns "retire". Diagram, faux-UI and philosophy have no tasks yet and are not measured.
+- **Benchmark charts and rendered outputs** in the README: per-task scores with and without the skill, cluster deltas against the noise floor, score against cost, and side-by-side renders of real answers (`bench/render.mjs`, `bench/chart.mjs`).
+- **README scenes rebuilt on Stageshow's own templates** (terminal window, ai-chat, Code diff, static card); the vendored kit trimmed to what the scenes import.
+
+### Changed
+
+- **AgentsORG is the only name** in the license, manifests, SKILL.md metadata, registry items and credits. Personal email removed from manifests.
+- The README is rewritten end to end, with `npx skills add AgentsORG/design-engineering` first.
+
+### Changed: repository layout
+
+The repo root now holds only what has to be there: `README.md`, `AGENTS.md`, `CHANGELOG.md`, `LICENSE`, `plugin.json`, `install.sh`, `install.ps1`, `.gitignore`, `.gitattributes` and the host manifest folders (`.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `.github/`). `skills/design-engineering/` is unchanged. Everything else moved into a folder (all moves are `git mv`, so history follows):
+
+| Old path | New path |
+| --- | --- |
+| `agents/` | `plugin/agents/` |
+| `hooks/` | `plugin/hooks/` |
+| `harness/` | `plugin/harness/` |
+| `package.json`, `package-lock.json`, `tsconfig.json` | `eve/package.json`, `eve/package-lock.json`, `eve/tsconfig.json` |
+| `agent/` | `eve/agent/` |
+| `evals/*.eval.ts`, `evals/evals.config.ts` | `eve/evals/` |
+| `scripts/sync-skills.mjs` | `eve/scripts/sync-skills.mjs` |
+| `scripts/bench.mjs` | `bench/bench.mjs` |
+| `evals/run-bench.mjs` | `bench/run-bench.mjs` |
+| `evals/plugin/` | `bench/plugin/` |
+| `evals/results/` | `bench/results/` |
+| `evals/README.md` | `bench/README.md` |
+| `registry.json` | `registry/registry.json` |
+| `r/` | `registry/r/` |
+| `templates/design-engineering.design` | `registry/design-engineering.design` |
+| `spec/` | `docs/spec/` |
+| `template/` | `docs/template/` |
+| `SOUL.md`, `NOTICE.md` | `docs/SOUL.md`, `docs/NOTICE.md` |
+| `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` | `.github/` |
+| `.markdownlint.jsonc` | `.github/markdownlint.jsonc` |
+| `.obsidian/` | untracked and git-ignored; open `skills/design-engineering/` as the vault |
+
+- **shadcn registry URLs changed**: items are now served from `https://raw.githubusercontent.com/AgentsORG/design-engineering/main/registry/r/<item>.json` (was `.../main/r/<item>.json`). Install targets on the user's machine are unchanged (`~/.agents/skills/design-engineering/`, `~/.claude/agents/`, `~/.design`). The old `/main/r/` URLs stop resolving once 4.1.0 lands on `main`.
+- **Claude Code plugin**: the plugin root is still the repo root (it must contain `skills/`). `.claude-plugin/plugin.json` now lists every agent explicitly (`"agents": ["./plugin/agents/<name>.md", ...]`), points `hooks` at `./plugin/hooks/hooks.json`, and `experimental.evals` at `./bench/plugin`. The hook command is `node "${CLAUDE_PLUGIN_ROOT}/plugin/hooks/design-check.mjs"`. CI checks the agents list matches the folder.
+- Codex, Cursor and root `plugin.json` manifests point at `./plugin/agents/`; root `plugin.json` extensions now name `./eve/agent/`, `./eve/evals/`, `./registry/registry.json`, `./registry/r/`, `./registry/design-engineering.design`, `./docs/spec/design-file-spec.md`. `.plugin/plugin.json` gained explicit `skills`, `agents` and `hooks` paths.
+- **No root `package.json`.** The eve app root is `eve/`: `cd eve && npm install && npm run dev` (or `npm --prefix eve run eval`). Repo tooling runs with plain node from the root: `node scripts/build-agents.mjs [--check]`, `node scripts/build-registry.mjs`, `node scripts/release.mjs --verify|--bump|--assets`, `node bench/bench.mjs ...`. The `build:agents`, `check:agents` and `build:registry` npm scripts are gone. `release.mjs` now chdirs to the repo root itself and versions `eve/package.json`.
+- `bench/bench.mjs --report-only --out <run>` reuses that run's model, date and `--relevant-only` from its `report.json` unless flags override them, so rebuilding a report is stable.
+- Subagent soul lines now read "Inherits from the repo's [SOUL.md](../../docs/SOUL.md)"; generated harness copies link `.../blob/main/docs/SOUL.md`.
+- Dependabot's npm entry watches `/eve`. `install.yml` path filters watch `plugin/**`.
+- `docs/NOTICE.md`: dropped the dead link to Stageshow's `kit/brands/SOURCES.md` (the brand artwork was never kept after the kit trim).
+
+### Fixed
+
+- The bench report no longer labels a zero-variance comparison as a "real loss".
+
 ## [4.0.0] — 2026-11-07
 
 Harness-portable agents that loop, a cross-model design council, a grader for humans and agents, local benchmarks, and Benji Taylor's taste on every node.
