@@ -33,7 +33,7 @@ curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/i
 | `--with-companions` | `-WithCompanions` | Also install the Agentation skill |
 | `--uninstall` | `-Uninstall` | Remove what a previous run installed |
 
-By default the installer downloads the latest release's install bundle (`design-engineering-install.zip`, about 1 MB: the skill, agents, hooks and manifests) and copies the skill from it, so it never clones the whole repository. Pin a release with `DE_REF=v4.2.1` (`$env:DE_REF = 'v4.2.1'` in PowerShell), or use a branch with `DE_REF=main`, which downloads the full repo snapshot. Set `DE_USE_SKILLS_CLI=1` to install the skill through `npx skills` instead. Run either script from a checkout and it installs that checkout instead of downloading.
+By default the installer downloads the latest release's install bundle (`design-engineering-install.zip`, about 1 MB: the skill, agents, hooks and manifests) and copies the skill from it, so it never clones the whole repository. Pin a release with `DE_REF=v4.2.3` (`$env:DE_REF = 'v4.2.1'` in PowerShell), or use a branch with `DE_REF=main`, which downloads the full repo snapshot. Set `DE_USE_SKILLS_CLI=1` to install the skill through `npx skills` instead. Run either script from a checkout and it installs that checkout instead of downloading.
 
 The installer detects a harness by its CLI on `PATH` or its config folder in your home directory. It is idempotent: a second run changes only what differs. Before it replaces a file it did not write, it copies the original to `~/.config/design-engineering/backups/`. It backs up `settings.json` next to itself before merging the hook. It never reads or writes credentials. Everything it writes is listed in `~/.config/design-engineering/manifest.txt`, and `--uninstall` removes exactly those entries and puts back the copies it backed up.
 
@@ -75,7 +75,7 @@ claude plugin marketplace add AgentsORG/design-engineering
 claude plugin install design-engineering@agentsorg -s user
 ```
 
-Inside a session the same thing is `/plugin marketplace add AgentsORG/design-engineering` then `/plugin install design-engineering@agentsorg`. To pin a release, add the marketplace as `https://github.com/AgentsORG/design-engineering.git#v4.0.0`.
+Inside a session it is one step on Claude Code 2.1.275 or later: `/plugin install design-engineering --marketplace AgentsORG/design-engineering` (or `/plugin marketplace add AgentsORG/design-engineering`, then `/plugin install design-engineering@agentsorg`). To pin a release, add the marketplace as `https://github.com/AgentsORG/design-engineering.git#v4.0.0`.
 
 ### Agents per harness
 
@@ -118,6 +118,19 @@ claude mcp add --transport http -s user design-engineering http://localhost:2000
 ```
 
 For Codex, Cursor, Gemini CLI and OpenCode, add an HTTP MCP server named `design-engineering` with the URL `http://localhost:2000/eve/v1/mcp` in that harness's MCP settings.
+
+### shadcn registry
+
+The same pieces ship as shadcn registry items, for projects that already use the shadcn CLI. Each item installs to the same place the installer uses (the skill to `~/.agents/skills/design-engineering/`, the agents to `~/.claude/agents/`, the starter contract to `~/.design`):
+
+```bash
+npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/registry/r/design-engineering.json
+npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/registry/r/design-engineering-agents.json
+npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/registry/r/design-engineering-design-file.json
+npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/registry/r/design-engineering-motion.json
+```
+
+`design-engineering-motion` is a theme item: the motion tokens (easing curves and durations) as CSS variables. Before 4.1.0 these items lived under `/main/r/`; that path no longer resolves.
 
 ### Companions
 

@@ -10,9 +10,9 @@ import '../_de/de.css'
 // Corner bleed: inset top-left, off the right; the window ends a gutter
 // under the caret.
 const CMD = 'curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.sh | bash'
-const row = (p: string, t: string, s = '') => `${p.padEnd(11)} ${t.padEnd(40)} ${s}`
+const row = (p: string, t: string, s = '') => `${p.padEnd(11)} ${t.padEnd(44)} ${s}`
 const ROWS: [string, string, string][] = [
-  ['skill', 'npx skills ( codex )', 'installed'],
+  ['skill', '/Users/ada/.agents/skills/design-engineering', 'copied'],
   ['plugin', 'design-engineering@agentsorg', 'installed'],
   ['agents', 'claude', 'from plugin'],
   ['agents', '/Users/ada/.codex/agents', '13 files (13 new/updated)'],
@@ -27,13 +27,13 @@ export default function Install() {
         <Window chrome="terminal" title="~ — zsh" className="de-win" style={{ width: 830, height: 560 }}>
           <div className="ss-term de-term">
             <Prompt path="~">{CMD}</Prompt>
-            <div>Downloading AgentsORG/design-engineering@main ...</div>
-            <div>design-engineering 4.0.0 from download main</div>
+            <div>Downloaded AgentsORG/design-engineering (latest) install bundle</div>
+            <div>design-engineering 4.2.3 from release latest</div>
             <div>Harnesses: claude,codex</div>
             <div>Parts:     skill,plugin,agents,hooks</div>
             <div className="gap" />
             <div className="w">{row('PART', 'TARGET', 'STATUS')}</div>
-            <div className="dim">{row('-'.repeat(11), '-'.repeat(40), '-'.repeat(6))}</div>
+            <div className="dim">{row('-'.repeat(11), '-'.repeat(44), '-'.repeat(6))}</div>
             {ROWS.map(([p, t, s], i) => (
               <div key={i}>{row(p, t)}<span className={s.startsWith('not') ? 'dim' : 'ok'}>{s}</span></div>
             ))}
