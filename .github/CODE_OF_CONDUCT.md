@@ -34,7 +34,7 @@ This Code of Conduct applies within all project spaces (issues, PRs, discussions
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainer at **harshitkhemani@gmail.com**.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported privately to the AgentsORG maintainers through [this private form](https://github.com/AgentsORG/design-engineering/security/advisories/new); reports there are visible only to the maintainers.
 
 All complaints will be reviewed and investigated promptly and fairly. The maintainer is obligated to respect the privacy and security of the reporter.
 

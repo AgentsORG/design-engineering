@@ -23,7 +23,7 @@ Latest is what's in `main`. We tag releases on the `v*` namespace.
 
 **Do not open a public issue for security reports.**
 
-Email: **harshitkhemani@gmail.com**
+Report it privately with GitHub's form: [Report a vulnerability](https://github.com/AgentsORG/design-engineering/security/advisories/new). Only the AgentsORG maintainers can see it.
 
 Include:
 
