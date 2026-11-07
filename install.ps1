@@ -26,13 +26,14 @@ if ($Help) {
 Usage: install.ps1 [-DryRun] [-Only skill,plugin,agents,hooks,mcp,companions]
                    [-Harness claude,codex,cursor,gemini,opencode] [-Yes]
                    [-WithHooks | -NoHooks] [-WithMcp] [-WithCompanions] [-Uninstall]
-Env: DE_REF (git ref/tag, default main), DE_REPO (default AgentsORG/design-engineering)
+Env: DE_REF (latest release by default; a tag like v4.2.1, or a branch like main), DE_REPO (default AgentsORG/design-engineering),
+     DE_USE_SKILLS_CLI=1 (install the skill with npx skills instead of copying it from the download)
 '@ | Write-Output
   return
 }
 
 $Repo = if ($env:DE_REPO) { $env:DE_REPO } else { 'AgentsORG/design-engineering' }
-$Ref = if ($env:DE_REF) { $env:DE_REF } else { 'main' }
+$Ref = if ($env:DE_REF) { $env:DE_REF } else { 'latest' }
 $HomeDir = if ($env:DE_HOME) { $env:DE_HOME } else { $HOME }
 $CfgBase = if ($env:XDG_CONFIG_HOME) { $env:XDG_CONFIG_HOME } else { Join-Path $HomeDir '.config' }
 $CfgDir = Join-Path $CfgBase 'design-engineering'
@@ -89,16 +90,30 @@ if ($PSScriptRoot -and (Test-Path (Join-Path $PSScriptRoot 'skills\design-engine
   $Src = $PSScriptRoot; $Mode = 'local checkout'
 }
 function Get-Source {
-  if ($script:Src) { return }
+  # Returns @(path, mode). Never writes $script: variables: under `& ([scriptblock]::Create((irm ...)))`
+  # the script: scope is the caller's, so the top level would never see them.
+  if ($Src) { return @($Src, $Mode) }
   $tmp = Join-Path ([IO.Path]::GetTempPath()) ("de-" + [guid]::NewGuid().ToString('N'))
   New-Item -ItemType Directory -Force $tmp | Out-Null
   $zip = Join-Path $tmp 'src.zip'
-  Say "Downloading $Repo@$Ref ..."
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-  Invoke-WebRequest -UseBasicParsing "https://codeload.github.com/$Repo/zip/$Ref" -OutFile $zip
+  $ProgressPreference = 'SilentlyContinue'
+  # A release ships a ~1 MB install bundle; a branch only has the full repo snapshot.
+  $bundle = if ($Ref -eq 'latest') { "https://github.com/$Repo/releases/latest/download/design-engineering-install.zip" }
+            elseif ($Ref -match '^v\d') { "https://github.com/$Repo/releases/download/$Ref/design-engineering-install.zip" } else { $null }
+  $mode = $null
+  if ($bundle) {
+    Say "Downloading $Repo ($Ref) install bundle ..."
+    try { Invoke-WebRequest -UseBasicParsing $bundle -OutFile $zip; $mode = "release $Ref" } catch { Say "No install bundle for $Ref; downloading the repo snapshot instead." }
+  }
+  if (-not $mode) {
+    $snap = if ($Ref -eq 'latest') { 'main' } else { $Ref }
+    Say "Downloading $Repo@$snap ..."
+    Invoke-WebRequest -UseBasicParsing "https://codeload.github.com/$Repo/zip/$snap" -OutFile $zip
+    $mode = "download $snap"
+  }
   Expand-Archive $zip -DestinationPath $tmp -Force
-  $script:Src = (Get-ChildItem $tmp -Directory | Select-Object -First 1).FullName
-  $script:Mode = "download $Ref"
+  return @((Get-ChildItem $tmp -Directory | Select-Object -First 1).FullName, $mode)
 }
 
 # ---------- harness detection ----------
@@ -163,7 +178,7 @@ if ($Uninstall) {
 }
 
 # ---------- install ----------
-Get-Source
+$Src, $Mode = Get-Source
 $Version = '?'
 try { $Version = (Get-Content (Join-Path $Src '.claude-plugin\plugin.json') -Raw | ConvertFrom-Json).version } catch { }
 Say "design-engineering $Version from $Mode"
@@ -179,15 +194,25 @@ if (-not $Yes -and -not $DryRun -and [Environment]::UserInteractive -and -not [C
 $UsePlugin = (Want 'plugin') -and (UseH 'claude') -and (Have 'claude')
 
 # skill
+$SkillCopy = $false
 if (Want 'skill') {
-  if ($Mode -ne 'local checkout' -and (Have 'npx') -and $env:DE_NO_SKILLS_CLI -ne '1') {
+  if ($Mode -ne 'local checkout' -and (Have 'npx') -and $env:DE_USE_SKILLS_CLI -eq '1') {
     $ag = @()
     foreach ($h in $Harness) {
       switch ($h) { 'claude' { if (-not $UsePlugin) { $ag += 'claude-code' } } 'gemini' { $ag += 'gemini-cli' } default { $ag += $h } }
     }
-    if ($ag.Count) { Invoke-Native 'skills add' 'npx' (@('-y', 'skills', 'add', $Repo, '-g', '-y', '-a') + $ag); Note 'skill' "npx skills ($($ag -join ' '))" 'installed' }
+    if ($ag.Count) {
+      try {
+        Invoke-Native 'skills add' 'npx' (@('-y', 'skills', 'add', $Repo, '-g', '-y', '-a') + $ag)
+        Note 'skill' "npx skills ($($ag -join ' '))" 'installed'
+      } catch {
+        Say "npx skills failed ($($_.Exception.Message)); copying the skill from the downloaded release instead."
+        $SkillCopy = $true
+      }
+    }
     else { Note 'skill' 'npx skills' 'skipped (plugin covers Claude Code)' }
-  } else {
+  } else { $SkillCopy = $true }
+  if ($SkillCopy) {
     $skillSrc = Join-Path $Src 'skills\design-engineering'
     $targets = @($SkillDst)
     foreach ($h in $Harness) {
@@ -223,7 +248,7 @@ if ($UsePlugin) {
     try { & claude plugin marketplace update agentsorg *> $null } catch { }
     Note 'plugin' 'design-engineering@agentsorg' 'already installed (marketplace updated)'
   } else {
-    $mk = if ($Ref -ne 'main') { "https://github.com/$Repo.git#$Ref" } else { $Repo }
+    $mk = if ($Ref -notin @('main', 'latest')) { "https://github.com/$Repo.git#$Ref" } else { $Repo }
     try { Invoke-Native 'marketplace add' 'claude' @('plugin', 'marketplace', 'add', $mk) } catch { Say "  marketplace add: $_" }
     Invoke-Native 'plugin install' 'claude' @('plugin', 'install', 'design-engineering@agentsorg', '-s', 'user')
     Note 'plugin' 'design-engineering@agentsorg' 'installed'

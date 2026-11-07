@@ -12,7 +12,7 @@
 set -euo pipefail
 
 DE_REPO="${DE_REPO:-AgentsORG/design-engineering}"
-DE_REF="${DE_REF:-main}"
+DE_REF="${DE_REF:-latest}"
 CFG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/design-engineering"
 MANIFEST="$CFG_DIR/manifest.txt"
 SKILL_DST="$HOME/.agents/skills/design-engineering"
@@ -35,7 +35,8 @@ Usage: install.sh [options]
   --with-companions     also install companion skills (agentation)
   --uninstall           remove what a previous run installed
   -h, --help            this text
-Env: DE_REF (git ref/tag, default main), DE_REPO (default AgentsORG/design-engineering)
+Env: DE_REF (latest release by default; a tag like v4.2.1, or a branch like main), DE_REPO (default AgentsORG/design-engineering),
+     DE_USE_SKILLS_CLI=1 (install the skill with npx skills instead of copying it from the download)
 EOF
 }
 
@@ -110,10 +111,22 @@ fetch_source() {
   DE_TMP="$(mktemp -d)"   # global: an EXIT trap on a local var is unbound under set -u
   trap 'rm -rf "${DE_TMP:-}"' EXIT
   local tmp="$DE_TMP"
-  say "Downloading $DE_REPO@$DE_REF ..."
-  curl -fsSL "https://codeload.github.com/$DE_REPO/tar.gz/$DE_REF" | tar -xz -C "$tmp"
+  # A release ships a ~1 MB install bundle; a branch only has the full repo snapshot.
+  local bundle="" snap="$DE_REF"
+  case "$DE_REF" in
+    latest) bundle="https://github.com/$DE_REPO/releases/latest/download/design-engineering-install.zip"; snap=main ;;
+    v[0-9]*) bundle="https://github.com/$DE_REPO/releases/download/$DE_REF/design-engineering-install.zip" ;;
+  esac
+  if [ -n "$bundle" ] && have unzip && curl -fsSL -o "$tmp/src.zip" "$bundle"; then
+    say "Downloaded $DE_REPO ($DE_REF) install bundle"
+    unzip -q "$tmp/src.zip" -d "$tmp" && rm -f "$tmp/src.zip"
+    MODE="release $DE_REF"
+  else
+    say "Downloading $DE_REPO@$snap ..."
+    curl -fsSL "https://codeload.github.com/$DE_REPO/tar.gz/$snap" | tar -xz -C "$tmp"
+    MODE="download $snap"
+  fi
   SRC="$(find "$tmp" -mindepth 1 -maxdepth 1 -type d | head -n1)"
-  MODE="download $DE_REF"
 }
 
 # ---------- harness detection ----------
@@ -220,7 +233,7 @@ if want plugin && use_h claude && have claude; then USE_PLUGIN=1; fi
 
 # skill: skills.sh layout (~/.agents/skills) is read by Codex, Cursor, OpenCode, Gemini
 if want skill; then
-  if [ "$MODE" != "local checkout" ] && have npx && [ "${DE_NO_SKILLS_CLI:-0}" != 1 ]; then
+  if [ "$MODE" != "local checkout" ] && have npx && [ "${DE_USE_SKILLS_CLI:-0}" = 1 ]; then
     agents_flag=""
     for h in ${HARNESS//,/ }; do
       case "$h" in claude) [ "$USE_PLUGIN" = 1 ] || agents_flag="$agents_flag claude-code" ;;
@@ -228,11 +241,19 @@ if want skill; then
     done
     if [ -n "$agents_flag" ]; then
       # shellcheck disable=SC2086
-      run npx -y skills add "$DE_REPO" -g -y -a $agents_flag && note skill "npx skills ($agents_flag )" installed
+      if run npx -y skills add "$DE_REPO" -g -y -a $agents_flag; then
+        note skill "npx skills ($agents_flag )" installed
+      else
+        say "npx skills failed; copying the skill from the downloaded release instead."
+        SKILL_COPY=1
+      fi
     else
       note skill "npx skills" "skipped (plugin covers Claude Code)"
     fi
   else
+    SKILL_COPY=1
+  fi
+  if [ "${SKILL_COPY:-0}" = 1 ]; then
     if [ -d "$SKILL_DST" ] && [ ! -f "$SKILL_DST/.de-installed" ] && [ ! -L "$SKILL_DST" ]; then
       run mkdir -p "$CFG_DIR/backups"
       run mv "$SKILL_DST" "$CFG_DIR/backups/design-engineering-skill.$(date +%Y%m%d%H%M%S)"
@@ -265,7 +286,7 @@ if [ "$USE_PLUGIN" = 1 ]; then
     run claude plugin marketplace update agentsorg >/dev/null 2>&1 || true
     note plugin "design-engineering@agentsorg" "already installed (marketplace updated)"
   else
-    mk_src="$DE_REPO"; [ "$DE_REF" != main ] && mk_src="https://github.com/$DE_REPO.git#$DE_REF"
+    mk_src="$DE_REPO"; [ "$DE_REF" != main ] && [ "$DE_REF" != latest ] && mk_src="https://github.com/$DE_REPO.git#$DE_REF"
     run claude plugin marketplace add "$mk_src" || true
     run claude plugin install design-engineering@agentsorg -s user
     note plugin "design-engineering@agentsorg" installed

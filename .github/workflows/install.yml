@@ -39,7 +39,6 @@ jobs:
       - name: Install into a temp home, verify, uninstall
         env:
           HOME: ${{ runner.temp }}/home
-          DE_NO_SKILLS_CLI: '1'
         run: |
           mkdir -p "$HOME/.claude" "$HOME/.codex" "$HOME/.cursor" "$HOME/.gemini" "$HOME/.config/opencode"
           echo '{"theme":"dark"}' > "$HOME/.claude/settings.json"
@@ -68,8 +67,6 @@ jobs:
           if ($errs) { $errs; exit 1 }
       - name: Dry run, install, uninstall into a temp home
         shell: pwsh
-        env:
-          DE_NO_SKILLS_CLI: '1'
         run: |
           $env:DE_HOME = Join-Path $env:RUNNER_TEMP 'home'
           foreach ($d in '.claude','.codex','.cursor','.gemini','.config/opencode') { New-Item -ItemType Directory -Force (Join-Path $env:DE_HOME $d) | Out-Null }
