@@ -16,21 +16,17 @@
 npx skills add AgentsORG/design-engineering
 ```
 
-Design engineering for AI agents: the invisible details that make UI feel right, as a skill graph your coding agent loads, specialist agents that loop until the work passes, a cross-model design council, a grader for humans and agents, and benchmarks that prove each part earns its place. It runs in Claude Code, Codex, Cursor, Gemini and OpenCode.
+The details that make UI feel right, written down for your coding agent: a skill graph it loads, thirteen specialist agents that check their own work, a cross-model design council, a grader, and a benchmark that says plainly what all of it is worth. It runs in Claude Code, Codex, Cursor, Gemini CLI and OpenCode.
 
-It draws on Emil Kowalski's design-engineering practice, distilled by AgentsORG, [Benji Taylor](https://benji.org) ([Agentation](https://www.agentation.com), [Stageshow](https://benji.org/stageshow)), [Jakub Antalik](https://transitions.dev), [Jakub Krehel](https://jakub.kr), [James Frewin](https://guidelines.sh), [Vercel](https://vercel.com/design/guidelines), [Index](https://index.how), Apple's audio-haptic principles, and 47 launch films measured frame by frame. The full list is under [Sources](#sources).
+![Claude Code running /design-engineering review on Card.tsx: three findings, each a removed Before line, an added After line and a Why comment citing the node that owns the rule, then the verdict: ship after these three](docs/readme/img/de-review.png)
+
+It draws on Emil Kowalski's practice, [Benji Taylor](https://benji.org) ([Agentation](https://www.agentation.com), [Stageshow](https://benji.org/stageshow)), [Jakub Antalik](https://transitions.dev), [Jakub Krehel](https://jakub.kr), [James Frewin](https://guidelines.sh), [Vercel](https://vercel.com/design/guidelines), [Index](https://index.how), Apple's audio-haptic principles and 47 launch films measured frame by frame. Every source is under [Sources](#sources).
 
 ## Install
 
-**The skill** (Claude Code, Codex, Cursor, Gemini, OpenCode and every other agent skills.sh supports):
+**The skill.** Run the command at the top, then type `/design-engineering` in your agent. It works in any agent skills.sh supports.
 
-```bash
-npx skills add AgentsORG/design-engineering
-```
-
-Then type `/design-engineering` in your agent.
-
-**Everything else too.** One line sets up the skill, the Claude Code plugin, agents for every detected harness, the design-check hook, and (opt-in) the eve MCP server and companions:
+**Everything.** One line installs the skill, the Claude Code plugin, the agents for every harness it finds and the design-check hook. The eve MCP server and companion skills are opt-in.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.sh | bash
@@ -42,7 +38,9 @@ irm https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.
 
 ![A terminal running the one-line installer on a machine with Claude Code and Codex: it downloads the repo, prints a PART, TARGET and STATUS summary (skill, plugin, agents and hook installed; the Codex hook not wired), then how to verify each harness and how to uninstall](docs/readme/img/de-install.png)
 
-Flags: `--dry-run` prints every change, `--only <parts>`, `--harness <list>`, `--yes`, `--with-hooks` / `--no-hooks`, `--with-mcp` (eve MCP), `--with-companions` (agentation, stageshow), `--uninstall`; on Windows the same switches are `-DryRun`, `-Only`, `-Harness`, `-Yes`, `-WithHooks` / `-NoHooks`, `-WithMcp`, `-WithCompanions`, `-Uninstall`. It is idempotent, backs up any settings file before editing it and never touches credentials. Pin a release with `curl -fsSL <url> | DE_REF=v4.0.0 bash` (or `$env:DE_REF='v4.0.0'` before `irm`). Every path the installer writes is listed under [Manual install](#manual-install).
+Add `--dry-run` to see every change first (`-DryRun` on Windows). The installer is idempotent, backs up any settings file before it edits one, never touches credentials, and `--uninstall` removes exactly what it wrote. Pin a release with `DE_REF=v4.0.0`. The flags, every path it writes and the manual steps for each harness, the plugin marketplace and the shadcn registry are in [docs/install.md](docs/install.md).
+
+Install the skill one way only. skills.sh gives you `/design-engineering`; the plugin gives you `/design-engineering:design-engineering`. With both, it is listed twice.
 
 ## Paste this into your coding agent
 
@@ -61,7 +59,7 @@ Install and verify the design-engineering skill and agents for this machine.
      ~/.gemini/skills or ~/.config/opencode/skills, under design-engineering/)
    - /design-engineering with no arguments prints the verb menu
    - the agents are listed: design-council, design-judge, design-grader, ui-reviewer, motion-auditor
-     (Claude Code: /agents; Codex: ~/.codex/agents; Cursor: ~/.cursor/agents;
+     (Claude Code: /agents, from the plugin; Codex: ~/.codex/agents; Cursor: ~/.cursor/agents;
       Gemini: ~/.gemini/agents; OpenCode: ~/.config/opencode/agents)
    - node <skill folder>/scripts/grade.mjs --self-test exits 0
    - ~/.config/design-engineering/manifest.txt lists everything that was written
@@ -82,180 +80,151 @@ Never edit credentials. If a step fails, stop and show me the error.
 | Design-check hook | `PostToolUse`, non-blocking | not wired yet | not wired yet | not wired yet | not wired yet |
 | eve MCP hand-off (opt-in) | `claude mcp add` | MCP settings | MCP settings | MCP settings | MCP settings |
 
-Each agent is written once in `plugin/agents/<name>.md` and generated into every other harness's format by `scripts/build-agents.mjs`; CI fails on drift. Harness-by-harness detail is in [`plugin/harness/README.md`](plugin/harness/README.md).
+Each agent is written once, in `plugin/agents/<name>.md`, and generated into every other harness's format by `scripts/build-agents.mjs`. Harness-by-harness detail is in [plugin/harness/README.md](plugin/harness/README.md).
 
 ## Verbs
 
 ![Claude Code answering /design-engineering help: review, motion and council are the three verbs that fit the change in front of you, out of 22 verbs in all](docs/readme/img/de-verbs.png)
 
-Everything is reached through one skill: `/design-engineering [verb] [target]`. A plain request (`/design-engineering why does this card feel flat`) goes through the router to one owner node. With no arguments it shows the menu and suggests the two or three verbs that fit what is in front of it.
+Everything goes through one skill: `/design-engineering [verb] [target]`. A plain request (`/design-engineering why does this card feel flat`) is routed to the one node that owns it. With no arguments it shows the menu and suggests the verbs that fit what is in front of it.
 
 | Verb | Does |
-|---|---|
-| `review` | A UI code review as a Before / After / Why table, change-scoped for a diff |
+| --- | --- |
+| `review` | A UI code review as a Before / After / Why table, scoped to the diff |
 | `polish` | The screen works but feels unfinished: states, optical details, fixes applied |
 | `motion` | Whether it should move, then timing, easing and springs with concrete values |
 | `tells` | AI-default tells in UI, code or copy, as a deletion list |
 | `a11y` | An evidence-only accessibility audit tied to WCAG 2.2 criteria |
 | `tokens` | Find the `.design` / DESIGN.md and thread its tokens through the UI |
 | `sound` | Which moments earn a sound; one family, generated, wired, mapped |
-| `council` | Cross-model judges score before/after evidence per category; loop until every judge passes |
-| `grade` | Score a design episode, human or agent, on six axes with a band and a counterweight |
+| `council` | Cross-model judges score before/after evidence per category until every judge passes |
+| `grade` | Score a design episode, human or agent, on six axes |
 | `svg` | `create`, `animate` or `sticker` |
-| `mobile` | A web app that feels native on a phone: the symptom, the one-line fix, what needs a real device |
+| `mobile` | A web app that feels native on a phone: the symptom, the fix, what needs a real device |
 | `break` | Realistic worst-case data until the layout breaks; reports and stops |
-| `ship` | The whole-app production pass: every lane fixed and verified, then what needs a device or a human |
+| `ship` | The whole-app production pass, then what still needs a device or a human |
 | `film` | `plan` a launch film, `review` a render, or `formats` |
-| `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha |
+| `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork the taste or log a gotcha |
 
-![Claude Code running /design-engineering review on Card.tsx: three findings, each a removed Before line, an added After line and a Why comment citing the node that owns the rule, then the verdict: ship after these three](docs/readme/img/de-review.png)
-
-The 2.x slash commands (`/design-engineering:review-ui` and the rest) are gone; their names still work as aliases. Install the skill **one** way, either skills.sh (`/design-engineering`) or the plugin (`/design-engineering:design-engineering`). Installing both lists it twice.
+The 2.x commands (`/design-engineering:review-ui` and the rest) still work as aliases.
 
 ## Agents and loops
 
 ![Claude Code running @agent-design-council on the billing page, beside a card listing the same design-council agent as generated for Claude Code, Codex, Cursor, Gemini CLI and OpenCode, with each file's path](docs/readme/img/de-agents.png)
 
-Thirteen specialists, each a delegation target rather than an entry point (every verb runs without them):
+Thirteen specialists. Each is a delegation target, not an entry point: every verb runs without them.
 
 | Agent | Job |
 | --- | --- |
-| `design-council` | Runs the council: fans one judge brief out to every available provider, loops to threshold |
+| `design-council` | Fans one judge brief out to every available provider and loops to the threshold |
 | `design-judge` | One read-only judge: JSON scores per category, Before/After/Why evidence, confidence |
-| `design-grader` | Grades a design episode for a human or an agent on the grading rubric |
+| `design-grader` | Grades a design episode for a human or an agent |
 | `ui-reviewer` | Before / After / Why review against the checklist |
 | `motion-auditor` | Timing, easing, transform-only, reduced motion |
 | `anti-pattern-scanner` | AI-default, copy and code tells, as a deletion list |
 | `agentation-fix-loop` | Works through Agentation annotations until none are pending |
-| `design-md-consumer` | Reads `.design` / DESIGN.md and threads tokens through the UI |
-| `pov-curator` | Forks taste into `pov.md`, logs gotchas |
+| `design-md-consumer` | Reads `.design` / DESIGN.md and threads its tokens through the UI |
+| `pov-curator` | Forks the taste into `pov.md`, logs gotchas |
 | `sound-designer` | One sound family, generated, wired and mapped to motion |
 | `svg-creator`, `svg-animator` | Clean, token-aware SVG, then its animation |
 | `launch-film-analyst` | Measures a launch film against the 47-film corpus |
 
-Every agent carries a `## Loop`: act, verify with a deterministic check where one exists, fix; three rounds by default; a findings ledger (id, severity `blocker` / `should` / `nit`, outcome). A timeout or no reply is never approval, an agent never agrees just to end the loop, and the scope guard prefers deleting or narrowing over adding.
+Every agent runs a loop: act, verify with a deterministic check where one exists, fix, for three rounds by default, keeping a ledger of findings (`blocker`, `should`, `nit`). A timeout is never approval, an agent never agrees just to end the loop, and when in doubt it deletes or narrows rather than adds.
 
 ## Design council
 
 ![Claude Code running /design-engineering council: the Council review table over three rounds, Claude (opus) rising to 9.2 and Codex (gpt-6.1-sol) to 9.0, Gemini read as an unscored jester, nothing missing; a card shows Claude's round-three scores for typography, hierarchy, contrast and motion](docs/readme/img/de-council.png)
 
-`/design-engineering council` (or `@agent-design-council`) adapts Theo Browne's [tstack](https://github.com/t3dotgg/tstack) council (MIT) to design, the way Emil pairs a council with design and animation skills:
+`/design-engineering council` adapts Theo Browne's [tstack](https://github.com/t3dotgg/tstack) council (MIT) to design.
 
-- **Three providers.** Claude through the `design-judge` subagent, GPT through `codex exec`, Gemini through `gemini -p` as an unscored jester when present. A missing provider is reported, never substituted.
-- **Evidence, not code alone.** Judges see before/after screenshots or films plus reference products in the same panel, since isolated judging inflates scores. They never see the target threshold.
-- **Per-category scores, 1 to 10.** Typography, hierarchy, colour and contrast, spacing and layout, motion, states, accessibility, copy.
-- **Staged and looped.** Cheapest judge first; scarce judges join once it passes. Loop until every judge clears the threshold or the budget runs out; fork a fresh branch to push further. One human taste note is allowed mid-climb.
-- **Recorded.** A `## Council review` table goes in the PR description: rounds, per-judge scores, and `no score` where a judge did not answer.
+- **Three providers.** Claude through the `design-judge` agent, GPT through `codex exec`, Gemini through `gemini -p` as an unscored jester. A missing provider is reported, never substituted.
+- **Evidence, not code alone.** Judges see before/after screenshots or films beside reference products, and never see the target threshold.
+- **Scores per category, 1 to 10.** Typography, hierarchy, colour and contrast, spacing and layout, motion, states, accessibility, copy.
+- **Staged.** The cheapest judge goes first; the scarce ones join once it passes. It loops until every judge clears the threshold or the budget runs out.
+- **Recorded.** A `## Council review` table goes in the PR, with `no score` where a judge did not answer.
 
-The runner is [`skills/design-engineering/scripts/council.mjs`](skills/design-engineering/scripts/council.mjs). It detects the `claude`, `codex`, `cursor-agent` and `gemini` CLIs, fans one judge brief out to each, and keeps a ledger of rounds (`--stage --threshold 9` runs the cheapest judge first; `--dry-run` shows the brief and sends nothing).
+The runner is [council.mjs](skills/design-engineering/scripts/council.mjs). It finds the `claude`, `codex`, `cursor-agent` and `gemini` CLIs on its own; `--dry-run` shows the brief and sends nothing.
 
 ## Grader
 
 ![A grade.mjs report card: Craft, Motion, Restraint, Access and Verification with score, ceiling and band; Access is capped at 6.4, and a card shows the contrast check that caps it (2.9:1) and the line: judges said 7.1, the checks cap it at 6.4](docs/readme/img/de-grade.png)
 
-`/design-engineering grade` scores a design episode (the brief, the diff or output, rendered evidence and, optionally, the transcript) the same way for a human, an agent with the skill, and an agent without it.
+`/design-engineering grade` scores a design episode (the brief, the diff, rendered evidence and, optionally, the transcript) the same way for a human, an agent with the skill and an agent without it.
 
-- **Checks first, judges second.** Deterministic signals run first: review-checklist rows, AI-default and code tells, WCAG numbers, motion values against the duration table, reduced motion, transform and opacity only, Stageshow film checks. Checks can only cap a score; only judges raise it.
-- **Axes, 1 to 10.** Craft, Motion, Restraint, Access, Verification, and Direction when a human steered an agent. Each axis gets facts (Before/After/Why rows), an interpretation, a counterweight (the case against) and a confidence.
-- **Bands.** generated (under 4), passable (4 to 6), crafted (6 to 8), refined (8 to 9), reference-grade (9 to 10). Confidence under 0.7 softens the wording, never the number.
-- **Anti-gaming and privacy.** Results are cached by input hash (no re-rolls), claims that contradict the checks are flagged, and holdout briefs stay hidden. Everything runs locally; secrets are scrubbed before any model call, and `--dry-run` shows what would be sent.
+- **Checks first.** Deterministic checks run before any judge: checklist rows, AI-default and code tells, contrast numbers, motion values, reduced motion. A check can only cap a score; only judges raise it.
+- **Six axes, 1 to 10.** Craft, Motion, Restraint, Access, Verification, and Direction when a human steered an agent. Each comes with its evidence, the case against it and a confidence.
+- **Bands.** generated (under 4), passable (4 to 6), crafted (6 to 8), refined (8 to 9), reference-grade (9 to 10).
+- **No re-rolls, nothing sent unasked.** Results are cached by input hash, secrets are scrubbed before any model call, and `--dry-run` shows what would be sent.
 
-The rubric is [`grading-rubric.md`](skills/design-engineering/references/meta/grading-rubric.md), the move catalog is [`design-moves.md`](skills/design-engineering/references/meta/design-moves.md), and the script is [`grade.mjs`](skills/design-engineering/scripts/grade.mjs): `node grade.mjs --files src/**/*.tsx --evidence after.png --judges claude,codex`, or `--checks-only` for the deterministic pass alone.
+The rubric is [grading-rubric.md](skills/design-engineering/references/meta/grading-rubric.md) and the script is [grade.mjs](skills/design-engineering/scripts/grade.mjs): `node grade.mjs --files "src/**/*.tsx" --evidence after.png --judges claude,codex`, or `--checks-only`.
 
 ## Benchmarks
 
-![The design-bench report for 2026-09-05 on Sonnet: the baseline arm passes 32 of 36 rules (7 of 10 fixtures fully clean), the skill arm 35 of 36 (9 of 10); a card shows fixture edit-hover-01, baseline 3 of 5 and skill 5 of 5, and what the baseline missed](docs/readme/img/de-bench.png)
+The bench asks one question: does an agent with the skill write better UI code than the same model without it? Every run is a fresh `claude -p` in an empty folder. The `none` arm has no design-engineering at all, the `full` arm has the whole plugin, and each `minus-<cluster>` arm has the plugin with one part removed. The bench checks every run's startup line to prove nothing leaked between arms, scores the answer against the task's rules, and records cost and time. It reports a gap only when it is bigger than the noise between tries.
 
-Same model in every arm; the only difference is how much of the skill the agent can see. `bench/bench.mjs` runs three kinds of arm: `none`, `full`, and `minus-<cluster>` for each cluster on disk (plus `minus-agents`). Every run is a fresh `claude -p` in an empty workspace with an isolated plugin copy; the stream-json init line proves no user-installed copy leaked into the baseline, and a run that fails that check is excluded. It scores with the fixture rules and the grader's checks, records cost and tokens, labels any gap below the minimum detectable difference as noise, and gives each cluster a verdict: keep, slim or retire. The `claude plugin eval` suite under `evals/plugin/` runs the same with/without comparison inside Claude Code.
+The latest run: Opus 5.5, 23 tasks, 3 tries per task per arm, 219 runs in all ([REPORT.md](bench/results/2026-11-07-opus-ablation/REPORT.md)).
 
-<!-- BENCH:START -->
-| arm | rules passed | fixtures fully clean |
-| --- | --- | --- |
-| Sonnet, own knowledge | 32 / 36 (89%) | 7 / 10 |
-| Sonnet + `/design-engineering` | 35 / 36 (97%) | 9 / 10 |
+- **No measurable gain yet.** With the skill, Opus 5.5 passed 91.4% of the rules; without it, 86.8%. The gap is 4.6 points, with a 95% interval from −1.9 to +11.1. The smallest gap this run could tell apart from noise is 9.2 points, so this one is noise.
+- **Opus 5.5 is a strong baseline.** On its own it passed every rule in 30 of its 55 runs; with the skill, 41 of 55.
+- **It costs more.** A run with the skill cost $0.34 against $0.11, about three times as much, and took 63 s against 29 s, about twice as long. Most of the difference is the skill's notes being read.
 
-Run of 2026-09-05, ten scorable fixtures, one sample each: a floor check, not a leaderboard. Per-fixture results, every rule each arm missed and all twenty raw outputs are in [`bench/results/2026-09-05-sonnet/`](bench/results/2026-09-05-sonnet/REPORT.md). The skill fixed the card-hover edit (named transition properties, a `hover: hover` guard, a smaller lift), the dark-mode repair (a lifted surface instead of `#000`) and the icon toolbar (`hover: hover`). It still missed one thing: a login form shipped 15 px inputs, which zoom on iOS.
-<!-- BENCH:END -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/readme/img/bench-tasks-dark.svg">
+  <img src="docs/readme/img/bench-tasks-light.svg" alt="Dot plot of 23 tasks, Opus 5.5 alone against Opus 5.5 with design-engineering, sorted by the gap. Better with the skill on 9: edit-hover-01 +33 points, gen-tokens-01 +30, gen-toolbar-01 +25, gen-launch-zoom-01 +17, repair-darkmode-01 +17, gen-modal-01 +13, council-card-01 +13, edit-dropdown-01 +11, gen-form-01 +7. The same score on 11. Better without it on 3: gen-type-01 −10, edit-launch-typing-01 −25, repair-launch-seam-01 −25." width="760">
+</picture>
 
-Reproduce:
+The skill was ahead on 9 tasks, level on 11 and behind on 3. The clearest wins are the details it was written for: a hover lift kept small and gated to devices that can hover (`edit-hover-01`), colour tokens written in OKLCH (`gen-tokens-01`), icon buttons whose hover styles stay off touch screens (`gen-toolbar-01`), and a dark-mode card set apart by a lighter surface (`repair-darkmode-01`). The three losses:
+
+- `repair-launch-seam-01` (−25): the task asks to stop a card that "never stops breathing", and in 2 of 3 tries the skill arm kept its endless `yoyo` loop.
+- `edit-launch-typing-01` (−25): one skill-arm try typed at the right speed, 15 characters a second, but set it in a variable called `READ_CPS`, which the rule's pattern does not match. This loss is partly the scorer's.
+- `gen-type-01` (−10): in 2 of 3 tries the skill arm left out a line length in `ch`.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/readme/img/bench-clusters-dark.svg">
+  <img src="docs/readme/img/bench-clusters-light.svg" alt="The effect of each part of the skill: the full skill minus that part, with a 95% interval and a grey noise-floor band. Whole skill against none: +5 points, within noise, 23 tasks. Slim, inside the noise on surface (+6, 4 tasks), components (+1, 8), motion (0, 7), sound (0, 3), meta (−1, 10) and launch-video (−6, 6). Insufficient data on agents (2 tasks), anti-patterns, svg, typography and layout (1 task each). Not measured: diagram, faux-ui and philosophy, which have no tasks." width="760">
+</picture>
+
+Taking one part of the skill out at a time moved no score past its noise floor. Six clusters come out **slim**: on these tasks their effect is too small to see, so the advice is to trim their weight but keep the nodes that carry facts. Five have **too little data**: one or two tasks each, and for `agents` every try scored the same, which leaves no noise floor to judge against. Three are **not measured** at all, because no task exercises them: `diagram`, `faux-ui` and `philosophy`.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/readme/img/bench-cost-dark.svg">
+  <img src="docs/readme/img/bench-cost-light.svg" alt="Scatter of score against cost, one dot per run: 55 runs of Opus 5.5 alone, mean $0.11 a run, score 86.8%, 29 s; 55 runs with design-engineering, mean $0.34 a run, score 91.4%, 63 s. Most runs of both arms score 100%; the runs with the skill sit further right." width="760">
+</picture>
+
+What the bench does not measure yet: how the result looks. The rules are patterns over the code, so a modal can pass every rule and still look wrong, as the second example below shows. It also covers one model, and only two tasks touch the council and the grader.
+
+Run it yourself (it uses your own Claude Code login):
 
 ```bash
-node bench/bench.mjs --arms none,full --tries 3 --model sonnet            # with / without
-node bench/bench.mjs --arms all --tries 3 --relevant-only --concurrency 4  # every minus-<cluster> arm
-node bench/bench.mjs --report-only --out bench/results/<run>              # rebuild REPORT.md
-node bench/run-bench.mjs bench/results/2026-09-05-sonnet                  # score the 2026-09-05 outputs
+node bench/bench.mjs --arms none,full --tries 3 --model opus             # with and without the skill
+node bench/bench.mjs --arms all --tries 3 --relevant-only --concurrency 4 # every minus-<cluster> arm
+node bench/bench.mjs --report-only --out bench/results/<run>              # rebuild REPORT.md and report.json
+node bench/chart.mjs bench/results/<run>                                  # the three charts above
+node bench/render.mjs bench/results/<run>                                 # the rendered examples below
 ```
 
-The eve evals in `eve/evals/` are the other half: `defineEval()` checks for review format, motion values, sound values, launch-film numbers, the generated-modal floor, delegation and the council, run with `npm --prefix eve run eval`. The methodology is in `references/meta/design-benchmarks.md`.
+Two other suites sit beside it: `claude plugin eval .` runs the cases in `bench/plugin/` with and without the plugin, and `npm --prefix eve run eval` runs the eve agent's checks. All three are described in [bench/README.md](bench/README.md).
 
 ## Sample prompts and outputs
 
-Real outputs, unedited, from `claude -p --model sonnet` with the plugin loaded (2026-11-07).
+The same prompt, both arms, from the run above (try 1), rendered in Chrome by `bench/render.mjs`.
+
+![edit-hover-01, Make the card lift on hover: Opus 5.5 alone, 4 of 5 rules, keeps the 4px lift and a heavy 30% shadow; with design-engineering, 5 of 5 rules, a 2px lift and a soft stacked shadow](docs/readme/img/out-edit-hover-01.png)
+
+**Make the card lift on hover.** Both answers named the transitioned properties, moved the shadow onto a layer that fades, and kept the lift off touch screens. Plain Opus kept the 4px jump and the 30% shadow; with the skill the lift is 2px and the shadow is three faint layers.
+
+![gen-modal-01, Build a settings modal with a title, two text inputs, a cancel button and a save button, with an enter animation: Opus 5.5 alone, 4 of 5 rules, a calm dark workspace-settings dialog; with design-engineering, 4 of 5 rules, a white profile-settings dialog with uppercase CANCEL and SAVE buttons and a saturated green Save](docs/readme/img/out-gen-modal-01.png)
+
+**Build a settings modal with an enter animation.** Both arms passed 4 of 5 rules, and here plain Opus looks better. The skill arm used uppercase button labels and a loud green. They came from [pov.md](skills/design-engineering/references/meta/pov.md), the taste file the skill loads, which at the time of this run was forked to Duolingo's design language. 4.1.0 ships a restrained default instead and keeps Duolingo, Campus Binge and Smash&Clash as [example forks](skills/design-engineering/pov-examples/). The file is meant to be yours: fork it for your product.
+
+![gen-toolbar-01, Build a toolbar of five icon-only buttons with tooltips: Opus 5.5 alone, 3 of 4 rules, a dark editor toolbar with an Italic tooltip; with design-engineering, 4 of 4 rules, a light rounded toolbar with an Italic Ctrl+I tooltip](docs/readme/img/out-gen-toolbar-01.png)
+
+**Build a toolbar of five icon-only buttons with tooltips.** Both are good toolbars with labelled buttons and tooltips. Plain Opus left its hover styles on for touch screens, where a tapped button stays highlighted; the skill arm gated them.
+
+The answers as written, for two of the tasks:
 
 <details>
-<summary><code>/design-engineering review</code> a modal that pops from <code>scale(0)</code> on <code>ease-in</code></summary>
-
-Prompt: `/design-engineering review this CSS and answer in at most 6 table rows: .modal{animation:pop .4s ease-in} @keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}} .btn:hover{transition:all .3s}`
-
-| Before | After | Why |
-|---|---|---|
-| `animation: pop .4s ease-in` | `animation: pop .22s cubic-bezier(.23,1,.32,1)` | `ease-in` starts slow, so the modal feels hesitant when it appears. Entering elements want ease-out, and a modal should take roughly 200–250ms. |
-| `from{transform:scale(0)…}` | `from{transform:scale(.95);opacity:0}` | Nothing in the real world appears from nothing, and scaling from 0 looks theatrical. Starting at about .95 with a fade reads as a quick settle. |
-| `.modal` (no origin set) | `transform-origin: center` for a centered dialog. For a popover, use the trigger's origin. | The scale should grow from where the element belongs, not from a default that happens to fit. |
-| `.btn:hover{transition:all .3s}` | `.btn{transition: background-color .15s ease-out, transform .15s ease-out}` | `all` animates layout properties and anything added later. Name the properties. 300ms is also too slow for hover feedback. |
-| `.btn:hover{…}` (ungated) | `@media (hover:hover) and (pointer:fine){.btn:hover{…}}` | Touch devices keep hover styles after a tap (sticky hover), so gate them. |
-| No reduced-motion handling | `@media (prefers-reduced-motion:reduce){.modal{animation:none}}`, or keep only the opacity fade | Scale and translate motion can trigger vestibular discomfort. Keep the fade and remove the movement. |
-
-</details>
-
-<details>
-<summary><code>/design-engineering motion</code> a dropdown opening from a button</summary>
-
-Prompt: `/design-engineering motion: a dropdown menu opens from a button. Give concrete duration, easing, transform-origin and the reduced-motion rule in under 120 words.`
-
-Dropdown open (from [[responsive-feedback]], [[duration-table]], [[easing-curves]], [[prefers-reduced-motion]]):
-
-- **Gate:** a dropdown is a popover, so it animates, but it's opened often. Keep it fast and make it interruptible.
-- **Duration:** 150ms open (budget is 150–250ms). Exit is shorter at about 100ms and fades only.
-- **Easing:** strong ease-out, `cubic-bezier(0.23, 1, 0.32, 1)`.
-- **Properties:** `opacity` 0→1 and `scale(0.96)`→`1`. Never start from `scale(0)`.
-- **Transform-origin:** the trigger's anchor, for example `top left` for a menu under a left-aligned button. Take it from Radix or Floating UI via `var(--transform-origin)`. Modals are the only element that stays centered.
-- **Reduced motion:** under `prefers-reduced-motion: reduce`, drop the scale and keep a short opacity fade. Don't remove the state change.
-- **Mechanics:** use a CSS transition, not a keyframe animation, so a rapid close/open reverses cleanly.
-
-</details>
-
-<details>
-<summary><code>/design-engineering tells</code> a purple-gradient AI hero</summary>
-
-Prompt: `/design-engineering tells: list the AI-default tells in this hero as a deletion list, max 6 bullets: <section class="bg-gradient-to-r from-purple-500 to-pink-500 text-center"><h1>✨ Supercharge your workflow with AI</h1>…`
-
-1. **Delete the purple-to-pink gradient** (`bg-gradient-to-r from-purple-500 to-pink-500` on the `<section>`). Use a monochrome ground with one real accent. [[ai-default-tells]], [[color-monochromatic]]
-2. **Delete the `✨` and `🚀` emoji** from the `<h1>` and the button. Emoji run 10% on top sites against 26% on weak ones, and they signal a generated page. [[ai-default-tells]]
-3. **Replace the headline and subline** ("Supercharge your workflow with AI", "Unlock seamless, powerful productivity"). They could describe any product. Write one specific sentence saying what it does and for whom. [[content-authenticity]], [[ai-default-tells]]
-4. **Replace "Get Started" with the action the button performs**, for example "Create project" or "Try it". [[ai-default-tells]]
-5. **Swap `shadow-2xl` for a layered shadow at 4–6% opacity.** The heavy default shadow is a tell. Drop `rounded-full` too, and pick a radius from an intentional scale instead of the pill default. [[shadows-whisper]], [[border-radius]]
-6. **Delete the layout.** A centered single column (`text-center` on a full-bleed section) with a headline, a line and a button is the default hero template. Make the layout fit your story. [[ai-default-tells]]
-
-**Keep or enlarge:** keep the one-headline, one-action structure. Enlarge the proof by replacing the generic claim with a real product screenshot or a specific number.
-
-</details>
-
-<details>
-<summary><code>/design-engineering sound</code> should Send make a sound?</summary>
-
-Prompt: `/design-engineering sound: should a "Send" button in a chat app make a sound? Answer with a verdict and values in under 100 words.`
-
-**Verdict: yes, but only as an opt-in, off-by-default confirmation, not a default press sound.**
-
-- **Why:** Send is a daily action. It earns a sound only because attention has usually moved on to the next message.
-- **Values:** one short tone, ≤250 ms. It should be soft and slightly rising, and 3 dB quieter than your first instinct. Fire it on send success, not on press.
-- **Rules:** keep a visible sent state, since sound can't be the only signal. Add a discoverable mute toggle, and skip the sound on the 100th-use test if it would make you reach for mute.
-
-</details>
-
-<details>
-<summary>One benchmark fixture, both arms: <code>edit-hover-01</code>, "Make the card lift on hover."</summary>
+<summary><code>edit-hover-01</code>: "Make the card lift on hover." Opus 5.5 alone, 4 of 5 rules</summary>
 
 Input:
 
@@ -264,72 +233,232 @@ Input:
 .card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.3); }
 ```
 
-Without the skill (3 of 5 rules):
+Your version works, but I'd change three things:
+
+- **`transition: all`** animates every property that changes, including ones you didn't mean to. List only the ones you want.
+- **`ease-in`** starts slowly, so the hover feels laggy. `ease-out` responds right away and then settles.
+- **Animating `box-shadow`** forces a repaint on every frame. It's smoother to put the large shadow on a pseudo-element and fade its `opacity`, which the GPU can handle on its own.
 
 ```css
 .card {
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(0,0,0,0.3);
-}
-```
-
-With the skill (5 of 5):
-
-```css
-.card {
-  transition:
-    transform 160ms cubic-bezier(0.25, 1, 0.5, 1),
-    box-shadow 160ms cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  border-radius: 12px; /* match your card */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* resting shadow */
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-@media (hover: hover) {
-  .card:hover {
-    transform: translateY(-1px);
-    box-shadow:
-      0 1px 1px rgba(17, 17, 17, 0.04),
-      0 2px 4px rgba(17, 17, 17, 0.04);
+/* Hover shadow, pre-rendered and faded in */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Only on devices that can really hover, so the lift doesn't stick on touch screens */
+@media (hover: hover) and (pointer: fine) {
+  .card:hover,
+  .card:focus-within {
+    transform: translateY(-4px);
+  }
+  .card:hover::after,
+  .card:focus-within::after {
+    opacity: 1;
   }
 }
 
+/* Respect the user's reduced-motion setting */
 @media (prefers-reduced-motion: reduce) {
-  .card {
-    transition: box-shadow 160ms cubic-bezier(0.25, 1, 0.5, 1);
+  .card,
+  .card::after {
+    transition: none;
   }
-
-  .card:hover {
+  .card:hover,
+  .card:focus-within {
     transform: none;
   }
 }
 ```
 
+Notes:
+- `:focus-within` makes keyboard users see the lift too when they tab to a link or button inside the card.
+- `z-index: -1` keeps the shadow behind the card's content. If the shadow ends up hidden behind the card's parent, add `isolation: isolate;` to `.card`.
+- If you don't want the pseudo-element, the simpler version is: `transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;`
+
 </details>
 
-## Manual install
+<details>
+<summary><code>edit-hover-01</code>: the same prompt with design-engineering, 5 of 5 rules</summary>
 
-The full reference, every path and command per harness, is [`docs/install.md`](docs/install.md). In short:
+I've finished reading the skill's notes on motion, hover and shadows. Here's the cleaned-up version:
 
-| Part | Command or path |
-| --- | --- |
-| Skill (any agent) | `npx skills add AgentsORG/design-engineering -g -y`, or copy `skills/design-engineering/` into the harness's skill folder |
-| Claude Code plugin | `claude plugin marketplace add AgentsORG/design-engineering` then `claude plugin install design-engineering@agentsorg -s user` |
-| Claude Code agents | copy `plugin/agents/*.md` to `~/.claude/agents/` (the plugin includes them) |
-| Codex | skill in `~/.agents/skills/`; `plugin/harness/codex/agents/*.toml` to `~/.codex/agents/` |
-| Cursor | skill in `~/.agents/skills/`; `plugin/harness/cursor/agents/*.md` to `~/.cursor/agents/` (it also reads `.claude/agents/`) |
-| Gemini CLI / Antigravity | skill in `~/.gemini/skills/`; `plugin/harness/gemini/agents/*.md` to `~/.gemini/agents/` |
-| OpenCode | skill in `~/.config/opencode/skills/`; `plugin/harness/opencode/agents/*.md` to `~/.config/opencode/agents/` |
-| Design-check hook | Claude Code `PostToolUse`: `plugin/hooks/design-check.mjs` runs the grader's checks on edited CSS, TSX, SVG and similar files as a non-blocking note; merge it with `plugin/hooks/merge-settings.mjs` or [`plugin/hooks/settings-snippet.json`](plugin/hooks/settings-snippet.json); turn it off with `DE_HOOKS=0` |
-| eve MCP | `cd eve && npm install && npm run dev` in a checkout, then `claude mcp add --transport http -s user design-engineering http://localhost:2000/eve/v1/mcp` |
-| shadcn registry | `npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/registry/r/design-engineering.json` |
-| Uninstall | `bash install.sh --uninstall` / `install.ps1 -Uninstall`: removes exactly what `~/.config/design-engineering/manifest.txt` lists and restores backups |
+```css
+.card {
+  position: relative;
+  border-radius: 16px;
+  box-shadow:
+    0 0 0 1px rgba(17, 17, 17, 0.06),
+    0 1px 2px rgba(17, 17, 17, 0.04);
+  transition: transform 200ms cubic-bezier(0.25, 1, 0.5, 1);
+}
 
-Claude Code namespaces plugin skills and subagents under the plugin name: the skill runs as `/design-engineering:design-engineering` and the agents as `design-engineering:ui-reviewer` and so on. The shadcn registry also ships `design-engineering-motion`, four easing curves and a duration scale as theme CSS variables, the lightest way in.
+/* The raised shadow sits on its own layer, so hover only changes opacity */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    0 2px 4px rgba(17, 17, 17, 0.05),
+    0 8px 16px rgba(17, 17, 17, 0.05),
+    0 16px 32px rgba(17, 17, 17, 0.05);
+  opacity: 0;
+  transition: opacity 200ms cubic-bezier(0.25, 1, 0.5, 1);
+}
 
-## Run it as an agent (eve)
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-2px);
+  }
+  .card:hover::after {
+    opacity: 1;
+  }
+}
 
-The `eve/` folder is a runnable [eve](https://eve.dev/) project: a durable backend design-engineering agent with the skill graph synced into its root and into every subagent (eve subagents inherit nothing), and the same specialists, including an eve council with one nested subagent per provider.
+/* Keyboard users get the same lift */
+.card:focus-visible {
+  transform: translateY(-2px);
+}
+.card:focus-visible::after {
+  opacity: 1;
+}
+
+/* With reduced motion, drop the movement but keep the shadow fade */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card:hover,
+  .card:focus-visible {
+    transform: none;
+  }
+}
+```
+
+What changed from your version:
+
+| Before | After | Why |
+|---|---|---|
+| `transition: all` | Only `transform` and `opacity` are animated | `all` also animates any width, padding or color change on the card, which can make the page reflow and stutter on hover. |
+| `ease-in` | `cubic-bezier(0.25, 1, 0.5, 1)` (an "out-quart" curve) | `ease-in` starts slowly, so the hover feels late. This curve starts moving right away and settles smoothly. |
+| `0.3s` | `200ms` | 300ms feels slow for a hover. |
+| `translateY(-4px)` | `translateY(-2px)` | 4px looks bouncy. The bigger shadow is what makes the card look raised, so it doesn't need to move far. Go down to `-1px` for a quieter look. |
+| One shadow at 30% opacity | Three stacked shadows at about 5% each, plus a 1px outline | One strong shadow looks like a grey smudge. Stacked faint shadows look like real depth, and the outline keeps the top edge visible. |
+| Animating `box-shadow` | Fading a shadow layer in with `opacity` | Animating `box-shadow` makes the browser repaint every frame. Fading opacity is much cheaper. |
+| No touch gate | `@media (hover: hover)` | On phones, `:hover` sticks after a tap, so the card would stay raised. |
+| — | `:focus-visible` and `prefers-reduced-motion` | Keyboard users see the same state. Users who turn off motion get the shadow without the movement. |
+
+The `::after` layer uses `z-index: -1`, so the card needs a background color. If the card's parent has its own background, add `isolation: isolate` to `.card` so the shadow stays visible.
+
+One note on the skill: it's set up for a Duolingo-style design (buttons with a thick bottom edge that press down, not lifting cards). You didn't say your project uses that style, so I used its general rules instead.
+
+</details>
+
+<details>
+<summary><code>repair-input-01</code>: "Page zooms when tapping the search field on iPhone." Opus 5.5 alone, 1 of 2 rules</summary>
+
+Input: `input[type=search] { font-size: 14px; }`
+
+Both arms gave the right fix. This one lost a rule for showing the `maximum-scale` meta tag in a code block, even though it shows it as the thing to avoid.
+
+iOS Safari zooms in on any form field whose computed `font-size` is below **16px** when it gets focus. Your search input is set to 14px, so it zooms. Set it to at least 16px:
+
+```css
+input[type=search] {
+  font-size: 16px; /* iOS Safari zooms on focus below 16px */
+}
+```
+
+To keep 14px on desktop and only bump it up on touch devices:
+
+```css
+input[type=search] {
+  font-size: 14px;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  input[type=search] {
+    font-size: 16px;
+  }
+}
+```
+
+Apply the same rule to `textarea`, `select` and any other input types that are also below 16px. Each of them triggers the zoom too:
+
+```css
+input, textarea, select {
+  font-size: max(16px, 1em);
+}
+```
+
+**Avoid the viewport hack.** You'll often see this suggested:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+```
+
+It does stop the zoom, but on Android it also blocks pinch-to-zoom, which is an accessibility failure under WCAG 1.4.4. Recent iOS versions ignore it for pinch-zoom anyway. The 16px font fix is the right one. Keep your viewport tag as:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1">
+```
+
+</details>
+
+<details>
+<summary><code>repair-input-01</code>: the same prompt with design-engineering, 2 of 2 rules</summary>
+
+That zoom is iOS Safari's own behaviour. When a focused text field's computed `font-size` is under **16px**, Safari zooms in so the text is readable. At 14px, every tap on the search field zooms the page.
+
+**Fix:** make the field's text at least 16px. If you want the denser 14px look on desktop, apply the 16px only on touch devices:
+
+```css
+input[type="search"] {
+  font-size: 14px;
+}
+
+/* Touch devices: 16px or larger stops Safari's focus zoom */
+@media (pointer: coarse) {
+  input[type="search"] {
+    font-size: max(16px, 1rem);
+  }
+}
+```
+
+If you'd rather use 16px everywhere, which is simpler and usually fine:
+
+```css
+input[type="search"] {
+  font-size: max(16px, 1rem);
+}
+```
+
+**Don't** fix it by adding `maximum-scale=1` or `user-scalable=no` to the viewport meta tag. It does stop the zoom, but it also stops users pinch-zooming the page on Android and some other browsers, which is an accessibility failure (WCAG 1.4.4, Resize Text). The font-size fix only changes the input.
+
+**Don't** fix it with `transform: scale()` either, such as a 16px input scaled down to look like 14px. It messes up the caret, the text selection and the layout box.
+
+**Check it on a real iPhone.** The desktop Simulator and responsive mode in Chrome DevTools don't reproduce the focus zoom. Also make sure no parent rule or utility class sets a smaller `font-size` on the input, because the computed size is what Safari checks.
+
+</details>
+
+## eve runtime
+
+The `eve/` folder is a runnable [eve](https://eve.dev/) project: a durable backend design-engineering agent with the skill graph synced into its root and into every subagent, plus the same specialists, including a council with one nested subagent per provider.
 
 ```bash
 cd eve
@@ -338,112 +467,47 @@ npm run dev      # syncs the skill graph into eve/agent/ and starts eve dev
 npm run eval     # scored checks, including delegation and the council
 ```
 
-`eve/agent/channels/mcp.ts` exposes it over MCP, so Claude Code, Codex and Cursor can hand work to it (`claude mcp add --transport http design-engineering http://localhost:2000/eve/v1/mcp`), and `eve acp` serves ACP editors. Loops run on the harness loop with `limits.sessionUsage` guards.
+It serves MCP at `http://localhost:2000/eve/v1/mcp`, so Claude Code, Codex and Cursor can hand work to it (`claude mcp add --transport http design-engineering http://localhost:2000/eve/v1/mcp`), and `npm run acp` serves ACP editors.
 
 ## Launch film
 
 ![The first ten seconds of the launch film: "Your agent ships UI." with "UI." slamming in, AI-default tells stamping in faster and faster, a cursor pressing Review and the ink filling the frame, a Before / After / Why review striking each tell, and the name flapping in slot by slot](docs/demo/design-engineering-demo.gif?v=2.6.0)
 
-The first ten seconds of a 34.6 s launch film for this repo, made with the skill's own rules. [Watch the whole film with sound](docs/demo/design-engineering-demo.mp4?v=2.6.0). It ends on one command: `npx skills add AgentsORG/design-engineering`.
-
-**The picture** is Skale's UI-motion register, which [`pov.md`](skills/design-engineering/references/meta/pov.md) names as the default for an unspecified launch film:
-
-- The UI is rebuilt as vector and the type carries the script.
-- The newest word lands in the accent, then settles.
-- Every hold creeps on its entry vector, so no frame freezes.
-- Hard cuts hide inside a fill, on a constant ground, or on a palette flip.
-- One montage accelerates into a snap.
-- No spring overshoot and no decorative idle motion.
-
-**The sound** is OpenAI's register, derived from the motion: a warm sub-heavy bed in F, dry clicks on every stamp and thuds on the big landings. The sub is pulled before the name, before the counters snap and before Enter. Nothing is picked from a library.
-
-**Measured like the corpus.** The render was measured at its native frame rate with the same script that measured the 47 reference films ([`docs/research/launch-films/`](docs/research/launch-films/)):
-
-- One detectable hard cut in 34.6 s (the palette flip); the others sit inside fills.
-- 6.8 % of frames still (Skale's UI-motion films: 9 %).
-- 45 moves a minute, with a 0.52 s median.
-- The first word at 0.07 s, the name at 6.75 s (19 % of the runtime), a 4.4 s endcard.
-- −18.5 LUFS integrated, −2.2 dBTP; half of the strong hits land within 67 ms of a motion peak.
-
-| What you see | What made it |
-|---|---|
-| The composition | [`docs/demo/hyperframes/`](docs/demo/hyperframes/): a [HyperFrames](https://www.skills.sh/heygen-com/hyperframes/hyperframes) 0.8.82 project with one sub-composition per scene. The eases are in [`assets/film-motion.js`](docs/demo/hyperframes/assets/film-motion.js): exponential settles sized to each move and seeded typing. The [storyboard](docs/demo/hyperframes/STORYBOARD.md) carries the register, the acts, the cue map and HyperFrames blueprint citations for every scene. `check` passes with 0 errors, 0 warnings and 75/75 contrast checks. `launch-video-registers`, `launch-video-structure`, `launch-video-type` |
-| The seams | Eight, typed in the [ledger](docs/demo/hyperframes/ledger.json): a click that fills the frame, a cut on a constant ground, a dive through the caret, cut-the-curve on the film's leftward current, a playhead that widens into a fill, a rising hard cut on a palette flip, and a carrier dot that paper grows out of. Seam values are HyperFrames' stamp values, written by hand. `launch-video-seams`, `launch-video-cuts`, `hyperframes-reconciliation` |
-| The sound | One stereo stem rendered by `scripts/sound-sheet.mjs` from a [cue sheet](docs/demo/hyperframes/assets/sfx/cues.json): 138 cues, 240 onsets, three dropouts, keystrokes on their seeded onsets. Each cue sits on its motion's contact frame; size sets pitch and x sets pan. In the sound scene, the on-screen events play the sounds they are labelled with. `launch-video-sound`, `sound-from-motion`, `sound-motion-sync` |
-| The type | Instrument Sans (OFL, shipped in `assets/fonts/`) with JetBrains Mono as the system voice. Words land 0.167 s apart, and the command types at 15.4 characters a second, read speed. |
-
-Re-render it yourself:
-
-```bash
-cd docs/demo/hyperframes && npm run check && npm run render
-```
-
-## What `/design-engineering` produces
-
-Frames from the film, each an output shape of the skill.
-
-<table>
-<tr>
-<td width="50%"><img src="docs/demo/screenshots/01-hook.png?v=2.6.0" alt="Your agent ships UI. It also ships this. AI-default tells scattered around a Review pill"><br><sub><b>The hook.</b> A word on screen at 0.07 s. "UI." slams in at about 5× and jumps into its sentence in one frame; nine AI-default tells stamp in faster and faster; the press on Review fills the frame. <code>launch-video-structure</code>, <code>launch-video-type</code></sub></td>
-<td width="50%"><img src="docs/demo/screenshots/02-review.png?v=2.6.0" alt="A Before / After / Why review table on ink, each Before struck through"><br><sub><b>A review.</b> Every UI review is a Before | After | Why table. Each tell is struck and its fix stamped row by row, with the node that owns the rule. <code>review-format</code>, <code>ai-default-tells</code></sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/demo/screenshots/03-name.png?v=2.6.0" alt="/design-engineering in yellow and paper on ink, a caret block after it"><br><sub><b>The name.</b> Half a second of held stillness with the sub pulled. Then the name flaps in one slot a frame, and the camera dives through the caret into the next scene. <code>launch-video-seams</code>, <code>launch-video-sound</code></sub></td>
-<td width="50%"><img src="docs/demo/screenshots/04-motion.png?v=2.6.0" alt="A settings modal beside a plotted cubic-bezier curve with a dot at its end"><br><sub><b>Motion, with numbers.</b> A press opens the modal on the same frame, on <code>cubic-bezier(.23,1,.32,1)</code>, shown at ¼ speed while a dot rides the curve and the readouts count to 200 ms. <code>easing-curves</code>, <code>duration-table</code></sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/demo/screenshots/05-sound.png?v=2.6.0" alt="Five UI events on a lane, a waveform under each, a playhead at the end"><br><sub><b>Sound from motion.</b> A playhead crosses five UI events, and each plays the sound its size, position and contact frame produce. The same renderer scored this film. <code>sound-from-motion</code>, <code>sound-motion-sync</code></sub></td>
-<td width="50%"><img src="docs/demo/screenshots/06-measured.png?v=2.6.0" alt="Launch films, measured: 47, 3,446, 116 on blue"><br><sub><b>Launch films, measured.</b> Fourteen findings from 47 films stamp in, accelerate into a blur, and snap to three counters that settle and flash on landing. <code>launch-video-registers</code>, <code>docs/research/launch-films/</code></sub></td>
-</tr>
-<tr>
-<td width="50%"><img src="docs/demo/screenshots/07-install.png?v=2.6.0" alt="Give your agent taste. The install command in a terminal pill with a confirmation line"><br><sub><b>The call to action.</b> <code>npx skills add AgentsORG/design-engineering</code> is typed at read speed with a seeded human rhythm. The sub drops out, Enter lands, and the pill pops. <code>launch-video-ui-demo</code></sub></td>
-<td width="50%"><img src="docs/demo/screenshots/08-endcard.png?v=2.6.0" alt="Endcard: the AgentsORG mark, /design-engineering, the install command and the repository URL"><br><sub><b>The endcard.</b> The pill collapses to a dot, paper grows out of it, and the name flaps in again as a bookend. The endcard runs 4.4 s, with a 2.4 s hold that still creeps. Installs into any agent that reads a <code>SKILL.md</code>.</sub></td>
-</tr>
-</table>
+The first ten seconds of a 34.6 s film made with the skill's own launch-film and sound rules, then measured with the same script as the 47 reference films. [Watch it with sound](docs/demo/design-engineering-demo.mp4?v=2.6.0). The [HyperFrames](https://www.hyperframes.dev/design) source, storyboard and cue sheet are in [docs/demo/hyperframes/](docs/demo/hyperframes/STORYBOARD.md).
 
 ## Repository layout
 
 ```text
 design-engineering/
-├── install.sh / install.ps1           ← the one-line installers (docs/install.md)
 ├── README.md, AGENTS.md, CHANGELOG.md, LICENSE
-├── plugin.json                        ← canonical Agent Plugins v1.0.0 manifest
-├── .claude-plugin/ .codex-plugin/ .cursor-plugin/ .plugin/   ← host manifests
-├── .github/                           ← CI, CONTRIBUTING, CODE_OF_CONDUCT, SECURITY, markdownlint config
+├── install.sh, install.ps1            the one-line installers
+├── plugin.json                        Agent Plugins manifest
+├── .claude-plugin/ .codex-plugin/ .cursor-plugin/ .plugin/   host manifests
+├── .github/                           CI, CONTRIBUTING, CODE_OF_CONDUCT, SECURITY, markdownlint config
+├── skills/design-engineering/         the skill
+│   ├── SKILL.md                       the map, one /design-engineering entry
+│   ├── references/                    themed clusters of linked nodes, plus the verb files
+│   ├── scripts/                       council.mjs, grade.mjs, sound and SVG tools
+│   └── evals/                         routing fixtures and design-bench.jsonl
 ├── plugin/
-│   ├── agents/                        ← 13 canonical agents (Claude Code format, the source of truth)
-│   ├── harness/                       ← generated agents: codex/, cursor/, gemini/, opencode/
-│   └── hooks/                         ← design-check hook, settings merge, snippet
-├── eve/                               ← eve app root: package.json, agent/, evals/, scripts/sync-skills.mjs
-├── bench/                             ← bench.mjs, run-bench.mjs, plugin/ eval suite, results/<run>/
-├── registry/                          ← shadcn registry.json, built r/ items, starter .design
-├── scripts/                           ← build-agents, build-registry, release
-├── docs/                              ← install.md, subagents.md, SOUL.md, NOTICE.md, spec/, template/
-│   ├── readme/                        ← the Stageshow scenes behind this README (stage/) and their stills (img/)
-│   ├── demo/                          ← the launch film: HyperFrames source, MP4/GIF, screenshots
-│   └── research/                      ← launch-film measurements
-└── skills/design-engineering/         ← THE KNOWLEDGE
-    ├── SKILL.md                       ← thin Map of Content, one /design-engineering entry
-    ├── references/                    ← themed clusters of atomic, wikilinked nodes + command files
-    ├── scripts/                       ← council.mjs, grade.mjs, sound-family, sound-sheet, svg-flipbook
-    └── evals/                         ← routing fixtures and design-bench.jsonl
+│   ├── agents/                        the 13 agents, written once (Claude Code format)
+│   ├── harness/                       generated: codex/, cursor/, gemini/, opencode/
+│   └── hooks/                         the design-check hook and its settings merge
+├── eve/                               the eve app: agent/, evals/, scripts/sync-skills.mjs
+├── bench/                             bench.mjs, chart.mjs, render.mjs, run-bench.mjs, plugin/ suite, results/
+├── registry/                          shadcn registry.json, built r/ items, a starter .design
+├── scripts/                           build-agents, build-registry, release
+└── docs/                              install.md, subagents.md, SOUL.md, NOTICE.md, spec/, template/,
+                                       readme/ (this page's scenes and images), demo/, research/
 ```
 
-The skill is a graph, not a single file: `SKILL.md` is a Map of Content, each `references/<theme>/MOC-<theme>.md` is a hub, and each node is one complete thought with YAML frontmatter and `[[wikilinks]]` that resolve by basename. Open `skills/design-engineering/` as an [Obsidian](https://obsidian.md) vault to browse it as a graph. To make it yours, edit `references/meta/pov.md` (taste overrides) and `references/meta/gotchas.md` (one line per UI detail your agent got wrong).
+The skill is a graph, not one file: `SKILL.md` links to a hub per theme (`references/<theme>/MOC-<theme>.md`), and each node is one complete thought with `[[wikilinks]]` that resolve by name. Open `skills/design-engineering/` as an [Obsidian](https://obsidian.md) vault to browse it as a graph. To make it yours, edit `references/meta/pov.md` (your taste) and `references/meta/gotchas.md` (one line for each detail your agent got wrong).
 
-### The README visuals
-
-The stills above are faux product UI built with [Stageshow](https://benji.org/stageshow) (MIT, Benji Taylor), whose kit is vendored in [`docs/readme/stage/`](docs/readme/stage/) with its license and notice. Each scene is `docs/readme/stage/examples/de-*/index.tsx`. Re-film one:
-
-```bash
-cd docs/readme/stage && npm install
-npx vite playground --config playground/vite.config.ts --port 4711 &
-node scripts/film.mjs "http://127.0.0.1:4711/?capture=de-council" --still --pad 0 --out ../img/de-council.png
-```
+The stills on this page are faux product UI built with [Stageshow](https://benji.org/stageshow) (MIT, Benji Taylor). The scenes and how to re-film them are in [docs/readme/stage/](docs/readme/stage/README.md).
 
 ## Contributing
 
-PRs welcome; the shorter the better. Edit agents only in `plugin/agents/` and run `node scripts/build-agents.mjs`; CI fails if `plugin/harness/` or `eve/agent/subagents/` drift. See [CONTRIBUTING.md](.github/CONTRIBUTING.md), [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md), [SECURITY.md](.github/SECURITY.md) and [CHANGELOG.md](CHANGELOG.md). CI runs [markdownlint, frontmatter validation, required files, wikilink resolution, generator drift and manifest version parity](.github/workflows/ci.yml) on every PR.
+PRs welcome; the shorter the better. Edit agents only in `plugin/agents/` and run `node scripts/build-agents.mjs`: CI fails if `plugin/harness/` or `eve/agent/subagents/` drift. CI also runs markdownlint, frontmatter checks, wikilink resolution and version parity across the manifests ([ci.yml](.github/workflows/ci.yml)). See [CONTRIBUTING.md](.github/CONTRIBUTING.md), [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md), [SECURITY.md](.github/SECURITY.md) and [CHANGELOG.md](CHANGELOG.md).
 
 ## Sources
 

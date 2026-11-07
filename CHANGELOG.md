@@ -8,16 +8,17 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [4.1.0] — 2026-11-07
 
-A tidy root, the first Opus 5.5 benchmark, rendered outputs, and AgentsORG as the only name.
+A tidy root, the first Opus 5.5 benchmark, rendered outputs, a restrained default taste, and AgentsORG as the only name.
 
 ### Added
 
-- **Opus 5.5 ablation benchmark** in `bench/results/2026-11-07-opus-ablation/`: 23 tasks, 3 tries, 270 runs across no skill, the full skill, and the full skill minus each cluster. Full scored 0.914 against 0.868 without the skill (+0.046, 95% CI −0.019 to +0.111). That gap is below the minimum detectable difference of 0.092, so on these tasks the gain is within noise, at about 3× the cost per task. Every cluster reads "slim" or "insufficient data"; none earns "retire". Diagram, faux-UI and philosophy have no tasks yet and are not measured.
+- **Opus 5.5 ablation benchmark** in `bench/results/2026-11-07-opus-ablation/`: 23 tasks, up to 3 tries, 219 runs (the $60 cost cap stopped 51 of the 270 planned) across no skill, the full skill, and the full skill minus each cluster. Full scored 0.914 against 0.868 without the skill (+0.046, 95% CI −0.019 to +0.111). That gap is below the minimum detectable difference of 0.092, so on these tasks the gain is within noise, at about 3× the cost per task. Every cluster reads "slim" or "insufficient data"; none earns "retire". Diagram, faux-UI and philosophy have no tasks yet and are not measured.
 - **Benchmark charts and rendered outputs** in the README: per-task scores with and without the skill, cluster deltas against the noise floor, score against cost, and side-by-side renders of real answers (`bench/render.mjs`, `bench/chart.mjs`).
 - **README scenes rebuilt on Stageshow's own templates** (terminal window, ai-chat, Code diff, static card); the vendored kit trimmed to what the scenes import.
 
 ### Changed
 
+- **A restrained default `pov.md`.** The taste layer had been forked to Duolingo's design language since August, so every install shipped loud colour and physical buttons; in the benchmark that is where the skill's uppercase green modal came from. The default is now the restrained starter distilled from the graph, plus the launch-film and diagram calls. Duolingo moves to `skills/design-engineering/pov-examples/duolingo.md`, and two new example forks capture published brand contracts: `pov-examples/campus-binge.md` (campusbinge.in/brand and its `.DESIGN` file) and `pov-examples/smash-and-clash.md` (smashandclash.in and its `design.v1` file). Each explains how to use the fork beside the brand's own contract, which always wins.
 - **AgentsORG is the only name** in the license, manifests, SKILL.md metadata, registry items and credits. Personal email removed from manifests.
 - The README is rewritten end to end, with `npx skills add AgentsORG/design-engineering` first.
 
@@ -54,7 +55,7 @@ The repo root now holds only what has to be there: `README.md`, `AGENTS.md`, `CH
 - Codex, Cursor and root `plugin.json` manifests point at `./plugin/agents/`; root `plugin.json` extensions now name `./eve/agent/`, `./eve/evals/`, `./registry/registry.json`, `./registry/r/`, `./registry/design-engineering.design`, `./docs/spec/design-file-spec.md`. `.plugin/plugin.json` gained explicit `skills`, `agents` and `hooks` paths.
 - **No root `package.json`.** The eve app root is `eve/`: `cd eve && npm install && npm run dev` (or `npm --prefix eve run eval`). Repo tooling runs with plain node from the root: `node scripts/build-agents.mjs [--check]`, `node scripts/build-registry.mjs`, `node scripts/release.mjs --verify|--bump|--assets`, `node bench/bench.mjs ...`. The `build:agents`, `check:agents` and `build:registry` npm scripts are gone. `release.mjs` now chdirs to the repo root itself and versions `eve/package.json`.
 - `bench/bench.mjs --report-only --out <run>` reuses that run's model, date and `--relevant-only` from its `report.json` unless flags override them, so rebuilding a report is stable.
-- Subagent soul lines now read "Inherits from the repo's [SOUL.md](../../docs/SOUL.md)"; generated harness copies link `.../blob/main/docs/SOUL.md`.
+- Subagent soul lines now read "Inherits from the repo's [SOUL.md](docs/SOUL.md)"; generated harness copies link `.../blob/main/docs/SOUL.md`.
 - Dependabot's npm entry watches `/eve`. `install.yml` path filters watch `plugin/**`.
 - `docs/NOTICE.md`: dropped the dead link to Stageshow's `kit/brands/SOURCES.md` (the brand artwork was never kept after the kit trim).
 

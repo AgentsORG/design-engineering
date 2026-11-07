@@ -42,12 +42,23 @@ node bench/bench.mjs --arms all --relevant-only --dry-run                       
 - **Isolation.** Each run is a fresh `claude -p` in an empty temp folder with `--setting-sources project`, `--strict-mcp-config` and the tools `Read, Glob, Grep, Skill`. The bench reads the stream-json `system/init` line of every run: `none` must list no design-engineering skill, agent or plugin, and plugin arms must list exactly the bench copy. Runs that fail are excluded and counted in the report.
 - **`--relevant-only`.** A minus-cluster arm runs only fixtures whose `clusters` tag (or review-checklist rows, which count as `meta`) touches that cluster.
 - **Scoring.** The `must_match` / `must_not_match` rules from `run-bench.mjs`, plus the deterministic checks in `skills/design-engineering/scripts/grade.mjs` (reported as findings per answer; checks only catch mistakes, they never raise a score).
-- **Statistics.** A paired two-level bootstrap (fixtures, then tries) gives a 95% CI for each gap. The minimum detectable difference is 2.8 × the bootstrap SE; a gap below it is labelled noise. With fewer than two fixtures or two tries the report says so instead of inventing a noise floor.
+- **Statistics.** A paired two-level bootstrap (fixtures, then tries) gives a 95% CI for each gap. The minimum detectable difference is 2.8 × the bootstrap SE; a gap below it is labelled noise. With fewer than two fixtures or two tries, or when every resample gives the same gap (zero variance, MDD 0), the report says "too few runs for a noise floor" instead of inventing one.
 - **Verdicts.** keep (removing the cluster costs more than the MDD), retire (removing it helps by more than the MDD), slim (noise: trim weight, keep fact-carrying nodes) or insufficient data.
 - **Cost.** `total_cost_usd`, tokens and wall time per arm, from each run's result line.
 - **Resumable.** Each run is saved to `<out>/runs/<arm>/<fixture>.t<k>.json`; a rerun skips finished runs and retries errors. `--max-cost-usd` stops a sweep at a ceiling.
 
 Output: `bench/results/<date>-<model>-ablation/REPORT.md` and `report.json` (committed) and `runs/` (git-ignored). `--report-only` reuses the run's model, date and `--relevant-only` from its `report.json`.
+
+## Charts and rendered output
+
+The README's benchmark visuals come from two scripts, both without dependencies:
+
+```sh
+node bench/chart.mjs bench/results/2026-11-07-opus-ablation    # three SVG charts, light and dark, into docs/readme/img/
+node bench/render.mjs bench/results/2026-11-07-opus-ablation   # none vs full answers rendered side by side, out-<fixture>.png
+```
+
+`chart.mjs` reads only `report.json` (per-fixture means and one row per run), so it works from a fresh clone. `render.mjs` needs the git-ignored `runs/` folder and Google Chrome (`CHROME=<path>` to point at it). It renders HTML answers as written, gives CSS-only answers a fixed demo markup per fixture, forces hover states, opens dialogs, waits out open delays and finishes transitions before the shot. `--fixtures a,b@2` picks fixtures and a try; a fixture needs a recipe in the script's `RECIPES`.
 
 ## Older runs
 

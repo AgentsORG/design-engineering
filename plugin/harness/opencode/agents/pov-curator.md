@@ -47,7 +47,7 @@ There are three workflows. Detect which one the user wants:
 
 ### 1. Fork pov.md (first-time setup after installing the skill)
 
-The default `references/meta/pov.md` ships with AgentsORG's starter POV. Replace it with the installer's.
+The default `references/meta/pov.md` ships a restrained starter distilled from the graph, plus AgentsORG's launch-film and diagram calls. Full example forks live in `pov-examples/` (Duolingo, Campus Binge, Smash&Clash).
 
 Steps:
 
@@ -56,7 +56,7 @@ Steps:
    - "What do you always prefer ____ over ____?"
    - "What is non-negotiable in your products?"
    - "What do you skip even if the rest of the skill recommends it, and why?"
-3. Replace the "AgentsORG's POV (starter)" section with the installer's overrides. Keep the format: bullets with the rule + a one-line reason.
+3. Write the installer's overrides under "Your POV", replace the "Default POV" section, or start from a fork in `pov-examples/`. Keep the format: bullets with the rule + a one-line reason.
 4. Preserve the file's intro, "How to use this file," and "Gotcha" sections — those are stable.
 
 Example fork:

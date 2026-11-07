@@ -315,7 +315,7 @@
   },
   "verdicts": {
     "agents": {
-      "verdict": "slim",
+      "verdict": "insufficient data",
       "fixtures": 2,
       "delta": 0,
       "lo": 0,
@@ -424,5 +424,2303 @@
       "mdd": 0,
       "enough": false
     }
-  }
+  },
+  "fixtures": {
+    "gen-modal-01": {
+      "clusters": [
+        "motion",
+        "components",
+        "meta"
+      ],
+      "arms": {
+        "full": {
+          "n": 3,
+          "score": 0.8666666666666667
+        },
+        "minus-components": {
+          "n": 3,
+          "score": 0.9333333333333332
+        },
+        "minus-meta": {
+          "n": 3,
+          "score": 0.9333333333333332
+        },
+        "minus-motion": {
+          "n": 3,
+          "score": 0.9333333333333332
+        },
+        "none": {
+          "n": 3,
+          "score": 0.7333333333333334
+        }
+      }
+    },
+    "gen-form-01": {
+      "clusters": [
+        "components",
+        "layout"
+      ],
+      "arms": {
+        "full": {
+          "n": 3,
+          "score": 0.9333333333333332
+        },
+        "minus-components": {
+          "n": 3,
+          "score": 0.9333333333333332
+        },
+        "minus-layout": {
+          "n": 3,
+          "score": 1
+        },
+        "none": {
+          "n": 3,
+          "score": 0.8666666666666667
+        }
+      }
+    },
+    "gen-toolbar-01": {
+      "clusters": [
+        "components",
+        "motion",
+        "meta"
+      ],
+      "arms": {
+        "full": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-components": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-meta": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-motion": {
+          "n": 3,
+          "score": 1
+        },
+        "none": {
+          "n": 3,
+          "score": 0.75
+        }
+      }
+    },
+    "gen-send-sound-01": {
+      "clusters": [
+        "sound",
+        "meta"
+      ],
+      "arms": {
+        "full": {
+          "n": 3,
+          "score": 0.9333333333333332
+        },
+        "minus-meta": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-sound": {
+          "n": 3,
+          "score": 0.9333333333333332
+        },
+        "none": {
+          "n": 3,
+          "score": 0.9333333333333332
+        }
+      }
+    },
+    "edit-hover-01": {
+      "clusters": [
+        "motion",
+        "surface",
+        "meta"
+      ],
+      "arms": {
+        "full": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-meta": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-motion": {
+          "n": 3,
+          "score": 0.9333333333333332
+        },
+        "minus-surface": {
+          "n": 3,
+          "score": 1
+        },
+        "none": {
+          "n": 3,
+          "score": 0.6666666666666666
+        }
+      }
+    },
+    "edit-dropdown-01": {
+      "clusters": [
+        "motion",
+        "components",
+        "meta"
+      ],
+      "arms": {
+        "full": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-components": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-meta": {
+          "n": 3,
+          "score": 0.9444444444444445
+        },
+        "minus-motion": {
+          "n": 3,
+          "score": 1
+        },
+        "none": {
+          "n": 3,
+          "score": 0.888888888888889
+        }
+      }
+    },
+    "repair-input-01": {
+      "clusters": [
+        "components"
+      ],
+      "arms": {
+        "full": {
+          "n": 3,
+          "score": 0.6666666666666666
+        },
+        "minus-components": {
+          "n": 3,
+          "score": 0.5
+        },
+        "none": {
+          "n": 3,
+          "score": 0.6666666666666666
+        }
+      }
+    },
+    "repair-darkmode-01": {
+      "clusters": [
+        "surface",
+        "meta"
+      ],
+      "arms": {
+        "full": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-meta": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-surface": {
+          "n": 3,
+          "score": 0.6666666666666666
+        },
+        "none": {
+          "n": 3,
+          "score": 0.8333333333333334
+        }
+      }
+    },
+    "repair-spinner-01": {
+      "clusters": [
+        "motion",
+        "meta"
+      ],
+      "arms": {
+        "full": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-meta": {
+          "n": 3,
+          "score": 1
+        },
+        "minus-motion": {
+          "n": 3,
+          "score": 1
+        },
+        "none": {
+          "n": 3,
+          "score": 1
+        }
+      }
+    },
+    "repair-focus-01": {
+      "clusters": [
+        "components"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-components": {
+          "n": 2,
+          "score": 1
+        },
+        "none": {
+          "n": 2,
+          "score": 1
+        }
+      }
+    },
+    "repair-launch-seam-01": {
+      "clusters": [
+        "launch-video"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 0.5
+        },
+        "minus-launch-video": {
+          "n": 2,
+          "score": 0.75
+        },
+        "none": {
+          "n": 2,
+          "score": 0.75
+        }
+      }
+    },
+    "gen-launch-zoom-01": {
+      "clusters": [
+        "launch-video"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 0.6666666666666666
+        },
+        "minus-launch-video": {
+          "n": 2,
+          "score": 0.75
+        },
+        "none": {
+          "n": 2,
+          "score": 0.5
+        }
+      }
+    },
+    "repair-launch-zseam-01": {
+      "clusters": [
+        "launch-video"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-launch-video": {
+          "n": 2,
+          "score": 1
+        },
+        "none": {
+          "n": 2,
+          "score": 1
+        }
+      }
+    },
+    "edit-launch-typing-01": {
+      "clusters": [
+        "launch-video"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 0.75
+        },
+        "minus-launch-video": {
+          "n": 2,
+          "score": 0.75
+        },
+        "none": {
+          "n": 2,
+          "score": 1
+        }
+      }
+    },
+    "gen-launch-sfx-01": {
+      "clusters": [
+        "launch-video",
+        "sound"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-launch-video": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-sound": {
+          "n": 2,
+          "score": 1
+        },
+        "none": {
+          "n": 2,
+          "score": 1
+        }
+      }
+    },
+    "gen-launch-drop-01": {
+      "clusters": [
+        "launch-video",
+        "sound"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-launch-video": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-sound": {
+          "n": 2,
+          "score": 1
+        },
+        "none": {
+          "n": 2,
+          "score": 1
+        }
+      }
+    },
+    "gen-type-01": {
+      "clusters": [
+        "typography"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 0.8
+        },
+        "minus-typography": {
+          "n": 2,
+          "score": 0.8
+        },
+        "none": {
+          "n": 2,
+          "score": 0.9
+        }
+      }
+    },
+    "gen-svg-check-01": {
+      "clusters": [
+        "svg",
+        "motion"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-motion": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-svg": {
+          "n": 2,
+          "score": 1
+        },
+        "none": {
+          "n": 2,
+          "score": 1
+        }
+      }
+    },
+    "repair-ai-hero-01": {
+      "clusters": [
+        "anti-patterns",
+        "surface",
+        "components"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-anti-patterns": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-components": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-surface": {
+          "n": 2,
+          "score": 1
+        },
+        "none": {
+          "n": 2,
+          "score": 1
+        }
+      }
+    },
+    "gen-tokens-01": {
+      "clusters": [
+        "surface"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 0.9
+        },
+        "minus-surface": {
+          "n": 2,
+          "score": 1
+        },
+        "none": {
+          "n": 2,
+          "score": 0.6
+        }
+      }
+    },
+    "review-button-01": {
+      "clusters": [
+        "meta",
+        "motion",
+        "components"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-components": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-meta": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-motion": {
+          "n": 2,
+          "score": 1
+        },
+        "none": {
+          "n": 2,
+          "score": 1
+        }
+      }
+    },
+    "council-card-01": {
+      "clusters": [
+        "agents",
+        "meta"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-agents": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-meta": {
+          "n": 2,
+          "score": 1
+        },
+        "none": {
+          "n": 2,
+          "score": 0.875
+        }
+      }
+    },
+    "grade-episode-01": {
+      "clusters": [
+        "agents",
+        "meta"
+      ],
+      "arms": {
+        "full": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-agents": {
+          "n": 2,
+          "score": 1
+        },
+        "minus-meta": {
+          "n": 2,
+          "score": 1
+        },
+        "none": {
+          "n": 2,
+          "score": 1
+        }
+      }
+    }
+  },
+  "runs": [
+    {
+      "arm": "full",
+      "fixture": "council-card-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2583054,
+      "ms": 53629
+    },
+    {
+      "arm": "full",
+      "fixture": "council-card-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.27047499999999997,
+      "ms": 63535
+    },
+    {
+      "arm": "full",
+      "fixture": "edit-dropdown-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2268498,
+      "ms": 39365
+    },
+    {
+      "arm": "full",
+      "fixture": "edit-dropdown-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.366487,
+      "ms": 37014
+    },
+    {
+      "arm": "full",
+      "fixture": "edit-dropdown-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.28704620000000003,
+      "ms": 46375
+    },
+    {
+      "arm": "full",
+      "fixture": "edit-hover-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.42401279999999997,
+      "ms": 40521
+    },
+    {
+      "arm": "full",
+      "fixture": "edit-hover-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3660948,
+      "ms": 38310
+    },
+    {
+      "arm": "full",
+      "fixture": "edit-hover-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.39115920000000004,
+      "ms": 44636
+    },
+    {
+      "arm": "full",
+      "fixture": "edit-launch-typing-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.26109499999999997,
+      "ms": 46691
+    },
+    {
+      "arm": "full",
+      "fixture": "edit-launch-typing-01",
+      "try": 2,
+      "score": 0.5,
+      "cost_usd": 0.28334380000000003,
+      "ms": 45198
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-form-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.5747092,
+      "ms": 128084
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-form-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.5955392,
+      "ms": 134414
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-form-01",
+      "try": 3,
+      "score": 0.8,
+      "cost_usd": 0.5985400000000001,
+      "ms": 150010
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-launch-drop-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.232628,
+      "ms": 30496
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-launch-drop-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2393042,
+      "ms": 32271
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-launch-sfx-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2423182,
+      "ms": 44191
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-launch-sfx-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2389866,
+      "ms": 30317
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-launch-zoom-01",
+      "try": 1,
+      "score": 0.6666666666666666,
+      "cost_usd": 0.2703532,
+      "ms": 46604
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-launch-zoom-01",
+      "try": 2,
+      "score": 0.6666666666666666,
+      "cost_usd": 0.2888044,
+      "ms": 45233
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-modal-01",
+      "try": 1,
+      "score": 0.8,
+      "cost_usd": 0.5661086,
+      "ms": 123549
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-modal-01",
+      "try": 2,
+      "score": 0.8,
+      "cost_usd": 0.5107079999999999,
+      "ms": 93192
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-modal-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.4751228,
+      "ms": 94016
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-send-sound-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2836124,
+      "ms": 58702
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-send-sound-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.4405064,
+      "ms": 89781
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-send-sound-01",
+      "try": 3,
+      "score": 0.8,
+      "cost_usd": 0.38236800000000004,
+      "ms": 70995
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-svg-check-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.41134079999999995,
+      "ms": 85198
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-svg-check-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3207944,
+      "ms": 52343
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-tokens-01",
+      "try": 1,
+      "score": 0.8,
+      "cost_usd": 0.6703742,
+      "ms": 176627
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-tokens-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.6387782,
+      "ms": 162018
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-toolbar-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.7036114,
+      "ms": 176229
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-toolbar-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.4968370000000001,
+      "ms": 107904
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-toolbar-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.5916156,
+      "ms": 137871
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-type-01",
+      "try": 1,
+      "score": 0.8,
+      "cost_usd": 0.43376499999999996,
+      "ms": 56353
+    },
+    {
+      "arm": "full",
+      "fixture": "gen-type-01",
+      "try": 2,
+      "score": 0.8,
+      "cost_usd": 0.42395779999999994,
+      "ms": 56658
+    },
+    {
+      "arm": "full",
+      "fixture": "grade-episode-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.29507859999999997,
+      "ms": 52652
+    },
+    {
+      "arm": "full",
+      "fixture": "grade-episode-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2501118,
+      "ms": 56485
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-ai-hero-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.4099718,
+      "ms": 65216
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-ai-hero-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.4039134,
+      "ms": 55232
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-darkmode-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.19058340000000001,
+      "ms": 26013
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-darkmode-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.193408,
+      "ms": 24987
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-darkmode-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.19454660000000001,
+      "ms": 28977
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-focus-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.1823862,
+      "ms": 39072
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-focus-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.245964,
+      "ms": 34663
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-input-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.1339994,
+      "ms": 17695
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-input-01",
+      "try": 2,
+      "score": 0.5,
+      "cost_usd": 0.13696619999999998,
+      "ms": 17822
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-input-01",
+      "try": 3,
+      "score": 0.5,
+      "cost_usd": 0.13277,
+      "ms": 17118
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-launch-seam-01",
+      "try": 1,
+      "score": 0.5,
+      "cost_usd": 0.303242,
+      "ms": 51192
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-launch-seam-01",
+      "try": 2,
+      "score": 0.5,
+      "cost_usd": 0.3139024,
+      "ms": 47063
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-launch-zseam-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2321352,
+      "ms": 40625
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-launch-zseam-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2407404,
+      "ms": 44406
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-spinner-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2323218,
+      "ms": 37409
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-spinner-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2427472,
+      "ms": 43508
+    },
+    {
+      "arm": "full",
+      "fixture": "repair-spinner-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.1828278,
+      "ms": 28935
+    },
+    {
+      "arm": "full",
+      "fixture": "review-button-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.282837,
+      "ms": 55114
+    },
+    {
+      "arm": "full",
+      "fixture": "review-button-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3430482,
+      "ms": 46817
+    },
+    {
+      "arm": "minus-agents",
+      "fixture": "council-card-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2780446,
+      "ms": 63226
+    },
+    {
+      "arm": "minus-agents",
+      "fixture": "council-card-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2750514,
+      "ms": 65398
+    },
+    {
+      "arm": "minus-agents",
+      "fixture": "grade-episode-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2451188,
+      "ms": 52009
+    },
+    {
+      "arm": "minus-agents",
+      "fixture": "grade-episode-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3083286,
+      "ms": 65826
+    },
+    {
+      "arm": "minus-anti-patterns",
+      "fixture": "repair-ai-hero-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.3741542,
+      "ms": 65044
+    },
+    {
+      "arm": "minus-anti-patterns",
+      "fixture": "repair-ai-hero-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3581428,
+      "ms": 49812
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "edit-dropdown-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.378441,
+      "ms": 49290
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "edit-dropdown-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.36093959999999997,
+      "ms": 34949
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "edit-dropdown-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.3512578,
+      "ms": 45244
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "gen-form-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.4558438,
+      "ms": 88577
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "gen-form-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.5423096,
+      "ms": 147494
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "gen-form-01",
+      "try": 3,
+      "score": 0.8,
+      "cost_usd": 0.548692,
+      "ms": 157125
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "gen-modal-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.5370336000000001,
+      "ms": 83813
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "gen-modal-01",
+      "try": 2,
+      "score": 0.8,
+      "cost_usd": 0.5122914,
+      "ms": 95611
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "gen-modal-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.435759,
+      "ms": 80063
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "gen-toolbar-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.5159002,
+      "ms": 133785
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "gen-toolbar-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.5761530000000001,
+      "ms": 132545
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "gen-toolbar-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.5643406,
+      "ms": 134699
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "repair-ai-hero-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.4539124,
+      "ms": 72925
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "repair-ai-hero-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.4219114,
+      "ms": 67080
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "repair-focus-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.1657592,
+      "ms": 30774
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "repair-focus-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.21124380000000004,
+      "ms": 32335
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "repair-input-01",
+      "try": 1,
+      "score": 0.5,
+      "cost_usd": 0.06286520000000001,
+      "ms": 12124
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "repair-input-01",
+      "try": 2,
+      "score": 0.5,
+      "cost_usd": 0.13362079999999998,
+      "ms": 16051
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "repair-input-01",
+      "try": 3,
+      "score": 0.5,
+      "cost_usd": 0.06345719999999999,
+      "ms": 14927
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "review-button-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.39684759999999997,
+      "ms": 81834
+    },
+    {
+      "arm": "minus-components",
+      "fixture": "review-button-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3820542,
+      "ms": 42323
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "edit-launch-typing-01",
+      "try": 1,
+      "score": 0.5,
+      "cost_usd": 0.16855920000000002,
+      "ms": 39767
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "edit-launch-typing-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.233942,
+      "ms": 33641
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "gen-launch-drop-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2611742,
+      "ms": 29755
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "gen-launch-drop-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.1893064,
+      "ms": 20525
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "gen-launch-sfx-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.292666,
+      "ms": 50418
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "gen-launch-sfx-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2767064,
+      "ms": 32814
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "gen-launch-zoom-01",
+      "try": 1,
+      "score": 0.8333333333333334,
+      "cost_usd": 0.2868236,
+      "ms": 58718
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "gen-launch-zoom-01",
+      "try": 2,
+      "score": 0.6666666666666666,
+      "cost_usd": 0.32614780000000004,
+      "ms": 59068
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "repair-launch-seam-01",
+      "try": 1,
+      "score": 0.5,
+      "cost_usd": 0.35085600000000006,
+      "ms": 67592
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "repair-launch-seam-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2299386,
+      "ms": 50325
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "repair-launch-zseam-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.1886746,
+      "ms": 47828
+    },
+    {
+      "arm": "minus-launch-video",
+      "fixture": "repair-launch-zseam-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.1819456,
+      "ms": 39122
+    },
+    {
+      "arm": "minus-layout",
+      "fixture": "gen-form-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.6253481999999999,
+      "ms": 152394
+    },
+    {
+      "arm": "minus-layout",
+      "fixture": "gen-form-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.5417818000000001,
+      "ms": 111953
+    },
+    {
+      "arm": "minus-layout",
+      "fixture": "gen-form-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.7080622000000001,
+      "ms": 195390
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "council-card-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.24211759999999996,
+      "ms": 65633
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "council-card-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2958126,
+      "ms": 78570
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "edit-dropdown-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2290084,
+      "ms": 37564
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "edit-dropdown-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2424248,
+      "ms": 35808
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "edit-dropdown-01",
+      "try": 3,
+      "score": 0.8333333333333334,
+      "cost_usd": 0.2105168,
+      "ms": 38492
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "edit-hover-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2451236,
+      "ms": 26898
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "edit-hover-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2649884,
+      "ms": 36144
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "edit-hover-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.2682524,
+      "ms": 40916
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "gen-modal-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.340962,
+      "ms": 62652
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "gen-modal-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2820264,
+      "ms": 52705
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "gen-modal-01",
+      "try": 3,
+      "score": 0.8,
+      "cost_usd": 0.35088299999999994,
+      "ms": 68175
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "gen-send-sound-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.2975964,
+      "ms": 68474
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "gen-send-sound-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3400452,
+      "ms": 73884
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "gen-send-sound-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.30874820000000003,
+      "ms": 68725
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "gen-toolbar-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.5683576,
+      "ms": 156636
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "gen-toolbar-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.4238556,
+      "ms": 101110
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "gen-toolbar-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.4191624,
+      "ms": 115940
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "grade-episode-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.23197839999999997,
+      "ms": 48802
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "grade-episode-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2944804,
+      "ms": 81761
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "repair-darkmode-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.1970992,
+      "ms": 29121
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "repair-darkmode-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.19299719999999998,
+      "ms": 25662
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "repair-darkmode-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.1974406,
+      "ms": 33135
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "repair-spinner-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.18724420000000003,
+      "ms": 33043
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "repair-spinner-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.1814386,
+      "ms": 32358
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "repair-spinner-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.1927588,
+      "ms": 43048
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "review-button-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.1785938,
+      "ms": 42896
+    },
+    {
+      "arm": "minus-meta",
+      "fixture": "review-button-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.18008500000000002,
+      "ms": 32004
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "edit-dropdown-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.22485339999999998,
+      "ms": 34661
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "edit-dropdown-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3102,
+      "ms": 39848
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "edit-dropdown-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.2968134,
+      "ms": 35795
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "edit-hover-01",
+      "try": 1,
+      "score": 0.8,
+      "cost_usd": 0.1483066,
+      "ms": 25456
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "edit-hover-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3777922,
+      "ms": 37194
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "edit-hover-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.355598,
+      "ms": 37235
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "gen-modal-01",
+      "try": 1,
+      "score": 0.8,
+      "cost_usd": 0.5184513999999999,
+      "ms": 127388
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "gen-modal-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.5112658,
+      "ms": 93348
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "gen-modal-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.4004818,
+      "ms": 79585
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "gen-svg-check-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.4161077999999999,
+      "ms": 88260
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "gen-svg-check-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3024662,
+      "ms": 48404
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "gen-toolbar-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.5536374,
+      "ms": 109790
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "gen-toolbar-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.7494398,
+      "ms": 173594
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "gen-toolbar-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.643993,
+      "ms": 163031
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "repair-spinner-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.24182099999999998,
+      "ms": 44387
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "repair-spinner-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.17355320000000002,
+      "ms": 25942
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "repair-spinner-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.2459144,
+      "ms": 53019
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "review-button-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.4449112,
+      "ms": 57043
+    },
+    {
+      "arm": "minus-motion",
+      "fixture": "review-button-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.4329636,
+      "ms": 57410
+    },
+    {
+      "arm": "minus-sound",
+      "fixture": "gen-launch-drop-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.24063419999999996,
+      "ms": 32256
+    },
+    {
+      "arm": "minus-sound",
+      "fixture": "gen-launch-drop-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.202895,
+      "ms": 29940
+    },
+    {
+      "arm": "minus-sound",
+      "fixture": "gen-launch-sfx-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.20240419999999998,
+      "ms": 34259
+    },
+    {
+      "arm": "minus-sound",
+      "fixture": "gen-launch-sfx-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2254706,
+      "ms": 28353
+    },
+    {
+      "arm": "minus-sound",
+      "fixture": "gen-send-sound-01",
+      "try": 1,
+      "score": 0.8,
+      "cost_usd": 0.227076,
+      "ms": 52392
+    },
+    {
+      "arm": "minus-sound",
+      "fixture": "gen-send-sound-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.2927264,
+      "ms": 68259
+    },
+    {
+      "arm": "minus-sound",
+      "fixture": "gen-send-sound-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.228103,
+      "ms": 62162
+    },
+    {
+      "arm": "minus-surface",
+      "fixture": "edit-hover-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.34303720000000004,
+      "ms": 36472
+    },
+    {
+      "arm": "minus-surface",
+      "fixture": "edit-hover-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3242914,
+      "ms": 29563
+    },
+    {
+      "arm": "minus-surface",
+      "fixture": "edit-hover-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.3431272,
+      "ms": 44781
+    },
+    {
+      "arm": "minus-surface",
+      "fixture": "gen-tokens-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.43383120000000003,
+      "ms": 91394
+    },
+    {
+      "arm": "minus-surface",
+      "fixture": "gen-tokens-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.4671804,
+      "ms": 121723
+    },
+    {
+      "arm": "minus-surface",
+      "fixture": "repair-ai-hero-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.4408486,
+      "ms": 80248
+    },
+    {
+      "arm": "minus-surface",
+      "fixture": "repair-ai-hero-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.5026758,
+      "ms": 76969
+    },
+    {
+      "arm": "minus-surface",
+      "fixture": "repair-darkmode-01",
+      "try": 1,
+      "score": 0.5,
+      "cost_usd": 0.148201,
+      "ms": 24459
+    },
+    {
+      "arm": "minus-surface",
+      "fixture": "repair-darkmode-01",
+      "try": 2,
+      "score": 0.5,
+      "cost_usd": 0.2819506,
+      "ms": 34312
+    },
+    {
+      "arm": "minus-surface",
+      "fixture": "repair-darkmode-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.2770534,
+      "ms": 30775
+    },
+    {
+      "arm": "minus-svg",
+      "fixture": "gen-svg-check-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.5318608,
+      "ms": 104338
+    },
+    {
+      "arm": "minus-svg",
+      "fixture": "gen-svg-check-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.3942966,
+      "ms": 78293
+    },
+    {
+      "arm": "minus-typography",
+      "fixture": "gen-type-01",
+      "try": 1,
+      "score": 0.8,
+      "cost_usd": 0.3517958,
+      "ms": 61519
+    },
+    {
+      "arm": "minus-typography",
+      "fixture": "gen-type-01",
+      "try": 2,
+      "score": 0.8,
+      "cost_usd": 0.3567172,
+      "ms": 65680
+    },
+    {
+      "arm": "none",
+      "fixture": "council-card-01",
+      "try": 1,
+      "score": 0.75,
+      "cost_usd": 0.10002520000000001,
+      "ms": 36933
+    },
+    {
+      "arm": "none",
+      "fixture": "council-card-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.1024532,
+      "ms": 33073
+    },
+    {
+      "arm": "none",
+      "fixture": "edit-dropdown-01",
+      "try": 1,
+      "score": 0.8333333333333334,
+      "cost_usd": 0.0735652,
+      "ms": 18142
+    },
+    {
+      "arm": "none",
+      "fixture": "edit-dropdown-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.060029200000000005,
+      "ms": 12552
+    },
+    {
+      "arm": "none",
+      "fixture": "edit-dropdown-01",
+      "try": 3,
+      "score": 0.8333333333333334,
+      "cost_usd": 0.07157720000000001,
+      "ms": 22830
+    },
+    {
+      "arm": "none",
+      "fixture": "edit-hover-01",
+      "try": 1,
+      "score": 0.8,
+      "cost_usd": 0.0641332,
+      "ms": 13623
+    },
+    {
+      "arm": "none",
+      "fixture": "edit-hover-01",
+      "try": 2,
+      "score": 0.6,
+      "cost_usd": 0.06734520000000001,
+      "ms": 14870
+    },
+    {
+      "arm": "none",
+      "fixture": "edit-hover-01",
+      "try": 3,
+      "score": 0.6,
+      "cost_usd": 0.06536120000000001,
+      "ms": 18971
+    },
+    {
+      "arm": "none",
+      "fixture": "edit-launch-typing-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.0639172,
+      "ms": 17423
+    },
+    {
+      "arm": "none",
+      "fixture": "edit-launch-typing-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.06594920000000001,
+      "ms": 16302
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-form-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.1429012,
+      "ms": 44534
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-form-01",
+      "try": 2,
+      "score": 0.8,
+      "cost_usd": 0.1381812,
+      "ms": 41792
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-form-01",
+      "try": 3,
+      "score": 0.8,
+      "cost_usd": 0.2603272,
+      "ms": 59025
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-launch-drop-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.062401200000000004,
+      "ms": 17448
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-launch-drop-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.0630772,
+      "ms": 14016
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-launch-sfx-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.0660572,
+      "ms": 15567
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-launch-sfx-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.0624412,
+      "ms": 13269
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-launch-zoom-01",
+      "try": 1,
+      "score": 0.5,
+      "cost_usd": 0.0815652,
+      "ms": 24209
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-launch-zoom-01",
+      "try": 2,
+      "score": 0.5,
+      "cost_usd": 0.0860012,
+      "ms": 27676
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-modal-01",
+      "try": 1,
+      "score": 0.8,
+      "cost_usd": 0.2526546,
+      "ms": 51912
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-modal-01",
+      "try": 2,
+      "score": 0.6,
+      "cost_usd": 0.26654239999999996,
+      "ms": 58838
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-modal-01",
+      "try": 3,
+      "score": 0.8,
+      "cost_usd": 0.2430056,
+      "ms": 65532
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-send-sound-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.0913972,
+      "ms": 23258
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-send-sound-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.11152119999999999,
+      "ms": 32211
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-send-sound-01",
+      "try": 3,
+      "score": 0.8,
+      "cost_usd": 0.1059052,
+      "ms": 29222
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-svg-check-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.10544120000000001,
+      "ms": 33289
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-svg-check-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.1109452,
+      "ms": 36077
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-tokens-01",
+      "try": 1,
+      "score": 0.6,
+      "cost_usd": 0.1937484,
+      "ms": 49048
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-tokens-01",
+      "try": 2,
+      "score": 0.6,
+      "cost_usd": 0.23470899999999997,
+      "ms": 64002
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-toolbar-01",
+      "try": 1,
+      "score": 0.75,
+      "cost_usd": 0.27186839999999995,
+      "ms": 60600
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-toolbar-01",
+      "try": 2,
+      "score": 0.75,
+      "cost_usd": 0.3007162,
+      "ms": 74271
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-toolbar-01",
+      "try": 3,
+      "score": 0.75,
+      "cost_usd": 0.28339659999999994,
+      "ms": 74580
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-type-01",
+      "try": 1,
+      "score": 0.8,
+      "cost_usd": 0.1045972,
+      "ms": 32200
+    },
+    {
+      "arm": "none",
+      "fixture": "gen-type-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.1039972,
+      "ms": 30047
+    },
+    {
+      "arm": "none",
+      "fixture": "grade-episode-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.1010812,
+      "ms": 33336
+    },
+    {
+      "arm": "none",
+      "fixture": "grade-episode-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.1025572,
+      "ms": 35111
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-ai-hero-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.10181319999999999,
+      "ms": 31529
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-ai-hero-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.0946332,
+      "ms": 30491
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-darkmode-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.0597492,
+      "ms": 12670
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-darkmode-01",
+      "try": 2,
+      "score": 0.5,
+      "cost_usd": 0.0617012,
+      "ms": 13079
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-darkmode-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.0620972,
+      "ms": 14678
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-focus-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.0666452,
+      "ms": 16124
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-focus-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.0683012,
+      "ms": 15157
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-input-01",
+      "try": 1,
+      "score": 0.5,
+      "cost_usd": 0.0561132,
+      "ms": 10217
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-input-01",
+      "try": 2,
+      "score": 0.5,
+      "cost_usd": 0.0578772,
+      "ms": 11247
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-input-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.0584292,
+      "ms": 14681
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-launch-seam-01",
+      "try": 1,
+      "score": 0.75,
+      "cost_usd": 0.0888292,
+      "ms": 29341
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-launch-seam-01",
+      "try": 2,
+      "score": 0.75,
+      "cost_usd": 0.0825932,
+      "ms": 25472
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-launch-zseam-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.0978932,
+      "ms": 31025
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-launch-zseam-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.1015492,
+      "ms": 32488
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-spinner-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.0653412,
+      "ms": 14953
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-spinner-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.0645452,
+      "ms": 13701
+    },
+    {
+      "arm": "none",
+      "fixture": "repair-spinner-01",
+      "try": 3,
+      "score": 1,
+      "cost_usd": 0.062125200000000005,
+      "ms": 11753
+    },
+    {
+      "arm": "none",
+      "fixture": "review-button-01",
+      "try": 1,
+      "score": 1,
+      "cost_usd": 0.0706652,
+      "ms": 18342
+    },
+    {
+      "arm": "none",
+      "fixture": "review-button-01",
+      "try": 2,
+      "score": 1,
+      "cost_usd": 0.07072120000000001,
+      "ms": 17309
+    }
+  ]
 }
