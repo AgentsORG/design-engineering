@@ -63,7 +63,8 @@ jobs:
       - name: Parse
         shell: pwsh
         run: |
-          $null = [System.Management.Automation.Language.Parser]::ParseFile("$PWD/install.ps1", [ref]$null, [ref]$errs)
+          $tokens = $null; $errs = $null
+          $null = [System.Management.Automation.Language.Parser]::ParseFile("$PWD/install.ps1", [ref]$tokens, [ref]$errs)
           if ($errs) { $errs; exit 1 }
       - name: Dry run, install, uninstall into a temp home
         shell: pwsh
