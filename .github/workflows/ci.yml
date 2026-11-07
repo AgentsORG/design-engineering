@@ -34,9 +34,12 @@ jobs:
       - name: Release versions agree
         run: node scripts/release.mjs --verify "$(node -p "require('./package.json').version")"
       - name: npx skills add finds exactly one skill
+        env:
+          NO_COLOR: '1'
+          FORCE_COLOR: '0'
         run: |
-          out=$(npx -y skills add ./ --list 2>&1 | sed 's/\[[0-9;]*m//g')
-          echo "$out" | grep -q "Found 1 skill" || { echo "$out"; echo "::error::npx skills add must find exactly one skill"; exit 1; }
+          out=$(npx -y skills add ./ --list 2>&1)
+          echo "$out" | grep -Eq "Found[^0-9]*1[^0-9]*skill([^s]|$)" || { echo "$out"; echo "::error::npx skills add must find exactly one skill"; exit 1; }
       - name: Plugin manifest validates
         run: |
           npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || true
