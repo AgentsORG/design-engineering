@@ -37,11 +37,13 @@ These are starting points, not walls. Override any of them in your own section b
 
 ## Example forks
 
-Three full forks ship in `pov-examples/`. Copy one over this file to adopt it, or borrow sections:
+Five full forks ship in `pov-examples/`. Copy one over this file to adopt it, or borrow sections:
 
 - `pov-examples/duolingo.md`: physical buttons, meaning-bearing colour, rounded lowercase type, celebration on the reward beat.
 - `pov-examples/campus-binge.md`: calm, green and type-led; one gradient word per headline, light only, isometric stickers that play once, a peer-to-peer Hinglish voice.
 - `pov-examples/smash-and-clash.md`: a toy you can press; tilted candy slabs on hard navy lips, one sun-yellow primary per screen, locked game colours, squash-and-pop springs, sound with a visual twin.
+- `pov-examples/swiggy.md`: one orange pin across a family of businesses, Gilroy, everything in a rounded bento panel, a lead colour per business (Instamart blue, Dineout green).
+- `pov-examples/cursor.md`: warm paper and warm ink, one orange accent, ink in opacity steps, a grotesk with a monospace for machine output.
 
 A fork changes everything this skill produces. In the 2026-11-07 benchmark, the Duolingo fork (then the default) is why a plain settings modal came back with uppercase buttons and a loud green Save. Pick a fork on purpose, per product.
 

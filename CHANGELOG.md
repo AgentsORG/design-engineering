@@ -6,6 +6,12 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [4.1.1] — 2026-11-07
+
+### Added
+
+- **Two more example forks of `pov.md`** in `skills/design-engineering/pov-examples/`: `swiggy.md`, condensed from Swiggy's published masterbrand, Instamart and Dineout books (one orange pin across a family of businesses, a lead colour per business, Gilroy, the bento panel), and `cursor.md`, read from cursor.com/brand and the styles cursor.com ships (warm paper and ink, one orange accent, ink in opacity steps). Five example forks in all.
+
 ## [4.1.0] — 2026-11-07
 
 A tidy root, the first Opus 5.5 benchmark, rendered outputs, a restrained default taste, and AgentsORG as the only name.
