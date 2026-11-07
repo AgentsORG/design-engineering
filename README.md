@@ -38,7 +38,7 @@ irm https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.
 
 ![A terminal running the one-line installer on a machine with Claude Code and Codex: it downloads the repo, prints a PART, TARGET and STATUS summary (skill, plugin, agents and hook installed; the Codex hook not wired), then how to verify each harness and how to uninstall](docs/readme/img/de-install.png)
 
-Add `--dry-run` to see every change first (`-DryRun` on Windows). The installer is idempotent, backs up any settings file before it edits one, never touches credentials, and `--uninstall` removes exactly what it wrote. Pin a release with `DE_REF=v4.0.0`. The flags, every path it writes and the manual steps for each harness, the plugin marketplace and the shadcn registry are in [docs/install.md](docs/install.md).
+Add `--dry-run` to see every change first (`-DryRun` on Windows). The installer is idempotent, backs up any settings file before it edits one, never touches credentials, and `--uninstall` removes exactly what it wrote. It downloads only the latest release's ~1 MB install bundle; pin a release with `DE_REF=v4.2.1`. The flags, every path it writes and the manual steps for each harness, the plugin marketplace and the shadcn registry are in [docs/install.md](docs/install.md).
 
 Install the skill one way only. skills.sh gives you `/design-engineering`; the plugin gives you `/design-engineering:design-engineering`. With both, it is listed twice.
 

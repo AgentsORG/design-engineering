@@ -6,6 +6,14 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [4.2.1] — 2026-11-07
+
+### Fixed
+
+- **The one-line installer downloads ~1 MB instead of ~19 MB.** Each release now ships `design-engineering-install.zip` (the skill, agents, hooks and manifests), and `install.sh` / `install.ps1` fetch it from the latest release (or the tag in `DE_REF`) and copy the skill from it. Before, they downloaded the whole repository snapshot and then `npx skills add` cloned it again, which on a slow connection took minutes and could time out. `DE_REF=main` still downloads the full snapshot; `DE_USE_SKILLS_CLI=1` restores the `npx skills` step.
+- **A failed `npx skills` step no longer aborts the install**: it falls back to copying the skill from the download.
+- **`install.ps1` run as a script block** (`& ([scriptblock]::Create((irm …))) -Yes`) lost its download path and printed "design-engineering ? from"; the source path is now returned, not written to `$script:` scope.
+
 ## [4.2.0] — 2026-11-07
 
 ### Added
