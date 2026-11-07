@@ -1,5 +1,5 @@
 import { Prompt, Stage, Window } from '../../kit'
-import { Input, Turn, Welcome } from '../_de/claude'
+import { Header, Input, Turn } from '../_de/claude'
 import '../_de/de.css'
 
 // Built from examples/hero-demo (its Claude Code terminal, brought forward
@@ -19,12 +19,12 @@ const FIT: [string, string][] = [
 
 export default function Verbs() {
   return (
-    <Stage width={800} height={430} className="de de-verbs">
+    <Stage width={800} height={380} className="de de-verbs">
       {() => (
-        <Window chrome="terminal" title="my-app — claude" className="de-win" style={{ width: 812, height: 440 }}>
+        <Window chrome="terminal" title="my-app — claude" className="de-win" style={{ width: 812, height: 400 }}>
           <div className="ss-term de-term">
             <Prompt path="~/my-app">claude</Prompt>
-            <Welcome />
+            <Header />
             <div className="w">{'> /design-engineering help'}</div>
             <div className="gap" />
             <Turn>Three verbs fit the change in front of you:</Turn>

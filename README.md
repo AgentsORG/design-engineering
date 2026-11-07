@@ -40,7 +40,7 @@ curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/i
 irm https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.ps1 | iex
 ```
 
-![A terminal running the one-line installer: it detects Claude Code, Codex, Cursor and Gemini, prints a tick per part installed, skips OpenCode because it is not installed, and ends with how to verify](docs/readme/img/de-install.png)
+![A terminal running the one-line installer on a machine with Claude Code and Codex: it downloads the repo, prints a PART, TARGET and STATUS summary (skill, plugin, agents and hook installed; the Codex hook not wired), then how to verify each harness and how to uninstall](docs/readme/img/de-install.png)
 
 Flags: `--dry-run` prints every change, `--only <parts>`, `--harness <list>`, `--yes`, `--with-hooks` / `--no-hooks`, `--with-mcp` (eve MCP), `--with-companions` (agentation, stageshow), `--uninstall`; on Windows the same switches are `-DryRun`, `-Only`, `-Harness`, `-Yes`, `-WithHooks` / `-NoHooks`, `-WithMcp`, `-WithCompanions`, `-Uninstall`. It is idempotent, backs up any settings file before editing it and never touches credentials. Pin a release with `curl -fsSL <url> | DE_REF=v4.0.0 bash` (or `$env:DE_REF='v4.0.0'` before `irm`). Every path the installer writes is listed under [Manual install](#manual-install).
 
@@ -86,7 +86,7 @@ Each agent is written once in `agents/<name>.md` and generated into every other 
 
 ## Verbs
 
-![The /design-engineering verb menu in Claude Code: review, polish, motion, council and grade, with council highlighted](docs/readme/img/de-verbs.png)
+![Claude Code answering /design-engineering help: review, motion and council are the three verbs that fit the change in front of you, out of 22 verbs in all](docs/readme/img/de-verbs.png)
 
 Everything is reached through one skill: `/design-engineering [verb] [target]`. A plain request (`/design-engineering why does this card feel flat`) goes through the router to one owner node. With no arguments it shows the menu and suggests the two or three verbs that fit what is in front of it.
 
@@ -108,13 +108,13 @@ Everything is reached through one skill: `/design-engineering [verb] [target]`. 
 | `film` | `plan` a launch film, `review` a render, or `formats` |
 | `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha |
 
-![A review of Card.tsx: three findings as Before, After and Why rows, each Before struck through and each Why citing the node that owns the rule](docs/readme/img/de-review.png)
+![Claude Code running /design-engineering review on Card.tsx: three findings, each a removed Before line, an added After line and a Why comment citing the node that owns the rule, then the verdict: ship after these three](docs/readme/img/de-review.png)
 
 The 2.x slash commands (`/design-engineering:review-ui` and the rest) are gone; their names still work as aliases. Install the skill **one** way, either skills.sh (`/design-engineering`) or the plugin (`/design-engineering:design-engineering`). Installing both lists it twice.
 
 ## Agents and loops
 
-![The Codex agents view: a sidebar of five harnesses with Codex selected, and design-council, design-judge and design-grader listed with their generated .toml paths and a three-round loop each](docs/readme/img/de-agents.png)
+![Claude Code running @agent-design-council on the billing page, beside a card listing the same design-council agent as generated for Claude Code, Codex, Cursor, Gemini CLI and OpenCode, with each file's path](docs/readme/img/de-agents.png)
 
 Thirteen specialists, each a delegation target rather than an entry point (every verb runs without them):
 
@@ -137,7 +137,7 @@ Every agent carries a `## Loop`: act, verify with a deterministic check where on
 
 ## Design council
 
-![The design-council table for a pull request: Claude and GPT judges scored over three rounds, rising to 8.3 and 8.0; the Gemini jester marked no score; a satellite card shows Claude's round-three scores for typography, hierarchy, contrast and motion](docs/readme/img/de-council.png)
+![Claude Code running /design-engineering council: the Council review table over three rounds, Claude (opus) rising to 9.2 and Codex (gpt-6.1-sol) to 9.0, Gemini read as an unscored jester, nothing missing; a card shows Claude's round-three scores for typography, hierarchy, contrast and motion](docs/readme/img/de-council.png)
 
 `/design-engineering council` (or `@agent-design-council`) adapts Theo Browne's [tstack](https://github.com/t3dotgg/tstack) council (MIT) to design, the way Emil pairs a council with design and animation skills:
 
@@ -151,7 +151,7 @@ The runner is [`skills/design-engineering/scripts/council.mjs`](skills/design-en
 
 ## Grader
 
-![A grade report for episode 0142: 7.4, band crafted, agent with skill, confidence 0.82; five axes with bars, Access marked lower at 6.4; a counterweight card says the focus ring fails 3:1 on the dark card, so checks cap Access](docs/readme/img/de-grade.png)
+![A grade.mjs report card: Craft, Motion, Restraint, Access and Verification with score, ceiling and band; Access is capped at 6.4, and a card shows the contrast check that caps it (2.9:1) and the line: judges said 7.1, the checks cap it at 6.4](docs/readme/img/de-grade.png)
 
 `/design-engineering grade` scores a design episode (the brief, the diff or output, rendered evidence and, optionally, the transcript) the same way for a human, an agent with the skill, and an agent without it.
 
@@ -164,7 +164,7 @@ The rubric is [`grading-rubric.md`](skills/design-engineering/references/meta/gr
 
 ## Benchmarks
 
-![The benchmark report for 2026-09-05 on Sonnet: the none arm passes 32 of 36 rules, the full arm 35 of 36; a card shows the per-cluster verdicts keep, slim and retire](docs/readme/img/de-bench.png)
+![The design-bench report for 2026-09-05 on Sonnet: the baseline arm passes 32 of 36 rules (7 of 10 fixtures fully clean), the skill arm 35 of 36 (9 of 10); a card shows fixture edit-hover-01, baseline 3 of 5 and skill 5 of 5, and what the baseline missed](docs/readme/img/de-bench.png)
 
 Same model in every arm; the only difference is how much of the skill the agent can see. `scripts/bench.mjs` runs three kinds of arm: `none`, `full`, and `minus-<cluster>` for each cluster on disk (plus `minus-agents`). Every run is a fresh `claude -p` in an empty workspace with an isolated plugin copy; the stream-json init line proves no user-installed copy leaked into the baseline, and a run that fails that check is excluded. It scores with the fixture rules and the grader's checks, records cost and tokens, labels any gap below the minimum detectable difference as noise, and gives each cluster a verdict: keep, slim or retire. The `claude plugin eval` suite under `evals/plugin/` runs the same with/without comparison inside Claude Code.
 
@@ -437,8 +437,7 @@ The stills above are faux product UI built with [Stageshow](https://benji.org/st
 ```bash
 cd docs/readme/stage && npm install
 npx vite playground --config playground/vite.config.ts --port 4711 &
-node scripts/film.mjs "http://127.0.0.1:4711/?capture=de-council" --still --out ../img/de-council.png
-node scripts/film.mjs "http://127.0.0.1:4711/?capture=de-council" --gate --count 4
+node scripts/film.mjs "http://127.0.0.1:4711/?capture=de-council" --still --pad 0 --out ../img/de-council.png
 ```
 
 ## Contributing

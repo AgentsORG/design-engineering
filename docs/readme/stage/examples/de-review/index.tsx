@@ -1,48 +1,47 @@
-import { Bar, Stage, Text, Window, Badge } from '../../kit'
+import { Code, Prompt, Stage, Window, type CodeLine } from '../../kit'
+import { Input, Turn } from '../_de/claude'
 import '../_de/de.css'
 
-// A review: every finding is a Before | After | Why row, citing the node that owns the rule.
-const ROWS: [string, string, string, string][] = [
-  ['transition: all .3s ease-in', 'transform 160ms cubic-bezier(.25,1,.5,1)', 'Name the properties; enter on ease-out', 'easing-curves'],
-  ['transform: scale(0)', 'scale(.95); opacity: 0', 'Nothing appears from nothing', 'never-scale-from-zero'],
-  ['.card:hover { … }', '@media (hover: hover) { … }', 'No sticky hover after a tap', 'touch-and-focus'],
+// Built from examples/ai-chat (the question sent, the answer under it, its
+// sources last) inside examples/hero-demo's Claude Code terminal, with the
+// kit's Code part for the review: each finding is the Before line (−), the
+// After line (+) and its Why as a comment naming the node that owns the
+// rule. Corner bleed: inset top-left, off the right and the bottom.
+// Each finding at its own line in Card.tsx: Before, After, Why
+const FINDINGS: [number, CodeLine[]][] = [
+  [14, [
+    { text: 'transition: all .3s ease-in;', kind: 'del' },
+    { text: 'transition: transform 160ms cubic-bezier(.25, 1, .5, 1);', kind: 'add' },
+    { text: '// Name the properties; enter on ease-out. [[easing-curves]]', number: false },
+  ]],
+  [22, [
+    { text: 'transform: scale(0);', kind: 'del' },
+    { text: 'transform: scale(.95); opacity: 0;', kind: 'add' },
+    { text: '// Nothing appears from nothing. [[never-scale-from-zero]]', number: false },
+  ]],
+  [31, [
+    { text: '.card:hover { translate: 0 -2px; }', kind: 'del' },
+    { text: '@media (hover: hover) { .card:hover { translate: 0 -2px; } }', kind: 'add' },
+    { text: '// No sticky hover after a tap. [[touch-and-focus]]', number: false },
+  ]],
 ]
-const COLS = '190px 250px 1fr'
 
 export default function Review() {
   return (
-    <Stage width={720} height={380} className="de">
+    <Stage width={800} height={460} className="de de-review">
       {() => (
-        <>
-          <Window title="review — Card.tsx" className="de-win">
-            <div className="de-body">
-              <div className="de-line" style={{ width: 664 }}>
-                <Text className="de-h">3 findings</Text>
-                <Badge tone="warning" dot>Ship after 3 fixes</Badge>
-              </div>
-              <div className="de-table" style={{ width: 664 }}>
-                <div className="de-tr" data-head style={{ gridTemplateColumns: COLS }}>
-                  <Text className="de-label">Before</Text><Text className="de-label">After</Text><Text className="de-label">Why</Text>
-                </div>
-                {ROWS.map(([b, a, w, n]) => (
-                  <div key={n} className="de-tr" style={{ gridTemplateColumns: COLS }}>
-                    <Text className="de-code" data-strike="">{b}</Text>
-                    <Text className="de-code">{a}</Text>
-                    <div className="de-stack">
-                      <Text className="de-small">{w}</Text>
-                      <Text className="de-code de-accent">{`[[${n}]]`}</Text>
-                    </div>
-                  </div>
-                ))}
-                {[0, 1].map((i) => (
-                  <div key={i} className="de-tr" style={{ gridTemplateColumns: COLS }}>
-                    <Bar w={140} tone={2} /><Bar w={170} tone={2} /><Bar w={120} tone={2} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Window>
-        </>
+        <Window chrome="terminal" title="my-app — claude" className="de-win" style={{ width: 800, height: 480 }}>
+          <div className="ss-term de-term">
+            <Prompt path="~/my-app">claude</Prompt>
+            <div className="w">{'> /design-engineering review src/components/Card.tsx'}</div>
+            <div className="gap" />
+            <Turn>Three findings in Card.tsx. Before (−), After (+), and Why:</Turn>
+            {FINDINGS.map(([start, lines]) => <Code key={start} lines={lines} start={start} highlight={false} />)}
+            <div className="gap" />
+            <Turn>Verdict: ship after these three. Nothing else blocks.</Turn>
+            <Input />
+          </div>
+        </Window>
       )}
     </Stage>
   )
