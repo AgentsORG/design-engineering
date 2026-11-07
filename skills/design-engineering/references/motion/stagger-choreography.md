@@ -94,6 +94,6 @@ Stagger on every state change is exhausting. Only stagger on **first appearance*
 - Emil Kowalski — stagger guidance (30–80ms, decorative, never blocks interaction). The cap at 12 is house guidance.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/remove-animations/SKILL.md (300ms total cap).
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/choreograph/SKILL.md (one entrance per container, no stagger on high-frequency UI, no uniform stagger, simultaneous exits).
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN (split-then-stagger sections, no entrance on first paint).
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG (split-then-stagger sections, no entrance on first paint).
 - guidelines.sh — "stagger reveals 30–50ms."
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/choreography.md`, `stageshow/references/motion.md` (Pace and easing, Changing text and values, Loops), `stageshow/kit/act.ts` (`stagger`), `stageshow/examples/choreography/choreography.css`.

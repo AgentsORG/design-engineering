@@ -77,5 +77,5 @@ Loudness normalization tools (`loudnorm`, streaming platforms) measure *integrat
 - Envato, *UI sound design with AI* — LUFS targets by class, duration bands, mono, the 0–5 ms trim.
 - Toptal, *A Quick Guide to Designing UX Sounds* — the 300 ms-over-animation rule; mid-range guidance.
 - uisfx.com, *UI Sound Design* — subordinate to speech, urgency by timbre not volume, one-shots vs loops.
-- EBU R 128 (−23 LUFS, −1 dBTP max) and streaming practice (≈ −14 LUFS): platform reference levels, not what launch films ship at (medians −18.1 LUFS for 28 Skale client films and −18.4 for 18 acclaimed films, measured by HKTITAN 2026-09-28, `docs/research/launch-films/`).
+- EBU R 128 (−23 LUFS, −1 dBTP max) and streaming practice (≈ −14 LUFS): platform reference levels, not what launch films ship at (medians −18.1 LUFS for 28 Skale client films and −18.4 for 18 acclaimed films, measured by AgentsORG 2026-09-28, `docs/research/launch-films/`).
 - Related: [[duration-table]], [[sound-palette]].

@@ -60,5 +60,5 @@ See also [[dark-mode]] for the dark-mode variant of these tokens, [[ai-default-t
 
 - guidelines.sh — "Monochromatic with subtle accents; avoid bright/purple gradients."
 - Linear, Vercel, Notion — examples of monochrome-with-one-accent in production.
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN — status hue, neutral temperature, tints and disabled tokens.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG — status hue, neutral temperature, tints and disabled tokens.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (default light and dark tokens, `data-palette="mono"`), `stageshow/references/craft.md` (Color and looks), `stageshow/teaching/style.tsx` and `stageshow/teaching/style.css` (`style-purple`), `stageshow/examples/dark-bento/index.tsx`.

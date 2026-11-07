@@ -6,6 +6,63 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [4.1.0] — 2026-11-07
+
+A tidy root, the first Opus 5.5 benchmark, rendered outputs, a restrained default taste, and AgentsORG as the only name.
+
+### Added
+
+- **Opus 5.5 ablation benchmark** in `bench/results/2026-11-07-opus-ablation/`: 23 tasks, up to 3 tries, 219 runs (the $60 cost cap stopped 51 of the 270 planned) across no skill, the full skill, and the full skill minus each cluster. Full scored 0.914 against 0.868 without the skill (+0.046, 95% CI −0.019 to +0.111). That gap is below the minimum detectable difference of 0.092, so on these tasks the gain is within noise, at about 3× the cost per task. Every cluster reads "slim" or "insufficient data"; none earns "retire". Diagram, faux-UI and philosophy have no tasks yet and are not measured.
+- **Benchmark charts and rendered outputs** in the README: per-task scores with and without the skill, cluster deltas against the noise floor, score against cost, and side-by-side renders of real answers (`bench/render.mjs`, `bench/chart.mjs`).
+- **README scenes rebuilt on Stageshow's own templates** (terminal window, ai-chat, Code diff, static card); the vendored kit trimmed to what the scenes import.
+
+### Changed
+
+- **A restrained default `pov.md`.** The taste layer had been forked to Duolingo's design language since August, so every install shipped loud colour and physical buttons; in the benchmark that is where the skill's uppercase green modal came from. The default is now the restrained starter distilled from the graph, plus the launch-film and diagram calls. Duolingo moves to `skills/design-engineering/pov-examples/duolingo.md`, and two new example forks capture published brand contracts: `pov-examples/campus-binge.md` (campusbinge.in/brand and its `.DESIGN` file) and `pov-examples/smash-and-clash.md` (smashandclash.in and its `design.v1` file). Each explains how to use the fork beside the brand's own contract, which always wins.
+- **AgentsORG is the only name** in the license, manifests, SKILL.md metadata, registry items and credits. Personal email removed from manifests.
+- The README is rewritten end to end, with `npx skills add AgentsORG/design-engineering` first.
+
+### Changed: repository layout
+
+The repo root now holds only what has to be there: `README.md`, `AGENTS.md`, `CHANGELOG.md`, `LICENSE`, `plugin.json`, `install.sh`, `install.ps1`, `.gitignore`, `.gitattributes` and the host manifest folders (`.claude-plugin/`, `.codex-plugin/`, `.cursor-plugin/`, `.plugin/`, `.github/`). `skills/design-engineering/` is unchanged. Everything else moved into a folder (all moves are `git mv`, so history follows):
+
+| Old path | New path |
+| --- | --- |
+| `agents/` | `plugin/agents/` |
+| `hooks/` | `plugin/hooks/` |
+| `harness/` | `plugin/harness/` |
+| `package.json`, `package-lock.json`, `tsconfig.json` | `eve/package.json`, `eve/package-lock.json`, `eve/tsconfig.json` |
+| `agent/` | `eve/agent/` |
+| `evals/*.eval.ts`, `evals/evals.config.ts` | `eve/evals/` |
+| `scripts/sync-skills.mjs` | `eve/scripts/sync-skills.mjs` |
+| `scripts/bench.mjs` | `bench/bench.mjs` |
+| `evals/run-bench.mjs` | `bench/run-bench.mjs` |
+| `evals/plugin/` | `bench/plugin/` |
+| `evals/results/` | `bench/results/` |
+| `evals/README.md` | `bench/README.md` |
+| `registry.json` | `registry/registry.json` |
+| `r/` | `registry/r/` |
+| `templates/design-engineering.design` | `registry/design-engineering.design` |
+| `spec/` | `docs/spec/` |
+| `template/` | `docs/template/` |
+| `SOUL.md`, `NOTICE.md` | `docs/SOUL.md`, `docs/NOTICE.md` |
+| `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` | `.github/` |
+| `.markdownlint.jsonc` | `.github/markdownlint.jsonc` |
+| `.obsidian/` | untracked and git-ignored; open `skills/design-engineering/` as the vault |
+
+- **shadcn registry URLs changed**: items are now served from `https://raw.githubusercontent.com/AgentsORG/design-engineering/main/registry/r/<item>.json` (was `.../main/r/<item>.json`). Install targets on the user's machine are unchanged (`~/.agents/skills/design-engineering/`, `~/.claude/agents/`, `~/.design`). The old `/main/r/` URLs stop resolving once 4.1.0 lands on `main`.
+- **Claude Code plugin**: the plugin root is still the repo root (it must contain `skills/`). `.claude-plugin/plugin.json` now lists every agent explicitly (`"agents": ["./plugin/agents/<name>.md", ...]`), points `hooks` at `./plugin/hooks/hooks.json`, and `experimental.evals` at `./bench/plugin`. The hook command is `node "${CLAUDE_PLUGIN_ROOT}/plugin/hooks/design-check.mjs"`. CI checks the agents list matches the folder.
+- Codex, Cursor and root `plugin.json` manifests point at `./plugin/agents/`; root `plugin.json` extensions now name `./eve/agent/`, `./eve/evals/`, `./registry/registry.json`, `./registry/r/`, `./registry/design-engineering.design`, `./docs/spec/design-file-spec.md`. `.plugin/plugin.json` gained explicit `skills`, `agents` and `hooks` paths.
+- **No root `package.json`.** The eve app root is `eve/`: `cd eve && npm install && npm run dev` (or `npm --prefix eve run eval`). Repo tooling runs with plain node from the root: `node scripts/build-agents.mjs [--check]`, `node scripts/build-registry.mjs`, `node scripts/release.mjs --verify|--bump|--assets`, `node bench/bench.mjs ...`. The `build:agents`, `check:agents` and `build:registry` npm scripts are gone. `release.mjs` now chdirs to the repo root itself and versions `eve/package.json`.
+- `bench/bench.mjs --report-only --out <run>` reuses that run's model, date and `--relevant-only` from its `report.json` unless flags override them, so rebuilding a report is stable.
+- Subagent soul lines now read "Inherits from the repo's [SOUL.md](docs/SOUL.md)"; generated harness copies link `.../blob/main/docs/SOUL.md`.
+- Dependabot's npm entry watches `/eve`. `install.yml` path filters watch `plugin/**`.
+- `docs/NOTICE.md`: dropped the dead link to Stageshow's `kit/brands/SOURCES.md` (the brand artwork was never kept after the kit trim).
+
+### Fixed
+
+- The bench report no longer labels a zero-variance comparison as a "real loss".
+
 ## [4.0.0] — 2026-11-07
 
 Harness-portable agents that loop, a cross-model design council, a grader for humans and agents, local benchmarks, and Benji Taylor's taste on every node.
@@ -368,11 +425,11 @@ A wrong version number for better-icons, corrected.
 
 ## [2.7.1] — 2026-10-08
 
-HKTITAN's diagram taste, written into `pov.md`.
+AgentsORG's diagram taste, written into `pov.md`.
 
 ### Changed
 
-- **`pov.md`** gains "Diagrams (HKTITAN)", plus two rows in the override table:
+- **`pov.md`** gains "Diagrams (AgentsORG)", plus two rows in the override table:
   - With no `.design` or DESIGN.md, a figure keeps diagram-design's shipped editorial skin. The Duolingo language stays in product UI.
   - "Make a diagram" with no reader or editor named gets one question; with no answer, a finished diagram-design figure, its assumption noted.
   - Figures are static, with diagram-design's `step` mode only when the order is the point; no `reveal`, `loop` or autoplay unless asked.
@@ -430,7 +487,7 @@ Nine other skills.sh SVG skills were read on 2026-10-08:
 
 ## [2.6.0] — 2026-09-28
 
-This repo's own launch film, built on the 2.5.0 rules and measured the way the 47 reference films were. HKTITAN's launch-film taste is written into `pov.md`, the router's launch-film path is spelled out, and the description is trimmed under the Agent Skills limit.
+This repo's own launch film, built on the 2.5.0 rules and measured the way the 47 reference films were. AgentsORG's launch-film taste is written into `pov.md`, the router's launch-film path is spelled out, and the description is trimmed under the Agent Skills limit.
 
 ### Added — the launch film
 
@@ -449,7 +506,7 @@ This repo's own launch film, built on the 2.5.0 rules and measured the way the 4
 
 ### Changed
 
-- **`pov.md`** gains "Launch films (HKTITAN)", plus a row in the override table:
+- **`pov.md`** gains "Launch films (AgentsORG)", plus a row in the override table:
   - An unspecified launch film gets Skale's UI-motion register, with bounce only on request.
   - "Lively" means creep, accelerating rhythm and causality.
   - Sound is OpenAI's register B, derived from motion; a beat track only when its drop can be placed on the picture.
@@ -536,7 +593,7 @@ Motion that is alive: the demo remade on HeyGen's launch motion system, measured
 
 ## [2.3.0] — 2026-09-05
 
-The launch-video register, measured from the films HKTITAN pointed at — OpenAI's *Refreshed.* and *Introducing GPT-5* — and built into the renderer and the demo.
+The launch-video register, measured from the films AgentsORG pointed at — OpenAI's *Refreshed.* and *Introducing GPT-5* — and built into the renderer and the demo.
 
 ### Added — the bed-and-clicks register
 
@@ -599,7 +656,7 @@ Three things at once: `/design-engineering` becomes a **router** over the design
 ### Added — distilled craft nodes (20)
 
 - surface: **`color-scales-oklch`**, **`depth-and-nesting`**. typography: **`type-scale-and-rhythm`**, **`line-behavior`**. components: **`forms-behavior`**, **`touch-and-focus`** (with the mobile-native fixes table), **`ui-polish-pass`**, **`component-api-design`**. motion: **`performance-discipline`**. layout: **`marketing-surface-rules`**. anti-patterns: **`unslop-pass`**, **`copy-tells`**, **`code-tells`**. meta: **`prototype-picker`**, **`build-a-tool`**, **`vibe-to-generator`**, **`design-system-docs`**, **`skill-writing-rules`**, **`design-benchmarks`**, **`skill-router`**.
-- Every one cites "Emil Kowalski's design-engineering practice, distilled by HKTITAN" plus public references; no source text is quoted.
+- Every one cites "Emil Kowalski's design-engineering practice, distilled by AgentsORG" plus public references; no source text is quoted.
 
 ### Added — demo
 
@@ -766,7 +823,7 @@ The repo now ships three agent-specific plugin manifests in addition to the skil
 
 - **`.claude-plugin/plugin.json`** (NEW) — minimal Claude Code plugin metadata (name, description, version, author, homepage, repository, license). No `skills` field — Claude Code auto-discovers from `skills/`.
 - **`.claude-plugin/marketplace.json`** (refactored) — single-entry pattern with `"source": "./"` so the repo doubles as its own marketplace. Drops the nested `plugins[].skills[]` array in favor of auto-discovery. Top-level `owner` instead of `author` (matches the hyperframes / Claude Code marketplace schema).
-- **`.codex-plugin/plugin.json`** (NEW) — full OpenAI Codex manifest with `keywords`, `skills: "./skills/"`, and an `interface` block (displayName: "Design Engineering by HKTITAN", shortDescription, longDescription, developerName, category: Design, capabilities: Read+Write, defaultPrompt array, brandColor: `#0a0a0a`).
+- **`.codex-plugin/plugin.json`** (NEW) — full OpenAI Codex manifest with `keywords`, `skills: "./skills/"`, and an `interface` block (displayName: "Design Engineering by AgentsORG", shortDescription, longDescription, developerName, category: Design, capabilities: Read+Write, defaultPrompt array, brandColor: `#0a0a0a`).
 - **`.cursor-plugin/plugin.json`** (NEW) — Cursor IDE manifest with `$schema`, `displayName`, `publisher`, `category: developer-tools`, `tags`, `keywords`, and the same `skills` path.
 
 Install paths now read:
@@ -837,7 +894,7 @@ The skill now ships an identity layer (`SOUL.md`) and a set of six narrow-purpos
 ### Changed
 
 - **`AGENTS.md`** — adds explicit `## Testing` section (CI gate explainer), a `## skills.sh discovery` paragraph documenting the re-index trigger, and a cross-link to SOUL.md. File-conventions section now covers the `agents/` directory layout.
-- **`SKILL.md`** — adds `compatibility:` frontmatter field per [Agent Skills specification](spec/agent-skills-spec.md), `metadata.subagents` + `metadata.soul` pointers, and two new MOC sections (Workflow subagents, Identity / SOUL.md). Version bumped to 1.5.0.
+- **`SKILL.md`** — adds `compatibility:` frontmatter field per [Agent Skills specification](docs/spec/agent-skills-spec.md), `metadata.subagents` + `metadata.soul` pointers, and two new MOC sections (Workflow subagents, Identity / SOUL.md). Version bumped to 1.5.0.
 - **`.github/workflows/lint.yml`** — required-files check extended to validate SOUL.md and all six subagent files. New `Subagent frontmatter fields` step verifies each subagent declares `name`, `description`, `tools`, `model`, and that the name matches the filename. Wikilink resolver now indexes `agents/` basenames so cross-references from SKILL.md resolve.
 - **`.claude-plugin/marketplace.json`** — version bumped to 1.5.0; description expanded to mention subagents and SOUL.md.
 
@@ -862,7 +919,7 @@ Nothing in the published skill content changed — these only affect the vault-v
 
 ### Changed — repo migration
 
-The skill's canonical home moved from [`HKTITAN/design-engineering`](https://github.com/AgentsORG/design-engineering) (auto-redirects) to [`AgentsORG/design-engineering`](https://github.com/AgentsORG/design-engineering). All URL references updated:
+The skill's canonical home moved from [`AgentsORG/design-engineering`](https://github.com/AgentsORG/design-engineering) (auto-redirects) to [`AgentsORG/design-engineering`](https://github.com/AgentsORG/design-engineering). All URL references updated:
 
 - **Install command** is now `npx skills add AgentsORG/design-engineering`.
 - **README** badges (`skills.sh`, `CI`), the paste-into-agent block, file-tree mentions, and Sources section updated to the new URL.
@@ -872,14 +929,14 @@ The skill's canonical home moved from [`HKTITAN/design-engineering`](https://git
 - **skills/design-engineering/SKILL.md** frontmatter `metadata.version` bumped to 1.3.0.
 - **CHANGELOG** compare links updated.
 
-The old URL (`HKTITAN/design-engineering`) auto-redirects via GitHub, so existing clones and installed skills continue to work. New installs should use the AgentsORG URL.
+The old URL (`AgentsORG/design-engineering`) auto-redirects via GitHub, so existing clones and installed skills continue to work. New installs should use the AgentsORG URL.
 
 ### Attribution unchanged
 
-- LICENSE copyright stays "HKTITAN" — the individual author.
-- `metadata.author: HKTITAN` in SKILL.md frontmatter — unchanged.
-- `marketplace.json` `author.name: HKTITAN`, `author.url: https://github.com/HKTITAN` — unchanged (HKTITAN is the human curator; AgentsORG is the new repo owner).
-- `meta/pov.md` HKTITAN starter POV — unchanged (it's an example for installers to override).
+- LICENSE copyright stays "AgentsORG" — the individual author.
+- `metadata.author: AgentsORG` in SKILL.md frontmatter — unchanged.
+- `marketplace.json` `author.name: AgentsORG`, `author.url: https://github.com/AgentsORG` — unchanged (AgentsORG is the human curator; AgentsORG is the new repo owner).
+- `meta/pov.md` AgentsORG starter POV — unchanged (it's an example for installers to override).
 
 ## [1.2.1] — 2026-05-22
 
@@ -993,7 +1050,7 @@ Initial public release of the `design-engineering` skill graph.
 - **James Frewin** — [guidelines.sh](https://guidelines.sh).
 - **dmytro / @pqoqubbw** — [lucide-animated.com](https://lucide-animated.com).
 - **DiceBear** — [dicebear.com/styles](https://www.dicebear.com/styles) — all 31 v9.x styles in `components/avatar-systems`.
-- **HKTITAN / Duolingo Skills** — [hktitan/duolingo](https://github.com/hktitan/duolingo) — skill-graph layout reference.
+- **AgentsORG / Duolingo Skills** — [hktitan/duolingo](https://github.com/hktitan/duolingo) — skill-graph layout reference.
 - **Akshay Pachaar** — [Skill Graphs > SKILL.md](https://x.com/akshay_pachaar) — skill-graph framing.
 - **Perplexity Agents team** — [Designing, Refining, and Maintaining Agent Skills](https://research.perplexity.ai/articles/designing-refining-and-maintaining-agent-skills-at-perplexity) — progressive disclosure, gotchas flywheel, evals-first.
 - **Anthropic** — [anthropics/skills](https://github.com/anthropics/skills) — `spec/` + `template/` repo layout.

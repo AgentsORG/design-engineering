@@ -331,5 +331,5 @@ The words for a rendered film's editorial choices. Like Sound, this category is 
 ## Sources
 
 - *Index — Say Precisely What You Mean*, Emil Kowalski & Glenn Carstens-Peters — [index.how/to/articulate](https://index.how/to/articulate). The 188-term articulate module this lexicon is seeded from; the canonical reference, arriving fall 2026. Glosses here are this skill's own.
-- Launch film terms: HKTITAN's launch-film corpus (Skale and acclaimed films, measured 2026-09-28, `docs/research/launch-films/`) and heygen-com/hyperframes `.agents/skills/cut-the-curve/SKILL.md` (Apache-2.0, repo-internal).
+- Launch film terms: AgentsORG's launch-film corpus (Skale and acclaimed films, measured 2026-09-28, `docs/research/launch-films/`) and heygen-com/hyperframes `.agents/skills/cut-the-curve/SKILL.md` (Apache-2.0, repo-internal).
 - Cross-linked throughout to this skill's own clusters: [[MOC-philosophy]], [[MOC-motion]], [[MOC-surface]], [[MOC-typography]], [[MOC-components]], [[MOC-layout]], [[MOC-anti-patterns]], [[MOC-sound]], [[MOC-launch-video]].

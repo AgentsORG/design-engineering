@@ -71,6 +71,6 @@ The shadow-over-border rule is about *elevation*, not every line. Agents that re
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on surfaces, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on surfaces, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (shadow tokens, light and dark), `stageshow/kit/parts/Card.css`, `stageshow/references/framing.md` (rule 8, Recipes), `stageshow/references/craft.md` (A page of demos), `stageshow/examples/overlap/`, `stageshow/examples/cards/`.
 - Related: [[shadows-whisper]], [[border-radius]], [[dark-mode]], [[color-scales-oklch]].

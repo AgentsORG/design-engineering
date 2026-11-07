@@ -1,6 +1,6 @@
 # Skale corpus: measured metrics
 
-29 pieces from skale.solutions/portfolio (28 client films and Skale's 2025 reel), measured at native frame rate with `measure.py` by HKTITAN on 2026-09-28. The [film list](../README.md#skale-29-pieces) maps ids to film names. Frame-read cut counts are entered in `synth_stats.py`; the hand-timed medians and ranges are in [the Skale notes](../notes/synthesis-skale.md).
+29 pieces from skale.solutions/portfolio (28 client films and Skale's 2025 reel), measured at native frame rate with `measure.py` by AgentsORG on 2026-09-28. The [film list](../README.md#skale-29-pieces) maps ids to film names. Frame-read cut counts are entered in `synth_stats.py`; the hand-timed medians and ranges are in [the Skale notes](../notes/synthesis-skale.md).
 
 Read it with the [caveats](../README.md#caveats): `cuts`, `cpm` and `shot_med` are the automatic detector's counts, not the frame-read ones; `still` compares only within a register; move runs (`mv_*`) chain overlapping changes and are not tween durations; `blur` above 1 only means the still frames are flat; `speech` is a proxy.
 

@@ -74,7 +74,7 @@ Check: film the page at 1440 and 390 with reduced motion on and off. The poster 
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on marketing pages, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on marketing pages, distilled by AgentsORG.
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/motion.md` §2 and §9 (99 Sites of the Day captured October 2026: preloaders, readable time, reduced-motion rules, hijacking's usability score; scores are model-panel judgements) and `scripts/lib/rules.mjs` (`still-page`, not adopted).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Workflow step 1, medium and size), `references/framing.md` (rule 15, the layouts table, Small formats and the page), `references/motion.md` (Story, Loops), `references/bento.md` (rules 2, 3, 6, 11, 12), `examples/hero-demo/`, `examples/bento/`.
 - Related: [[marketing-vs-product-ui]], [[performance-discipline]], [[unslop-pass]], [[viewport-custom-design]].

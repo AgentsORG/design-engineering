@@ -67,6 +67,6 @@ The pass is not "shorter". A sentence stripped to nothing but nouns reads as gen
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on writing, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on writing, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/style.tsx` (style-sparkle, style-caps), `stageshow/teaching/details.tsx` (detail-copy), `stageshow/examples/ai-chat/index.tsx`.
 - Related: [[copy-voice]], [[content-authenticity]], [[unslop-pass]].

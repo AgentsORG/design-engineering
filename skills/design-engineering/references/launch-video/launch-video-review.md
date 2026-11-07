@@ -79,8 +79,8 @@ There are two classic misses. The first is calling a product-camera film too sti
 
 ## Sources
 
-- HKTITAN, 2026-09-28, in `docs/research/launch-films/`: measure.py (the native-fps measurer and its still, calm and held definitions), metrics/*.json, notes/synthesis-skale.md §2, §5-6, notes/synthesis-acclaimed.md §4-6, and heygen_k3_sync.py (the lock-vs-chance test). The OpenAI stillness metric of 2026-09-05 is in `docs/research/launch-register/02-tempo-bed-cuts.py` and its two summaries.
+- AgentsORG, 2026-09-28, in `docs/research/launch-films/`: measure.py (the native-fps measurer and its still, calm and held definitions), metrics/*.json, notes/synthesis-skale.md §2, §5-6, notes/synthesis-acclaimed.md §4-6, and heygen_k3_sync.py (the lock-vs-chance test). The OpenAI stillness metric of 2026-09-05 is in `docs/research/launch-register/02-tempo-bed-cuts.py` and its two summaries.
 - HeyGen, hyperframes-launches (Apache-2.0): `claude-design-send-hyperframes-launch/HANDOFF.md` §4, §10, §14.1, §17, §18; `HF-heygen-stripe/STUDY-V12-vs-TAKE6.md`; commits 2a439ec and dd128ad (sound recovered from published renders). Digest in `docs/research/launch-films/digests/`.
-- Films: Skale (skale.solutions/portfolio) and the 18 acclaimed films as listed in [[launch-video-registers]], measured by HKTITAN 2026-09-28.
+- Films: Skale (skale.solutions/portfolio) and the 18 acclaimed films as listed in [[launch-video-registers]], measured by AgentsORG 2026-09-28.
 - heygen-com/hyperframes (Apache-2.0): `skills/product-launch-video/SKILL.md` Step 6; `skills/hyperframes-cli/SKILL.md` and `references/preview-render.md` (`--strict`); `.agents/skills/motion-doctrine/SKILL.md` (the comma, the seam budget) and `scripts/seam-gate.mjs`, `.agents/skills/oversized-cursor/SKILL.md` (internal).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/verify.md` (Hand over, What you see, what you do), `stageshow/references/rehearse.md` (The last pass).

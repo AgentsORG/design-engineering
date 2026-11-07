@@ -73,6 +73,6 @@ A half-finished dark mode that users can reach is a blocker, not a nit: one whit
 
 - guidelines.sh — near-black surfaces, softened white text.
 - Material Design 3 — dark theme elevation by surface tint.
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN — remapping, desaturation, solid dividers vs rings.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG — remapping, desaturation, solid dividers vs rings.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (dark theme tokens), `stageshow/references/craft.md` (Color and looks), `stageshow/examples/dark-hero/index.tsx` and `hero.css`, `stageshow/teaching/scenes.tsx` and `scenes.css` (`material-contrast`).
 - Related: [[color-monochromatic]], [[shadows-whisper]], [[depth-and-nesting]].

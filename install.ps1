@@ -85,7 +85,7 @@ function Invoke-Native($desc, [string]$exe, [string[]]$argv) {
 
 # ---------- source ----------
 $Src = $null; $Mode = $null
-if ($PSScriptRoot -and (Test-Path (Join-Path $PSScriptRoot 'skills\design-engineering\SKILL.md')) -and (Test-Path (Join-Path $PSScriptRoot 'agents'))) {
+if ($PSScriptRoot -and (Test-Path (Join-Path $PSScriptRoot 'skills\design-engineering\SKILL.md')) -and (Test-Path (Join-Path $PSScriptRoot 'plugin\agents'))) {
   $Src = $PSScriptRoot; $Mode = 'local checkout'
 }
 function Get-Source {
@@ -235,7 +235,7 @@ if ($UsePlugin) {
 if (Want 'agents') {
   foreach ($h in $Harness) {
     if ($h -eq 'claude' -and $UsePlugin) { Note 'agents' 'claude' 'from plugin'; continue }
-    $agSrc = if ($h -eq 'claude') { Join-Path $Src 'agents' } else { Join-Path $Src "harness\$h\agents" }
+    $agSrc = if ($h -eq 'claude') { Join-Path $Src 'plugin\agents' } else { Join-Path $Src "plugin\harness\$h\agents" }
     $ext = if ($h -eq 'codex') { '*.toml' } else { '*.md' }
     if (-not (Test-Path $agSrc)) { Note 'agents' $h 'no generated files'; continue }
     $n = 0; $c = 0
@@ -254,9 +254,9 @@ if ($NoHooks -and $UsePlugin) {
 }
 if (Want 'hooks') {
   $hd = Join-Path $CfgDir 'hooks'
-  foreach ($f in 'design-check.mjs', 'merge-settings.mjs') { [void](Put-File (Join-Path $Src "hooks\$f") (Join-Path $hd $f)) }
+  foreach ($f in 'design-check.mjs', 'merge-settings.mjs') { [void](Put-File (Join-Path $Src "plugin\hooks\$f") (Join-Path $hd $f)) }
   if (Test-Path $Off) { Act "remove $Off" { Remove-Item $Off -Force } }
-  if ($UsePlugin) { Note 'hooks' 'plugin hooks/hooks.json' 'on (PostToolUse Edit|Write)' }
+  if ($UsePlugin) { Note 'hooks' 'plugin/hooks/hooks.json' 'on (PostToolUse Edit|Write)' }
   elseif (UseH 'claude') {
     $settings = Join-Path $HomeDir '.claude\settings.json'
     if (Have 'node') {

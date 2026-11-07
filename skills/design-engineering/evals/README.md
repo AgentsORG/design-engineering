@@ -38,10 +38,10 @@ This folder ships the skill's own evals. Forks should add their own.
 
 ## How to run them
 
-From the repository root (see `evals/README.md` for every runner):
+From the repository root (see `bench/README.md` for every runner):
 
-1. **Ablation bench** — `node scripts/bench.mjs --arms none,full --tries 3` runs `design-bench.jsonl` through `claude -p` with and without an isolated plugin copy, and `--arms all --relevant-only` adds a `minus-<cluster>` arm per reference folder. It writes `evals/results/<date>-<model>-ablation/REPORT.md` with a noise floor and keep / slim / retire verdicts.
-2. **Plugin eval suite** — `claude plugin eval .` runs `evals/plugin/<case>/` (regex, `tool_used: Skill` and `llm` graders) three times per case, with and without the plugin.
+1. **Ablation bench** — `node bench/bench.mjs --arms none,full --tries 3` runs `design-bench.jsonl` through `claude -p` with and without an isolated plugin copy, and `--arms all --relevant-only` adds a `minus-<cluster>` arm per reference folder. It writes `evals/results/<date>-<model>-ablation/REPORT.md` with a noise floor and keep / slim / retire verdicts.
+2. **Plugin eval suite** — `claude plugin eval .` runs `bench/plugin/<case>/` (regex, `tool_used: Skill` and `llm` graders) three times per case, with and without the plugin.
 3. **Manual** — paste a query from `loading.jsonl` into Claude Code, Cursor or another agent and check whether `design-engineering` loads; paste one from `progressive-reads.jsonl` and check which files it reads.
 
 ## Cross-model
@@ -61,4 +61,4 @@ Run every eval against at least **Claude Opus**, **Claude Sonnet**, and **GPT-4-
 ## Sources
 
 - Perplexity Agent Skills team — "Step 0: Write the evals" + "Eval suites" sections of [the guide](https://research.perplexity.ai/articles/designing-refining-and-maintaining-agent-skills-at-perplexity).
-- Related: [[meta/cross-model-testing]], [[meta/design-benchmarks]], `CONTRIBUTING.md` PR checklist.
+- Related: [[meta/cross-model-testing]], [[meta/design-benchmarks]], `.github/CONTRIBUTING.md` PR checklist.

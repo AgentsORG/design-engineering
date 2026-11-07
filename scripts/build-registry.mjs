@@ -1,5 +1,6 @@
-// Generates registry.json (the shadcn registry source) and r/*.json (the built,
-// content-embedded registry items served over raw GitHub URLs).
+// Generates registry/registry.json (the shadcn registry source) and
+// registry/r/*.json (the built, content-embedded registry items served over raw
+// GitHub URLs). File paths inside the items stay repo-root-relative.
 //
 //   node scripts/build-registry.mjs
 //
@@ -13,10 +14,10 @@ import { dirname, join, posix, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const pkg = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
+const pkg = JSON.parse(readFileSync(join(root, "plugin.json"), "utf8"));
 const HOMEPAGE = "https://github.com/AgentsORG/design-engineering";
 // Direct raw host — shadcn does not follow github.com's cross-host redirect.
-const RAW = "https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r";
+const RAW = "https://raw.githubusercontent.com/AgentsORG/design-engineering/main/registry/r";
 
 // Sorted so the built output is identical regardless of the filesystem's
 // directory order — CI byte-compares it against the committed copy.
@@ -49,7 +50,7 @@ const REFS = "skills/design-engineering/references";
 const clusterNames = readdirSync(join(root, REFS))
   .sort()
   .filter((d) => d !== "commands" && statSync(join(root, REFS, d)).isDirectory());
-const agentNames = readdirSync(join(root, "agents"))
+const agentNames = readdirSync(join(root, "plugin", "agents"))
   .filter((f) => f.endsWith(".md"))
   .sort()
   .map((f) => f.slice(0, -3));
@@ -64,13 +65,13 @@ const listOf = (names) =>
   names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
 
 const hostFiles = [
-  ...walk("agents")
+  ...walk("plugin/agents")
     .filter((p) => p.endsWith(".md"))
-    .map((path) => ({ path, type: "registry:file", target: `~/.claude/${path}` })),
+    .map((path) => ({ path, type: "registry:file", target: `~/.claude/agents/${posix.basename(path)}` })),
 ];
 
 // Canonical motion values. Sourced from references/motion/easing-curves.md and
-// duration-table.md, and mirrored in templates/design-engineering.design.
+// duration-table.md, and mirrored in registry/design-engineering.design.
 const motionVars = {
   "ease-out-quart": "cubic-bezier(0.25, 1, 0.5, 1)",
   "ease-out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
@@ -90,7 +91,7 @@ const items = [
     title: "Design Engineering skill graph",
     description:
       `The full design-engineering skill graph — ${clusterNames.length} themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, faux product UI, typography, surface, components, layout, anti-patterns, and the routing layer, plus the ${listOf(scriptNames)} scripts. Installs into .agents/skills/ where any coding agent can load it.`,
-    author: "HKTITAN",
+    author: "AgentsORG",
     categories: ["design", "agents", "skills"],
     docs: "Restart your coding agent after installing so it picks up the new skill. Invoke it as /design-engineering [verb] [target]; with no verb it shows the menu. The dispatch table is at the top of SKILL.md. Fork references/meta/pov.md to record your own taste overrides.",
     files: skillFiles,
@@ -101,7 +102,7 @@ const items = [
     title: "Design Engineering subagents",
     description:
       `${capitalise(spell(agentNames.length))} subagents (${agentNames.join(", ")}) in Claude Code format. Optional: every /design-engineering verb runs without them.`,
-    author: "HKTITAN",
+    author: "AgentsORG",
     categories: ["design", "agents"],
     docs: "Installs into .claude/agents/. Requires the design-engineering skill item for the reference nodes these agents load.",
     registryDependencies: [`${RAW}/design-engineering.json`],
@@ -113,12 +114,12 @@ const items = [
     title: "Starter .design contract",
     description:
       "A design.v1 living visual contract encoding this skill's canonical motion and surface defaults — easing curves, duration scale, layered elevation, and the constraints that keep AI-default tells out. Color and typography are left to your brand.",
-    author: "HKTITAN",
+    author: "AgentsORG",
     categories: ["design", "design-tokens"],
     docs: "Installs as .design at your project root. Adapt name, intent, and tokens to your product — or reference it from your own contract via `extends`. Agents read it before generating UI; it outranks generic taste skills.",
     files: [
       {
-        path: "templates/design-engineering.design",
+        path: "registry/design-engineering.design",
         type: "registry:file",
         target: "~/.design",
       },
@@ -130,7 +131,7 @@ const items = [
     title: "Design Engineering motion tokens",
     description:
       "Motion theme variables: four easing curves worth memorizing and a duration scale keyed to element type. Drop-in for any shadcn project — reference them as var(--ease-out-quart) or, on Tailwind v4, register under @theme inline for utility classes.",
-    author: "HKTITAN",
+    author: "AgentsORG",
     categories: ["design", "animation", "design-tokens"],
     docs: "Never `transition: all` — name the properties. Entrances use --ease-out-quart; exits run at 60% of their entrance duration. Never ease-in on a UI entrance, and never scale an entrance from 0 (start at 0.95).",
     cssVars: { theme: motionVars },
@@ -144,9 +145,9 @@ const registry = {
   items,
 };
 
-writeFileSync(join(root, "registry.json"), `${JSON.stringify(registry, null, 2)}\n`);
+writeFileSync(join(root, "registry", "registry.json"), `${JSON.stringify(registry, null, 2)}\n`);
 
-const outDir = join(root, "r");
+const outDir = join(root, "registry", "r");
 rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
 
@@ -163,7 +164,7 @@ for (const item of items) {
   if (!built.files) delete built.files;
   writeFileSync(join(outDir, `${item.name}.json`), `${JSON.stringify(built, null, 2)}\n`);
   const size = (JSON.stringify(built).length / 1024).toFixed(0);
-  console.log(`r/${item.name}.json  ${item.files?.length ?? 0} files  ${size}kb`);
+  console.log(`registry/r/${item.name}.json  ${item.files?.length ?? 0} files  ${size}kb`);
 }
 
-console.log(`registry.json  ${items.length} items  v${pkg.version}`);
+console.log(`registry/registry.json  ${items.length} items  v${pkg.version}`);

@@ -57,6 +57,6 @@ Scenario runs cost money, and a failed or blocked run can still be charged. Pric
 ## Sources
 
 - Scenario, `scenario-kinetic-film` skill (zip received 2026-10-30, no licence file: cited, never copied): `SKILL.md`, `references/method.md` §1, §5 (energy targets), `references/craft.md`, `references/sound.md`, `references/scenario-mcp.md`, `references/blocks.md`, `examples/kaiju-postal/`. Its companion skills: `npx skills add scenario-labs/skills`; its MCP server is `https://mcp.scenario.com`.
-- This graph's values: `docs/research/launch-films/` (HKTITAN, 2026-09-28).
+- This graph's values: `docs/research/launch-films/` (AgentsORG, 2026-09-28).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Workflow step 7: a passing gate is necessary, not sufficient).
 - Related: [[skill-router]], [[hyperframes-reconciliation]], [[earshot-reconciliation]].

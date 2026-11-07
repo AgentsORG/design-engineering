@@ -63,4 +63,4 @@ AI-default diagrams have a look: dark mode with a cyan or purple glow, identical
 
 - Cathryn Lavery, `diagram-design` (MIT; HEAD `f4547ee`, read 2026-10-08): SKILL.md §1, §4, §6, §7, §9, §12; `references/style-guide.md` (node treatments, stroke, radius), `references/primitives-core.md` (connector rules), `references/output-spec.md` (holding the canvas on a narrow screen).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/annotations.md` (shared trunk, request and reply), `stageshow/references/kit.md` (`Connector` extras, `route="curve"`), `stageshow/kit/motion/Connector.css` (endpoint dot), `stageshow/examples/annotations/index.tsx`.
-- HKTITAN — distillation and cross-links.
+- AgentsORG — distillation and cross-links.

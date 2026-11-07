@@ -65,6 +65,6 @@ Auto-advancing verification-code inputs feel clever until someone needs to corre
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on forms, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on forms, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/form-error/index.tsx`, `stageshow/examples/form-error/form.css`, `stageshow/references/motion.md` (a button changes on itself).
 - Related: [[forms-validation]], [[accessibility-baseline]], [[touch-and-focus]], [[responsive-feedback]].

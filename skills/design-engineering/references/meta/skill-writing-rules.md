@@ -71,7 +71,7 @@ Strict is not long. A strict skill is usually shorter than the hedged version it
 
 ## Sources
 
-- Emil Kowalski, *Agents with Taste*, and his practice on writing skills, distilled by HKTITAN.
+- Emil Kowalski, *Agents with Taste*, and his practice on writing skills, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Faults that come back every round), `stageshow/references/craft.md` (Spacing and alignment), `stageshow/references/rehearse.md` (Lines that are never intentional), `stageshow/references/teaching.md` (Making a comparison).
 - Benji Taylor, benji.org (read 2026-11-07): every rule carries its reason; every correction becomes a permanent rule, rerun from scratch; skill against no-skill, side by side.
 - Related: [[pov]], [[gotchas]], [[taste-is-trained]], [[design-system-docs]].

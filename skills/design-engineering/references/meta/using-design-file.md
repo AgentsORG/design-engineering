@@ -6,7 +6,7 @@ tags: [meta, design-file, tokens, contract, workflow]
 
 # Using a `.design` contract
 
-A `.design` file (schema `design.v1`, spec mirrored at [`spec/design-file-spec.md`](../../../../spec/design-file-spec.md)) is a machine-readable visual contract: tokens, components, copy voice, executable policy, and a committed aesthetic intent. When a project has one, it is the source of truth and **this skill drops to advisory**.
+A `.design` file (schema `design.v1`, spec mirrored at [`docs/spec/design-file-spec.md`](../../../../docs/spec/design-file-spec.md)) is a machine-readable visual contract: tokens, components, copy voice, executable policy, and a committed aesthetic intent. When a project has one, it is the source of truth and **this skill drops to advisory**.
 
 ## Where this skill sits
 
@@ -46,7 +46,7 @@ A drift check compares `tokens` against the real CSS/Tailwind theme and `compone
 
 ## shadcn
 
-When `integrations.shadcn.enabled`, prefer installed shadcn primitives over parallel ones, and write `css_vars` into the declared CSS file. **Tokens outrank stale `css_vars` literals** — refresh the CSS after token edits rather than trusting what's already in `:root`. Emit the full variable set including charts and sidebar. See [`spec/design-file-spec.md`](../../../../spec/design-file-spec.md) for the Tailwind v4 mechanics.
+When `integrations.shadcn.enabled`, prefer installed shadcn primitives over parallel ones, and write `css_vars` into the declared CSS file. **Tokens outrank stale `css_vars` literals** — refresh the CSS after token edits rather than trusting what's already in `:root`. Emit the full variable set including charts and sidebar. See [`spec/design-file-spec.md`](../../../../docs/spec/design-file-spec.md) for the Tailwind v4 mechanics.
 
 ## Sound, video, and companions
 
@@ -64,7 +64,7 @@ Bind by role, never by a value that looks close. For a component the contract do
 - Good: `.plan-card { background: var(--surface); border-radius: var(--radius-lg); padding: var(--space-4); }`, the accent kept for the single primary action `intent.signature` names, plus a one-line note when `policy.if_missing` is `invent_with_note`.
 - Drift line, reported before any fix: `tokens.radius  modified  lg 10px -> 12px in app/globals.css  regression: yes`.
 
-Gold example: [`templates/design-engineering.design`](../../../../templates/design-engineering.design), whose `agent.instructions` block holds the whole read, follow, update and verify loop in one place; `stageshow/references/looks.md` for the role mapping.
+Gold example: [`registry/design-engineering.design`](../../../../registry/design-engineering.design), whose `agent.instructions` block holds the whole read, follow, update and verify loop in one place; `stageshow/references/looks.md` for the role mapping.
 
 Check: put a still of the generated screen beside a screenshot of the product's existing screens at the same scale. Accent, gray temperature, radii and type should match at a glance; if one control looks foreign, re-read the contract and its real neighbor's computed styles rather than nudging by eye.
 
@@ -74,7 +74,7 @@ Don't let the contract's existence stop the craft work. A `.design` that pins co
 
 ## Sources
 
-- AgentsORG — [github.com/AgentsORG/design](https://github.com/AgentsORG/design), `design.v1`. Mirrored at [`spec/design-file-spec.md`](../../../../spec/design-file-spec.md).
-- Starter contract encoding this skill's defaults: [`templates/design-engineering.design`](../../../../templates/design-engineering.design).
+- AgentsORG — [github.com/AgentsORG/design](https://github.com/AgentsORG/design), `design.v1`. Mirrored at [`docs/spec/design-file-spec.md`](../../../../docs/spec/design-file-spec.md).
+- Starter contract encoding this skill's defaults: [`registry/design-engineering.design`](../../../../registry/design-engineering.design).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/looks.md` (From a codebase, Check it).
 - Related: [[using-design-md]], [[copy-voice]], [[delight-impact-curve]], [[review-format]].

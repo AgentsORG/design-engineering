@@ -53,6 +53,6 @@ Pasting `color-scheme: light dark` into a light-only app creates a bug: phones i
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (the `data-still` rule), `stageshow/references/craft.md` (Color and looks: a light pass does not prove dark; Recipes: a fresh load at each width).
 - Related: [[contrast-and-color-scheme]], [[forms-behavior]], [[performance-discipline]].

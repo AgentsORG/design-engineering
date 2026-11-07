@@ -25,8 +25,8 @@ What to borrow: **anonymous pairwise judgment.** "Which of these two is better?"
 | Layer | File | Shape | Asserts |
 |---|---|---|---|
 | Routing | `evals/loading.jsonl`, `evals/progressive-reads.jsonl` | fixtures | The skill loads when it should; the right node opens |
-| Contract | `evals/review-format.eval.ts`, `motion-values.eval.ts`, `sound-values.eval.ts` | eve scored | Review tables, concrete values |
-| Craft floor | `evals/design-bench.eval.ts` + `skills/design-engineering/evals/design-bench.jsonl` | generation / edit / repair fixtures | Deterministic checks lifted from [[review-checklist]]: no `transition: all`, no `scale(0)`, reduced-motion present, inputs ≥ 16px, labelled icon buttons, no `z-index: 9999`, no hover-only actions, no sound before a gesture |
+| Contract | the repo's `eve/evals/review-format.eval.ts`, `motion-values.eval.ts`, `sound-values.eval.ts` | eve scored | Review tables, concrete values |
+| Craft floor | `eve/evals/design-bench.eval.ts` + `skills/design-engineering/evals/design-bench.jsonl` | generation / edit / repair fixtures | Deterministic checks lifted from [[review-checklist]]: no `transition: all`, no `scale(0)`, reduced-motion present, inputs ≥ 16px, labelled icon buttons, no `z-index: 9999`, no hover-only actions, no sound before a gesture |
 | Preference | `design-bench.jsonl` rows tagged `arena` | pairwise | Two candidates per prompt; a human or judge model picks; log the win rate per node change |
 
 The craft floor is DesignBench's *repair* task pointed at our own tells: each fixture is a broken snippet and the row the checklist should catch. The preference layer is Design Arena's protocol at PR scale: when a node changes what the agent produces, generate before-and-after candidates for three fixtures, judge them blind, and record the result in the PR. A node that loses the pairwise more than it wins is reverted, however good it reads.

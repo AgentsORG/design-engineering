@@ -18,7 +18,7 @@ Aliases: `contract`, `apply-design-md`. **Posture: build.**
 
 ## No contract
 
-Say so, scan the code for the system it already uses, and offer to bootstrap one: the starter in the repo's `templates/design-engineering.design`, or a DESIGN.md scaffolded per [[using-design-md]]. Never invent an untracked system silently.
+Say so, scan the code for the system it already uses, and offer to bootstrap one: the starter in the repo's `registry/design-engineering.design`, or a DESIGN.md scaffolded per [[using-design-md]]. Never invent an untracked system silently.
 
 ## Output
 

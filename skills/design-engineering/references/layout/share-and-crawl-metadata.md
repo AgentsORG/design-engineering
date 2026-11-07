@@ -57,6 +57,6 @@ Deciding the CTA by reading cookies in the marketing layout opts the whole page 
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (step 7, poster), `stageshow/references/craft.md` (No invented logo).
 - Related: [[ship-check]], [[content-authenticity]], [[marketing-vs-product-ui]].

@@ -84,6 +84,6 @@ A tool whose knob bucket is empty didn't need building — the idea was fully de
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on tools as a means to an end, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on tools as a means to an end, distilled by AgentsORG.
 - Related: [[prototype-picker]], [[vibe-to-generator]], [[taste-is-trained]].
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/scripts/film.mjs`, `stageshow/references/rehearse.md` (flags, gate lines, Pause and Step), `stageshow/references/teaching.md` (Replay pair), `stageshow/references/motion.md` (stagger 40–80ms), `stageshow/kit/ease.ts` (named curves).

@@ -78,7 +78,7 @@ Don't time a problem-first film to the 15 %: that median mixes all 19 Skale film
 
 ## Sources
 
-- Skale (skale.solutions/portfolio): 28 client films and the 2025 reel, named by client and hand-timed at native fps by HKTITAN on 2026-09-28. See docs/research/launch-films/notes/synthesis-skale.md §2-3 and tables/skale.md.
+- Skale (skale.solutions/portfolio): 28 client films and the 2025 reel, named by client and hand-timed at native fps by AgentsORG on 2026-09-28. See docs/research/launch-films/notes/synthesis-skale.md §2-3 and tables/skale.md.
 - Acclaimed films (brand, title, year and maker as listed in [[launch-video-registers]]), hand-timed on 2026-09-28. See notes/synthesis-acclaimed.md §1 and §3; others_stats.py holds the hand-entered name, endcard and text-hold values.
 - heygen-com/hyperframes (Apache-2.0), cited for what this node leaves to it: skills/product-launch-video/references/story-design.md (arcs, hook, promise); skills/hyperframes-creative/references/narration.md (2.5 words/s); skills/hyperframes/references/routes/product-launch-video.md (30-90 s); skills/hyperframes-animation/blueprints-index.md (Reproduce / Adapt / Compose, signature move).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/motion.md` (Story: open on a finished screen, the poster; Loops: the payoff holds 2 s), `stageshow/examples/payout-flow/index.tsx`.

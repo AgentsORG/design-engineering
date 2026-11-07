@@ -42,11 +42,11 @@ The installer detects a harness by its CLI on `PATH` or its config folder in you
 | Part | Claude Code | Codex | Cursor | Gemini CLI / Antigravity | OpenCode |
 |---|---|---|---|---|---|
 | Skill | the plugin, else `~/.claude/skills/design-engineering/` | `~/.agents/skills/design-engineering/` | `~/.agents/skills/design-engineering/` | `~/.gemini/skills/design-engineering/` | `~/.config/opencode/skills/design-engineering/` |
-| Agents | the plugin, else `~/.claude/agents/*.md` from `agents/` | `~/.codex/agents/*.toml` from `harness/codex/agents/` | `~/.cursor/agents/*.md` from `harness/cursor/agents/` | `~/.gemini/agents/*.md` from `harness/gemini/agents/` | `~/.config/opencode/agents/*.md` from `harness/opencode/agents/` |
-| Hook | the plugin's `hooks/hooks.json`, else merged into `~/.claude/settings.json` | not wired yet | not wired yet | not wired yet | not wired yet |
+| Agents | the plugin, else `~/.claude/agents/*.md` from `plugin/agents/` | `~/.codex/agents/*.toml` from `plugin/harness/codex/agents/` | `~/.cursor/agents/*.md` from `plugin/harness/cursor/agents/` | `~/.gemini/agents/*.md` from `plugin/harness/gemini/agents/` | `~/.config/opencode/agents/*.md` from `plugin/harness/opencode/agents/` |
+| Hook | the plugin's `plugin/hooks/hooks.json`, else merged into `~/.claude/settings.json` | not wired yet | not wired yet | not wired yet | not wired yet |
 | eve MCP | `claude mcp add` (opt-in) | by hand, below | by hand, below | by hand, below | by hand, below |
 
-The agents in `harness/` are generated from `agents/*.md` by `scripts/build-agents.mjs`; see [harness/README.md](../harness/README.md).
+The agents in `plugin/harness/` are generated from `plugin/agents/*.md` by `scripts/build-agents.mjs`; see [plugin/harness/README.md](../plugin/harness/README.md).
 
 ## Manual install
 
@@ -82,36 +82,36 @@ Inside a session the same thing is `/plugin marketplace add AgentsORG/design-eng
 From a checkout:
 
 ```bash
-cp agents/*.md ~/.claude/agents/                         # Claude Code without the plugin
-cp harness/codex/agents/*.toml ~/.codex/agents/          # Codex
-cp harness/cursor/agents/*.md ~/.cursor/agents/          # Cursor
-cp harness/gemini/agents/*.md ~/.gemini/agents/          # Gemini CLI
-cp harness/opencode/agents/*.md ~/.config/opencode/agents/  # OpenCode
+cp plugin/agents/*.md ~/.claude/agents/                         # Claude Code without the plugin
+cp plugin/harness/codex/agents/*.toml ~/.codex/agents/          # Codex
+cp plugin/harness/cursor/agents/*.md ~/.cursor/agents/          # Cursor
+cp plugin/harness/gemini/agents/*.md ~/.gemini/agents/          # Gemini CLI
+cp plugin/harness/opencode/agents/*.md ~/.config/opencode/agents/  # OpenCode
 ```
 
 Use the project folders instead (`.claude/agents/`, `.codex/agents/`, `.cursor/agents/`, `.gemini/agents/`, `.opencode/agents/`) to scope the agents to one repo. Cursor also reads `.claude/agents/`.
 
 ### Design-check hook
 
-After every `Edit` or `Write` to a `.css`, `.scss`, `.tsx`, `.jsx`, `.svg`, `.html`, `.vue` or `.svelte` file, `hooks/design-check.mjs` runs the deterministic checks from `skills/design-engineering/scripts/grade.mjs` (or a small built-in rule set when the grader is not installed) and adds any findings to the agent's context as a note. It never blocks a tool call and sends nothing over the network.
+After every `Edit` or `Write` to a `.css`, `.scss`, `.tsx`, `.jsx`, `.svg`, `.html`, `.vue` or `.svelte` file, `plugin/hooks/design-check.mjs` runs the deterministic checks from `skills/design-engineering/scripts/grade.mjs` (or a small built-in rule set when the grader is not installed) and adds any findings to the agent's context as a note. It never blocks a tool call and sends nothing over the network.
 
-The plugin wires it through `hooks/hooks.json`. Without the plugin, copy the script and merge the entry into `~/.claude/settings.json`:
+The plugin wires it through `plugin/hooks/hooks.json`. Without the plugin, copy the script and merge the entry into `~/.claude/settings.json`:
 
 ```bash
 mkdir -p ~/.config/design-engineering/hooks
-cp hooks/design-check.mjs hooks/merge-settings.mjs ~/.config/design-engineering/hooks/
+cp plugin/hooks/design-check.mjs plugin/hooks/merge-settings.mjs ~/.config/design-engineering/hooks/
 node ~/.config/design-engineering/hooks/merge-settings.mjs \
   --settings ~/.claude/settings.json \
   --command "node \"$HOME/.config/design-engineering/hooks/design-check.mjs\""
 ```
 
-`merge-settings.mjs` backs up the file, adds one `PostToolUse` entry, and leaves everything else alone; `--remove` takes it out again. To edit by hand, merge [hooks/settings-snippet.json](../hooks/settings-snippet.json).
+`merge-settings.mjs` backs up the file, adds one `PostToolUse` entry, and leaves everything else alone; `--remove` takes it out again. To edit by hand, merge [plugin/hooks/settings-snippet.json](../plugin/hooks/settings-snippet.json).
 
 Switch the hook off without uninstalling: set `DE_HOOKS=0`, or create `~/.config/design-engineering/hooks.off` (what `--no-hooks` does when the plugin is installed).
 
 ### eve MCP server
 
-The eve runtime in `agent/` serves an MCP channel, so any MCP client can hand work to the design-engineering agent. Start it from a checkout with `npm install && npx eve dev`, then register it:
+The eve runtime in `eve/` serves an MCP channel, so any MCP client can hand work to the design-engineering agent. Start it from a checkout with `cd eve && npm install && npm run dev`, then register it:
 
 ```bash
 claude mcp add --transport http -s user design-engineering http://localhost:2000/eve/v1/mcp

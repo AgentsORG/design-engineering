@@ -68,7 +68,7 @@ Divergence is not an excuse to drop the craft bar. A sloppy variant doesn't wide
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on prototyping, distilled by HKTITAN; Josh Puckett's DialKit for the control panel.
+- Emil Kowalski's design-engineering practice on prototyping, distilled by AgentsORG; Josh Puckett's DialKit for the control panel.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/prototype/SKILL.md, skills/prototype/PICKER.md.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/playground/viewer.tsx` (example picker, `?example=` in the URL, Replay, Step), `stageshow/references/craft.md` (Restraint: judge the silhouette at thumbnail size).
 - Related: [[taste-is-trained]], [[stacking-chains]], [[build-a-tool]], [[vibe-to-generator]], [[stress-scenarios]] (the isolated harness, for robustness rather than direction), [[interfaces-reconciliation]] (hosting variants on the real page).

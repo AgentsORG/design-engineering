@@ -2,16 +2,31 @@
   "name": "design-engineering",
   "displayName": "AgentsORG Design Engineering",
   "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns, sound, SVG, launch films, faux product UI. Plus a SOUL.md identity layer and thirteen subagents (ten workflow agents plus a cross-model design council, a design judge and a design grader), generated for Claude Code, Codex, Cursor, Gemini CLI, OpenCode and eve. Distills Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "author": {
-    "name": "HKTITAN",
-    "email": "harshitkhemani@gmail.com",
-    "url": "https://github.com/HKTITAN"
+    "name": "AgentsORG",
+    "url": "https://github.com/AgentsORG"
   },
   "homepage": "https://github.com/AgentsORG/design-engineering",
   "repository": "https://github.com/AgentsORG/design-engineering",
   "license": "MIT",
+  "agents": [
+    "./plugin/agents/agentation-fix-loop.md",
+    "./plugin/agents/anti-pattern-scanner.md",
+    "./plugin/agents/design-council.md",
+    "./plugin/agents/design-grader.md",
+    "./plugin/agents/design-judge.md",
+    "./plugin/agents/design-md-consumer.md",
+    "./plugin/agents/launch-film-analyst.md",
+    "./plugin/agents/motion-auditor.md",
+    "./plugin/agents/pov-curator.md",
+    "./plugin/agents/sound-designer.md",
+    "./plugin/agents/svg-animator.md",
+    "./plugin/agents/svg-creator.md",
+    "./plugin/agents/ui-reviewer.md"
+  ],
+  "hooks": "./plugin/hooks/hooks.json",
   "experimental": {
-    "evals": "evals/plugin"
+    "evals": "./bench/plugin"
   }
 }

@@ -1,6 +1,6 @@
 # HeyGen renders: measured metrics
 
-Three renders committed in HeyGen's hyperframes-launches repository (Apache-2.0), measured at native frame rate with `measure.py` by HKTITAN on 2026-09-28. The Codex replica has no audio stream. The composition-source census is separate: `heygen_corpus_stats.py` and [digests/heygen-corpus-stats.json](../digests/heygen-corpus-stats.json).
+Three renders committed in HeyGen's hyperframes-launches repository (Apache-2.0), measured at native frame rate with `measure.py` by AgentsORG on 2026-09-28. The Codex replica has no audio stream. The composition-source census is separate: `heygen_corpus_stats.py` and [digests/heygen-corpus-stats.json](../digests/heygen-corpus-stats.json).
 
 Read it with the [caveats](../README.md#caveats): `cuts`, `cpm` and `shot_med` are the automatic detector's counts, not the frame-read ones; `still` compares only within a register; move runs (`mv_*`) chain overlapping changes and are not tween durations; `blur` above 1 only means the still frames are flat; `speech` is a proxy.
 
