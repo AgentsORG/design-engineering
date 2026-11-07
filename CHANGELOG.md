@@ -6,6 +6,12 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [4.2.2] — 2026-11-07
+
+### Fixed
+
+- **The installer skipped the Claude Code plugin when any copy named design-engineering existed**, such as one synced from a claude.ai account, and reported it as "already installed" without adding the marketplace. It now checks for the exact id `design-engineering@agentsorg`.
+
 ## [4.2.1] — 2026-11-07
 
 ### Fixed
