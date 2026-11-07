@@ -95,5 +95,5 @@ Touch events and pointer events are different APIs and produce slightly differen
 
 - Emil Kowalski — gesture and drag interactions (Sonner, Vaul).
 - iOS Human Interface Guidelines — rubberband / damping behavior.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/apple-design/SKILL.md (the 0.55 rubber-band constant, overshoot only after momentum).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/apple-design/SKILL.md (the 0.55 rubber-band constant, overshoot only after momentum).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `examples/swipe/index.tsx` (velocity-matched release curve), `teaching/details.tsx` (`detail-throw`), `references/motion.md` (Phones in motion).

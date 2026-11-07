@@ -117,7 +117,7 @@ These principles are for components you ship to others. For one-off internal UI,
 
 - Emil Kowalski — The Sonner Principles section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
 - [sonner.emilkowal.ski](https://sonner.emilkowal.ski/) — reference implementation.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/RECIPES.md (toast timing, same-edge exit).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/RECIPES.md (toast timing, same-edge exit).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/parts/Toast.tsx`, `stageshow/kit/parts/Toast.css`, `stageshow/examples/gmail/index.tsx`.
 - Benji Taylor, benji.org/liveline (read 2026-11-07).
 - Related: [[duration-table]], [[compose-subtract-asymmetry]], [[responsive-feedback]], [[sonner-usage]] (setup and troubleshooting).

@@ -114,6 +114,6 @@ This rule applies in proportion to the project's expected lifetime and audience.
 - Ben DC — [frontend-guidelines](https://github.com/bendc/frontend-guidelines) — "Favor native methods."
 - Vercel — bundle-size as a design dimension.
 - web.dev — "Tame third parties," bundle audits.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/pick-ui-library/SKILL.md (clsx for conditional classes, cva for real variants).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/pick-ui-library/SKILL.md (clsx for conditional classes, cva for real variants).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): stageshow/SKILL.md (The kit), stageshow/package.json, stageshow/kit/ease.ts, stageshow/kit/controls/Button.css, stageshow/kit/parts/Icon.tsx, stageshow/references/craft.md (Icons and logos).
 - Related: [[transform-opacity-only]] and [[debugging-animations]] (the performance-is-design framing lives in those motion nodes), [[unseen-details-compound]].

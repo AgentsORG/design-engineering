@@ -3,16 +3,28 @@
   "version": "3.3.1",
   "private": true,
   "type": "module",
-  "description": "eve runtime for the design-engineering skill graph — a durable design-engineering agent with ten specialist subagents.",
+  "description": "eve runtime for the design-engineering skill graph: a durable design-engineering agent with specialist subagents, an MCP channel for coding agents, and a cross-model design council.",
   "scripts": {
     "sync:skills": "node scripts/sync-skills.mjs",
     "build:registry": "node scripts/build-registry.mjs",
+    "build:agents": "node scripts/build-agents.mjs",
+    "check:agents": "node scripts/build-agents.mjs --check",
+    "typecheck": "tsc --noEmit",
     "dev": "npm run sync:skills && eve dev",
-    "info": "eve info",
+    "acp": "npm run sync:skills && eve acp",
+    "info": "npm run sync:skills && eve info",
     "eval": "npm run sync:skills && eve eval"
   },
   "devDependencies": {
-    "eve": "^0.31.3",
-    "typescript": "^5.6.0"
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "ai": "^7.0.137",
+    "eve": "^1.0.0-rc.6",
+    "zod": "^4.5.4"
   }
 }

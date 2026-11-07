@@ -92,7 +92,7 @@ Stagger on every state change is exhausting. Only stagger on **first appearance*
 ## Sources
 
 - Emil Kowalski — stagger guidance (30–80ms, decorative, never blocks interaction). The cap at 12 is house guidance.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/remove-animations/SKILL.md (300ms total cap).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/remove-animations/SKILL.md (300ms total cap).
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/choreograph/SKILL.md (one entrance per container, no stagger on high-frequency UI, no uniform stagger, simultaneous exits).
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN (split-then-stagger sections, no entrance on first paint).
 - guidelines.sh — "stagger reveals 30–50ms."

@@ -17,35 +17,55 @@
 // To produce the arms yourself, run each fixture's prompt twice through any agent
 // that can read files: once with "answer from your own knowledge, read nothing",
 // once with "read skills/design-engineering/SKILL.md and follow its routing first".
+// scripts/bench.mjs does this for you with `claude -p` and imports scoreFixture() from here.
 
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { basename, dirname, join } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
+
+export function loadFixtures(file = join(root, "skills/design-engineering/evals/design-bench.jsonl")) {
+  return readFileSync(file, "utf8").split("\n").filter((l) => l.trim()).map((l) => JSON.parse(l));
+}
+
+// Score one arm's answer against a fixture. Default target: the fenced code blocks the
+// arm shipped, minus any block that just quotes the fixture's input back (a Before column
+// is not an answer). Fixtures with `"score_on": "text"` (reviews, council, grading) score
+// the whole reply. Returns null for arena rows, which need a pairwise judge.
+export function scoreFixture(f, raw) {
+  if (f.task === "arena") return null;
+  const rules = [...(f.must_match || []).map((r) => ({ r, want: true })), ...(f.must_not_match || []).map((r) => ({ r, want: false }))];
+  let text = raw;
+  if (f.score_on !== "text") {
+    const blocks = [...raw.matchAll(/```[^\n]*\n([\s\S]*?)```/g)].map((m) => m[1]);
+    text = blocks.filter((b) => !(f.input && b.trim() === f.input.trim())).join("\n") || raw;
+  }
+  const missed = rules.filter(({ r, want }) => new RegExp(r, "m").test(text) !== want).map(({ r, want }) => `${want ? "missing" : "present"} \`${r.replace(/\|/g, "\\|")}\``);
+  return { rules: rules.length, passed: rules.length - missed.length, missed, score: rules.length ? (rules.length - missed.length) / rules.length : 1 };
+}
+
+const isMain = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+if (isMain) main();
+
+function main() {
 const runDir = process.argv[2];
 if (!runDir) { console.error("usage: node evals/run-bench.mjs evals/results/<run>"); process.exit(1); }
 
-const fixtures = readFileSync(join(root, "skills/design-engineering/evals/design-bench.jsonl"), "utf8")
-  .split("\n").filter(Boolean).map((l) => JSON.parse(l));
+const fixtures = loadFixtures();
 
 const ARMS = ["baseline", "skill"];
 const rows = [];
 for (const f of fixtures) {
   if (f.task === "arena") { rows.push({ id: f.id, task: f.task, arena: true }); continue; }
-  const rules = [...f.must_match.map((r) => ({ r, want: true })), ...f.must_not_match.map((r) => ({ r, want: false }))];
-  const row = { id: f.id, task: f.task, rules: rules.length, arms: {} };
+  const nRules = (f.must_match || []).length + (f.must_not_match || []).length;
+  const row = { id: f.id, task: f.task, rules: nRules, arms: {} };
   for (const arm of ARMS) {
     const file = join(runDir, `${f.id}.${arm}.md`);
     if (!existsSync(file)) { row.arms[arm] = null; continue; }
-    // Score the code the arm shipped, not the prose around it: fenced blocks only, minus any
-    // block that just quotes the fixture's input back (a Before column is not an answer).
-    const raw = readFileSync(file, "utf8");
-    const blocks = [...raw.matchAll(/```[^\n]*\n([\s\S]*?)```/g)].map((m) => m[1]);
-    const text = blocks.filter((b) => !(f.input && b.trim() === f.input.trim())).join("\n") || raw;
-    const missed = rules.filter(({ r, want }) => new RegExp(r, "m").test(text) !== want).map(({ r, want }) => `${want ? "missing" : "present"} \`${r.replace(/\|/g, "\\|")}\``);
-    row.arms[arm] = { passed: rules.length - missed.length, missed };
+    const s = scoreFixture(f, readFileSync(file, "utf8"));
+    row.arms[arm] = { passed: s.passed, missed: s.missed };
   }
   rows.push(row);
 }
@@ -71,3 +91,4 @@ md += `\nOutputs: ${readdirSync(runDir).filter((f) => /\.(baseline|skill)\.md$/.
 writeFileSync(join(runDir, "REPORT.md"), md);
 writeFileSync(join(runDir, "report.json"), JSON.stringify({ run: basename(runDir), totals, rows }, null, 2) + "\n");
 console.log(md);
+}

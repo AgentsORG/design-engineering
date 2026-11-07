@@ -65,7 +65,7 @@ One product's whole set, read from a real kit, so every part stays in proportion
 ## Sources
 
 - Emil Kowalski — button feedback timing.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md and RECIPES.md (duration budgets, tooltip, toast, hold-to-confirm).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md and RECIPES.md (duration budgets, tooltip, toast, hold-to-confirm).
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN (exits 20–30% faster than enters).
 - Vercel Design — internal duration tokens.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/controls/Button.css`, `kit/controls/Toggle.css`, `kit/controls/Segmented.css`, `kit/controls/Tabs.css`, `kit/parts/Menu.css`, `kit/parts/Tooltip.css`, `kit/motion/Popover.css`, `references/choreography.md` (Timing has different jobs).

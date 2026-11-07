@@ -1,5 +1,5 @@
 import { defineEval } from "eve/evals";
-import { matches } from "eve/evals/expect";
+import { includes } from "eve/evals/expect";
 
 // Launch-film advice must name numbers (seconds or a share of runtime, and a
 // cut rate per minute), never "keep it snappy". It does not pin one register's
@@ -12,17 +12,17 @@ import { matches } from "eve/evals/expect";
 export default defineEval({
   description: "Launch-film advice names measured numbers.",
   async test(t) {
-    await t.send(
+    const turn = await t.send(
       "For a 60-second product launch film, how many cuts per minute should it have, when should the product name appear, and how long should the endcard hold?",
     );
     t.succeeded();
     t.check(
-      t.reply,
-      matches(/(?<![\d.])(?!60\s?(s\b|secs?\b|seconds?\b))\d+(\.\d+)?\s?(s\b|secs?\b|seconds?\b|%)/i),
+      turn.reply,
+      includes(/(?<![\d.])(?!60\s?(s\b|secs?\b|seconds?\b))\d+(\.\d+)?\s?(s\b|secs?\b|seconds?\b|%)/i),
     );
     t.check(
-      t.reply,
-      matches(
+      turn.reply,
+      includes(
         /\d+(\.\d+)?\s*(cuts?|shots?|times)?\s*(per min|\/\s?min|a minute)|\d+(\.\d+)?\s*(cuts?|shots?)\s*(in a minute|per 60\s?(s\b|secs?\b|seconds?\b))|\b(cuts?|shots?)\s*(per min(ute)?|\/\s?min|a minute)[ \t:*_|=~≈–—-]{0,6}(?!60\s?(s\b|secs?\b|seconds?\b))\d|\b(cut(s|ting)?|shots?)\s+(\w+\s+)?every\s*~?\d+(\.\d+)?(\s?([-–]|to)\s?\d+(\.\d+)?)?\s?(s\b|secs?\b|seconds?\b)/i,
       ),
     );

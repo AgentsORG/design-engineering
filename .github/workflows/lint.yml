@@ -78,6 +78,8 @@ jobs:
             "package.json"
             "registry.json"
             "scripts/build-registry.mjs"
+            "scripts/build-agents.mjs"
+            "harness/README.md"
             "templates/design-engineering.design"
             "spec/design-file-spec.md"
             "agent/agent.ts"
@@ -227,6 +229,31 @@ jobs:
             exit 1
           fi
           echo "All plugin manifests + SKILL.md report version $v_claude."
+
+  agents-check:
+    name: Harness agents are current
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Rebuild agent twins and verify no drift
+        run: |
+          set -e
+          # agents/*.md is the single source; eve twins (agent/subagents/) and
+          # harness/{codex,opencode,gemini,cursor} are generated from it.
+          node scripts/build-agents.mjs --check
+          node scripts/build-agents.mjs
+          if ! git diff --quiet -- agent/subagents harness || [ -n "$(git ls-files --others --exclude-standard -- agent/subagents harness)" ]; then
+            echo "::error::agent/subagents/ or harness/ is stale. Run 'npm run build:agents' and commit the result."
+            git status --short -- agent/subagents harness
+            exit 1
+          fi
+          echo "Generated agents match agents/*.md."
 
   registry-check:
     name: shadcn registry is current

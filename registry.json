@@ -7,7 +7,7 @@
       "name": "design-engineering",
       "type": "registry:file",
       "title": "Design Engineering skill graph",
-      "description": "The full design-engineering skill graph — 13 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, faux product UI, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
+      "description": "The full design-engineering skill graph — 13 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, faux product UI, typography, surface, components, layout, anti-patterns, and the routing layer, plus the council, grade, sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
       "author": "HKTITAN",
       "categories": [
         "design",
@@ -107,9 +107,19 @@
           "target": "~/.agents/skills/design-engineering/references/commands/cmd-break.md"
         },
         {
+          "path": "skills/design-engineering/references/commands/cmd-council.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-council.md"
+        },
+        {
           "path": "skills/design-engineering/references/commands/cmd-film.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/commands/cmd-film.md"
+        },
+        {
+          "path": "skills/design-engineering/references/commands/cmd-grade.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/commands/cmd-grade.md"
         },
         {
           "path": "skills/design-engineering/references/commands/cmd-mobile.md",
@@ -517,6 +527,11 @@
           "target": "~/.agents/skills/design-engineering/references/meta/design-benchmarks.md"
         },
         {
+          "path": "skills/design-engineering/references/meta/design-moves.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/design-moves.md"
+        },
+        {
           "path": "skills/design-engineering/references/meta/design-system-docs.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/design-system-docs.md"
@@ -540,6 +555,11 @@
           "path": "skills/design-engineering/references/meta/gotchas.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/gotchas.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/grading-rubric.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/grading-rubric.md"
         },
         {
           "path": "skills/design-engineering/references/meta/interfaces-reconciliation.md",
@@ -720,6 +740,11 @@
           "path": "skills/design-engineering/references/motion/morphing-icons.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/morphing-icons.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/motion-choreography.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/motion-choreography.md"
         },
         {
           "path": "skills/design-engineering/references/motion/multi-segment-shake.md",
@@ -1057,6 +1082,16 @@
           "target": "~/.agents/skills/design-engineering/references/typography/typography-humanity.md"
         },
         {
+          "path": "skills/design-engineering/scripts/council.mjs",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/scripts/council.mjs"
+        },
+        {
+          "path": "skills/design-engineering/scripts/grade.mjs",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/scripts/grade.mjs"
+        },
+        {
           "path": "skills/design-engineering/scripts/sound-family.example.json",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/scripts/sound-family.example.json"
@@ -1082,7 +1117,7 @@
       "name": "design-engineering-agents",
       "type": "registry:file",
       "title": "Design Engineering subagents",
-      "description": "Ten workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator, launch-film-analyst) in Claude Code format. Optional: every /design-engineering verb runs without them.",
+      "description": "Thirteen subagents (agentation-fix-loop, anti-pattern-scanner, design-council, design-grader, design-judge, design-md-consumer, launch-film-analyst, motion-auditor, pov-curator, sound-designer, svg-animator, svg-creator, ui-reviewer) in Claude Code format. Optional: every /design-engineering verb runs without them.",
       "author": "HKTITAN",
       "categories": [
         "design",
@@ -1102,6 +1137,21 @@
           "path": "agents/anti-pattern-scanner.md",
           "type": "registry:file",
           "target": "~/.claude/agents/anti-pattern-scanner.md"
+        },
+        {
+          "path": "agents/design-council.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/design-council.md"
+        },
+        {
+          "path": "agents/design-grader.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/design-grader.md"
+        },
+        {
+          "path": "agents/design-judge.md",
+          "type": "registry:file",
+          "target": "~/.claude/agents/design-judge.md"
         },
         {
           "path": "agents/design-md-consumer.md",

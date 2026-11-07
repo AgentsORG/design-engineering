@@ -1,0 +1,169 @@
+/* Shared look for the design-engineering README stills. Light, calm, one accent. */
+.de {
+  & .ss-stage {
+    --gutter: 28px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: var(--ss-well);
+  }
+
+  /* The hero window: pinned top-left by one gutter, runs off right and bottom */
+  .de-win {
+    position: absolute;
+    top: var(--gutter);
+    left: var(--gutter);
+    width: 760px;
+    height: 420px;
+    background: var(--ss-surface);
+    border-radius: 10px;
+    box-shadow: var(--ss-shadow-hero);
+  }
+
+  .de-body {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--ss-surface);
+    height: 100%;
+  }
+
+  .de-mono {
+    font-family: var(--ss-mono);
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--ss-text-strong);
+  }
+
+  .de-dim { color: var(--ss-text-faint); }
+  .de-accent { color: var(--ss-accent-text); }
+
+  .de-h {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ss-text-strong);
+  }
+
+  .de-small {
+    font-size: 11px;
+    line-height: 14px;
+    color: var(--ss-text);
+  }
+
+  .de-label {
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--ss-text-faint);
+  }
+
+  .de-num {
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ss-text-strong);
+  }
+
+  /* A table made of rows: fixed columns, hairlines between */
+  .de-table {
+    display: grid;
+    border-top: 1px solid var(--ss-line);
+  }
+
+  .de-tr {
+    display: grid;
+    align-items: center;
+    min-height: 38px;
+    padding: 6px 0;
+    gap: 16px;
+    border-bottom: 1px solid var(--ss-line-faint);
+  }
+
+  .de-tr[data-head] { min-height: 28px; }
+  .de-tr[data-on] {
+    background: var(--ss-accent-soft);
+    margin: 0 -10px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border-bottom-color: transparent;
+  }
+
+  .de-code {
+    font-family: var(--ss-mono);
+    font-size: 11px;
+    line-height: 16px;
+    color: var(--ss-text-strong);
+  }
+
+  .de-code[data-strike] {
+    color: var(--ss-text-faint);
+    text-decoration: line-through;
+    text-decoration-color: var(--ss-danger);
+  }
+
+  /* The satellite: straddles the hero's lower edge, one level above it */
+  .de-sat {
+    position: absolute;
+    right: var(--gutter);
+    bottom: var(--gutter);
+    width: 236px;
+    background: var(--ss-surface);
+    border-radius: 12px;
+    box-shadow: var(--ss-shadow-satellite);
+  }
+
+  .de-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 26px;
+  }
+
+  .de-meter { width: 96px; }
+
+  .de-menu { width: 460px; margin-left: -8px; }
+  .de-mi {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+  }
+  .de-stack { display: flex; flex-direction: column; gap: 3px; }
+  .de-pair { display: flex; align-items: center; gap: 10px; }
+  .de-h--sm { font-size: 12px; }
+  .de-strong { color: var(--ss-text-strong); }
+  .de-meter--wide { width: 150px; }
+  .de-num--slot { width: 24px; text-align: right; }
+  .de-axis { min-height: 32px; border-bottom: 1px solid var(--ss-line-faint); }
+  .de-score { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+  .de-term { padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; }
+  .de-pre { white-space: pre; }
+  .de-gap { height: 10px; }
+  .de-side { display: flex; flex-direction: column; gap: 2px; padding: 40px 10px 8px; }
+  .de-side__head { padding: 6px; }
+  .de-nav {
+    display: flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 0 6px;
+    border-radius: 6px;
+  }
+  .de-nav[data-on] { background: var(--ss-accent-soft); }
+  .de-nav[data-on] .de-small { font-weight: 600; }
+
+  .de-big {
+    font-size: 34px;
+    line-height: 38px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--ss-text-strong);
+  }
+}
+
+.de .de-body--side { padding: 4px 16px 16px; gap: 0; }
+.de .de-rw { padding: 8px 0; border-bottom: 1px solid var(--ss-line-faint); }

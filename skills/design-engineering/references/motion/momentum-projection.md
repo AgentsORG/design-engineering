@@ -63,6 +63,6 @@ Projection without velocity hand-off still looks wrong: the element picks the ri
 
 ## Sources
 
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/apple-design/SKILL.md (from Apple's *Designing Fluid Interfaces*, WWDC 2018).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/apple-design/SKILL.md (from Apple's *Designing Fluid Interfaces*, WWDC 2018).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/swipe/index.tsx`, `stageshow/teaching/contrasts.tsx` (interrupt), `stageshow/references/verify.md` (beats filmed at 40 to 80ms).
 - Related: [[gesture-momentum]], [[spring-animations]], [[frame-rate-independence]], [[animated-hit-testing]].

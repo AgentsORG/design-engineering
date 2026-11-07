@@ -134,7 +134,7 @@ Also: `clip-path` on a parent affects all children. Want only one child clipped?
 ## Sources
 
 - Emil Kowalski — clip-path section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/RECIPES.md (hold-to-confirm timing).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/RECIPES.md (hold-to-confirm timing).
 - MDN — `clip-path` reference.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/motion/Roll.css` (feathered mask, `fade` variant clip), `teaching/edges.tsx` and `teaching/edges.css` (label-boundary), `references/motion.md` (a moving edge never slices text).
 - Related: [[transform-opacity-only]] for the GPU-acceleration baseline.

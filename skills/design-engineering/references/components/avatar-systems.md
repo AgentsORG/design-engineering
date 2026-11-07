@@ -192,6 +192,6 @@ Also: a few styles are paid (designer-contributed). Verify license per style at 
 
 - DiceBear — [dicebear.com](https://www.dicebear.com/), [github.com/dicebear/dicebear](https://github.com/dicebear/dicebear), [github.com/dicebear/styles](https://github.com/dicebear/styles).
 - DiceBear style index — [dicebear.com/styles](https://www.dicebear.com/styles).
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/break-ui/SKILL.md, skills/break-ui/CATALOG.md (initials from grapheme clusters, the names that break them).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/break-ui/SKILL.md, skills/break-ui/CATALOG.md (initials from grapheme clusters, the names that break them).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/parts/Avatar.tsx`, `stageshow/kit/parts/Avatar.css`, `stageshow/kit/parts/Facepile.tsx`, `stageshow/examples/presence/index.tsx`, `stageshow/references/craft.md` (Restraint: named avatars take their own color).
 - Related: [[icon-systems]], [[ai-default-tells]], [[hover-states-subtle]], [[stress-scenarios]].

@@ -44,6 +44,25 @@ const skillFiles = walk("skills/design-engineering")
     target: `~/.agents/skills/design-engineering/${relative("skills/design-engineering", path).split(sep).join(posix.sep)}`,
   }));
 
+// Counts for the item descriptions, read from disk so the prose never drifts.
+const REFS = "skills/design-engineering/references";
+const clusterNames = readdirSync(join(root, REFS))
+  .sort()
+  .filter((d) => d !== "commands" && statSync(join(root, REFS, d)).isDirectory());
+const agentNames = readdirSync(join(root, "agents"))
+  .filter((f) => f.endsWith(".md"))
+  .sort()
+  .map((f) => f.slice(0, -3));
+const scriptNames = readdirSync(join(root, "skills/design-engineering/scripts"))
+  .filter((f) => f.endsWith(".mjs"))
+  .sort()
+  .map((f) => f.slice(0, -4));
+const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
+const spell = (n) => NUMBER_WORDS[n] ?? String(n);
+const capitalise = (w) => w[0].toUpperCase() + w.slice(1);
+const listOf = (names) =>
+  names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
+
 const hostFiles = [
   ...walk("agents")
     .filter((p) => p.endsWith(".md"))
@@ -70,7 +89,7 @@ const items = [
     type: "registry:file",
     title: "Design Engineering skill graph",
     description:
-      "The full design-engineering skill graph — 13 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, faux product UI, typography, surface, components, layout, anti-patterns, and the routing layer, plus the sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
+      `The full design-engineering skill graph — ${clusterNames.length} themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, faux product UI, typography, surface, components, layout, anti-patterns, and the routing layer, plus the ${listOf(scriptNames)} scripts. Installs into .agents/skills/ where any coding agent can load it.`,
     author: "HKTITAN",
     categories: ["design", "agents", "skills"],
     docs: "Restart your coding agent after installing so it picks up the new skill. Invoke it as /design-engineering [verb] [target]; with no verb it shows the menu. The dispatch table is at the top of SKILL.md. Fork references/meta/pov.md to record your own taste overrides.",
@@ -81,7 +100,7 @@ const items = [
     type: "registry:file",
     title: "Design Engineering subagents",
     description:
-      "Ten workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator, launch-film-analyst) in Claude Code format. Optional: every /design-engineering verb runs without them.",
+      `${capitalise(spell(agentNames.length))} subagents (${agentNames.join(", ")}) in Claude Code format. Optional: every /design-engineering verb runs without them.`,
     author: "HKTITAN",
     categories: ["design", "agents"],
     docs: "Installs into .claude/agents/. Requires the design-engineering skill item for the reference nodes these agents load.",

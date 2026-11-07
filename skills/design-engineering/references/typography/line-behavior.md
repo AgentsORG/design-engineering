@@ -69,6 +69,6 @@ Check: render at the shown width and again at 390px, then count every wrapped an
 
 - Emil Kowalski's design-engineering practice on typography, distilled by HKTITAN.
 - CSS Text Level 4 (`text-wrap`), WCAG 2.2 1.4.3 / 1.4.4.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/break-ui/SKILL.md (wrap, truncate or clamp per field).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/break-ui/SKILL.md (wrap, truncate or clamp per field).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/details.tsx` (detail-copy), `stageshow/references/bento.md` (rule 14), `stageshow/references/rehearse.md` and `stageshow/scripts/film-checks.mjs` (`unit wrapped:`).
 - Related: [[line-length-tracking]], [[type-scale-and-rhythm]], [[accessibility-baseline]].

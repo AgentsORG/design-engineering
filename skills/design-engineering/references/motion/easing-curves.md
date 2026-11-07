@@ -75,7 +75,7 @@ A pretty cubic-bezier on the wrong duration looks worse than `ease-out` on the r
 ## Sources
 
 - Emil Kowalski — easing curve guidance, custom > built-in.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md (easing decision order, strong curves), skills/review-animations/STANDARDS.md.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md (easing decision order, strong curves), skills/review-animations/STANDARDS.md.
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN (weak-to-strong curve library).
 - guidelines.sh — "Spring physics over bezier" for gestures (see [[spring-animations]]).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/ease.ts` (named curves, `startSlope`), `kit/controls/Button.css`, `kit/controls/Tabs.css`, `kit/motion/Popover.css`, `references/motion.md` (Pace and easing).

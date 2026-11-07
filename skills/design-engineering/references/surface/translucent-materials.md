@@ -69,6 +69,6 @@ Benji Taylor's frosted frame: the frame is glass, the page inside it is opaque.
 
 ## Sources
 
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/apple-design/SKILL.md (from Apple's WWDC material and accessibility talks).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/apple-design/SKILL.md (from Apple's WWDC material and accessibility talks).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/window.css` (`data-chrome="glass"` frame and white page, adapted above), `stageshow/kit/stage.css` (glass theme tokens, orb ground), `stageshow/references/backgrounds.md` (crisp bands show what glass blurs), `stageshow/examples/glass/`, `stageshow/examples/finder-glass/`.
 - Related: [[depth-and-nesting]], [[sticky-and-scroll-tells]], [[contrast-and-color-scheme]], [[prefers-reduced-motion]], [[performance-discipline]].

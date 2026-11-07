@@ -35,7 +35,7 @@ Swap down a tier: size → `scale()`, position → `translate()`, `display`/`vis
 
 ## Diagnosis order
 
-Name the cause before changing code. In order of likelihood: (1) a non-composite property animates (layout first, then `box-shadow`, `border-radius`); (2) the jank coincides with navigation, fetching or hydration; (3) React re-renders per frame; (4) it worsens as content grows; (5) a CSS variable animates, directly or through Motion shorthands; (6) animated `blur()` above 20px; (7) only then `will-change`. Confirm with a Performance recording on a mid-range phone over remote debugging; desktop CPU throttling doesn't model a weak GPU or a small memory budget.
+Name the cause before changing code. In order of likelihood: (1) a non-composite property animates (layout first, then `box-shadow`, `border-radius`); (2) the jank coincides with navigation, fetching or hydration; (3) React re-renders per frame; (4) it worsens as content grows; (5) a CSS variable animates, directly or through Motion shorthands before `motion` 14.2; (6) animated `blur()` above 20px; (7) only then `will-change`. Confirm with a Performance recording on a mid-range phone over remote debugging; desktop CPU throttling doesn't model a weak GPU or a small memory budget.
 - **Pause off-screen work**: looping animations, video, timers — `IntersectionObserver` or `animation-play-state`, plus `visibilitychange` for hidden tabs.
 
 ## Loading and layout

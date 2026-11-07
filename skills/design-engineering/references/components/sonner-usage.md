@@ -70,6 +70,6 @@ Position `bottom-right`, 3 visible, 4000ms duration, 14px gap when expanded, 32p
 
 ## Sources
 
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/ask-sonner/SKILL.md, skills/ask-sonner/API.md.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/ask-sonner/SKILL.md, skills/ask-sonner/API.md.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/parts/Toast.css`, `stageshow/kit/parts/Toast.tsx`, `stageshow/kit/stage.css` (`--ss-raised`), `stageshow/examples/gmail/index.tsx`.
 - Related: [[sonner-principles]], [[screen-reader-announcements]].

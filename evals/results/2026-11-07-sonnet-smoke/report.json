@@ -1,0 +1,64 @@
+{
+  "model": "sonnet",
+  "date": "2026-11-07",
+  "tries": 1,
+  "relevant_only": false,
+  "clusters": [
+    "anti-patterns",
+    "components",
+    "diagram",
+    "faux-ui",
+    "launch-video",
+    "layout",
+    "meta",
+    "motion",
+    "philosophy",
+    "sound",
+    "surface",
+    "svg",
+    "typography",
+    "agents"
+  ],
+  "arms": {
+    "full": {
+      "runs": 2,
+      "valid": 2,
+      "isolation_failed": 0,
+      "errors": 0,
+      "score": 0.8,
+      "within_fixture_sd": null,
+      "skill_fired": 1,
+      "cost_usd": 0.18528730000000002,
+      "tokens_in": 53408,
+      "tokens_out": 7703,
+      "mean_ms": 30354.5,
+      "grade_findings": 0.5
+    },
+    "none": {
+      "runs": 2,
+      "valid": 2,
+      "isolation_failed": 0,
+      "errors": 0,
+      "score": 0.8,
+      "within_fixture_sd": null,
+      "skill_fired": 0,
+      "cost_usd": 0.0986072,
+      "tokens_in": 18591,
+      "tokens_out": 5425,
+      "mean_ms": 21813.5,
+      "grade_findings": 0.5
+    }
+  },
+  "comparisons": {
+    "full-vs-none": {
+      "fixtures": 2,
+      "delta": 0,
+      "lo": 0,
+      "hi": 0,
+      "se": 0,
+      "mdd": 0,
+      "enough": false
+    }
+  },
+  "verdicts": {}
+}

@@ -97,7 +97,7 @@ The second worst: an entrance that starts from `opacity: 0` and only runs under 
 
 - WCAG 2.1 — Animation from Interactions.
 - Emil Kowalski — prefers-reduced-motion as a first-class concern, not an afterthought.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md, skills/review-animations/STANDARDS.md (fewer and gentler, not zero).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md, skills/review-animations/STANDARDS.md (fewer and gentler, not zero).
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN (disable all, opacity included).
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/scripts/lib/rules.mjs` (`reduced-hidden`) and `references/motion.md` §2 (35 of 99 award sites have any reduced-motion rule).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/reduced-motion.ts`, `stageshow/kit/motion/Follow.tsx`, `stageshow/references/kit.md` (Playback), `stageshow/references/motion.md` (Story, the poster), `stageshow/references/rehearse.md` (Reduced motion).

@@ -74,7 +74,7 @@ The bug is almost never "this needs more animation." The bug is almost always "t
 ## Sources
 
 - Emil Kowalski — animation decision tree (frequency-first).
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md (frequency tiers, purposes, tool ladder), skills/find-animation-opportunities/SKILL.md (function test).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md (frequency tiers, purposes, tool ladder), skills/find-animation-opportunities/SKILL.md (function test).
 - Related: removing what fails this gate → [[animation-removal-hazards]].
 - Benji Taylor — "animation should serve architecture."
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `references/motion.md` (Story: motion without hierarchy; Pace and easing: feedback stays quick), `teaching/contrasts.tsx` (press, exit).

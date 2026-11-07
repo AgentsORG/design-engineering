@@ -69,3 +69,7 @@
 {"query": "plan a bento grid for our features section", "should_load": true, "reason": "bento-grids"}
 {"query": "how should our chat app show that someone is typing or has left", "should_load": true, "reason": "presence-signals"}
 {"query": "record my screen with OBS and upload it to YouTube", "should_load": false, "reason": "screen recording and publishing, not design"}
+{"query": "get three different models to judge this settings screen and keep fixing until they all score it 9", "should_load": true, "reason": "council: cmd-council + grading-rubric"}
+{"query": "grade this designer's pull request and give me a report card on craft and motion", "should_load": true, "reason": "grade: cmd-grade + grading-rubric + design-moves"}
+{"query": "grade my history essay out of ten", "should_load": false, "reason": "grading prose, not a design episode"}
+{"query": "set up a council of advisors for my startup board", "should_load": false, "reason": "a business council, not design judges"}

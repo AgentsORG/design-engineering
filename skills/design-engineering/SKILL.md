@@ -42,6 +42,8 @@ For a screen built from scratch, run the verbs in the order of the screen loop i
 | `ship` | `prep`, `prod`, `launch` | A whole-app production pass across every lane: fix, verify, and list what needs a device or a human | [[cmd-ship]] |
 | `film` | `film-review`, `video` | `plan` a launch film from its register, `review` a render, or `formats` | [[cmd-film]] |
 | `stage` | `faux-ui`, `demo`, `bento`, `product-shot` | `still`, `demo`, `bento` or `review`: faux product UI for a landing page, feature card or docs hero, framed first, filmed and checked frame by frame | [[cmd-stage]] |
+| `council` | `judges`, `panel` | Three judges on different providers score the same evidence beside reference products; fix and re-judge until all clear a hidden bar or the budget ends; the Council review table | [[cmd-council]] |
+| `grade` | `report-card`, `score` | Grades a design episode, human or agent, on one scale: checks cap, judges raise, a band per axis, cached, local and secret-scrubbed | [[cmd-grade]] |
 | `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | `variants`, `library`, `vocab`, `route`, `agentation-fix`, `fork-pov` | Draw or not; three directions behind a picker (`riff`, `tune`, `mix`, `keep`); one library for a task; the exact word; who owns a job; the annotation fix loop; fork taste or log a gotcha | [[cmd-small]] |
 | `help` | `menu`, `?` | This table, with the 2–3 verbs that fit now | — |
 
@@ -57,7 +59,7 @@ How to think about taste, delight, and the difference between marketing and prod
 
 The largest cluster. Animation is the most overused tool in modern UI; this cluster tells you when *not* to animate as much as when to.
 
-- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[frame-rate-independence]], [[animated-hit-testing]], [[animation-removal-hazards]], [[momentum-projection]], [[react-native-motion]]
+- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[motion-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[frame-rate-independence]], [[animated-hit-testing]], [[animation-removal-hazards]], [[momentum-projection]], [[react-native-motion]]
 
 ## Transition techniques — Jakub Antalik's catalog
 
@@ -141,6 +143,8 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 - [[vibe-to-generator]] — Only a mood, no spec? Research the visual language into rules, then a seeded generator with knobs and a save button.
 - [[design-system-docs]] — Writing a DESIGN.md or docs folder an agent can follow: inventory the code, when/alternative, closed variant sets, correct/incorrect examples, verify by prompting.
 - [[skill-writing-rules]] — Encode process, write the why, be strict, earn every line, one aspect per skill, test by running. Governs every node here and [[pov]].
+- [[grading-rubric]] — The one scale for council and grader: twelve categories, six axes, five bands, checks cap and judges raise, no re-rolls, hidden target and holdouts.
+- [[design-moves]] — The named decisions a grader counts from the diff and evidence (subtract before adding, crop first, film it, one accent), each with its node.
 - [[design-benchmarks]] — DesignBench's generation / edit / repair tasks and Design Arena's pairwise votes, and this skill's own eval suite that borrows both.
 - [[disambiguation]] — The questions that blur together (four motion questions, three dark-mode owners, two layout-shift owners) and which node owns each.
 - [[stacking-chains]] — Ordered node chains for multi-step jobs (new screen, feel-better pass, design system, marketing site, a11y pass).
@@ -161,7 +165,7 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 
 ## Workflow subagents — sibling `agents/` directory
 
-Ten narrow-purpose subagents live in `agents/` next to this file. Spawn one when its specific workflow matches the user's ask. Each subagent loads its own slice of the graph and returns to the main agent with a structured result.
+Thirteen narrow-purpose subagents live in `agents/` next to this file. Spawn one when its specific workflow matches the user's ask. Each subagent loads its own slice of the graph and returns to the main agent with a structured result.
 
 - [[ui-reviewer]] — Runs the `[[review-format]]` table + `[[review-checklist]]` audit on a UI snippet.
 - [[motion-auditor]] — Animation/transition critique against the motion cluster + transitions.dev nodes.
@@ -173,6 +177,9 @@ Ten narrow-purpose subagents live in `agents/` next to this file. Spawn one when
 - [[svg-creator]] — Authors or refactors an SVG asset: grid, named groups, token colors, SVGO with the right flags, accessible name.
 - [[svg-animator]] — Animates an SVG or builds a vector flipbook from frames (`scripts/svg-flipbook.mjs`), engine chosen by where the file lives.
 - [[launch-film-analyst]] — Measures a reference launch film or your own render at native fps and returns the [[launch-video-review]] rubric plus a per-film JSON.
+- [[design-council]] — Runs the council loop: one brief to judges on three providers via `scripts/council.mjs`, fixes in rounds, reports a missing provider, returns the Council review table.
+- [[design-judge]] — One read-only judge: rubric scores 1–10 against reference products, Before / After / Why findings, confidence, as JSON.
+- [[design-grader]] — Grades a design episode with `scripts/grade.mjs`: checks cap, judges raise; returns the per-axis report card.
 
 See `docs/subagents.md` in the repo for the full directory and selection guide. Every [dispatch](#dispatch--read-this-first-every-time) verb runs without them.
 

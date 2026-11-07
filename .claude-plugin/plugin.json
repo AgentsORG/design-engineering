@@ -1,7 +1,7 @@
 {
   "name": "design-engineering",
   "displayName": "AgentsORG Design Engineering",
-  "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns, sound, SVG, launch films, faux product UI. Plus a SOUL.md identity layer and ten workflow subagents (ui-reviewer, motion-auditor, anti-pattern-scanner, agentation-fix-loop, design-md-consumer, pov-curator, sound-designer, svg-creator, svg-animator, launch-film-analyst). Distills Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
+  "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns, sound, SVG, launch films, faux product UI. Plus a SOUL.md identity layer and thirteen subagents (ten workflow agents plus a cross-model design council, a design judge and a design grader), generated for Claude Code, Codex, Cursor, Gemini CLI, OpenCode and eve. Distills Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
   "version": "3.3.1",
   "author": {
     "name": "HKTITAN",
@@ -10,5 +10,8 @@
   },
   "homepage": "https://github.com/AgentsORG/design-engineering",
   "repository": "https://github.com/AgentsORG/design-engineering",
-  "license": "MIT"
+  "license": "MIT",
+  "experimental": {
+    "evals": "evals/plugin"
+  }
 }

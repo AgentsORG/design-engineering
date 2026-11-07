@@ -94,6 +94,6 @@ Don't set `:active` on form `<input>` elements the same way — scaling an input
 
 - Emil Kowalski — tooltips, popovers, origin-awareness from Sonner / Vaul.
 - Radix UI — `Tooltip.Provider skipDelay` implementation.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/RECIPES.md (button press, tooltip `data-instant`).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/RECIPES.md (button press, tooltip `data-instant`).
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN (0.96 small-control press, 0.95 floor, `still` opt-out).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Popover.css`, `stageshow/kit/controls/Button.css`, `stageshow/teaching/contrasts.tsx` (press).

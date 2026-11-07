@@ -95,7 +95,7 @@ Step them on a fixed 4 ms clock or sample a closed form, cap the catch-up after 
 ## Sources
 
 - Emil Kowalski — interruptibility argument.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md (spring forms, bounce range), skills/animate-expo/SKILL.md (dampingRatio 1 settle, bounce only after momentum).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md (spring forms, bounce range), skills/animate-expo/SKILL.md (dampingRatio 1 settle, bounce only after momentum).
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN (bounce 0 default).
 - Apple Human Interface Guidelines — spring parameter ranges.
 - guidelines.sh — "Spring physics over bezier" for interactive motion.
