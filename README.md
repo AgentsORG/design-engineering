@@ -82,7 +82,7 @@ Never edit credentials. If a step fails, stop and show me the error.
 | Design-check hook | `PostToolUse`, non-blocking | not wired yet | not wired yet | not wired yet | not wired yet |
 | eve MCP hand-off (opt-in) | `claude mcp add` | MCP settings | MCP settings | MCP settings | MCP settings |
 
-Each agent is written once in `agents/<name>.md` and generated into every other harness's format by `scripts/build-agents.mjs`; CI fails on drift. Harness-by-harness detail is in [`harness/README.md`](harness/README.md).
+Each agent is written once in `plugin/agents/<name>.md` and generated into every other harness's format by `scripts/build-agents.mjs`; CI fails on drift. Harness-by-harness detail is in [`plugin/harness/README.md`](plugin/harness/README.md).
 
 ## Verbs
 
@@ -166,7 +166,7 @@ The rubric is [`grading-rubric.md`](skills/design-engineering/references/meta/gr
 
 ![The design-bench report for 2026-09-05 on Sonnet: the baseline arm passes 32 of 36 rules (7 of 10 fixtures fully clean), the skill arm 35 of 36 (9 of 10); a card shows fixture edit-hover-01, baseline 3 of 5 and skill 5 of 5, and what the baseline missed](docs/readme/img/de-bench.png)
 
-Same model in every arm; the only difference is how much of the skill the agent can see. `scripts/bench.mjs` runs three kinds of arm: `none`, `full`, and `minus-<cluster>` for each cluster on disk (plus `minus-agents`). Every run is a fresh `claude -p` in an empty workspace with an isolated plugin copy; the stream-json init line proves no user-installed copy leaked into the baseline, and a run that fails that check is excluded. It scores with the fixture rules and the grader's checks, records cost and tokens, labels any gap below the minimum detectable difference as noise, and gives each cluster a verdict: keep, slim or retire. The `claude plugin eval` suite under `evals/plugin/` runs the same with/without comparison inside Claude Code.
+Same model in every arm; the only difference is how much of the skill the agent can see. `bench/bench.mjs` runs three kinds of arm: `none`, `full`, and `minus-<cluster>` for each cluster on disk (plus `minus-agents`). Every run is a fresh `claude -p` in an empty workspace with an isolated plugin copy; the stream-json init line proves no user-installed copy leaked into the baseline, and a run that fails that check is excluded. It scores with the fixture rules and the grader's checks, records cost and tokens, labels any gap below the minimum detectable difference as noise, and gives each cluster a verdict: keep, slim or retire. The `claude plugin eval` suite under `evals/plugin/` runs the same with/without comparison inside Claude Code.
 
 <!-- BENCH:START -->
 | arm | rules passed | fixtures fully clean |
@@ -174,19 +174,19 @@ Same model in every arm; the only difference is how much of the skill the agent 
 | Sonnet, own knowledge | 32 / 36 (89%) | 7 / 10 |
 | Sonnet + `/design-engineering` | 35 / 36 (97%) | 9 / 10 |
 
-Run of 2026-09-05, ten scorable fixtures, one sample each: a floor check, not a leaderboard. Per-fixture results, every rule each arm missed and all twenty raw outputs are in [`evals/results/2026-09-05-sonnet/`](evals/results/2026-09-05-sonnet/REPORT.md). The skill fixed the card-hover edit (named transition properties, a `hover: hover` guard, a smaller lift), the dark-mode repair (a lifted surface instead of `#000`) and the icon toolbar (`hover: hover`). It still missed one thing: a login form shipped 15 px inputs, which zoom on iOS.
+Run of 2026-09-05, ten scorable fixtures, one sample each: a floor check, not a leaderboard. Per-fixture results, every rule each arm missed and all twenty raw outputs are in [`bench/results/2026-09-05-sonnet/`](bench/results/2026-09-05-sonnet/REPORT.md). The skill fixed the card-hover edit (named transition properties, a `hover: hover` guard, a smaller lift), the dark-mode repair (a lifted surface instead of `#000`) and the icon toolbar (`hover: hover`). It still missed one thing: a login form shipped 15 px inputs, which zoom on iOS.
 <!-- BENCH:END -->
 
 Reproduce:
 
 ```bash
-node scripts/bench.mjs --arms none,full --tries 3 --model sonnet            # with / without
-node scripts/bench.mjs --arms all --tries 3 --relevant-only --concurrency 4  # every minus-<cluster> arm
-node scripts/bench.mjs --report-only --out evals/results/<run>              # rebuild REPORT.md
-node evals/run-bench.mjs evals/results/2026-09-05-sonnet                    # score the 2026-09-05 outputs
+node bench/bench.mjs --arms none,full --tries 3 --model sonnet            # with / without
+node bench/bench.mjs --arms all --tries 3 --relevant-only --concurrency 4  # every minus-<cluster> arm
+node bench/bench.mjs --report-only --out bench/results/<run>              # rebuild REPORT.md
+node bench/run-bench.mjs bench/results/2026-09-05-sonnet                  # score the 2026-09-05 outputs
 ```
 
-The eve evals in `evals/` are the other half: `defineEval()` checks for review format, motion values, sound values, launch-film numbers, the generated-modal floor, delegation and the council, run with `npm run eval`. The methodology is in `references/meta/design-benchmarks.md`.
+The eve evals in `eve/evals/` are the other half: `defineEval()` checks for review format, motion values, sound values, launch-film numbers, the generated-modal floor, delegation and the council, run with `npm --prefix eve run eval`. The methodology is in `references/meta/design-benchmarks.md`.
 
 ## Sample prompts and outputs
 
@@ -315,29 +315,30 @@ The full reference, every path and command per harness, is [`docs/install.md`](d
 | --- | --- |
 | Skill (any agent) | `npx skills add AgentsORG/design-engineering -g -y`, or copy `skills/design-engineering/` into the harness's skill folder |
 | Claude Code plugin | `claude plugin marketplace add AgentsORG/design-engineering` then `claude plugin install design-engineering@agentsorg -s user` |
-| Claude Code agents | copy `agents/*.md` to `~/.claude/agents/` (the plugin includes them) |
-| Codex | skill in `~/.agents/skills/`; `harness/codex/agents/*.toml` to `~/.codex/agents/` |
-| Cursor | skill in `~/.agents/skills/`; `harness/cursor/agents/*.md` to `~/.cursor/agents/` (it also reads `.claude/agents/`) |
-| Gemini CLI / Antigravity | skill in `~/.gemini/skills/`; `harness/gemini/agents/*.md` to `~/.gemini/agents/` |
-| OpenCode | skill in `~/.config/opencode/skills/`; `harness/opencode/agents/*.md` to `~/.config/opencode/agents/` |
-| Design-check hook | Claude Code `PostToolUse`: `hooks/design-check.mjs` runs the grader's checks on edited CSS, TSX, SVG and similar files as a non-blocking note; merge it with `hooks/merge-settings.mjs` or [`hooks/settings-snippet.json`](hooks/settings-snippet.json); turn it off with `DE_HOOKS=0` |
-| eve MCP | `npx eve dev` in a checkout, then `claude mcp add --transport http -s user design-engineering http://localhost:2000/eve/v1/mcp` |
-| shadcn registry | `npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/r/design-engineering.json` |
+| Claude Code agents | copy `plugin/agents/*.md` to `~/.claude/agents/` (the plugin includes them) |
+| Codex | skill in `~/.agents/skills/`; `plugin/harness/codex/agents/*.toml` to `~/.codex/agents/` |
+| Cursor | skill in `~/.agents/skills/`; `plugin/harness/cursor/agents/*.md` to `~/.cursor/agents/` (it also reads `.claude/agents/`) |
+| Gemini CLI / Antigravity | skill in `~/.gemini/skills/`; `plugin/harness/gemini/agents/*.md` to `~/.gemini/agents/` |
+| OpenCode | skill in `~/.config/opencode/skills/`; `plugin/harness/opencode/agents/*.md` to `~/.config/opencode/agents/` |
+| Design-check hook | Claude Code `PostToolUse`: `plugin/hooks/design-check.mjs` runs the grader's checks on edited CSS, TSX, SVG and similar files as a non-blocking note; merge it with `plugin/hooks/merge-settings.mjs` or [`plugin/hooks/settings-snippet.json`](plugin/hooks/settings-snippet.json); turn it off with `DE_HOOKS=0` |
+| eve MCP | `cd eve && npm install && npm run dev` in a checkout, then `claude mcp add --transport http -s user design-engineering http://localhost:2000/eve/v1/mcp` |
+| shadcn registry | `npx shadcn@latest add https://raw.githubusercontent.com/AgentsORG/design-engineering/main/registry/r/design-engineering.json` |
 | Uninstall | `bash install.sh --uninstall` / `install.ps1 -Uninstall`: removes exactly what `~/.config/design-engineering/manifest.txt` lists and restores backups |
 
 Claude Code namespaces plugin skills and subagents under the plugin name: the skill runs as `/design-engineering:design-engineering` and the agents as `design-engineering:ui-reviewer` and so on. The shadcn registry also ships `design-engineering-motion`, four easing curves and a duration scale as theme CSS variables, the lightest way in.
 
 ## Run it as an agent (eve)
 
-The repo is a runnable [eve](https://eve.dev/) project: a durable backend design-engineering agent with the skill graph synced into its root and into every subagent (eve subagents inherit nothing), and the same specialists, including an eve council with one nested subagent per provider.
+The `eve/` folder is a runnable [eve](https://eve.dev/) project: a durable backend design-engineering agent with the skill graph synced into its root and into every subagent (eve subagents inherit nothing), and the same specialists, including an eve council with one nested subagent per provider.
 
 ```bash
+cd eve
 npm install
-npm run dev      # syncs the skill graph into agent/ and starts eve dev
+npm run dev      # syncs the skill graph into eve/agent/ and starts eve dev
 npm run eval     # scored checks, including delegation and the council
 ```
 
-`agent/channels/mcp.ts` exposes it over MCP, so Claude Code, Codex and Cursor can hand work to it (`claude mcp add --transport http design-engineering http://localhost:2000/eve/v1/mcp`), and `eve acp` serves ACP editors. Loops run on the harness loop with `limits.sessionUsage` guards.
+`eve/agent/channels/mcp.ts` exposes it over MCP, so Claude Code, Codex and Cursor can hand work to it (`claude mcp add --transport http design-engineering http://localhost:2000/eve/v1/mcp`), and `eve acp` serves ACP editors. Loops run on the harness loop with `limits.sessionUsage` guards.
 
 ## Launch film
 
@@ -405,22 +406,22 @@ Frames from the film, each an output shape of the skill.
 ```text
 design-engineering/
 ├── install.sh / install.ps1           ← the one-line installers (docs/install.md)
+├── README.md, AGENTS.md, CHANGELOG.md, LICENSE
 ├── plugin.json                        ← canonical Agent Plugins v1.0.0 manifest
-├── package.json                       ← eve app root (npm run dev / eval)
-├── README.md, AGENTS.md, SOUL.md, CHANGELOG.md, CONTRIBUTING.md, SECURITY.md, LICENSE
 ├── .claude-plugin/ .codex-plugin/ .cursor-plugin/ .plugin/   ← host manifests
-├── agents/                            ← 13 canonical agents (Claude Code format, the source of truth)
-├── harness/                           ← generated agents: codex/, cursor/, gemini/, opencode/
-├── hooks/                             ← design-check hook, settings merge, snippet
-├── agent/                             ← eve runtime: agent.ts, instructions.md, channels/, subagents/
-├── evals/                             ← eve evals, plugin/ eval suite, run-bench.mjs, results/<run>/
-├── scripts/                           ← build-agents, bench, sync-skills, build-registry
-├── registry.json + r/                 ← shadcn registry source and built items
-├── spec/ template/ templates/         ← offline specs, skill template, starter .design
-├── docs/install.md                    ← every install path per harness
-├── docs/readme/                       ← the Stageshow scenes behind this README (stage/) and their stills (img/)
-├── docs/demo/                         ← the launch film: HyperFrames source, MP4/GIF, screenshots
-├── docs/research/                     ← launch-film measurements
+├── .github/                           ← CI, CONTRIBUTING, CODE_OF_CONDUCT, SECURITY, markdownlint config
+├── plugin/
+│   ├── agents/                        ← 13 canonical agents (Claude Code format, the source of truth)
+│   ├── harness/                       ← generated agents: codex/, cursor/, gemini/, opencode/
+│   └── hooks/                         ← design-check hook, settings merge, snippet
+├── eve/                               ← eve app root: package.json, agent/, evals/, scripts/sync-skills.mjs
+├── bench/                             ← bench.mjs, run-bench.mjs, plugin/ eval suite, results/<run>/
+├── registry/                          ← shadcn registry.json, built r/ items, starter .design
+├── scripts/                           ← build-agents, build-registry, release
+├── docs/                              ← install.md, subagents.md, SOUL.md, NOTICE.md, spec/, template/
+│   ├── readme/                        ← the Stageshow scenes behind this README (stage/) and their stills (img/)
+│   ├── demo/                          ← the launch film: HyperFrames source, MP4/GIF, screenshots
+│   └── research/                      ← launch-film measurements
 └── skills/design-engineering/         ← THE KNOWLEDGE
     ├── SKILL.md                       ← thin Map of Content, one /design-engineering entry
     ├── references/                    ← themed clusters of atomic, wikilinked nodes + command files
@@ -428,7 +429,7 @@ design-engineering/
     └── evals/                         ← routing fixtures and design-bench.jsonl
 ```
 
-The skill is a graph, not a single file: `SKILL.md` is a Map of Content, each `references/<theme>/MOC-<theme>.md` is a hub, and each node is one complete thought with YAML frontmatter and `[[wikilinks]]` that resolve by basename. Open the repo as an [Obsidian](https://obsidian.md) vault to browse it as a graph. To make it yours, edit `references/meta/pov.md` (taste overrides) and `references/meta/gotchas.md` (one line per UI detail your agent got wrong).
+The skill is a graph, not a single file: `SKILL.md` is a Map of Content, each `references/<theme>/MOC-<theme>.md` is a hub, and each node is one complete thought with YAML frontmatter and `[[wikilinks]]` that resolve by basename. Open `skills/design-engineering/` as an [Obsidian](https://obsidian.md) vault to browse it as a graph. To make it yours, edit `references/meta/pov.md` (taste overrides) and `references/meta/gotchas.md` (one line per UI detail your agent got wrong).
 
 ### The README visuals
 
@@ -442,7 +443,7 @@ node scripts/film.mjs "http://127.0.0.1:4711/?capture=de-council" --still --pad 
 
 ## Contributing
 
-PRs welcome; the shorter the better. Edit agents only in `agents/` and run `node scripts/build-agents.mjs`; CI fails if `harness/` or `agent/subagents/` drift. See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [SECURITY.md](SECURITY.md) and [CHANGELOG.md](CHANGELOG.md). CI runs [markdownlint, frontmatter validation, required files, wikilink resolution, generator drift and manifest version parity](.github/workflows/ci.yml) on every PR.
+PRs welcome; the shorter the better. Edit agents only in `plugin/agents/` and run `node scripts/build-agents.mjs`; CI fails if `plugin/harness/` or `eve/agent/subagents/` drift. See [CONTRIBUTING.md](.github/CONTRIBUTING.md), [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md), [SECURITY.md](.github/SECURITY.md) and [CHANGELOG.md](CHANGELOG.md). CI runs [markdownlint, frontmatter validation, required files, wikilink resolution, generator drift and manifest version parity](.github/workflows/ci.yml) on every PR.
 
 ## Sources
 
@@ -475,9 +476,9 @@ PRs welcome; the shorter the better. Edit agents only in `agents/` and run `node
 - **Ben DC** — [github.com/bendc/frontend-guidelines](https://github.com/bendc/frontend-guidelines)
 - **dmytro / @pqoqubbw** — [lucide-animated.com](https://lucide-animated.com)
 - **DiceBear** — [dicebear.com/styles](https://www.dicebear.com/styles)
-- **Google Labs Code** — [github.com/google-labs-code/design.md](https://github.com/google-labs-code/design.md) (mirrored in `spec/`)
-- **AgentsORG `.design`** — [github.com/AgentsORG/design](https://github.com/AgentsORG/design) (the `design.v1` visual contract; mirrored in `spec/`)
-- **agentskills.io** — [Agent Skills specification](https://github.com/agentskills/agentskills) (mirrored in `spec/`)
+- **Google Labs Code** — [github.com/google-labs-code/design.md](https://github.com/google-labs-code/design.md) (mirrored in `docs/spec/`)
+- **AgentsORG `.design`** — [github.com/AgentsORG/design](https://github.com/AgentsORG/design) (the `design.v1` visual contract; mirrored in `docs/spec/`)
+- **agentskills.io** — [Agent Skills specification](https://github.com/agentskills/agentskills) (mirrored in `docs/spec/`)
 - **Akshay Pachaar** — [Skill Graphs > SKILL.md](https://x.com/akshay_pachaar)
 - **Perplexity Agents team** — [Designing, Refining, and Maintaining Agent Skills](https://research.perplexity.ai/articles/designing-refining-and-maintaining-agent-skills-at-perplexity)
 - **Theo Browne** — [t3dotgg/tstack](https://github.com/t3dotgg/tstack) (MIT): the council pattern behind `design-council`, adapted and paraphrased, and the hill-climb in "Agents Sucked At UI (Until Today)"
@@ -486,14 +487,14 @@ PRs welcome; the shorter the better. Edit agents only in `agents/` and run `node
 ## See also
 
 - [Agent Plugins spec](https://agent-plugins.org/) — the portable-plugin interoperability floor this repo conforms to
-- [eve](https://eve.dev/) — the durable-agent framework the `agent/` + `evals/` runtime targets
+- [eve](https://eve.dev/) — the durable-agent framework the `eve/` runtime targets
 - [skills.sh](https://skills.sh) — the CLI and registry
 - [Agent Skills spec](https://agentskills.io/specification) — frontmatter and directory standard
 - [agents.md](https://agents.md) — the AGENTS.md format
 - [steipete/SOUL.md](https://github.com/steipete/SOUL.md) — identity layer for agents
 - [design.md](https://github.com/google-labs-code/design.md) — design-token format for coding agents
 - [.design](https://github.com/AgentsORG/design) — the `design.v1` living visual contract this skill defers to
-- [shadcn registry](https://ui.shadcn.com/docs/registry) — how the `r/` items are consumed
+- [shadcn registry](https://ui.shadcn.com/docs/registry) — how the `registry/r/` items are consumed
 - [Agentation](https://www.agentation.com) — click-to-annotate design review
 - [kepano/obsidian-skills](https://www.skills.sh/kepano/obsidian-skills) — edit skill graphs in Obsidian
 

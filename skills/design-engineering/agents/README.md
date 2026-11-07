@@ -1,11 +1,11 @@
 ---
 title: agents
-summary: Subagents moved to the repo root for plugins CLI and Cursor plugin discovery.
+summary: Subagents live in plugin/agents/ at the repo root, where the plugin manifests point.
 tags: [meta, agents, subagents]
 ---
 
 # Subagents (relocated)
 
-Workflow subagents now live at the repo root so `npx plugins add` and per-host plugin manifests can discover them under `agents/`.
+Workflow subagents live in `plugin/agents/` at the repo root, outside the skill, and every plugin manifest points there.
 
-See [docs/subagents.md](../../../docs/subagents.md) for the directory index, selection guide, and spec. The root `agents/` folder holds only subagent files, because Claude Code registers every `.md` in it as a subagent.
+See [docs/subagents.md](../../../docs/subagents.md) for the directory index, selection guide, and spec. `plugin/agents/` holds only subagent files, because the plugin registers every `.md` in it as a subagent.

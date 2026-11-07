@@ -8,11 +8,17 @@
 // Then: commit, `git tag v4.1.0`, `git push --follow-tags` — release.yml publishes the GitHub release.
 import { readFileSync, writeFileSync, mkdirSync, cpSync, readdirSync } from "node:fs";
 import { execFileSync } from "node:child_process";
-import { join } from "node:path";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
+// Paths below are repo-root-relative; an outDir argument stays relative to where you ran it.
+const [cmd, version, outArg = "dist"] = process.argv.slice(2);
+const outDir = resolve(outArg);
+process.chdir(join(dirname(fileURLToPath(import.meta.url)), ".."));
 
 const JSON_PLACES = [
   ["plugin.json", (j) => j, "version"],
-  ["package.json", (j) => j, "version"],
+  ["eve/package.json", (j) => j, "version"],
   [".plugin/plugin.json", (j) => j, "version"],
   [".claude-plugin/plugin.json", (j) => j, "version"],
   [".claude-plugin/marketplace.json", (j) => j.plugins[0], "version"],
@@ -22,7 +28,6 @@ const JSON_PLACES = [
 const SKILL = "skills/design-engineering/SKILL.md";
 const SKILL_RE = /^(\s*version:\s*")([^"]+)(")/m;
 
-const [cmd, version, outDir = "dist"] = process.argv.slice(2);
 if (!cmd || !version || !/^\d+\.\d+\.\d+(-[\w.]+)?$/.test(version)) {
   console.error("usage: release.mjs --bump|--verify|--assets <x.y.z> [outDir]");
   process.exit(64);
@@ -52,13 +57,13 @@ if (cmd === "--verify") {
     // Whatever sat under [Unreleased] becomes this version's section.
     writeFileSync("CHANGELOG.md", log.replace(/## \[Unreleased\]\n(\nNothing yet\.\n)?/, `## [Unreleased]\n\nNothing yet.\n\n## [${version}] — ${today}\n`));
   }
-  console.log(`bumped to ${version}; edit CHANGELOG.md, then rebuild: npm run build:agents && npm run build:registry`);
+  console.log(`bumped to ${version}; edit CHANGELOG.md, then rebuild: node scripts/build-agents.mjs && node scripts/build-registry.mjs`);
 } else if (cmd === "--assets") {
   mkdirSync(join(outDir, "registry"), { recursive: true });
   // claude.ai / Skills API upload format: the skill folder at the zip root.
   execFileSync("git", ["archive", "--format=zip", "--prefix=design-engineering/", "-o", join(outDir, `design-engineering-skill-${version}.zip`), "HEAD:skills/design-engineering"]);
   execFileSync("git", ["archive", "--format=zip", "--prefix=design-engineering/", "-o", join(outDir, `design-engineering-${version}.zip`), "HEAD"]);
-  for (const f of readdirSync("r")) cpSync(join("r", f), join(outDir, "registry", f));
+  for (const f of readdirSync("registry/r")) cpSync(join("registry/r", f), join(outDir, "registry", f));
   const log = read("CHANGELOG.md");
   const start = log.indexOf(`## [${version}]`);
   if (start < 0) { console.error(`CHANGELOG.md has no ## [${version}] section`); process.exit(1); }

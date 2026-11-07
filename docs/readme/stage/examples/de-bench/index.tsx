@@ -2,7 +2,7 @@ import { Card, Meter, Stage, Text, Window, Bar } from '../../kit'
 import '../_de/de.css'
 
 // Built from examples/static-card, the same frame as de-grade. The window is
-// evals/results/2026-09-05-sonnet/REPORT.md as written: the arms table
+// bench/results/2026-09-05-sonnet/REPORT.md as written: the arms table
 // (rules passed, fixtures fully clean), then the per-fixture table, whose
 // rows run off the crop as filler. The card is the one fixture where the
 // arms differ most, with what the baseline missed, word for word.

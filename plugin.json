@@ -25,7 +25,8 @@
     "com.anthropic.claude-code": {
       "manifest": "./.claude-plugin/plugin.json",
       "marketplace": "./.claude-plugin/marketplace.json",
-      "agents": "./agents/"
+      "agents": "./plugin/agents/",
+      "hooks": "./plugin/hooks/hooks.json"
     },
     "com.openai.codex": {
       "manifest": "./.codex-plugin/plugin.json"
@@ -37,16 +38,16 @@
       "manifest": "./.plugin/plugin.json"
     },
     "dev.eve.agent": {
-      "agent": "./agent/",
-      "evals": "./evals/"
+      "agent": "./eve/agent/",
+      "evals": "./eve/evals/"
     },
     "com.shadcn.registry": {
-      "registry": "./registry.json",
-      "items": "./r/"
+      "registry": "./registry/registry.json",
+      "items": "./registry/r/"
     },
     "org.agentsorg.design": {
-      "starter": "./templates/design-engineering.design",
-      "spec": "./spec/design-file-spec.md"
+      "starter": "./registry/design-engineering.design",
+      "spec": "./docs/spec/design-file-spec.md"
     }
   }
 }

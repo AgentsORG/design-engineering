@@ -47,5 +47,5 @@
     "workflow"
   ],
   "skills": "./skills/",
-  "agents": "./agents/"
+  "agents": "./plugin/agents/"
 }

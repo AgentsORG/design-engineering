@@ -1,18 +1,18 @@
 # AGENTS.md
 
-Repo-level operating guidance for AI agents working in this codebase. Pairs with [SOUL.md](SOUL.md), which carries identity (voice, stance, taste lineage). This file is the **what / how**; SOUL.md is the **who / why**. Read both on cold start.
+Repo-level operating guidance for AI agents working in this codebase. Pairs with [SOUL.md](docs/SOUL.md), which carries identity (voice, stance, taste lineage). This file is the **what / how**; SOUL.md is the **who / why**. Read both on cold start.
 
 ## What this repo is
 
 A single agent skill packaged as a **skill graph** — one root `SKILL.md` (the Map of Content) plus a `references/` folder of atomic, wikilinked nodes organised into themed subfolders (`philosophy/`, `motion/`, `sound/`, `svg/`, `diagram/`, `launch-video/`, `faux-ui/`, `typography/`, `surface/`, `components/`, `layout/`, `anti-patterns/`, `meta/`, plus `commands/` for the `/design-engineering [verb]` files), an `evals/` folder for Perplexity-style Step-0 evals, and a `scripts/` folder with the tools the knowledge needs (`sound-family.mjs`, `sound-sheet.mjs`, `svg-flipbook.mjs`, and the judging tools `council.mjs` and `grade.mjs`). A sibling `agents/` directory ships thirteen subagents: ten workflow subagents plus the judging trio `design-council`, `design-judge` and `design-grader`. The skill encodes design engineering knowledge.
 
-Since v2.0.0 the repo is organised around **four primitives**: Knowledge (`skills/design-engineering/`, Agent Skills spec), Package (root `plugin.json`, [Agent Plugins v1.0.0](https://agent-plugins.org/)), Runtime (`agent/` + `evals/`, the [eve](https://eve.dev/) framework, `eve@^1.0.0-rc.6`, Node 24+), and Client extensions (`agents/`, `harness/`, and the per-host manifest dirs, declared under reverse-domain namespaces in `plugin.json` `extensions`). The knowledge is canonical; everything else delivers it. Three things are **generated** — never edit them by hand:
+Since v2.0.0 the repo is organised around **four primitives**: Knowledge (`skills/design-engineering/`, Agent Skills spec), Package (root `plugin.json`, [Agent Plugins v1.0.0](https://agent-plugins.org/)), Runtime (`eve/`: `eve/agent/` + `eve/evals/`, the [eve](https://eve.dev/) framework, `eve@^1.0.0-rc.6`, Node 24+), and Client extensions (`plugin/agents/`, `plugin/harness/`, `plugin/hooks/`, and the per-host manifest dirs, declared under reverse-domain namespaces in `plugin.json` `extensions`). The repo root holds only the manifests, installers and top-level docs; everything else lives in a folder (`plugin/`, `eve/`, `bench/`, `registry/`, `scripts/`, `docs/`, `.github/`). The knowledge is canonical; everything else delivers it. Three things are **generated** — never edit them by hand:
 
-- `agent/skills/` (and each subagent's synced skill copy) by `scripts/sync-skills.mjs`; edit `skills/design-engineering/` and re-sync.
-- `agent/subagents/<name>/` (eve twins) and `harness/{codex,opencode,gemini,cursor}/agents/` by `scripts/build-agents.mjs` from `agents/*.md`; edit the Claude Code file and run `npm run build:agents`. A twin whose first line contains `build-agents: keep` is hand-written and left alone.
-- `registry.json` and `r/*.json` by `scripts/build-registry.mjs` (see Plugin manifests).
+- `eve/agent/skills/` (and each subagent's synced skill copy) by `eve/scripts/sync-skills.mjs` (`npm --prefix eve run sync:skills`); edit `skills/design-engineering/` and re-sync.
+- `eve/agent/subagents/<name>/` (eve twins) and `plugin/harness/{codex,opencode,gemini,cursor}/agents/` by `scripts/build-agents.mjs` from `plugin/agents/*.md`; edit the Claude Code file and run `node scripts/build-agents.mjs`. A twin whose first line contains `build-agents: keep` is hand-written and left alone.
+- `registry/registry.json` and `registry/r/*.json` by `scripts/build-registry.mjs` (see Plugin manifests).
 
-The graph is intentionally **Obsidian-compatible**: installers can open this repo as a vault to navigate clusters in the graph view and edit nodes in place. The recommended companion is [kepano/obsidian-skills](https://www.skills.sh/kepano/obsidian-skills). Preserving that compatibility is a constraint on every edit (see rule 6).
+The graph is intentionally **Obsidian-compatible**: installers can open `skills/design-engineering/` as a vault to navigate clusters in the graph view and edit nodes in place. The recommended companion is [kepano/obsidian-skills](https://www.skills.sh/kepano/obsidian-skills). Preserving that compatibility is a constraint on every edit (see rule 6).
 
 ## When editing this repo
 
@@ -37,16 +37,16 @@ The graph is intentionally **Obsidian-compatible**: installers can open this rep
 - Filenames: lowercase, hyphenated, no extension in wikilinks, **unique across the vault** (Obsidian resolves wikilinks by basename, so theme subfolders are organizational only — they don't create namespaces).
 - Theme folders: `references/<theme>/` — one per cluster. Current themes: philosophy, motion, sound, svg, diagram, launch-video, faux-ui, typography, surface, components, layout, anti-patterns, meta (plus `commands/`, which holds the `cmd-<verb>.md` files and `MOC-commands.md`, not knowledge).
 - Scripts: `skills/design-engineering/scripts/` — only for work the agent cannot do by reading (today: `sound-family.mjs`, which calls ElevenLabs or synthesizes offline, with its example manifest; `sound-sheet.mjs`, which renders a stereo stem from a motion cue sheet; `svg-flipbook.mjs`, which assembles SVG frames into one animated SVG; `council.mjs`, which detects the installed model CLIs and fans one judge brief out to them; `grade.mjs`, which runs the deterministic design checks and hands the episode to the judges). No dependencies, Node 18+ (the eve runtime under `agent/` needs Node 24+).
-- Subagents: `agents/<name>.md` is the one source for every harness. Name equals basename and is unique against every node basename; frontmatter has `name`, `description`, `tools`, `model`; the body stays under 150 lines and carries a `## Loop` (budget, stop conditions, findings ledger) and a `## Soul`. After editing one, run `npm run build:agents`. Don't add a script for anything a node can describe. The Python scripts under `docs/research/launch-films/` (`measure.py`, `aggregate.py` and the rest) are research tools that produced the launch-video numbers, not skill scripts: they need NumPy, OpenCV and ffmpeg (SciPy for one probe; the stats scripts are standard library only) and never move into `skills/`.
+- Subagents: `plugin/agents/<name>.md` is the one source for every harness. Name equals basename and is unique against every node basename; frontmatter has `name`, `description`, `tools`, `model`; the body stays under 150 lines and carries a `## Loop` (budget, stop conditions, findings ledger) and a `## Soul`. After editing one, run `node scripts/build-agents.mjs`. Don't add a script for anything a node can describe. The Python scripts under `docs/research/launch-films/` (`measure.py`, `aggregate.py` and the rest) are research tools that produced the launch-video numbers, not skill scripts: they need NumPy, OpenCV and ffmpeg (SciPy for one probe; the stats scripts are standard library only) and never move into `skills/`.
 - **One entry point.** The skill is invoked only as `/design-engineering [verb] [target]`. Verbs live in the dispatch table at the top of SKILL.md, and each has one command file in `references/commands/cmd-<verb>.md` (a procedure that points into the graph; it repeats no node). A new verb is a table row plus a command file plus an `evals/dispatch.jsonl` row, and CI enforces all three. Never add a root `commands/` folder or a second skill: that splits the entry point. Never put a non-subagent `.md` in root `agents/`, because Claude Code registers each one as a subagent.
 - The router: `references/meta/skill-router.md` is the first thing `/design-engineering` runs — contract, phase, one owner, companions. New clusters and subagents get a row there and in `routing-table.md`, or they are unreachable.
 - MOCs: `references/<theme>/MOC-<theme>.md` — one per theme folder. Indexes that theme's atomic nodes.
 - Atomic nodes: `references/<theme>/<concept-name>.md`.
 - A new theme = a new folder + a new `MOC-<theme>.md` + a link from SKILL.md. Don't create themes for fewer than 3 nodes — fold into an existing one.
 - Frontmatter on every node (light: `title`, `summary`, `tags`) — required for Obsidian graph indexing.
-- **Subagents**: `agents/<agent-name>.md` — YAML frontmatter (`name`, `description`, `tools`, `model`) plus a system-prompt body. Hoisted to repo root for `npx plugins` / Cursor plugin discovery; names match the basename so wikilinks resolve. Don't add a subagent unless it has a workflow the main agent can't do cheaply inline.
-- **eve mirrors**: every subagent in `agents/<name>.md` has an eve twin at `agent/subagents/<name>/` (an `agent.ts` carrying the delegation `description` + model, and an `instructions.md` carrying the body with skill paths rewritten to `$HOME/.agents/skills/...`). When you change a subagent, change both. Root identity lives in `agent/instructions.md` (distilled from SOUL.md). Evals in `evals/*.eval.ts` guard the review-format table contract, concrete motion and sound values, launch-film numbers and the generated-modal floor — keep them passing.
-- Markdown linted via `.markdownlint.jsonc`.
+- **Subagents**: `plugin/agents/<agent-name>.md` — YAML frontmatter (`name`, `description`, `tools`, `model`) plus a system-prompt body. Every manifest points at `./plugin/agents/` (`.claude-plugin/plugin.json` lists each file, since Claude Code takes explicit agent files rather than a directory there); names match the basename so wikilinks resolve. Don't add a subagent unless it has a workflow the main agent can't do cheaply inline.
+- **eve mirrors**: every subagent in `plugin/agents/<name>.md` has an eve twin at `eve/agent/subagents/<name>/` (an `agent.ts` carrying the delegation `description` + model, and an `instructions.md` carrying the body with skill paths rewritten to `$HOME/.agents/skills/...`). When you change a subagent, change both. Root identity lives in `eve/agent/instructions.md` (distilled from `docs/SOUL.md`). Evals in `eve/evals/*.eval.ts` guard the review-format table contract, concrete motion and sound values, launch-film numbers and the generated-modal floor — keep them passing.
+- Markdown linted via `.github/markdownlint.jsonc`.
 
 ## Sources of truth
 
@@ -60,8 +60,8 @@ Each atomic node should cite its source at the bottom. The current sources are:
 - **Ben DC (github.com/bendc/frontend-guidelines)** — css-conventions, dependency-discipline.
 - **DiceBear** — `components/avatar-systems` references the v9.x catalog of procedural avatar styles.
 - **Lucide-animated / @pqoqubbw** — `motion/hover-default-imperative` pattern.
-- **Google Labs Code (github.com/google-labs-code/design.md)** — design-token format. Mirrored offline at `spec/design-md-spec.md`; runtime guidance in `meta/using-design-md`.
-- **AgentsORG `.design` (github.com/AgentsORG/design)** — the `design.v1` living visual contract. Mirrored offline at `spec/design-file-spec.md`; runtime guidance in `meta/using-design-file`; starter contract at `templates/design-engineering.design`. Note the precedence chain: a project's `.design` outranks this skill, which sits at the "generic taste skills" tier. When editing the starter, re-validate with the upstream `scripts/lint_design.py`.
+- **Google Labs Code (github.com/google-labs-code/design.md)** — design-token format. Mirrored offline at `docs/spec/design-md-spec.md`; runtime guidance in `meta/using-design-md`.
+- **AgentsORG `.design` (github.com/AgentsORG/design)** — the `design.v1` living visual contract. Mirrored offline at `docs/spec/design-file-spec.md`; runtime guidance in `meta/using-design-file`; starter contract at `registry/design-engineering.design`. Note the precedence chain: a project's `.design` outranks this skill, which sits at the "generic taste skills" tier. When editing the starter, re-validate with the upstream `scripts/lint_design.py`.
 - **Agentation (agentation.com / benjitaylor/agentation)** — click-to-annotate design-review workflow. Drives `philosophy/pointing-beats-describing` and `meta/agentation-workflow`.
 - **Index — Emil Kowalski & Glenn Carstens-Peters (index.how)** — "say precisely what you mean" design vocabulary. Drives `philosophy/articulate-precisely`, `meta/design-vocabulary`, and `components/component-confusables`.
 - **Apple (WWDC19 *Designing Audio-Haptic Experiences*, HIG *Playing audio* / *Feedback*, Twenty Thousand Hertz *The Sound of Apple* with Hugo Verweij)** — causality / harmony / utility, the first-vs-hundredth-use test, silent-switch respect, organic materials. Drives the `sound/` cluster.
@@ -92,7 +92,7 @@ Each atomic node should cite its source at the bottom. The current sources are:
 - **Adrian Abelarde (Anim8)** — the MP4 → editable animated SVG pipeline and its flat-art constraint in `svg/video-to-vector-pipeline`; tools: vtracer, Potrace, ffmpeg, SVGO.
 - **WebPAI DesignBench (arXiv 2506.06251) and Design Arena** — `meta/design-benchmarks` and the `design-bench` eval fixtures.
 - **Companions** — AgentsORG `.design` (contract 1.3: `tokens.sound`, `exports.frame_md`, video targets), impeccable (23 named passes), HyperFrames (`frame.md`), ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw (Desktop skill, MCP app, `tldraw-migrate`), GSAP `gsap-plugins`, better-icons, cinetic (Remotion builds), earshot (listening and the effects bank), taste-skill (opt-in), interfaces (`/interface-review`, `/break`, `/state-machine`, `/variant`, `/explain-interface`, `build-design`, `teardown`), fun-isometric (animated isometric stickers), Stageshow (faux product UI, React kit, film-and-gate), scenario-kinetic-film (beat-cut type films, Scenario MCP generation) — routed by `meta/skill-router`, never duplicated.
-- **agentskills/agentskills** — canonical Agent Skills specification, mirrored offline at `spec/agent-skills-spec.md`.
+- **agentskills/agentskills** — canonical Agent Skills specification, mirrored offline at `docs/spec/agent-skills-spec.md`.
 - **HKTITAN / installer** — `meta/gotchas.md` and `meta/pov.md`. These grow over time and reflect lived experience. Forked installers should edit `meta/pov.md`.
 
 ## What NOT to do
@@ -105,9 +105,9 @@ Each atomic node should cite its source at the bottom. The current sources are:
 ## For human contributors
 
 See:
-- [CONTRIBUTING.md](CONTRIBUTING.md) — PR conventions, node format, length targets, checklist, cross-model testing.
-- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — Contributor Covenant v2.1.
-- [SECURITY.md](SECURITY.md) — responsible-disclosure policy.
+- [CONTRIBUTING.md](.github/CONTRIBUTING.md) — PR conventions, node format, length targets, checklist, cross-model testing.
+- [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md) — Contributor Covenant v2.1.
+- [SECURITY.md](.github/SECURITY.md) — responsible-disclosure policy.
 - [CHANGELOG.md](CHANGELOG.md) — release notes.
 
 The rules in this file are operating guidance for AI agents editing the repo; CONTRIBUTING.md is the human-facing version of the same constraints.
@@ -128,26 +128,28 @@ skills-ref validate ./skills/design-engineering
 
 ## Testing
 
-CI runs seven jobs on every push and PR to `main` (see [`.github/workflows/ci.yml`](.github/workflows/ci.yml)). No job calls a model or runs an eval; evals and benchmarks run locally (`npm run bench`, `claude plugin eval .`, `npm run eval`).
+CI runs seven jobs on every push and PR to `main` (see [`.github/workflows/ci.yml`](.github/workflows/ci.yml)). No job calls a model or runs an eval; evals and benchmarks run locally (`node bench/bench.mjs`, `claude plugin eval .`, `npm --prefix eve run eval`).
 
 1. **`code`** — every script parses (`node --check`), the eve runtime typechecks (`tsc --noEmit`), the eve skill slots are in sync, all eight version fields agree (`scripts/release.mjs --verify`), `npx skills add ./ --list` finds exactly one skill, and `claude plugin validate .` passes.
-2. **`markdown-lint`** — `markdownlint` against `.markdownlint.jsonc` (everything but `node_modules` and `.obsidian`).
-3. **`frontmatter-check`** — every file under `skills/design-engineering/references/` and `agents/` must start with `---` YAML.
+2. **`markdown-lint`** — `markdownlint` against `.github/markdownlint.jsonc` (everything but `node_modules` folders and `.obsidian`).
+3. **`frontmatter-check`** — every file under `skills/design-engineering/references/` and `plugin/agents/` must start with `---` YAML.
 4. **`skill-structure`** — required files exist; the SKILL.md description is one double-quoted line of at most 1,024 characters starting `Load when` or `Use when`; the body stays under 500 lines with `## Dispatch` near the top; every `cmd-<verb>.md` is linked from SKILL.md and has a `dispatch.jsonl` row; every subagent has `name` (equal to its basename), `description`, `tools`, `model` and a `## Soul`; every manifest is valid JSON and all eight version fields match.
-5. **`agents-check`** — reruns `scripts/build-agents.mjs` and fails if `agent/subagents/` or `harness/` drifts from `agents/*.md`.
-6. **`registry-check`** — reruns `scripts/build-registry.mjs`, fails on drift in `registry.json` or `r/`, and validates every item against the published shadcn schemas.
+5. **`agents-check`** — reruns `scripts/build-agents.mjs` and fails if `eve/agent/subagents/` or `plugin/harness/` drifts from `plugin/agents/*.md`.
+6. **`registry-check`** — reruns `scripts/build-registry.mjs`, fails on drift in `registry/registry.json` or `registry/r/`, and validates every item against the published shadcn schemas.
 7. **`link-check`** — every `[[wikilink]]` in skill content resolves to a real reference node or subagent file.
 
 Run locally before pushing:
 
 ```bash
 npm install -g markdownlint-cli@0.41.0
-markdownlint '**/*.md' --ignore node_modules --ignore .obsidian --config .markdownlint.jsonc
-npm run check:agents
-node scripts/build-registry.mjs && git diff --stat -- registry.json r/
+markdownlint '**/*.md' --ignore '**/node_modules/**' --ignore .obsidian --config .github/markdownlint.jsonc
+node scripts/build-agents.mjs --check
+node scripts/build-registry.mjs && git diff --stat -- registry/
+node scripts/release.mjs --verify "$(node -p "require('./plugin.json').version")"
+(cd eve && npm install && npx tsc --noEmit && npm run sync:skills -- --check)
 ```
 
-Two more workflows: [`install.yml`](.github/workflows/install.yml) dry-runs, installs, re-installs and uninstalls with `install.sh` (Ubuntu, macOS) and `install.ps1` (Windows) into a temporary home whenever the installer, hooks or agents change; [`release.yml`](.github/workflows/release.yml) publishes a GitHub release when a `v*` tag is pushed (`node scripts/release.mjs --bump x.y.z`, commit, tag, push).
+Two more workflows: [`install.yml`](.github/workflows/install.yml) dry-runs, installs, re-installs and uninstalls with `install.sh` (Ubuntu, macOS) and `install.ps1` (Windows) into a temporary home whenever the installer or anything under `plugin/` changes; [`release.yml`](.github/workflows/release.yml) publishes a GitHub release when a `v*` tag is pushed (`node scripts/release.mjs --bump x.y.z`, commit, tag, push).
 
 CI is the authoritative gate. If it passes on your branch, the PR is mechanically clean.
 
@@ -161,14 +163,14 @@ Six manifests ship alongside the skills.sh registry entry:
 
 - **`plugin.json`** (repo root) — the **canonical** manifest, conforming to the [Agent Plugins specification v1.0.0](https://agent-plugins.org/) (`$schema: https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`). Declares the portable core (`skills/`) implicitly and the client extensions explicitly under reverse-domain namespaces in `extensions`. Edit identity fields here first; mirror to the host manifests.
 - **`.plugin/plugin.json`** — vendor-neutral manifest for [vercel-labs/plugins](https://github.com/vercel-labs/plugins) (`npx plugins add AgentsORG/design-engineering`). The CLI translates `.plugin/` into per-host folders when missing.
-- **`.claude-plugin/plugin.json`** — minimal Claude Code plugin metadata (name, description, version, author, homepage, repository, license). Omits a `skills` field — Claude Code auto-discovers the root `skills/` directory.
+- **`.claude-plugin/plugin.json`** — Claude Code plugin metadata (name, description, version, author, homepage, repository, license) plus `agents` (an explicit list of `./plugin/agents/*.md` files; CI checks it matches the folder), `hooks` (`./plugin/hooks/hooks.json`) and `experimental.evals` (`./bench/plugin`). Omits a `skills` field — Claude Code auto-discovers the root `skills/` directory, which is why the plugin root stays the repo root.
 - **`.claude-plugin/marketplace.json`** — the `agentsorg` marketplace, one entry with `"source": "./"` so the repo doubles as its own marketplace. The Claude Code plugin is named `design-engineering` (display name AgentsORG Design Engineering) in the `agentsorg` marketplace, so it installs as `design-engineering@agentsorg` and its components are namespaced `design-engineering:*`; `renames` maps 3.3.0's `agentsorg` back to it. Add via `/plugin marketplace add AgentsORG/design-engineering`, then `/plugin install design-engineering@agentsorg`. Never rename it again without a new `renames` entry.
-- **`.codex-plugin/plugin.json`** — richer manifest with `keywords`, `skills: "./skills/"`, `agents: "./agents/"`, and an `interface` block (displayName, shortDescription, longDescription, developerName, category, capabilities, defaultPrompt, brandColor). Codex plugins document skills, MCP servers, apps and hooks but not agents, so the `agents` field is likely ignored: Codex custom agents are the TOML files in `harness/codex/agents/`, which the installer copies to `~/.codex/agents/`.
+- **`.codex-plugin/plugin.json`** — richer manifest with `keywords`, `skills: "./skills/"`, `agents: "./plugin/agents/"`, and an `interface` block (displayName, shortDescription, longDescription, developerName, category, capabilities, defaultPrompt, brandColor). Codex plugins document skills, MCP servers, apps and hooks but not agents, so the `agents` field is likely ignored: Codex custom agents are the TOML files in `plugin/harness/codex/agents/`, which the installer copies to `~/.codex/agents/`.
 - **`.cursor-plugin/plugin.json`** — Cursor IDE manifest with `$schema`, `displayName`, `publisher`, `category`, `tags`, `keywords`, `skills` and `agents` paths.
 
-**shadcn registry.** `registry.json` and `r/*.json` are **generated** by `npm run build:registry` from `skills/`, `agents/` and `templates/design-engineering.design`. The `r/` items embed file content, so any edit to those sources makes them stale — rebuild and commit in the same PR. CI fails on drift and validates every item against the published shadcn schemas. Edit `scripts/build-registry.mjs` to change what ships, never the generated JSON.
+**shadcn registry.** `registry/registry.json` and `registry/r/*.json` are **generated** by `node scripts/build-registry.mjs` from `skills/`, `plugin/agents/` and `registry/design-engineering.design`, and served from `https://raw.githubusercontent.com/AgentsORG/design-engineering/main/registry/r/<item>.json`. The `registry/r/` items embed file content, so any edit to those sources makes them stale — rebuild and commit in the same PR. CI fails on drift and validates every item against the published shadcn schemas. Edit `scripts/build-registry.mjs` to change what ships, never the generated JSON.
 
-When changing version: bump it in all six manifest files (root `plugin.json`, `.plugin/`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/`, `.cursor-plugin/`) plus `skills/design-engineering/SKILL.md` and `package.json`. The `Plugin manifest versions match` CI step enforces parity — drift will fail the lint job.
+When changing version: bump it in all six manifest files (root `plugin.json`, `.plugin/`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/`, `.cursor-plugin/`) plus `skills/design-engineering/SKILL.md` and `eve/package.json` (`node scripts/release.mjs --bump x.y.z` writes all eight). The `Plugin manifest versions match` CI step enforces parity — drift will fail the lint job.
 
 ## License
 

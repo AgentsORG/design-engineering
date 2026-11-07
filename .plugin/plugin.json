@@ -18,5 +18,8 @@
     "ui-review",
     "agentation",
     "design-md"
-  ]
+  ],
+  "skills": "./skills/",
+  "agents": "./plugin/agents/",
+  "hooks": "./plugin/hooks/hooks.json"
 }

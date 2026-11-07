@@ -11,7 +11,7 @@ import '../_de/de.css'
 // the card straddles its right edge, about half outside, over empty
 // terminal, a gutter from the stage's right edge.
 const HARNESSES: [string, string][] = [
-  ['Claude Code', 'agents/design-council.md (plugin)'],
+  ['Claude Code', 'plugin/agents/design-council.md (plugin)'],
   ['Codex', '~/.codex/agents/design-council.toml'],
   ['Cursor', '~/.cursor/agents/design-council.md'],
   ['Gemini CLI', '~/.gemini/agents/design-council.md'],

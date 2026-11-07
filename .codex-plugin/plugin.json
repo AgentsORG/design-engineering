@@ -37,7 +37,7 @@
     "skill-graph"
   ],
   "skills": "./skills/",
-  "agents": "./agents/",
+  "agents": "./plugin/agents/",
   "interface": {
     "displayName": "AgentsORG Design Engineering",
     "shortDescription": "Make AI-generated UI feel right",

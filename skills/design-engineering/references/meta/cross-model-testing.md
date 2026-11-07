@@ -85,5 +85,5 @@ Don't test on synthetic queries you wrote yourself. Source from real user querie
 
 - Perplexity Agents team — *"Designing, Refining, and Maintaining Agent Skills"*.
 - Anthropic — eval harness patterns.
-- Related: [[gotchas]], [[review-format]], [[../../CONTRIBUTING|CONTRIBUTING.md]].
+- Related: [[gotchas]], [[review-format]], the repo's `.github/CONTRIBUTING.md`.
 - Benji Taylor, benji.org/stageshow (read 2026-11-07): skill against no-skill, side by side.

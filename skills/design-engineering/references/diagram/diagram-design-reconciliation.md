@@ -57,5 +57,5 @@ Don't let diagram-design's defaults pose as the brand. Its shipped tokens (paper
 ## Sources
 
 - Cathryn Lavery, `diagram-design` (MIT; HEAD `f4547ee`, read 2026-10-08): SKILL.md §0 (style-guide gate), §5, §10, §12; `references/style-guide.md` (roles, constraints), `onboarding.md` (§ Skill, § Folder, option d), `profiles.md` (marker, consent), `output-spec.md` (type ramp per preset), `animation.md` (modes, clock, controller), `export.md`.
-- AgentsORG `.design` spec §5 (precedence); this repo's `templates/design-engineering.design`.
+- AgentsORG `.design` spec §5 (precedence); this repo's `registry/design-engineering.design`.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (light tokens used as the worked contract).

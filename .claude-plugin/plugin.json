@@ -11,7 +11,23 @@
   "homepage": "https://github.com/AgentsORG/design-engineering",
   "repository": "https://github.com/AgentsORG/design-engineering",
   "license": "MIT",
+  "agents": [
+    "./plugin/agents/agentation-fix-loop.md",
+    "./plugin/agents/anti-pattern-scanner.md",
+    "./plugin/agents/design-council.md",
+    "./plugin/agents/design-grader.md",
+    "./plugin/agents/design-judge.md",
+    "./plugin/agents/design-md-consumer.md",
+    "./plugin/agents/launch-film-analyst.md",
+    "./plugin/agents/motion-auditor.md",
+    "./plugin/agents/pov-curator.md",
+    "./plugin/agents/sound-designer.md",
+    "./plugin/agents/svg-animator.md",
+    "./plugin/agents/svg-creator.md",
+    "./plugin/agents/ui-reviewer.md"
+  ],
+  "hooks": "./plugin/hooks/hooks.json",
   "experimental": {
-    "evals": "evals/plugin"
+    "evals": "./bench/plugin"
   }
 }

@@ -2,10 +2,10 @@ name: Installer
 
 on:
   pull_request:
-    paths: [install.sh, install.ps1, hooks/**, harness/**, agents/**, .github/workflows/install.yml]
+    paths: [install.sh, install.ps1, plugin/**, .github/workflows/install.yml]
   push:
     branches: [main]
-    paths: [install.sh, install.ps1, hooks/**, harness/**, agents/**]
+    paths: [install.sh, install.ps1, plugin/**]
   workflow_dispatch:
 
 permissions:
