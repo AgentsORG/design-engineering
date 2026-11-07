@@ -65,7 +65,7 @@ HSL's lightness is decorative — `hsl(55 100% 50%)` is nearly white-bright and 
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on color, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on color, distilled by AgentsORG.
 - APCA (Myndex) and WCAG 2 contrast thresholds; CSS Color Level 4 `oklch()`.
 - Tailwind CSS v4.3.3, `theme.css` (default palette in `oklch()`; blue 50, 500 and 950 read 2026-11-07).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (`--ss-accent-text`).

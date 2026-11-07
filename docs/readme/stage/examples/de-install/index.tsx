@@ -16,7 +16,7 @@ const ROWS: [string, string, string][] = [
   ['plugin', 'design-engineering@agentsorg', 'installed'],
   ['agents', 'claude', 'from plugin'],
   ['agents', '/Users/ada/.codex/agents', '13 files (13 new/updated)'],
-  ['hooks', 'plugin hooks/hooks.json', 'on (PostToolUse Edit|Write)'],
+  ['hooks', 'plugin/hooks/hooks.json', 'on (PostToolUse Edit|Write)'],
   ['hooks', 'codex', 'not wired (see docs/install.md)'],
 ]
 

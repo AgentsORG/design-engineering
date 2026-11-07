@@ -82,8 +82,8 @@ Springs never settle at a clean frame — they overshoot and oscillate. Sync the
 
 - Apple, *Designing Audio-Haptic Experiences* (WWDC19) — the harmony principle, and the warning that added latency between a visual and its feedback breaks the effect.
 - ITU-R BT.1359-1, *Relative timing of sound and vision for broadcasting* — detectability +45/−125 ms, acceptability +90/−185 ms.
-- bruno (@tvnxty), logo reveal for Base, 2026-09-03 — onset-vs-motion analysis by HKTITAN; see [[launch-video-sound]] for the sound map.
+- bruno (@tvnxty), logo reveal for Base, 2026-09-03 — onset-vs-motion analysis by AgentsORG; see [[launch-video-sound]] for the sound map.
 - Leon Lin, earshot (MIT, HEAD 925ebe5): `docs/motion-sfx-study.md` (whoosh peaks within ±150 ms of the cut; risers, zips and glitches end on the cut, 0–20 ms; 58 events from 8 unnamed films, 39 of them from one sound-design film) and `skills/real-sound/references/sound-design.md` §5 (align attack, peak, end or start by kind; the slow-attack check). cinetic (MIT, HEAD ecfa660), `SKILL.md` §5: whoosh onset 100–450 ms ahead of its apex.
 - HeyGen, *hyperframes-launches* (Apache-2.0) — the onset audit, root-absolute placement and render check in `claude-design-send-hyperframes-launch/HANDOFF.md` §18; the click cued at the press tween's start in its `compositions/s1-square.html` L373 and `index.html` L36; the 158 ms click on seven cues in `figma-launch/index.html` L76-82. heygen-com/hyperframes, `skills/motion-graphics/agents/director.md` — beats anticipated by ~0.1 s; `skills/hyperframes-core/references/data-attributes.md` — `data-media-start` as the offset into the source.
-- Skale's Bud (listed as Buds; skale.solutions/portfolio) — cut-vs-onset timing measured by HKTITAN 2026-09-28; data in `docs/research/launch-films/` (metrics/09-buds.json, notes/synthesis-skale.md).
+- Skale's Bud (listed as Buds; skale.solutions/portfolio) — cut-vs-onset timing measured by AgentsORG 2026-09-28; data in `docs/research/launch-films/` (metrics/09-buds.json, notes/synthesis-skale.md).
 - Related: [[spring-animations]], [[responsive-feedback]], [[launch-video-music]].

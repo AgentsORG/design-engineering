@@ -122,6 +122,6 @@ Check: measure each label against the surface it actually sits on, not the page 
 
 - Vercel Web Interface Guidelines — Design section, contrast and chrome rules.
 - Andrew Somers — APCA documentation, [git.apcacontrast.com](https://git.apcacontrast.com).
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN — disabled tokens, declared schemes.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG — disabled tokens, declared schemes.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/composition.tsx` and `stageshow/teaching/composition.css` (`surface-contrast`), `stageshow/kit/controls/Button.css` (hover), `stageshow/references/craft.md` (Color and looks: quiet is not faint).
 - Related: [[color-monochromatic]] (the palette), [[dark-mode]] (specific colors), [[accessibility-baseline]] (a11y context), [[shadows-whisper]] (sibling surface concern).

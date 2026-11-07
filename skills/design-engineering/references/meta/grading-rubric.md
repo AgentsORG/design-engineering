@@ -95,9 +95,9 @@ The same screenshot gets different scores on different calls, and reference prod
 
 ## Sources
 
-- HKTITAN — the axes, bands, caps and the episode unit, written for this skill (2026-11-07).
+- AgentsORG — the axes, bands, caps and the episode unit, written for this skill (2026-11-07).
 - Theo Browne, tstack `council` skill (MIT, github.com/t3dotgg/tstack, HEAD `1085050`) and the video "Agents Sucked At UI (Until Today)" (2026-11-03): cross-provider judges, per-category scores, reference products in the panel, a hidden threshold, staged judges.
 - Benji Taylor, Stageshow (MIT): checks catch mistakes, not dull ideas.
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN; emilkowalski/skills (MIT, commit `c8a7962`) `review-animations`: approval is earned, not assumed.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG; emilkowalski/skills (MIT, commit `c8a7962`) `review-animations`: approval is earned, not assumed.
 - Episode grading with facts, a counterweight and a confidence per result is a common pattern in agent-session review tools; the axes, bands, checks and wording here are this graph's own.
 - Related: [[design-moves]], [[design-benchmarks]], [[review-checklist]], [[review-format]].

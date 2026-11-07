@@ -75,7 +75,7 @@ Creating or refactoring a shared component, reviewing a props API, deciding how 
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on component design, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on component design, distilled by AgentsORG.
 - Radix UI `Slot`; React `forwardRef`.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/controls/Button.tsx`, `stageshow/kit/controls/Button.css`, `stageshow/SKILL.md` (Small parts; Use the kit part, never a lookalike).
 - Related: [[component-confusables]], [[dependency-discipline]], [[sonner-principles]].

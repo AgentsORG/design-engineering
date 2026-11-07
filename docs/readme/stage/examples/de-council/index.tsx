@@ -1,50 +1,53 @@
-import { Bar, Stage, Text, Window, Badge, Card, Meter } from '../../kit'
+import { Card, Meter, Prompt, Stage, Text, Window } from '../../kit'
+import { Input, Result, Turn } from '../_de/claude'
 import '../_de/de.css'
 
-// The council: three providers judge before/after evidence, round by round.
-// A missing provider is reported, never substituted; the jester is unscored.
-const JUDGES: [string, string, string[]][] = [
-  ['Claude', 'design-judge', ['6.1', '7.4', '8.3']],
-  ['GPT', 'codex exec', ['5.8', '7.1', '8.0']],
-  ['Gemini', 'jester, unscored', ['no score', 'no score', 'no score']],
+// Built from examples/ai-cards (an answer that carries a card, kept as the
+// record) inside examples/hero-demo's Claude Code terminal, with
+// examples/static-card's satellite. The council runs, then answers with the
+// table council.mjs prints (cmd-council, Output): one row per scored
+// delegate, one column per round. The satellite is the last round by
+// category for one judge, on one solid accent. Corner bleed: the terminal
+// is inset top-left and runs off the right and the bottom; the card sits
+// over the terminal's empty lower right, a gutter from both stage edges.
+const ROUNDS: [string, string[]][] = [
+  ['Claude (opus)', ['7.2/10', '8.4/10', '9.2/10']],
+  ['Codex (gpt-6.1-sol)', ['6.8/10', '8.1/10', '9.0/10']],
 ]
-const CATS: [string, number][] = [['Typography', 8], ['Hierarchy', 9], ['Contrast', 8], ['Motion', 7]]
-const COLS = '150px 60px 60px 60px'
+const CATEGORIES: [string, number][] = [['Typography', 9.4], ['Hierarchy', 9.2], ['Contrast', 9.6], ['Motion', 9.0]]
+const COLS = { gridTemplateColumns: '21ch 10ch 10ch 10ch' }
 
 export default function Council() {
   return (
-    <Stage width={720} height={380} className="de">
+    <Stage width={800} height={440} className="de de-council">
       {() => (
         <>
-          <Window title="design-council — PR #212" className="de-win">
-            <div className="de-body">
-              <div className="de-line" style={{ width: 390 }}>
-                <Text className="de-h">Council review</Text>
-                <Badge tone="success" dot>Round 3 passed</Badge>
-              </div>
-              <div className="de-table" style={{ width: 390 }}>
-                <div className="de-tr" data-head style={{ gridTemplateColumns: COLS }}>
-                  <Text className="de-label">Judge</Text><Text className="de-label">R1</Text><Text className="de-label">R2</Text><Text className="de-label">R3</Text>
-                </div>
-                {JUDGES.map(([who, how, s], i) => (
-                  <div key={who} className="de-tr" data-on={i === 0 || undefined} style={{ gridTemplateColumns: COLS }}>
-                    <div className="de-stack">
-                      <Text className="de-h de-h--sm">{who}</Text>
-                      <Text className="de-code de-dim">{how}</Text>
-                    </div>
-                    {s.map((v, j) => <Text key={j} className={v === 'no score' ? 'de-small de-dim' : 'de-num'}>{v}</Text>)}
-                  </div>
+          <Window chrome="terminal" title="my-app — claude" className="de-win" style={{ width: 800, height: 460 }}>
+            <div className="ss-term de-term">
+              <Prompt path="~/my-app">claude</Prompt>
+              <div className="w">{'> /design-engineering council the billing page'}</div>
+              <div className="gap" />
+              <Turn tool><span className="w">Bash</span>(node scripts/council.mjs --target "Billing settings" --stage)</Turn>
+              <Result>Round 3 · Claude and Codex scored · Gemini read as jester</Result>
+              <div className="gap" />
+              <Turn><span className="w">Council review</span>{'  '}<span className="dim">Rounds: 3</span></Turn>
+              <div className="de-cc-table">
+                <div style={COLS}><span>Delegate</span><span>Round 1</span><span>Round 2</span><span>Round 3</span></div>
+                {ROUNDS.map(([who, scores]) => (
+                  <div key={who} style={COLS}><span>{who}</span>{scores.map((s, i) => <span key={i} className={i === 2 ? 'w' : undefined}>{s}</span>)}</div>
                 ))}
-                <div className="de-tr" style={{ gridTemplateColumns: COLS }}><Bar w={110} tone={2} /><Bar w={24} tone={2} /><Bar w={24} tone={2} /><Bar w={24} tone={2} /></div>
               </div>
+              <div>{'  Missing: none'}</div>
+              <Input />
             </div>
           </Window>
-          <Card className="de-sat" pad="medium" gap={4}>
-            <Text className="de-label">Claude, round 3</Text>
-            {CATS.map(([c, v]) => (
-              <div key={c} className="de-line">
-                <Text className="de-small">{c}</Text>
-                <div className="de-pair"><Meter value={v / 10} className="de-meter" /><Text className="de-num">{String(v)}</Text></div>
+          <Card className="de-sat de-council__card" pad="medium" gap={10}>
+            <Text className="de-label">Claude, round 3 by category</Text>
+            {CATEGORIES.map(([name, v]) => (
+              <div key={name} className="de-council__row">
+                <Text className="de-sub">{name}</Text>
+                <Meter value={v / 10} />
+                <Text className="de-num">{v.toFixed(1)}</Text>
               </div>
             ))}
           </Card>

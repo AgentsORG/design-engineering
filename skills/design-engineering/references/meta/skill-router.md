@@ -86,7 +86,7 @@ Polishing a screen whose layout is still wrong wastes the pass — the polish is
 
 ## Sources
 
-- HKTITAN — routing distilled from operating this graph beside its companions.
+- AgentsORG — routing distilled from operating this graph beside its companions.
 - AgentsORG `.design` spec §5 (precedence) and `skills/design` §8 (companion skills); impeccable command surface; HyperFrames `references/design-spec.md`.
 - heygen-com/hyperframes skills (HEAD 2026-09-28, Apache-2.0): `skills/hyperframes/SKILL.md` (the front door's routes and length bands), `skills/motion-graphics/SKILL.md`, `skills/general-video/SKILL.md`, `.agents/skills/motion-doctrine` (internal, `metadata.internal: true`), `.agents/skills/README.md` (internal skills skipped by `npx skills add`).
 - Cathryn Lavery, `diagram-design` (MIT; HEAD `f4547ee`, 2026-10-08): README "Install", SKILL.md §0, §11, §12. tldraw: Desktop's `tldraw-offline` agent skill (cited only), `tldraw/tldraw` `apps/mcp-app` and `skills/tldraw-migrate`. greensock/gsap-skills (MIT) `gsap-plugins`; better-auth/better-icons (MIT; npm 1.0.4 on 2026-10-08, the repo's 1.0.5 is unpublished) README.

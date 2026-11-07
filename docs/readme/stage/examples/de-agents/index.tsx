@@ -1,39 +1,51 @@
-import { Bar, Stage, Text, Window, Badge, Row } from '../../kit'
+import { Card, Prompt, Row, Stage, Text, Window } from '../../kit'
+import { Input, Result, Turn } from '../_de/claude'
 import '../_de/de.css'
 
-// One canonical agent, emitted in every harness's own format.
-const HARNESS = ['Claude Code', 'Codex', 'Cursor', 'Gemini', 'OpenCode']
-const AGENTS: [string, string][] = [
-  ['design-council', 'harness/codex/agents/design-council.toml'],
-  ['design-judge', 'harness/codex/agents/design-judge.toml'],
-  ['design-grader', 'harness/codex/agents/design-grader.toml'],
+// Built from examples/static-card (a hero window and a detail card that
+// straddles its edge, one row selected) with examples/hero-demo's Claude
+// Code terminal as the hero. The terminal runs the design-council agent in
+// Claude Code; the card is the same agent as build-agents.mjs writes it
+// for each harness, Claude Code selected because that is the session shown.
+// Corner bleed: the terminal is inset top-left and runs off the bottom;
+// the card straddles its right edge, about half outside, over empty
+// terminal, a gutter from the stage's right edge.
+const HARNESSES: [string, string][] = [
+  ['Claude Code', 'plugin/agents/design-council.md (plugin)'],
+  ['Codex', '~/.codex/agents/design-council.toml'],
+  ['Cursor', '~/.cursor/agents/design-council.md'],
+  ['Gemini CLI', '~/.gemini/agents/design-council.md'],
+  ['OpenCode', '~/.config/opencode/agents/design-council.md'],
 ]
 
 export default function Agents() {
   return (
-    <Stage width={720} height={380} className="de">
+    <Stage width={800} height={372} className="de de-agents">
       {() => (
-        <Window title="Codex agents" sidebarWidth={168} className="de-win" sidebar={
-          <div className="de-side">
-            <Text className="de-label de-side__head">Harness</Text>
-            {HARNESS.map((h, i) => (
-              <div key={h} className="de-nav" data-on={i === 1 || undefined}>
-                <Text className="de-small de-strong">{h}</Text>
-              </div>
-            ))}
-          </div>
-        }>
-          <div className="de-body de-body--side">
-            <div style={{ width: 500 }}>
-              {AGENTS.map(([n, p]) => (
-                <div key={n} className="de-rw"><Row pad={0} title={<Text className="de-mono">{n}</Text>} subtitle={<Text className="de-code de-dim">{p}</Text>}>
-                  <Badge>loop, 3 rounds</Badge>
-                </Row></div>
-              ))}
-              {[0, 1, 2].map((i) => <div key={i} className="de-rw"><Row pad={0} title={<Bar w={110} tone={3} />} subtitle={<Bar w={220} tone={2} />} /></div>)}
+        <>
+          <Window chrome="terminal" title="my-app — claude" className="de-win" style={{ width: 600, height: 420 }}>
+            <div className="ss-term de-term">
+              <Prompt path="~/my-app">claude</Prompt>
+              <div className="w">{'> @agent-design-council the billing page'}</div>
+              <div className="gap" />
+              <Turn tool><span className="w">design-council</span>(Council the billing page)</Turn>
+              <Result>Done (34 tool uses · 2m 41s)</Result>
+              <div className="gap" />
+              <Turn>Round 3: both scored judges clear the bar.</Turn>
+              <div>{'  The Council review table is in the PR.'}</div>
+              <Input />
             </div>
-          </div>
-        </Window>
+          </Window>
+          <Card className="de-sat de-agents__card" pad="small" gap={2}>
+            <div className="de-agents__head">
+              <Text className="de-mono de-agents__name">design-council</Text>
+              <Text className="de-label">one agent, five harnesses</Text>
+            </div>
+            {HARNESSES.map(([name, file], i) => (
+              <Row key={name} pad={6} selected={i === 0} title={<Text className="de-h">{name}</Text>} subtitle={<Text className="de-mono de-agents__file">{file}</Text>} />
+            ))}
+          </Card>
+        </>
       )}
     </Stage>
   )

@@ -1,0 +1,17 @@
+{
+  "description": "design-engineering: after Edit/Write on CSS, TSX, JSX, SVG or HTML, run the deterministic design checks and add a non-blocking note. Opt out with DE_HOOKS=0 or ~/.config/design-engineering/hooks.off.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/plugin/hooks/design-check.mjs\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ]
+  }
+}

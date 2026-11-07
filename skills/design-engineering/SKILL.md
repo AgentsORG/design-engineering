@@ -4,11 +4,11 @@ description: "Load when reviewing UI code, designing a component or layout, pick
 license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
-  author: HKTITAN
-  version: "4.0.0"
+  author: AgentsORG
+  version: "4.1.0"
   graph: true
-  subagents: agents/
-  soul: SOUL.md
+  subagents: plugin/agents/
+  soul: docs/SOUL.md
 ---
 
 # design-engineering
@@ -163,9 +163,9 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 - [[pov]] — author/installer's opinions and taste calls that override defaults. Edit this when you fork.
 - [[animations-dev-curriculum]] — external pointer to Emil's course; don't duplicate.
 
-## Workflow subagents — sibling `agents/` directory
+## Workflow subagents — `plugin/agents/` in the repo
 
-Thirteen narrow-purpose subagents live in `agents/` next to this file. Spawn one when its specific workflow matches the user's ask. Each subagent loads its own slice of the graph and returns to the main agent with a structured result.
+Thirteen narrow-purpose subagents live in `plugin/agents/` at the repo root (the plugin and the installer put them where your harness looks). Spawn one when its specific workflow matches the user's ask. Each subagent loads its own slice of the graph and returns to the main agent with a structured result.
 
 - [[ui-reviewer]] — Runs the `[[review-format]]` table + `[[review-checklist]]` audit on a UI snippet.
 - [[motion-auditor]] — Animation/transition critique against the motion cluster + transitions.dev nodes.
@@ -185,10 +185,10 @@ See `docs/subagents.md` in the repo for the full directory and selection guide. 
 
 ## Identity — SOUL.md
 
-The repo also ships a [`SOUL.md`](../../SOUL.md) at root — voice, stance, and taste lineage for any agent operating in this skill. AGENTS.md is the "what/how"; SOUL.md is the "who/why". Read it once per session if your harness doesn't auto-inject it.
+The repo also ships a [`SOUL.md`](../../docs/SOUL.md) in `docs/` — voice, stance, and taste lineage for any agent operating in this skill. AGENTS.md is the "what/how"; SOUL.md is the "who/why". Read it once per session if your harness doesn't auto-inject it.
 
 ## Tax check
 
 Every sentence above costs tokens in every session. If you find yourself adding a sentence, ask: *would the agent get this wrong without it?* If no, delete it. If yes, it belongs in an atomic node, not here.
 
-— HKTITAN, 2026.
+— AgentsORG, 2026.

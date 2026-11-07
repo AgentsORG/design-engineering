@@ -77,7 +77,7 @@ const wake = () => { if (!running) { running = true; id = requestAnimationFrame(
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on performance, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on performance, distilled by AgentsORG.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animation-performance/SKILL.md (frame budget, tiers, swaps, Vaul and Vercel cases, diagnosis order).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Follow.tsx`, `stageshow/kit/motion/Collapse.css` (drop glide layer), `stageshow/references/rehearse.md` (Live pacing).
 - Related: [[transform-opacity-only]], [[debugging-animations]], [[empty-loading-states]], [[marketing-surface-rules]].

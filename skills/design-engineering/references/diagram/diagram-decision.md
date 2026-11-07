@@ -62,4 +62,4 @@ Check: write the paragraph first. If someone could redraw the picture from it an
 - tldraw: the `tldraw-offline` agent skill that tldraw Desktop installs (the app is not open source; cited, not copied), and the tldraw MCP app (`tldraw/tldraw`, `apps/mcp-app`).
 - Figma: the `figma-generate-diagram` skill (Mermaid → editable FigJam).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/annotations.md` (a line earns its place; leave out what the layout already shows).
-- HKTITAN — choosing the surface by who touches it next.
+- AgentsORG — choosing the surface by who touches it next.

@@ -62,6 +62,6 @@ Check: run the repo's typecheck and tests before and after the pass; pre-existin
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on generated code, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on generated code, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Use the kit part, never a lookalike), `stageshow/references/rehearse.md` (Typecheck), `stageshow/examples/static-card/index.tsx`.
 - Related: [[review-format]], [[dependency-discipline]], [[unslop-pass]].

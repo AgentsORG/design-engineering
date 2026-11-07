@@ -1,6 +1,6 @@
 # Launch films: the measured corpus
 
-This folder holds the evidence behind the 2.5.0 launch-video cluster (`skills/design-engineering/references/launch-video/` and the launch nodes in `references/sound/`). HKTITAN measured 50 films at their native frame rate on 2026-09-28: 29 Skale pieces (28 client films from skale.solutions/portfolio and Skale's 2025 reel), 18 acclaimed launch films from 2024-2026, and 3 renders committed in HeyGen's hyperframes-launches repository. Three HeyGen digests sit beside them: a digest of the hyperframes-launches projects, a census of the 3,446 GSAP calls in its Apache-2.0 composition source, and a reading of the heygen-com/hyperframes skills.
+This folder holds the evidence behind the 2.5.0 launch-video cluster (`skills/design-engineering/references/launch-video/` and the launch nodes in `references/sound/`). AgentsORG measured 50 films at their native frame rate on 2026-09-28: 29 Skale pieces (28 client films from skale.solutions/portfolio and Skale's 2025 reel), 18 acclaimed launch films from 2024-2026, and 3 renders committed in HeyGen's hyperframes-launches repository. Three HeyGen digests sit beside them: a digest of the hyperframes-launches projects, a census of the 3,446 GSAP calls in its Apache-2.0 composition source, and a reading of the heygen-com/hyperframes skills.
 
 These are research tools, not skill scripts: `npx skills add` installs nothing from `docs/`. The earlier OpenAI analysis (2026-09-05, register B in launch-video-sound) lives in [../launch-register/](../launch-register/) and is unchanged.
 

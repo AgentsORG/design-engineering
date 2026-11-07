@@ -66,7 +66,7 @@ The generator's job is to play the rules, not to be tasteful on its own. If the 
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on creative tooling, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on creative tooling, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/backgrounds/index.tsx`, `stageshow/references/backgrounds.md`.
 - Benji Taylor, benji.org/stageshow (read 2026-11-07).
 - Related: [[build-a-tool]], [[prototype-picker]], [[taste-is-trained]], [[svg-creation]].

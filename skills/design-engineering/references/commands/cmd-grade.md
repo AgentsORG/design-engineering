@@ -30,6 +30,6 @@ You may delegate this to the `design-grader` subagent where the host has it.
 
 ## Sources
 
-- HKTITAN — the procedure and `scripts/grade.mjs`, written for this skill (2026-11-07).
+- AgentsORG — the procedure and `scripts/grade.mjs`, written for this skill (2026-11-07).
 - Episode grading with facts, a counterweight and a confidence per result is a common pattern in agent-session review tools; the axes, bands, checks and wording here are this graph's own.
 - Benji Taylor, Stageshow (MIT): checks catch mistakes, not dull ideas.

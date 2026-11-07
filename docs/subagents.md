@@ -6,7 +6,7 @@ tags: [meta, agents, subagents, loops]
 
 # Subagents
 
-Thirteen narrow-purpose subagents ship with this skill. Each is one markdown file in `agents/` with YAML frontmatter and a system-prompt body, in the [Claude Code subagent format](https://code.claude.com/docs/en/sub-agents). That file is the only one you edit: `scripts/build-agents.mjs` writes every other harness's form from it (see [One source, every harness](#one-source-every-harness)).
+Thirteen narrow-purpose subagents ship with this skill. Each is one markdown file in `plugin/agents/` with YAML frontmatter and a system-prompt body, in the [Claude Code subagent format](https://code.claude.com/docs/en/sub-agents). That file is the only one you edit: `scripts/build-agents.mjs` writes every other harness's form from it (see [One source, every harness](#one-source-every-harness)).
 
 ## When to spawn
 
@@ -26,7 +26,7 @@ Thirteen narrow-purpose subagents ship with this skill. Each is one markdown fil
 | `design-judge` | One read-only judge for the council, or a second opinion on its own. Scores the rubric's categories 1–10 from before / after evidence and reference products, never sees the target threshold, and returns JSON scores, Before / After / Why evidence and a confidence. |
 | `design-grader` | Grade a design episode — a human's or an agent's brief, diff or output, rendered evidence and optional transcript — on one scale. Deterministic checks first (they can only cap a score), judges second; returns per-axis facts, interpretation, counterweight, confidence and a band. |
 
-<!-- The last three rows (design-council, design-judge, design-grader): written from the 4.0.0 build brief. Keep them in step with agents/design-council.md, design-judge.md and design-grader.md. -->
+<!-- The last three rows (design-council, design-judge, design-grader): written from the 4.0.0 build brief. Keep them in step with plugin/agents/design-council.md, design-judge.md and design-grader.md. -->
 
 ## Pick the right one
 
@@ -81,17 +81,17 @@ Subagents run outside this repo, so every body opens with a `## Skill root` sect
 
 ## One source, every harness
 
-`agents/<name>.md` is canonical. `npm run build:agents` (`node scripts/build-agents.mjs`) reads every `agents/*.md` — new files are picked up by the glob, nothing is listed by hand — and writes:
+`plugin/agents/<name>.md` is canonical. `node scripts/build-agents.mjs` reads every `plugin/agents/*.md` — new files are picked up by the glob, nothing is listed by hand — and writes:
 
 | Harness | Generated file | What changes |
 |---|---|---|
-| eve | `agent/subagents/<name>/agent.ts` + `instructions.md` | `description` starts "Delegate when"; `sonnet` → `anthropic/claude-sonnet-5.5`, `opus` → `anthropic/claude-opus-5.5`; `effort` → `reasoning`; a `limits.sessionUsage` guard from `maxTurns`; skill paths spelled out under `$HOME/.agents/skills/design-engineering/`. |
-| Codex | `harness/codex/agents/<name>.toml` | `name`, `description`, `developer_instructions`, `model_reasoning_effort`; read-only reviewers get `features.shell_tool = false` (Codex agents inherit the sandbox). |
-| OpenCode | `harness/opencode/agents/<name>.md` | `mode: subagent`, `steps` from `maxTurns`, `permissions` (edit and shell denied for read-only agents). |
-| Gemini CLI | `harness/gemini/agents/<name>.md` | `max_turns`, `timeout_mins`, Gemini tool names (`read_file`, `grep_search`, `run_shell_command` …), MCP tools as `mcp_<server>_*`. |
-| Cursor | `harness/cursor/agents/<name>.md` | `model: inherit`, `readonly` for reviewers. Cursor also reads `.claude/agents/` directly. |
+| eve | `eve/agent/subagents/<name>/agent.ts` + `instructions.md` | `description` starts "Delegate when"; `sonnet` → `anthropic/claude-sonnet-5.5`, `opus` → `anthropic/claude-opus-5.5`; `effort` → `reasoning`; a `limits.sessionUsage` guard from `maxTurns`; skill paths spelled out under `$HOME/.agents/skills/design-engineering/`. |
+| Codex | `plugin/harness/codex/agents/<name>.toml` | `name`, `description`, `developer_instructions`, `model_reasoning_effort`; read-only reviewers get `features.shell_tool = false` (Codex agents inherit the sandbox). |
+| OpenCode | `plugin/harness/opencode/agents/<name>.md` | `mode: subagent`, `steps` from `maxTurns`, `permissions` (edit and shell denied for read-only agents). |
+| Gemini CLI | `plugin/harness/gemini/agents/<name>.md` | `max_turns`, `timeout_mins`, Gemini tool names (`read_file`, `grep_search`, `run_shell_command` …), MCP tools as `mcp_<server>_*`. |
+| Cursor | `plugin/harness/cursor/agents/<name>.md` | `model: inherit`, `readonly` for reviewers. Cursor also reads `.claude/agents/` directly. |
 
-`harness/README.md` (also generated) says where each file installs. The output is deterministic — sorted, LF, no timestamps — and CI runs `node scripts/build-agents.mjs --check`, which exits 1 when any generated file is missing, stale or orphaned. Never edit a generated file; edit the agent and rebuild. An eve twin file whose first line contains `build-agents: keep` is hand-written and left alone, for a subagent that needs more than the generated `agent.ts` (the council's nested provider members).
+`plugin/harness/README.md` (also generated) says where each file installs. The output is deterministic — sorted, LF, no timestamps — and CI runs `node scripts/build-agents.mjs --check`, which exits 1 when any generated file is missing, stale or orphaned. Never edit a generated file; edit the agent and rebuild. An eve twin file whose first line contains `build-agents: keep` is hand-written and left alone, for a subagent that needs more than the generated `agent.ts` (the council's nested provider members).
 
 ## What they all share
 
@@ -99,7 +99,7 @@ Every subagent loads `references/meta/gotchas.md` and `references/meta/pov.md` b
 
 Every subagent cites the skill node it drew from. If the recommendation can't be traced to a `[[node-name]]`, the subagent doesn't make the recommendation.
 
-Every subagent ships its own `## Soul` section at the bottom of its file — narrowing the repo-root [SOUL.md](../SOUL.md) to that subagent's specific identity (who it is, truths it holds, boundaries, voice). Read the soul block when spawning the subagent; it tells you the floor below the system prompt.
+Every subagent ships its own `## Soul` section at the bottom of its file — narrowing the repo's [SOUL.md](SOUL.md) to that subagent's specific identity (who it is, truths it holds, boundaries, voice). Read the soul block when spawning the subagent; it tells you the floor below the system prompt.
 
 ## What they are not
 
@@ -133,11 +133,11 @@ Don't, unless:
 2. It can't be handled by the main agent loading 3–4 nodes inline.
 3. It has a clearly bounded scope that won't drift into general-purpose review.
 
-If those three pass: add `agents/<name>.md` (with `## Skill root`, `## Loop` and `## Soul`), run `npm run build:agents`, add a row to `references/meta/skill-router.md`, `references/meta/routing-table.md`, [[SKILL]] "Workflow subagents", `agent/instructions.md` "Delegation" and this page, run `npm run build:registry`, and bump the skill version.
+If those three pass: add `plugin/agents/<name>.md` (with `## Skill root`, `## Loop` and `## Soul`) and its path to the `agents` list in `.claude-plugin/plugin.json`, run `node scripts/build-agents.mjs`, add a row to `references/meta/skill-router.md`, `references/meta/routing-table.md`, [[SKILL]] "Workflow subagents", `eve/agent/instructions.md` "Delegation" and this page, run `node scripts/build-registry.mjs`, and bump the skill version.
 
 ## Related
 
 - [[SKILL]] — the Map of Content these subagents extend.
-- [SOUL.md](../SOUL.md) — the identity layer every subagent inherits.
+- [SOUL.md](SOUL.md) — the identity layer every subagent inherits.
 - [AGENTS.md](../AGENTS.md) — repo-level editing rules; "Subagents" entry in File conventions.
-- [harness/README.md](../harness/README.md) — where each generated agent installs.
+- [plugin/harness/README.md](../plugin/harness/README.md) — where each generated agent installs.

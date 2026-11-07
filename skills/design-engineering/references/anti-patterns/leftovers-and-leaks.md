@@ -52,6 +52,6 @@ Check: build for production and search the built output, not the source, for the
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/verify.md` (Hand over), `stageshow/references/rehearse.md` (Lines that are never intentional).
 - Related: [[content-authenticity]], [[share-and-crawl-metadata]], [[production-baseline]].

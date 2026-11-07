@@ -62,4 +62,4 @@ You may delegate the whole loop to the `design-council` subagent where the host 
 ## Sources
 
 - Theo Browne, tstack `council` skill (MIT, github.com/t3dotgg/tstack, HEAD `1085050`), adapted and paraphrased; and "Agents Sucked At UI (Until Today)" (2026-11-03): reference products, hidden target, staged judges, forking to push further.
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN: the council paired with design and animation skills as the judges' rubric.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG: the council paired with design and animation skills as the judges' rubric.

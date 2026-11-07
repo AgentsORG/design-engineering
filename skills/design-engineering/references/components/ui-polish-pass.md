@@ -65,6 +65,6 @@ Polish applied to the wrong structure is thrown away with the structure. If hier
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on polish, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on polish, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Spacing and alignment), `stageshow/kit/controls/Button.css`, `stageshow/kit/parts/Row.css`, `stageshow/scripts/film-checks.mjs` (`nearTangent`, `tight inset`), `stageshow/teaching/composition.tsx`.
 - Related: [[review-checklist]], [[responsive-feedback]], [[touch-and-focus]], [[line-behavior]], [[depth-and-nesting]].

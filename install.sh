@@ -99,7 +99,7 @@ if [ -n "${BASH_SOURCE[0]:-}" ] && [ -f "${BASH_SOURCE[0]}" ]; then
   SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 fi
 SRC="" MODE=""
-if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/skills/design-engineering/SKILL.md" ] && [ -d "$SCRIPT_DIR/agents" ]; then
+if [ -n "$SCRIPT_DIR" ] && [ -f "$SCRIPT_DIR/skills/design-engineering/SKILL.md" ] && [ -d "$SCRIPT_DIR/plugin/agents" ]; then
   SRC="$SCRIPT_DIR"; MODE="local checkout"
 fi
 
@@ -144,8 +144,8 @@ agent_dir() {
 }
 agent_src() {
   case "$1" in
-    claude) echo "$SRC/agents" ;;
-    *) echo "$SRC/harness/$1/agents" ;;
+    claude) echo "$SRC/plugin/agents" ;;
+    *) echo "$SRC/plugin/harness/$1/agents" ;;
   esac
 }
 
@@ -298,10 +298,10 @@ if [ "$HOOKS" = 0 ] && [ "$USE_PLUGIN" = 1 ]; then
 fi
 if want hooks; then
   run mkdir -p "$CFG_DIR/hooks"
-  for f in design-check.mjs merge-settings.mjs; do put_file "$SRC/hooks/$f" "$CFG_DIR/hooks/$f" >/dev/null; done
+  for f in design-check.mjs merge-settings.mjs; do put_file "$SRC/plugin/hooks/$f" "$CFG_DIR/hooks/$f" >/dev/null; done
   [ -f "$CFG_DIR/hooks.off" ] && run rm -f "$CFG_DIR/hooks.off"
   if [ "$USE_PLUGIN" = 1 ]; then
-    note hooks "plugin hooks/hooks.json" "on (PostToolUse Edit|Write)"
+    note hooks "plugin/hooks/hooks.json" "on (PostToolUse Edit|Write)"
   elif use_h claude; then
     settings="$HOME/.claude/settings.json"
     flag=""; [ "$DRY" = 1 ] && flag="--dry-run"
@@ -321,7 +321,7 @@ if want hooks; then
   done
 fi
 
-# optional: eve MCP server (start it with: npx eve dev, in a checkout)
+# optional: eve MCP server (start it in a checkout with: cd eve && npm install && npm run dev)
 if want mcp; then
   url="http://localhost:2000/eve/v1/mcp"
   if use_h claude && have claude; then
