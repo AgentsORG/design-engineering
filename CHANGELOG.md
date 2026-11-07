@@ -6,6 +6,16 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [4.2.3] — 2026-11-07
+
+### Fixed
+
+- **`docs/install.md` gains the shadcn registry section the README pointed to**, with the four item URLs under `/main/registry/r/` and a note that the pre-4.1.0 `/main/r/` path no longer resolves.
+- **The installer still in the README shows what it prints today**: the latest release's install bundle and the skill copied from it, not the 4.0.0 repo download.
+- **Claude Code's one-step plugin install** (`/plugin install design-engineering --marketplace AgentsORG/design-engineering`) is in the README and `docs/install.md`, as `claude plugin validate` advises.
+- **Two dead links**: the `plugins` CLI now links to its npm page (its old GitHub repo is gone), and a v1.2.1 reference points at the tag instead of a commit URL that never resolved.
+- The "Paste this into your coding agent" check no longer looks for the skill in `~/.claude/skills` when Claude Code gets it from the plugin.
+
 ## [4.2.2] — 2026-11-07
 
 ### Fixed
@@ -822,7 +832,7 @@ Integrates [index.how/to/articulate](https://index.how/to/articulate) — Emil K
 
 ### Added
 
-- **`.plugin/plugin.json`** — vendor-neutral manifest for `npx plugins add AgentsORG/design-engineering` ([vercel-labs/plugins](https://github.com/vercel-labs/plugins)).
+- **`.plugin/plugin.json`** — vendor-neutral manifest for `npx plugins add AgentsORG/design-engineering` ([the `plugins` CLI](https://www.npmjs.com/package/plugins)).
 - **`agents/`** (repo root) — six workflow subagents hoisted from `skills/design-engineering/agents/` so the plugins CLI and Cursor/Codex manifests discover them at install time.
 - **`commands/`** — six slash workflows: `review-ui`, `motion-audit`, `scan-ai-tells`, `agentation-fix`, `apply-design-md`, `fork-pov`.
 
@@ -973,7 +983,7 @@ The old URL (`AgentsORG/design-engineering`) auto-redirects via GitHub, so exist
 
 ### Fixed
 
-- `template/SKILL.md` renamed to `template/TEMPLATE.md`. The skills.sh CLI globs `**/SKILL.md` across the repo when discovering installable skills, so the template file was appearing as a second skill candidate (`your-skill-name`) in the install picker. Renaming sidesteps the glob while keeping the starter content discoverable to contributors. ([#install-picker-fix](https://github.com/AgentsORG/design-engineering/commit/v1.2.1))
+- `template/SKILL.md` renamed to `template/TEMPLATE.md`. The skills.sh CLI globs `**/SKILL.md` across the repo when discovering installable skills, so the template file was appearing as a second skill candidate (`your-skill-name`) in the install picker. Renaming sidesteps the glob while keeping the starter content discoverable to contributors. ([#install-picker-fix](https://github.com/AgentsORG/design-engineering/tree/v1.2.1))
 - `.github/workflows/lint.yml` required-files check updated to reference `template/TEMPLATE.md`.
 - README file tree and `marketplace.json` version updated accordingly.
 

@@ -36,9 +36,11 @@ curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/i
 irm https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.ps1 | iex
 ```
 
-![A terminal running the one-line installer on a machine with Claude Code and Codex: it downloads the repo, prints a PART, TARGET and STATUS summary (skill, plugin, agents and hook installed; the Codex hook not wired), then how to verify each harness and how to uninstall](docs/readme/img/de-install.png)
+![A terminal running the one-line installer on a machine with Claude Code and Codex: it downloads the latest release's install bundle, prints a PART, TARGET and STATUS summary (skill copied; plugin, agents and hook installed; the Codex hook not wired), then how to verify each harness and how to uninstall](docs/readme/img/de-install.png)
 
-Add `--dry-run` to see every change first (`-DryRun` on Windows). The installer is idempotent, backs up any settings file before it edits one, never touches credentials, and `--uninstall` removes exactly what it wrote. It downloads only the latest release's ~1 MB install bundle; pin a release with `DE_REF=v4.2.1`. The flags, every path it writes and the manual steps for each harness, the plugin marketplace and the shadcn registry are in [docs/install.md](docs/install.md).
+Add `--dry-run` to see every change first (`-DryRun` on Windows). The installer is idempotent, backs up any settings file before it edits one, never touches credentials, and `--uninstall` removes exactly what it wrote. It downloads only the latest release's ~1 MB install bundle; pin a release with `DE_REF=v4.2.3`. The flags, every path it writes and the manual steps for each harness, the plugin marketplace and the shadcn registry are in [docs/install.md](docs/install.md).
+
+**Claude Code plugin only.** Inside Claude Code 2.1.275 or later: `/plugin install design-engineering --marketplace AgentsORG/design-engineering`.
 
 Install the skill one way only. skills.sh gives you `/design-engineering`; the plugin gives you `/design-engineering:design-engineering`. With both, it is listed twice.
 
@@ -55,8 +57,8 @@ Install and verify the design-engineering skill and agents for this machine.
 2. If the plan only touches the skill, agent, hook and backup paths it lists, run it again
    without the dry-run flag (add --yes / -Yes so it does not prompt).
 3. Verify, and report each line as pass or fail:
-   - SKILL.md exists in the harness's skill folder (~/.agents/skills, ~/.claude/skills,
-     ~/.gemini/skills or ~/.config/opencode/skills, under design-engineering/)
+   - SKILL.md exists in the harness's skill folder (~/.agents/skills, ~/.gemini/skills or
+     ~/.config/opencode/skills, under design-engineering/; in Claude Code it comes from the plugin)
    - /design-engineering with no arguments prints the verb menu
    - the agents are listed: design-council, design-judge, design-grader, ui-reviewer, motion-auditor
      (Claude Code: /agents, from the plugin; Codex: ~/.codex/agents; Cursor: ~/.cursor/agents;
