@@ -14,7 +14,7 @@ There are three workflows. Detect which one the user wants:
 
 ### 1. Fork pov.md (first-time setup after installing the skill)
 
-The default `$HOME/.agents/skills/design-engineering/references/meta/pov.md` ships a restrained starter distilled from the graph, plus AgentsORG's launch-film and diagram calls. Full example forks live in `pov-examples/` (Duolingo, Campus Binge, Smash&Clash).
+The default `$HOME/.agents/skills/design-engineering/references/meta/pov.md` ships a restrained starter distilled from the graph, plus AgentsORG's launch-film and diagram calls. Full example forks live in `pov-examples/` (Duolingo, Campus Binge, Smash&Clash, Swiggy, Cursor).
 
 Steps:
 
