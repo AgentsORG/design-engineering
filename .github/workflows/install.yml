@@ -67,7 +67,6 @@ jobs:
           if ($errs) { $errs; exit 1 }
       - name: Dry run, install, uninstall into a temp home
         shell: pwsh
-        env:
         run: |
           $env:DE_HOME = Join-Path $env:RUNNER_TEMP 'home'
           foreach ($d in '.claude','.codex','.cursor','.gemini','.config/opencode') { New-Item -ItemType Directory -Force (Join-Path $env:DE_HOME $d) | Out-Null }
