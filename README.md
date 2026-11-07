@@ -12,13 +12,25 @@
 [![Release](https://img.shields.io/github/v/release/AgentsORG/design-engineering)](https://github.com/AgentsORG/design-engineering/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+```bash
+npx skills add AgentsORG/design-engineering
+```
+
 Design engineering for AI agents: the invisible details that make UI feel right, as a skill graph your coding agent loads, specialist agents that loop until the work passes, a cross-model design council, a grader for humans and agents, and benchmarks that prove each part earns its place. It runs in Claude Code, Codex, Cursor, Gemini and OpenCode.
 
 It draws on Emil Kowalski's design-engineering practice, distilled by HKTITAN, [Benji Taylor](https://benji.org) ([Agentation](https://www.agentation.com), [Stageshow](https://benji.org/stageshow)), [Jakub Antalik](https://transitions.dev), [Jakub Krehel](https://jakub.kr), [James Frewin](https://guidelines.sh), [Vercel](https://vercel.com/design/guidelines), [Index](https://index.how), Apple's audio-haptic principles, and 47 launch films measured frame by frame. The full list is under [Sources](#sources).
 
 ## Install
 
-One line sets up everything it finds: the skill, the Claude Code plugin, agents for every detected harness, the design-check hook, and (opt-in) the eve MCP server and companions.
+**The skill** (Claude Code, Codex, Cursor, Gemini, OpenCode and every other agent skills.sh supports):
+
+```bash
+npx skills add AgentsORG/design-engineering
+```
+
+Then type `/design-engineering` in your agent.
+
+**Everything else too.** One line sets up the skill, the Claude Code plugin, agents for every detected harness, the design-check hook, and (opt-in) the eve MCP server and companions:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.sh | bash
@@ -30,7 +42,7 @@ irm https://raw.githubusercontent.com/AgentsORG/design-engineering/main/install.
 
 ![A terminal running the one-line installer: it detects Claude Code, Codex, Cursor and Gemini, prints a tick per part installed, skips OpenCode because it is not installed, and ends with how to verify](docs/readme/img/de-install.png)
 
-Flags: `--dry-run` prints every change, `--only <parts>`, `--harness <list>`, `--yes`, `--with-hooks` / `--no-hooks`, `--with-mcp` (eve MCP), `--with-companions` (agentation, stageshow), `--uninstall`; on Windows the same switches are `-DryRun`, `-Only`, `-Harness`, `-Yes`, `-WithHooks` / `-NoHooks`, `-WithMcp`, `-WithCompanions`, `-Uninstall`. It is idempotent, backs up any settings file before editing it and never touches credentials. Pin a release with `curl -fsSL <url> | DE_REF=v4.0.0 bash` (or `$env:DE_REF='v4.0.0'` before `irm`). Prefer one package manager? `npx skills add AgentsORG/design-engineering` installs the skill alone. Every path the installer writes is listed under [Manual install](#manual-install).
+Flags: `--dry-run` prints every change, `--only <parts>`, `--harness <list>`, `--yes`, `--with-hooks` / `--no-hooks`, `--with-mcp` (eve MCP), `--with-companions` (agentation, stageshow), `--uninstall`; on Windows the same switches are `-DryRun`, `-Only`, `-Harness`, `-Yes`, `-WithHooks` / `-NoHooks`, `-WithMcp`, `-WithCompanions`, `-Uninstall`. It is idempotent, backs up any settings file before editing it and never touches credentials. Pin a release with `curl -fsSL <url> | DE_REF=v4.0.0 bash` (or `$env:DE_REF='v4.0.0'` before `irm`). Every path the installer writes is listed under [Manual install](#manual-install).
 
 ## Paste this into your coding agent
 
