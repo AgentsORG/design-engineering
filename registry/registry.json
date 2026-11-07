@@ -57,6 +57,11 @@
           "target": "~/.agents/skills/design-engineering/pov-examples/campus-binge.md"
         },
         {
+          "path": "skills/design-engineering/pov-examples/cursor.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/pov-examples/cursor.md"
+        },
+        {
           "path": "skills/design-engineering/pov-examples/duolingo.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/pov-examples/duolingo.md"
@@ -65,6 +70,11 @@
           "path": "skills/design-engineering/pov-examples/smash-and-clash.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/pov-examples/smash-and-clash.md"
+        },
+        {
+          "path": "skills/design-engineering/pov-examples/swiggy.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/pov-examples/swiggy.md"
         },
         {
           "path": "skills/design-engineering/references/anti-patterns/MOC-anti-patterns.md",
