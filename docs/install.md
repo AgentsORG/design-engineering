@@ -33,7 +33,7 @@ curl -fsSL https://raw.githubusercontent.com/AgentsORG/design-engineering/main/i
 | `--with-companions` | `-WithCompanions` | Also install the Agentation skill |
 | `--uninstall` | `-Uninstall` | Remove what a previous run installed |
 
-Pin a release with `DE_REF=v4.0.0` (`$env:DE_REF = 'v4.0.0'` in PowerShell). Run either script from a checkout and it installs that checkout instead of downloading.
+By default the installer downloads the latest release's install bundle (`design-engineering-install.zip`, about 1 MB: the skill, agents, hooks and manifests) and copies the skill from it, so it never clones the whole repository. Pin a release with `DE_REF=v4.2.1` (`$env:DE_REF = 'v4.2.1'` in PowerShell), or use a branch with `DE_REF=main`, which downloads the full repo snapshot. Set `DE_USE_SKILLS_CLI=1` to install the skill through `npx skills` instead. Run either script from a checkout and it installs that checkout instead of downloading.
 
 The installer detects a harness by its CLI on `PATH` or its config folder in your home directory. It is idempotent: a second run changes only what differs. Before it replaces a file it did not write, it copies the original to `~/.config/design-engineering/backups/`. It backs up `settings.json` next to itself before merging the hook. It never reads or writes credentials. Everything it writes is listed in `~/.config/design-engineering/manifest.txt`, and `--uninstall` removes exactly those entries and puts back the copies it backed up.
 

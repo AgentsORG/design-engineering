@@ -63,6 +63,10 @@ if (cmd === "--verify") {
   // claude.ai / Skills API upload format: the skill folder at the zip root.
   execFileSync("git", ["archive", "--format=zip", "--prefix=design-engineering/", "-o", join(outDir, `design-engineering-skill-${version}.zip`), "HEAD:skills/design-engineering"]);
   execFileSync("git", ["archive", "--format=zip", "--prefix=design-engineering/", "-o", join(outDir, `design-engineering-${version}.zip`), "HEAD"]);
+  // What install.sh / install.ps1 download: ~1 MB instead of the ~19 MB repo snapshot. Stable name, so
+  // releases/latest/download/design-engineering-install.zip always resolves.
+  execFileSync("git", ["archive", "--format=zip", "--prefix=design-engineering/", "-o", join(outDir, "design-engineering-install.zip"), "HEAD",
+    "skills", "plugin", ".claude-plugin", ".codex-plugin", ".cursor-plugin", ".plugin", "plugin.json", "install.sh", "install.ps1", "LICENSE"]);
   for (const f of readdirSync("registry/r")) cpSync(join("registry/r", f), join(outDir, "registry", f));
   const log = read("CHANGELOG.md");
   const start = log.indexOf(`## [${version}]`);
