@@ -39,6 +39,8 @@ The fix: scale the wrapper, counter-scale the child.
 .card-content { transform: scale(0.952); /* 1 / 1.05 */ }
 ```
 
+- Or let the surface take the scale and the words only fade: text that ends a scale is redrawn snapped to the pixel grid and wobbles as it lands, so Benji Taylor's Stageshow popover scales a `::before` that holds the background and shadow (`kit/motion/Popover.css`, see [[responsive-feedback]]).
+
 Or scale only specific elements (icons, illustrations) without text:
 
 ```css
@@ -99,6 +101,23 @@ The counter-rotation at the end keeps the planet facing the camera while it orbi
 - **transform-origin:** popovers, dropdowns, context menus, anything that opens from a known anchor.
 - **3D transforms:** flip cards, sub-window depth (modal hierarchies), parallax, intentional skeuomorphism. Use sparingly — easy to overdo.
 
+## Reference
+
+Two nested transforms on two curves carry an element along a soft arc, adapted from `stageshow/kit/motion/Fly.tsx`:
+
+```tsx
+<div style={{ transform: `translateX(${to.x - from.x}px)`,
+  transition: 'transform 750ms cubic-bezier(0.35, 0, 0.2, 1)' }}>
+  <div style={{ transform: `translateY(${to.y - from.y}px) scale(${to.width / from.width})`,
+    transformOrigin: '0 0', transition: 'transform 750ms cubic-bezier(0.3, 0.6, 0.15, 1)' }}>
+    {children /* drawn at the start size */}
+  </div>
+</div>
+```
+
+Gold example: `stageshow/kit/motion/Fly.tsx` with `Fly.css`. Both ends are fixed at take-off, a small lift (scale 1.12 at 30%) is gone by 85%, and it decelerates into place with no bounce; far-apart curves on x and y read as a skid sideways, then a drop.
+Check: step the landing at 40ms. On the last frame the flyer's rect matches the real element's within 1px (Stageshow's `fly size` film line), so nothing jumps on the hand-over.
+
 ## Gotcha
 
 Stacking transforms is not commutative. `translate(10px, 0) rotate(45deg)` is different from `rotate(45deg) translate(10px, 0)`. The second one translates *along the rotated axis*. When in doubt, do all `translate`s before all `rotate`s.
@@ -108,4 +127,5 @@ Also: `transform` is a single property. If you write `transform: scale(1.05)` to
 ## Sources
 
 - Emil Kowalski — CSS Transform Mastery section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Fly.tsx`, `stageshow/kit/motion/Fly.css`, `stageshow/kit/motion/Popover.css`, `stageshow/scripts/motion-watch.mjs` (`fly size`).
 - Related: [[transform-opacity-only]], [[responsive-feedback]], [[fly-not-teleport]].

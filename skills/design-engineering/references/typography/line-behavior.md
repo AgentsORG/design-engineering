@@ -24,6 +24,7 @@ One line: `nowrap` + `overflow: hidden` + `text-overflow: ellipsis`. Several: `l
 - **Middle-truncate** when items differ at the end — file names (`Q3-report…v12.pdf`), emails on one long domain, paths, hashes. End-truncation makes them identical. CSS can't do it; split the string and keep the tail.
 - **Clamp** card previews at 2 lines (`line-clamp: 2`) so card heights stay predictable.
 - **Values people compare stay whole.** Prices, counts, dates and IDs are never cut. Widen the column, or truncate the label next to them instead.
+- **Copy you choose should fit.** In a demo, empty state or marketing shot, pick names, emails and values short enough for their slot rather than truncating them. A truncated chip or a wrapped name in an illustration reads as broken, not realistic.
 
 ## Casing and characters
 
@@ -47,6 +48,19 @@ One line: `nowrap` + `overflow: hidden` + `text-overflow: ellipsis`. Several: `l
 
 Any component that renders text a user reads; any truncation; any link styling; any i18n or RTL work; every review of a text-heavy diff. Fix with the smallest diff — a typography fix never restructures markup unless an animated underline or an expandable truncation needs the element.
 
+## Reference
+
+A stat tile and an invite chip, the two places a line break or an ellipsis gets screenshotted:
+
+- Bad: `<b>30,000</b> ft` in a 160px tile, where `ft` drops to its own line under the number.
+- Good: `.stat { white-space: nowrap }` on the number and unit together, the number sized so the pair fits, or the unit moved into the lead ("Works at" over "30,000 ft").
+- Bad: an invite chip showing `maya.chen@northwind-ana…` and a name wrapping onto two lines.
+- Good: `maya@acme.co` and `Maya Chen`, chosen to fit, on one line each; real user data still gets the middle-truncation rule above.
+
+Gold example: `stageshow/teaching/details.tsx` (the detail-copy pair) and `stageshow/references/bento.md` rule 14 (a stat is one line).
+
+Check: render at the shown width and again at 390px, then count every wrapped and truncated string. Each must be a choice: no unit on its own line, no name wrapping in a chip, and every cut string has a route to the full text. Stageshow's film gate names the first one `unit wrapped:`.
+
 ## Gotcha
 
 `text-wrap: balance` on body paragraphs is the most common misuse: it looks tidy in a two-line demo and quietly narrows every real paragraph. Headings balance; paragraphs don't.
@@ -56,4 +70,5 @@ Any component that renders text a user reads; any truncation; any link styling; 
 - Emil Kowalski's design-engineering practice on typography, distilled by HKTITAN.
 - CSS Text Level 4 (`text-wrap`), WCAG 2.2 1.4.3 / 1.4.4.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/break-ui/SKILL.md (wrap, truncate or clamp per field).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/details.tsx` (detail-copy), `stageshow/references/bento.md` (rule 14), `stageshow/references/rehearse.md` and `stageshow/scripts/film-checks.mjs` (`unit wrapped:`).
 - Related: [[line-length-tracking]], [[type-scale-and-rhythm]], [[accessibility-baseline]].

@@ -61,6 +61,24 @@ The medians are −18.1 LUFS for Skale (25 of 28 quieter than −14) and −18.4
 4. **Land transients and cuts on contact and onset frames** ([[sound-motion-sync]]).
 5. **Render every clip inside the composition**, master to −1 dBTP at the register's loudness, and listen once on phone speakers.
 
+## Reference
+
+Write the register as a card on line one of the sound plan, before any file is fetched:
+
+- Bad: "upbeat corporate track from 0 s, a whoosh on every cut, a sting at the end, master to -14 LUFS."
+- Good, a 12 s kinetic-type brand film:
+
+```text
+Register  B, one-key bed + clicks          Target  -19 LUFS integrated, -1 dBTP true peak
+Bed       F1 drone with C2, F2, A2, in at 0 s; no whooshes, the bed carries every cut
+Clicks    3 to 5 kHz, dry, one per stepped reveal, on the contact frame
+Subtract  sub out 0.6 s before the name; pad stays
+Ending    one thud on the root as the lockup settles, then 1.8 s of silence
+```
+
+Gold example: OpenAI *Refreshed.*, measured in `docs/research/launch-register/k3d_xeVxEOE-summary.json` (bed pitch, click bands, hit-versus-sub levels).
+Check: measure the render against the card: integrated loudness within 1 LU of the target, true peak at or under -1 dBTP. Then play the 2 s before the reveal on a phone speaker; if the sub-only gap vanishes, add a mid-band dip or confirm the picture holds still there.
+
 ## Gotcha
 
 The AI default is an unstructured bed: laid from 0 s at one level, no drop on the reveal, nothing withheld, cuts landing at chance. A beat track is not the problem: Skale's 18 music films and Granola 2.0 ride one and read as crafted, because the drop and the gaps sit on picture events. If you cannot place the structure, use register B's one-key bed or register A's silence, and never sprinkle library blips over a beat track. In a HyperFrames product-launch-video build, the per-beat `sfx:` that fetch-sfx mounts are library blips: leave them out under a beat track; elsewhere derive them from the motion ([[sound-from-motion]]) and trim each onset. This graph owns sound there ([[hyperframes-reconciliation]]).

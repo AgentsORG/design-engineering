@@ -39,6 +39,19 @@ A figure holds about 9 nodes, 12 connectors and 2 accents. Past that it is two d
 
 Before drawing any architecture, flow, sequence, state, ER, timeline, org, journey or chart figure. Also before opening a canvas, and whenever someone asks "can you diagram this?".
 
+## Reference
+
+| Request | Ship |
+|---|---|
+| "Diagram how the API, queue and worker connect" | the sentence: "The API writes jobs to the queue; the worker drains it." Three boxes in a row add nothing. |
+| "Diagram our 14 services" | two figures: an overview of five zones, then the checkout path in detail at 8 nodes |
+| "Sketch the launch plan with me" | a tldraw board, one frame per phase ([[tldraw-canvas]]) |
+| "Show which payout this settlement belongs to", on a product shot | one leader inside the shot ([[product-shot-framing]]), not a figure beside it |
+
+Benji Taylor makes this rule for annotated product shots, and it holds for figures too: a line earns its place by removing ambiguity, and when the layout already shows a relationship, leave the line out.
+Gold example: diagram-design's SKILL.md §2 (when not to draw); for the product-shot row, `stageshow/references/annotations.md` ("Choose a line for a relationship").
+Check: write the paragraph first. If someone could redraw the picture from it and lose nothing, ship the paragraph; otherwise count nodes, connectors and accents against 9, 12 and 2, and split before drawing past them.
+
 ## Gotcha
 
 "Make a diagram" from someone who will edit it tomorrow is a canvas job, not a figure job. A diagram-design file is finished output, and changing it means running the skill again. When the request doesn't say who touches it next, ask. And a chart inside a live product is a component with loading, empty and error states ([[empty-loading-states]]), not a figure exported once.
@@ -48,4 +61,5 @@ Before drawing any architecture, flow, sequence, state, ER, timeline, org, journ
 - Cathryn Lavery, `diagram-design` (MIT; plugin 2.6.68, HEAD `f4547ee`, read 2026-10-08): SKILL.md §1 (deletion, density 4/10), §2 (when not to draw), §3 (type selection), §7 (budget), §11 (import dials).
 - tldraw: the `tldraw-offline` agent skill that tldraw Desktop installs (the app is not open source; cited, not copied), and the tldraw MCP app (`tldraw/tldraw`, `apps/mcp-app`).
 - Figma: the `figma-generate-diagram` skill (Mermaid → editable FigJam).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/annotations.md` (a line earns its place; leave out what the layout already shows).
 - HKTITAN — choosing the surface by who touches it next.

@@ -26,6 +26,8 @@ For mobile, this often means a *completely different* layout — not a single-co
 | Wide hero with image right | Stacked hero with image full-width below |
 | Dense table | Card-per-row with key fields prioritized |
 
+- A narrow layout is a second design, not a squeeze: crop closer, drop or stack the secondary piece, keep the action and its result whole (Benji Taylor's `compact` rule).
+
 ## Narrow columns are valid
 
 A common mistake: making content full-width because the viewport allows it. A 2400px-wide article is unreadable; 65 characters per line is the sweet spot for prose ([[line-length-tracking]]).
@@ -89,6 +91,19 @@ When done well, each tile is self-contained, hierarchy is clear from size alone,
 - Dashboards with comparable widgets — symmetric grid wins for scannability.
 - Content the user reads (long articles, docs) — narrow central column.
 
+## Reference
+
+| Piece | Wide (900–1100px hero) | Phone column (390 viewport) |
+|---|---|---|
+| Hero demo | Window at 1:1, inset top, running off the bottom | Its own design at 358 wide: `compact={{ below: 560, width: 358, height: 320 }}` |
+| Secondary card | Sits on the window's lower edge | Dropped, or stacked under the window |
+| List rows | Title, labels column, avatar | Labels column dropped, title shortened (as `examples/linear` does) |
+| UI type | 11–15px | Nothing under 10px |
+
+- Bad: the 1000px hero scaled into a 390 column, its 13px row names now about 5px. Good: a 358-wide composition cropped to the focal row, its action and result whole.
+- Gold example: `stageshow/examples/linear/` (its compact layout drops the label chips) and `stageshow/references/framing.md` (Small formats and the page).
+- Check: screenshot at the shown width and at 390 side by side; if the 390 frame is the wide one shrunk, with nothing cropped, dropped or restacked, it was not designed.
+
 ## Gotcha
 
 Don't apply marketing-grade asymmetry to product UI. Asymmetric grids in a settings page look broken; in a hero, they look intentional. See [[marketing-vs-product-ui]].
@@ -99,4 +114,5 @@ Also: viewport-custom design isn't an excuse to ship inconsistency. The *compone
 
 - guidelines.sh — "Design for each viewport" + "Narrow columns are valid" + "12-column grids" + "Break the grid for delight."
 - Bento Grids (bentogrids.com) — modern landing-page bento examples.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (step 1), `stageshow/references/framing.md` (Small formats and the page; Wide hero), `stageshow/references/craft.md` (Type), `stageshow/references/verify.md` (390 width, nothing under 10px on the phone), `stageshow/examples/linear/index.tsx`.
 - Related: [[sticky-and-scroll-tells]], [[marketing-vs-product-ui]], [[visual-imperfection]].

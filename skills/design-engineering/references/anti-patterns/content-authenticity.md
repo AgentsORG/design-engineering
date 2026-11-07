@@ -43,6 +43,8 @@ Specific numbers feel real. They suggest the team actually looks at the data. Th
 
 The fix: real names where possible. Anonymized real names where not ("Alex from Stripe"). Generic placeholders erode trust because they say "we couldn't be bothered to find real examples."
 
+- Real-sounding is not enough: pick names, emails and values whose length fits the layout. A truncated email chip or a wrapped name makes the screen look broken (Benji Taylor, Stageshow `teaching/details.tsx`).
+
 ### Generated marketing copy
 
 The AI-default marketing voice:
@@ -106,6 +108,20 @@ Their absence signals the page hasn't been touched. Their presence signals someo
 - **Non-customer-facing internal tools.** Lorem ipsum in an internal admin panel is fine if the deadline matters.
 - **Early prototypes** where the visual is the focus and copy will land later. Just don't ship the prototype as the product.
 
+## Reference
+
+The content of one product shot, before and after:
+
+| Inauthentic | Authentic |
+|---|---|
+| Six rows of "John Doe · $100.00" | Three real rows (`Halvorsen & Co $1,240`, the selected `Jackson Hot Yoga`, `Lumen Studio $860`); placeholder bars on the rows the crop takes |
+| `alexandra.whitfield@northwindlabs.com`, truncated in its chip | `maya@northwind.com`, whole |
+| `Bartholomew Featherstonehaugh` wrapping beside `Editor with comment access` | `Jon Park · Owner`, `Ana Ruiz · Editor` |
+| An "Acme" monogram, logo and nav in every crop | No masthead for a fictional name; the page around the demo already names the product |
+
+Gold example: `stageshow/examples/static-card/index.tsx`, where real words sit only on the selected customer, its two neighbors and the `$72.00` total; `stageshow/teaching/details.tsx` (detail-copy) for the email and name pairs.
+Check: count the real strings on screen (Benji's budget for a product shot is usually 3 to 7). Each one names a specific thing, and none truncates or wraps at 390 wide.
+
 ## Gotcha
 
 "Authentic" doesn't mean "verbose." Real copy is *specific*, not *long*. A 4-word real headline beats a 12-word generic one.
@@ -115,4 +131,5 @@ Also: GDPR and similar regs may limit using real customer data. Use opted-in rea
 ## Sources
 
 - guidelines.sh — Content Authenticity category (real data, specific odd numbers, written copy, genuine photography, testimonials, timestamps).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/static-card/index.tsx`, `stageshow/teaching/details.tsx` (detail-copy), `stageshow/references/craft.md` (Restraint).
 - Related: [[ai-default-tells]], [[interaction-personality]], [[marketing-vs-product-ui]], [[empty-loading-states]].

@@ -56,6 +56,19 @@ Any stateful component works both ways: `defaultValue` for internal state, `valu
 
 Creating or refactoring a shared component, reviewing a props API, deciding how much customization to expose. In a [[review-format]] table, an API finding is a row only when the diff introduces a shared component.
 
+## Reference
+
+```tsx
+// Bad: a second element swapped in for the new state, padded by hand
+{done ? <span className="btn btn-done">Resolved</span> : <button className="btn px-3">Resolve</button>}
+// Good: one component; the label changes on itself and the width eases
+<Button variant="secondary" size="medium" icon={done ? <Check /> : undefined}>{done ? 'Resolved' : 'Resolve'}</Button>
+```
+
+- **Spec to copy:** `variant` primary | secondary | tertiary | ghost | danger; `size` small 24px | medium 28px | large 32px; `icon` and `trailingIcon` slots instead of `leftIcon` and `iconSpacing`; padding set once and `flex: none`, so a row never squeezes it.
+- **Gold example:** `stageshow/kit/controls/Button.tsx`, whose doc comment is the contract (what each variant is for, why the icon side pads tighter), with `stageshow/examples/buttons/`. Benji's rule in `stageshow/SKILL.md` is this node's escape-hatch rule: use the kit part, never a lookalike, and restyle it through its props and tokens, never by reshaping its geometry from outside. Benji's call differs on the default: his is `secondary`, keeping `primary` for the one action a moment is about.
+- **Check:** grep the diff for lookalikes (`className="btn`, a raw `<button>` with its own padding) and for state changes that swap elements; then film the change and confirm the neighbour beside the button moves with it instead of jumping.
+
 ## Gotcha
 
 `asChild` merges props onto the child; if the child already has a handler or class, make sure the merge composes (Slot does) instead of overwriting. Hand-rolled `as` props that clone with spread usually drop one side.
@@ -64,4 +77,5 @@ Creating or refactoring a shared component, reviewing a props API, deciding how 
 
 - Emil Kowalski's design-engineering practice on component design, distilled by HKTITAN.
 - Radix UI `Slot`; React `forwardRef`.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/controls/Button.tsx`, `stageshow/kit/controls/Button.css`, `stageshow/SKILL.md` (Small parts; Use the kit part, never a lookalike).
 - Related: [[component-confusables]], [[dependency-discipline]], [[sonner-principles]].

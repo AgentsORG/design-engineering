@@ -43,6 +43,25 @@ Apple's sound team records real instruments â€” glockenspiel, kalimba, marimba â
 
 Before generating or downloading a single file. Decide the material, list the family, then produce. Reviewing a product with sounds: ask whether they share a material; if not, that is the finding.
 
+## Reference
+
+Bad: `tick` a glassy blip from one pack, `send` a synth whoosh from another, `error` a buzzer from a third. Good: one material line, every sound derived from it:
+
+```json
+{ "material": "felt mallet on a small wooden block, dry, no reverb, no tail",
+  "sounds": {
+    "tick":    { "synth": { "type": "tick",  "freq": 3200, "seconds": 0.07 } },
+    "send":    { "synth": { "type": "chime", "notes": [523.25, 659.25] } },
+    "receive": { "synth": { "type": "chime", "notes": [493.88, 392.0] } },
+    "error":   { "synth": { "type": "thud",  "from": 220, "to": 140, "seconds": 0.16 } } } }
+```
+
+`send` rises a major third (C5 to E5); `receive` falls a major third (B4 to G4) and sits lower; `error` falls and is the lowest; `tick` is the smallest, so the highest and shortest.
+
+Gold example: `scripts/sound-family.example.json`, the full six-sound manifest this is cut from; run it through `scripts/sound-family.mjs --provider synth`.
+
+Check: play the family back to back, in mono, on a laptop speaker, and name the material in two words. If one sound belongs to a different object, or two sounds can be swapped without changing meaning, the family is not done.
+
 ## Gotcha
 
 Do not tune the family in isolation with headphones at midnight. Laptop speakers have nothing below ~200 Hz, so a warm low thud disappears and a bright tick becomes a needle. Design in mono, check on the worst speaker in the office, then set levels per [[sound-spec]].

@@ -44,6 +44,21 @@ A finished interface is mostly invisible work: text that renders crisply, number
 
 The build works and now needs the last ten percent; "feels unfinished" with no single dimension obviously wrong; before any review. [[disambiguation]] routes *looks right* to [[feeling-right]], *feels finished* here, *should ship* to [[review-checklist]].
 
+## Reference
+
+| Detail | Value |
+|---|---|
+| Label beside an icon, in a pill or disc | `text-box: trim-both cap alphabetic` |
+| Words to any container edge | 12px; under 8px is a finding |
+| Text to its neighbour | A fixed gap of 8 to 12px, never leftover `space-between` |
+| Edges 1 to 3px apart | Align exactly, or part by 8px or more |
+| Filled button hover | One step of its own colour: `color-mix(in srgb, var(--accent), #000 10%)` |
+| Unread dot | Hangs 7px left of the lead in the margin; the row never moves |
+
+- Benji's call differs on press depth: the Stageshow `Button` presses to `scale(0.97)`, a hair shallower than this pass's 0.96; both clear the 0.95 floor.
+- Gold example: `stageshow/teaching/composition.tsx` (`edge-separation`, `control-alignment`, `unread-gutter`) and `stageshow/examples/buttons/`.
+- Check: screenshot at 1:1 and measure every word to its container (12px or more) and every pair of near edges (0 or 8px or more), the checks Stageshow's film gate runs as `tight inset` and near-tangent.
+
 ## Gotcha
 
 Polish applied to the wrong structure is thrown away with the structure. If hierarchy or spacing is wrong, this pass is premature; fix the layout, then polish.
@@ -51,4 +66,5 @@ Polish applied to the wrong structure is thrown away with the structure. If hier
 ## Sources
 
 - Emil Kowalski's design-engineering practice on polish, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Spacing and alignment), `stageshow/kit/controls/Button.css`, `stageshow/kit/parts/Row.css`, `stageshow/scripts/film-checks.mjs` (`nearTangent`, `tight inset`), `stageshow/teaching/composition.tsx`.
 - Related: [[review-checklist]], [[responsive-feedback]], [[touch-and-focus]], [[line-behavior]], [[depth-and-nesting]].

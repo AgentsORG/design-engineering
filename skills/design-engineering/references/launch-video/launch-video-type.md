@@ -53,6 +53,16 @@ Captions belong to HyperFrames, and its two layers disagree: the internal captio
 
 Use this for any on-screen copy in a launch film: statements, title cards, counters and lockups. Text transitions inside the product UI stay with [[shared-letter-morph]] and [[stagger-choreography]]. Type scale basics are in [[type-scale-and-rhythm]].
 
+## Reference
+
+- Bad: "Ship in weeks" turns into "Ship in days" by fading the whole line out and back in over 0.3 s each. "Ship in" blinks, and for a frame the line is empty.
+- Good: "Ship in" never moves. Only "weeks → days" rolls, with the old and new words moving together on one 0.42 s `cubic-bezier(0.32, 0.72, 0, 1)` under a 0.5em feathered mask and no blur, while the slot eases to the new width over 0.5 s `cubic-bezier(0.22, 1, 0.36, 1)`.
+- Counter: the last digit moves first, unchanged digits stay still, figures are tabular, and the slot is sized for the final value. Benji's call differs on length: Stageshow's `Count` defaults to 700 ms (45 ms per digit) for UI, while a film counter takes the measured 1.15 s median above.
+
+Gold example: `stageshow/kit/motion/Roll.css` and `stageshow/kit/motion/Count.tsx`. On the film side, look at Replit Slides' slam word and Typesafe's counter (Skale, sources below).
+
+Check: step the swap at 40 ms frames. "Ship in" sits at the same x on every frame, no frame shows the line empty or two words overlapping, and the counter's slot never changes width.
+
 ## Gotcha
 
 A sentence faded in as one block reads as a slide. In Skale's corpus only Poke × Cognition's phrase captions arrive whole, and the other exception, Work Louder, is a CG teaser with no copy before its endcard logotype. A tracking change written as `letterSpacing` also fails HyperFrames lint (`gsap_non_transform_motion`), because reflow properties snap to whole pixels when frames are captured by seek. HeyGen's commit e7e2cb9 swapped a -0.02 → -0.015 em breath for `scaleX: 1.0123`. That keeps the line width but stretches the glyphs. HyperFrames' own gsap-transforms-and-perf.md says to animate per-glyph `x` or hold the value, and a breath on held type is idle motion anyway ([[launch-video-motion]]).
@@ -64,3 +74,4 @@ A sentence faded in as one block reads as a slide. In Skale's corpus only Poke �
 - HeyGen, hyperframes-launches (Apache-2.0): `variables-launch/compositions/scene-01.html` L141-175; `codex-five-hour-limit-replica/tools/tables.json` and `compositions/lockup.html` L59-122; `claude-paper-launch/FRAME-claude.md` L371-373; commit e7e2cb9 (`hyperframes-launch/compositions/thesis.html`); the stagger census over deduplicated composition source.
 - heygen-com/hyperframes (Apache-2.0), installed: `skills/hyperframes/references/frame-worker-core.md`, `skills/hyperframes-creative/references/typography.md`, `skills/hyperframes-animation/rules/kinetic-beat-slam.md` and `waterfall-entry.md`, `skills/hyperframes-animation/adapters/gsap-transforms-and-perf.md`, `skills/motion-graphics/agents/director.md`, `skills/embedded-captions/SKILL.md`. Repo-internal, and not installed by `npx skills add`: `.agents/skills/motion-doctrine`, `cut-the-curve` (§4, §6), `captions-overlay` and `changelog-video`.
 - docs/research/launch-films/: tables/, notes/synthesis-skale.md (§2-§4), notes/synthesis-acclaimed.md (§1, §3-§5), and digests/heygen-corpus-stats.json.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Roll.css` (one curve for old and new, feathered mask, no blur, width ease), `stageshow/kit/motion/Count.tsx` (700 ms, 45 ms stagger), `stageshow/references/motion.md` (Changing text and values).

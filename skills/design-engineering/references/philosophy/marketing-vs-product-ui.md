@@ -33,6 +33,21 @@ The single most common mistake in modern design is applying marketing-page energ
 - When a designer proposes "let's add an animation here," ask the same question. The answer changes the verdict.
 - See [[ai-default-tells]] for the giveaways of mixing the two — e.g., generic hero + 3-cards + FAQ on a *product* page, or pristine grid on a *marketing* page.
 
+## Reference
+
+The same invoices list, as each medium wants it:
+
+| | Product shot on a marketing page | The product itself |
+|---|---|---|
+| Size | designed at the size it is shown: 400 x 300 card, 720 x 340 hero beside copy | the app's own width (Stageshow draws Linear at 860) |
+| Words | 3 to 7 real strings: the selected row, its neighbors, the total; bars elsewhere | every row real |
+| Frame | window pinned top-left, running off the right and bottom | the whole window and its chrome |
+| Motion | a story may slow down; the payoff holds 2s | feedback as quick as the real product, starting on the input |
+
+Gold example: `stageshow/examples/static-card/` for the marketing crop, beside `stageshow/examples/linear/` for an app at its own width with color only on content marks.
+
+Check: count the real strings in the marketing shot (3 to 7 is the budget in `stageshow/references/craft.md`), then open the shipped product view at 390 wide and confirm no placeholder survives into it.
+
 ## Gotcha
 
 Onboarding straddles both. It is in-product but rare-per-user. Treat onboarding more like marketing for delight budget, but more like product for layout discipline. The first run is allowed to be theatrical.
@@ -41,3 +56,4 @@ Onboarding straddles both. It is in-product but rare-per-user. Treat onboarding 
 
 - guidelines.sh — "Marketing: brand expression, asymmetry, narrative pacing. Product: consistency, design for the 100th session, states are the real work."
 - Benji Taylor — Family Values essay, Honkish.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): stageshow/SKILL.md (Workflow step 1), stageshow/references/craft.md (Restraint), stageshow/references/motion.md, stageshow/examples/static-card/, stageshow/examples/linear/.

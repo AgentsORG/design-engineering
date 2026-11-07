@@ -29,6 +29,9 @@ Run four tests before drawing. Can a node go? Can two nodes merge, because they 
 
 Strokes are muted by default, accent on the headline path, a link color on HTTP and external calls, and dashed `5,4` for async or return paths.
 
+- **A fan-out draws its shared trunk once**, then branches from a junction; copies of one path laid over each other darken and knot (Benji Taylor, Stageshow `references/annotations.md`).
+- **A reply is its own line from the recipient.** A two-headed line can't say who asked; a solid request and a dashed return can.
+
 ## Grid, type, legend
 
 Node origins, sizes, gaps and padding divide by 4. Names go in a sans at 600; technical sublabels (ports, commands, URLs, field types) go in mono. Never use mono as a blanket "dev" font ([[typography-humanity]]). The legend is a horizontal strip under the figure, never floating among the nodes; widen the `viewBox` by about 60px to hold it. On a phone, keep the SVG's `min-width` at its viewBox width inside a local `overflow-x: auto` wrapper, so the figure scrolls and the page doesn't.
@@ -37,6 +40,21 @@ Node origins, sizes, gaps and padding divide by 4. Names go in a sans at 600; te
 
 `role="img"` with `aria-labelledby` naming a `<title>` and a `<desc>`. `<title>` is the first child, before `<defs>`. Prefix both ids with the figure's slug, never bare `title`, because figures get inlined side by side. `<desc>` is one sentence about the content, not the geometry. The general markup rules are [[svg-creation]]'s.
 
+## Reference
+
+Bad: three usage sources each run a full line into the invoice box, `POST` sits on its stroke, and client and API share one two-headed arrow.
+Good: the three routes meet at one junction and a single delivery leaves it; the request is solid, the reply dashed and starting at the API; `POST` and `200 OK` sit on paper masks 8px clear of their strokes.
+
+```svg
+<path d="M96 64 H216" class="edge accent" marker-end="url(#fig-arrow)"/>
+<path d="M216 88 H96" class="edge muted" stroke-dasharray="5 4" marker-end="url(#fig-arrow)"/>
+<circle cx="272" cy="160" r="3" fill="var(--accent)" stroke="var(--paper)" stroke-width="2"/>
+```
+
+Gold example: `stageshow/examples/annotations/index.tsx`, the "A request and its reply" and "A shared processing graph" studies (trunk, junction, branches); node treatments from diagram-design's `references/style-guide.md`. The junction dot copies Stageshow's `Connector` endpoint (3px radius per `references/kit.md`, 2px white rim in `kit/motion/Connector.css`).
+Benji's call differs: Stageshow's `Connector` offers `route="curve"`, one soft S, for a looser diagram; in an editorial figure the orthogonal rule above stands.
+Check: cover each connector in turn and ask what the reader loses; a line that loses nothing goes. Then zoom to 400%: every end has its own attach point and no two strokes share a pixel at a node's edge.
+
 ## Gotcha
 
 AI-default diagrams have a look: dark mode with a cyan or purple glow, identical rounded boxes, a legend floating among the nodes, labels sitting on their lines, diagonal connectors, and Mermaid's auto-layout passed off as a design ([[ai-default-tells]]). A redraw keeps the content (components, relationships, grouping, direction) and throws away the source's coordinates, colors and fonts.
@@ -44,4 +62,5 @@ AI-default diagrams have a look: dark mode with a cyan or purple glow, identical
 ## Sources
 
 - Cathryn Lavery, `diagram-design` (MIT; HEAD `f4547ee`, read 2026-10-08): SKILL.md §1, §4, §6, §7, §9, §12; `references/style-guide.md` (node treatments, stroke, radius), `references/primitives-core.md` (connector rules), `references/output-spec.md` (holding the canvas on a narrow screen).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/annotations.md` (shared trunk, request and reply), `stageshow/references/kit.md` (`Connector` extras, `route="curve"`), `stageshow/kit/motion/Connector.css` (endpoint dot), `stageshow/examples/annotations/index.tsx`.
 - HKTITAN — distillation and cross-links.

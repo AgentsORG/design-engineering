@@ -38,6 +38,7 @@ Radix defines steps **by role** — step 9 is the solid fill in every ramp and i
 - **One filled action per view.** The fill goes on the background, not the label: a filled button reads as primary across the room, accent text on a neutral button reads as a link. Selected state may use the accent on glyph and label — that is state, not emphasis.
 - **Neutrals: pure grey is a fine default.** Tinting toward the accent (OKLCH C 0.005–0.02 at the accent hue) is an option, not a correction ([[color-monochromatic]]). Warm or cool, hold it across the ramp: a warm grey border on a cool grey surface shows.
 - **Increased contrast per appearance.** `prefers-contrast: more` gets a value per light and dark; one shared block darkens the dark theme's colour too and *lowers* contrast there. Widen the L gap by ≥ 0.15 and remeasure.
+- **Keep an opaque twin of any translucent step that can overlap.** A translucent ink paints darker where two shapes stack, so piled avatars or chips take the ink already flattened onto the surface (Stageshow's `--ss-fill` is ink-3 on white, `#ebebeb`).
 
 ## Auditing an existing palette
 
@@ -49,6 +50,22 @@ Radix defines steps **by role** — step 9 is the solid fill in every ramp and i
 
 Report the inventory before changing anything: consolidation changes screens nobody asked you to touch.
 
+## Reference
+
+Benji Taylor's starting set for a product surface: every token has a consumer, and none is there for decoration.
+
+| Role | Light value | Consumed by |
+|---|---|---|
+| canvas · surface · well | `#f6f5f4` · `#fff` · `#efeeec` | page, cards, the stage behind a framed shot |
+| ink-1 to ink-5 | `rgba(0,0,0,.04/.06/.08/.1/.15)` | placeholder bars and fills, ghost and tertiary hovers |
+| text-strong · text · text-faint | `#262628` · `#7a7a7d` · `#9a9a9d` | title, body, metadata |
+| accent · soft · text | `#3b82f6` · 12% tint · mixed 82% with black | the thing being acted on, its wash, a link on white |
+| success · danger · warning | each with `-soft` and `-text` | only where status is the subject |
+
+- Bad: a primary button whose hover swaps to `#e5e7eb`. Good: `color-mix(in srgb, var(--accent), #000 10%)`, which is one step of its own color.
+- Gold example: `stageshow/kit/stage.css` (the token block) and `stageshow/kit/controls/Button.css` (hover variants).
+- Check: grep for color literals outside the token file and expect zero. Then hover every filled button in one contact sheet. The hue holds, only the step darkens, and no status color appears anywhere that isn't status.
+
 ## Gotcha
 
 Dark tokens that are the light ramp in reverse step order look right in a swatch and wrong on screen: dark needs lower accent chroma and a wider dark end. Remap, then remeasure every pair ([[dark-mode]]).
@@ -57,4 +74,5 @@ Dark tokens that are the light ramp in reverse step order look right in a swatch
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/better-colors/SKILL.md` (**A system is ramps, not colors**, **Every step has a job**, **One color, one meaning**, **Fill exactly one action per view**), `palette-structure.md`, `color-usage.md`.
 - Radix Colors scale roles; Tailwind CSS default palette.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (surface, ink, text, accent and status tokens; `--ss-fill`), `stageshow/kit/controls/Button.css` (hover is one step of its own color), `stageshow/references/craft.md` (Color and looks).
 - Related: [[gradient-interpolation]], [[contrast-and-color-scheme]], [[interfaces-reconciliation]].

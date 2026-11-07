@@ -33,6 +33,22 @@ This works for **simple flat 2D art**: solid fills, two to eight colors, clean s
 
 A product wants a mascot or character motion, a launch reveal, or a sticker-like illustration that must be editable and recolorable — and the source is a flat clip rather than hand-drawn paths. Not for photoreal video, gradients, or anything with texture; that stays raster.
 
+## Reference
+
+A 2-second waving-mascot loop, the finished file:
+
+| | Bad | Good |
+|---|---|---|
+| Frames | 48 at 24 fps, traced at mixed sizes | 24 at 12 fps, all traced at 512px wide |
+| Palette | 11 colors from anti-aliasing | 5 flat colors, quantized before tracing |
+| Holds | each re-traced, so none collapse | copied from the previous frame, so the flipbook writes `data-hold="3"` |
+| Color | hex baked into every frame | `--vars`, recolored from the page |
+| Size | 200 KB of slivers | 20 to 60 KB |
+
+Gold example: `scripts/svg-flipbook.mjs` next to this skill's `SKILL.md` (exact-match hold collapsing, stepped keyframes, reduced motion frozen on `.f0`); for the source brief and constraints, Anim8's published workflow.
+
+Check: borrow Stageshow's rehearsal rule and film one full loop plus the start of the next as a contact sheet; the last frame must flow into the first with no jump, a hold must not boil, and `grep -c 'data-hold'` should show fewer groups than source frames.
+
 ## Gotcha
 
 Vectorized frames inherit the clip's jitter: outlines wobble by a pixel because each frame was traced independently. Quantize and trace at a consistent resolution, and for a hold frame reuse the previous frame's paths rather than re-tracing. Boiling outlines read as an artifact, not a style, unless the brief is "hand-drawn".
@@ -41,4 +57,5 @@ Vectorized frames inherit the clip's jitter: outlines wobble by a pixel because 
 
 - Adrian Abelarde's Anim8 (tryanim8.com) — the productized MP4 → editable vector pipeline and its stated constraints; his Clucky mascot workflow shared publicly on X.
 - visioncortex/vtracer; Potrace; ffmpeg; SVGO.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/rehearse.md` (film the loop plus the next start; a contact sheet misses a one-frame flash). Used for the Check only; the pipeline itself is not his.
 - Related: [[svg-creation]], [[svg-animation]], [[launch-video-sound]], [[icon-systems]].

@@ -39,6 +39,24 @@ This is exponential decay, not the textbook `v²/(2a)`. At 0.998 a 1000 px/s rel
 
 Sheets, drawers, carousels, snap-point lists, swipe-to-dismiss, draggable windows — any release that chooses between resting places.
 
+## Reference
+
+A 600px sheet is 180px from open when the finger lifts moving down at 900 px/s.
+
+- Bad: it is past halfway open, so it snaps open from rest and the flick is ignored.
+- Good: `180 + 0.9 * 0.998 / 0.002` rests near 629px, the nearest snap is closed (600), and the spring starts at 900 px/s.
+
+With no spring to hand the speed to (a CSS throw), give the curve a first slope equal to the finger's speed. Adapted from `stageshow/examples/swipe/index.tsx`, with `v` in px/ms from the last four drag samples:
+
+```ts
+const ms = 300, x1 = 0.25;
+const y1 = Math.min(0.95, (x1 * v * ms) / remaining); // remaining px to travel
+row.style.transition = `transform ${ms}ms cubic-bezier(${x1}, ${y1.toFixed(3)}, 0.35, 1)`;
+```
+
+- **Gold example:** `stageshow/examples/swipe/` (the row stays 1:1 under the finger, then carries on at the speed it left, with no step at the hand-over) and the interrupt pair in `stageshow/teaching/contrasts.tsx` (a second choice continues from the highlight's current position instead of restarting).
+- **Check:** film the release at 40 to 80ms a frame: the row travels as far in the first frame after lift as in the last frame before it. Then grab it again mid-settle: it follows the finger from where it is, never from the target.
+
 ## Gotcha
 
 Projection without velocity hand-off still looks wrong: the element picks the right target and then starts from rest, which reads as a stall right after release. Both halves, or neither.
@@ -46,4 +64,5 @@ Projection without velocity hand-off still looks wrong: the element picks the ri
 ## Sources
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/apple-design/SKILL.md (from Apple's *Designing Fluid Interfaces*, WWDC 2018).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/swipe/index.tsx`, `stageshow/teaching/contrasts.tsx` (interrupt), `stageshow/references/verify.md` (beats filmed at 40 to 80ms).
 - Related: [[gesture-momentum]], [[spring-animations]], [[frame-rate-independence]], [[animated-hit-testing]].

@@ -45,6 +45,20 @@ Syntactically valid values can exceed what sRGB shows. Clamp C holding L and H, 
 
 Any new palette, any hex → OKLCH migration (swap values only; keep keywords, gradient shape, and hex-expecting config), any "is this readable" question, any dark theme.
 
+## Reference
+
+Bad: `--blue-100: hsl(220 90% 95%)` to `--blue-900: hsl(220 90% 15%)`, spaced on HSL lightness: the mid steps bunch, the tints drift violet.
+Good: one hue, L stepped by exactly 0.075 from 0.97 to 0.22, C as a share of each step's ceiling:
+
+| Step | 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| L | .970 | .895 | .820 | .745 | .670 | .595 | .520 | .445 | .370 | .295 | .220 |
+
+Read it as triage before the real APCA check: on a step-50 ground the first text candidate is 700 (L ≤ 0.45), and on step 950 it is 200 (L ≥ 0.75).
+Gold example: the `--berry-*` ramp above, then Tailwind v4's `theme.css` (`--color-blue-50: oklch(97% 0.014 254.604)`) as a real OKLCH palette to measure yours against.
+Check: print L and H per step. Adjacent L deltas should match to about 0.01 and H should spread under 10° end to end; Tailwind's own blue runs from H 254.6 at 50 to 267.9 at 950, so even a shipped scale needs the check.
+Benji's call differs: Liveline derives every variant of its one line colour via HSL (benji.org/liveline), and Stageshow darkens accent text with `color-mix(in srgb, var(--ss-accent) 82%, #000)`. Both are fine for a few variants of one known colour; neither is a way to build an eleven-step ramp.
+
 ## Gotcha
 
 HSL's lightness is decorative — `hsl(55 100% 50%)` is nearly white-bright and `hsl(255 100% 50%)` is dark. A ramp spaced on HSL's L inherits that lie and its tints slide toward violet. Never generate scales in HSL.
@@ -53,4 +67,7 @@ HSL's lightness is decorative — `hsl(55 100% 50%)` is nearly white-bright and 
 
 - Emil Kowalski's design-engineering practice on color, distilled by HKTITAN.
 - APCA (Myndex) and WCAG 2 contrast thresholds; CSS Color Level 4 `oklch()`.
+- Tailwind CSS v4.3.3, `theme.css` (default palette in `oklch()`; blue 50, 500 and 950 read 2026-11-07).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/stage.css` (`--ss-accent-text`).
+- Benji Taylor, benji.org/liveline (read 2026-11-07).
 - Related: [[color-monochromatic]], [[contrast-and-color-scheme]], [[dark-mode]].

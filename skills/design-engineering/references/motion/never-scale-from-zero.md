@@ -92,6 +92,25 @@ This is the React pattern most production apps use today.
 
 Every entrance animation. Modals, popovers, tooltips, toasts, dropdowns, drawers — anywhere an element appears on screen.
 
+## Reference
+
+- Bad: the whole menu goes `scale(0)` to `scale(1)` with its labels riding the transform; it inflates from a dot, and text that ends a scale is redrawn snapped to the pixel grid and wobbles as it lands.
+- Good: the surface scales from 0.96 at the menu's origin and the labels only fade. Adapted from `stageshow/kit/motion/Popover.css`:
+
+```css
+.menu { opacity: 0; }
+.menu[data-open] { opacity: 1; transition: opacity 0.18s ease; }
+.menu::before { /* background and shadow live here, not on .menu */
+  transform: scale(0.96); transform-origin: var(--origin, top left);
+}
+.menu[data-open]::before { transform: none; transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1); }
+```
+
+Benji's call differs from "same duration and curve": opacity and surface get their own, and text stays out of the scale. It closes as one object, the whole popover shrinking to 0.96 toward its origin as it fades over 0.24s. Cards, toasts and pills skip scale and arrive whole from 10px above (`Collapse reveal="drop"`).
+
+- **Gold example:** `stageshow/kit/motion/Popover.css` and `stageshow/examples/share/` (the share popover and its role menu).
+- **Check:** film the opening at 40ms a frame and zoom on a label in the last two frames: a label that moves a pixel as it lands is riding the scale. The first frame shows a 96% surface, never a dot.
+
 ## Gotcha
 
 `@starting-style` only fires on the *first* render of an element. For elements that mount and unmount repeatedly (e.g. dropdowns opened multiple times), the pattern still works if you `display: none` between opens and rely on the transition-behavior trick. But on rapid open/close, you may see flicker — at that point switch to the `data-mounted` fallback or use a library like Radix that handles this for you.
@@ -100,4 +119,5 @@ Every entrance animation. Modals, popovers, tooltips, toasts, dropdowns, drawers
 
 - Emil Kowalski — Component Building Principles, [emilkowalski/skill](https://github.com/emilkowalski/skill).
 - web.dev — `@starting-style` and `transition-behavior` references.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Popover.css`, `stageshow/kit/motion/Collapse.css` (drop reveal), `stageshow/references/motion.md` (cards, toasts and pills arrive whole), `stageshow/examples/share/index.tsx`.
 - Related: [[responsive-feedback]], [[transform-mastery]], [[easing-curves]].

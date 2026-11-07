@@ -35,10 +35,23 @@ Nobody can point at the one element that makes a screen look AI-generated; they 
 - Let content break symmetry: an odd number of features, one oversized item, a section that is just a sentence.
 - Repeat a signature: one odd element used consistently beats ten borrowed ones used once.
 - Restraint is a feature. The confident version has fewer effects than the generated one. Adding "personality effects" on top is re-slopping with extra steps.
+- Simplification keeps the character: cut repeated framing (a monogram, sidebar and nav in every crop) before meaningful imagery such as avatars or album art. An empty white card is not the cure (Benji Taylor, Stageshow `references/craft.md`).
 
 ## When to apply
 
 "Looks AI-generated", "looks like every other landing page", any generated marketing page, dashboard, or app screen before it ships. Spawn [[anti-pattern-scanner]] for the catalog scan; run this node for the pass itself.
+
+## Reference
+
+The pass on one customers card at 400 x 300:
+
+- Subtract: six rows of name, amount and badge become three real rows (the selected customer and its two neighbors); the rows the crop takes are bars at varied widths (84, 64, 78).
+- Subtract: the pill on the active nav item goes; weight alone marks it, because a pill would peek out beside the detail card.
+- Point of view: the window is pinned top-left and runs off the right and bottom; one detail card straddles its sidebar about half outside, with real words only on the name and the `$72.00` total.
+- End check, Benji's five failures: too much (real text everywhere), wireframe (two gray blobs), boxed (the window shrunk into a card with even margins), flat (every object one weight), bland (the brief's look never shows). Subtraction overshoots into wireframe; stop before it.
+
+Gold example: `stageshow/examples/static-card/` (`index.tsx`, `card.css`).
+Check: shrink the screenshot to thumbnail size; subject, support and empty space should read as one picture. Then name which of the five failures each remaining fault is, and fix the largest first.
 
 ## Gotcha
 
@@ -47,4 +60,6 @@ The pass ends when you can name the one choice a competitor couldn't copy-paste.
 ## Sources
 
 - Emil Kowalski's design-engineering practice on generated UI, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/static-card/index.tsx`, `stageshow/examples/static-card/card.css`, `stageshow/SKILL.md` (Five ways it fails), `stageshow/references/craft.md` (Restraint).
+- Benji Taylor, benji.org/stageshow (read 2026-11-07).
 - Related: [[ai-default-tells]], [[content-authenticity]], [[feeling-right]], [[copy-tells]].

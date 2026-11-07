@@ -39,6 +39,23 @@ User-invoked skills cannot be started by another skill: when one owns the job, t
 | Measure | 60–75 characters | 45–75, 65ch default ([[line-length-tracking]]) | 65ch default holds; under 45 or over 75 is the finding |
 | Neutrals | pure grey is a fine default; tint optional | [[color-monochromatic]] | Tinting is a style, never a finding — unless warm and cool greys mix |
 
+## Reference
+
+A settled row, written so an agent can act on it without taste:
+
+- Bad: `| Press scale | 0.96 | 0.97 | Either works; use judgment |`
+- Good: `| Press scale | 0.96, 150 ms ease-out, never when disabled | 0.96 / 0.97 | 0.96, and disabled never scales |`: both values named, one winner, the edge case closed.
+
+Benji Taylor's Stageshow is a third voice on three rows:
+
+- Benji's call differs on press: his kit `Button` presses to 0.97, transform 180ms `cubic-bezier(0.2, 0.8, 0.2, 1)` (`kit/controls/Button.css`). The settled 0.96 stays for product UI.
+- Stagger agrees: 40–80ms in reading order (`act.stagger` default 60, `references/motion.md`), inside the graph's 30–80ms.
+- Icon swap agrees: related strokes rotate into the next shape (`teaching/contrasts.tsx`, the identity pair).
+
+Gold example: Jakub's `AGENTS.md` for rule ownership, and [[cinetic-reconciliation]] for the same table shape.
+
+Check: give one settled row's topic to a fresh agent with both companions installed and ask for that component. The value in its output should equal the Settled cell exactly.
+
 ## Gotcha
 
 His skills cap a review at 15 findings and forbid inventing a diff scope. Running `better-interface` on a request that names a PR yields an instruction to run `/interface-review`, not a review. That is correct behaviour, not a failure: pass the command on.
@@ -47,3 +64,4 @@ His skills cap a review at 15 findings and forbid inventing a diff scope. Runnin
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, plugin `interfaces` 1.17.0, read 2026-10-25): `AGENTS.md` (rule ownership, invocation), every `skills/*/SKILL.md`, and the reference files cited in each distilled node. Values are his; the glosses and settlements are this graph's.
 - Related: [[skill-router]], [[routing-table]], [[cinetic-reconciliation]] (the same pattern for a film companion).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/controls/Button.css` (press 0.97, 180ms), `stageshow/references/motion.md` and `stageshow/kit/act.ts` (stagger 40–80ms, default 60), `stageshow/teaching/contrasts.tsx` (identity pair).

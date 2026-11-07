@@ -13,6 +13,7 @@ The default CSS easings (`ease`, `ease-in`, `ease-out`, `ease-in-out`) are blunt
 - **Never `ease-in` on UI, exits included.** Its slow start delays the exact frame the user is watching; the same 200ms feels slower with `ease-in` than with `ease-out`. An exit that should feel quiet gets fewer properties and less time ([[compose-subtract-asymmetry]]), not an ease-in.
 - **Decision order:** entering or exiting → ease-out; moving or morphing on screen → ease-in-out; hover and color change → `ease`; constant motion (marquee, progress, a hold-to-confirm fill) → `linear`; unsure → ease-out.
 - **Custom `cubic-bezier()` beats the built-ins** for anything deliberate. A small variation on the curve communicates personality without anyone noticing why.
+- **Name each curve by its job and write its duration range beside it** in the token file, so nobody reaches for the travel curve on a press.
 
 ## House tokens
 
@@ -53,6 +54,20 @@ Use the first for dropdowns, popovers, toasts and modals; the second for a tab i
 
 Every CSS transition you write should pick a curve deliberately. The browser's default `ease` is rarely the right choice. Add `--ease-*` variables to your token set and reference them everywhere.
 
+## Reference
+
+- Bad: `transition: all 300ms ease-out` on the press, the tab indicator and a 600px card trip alike; the hierarchy goes flat.
+- Good: a curve per job, each with its own duration:
+
+```css
+.button { transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1); }      /* press */
+.tabs__indicator { transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1); } /* A to B */
+.demo-card { transition: transform 1s cubic-bezier(0.45, 0, 0.1, 1); }        /* story travel */
+```
+
+- Gold example: `stageshow/kit/ease.ts`, which names each curve by its job (house, through, settle, enter, trip, camera) with a comment on its use and, for house and settle, its duration range, and exports `startSlope()` to compare how fast each leaves rest. Benji's call differs on exits: Stageshow's Popover shrinks out on `cubic-bezier(0.4, 0, 1, 1)`, an ease-in, under an `ease` fade (`stageshow/kit/motion/Popover.css`); this node's no-ease-in rule stands for product UI.
+- Check: for every token compute `y1 / x1`; a curve under 1 leaves rest slower than linear and must not sit on a press or an entrance.
+
 ## Gotcha
 
 A pretty cubic-bezier on the wrong duration looks worse than `ease-out` on the right duration. Curve and duration are coupled. Tune them together, never separately. See [[duration-table]].
@@ -63,3 +78,4 @@ A pretty cubic-bezier on the wrong duration looks worse than `ease-out` on the r
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md (easing decision order, strong curves), skills/review-animations/STANDARDS.md.
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN (weak-to-strong curve library).
 - guidelines.sh — "Spring physics over bezier" for gestures (see [[spring-animations]]).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/ease.ts` (named curves, `startSlope`), `kit/controls/Button.css`, `kit/controls/Tabs.css`, `kit/motion/Popover.css`, `references/motion.md` (Pace and easing).

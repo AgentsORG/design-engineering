@@ -43,6 +43,19 @@ Every claim carries its tier. "Roughly 50px of blur, unmeasured" is useful; a `b
 
 A **screenshot** has no code: you are proposing how it *could* be built. Say so, express sizes as ratios or state the assumed scale, and ask for the URL.
 
+## Reference
+
+One effect explained, closing on the recipe in words:
+
+- Bad: a closing `.hero::before { background: radial-gradient(...); filter: blur(48px) }` "that roughly matches".
+- Good: "Two layers, in paint order. `::before` is 1496px wide in a 1440px viewport (derived), a four-stop gradient at low alpha (measured); `filter: blur(50px)` on it does the work (measured). Oversized so no edge shows (inferred). Won't survive copying: the blur is tuned to that width."
+
+For the system question, Benji's route is four computed reads: a button, an input, a menu and a card, mapped to roles (primary to accent, button radius to md, menu item to sm, card to lg, input height to control, menu row to row). Take the values, not the assets: no unlicensed fonts or images.
+
+Gold example: `stageshow/examples/wikipedia/wiki.css`, which keeps provenance beside the values (Codex's colors and menu geometry, measured on en.wikipedia.org, October 2026): the measured tier, written into the file.
+
+Check: highlight every number in the answer. Each one carries a tier and the route it came from, and the answer ends on words, not a code block.
+
 ## Gotcha
 
 `blur(0px)`, `opacity: 1` and `transform: none` all over the hits are a motion library's idle values, not the design. Drop them and read what is left; if `getAnimations()` returns `[]`, the reveal already finished — reload and read during it.
@@ -50,4 +63,5 @@ A **screenshot** has no code: you are proposing how it *could* be built. Say so,
 ## Sources
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/explain-interface/SKILL.md`, `find-the-effect.md`, `read-the-system.md`, `from-an-image.md`, `no-browser.md`. With the companion installed, `/explain-interface` owns the run ([[interfaces-reconciliation]]).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/looks.md` (From a codebase, From a public site), `stageshow/examples/wikipedia/wiki.css` (measured-value comments).
 - Related: [[design-vocabulary]] (name what you find), [[screenshot-critique]], [[skill-router]].

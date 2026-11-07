@@ -32,6 +32,18 @@ Undo is cheaper for the user and more honest about what happened. It is also the
 
 It carries an action, so it stays until dismissed or gets at least 5 s and pauses while hovered or focused ([[wcag-thresholds]]). It is announced with `role="status"`, and focus never jumps to it ([[screen-reader-announcements]]). A toast whose only undo link vanishes on a timer turns a reversible action into an irreversible one.
 
+## Reference
+
+```text
+Bad:   Archive → "Are you sure?" [Yes] [No] → the row vanishes in one frame
+Good:  Archive → the row folds away and the rows below close the gap, the count drops 12 → 11,
+       "Conversation archived." rises 320ms later with Undo → Undo folds the row back in and the count returns
+```
+
+- **Danger fill:** `background: var(--danger); color: #fff`, hovered one step of its own colour (`color-mix(in srgb, var(--danger), #000 10%)`), never a gray swap; it is the only button in the set with that fill.
+- **Gold example:** `stageshow/examples/gmail/` (the product's own Material Symbols, a tooltip naming Archive, a reset whose seen cause is Undo) and the `danger` variant in `stageshow/kit/controls/Button.css`.
+- **Check:** film archive then undo and step it: the row leaves and comes back as one object with the rows below moving with it, nothing pops, and the toast never covers the row it is about.
+
 ## Gotcha
 
 "Delete" in a menu next to "Duplicate" and "Rename" with no separation is the most common destructive path that has neither undo nor confirmation. If undo is impossible and a dialog is too heavy, the third option is a distinct treatment — a separated group, the danger colour, a two-step press. One of the three must exist: an unguarded destructive action is a top-severity finding.
@@ -39,4 +51,5 @@ It carries an action, so it stays until dismissed or gets at least 5 s and pause
 ## Sources
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/better-writing/SKILL.md` (**Undo beats confirmation**), `patterns.md` (destructive flows), `better-accessibility/focus-and-keyboard.md` (focus the least destructive action), `better-colors/palette-structure.md` (the 15° status rule), `better-interface/SKILL.md` (the escalation trigger).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/gmail/index.tsx`, `stageshow/kit/controls/Button.css`, `stageshow/kit/controls/Button.tsx` (the `danger` variant), `stageshow/references/motion.md` (Loops: every reset has a cause).
 - Related: [[forms-behavior]] (confirmed destruction), [[strings-and-locale]], [[interfaces-reconciliation]].

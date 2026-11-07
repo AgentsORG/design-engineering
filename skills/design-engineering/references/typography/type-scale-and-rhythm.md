@@ -44,6 +44,25 @@ Two faces cover most products; three is the ceiling. Pair across categories (ser
 
 Setting up a project's type; any "text feels cramped here, airy there" complaint (one-off sizes are the cause); any live number; any font-loading diff.
 
+## Reference
+
+A closed product-UI scale taken from Stageshow's list row, with the page scale beside it:
+
+| Role | Desktop | iOS list row | Leading |
+|---|---|---|---|
+| Row title | 12px, 600 | 17px | 16px (22px on iOS) |
+| Subtitle | 11.5px | 15px | 16px (20px on iOS); 2px gap under the title (0 on iOS) |
+| Metadata | 11px | 15px | 16px (22px on iOS) |
+| Tile copy (page type, outside the picture) | 17 to 24px | same | 24px at 17px |
+| Stat | 48 to 72px, unit on the same line | same | 1 |
+
+- Bad: 10px names, 8.5px timestamps and an 18px button to fit more rows. Good: 14px names, 12px metadata, fewer rows.
+- Benji's call differs on units inside a product shot: faux-app text and its leading are set in px at the product's real size and the stage scales it. Keep `rem` and unitless leading for the page.
+
+Gold example: `stageshow/kit/parts/Row.css` (the scale tokens) and the style-tiny pair in `stageshow/teaching/style.tsx`.
+
+Check: count the distinct font sizes on screen; each one should map to a role in the table. Then film at 390px. Nothing is under 10px, and no window text sits at 16px just because nothing sized it (the gate's `unsized text:` line).
+
 ## Gotcha
 
 Never change font weight on hover or selection. The text reflows by a pixel and the layout shifts. Hold weight constant and signal state with color; if emphasis must move, use a variable axis at the same advance width.
@@ -53,4 +72,5 @@ Never change font weight on hover or selection. The text reflows by a pixel and 
 - Emil Kowalski's design-engineering practice on typography, distilled by HKTITAN.
 - CSS Fonts Level 4 (`font-synthesis`, `font-optical-sizing`), CSS Inline Layout (`text-box`).
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/type.md` (202 sites measured at 1440 × 900 and 390 × 844, 2026-10-05; top and weak are model-panel tiers) and `references/copy.md` §2 (the headline budget; k values are its rule of thumb).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/parts/Row.css`, `stageshow/teaching/style.tsx` and `stageshow/teaching/style.css` (style-tiny), `stageshow/references/craft.md` (Type; title over subtitle), `stageshow/references/bento.md` (rules 5, 6, 14), `stageshow/references/verify.md`, `stageshow/scripts/film-checks.mjs` (`unsized text:`).
 - Related: [[typography-humanity]], [[line-length-tracking]], [[line-behavior]], [[opentype-features-and-axes]].

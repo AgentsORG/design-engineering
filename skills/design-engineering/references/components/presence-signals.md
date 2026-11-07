@@ -25,6 +25,7 @@ Three states read better than two. "Here but looking elsewhere" is the one most 
 - **A reaction is pinned to what it reacts to.** A double tap drops the heart exactly where the finger landed, with a faint ring and a haptic both people feel. Store the position in relative coordinates (10% x, 20% y), so it lands on the same spot across screen sizes.
 - **Shared activities need everyone present.** A real-time game pauses when one player leaves; it does not play on against an empty seat.
 - **A notification shows its own lifetime.** An in-app banner whose border counts down how long it will stay tells the user how urgent it is and when it will go.
+- **The name rides the cursor**, just below and right of its tip, and the person's work shows in the document's own marks (a highlight, words at a caret), not bubbles or badges; a bare coloured arrow reads as a second pointer (Benji Taylor, Stageshow `examples/presence`).
 - **One colour per person, everywhere:** cursor, selection, avatar ring, name label. A collaborator recoloured between surfaces reads as two people.
 - **Colour carries meaning outside the content too.** Honk turned a tray's background red for destructive actions such as deleting an account ([[destructive-actions]]).
 - **Real-time products earn their pauses.** Outside the live chat, Honk added friction on purpose: a slot-machine reveal for finding people, a signature before chatting with strangers that measurably reduced bad behaviour. Immediacy reads as immediacy only next to something slower.
@@ -37,6 +38,17 @@ Every presence change that matters (someone joined, someone left, a reaction lan
 
 Designing chat, multiplayer docs and canvases, live cursors, shared games, or any surface where two people are in it at once. In a faux-UI demo of collaboration, each person keeps one colour and their name rides their cursor ([[MOC-faux-ui]]).
 
+## Reference
+
+| Mark | Maya | Jon |
+|---|---|---|
+| Face in the pile, cursor, name flag, selection or caret | `#d1478a` | `#2f9e8f` |
+
+- Bad: two grey arrows, a "Maya is editing" chip over the page, her selection in the doc's blue accent. Good: each arrow carries its name just below and right of the tip; Maya's highlight sweeps across the sentence on the same duration and curve as her cursor, so its edge stays at the tip; Jon's words arrive at a caret in his colour; neither colour is the accent.
+- The two cursors move like hands, eased over most of a second and never in step; a deselect is instant, as in the app; the viewer has no cursor of their own on stage.
+- Gold example: `stageshow/examples/presence/` (doc with a three-face pile, two named cursors, selection and typing).
+- Check: pick any frame and confirm each person's face in the pile, cursor, flag and mark share one hex value that is not the accent; at 358 wide the name flag still stays inside the doc (the example clamps it about 64px from the right edge).
+
 ## Gotcha
 
 Presence animation is frequent. An arrival ring with sound is a delight once an hour and noise in a busy channel; scale the signal down as frequency goes up ([[delight-impact-curve]]), and never fire it for your own presence.
@@ -44,4 +56,5 @@ Presence animation is frequent. An arrival ring with sound is a delight once an 
 ## Sources
 
 - Benji Taylor, *Honkish*, [benji.org/honkish](https://benji.org/honkish) (read 2026-11-01): presence, reactions, mini games, in-app notifications, tray colours, friction moments. Paraphrased.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/presence/index.tsx`, `stageshow/examples/presence/presence.css`.
 - Related: [[interaction-personality]], [[avatar-systems]], [[optimistic-updates]].

@@ -35,6 +35,16 @@ Over music, hits, clicks, pops and dings sit +13 to +17 dB over the quiet bed be
 
 Band each layer (sub < 120 Hz, body 80–800 Hz, transient > 1–2 kHz); saturate body and transient, never the sub; glue at 2:1–4:1 with a 10–30 ms attack so the crack survives; reverb on body and tail only, sub dry; high-pass at 20–25 Hz; limit to −1 dBTP. In code, `sound-sheet.mjs` voices `riser`, `impact`, `sting`, `ding`, `pop` and `zip` to these targets ([[sound-from-motion]]).
 
+## Reference
+
+A three-ding run under a checklist that completes, as an agent first writes it and as these targets build it:
+
+- Bad: one `ding.mp3`, 1.2 s, a room tail, energy down to 200 Hz, the same file at the same level three times.
+- Good: 0.3 s each, 5 ms attack, stopped by 45 ms, partials at ~2 kHz and ~6.8 kHz (3.4x), nothing under 500 Hz, mono, steps up one semitone per ding, the first one on the track's tonic, +13 to +17 dB over the bed between beats.
+
+Gold example: the `ding` voice in `skills/design-engineering/scripts/sound-sheet.mjs` (a `"kind": "ding", "n": 3` cue climbs a semitone per member and is tuned by the top-level `key`); render it and set its spectrogram beside the study's own references.
+Check: name each effect's one gesture in under ten words from its spectrogram (falls ~2 oct, climbs a semitone, gate tightens 24 to 20 ms). If it needs two sentences, or it fills 300 Hz to 1 kHz without a reason, rebuild it; then play it on a phone speaker against its cut.
+
 ## Gotcha
 
 These are measurements of *designed* effects, not of nature, so a realness test can mislead both ways. A modal resonator plus a room reads "real" to earshot's model, and a clean designed chime reads "synthesized". Judge by the band, envelope and gesture above, by spectrograms next to references, and on phone speakers. The evidence is thin per row: 39 of the 58 events come from one sound-design film, and most rows hold 1–10 examples ([[earshot-reconciliation]]).

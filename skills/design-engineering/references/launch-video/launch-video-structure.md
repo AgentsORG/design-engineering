@@ -40,6 +40,7 @@ Problem-first films tend to prove (9 of Skale's 13 carry a proof beat, against 5
 - Build the mark from a primitive or from the film's own objects (12/29, 10/18); 5/18 grow it from a single dot. Claude Cowork blooms its mark from a 1 px dot at its first brand beat (~0.9 s, ~2× overshoot, out of the control the user just clicked) and repeats the bloom at the end in 0.75 s, a bookend. Figma glass goes from a dot to a lens in 0.7 s, then to a refracted logo in ~1.2 s, landing on the 808.
 - Bookend the film by repeating its opening move (7/29, 10/18).
 - A lockup that grows re-centres at each step. Granola 2.0 adds the version 1.06 s after the wordmark and the tagline 0.74 s after that, re-centring in ~0.5 s each time.
+- In a film, the t = 0 frame and the held endcard frame are the two stills most people see (the autoplay thumbnail, the share preview). Benji Taylor's poster rule applies to both: never caught mid-change, such as a digit mid-roll or a mark mid-morph, and the result left on screen instead of tidied away (Stageshow `references/motion.md`, Story).
 - Where the register allows, give the logo ≥1 s of silence, on it or after it (5/18: Apple Liquid Glass 5.0 s of black, Framer 3.0 2.4 s, Perplexity Comet 1.2 s, Figma glass 1.13 s; the Google Gemini app holds its G ~1.8 s in silence). How the sound ends is covered in [[launch-video-sound]].
 
 ## Series are templates of slots
@@ -55,6 +56,22 @@ Inside a HyperFrames project, keep the arc and beat order that product-launch-vi
 
 Use this at the storyboard stage, after [[launch-video-registers]] has named the register and before picture lock. The words on screen come next ([[launch-video-type]]). Product UI has no runtime to structure, so it is out of scope ([[marketing-vs-product-ui]]).
 
+## Reference
+
+A worked beat sheet for a 60 s problem-first film, with every time taken from the medians above. Benji Taylor's loop rules land on the same two frames: open on a finished screen that works as a still, and hold the payoff for 2 s.
+
+| t | beat | taken from |
+|---|---|---|
+| 0.00-0.07 s | poster: the finished hero baked in for 2 frames, then cut | Skale 9/29 |
+| 0.2 s, 1.6 s | first readable word, then first seam | Skale medians |
+| 17.4 s (29 %) | problem act ends: the name lands, and the low end with it | Skale problem-first median |
+| 54.4 s | payoff: the finished result lands 0.6 s before the endcard cut | acclaimed 0.1-1.2 s |
+| 55.0-60.0 s | endcard runs 5.0 s, and its last 2.0 s hold still | 4.4-6.3 s, hold ~2 s |
+
+Gold example: `stageshow/examples/payout-flow/` builds a cursorless story in marked beats (`a.mark`), sets a `poster` and holds an annotated payoff. In this repo, `docs/demo/hyperframes/STORYBOARD.md`.
+
+Check: cover the motion and look only at the t = 0 frame and the last held endcard frame (Benji's poster test). Each should say what the product is without the rest of the film. Then read the beat times off the render at native fps and compare them with the table.
+
 ## Gotcha
 
 Don't time a problem-first film to the 15 %: that median mixes all 19 Skale films that are not brand-first. A problem act runs until the name, a median 29 % of runtime (Adaline names at ~37 %, T:0 at ~49 %), and none runs much past half the film (Skale's longest is 51 %). No acclaimed film names between 22 % and 40 %. A URL is not the default close either: Skale puts one on about half its endcards (15/29) and the acclaimed films on a third (6/18), and only four of those six pair it with an imperative. Perplexity Comet sets a small bare URL under its wordmark, and Spline Hana gives spline.design a plate of its own. Neither carries a verb.
@@ -64,4 +81,5 @@ Don't time a problem-first film to the 15 %: that median mixes all 19 Skale film
 - Skale (skale.solutions/portfolio): 28 client films and the 2025 reel, named by client and hand-timed at native fps by HKTITAN on 2026-09-28. See docs/research/launch-films/notes/synthesis-skale.md §2-3 and tables/skale.md.
 - Acclaimed films (brand, title, year and maker as listed in [[launch-video-registers]]), hand-timed on 2026-09-28. See notes/synthesis-acclaimed.md §1 and §3; others_stats.py holds the hand-entered name, endcard and text-hold values.
 - heygen-com/hyperframes (Apache-2.0), cited for what this node leaves to it: skills/product-launch-video/references/story-design.md (arcs, hook, promise); skills/hyperframes-creative/references/narration.md (2.5 words/s); skills/hyperframes/references/routes/product-launch-video.md (30-90 s); skills/hyperframes-animation/blueprints-index.md (Reproduce / Adapt / Compose, signature move).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/motion.md` (Story: open on a finished screen, the poster; Loops: the payoff holds 2 s), `stageshow/examples/payout-flow/index.tsx`.
 - Related: [[launch-video-registers]], [[launch-video-music]], [[launch-video-sound]], [[launch-video-type]].

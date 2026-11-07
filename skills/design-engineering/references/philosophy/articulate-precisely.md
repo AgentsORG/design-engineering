@@ -24,10 +24,23 @@ So precision runs both directions:
 - Reach for the exact term. [[design-vocabulary]] is the lexicon — the precise word for each phenomenon, and where this skill goes deeper on it.
 - Pair every critique with its reason. "Don't" without "because" does not transfer to the next person or the next prompt.
 - Hold the confusable pairs apart, because vague language collapses them: kerning vs tracking, opacity vs visibility, chroma vs saturation, a widow vs an orphan, a tag vs a badge. Reaching for the wrong one quietly signals you cannot see the difference.
+- Show a fault as a pair that changes one thing: same content, layout and timing, with the exact difference written under each side. Benji Taylor's Stageshow teaching pairs are built this way (`stageshow/references/teaching.md`).
 
 ## Relation to pointing
 
 [[pointing-beats-describing]] is the sibling principle: a precise *selector* — file, line, coordinate — beats prose when feedback goes to a machine. This node is about the *word*; that one is about the *target*. Together: point at the exact element, and name exactly what is wrong with it.
+
+## Reference
+
+Name the fault the way a check would print it, with the measured value and the target:
+
+- Bad: "the card text feels cramped." Good: "`tight inset`: the title sits 6px from the card edge; words keep 12px, and under 8px is a fault."
+- Bad: "the stat looks broken." Good: "`unit wrapped`: the unit of '48 ms' drops to its own line; number and unit stay on one line."
+- Bad: "the label looks off." Good: "`tight stack`: 2px of ink between title and subtitle; 4 to 6px is right."
+
+Gold example: the film-line table in `stageshow/references/rehearse.md`, two dozen named faults, most with the threshold they trip at; and `stageshow/teaching/scenes.tsx`, where every pair is titled as an instruction with one line for bad and one for good.
+
+Check: rewrite every finding as `name: measured -> target`. If you can't fill in the measured value you haven't looked yet; if two findings share a name but need different fixes, one of the names is wrong.
 
 ## Gotcha
 
@@ -37,4 +50,5 @@ Precision is not jargon for its own sake. The goal is the shortest unambiguous d
 
 - *Index — Say Precisely What You Mean*, Emil Kowalski & Glenn Carstens-Peters — [index.how/to/articulate](https://index.how/to/articulate). The vocabulary project this node and [[design-vocabulary]] are seeded from.
 - Emil Kowalski, *Agents with Taste* — [emilkowal.ski/ui/agents-with-taste](https://emilkowal.ski/ui/agents-with-taste). Articulating *why* a choice works is what makes it packageable into a skill.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): stageshow/references/rehearse.md (film lines), stageshow/references/teaching.md, stageshow/teaching/scenes.tsx.
 - Related: [[taste-is-trained]], [[pointing-beats-describing]], [[design-vocabulary]].

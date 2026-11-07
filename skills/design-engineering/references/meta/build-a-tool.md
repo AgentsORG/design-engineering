@@ -55,6 +55,8 @@ Hand off in two lines — the URL and the verbs — and stop. Hovering with sugg
 
 The same move works for checking. When you keep checking one thing by hand, build a mountable inspector for it. Two examples are a nested-radius inspector, which shows the actual and expected value per corner on hover (inner = outer − inset), has a page-scan button and a "copy report" button that pastes into the agent, and a focus-path overlay that numbers and draws the Tab order. These let you review a preview URL or someone else's work without opening the code. Build one only for a check you repeat; a one-off check stays a checklist row ([[review-checklist]]).
 
+- A reviewing tool ends in a verdict, not only pictures. Stageshow's `film.mjs --gate` ends `rehearsal passed` or prints each fault as a line that is never intentional (Benji Taylor, `references/rehearse.md`).
+
 ## Harvest
 
 When the user picks a keeper: read the saved config (never copy values by eye), wire the export and the cleaned-up render logic into the real artifact, and leave the tool in place unless asked — the next asset in the same language goes through it.
@@ -62,6 +64,19 @@ When the user picks a keeper: read the saved config (never copy values by eye), 
 ## When to apply
 
 "Build me a tool for this", a result the agent keeps missing, two rounds burned on one artifact. Sibling workflows: [[prototype-picker]] compares discrete directions; [[vibe-to-generator]] searches a space with no target.
+
+## Reference
+
+The same gap, re-prompted and then tooled:
+
+- Bad: a third "make the list entrance feel more natural, a bit less robotic".
+- Good: `/lab/list-entrance` with a stagger slider bounded 40–80ms (default 60, Benji's reading-order range), a curve menu holding only named curves, Replay, Step 40ms, and Save writing `lab/list-entrance.json` with the path printed under the button.
+
+Every control is a call the user's eye makes. Anything that is a rule of the process stays fixed and never becomes a knob.
+
+Gold example: `stageshow/scripts/film.mjs`, a tool that reviews. It shoots one contact sheet at true size, steps one beat at 50ms with `--at <mark>`, zooms with `--zoom` and gives a verdict with `--gate`. Its making half is `stageshow/playground/` (Pause, Step, Replay pair).
+
+Check: drag every control to both ends and film the output at each bound. A bound that reaches a broken render gets narrowed before handoff.
 
 ## Gotcha
 
@@ -71,3 +86,4 @@ A tool whose knob bucket is empty didn't need building — the idea was fully de
 
 - Emil Kowalski's design-engineering practice on tools as a means to an end, distilled by HKTITAN.
 - Related: [[prototype-picker]], [[vibe-to-generator]], [[taste-is-trained]].
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/scripts/film.mjs`, `stageshow/references/rehearse.md` (flags, gate lines, Pause and Step), `stageshow/references/teaching.md` (Replay pair), `stageshow/references/motion.md` (stagger 40–80ms), `stageshow/kit/ease.ts` (named curves).

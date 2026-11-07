@@ -113,6 +113,21 @@ The wrong uses:
 - Auditing for AI-default tells ([[ai-default-tells]]).
 - Rows above the view change height and the reading position jumps: [[scroll-anchoring]].
 
+## Reference
+
+- Bad: `position: sticky; background: rgba(255,255,255,.7); backdrop-filter: blur(12px)` on every route. Good: `position: sticky; top: 0; background: var(--bg-base); border-bottom: 1px solid var(--border-default)`.
+- A contained list softens its edges only once it has scrolled, so the fade means "more here"; at rest on whole rows it has none (adapted from `stageshow/kit/motion/Scroll.css`):
+
+```css
+.list[data-scrolled] {
+  mask-image: linear-gradient(to bottom, transparent, #000 18px, #000 calc(100% - 18px), transparent);
+}
+```
+
+- Benji clears the fade at the end of the scroll and treats a hard clipping edge as the bad half of the pair; a permanent fade on a list that never scrolls is decoration.
+- Gold example: `stageshow/teaching/edges.tsx` (the viewport-edge bad/good pair), `stageshow/kit/motion/Scroll.css`.
+- Check: film a scroll down and back up at 390 wide and step the contact sheet: the content tracks the finger 1:1, the nav never covers a row without its rule, and the fade appears only on edges hiding rows.
+
 ## Gotcha
 
 `backdrop-filter: blur()` is GPU-cheap but interacts weirdly with `position: sticky` and `overflow: hidden` parents in some browsers. Always test on Safari + Firefox before shipping a blurred sticky nav.
@@ -123,4 +138,5 @@ Also: `scroll-snap` on iOS Safari can interact poorly with the URL bar collapsin
 
 - guidelines.sh — "Background blur on sticky sections is an AI giveaway" + "Avoid scroll hijacking."
 - web.dev — scroll-driven animations docs.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Scroll.css`, `stageshow/teaching/edges.tsx`, `stageshow/references/motion.md` (Scrolling and the camera).
 - Related: [[viewport-custom-design]], [[ai-default-tells]], [[transform-opacity-only]].

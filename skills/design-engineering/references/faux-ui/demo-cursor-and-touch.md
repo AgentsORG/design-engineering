@@ -15,6 +15,7 @@ A cursor in a demo is a character: it moves like a hand, presses visibly, and ev
 - **The kind comes from the element** (I-beam over text, hand on a link, open hand over something draggable, crosshair on a canvas, resize arrows on edges and corners), switching mid-path as it crosses the edge, never after arriving, and morphing between shapes rather than popping. Native app buttons keep the arrow.
 - **It never covers the words it clicks:** aim inside the target, off its text (about 85% across, 60% down). It rests on empty surface near its next move, never on an unused control, and fades after about 4 s at rest.
 - **It stays where the press happened** while the result changes size.
+- **A state the click sets fades in, quickly:** a picked tool, a selected row, an active filter eases its fill in over about 150ms and back out the same, never on in one frame. A choice that moves between options is a segmented control or tabs whose highlight slides.
 - **One cursor style per site,** so every demo on a page points the same way. On a dark stage the I-beam turns white with a dark edge.
 - **Keyboard stories show the keys** as keycaps, placed clear of anything open.
 
@@ -47,11 +48,24 @@ Stageshow types at 35ms a character (about 28 a second), which suits a short str
 
 Any faux UI with a pointer, a drag, a selection, a scroll, a camera move or a phone gesture.
 
+## Reference
+
+The same click, aimed two ways (the script in Stageshow's `examples/buttons`):
+
+| Before | After |
+|---|---|
+| `a.click('resolve')`: the centre of the button, the arrow over "Resolve" | `a.click({ at: 'resolve', x: 0.84, y: 0.7 })`: inside the box, off the word |
+| Arrive and swap the label in the same frame, glyph still on it | 120ms dwell, dip to 0.9, release 260ms; then `a.set({ resolve: 'Resolved' })`, and `a.move('rest')` to an empty point before the loop resets |
+| A 700px trip in 300ms on a straight line | `clamp(260 + 0.9 × 700, 300, 650)` = 650ms, bowed 24px |
+
+Gold example: `stageshow/examples/buttons/index.tsx` (presses beside the word, rests on an empty `rest` target); `stageshow/examples/cursor-morph/` for kinds that change mid-path.
+Check: film each press with `--slow 6 --every 40`. In no frame may the cursor cover the label it pressed or is about to change, and every move must end at the next action or at rest.
+
 ## Gotcha
 
 A cursor resting on the button it just pressed, or parked on the label it is about to change, hides the one thing the beat is about. Move it off as soon as the press lands.
 
 ## Sources
 
-- Benji Taylor, Stageshow (MIT, HEAD `8020574`, read 2026-11-01): `references/motion.md` (the cursor, drags and selection, scrolling and the camera, phones in motion), `kit/act.ts` (move, click, drag and scroll timing; touch dwell), `kit/cursor.css` (press scale and release curve). Paraphrased; the numbers are from his code.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/motion.md` (the cursor, drags and selection, scrolling and the camera, phones in motion; the click-set state is new in 1.1), `stageshow/kit/act.ts` (move, click, drag and scroll timing; touch dwell), `stageshow/kit/cursor.css` (press scale and release curve), `stageshow/examples/buttons/index.tsx`. Paraphrased; the numbers are from his code, re-verified at `299140f`.
 - Related: [[demo-story-and-loops]], [[gesture-momentum]], [[stageshow-reconciliation]].

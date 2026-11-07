@@ -81,6 +81,16 @@ Constraints are the engine: forcing every icon into one 3-line schema is what ma
 
 For a stock icon pair (copy → check, like → liked), swap them with a deep scale, not a plain fade: `scale 0.3 → 1`, opacity `0 → 1`, `blur(3px) → 0`, spring `{ type: "spring", duration: 0.35, bounce: 0 }`, inside `AnimatePresence mode="popLayout" initial={false}`. A timid 0.8–0.9 scale reads as a glitch. Without Motion, render both icons stacked and cross-fade classes over ~300ms with `cubic-bezier(0.25, 0.1, 0, 1)`. Keep it for state toggles and contextual toolbars, never always-on navigation icons.
 
+## Reference
+
+- Bad: plus and close are two icons in an `AnimatePresence` crossfade; mid-swap four strokes show and nothing reads as turning.
+- Good: one plus, `<path d="M5 12H19M12 5V19" />`, rotates 45 degrees into the close with `transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)`, the same two strokes in every frame.
+
+That is the rotation group at its smallest: when the difference is purely angular, rotate, because tweening an arrow's points to another direction bends its lines on the way. Benji's call differs from the contextual swap above: he rejected a crossfade for his set because it loses the sense of transformation, so keep that scale-and-blur swap for stock pairs that cannot share a schema, never inside a morphing set.
+
+- **Gold example:** the identity pair in `stageshow/teaching/contrasts.tsx` (its rotation is in `teaching/contrasts.css`), and the three-line set itself at benji.org/morphing-icons-with-claude.
+- **Check:** film each morph at 40 to 80ms a frame: no frame shows more strokes than one icon has, no line bends on an arrow turn, and the poster or screenshot is never caught mid-morph (`stageshow/references/motion.md`, Story).
+
 ## Gotcha
 
 3 lines is right for the Claude app icon vocabulary. Your product may need 4 (more complex icons) or 2 (simpler set). Pick the smallest N that covers your icon space. Larger N means more "collapsed" lines per icon, which is fine, but eventually you've defeated the purpose — pick judiciously.
@@ -89,6 +99,7 @@ Also: opacity-collapsed lines still render in the SVG. If you have hundreds of i
 
 ## Sources
 
-- Benji Taylor — *Morphing Icons with Claude*, [benji.org/morphing-icons-with-claude](https://benji.org/morphing-icons-with-claude).
+- Benji Taylor — *Morphing Icons with Claude*, [benji.org/morphing-icons-with-claude](https://benji.org/morphing-icons-with-claude) (read 2026-11-07).
 - Emil Kowalski's design-engineering practice, distilled by HKTITAN (contextual icon swap values).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/contrasts.tsx` and `stageshow/teaching/contrasts.css` (identity pair), `stageshow/references/motion.md` (Story, the poster).
 - Related: [[icon-systems]], [[transform-mastery]], [[fly-not-teleport]], [[animations-dev-curriculum]].

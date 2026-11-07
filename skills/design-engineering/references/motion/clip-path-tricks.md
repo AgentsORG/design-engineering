@@ -103,6 +103,28 @@ Gives a directional feel ([[fly-not-teleport]]) without `transform: translate` a
 - Comparison sliders.
 - Scroll-driven reveals.
 
+## Reference
+
+Clip shapes, fills and images; feather words. A status word rolling inside its slot:
+
+- Bad: `clip-path: inset(0)` on the slot, so every frame of the roll shows letters cut by a straight line at the top and bottom.
+- Good: a feathered mask, with padding that gives the feather room and a negative margin that keeps the line box unchanged (adapted from `stageshow/kit/motion/Roll.css`):
+
+```css
+.slot {
+  display: inline-grid;
+  padding-block: 0.45em;
+  margin-block: -0.45em;
+  mask-image: linear-gradient(transparent, #000 0.5em, #000 calc(100% - 0.5em), transparent);
+}
+```
+
+Benji's rule for moving text: Stageshow 1.1 replaced Roll's hard `clip-path` with this mask, and keeps `clip-path: inset(0)` only where a label crossfades in place without travelling.
+
+Gold example: `stageshow/kit/motion/Roll.css`, and the label-boundary pair in `stageshow/teaching/edges.tsx` (letters soften as they reach the edge, resting text stays sharp).
+
+Check: step the transition at 40ms where any moving text crosses the clip edge. No frame may show a glyph sliced flat; at rest the same text must be fully sharp.
+
 ## Gotcha
 
 `clip-path` with `border-radius` is finicky — combine via `clip-path: inset(... round Xpx)` instead of using both properties. Mixing them produces strange double-clipping on Safari.
@@ -114,4 +136,5 @@ Also: `clip-path` on a parent affects all children. Want only one child clipped?
 - Emil Kowalski — clip-path section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/RECIPES.md (hold-to-confirm timing).
 - MDN — `clip-path` reference.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/motion/Roll.css` (feathered mask, `fade` variant clip), `teaching/edges.tsx` and `teaching/edges.css` (label-boundary), `references/motion.md` (a moving edge never slices text).
 - Related: [[transform-opacity-only]] for the GPU-acceleration baseline.

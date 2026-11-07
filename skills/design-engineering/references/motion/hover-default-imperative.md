@@ -122,6 +122,20 @@ For touch, animations fire either on tap (via `onClick` → `ref.trigger()`) or 
 - Pure-CSS animations that don't need state at all (e.g., a permanently-spinning loader). Don't ref-wrap them.
 - One-off animations in a specific feature. Inline the animation; don't build a reusable icon component for it.
 
+## Reference
+
+- Bad: hover swaps the icon for a second SVG in a crossfade, and the row behind it eases its highlight in over 200ms.
+- Good: the same strokes rotate into the hovered shape (a plus turning 45 degrees into a close), and the row highlights at once and eases out:
+
+```css
+.row { transition: background-color 150ms ease; }  /* leaving: eased */
+.row[data-hover] { background: var(--ink-2); transition-duration: 0s; }  /* arriving: at once */
+@media (hover: hover) { .row:hover { background: var(--ink-2); transition-duration: 0s; } }
+```
+
+- Gold example: Stageshow styles hover on a `data-hover` attribute that its scripted cursor sets on the hovered target and every targeted ancestor (`stageshow/kit/act.ts`), so a script drives the exact state a pointer would; see `stageshow/kit/parts/Menu.css` and `stageshow/kit/controls/Button.css`, whose filled hover is one step of the button's own colour. The plus-to-close pair is in `stageshow/teaching/contrasts.tsx` (identity).
+- Check: film `trigger()` and a real hover side by side; they match frame for frame, and one tap on a phone leaves no hover stuck on.
+
 ## Gotcha
 
 Don't expose `trigger()` *without* `:hover` default. Forcing all users to manually wire up triggers defeats the zero-config promise. The hover-default + imperative-handle combination is what makes this pattern useful.
@@ -133,3 +147,5 @@ Also: don't use `forwardRef` if your component is functional only. Use it only w
 - [lucide-animated.com](https://lucide-animated.com) — pqoqubbw/icons collection.
 - React docs — `useImperativeHandle`, `forwardRef`.
 - Related: [[icon-systems]], [[morphing-icons]], [[responsive-feedback]], [[animations-dev-curriculum]].
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/act.ts` (`data-hover` on the hovered chain), `kit/parts/Menu.css`, `kit/controls/Button.css`, `kit/controls/Button.tsx`, `teaching/contrasts.tsx` (identity).
+- Benji Taylor, benji.org/morphing-icons-with-claude (read 2026-11-07): arrows rotate rather than morph; a crossfade loses the sense of transformation.

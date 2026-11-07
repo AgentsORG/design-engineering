@@ -63,6 +63,7 @@ For brand-led work, geometric perfection is a tell. Slight irregularity adds cha
 - **Hand-drawn strokes** — for marketing illustrations, accents, dividers.
 - **Asymmetric blob shapes** — for hero backgrounds, instead of perfect circles.
 - **Wobbly bullets, slightly off-grid icons** — when the brand is playful.
+- **Earn every tilt.** Start flat and frontal, then compare the tilted version with the straight one at final size. Texture never sits over text or stands in for hierarchy.
 
 These read as "made by a person." Perfectly round circles and perfectly straight lines read as "made by a machine" — fine for utility UI, wrong for personality.
 
@@ -95,6 +96,22 @@ Asymmetric is a marketing-page tool. It signals craft and confidence. But it req
 - Repeated UI patterns (lists, settings, etc.) — consistency wins inside the product.
 - Anywhere users need to *parse* the layout quickly. Imperfection slows scanning.
 
+## Reference
+
+Benji Taylor's loose pile of paper. The angles are small and alternate in sign, the offsets are uneven, each card rotates about its own center, and only the top card has words and a real shadow:
+
+```css
+.back { translate: -20px 10px; rotate: -6deg; }
+.mid  { translate: 18px -6px;  rotate: 4deg; }
+.top  { translate: 0 4px;      rotate: -2deg; box-shadow: var(--shadow-satellite); }
+```
+
+- Bad: `rotate: 5deg` on every card, with the same offset each time. That reads as a CSS pattern. Good: the three lines above.
+- Grain as a material: `feTurbulence` with `baseFrequency="0.7"` and `numOctaves="2"`, laid over a soft gradient with `mix-blend-mode: soft-light` at `opacity: .7`.
+- Benji's call differs: his grain covers a whole ground at `opacity: .7` so the color reads as a material, far above ~1%. Keep the "felt, not seen" rule for grain under UI.
+- Gold example: `stageshow/examples/tilted-stack/`, `stageshow/examples/backgrounds/` (grain, halftone).
+- Check: put the straight and tilted versions side by side at final size and keep the tilt only if it wins. Zoom to 2x: no grain over a word.
+
 ## Gotcha
 
 Don't confuse "imperfection" with "lazy alignment." A blog post with random margins on each paragraph is not imperfect-on-purpose; it's broken. The imperfection has to be deliberate, applied at specific decorative moments, and consistent in its inconsistency.
@@ -104,4 +121,5 @@ A test: would the imperfection survive being shown to a senior designer? If they
 ## Sources
 
 - guidelines.sh — Visual Imperfection category (optical alignment, texture/noise, imperfect shapes, asymmetric layouts).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/tilted-stack/tilted.css` (angles and offsets, adapted above), `stageshow/examples/backgrounds/index.tsx` and `backgrounds.css` (grain and halftone), `stageshow/references/framing.md` rule 9 (earn a tilt), `stageshow/references/backgrounds.md` (texture supports a material).
 - Related: [[viewport-custom-design]], [[typography-humanity]], [[marketing-vs-product-ui]], [[feeling-right]].
