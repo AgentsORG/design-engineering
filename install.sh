@@ -162,7 +162,7 @@ agent_src() {
   esac
 }
 
-plugin_installed() { have claude && claude plugin list 2>/dev/null | grep -q 'design-engineering'; }
+plugin_installed() { have claude && claude plugin list 2>/dev/null | grep -q 'design-engineering@agentsorg'; }  # exact id: a synced or other copy is not ours
 
 print_summary() {
   say ""
