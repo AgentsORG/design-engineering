@@ -243,7 +243,7 @@ if (Want 'skill') {
 # Claude Code plugin
 if ($UsePlugin) {
   $installed = $false
-  if (-not $DryRun) { $installed = [bool]((claude plugin list 2>$null) -match 'design-engineering') }
+  if (-not $DryRun) { $installed = [bool]((claude plugin list 2>$null) -match 'design-engineering@agentsorg') }  # exact id: a synced or other copy named design-engineering is not ours
   if ($installed) {
     try { & claude plugin marketplace update agentsorg *> $null } catch { }
     Note 'plugin' 'design-engineering@agentsorg' 'already installed (marketplace updated)'
