@@ -16,7 +16,13 @@
     { "query": "path:references/components", "color": { "a": 1, "rgb": 6273182  } },
     { "query": "path:references/layout",     "color": { "a": 1, "rgb": 6066104  } },
     { "query": "path:references/anti-patterns","color": { "a": 1, "rgb": 11815498 } },
-    { "query": "path:references/meta",       "color": { "a": 1, "rgb": 12884661 } }
+    { "query": "path:references/meta",       "color": { "a": 1, "rgb": 12884661 } },
+    { "query": "path:references/sound",      "color": { "a": 1, "rgb": 14329120 } },
+    { "query": "path:references/svg",        "color": { "a": 1, "rgb": 4565986  } },
+    { "query": "path:references/diagram",    "color": { "a": 1, "rgb": 8421504  } },
+    { "query": "path:references/faux-ui",    "color": { "a": 1, "rgb": 15435844 } },
+    { "query": "path:references/commands",   "color": { "a": 1, "rgb": 3355443  } },
+    { "query": "path:agents",                "color": { "a": 1, "rgb": 2201331  } }
   ],
   "collapse-display": true,
   "showArrow": false,

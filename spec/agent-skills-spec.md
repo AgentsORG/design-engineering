@@ -7,7 +7,7 @@ This file mirrors the **Agent Skills specification** so the spec is available of
 - **Spec license:** CC-BY-4.0 (documentation), Apache-2.0 (code). Originally developed by Anthropic and released as an open standard.
 - **Spec status:** unversioned; the format is stable but the validator (`skills-ref`) is in active development.
 
-If the upstream spec diverges from this mirror, the upstream is authoritative. Treat this file as a snapshot for offline reading.
+If the upstream spec diverges from this mirror, the upstream is authoritative. Treat this file as a snapshot for offline reading. Last checked against agentskills.io/specification and the skills CLI docs on 2026-11-07: no field changes since the previous snapshot.
 
 ---
 
@@ -48,7 +48,7 @@ allowed-tools: Bash(git:*) Read Glob
 | `description` | **Yes** | Max 1024 chars. Describes WHAT the skill does AND WHEN to use it. Include keywords that match real user queries. |
 | `license` | No | License name (`MIT`, `Apache-2.0`) or a relative reference to a bundled `LICENSE` file. |
 | `compatibility` | No | Max 500 chars. Environment requirements — product/platform, package versions, network needs. |
-| `metadata` | No | Arbitrary string→string map. Use unique key names to avoid collisions with future spec fields. |
+| `metadata` | No | Arbitrary string→string map. Use unique key names to avoid collisions with future spec fields. The skills CLI hides a skill whose `metadata.internal` is `true`. |
 | `allowed-tools` | No | **Experimental.** Space-separated list of pre-approved tools the skill may call. Example: `Bash(git:*) Bash(jq:*) Read` |
 
 ## Body
@@ -97,6 +97,23 @@ The spec assumes the consuming agent loads skills progressively:
 
 The implication: **keep `SKILL.md` under 500 lines.** File references should be one level deep from `SKILL.md`, using relative paths.
 
+## Where installers put a skill
+
+The [skills CLI](https://github.com/vercel-labs/skills) (`npx skills add <owner/repo>[@ref]`, `-g` for global, `-a <agent>` to pick hosts) copies or symlinks the skill directory into each host's skills folder:
+
+| Host | Project | Global |
+|------|---------|--------|
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` |
+| Codex | `.agents/skills/` | `~/.agents/skills/` |
+| Cursor | `.agents/skills/` | `~/.cursor/skills/` |
+| OpenCode | `.agents/skills/` | `~/.config/opencode/skills/` |
+| Gemini CLI | `.agents/skills/` | `~/.gemini/skills/` |
+| Antigravity | `.agents/skills/` | `~/.gemini/config/skills/` |
+| GitHub Copilot | `.agents/skills/` | `~/.copilot/skills/` |
+| Any other (universal) | `.agents/skills/` | `~/.config/agents/skills/` |
+
+Host support beyond the base spec varies: `allowed-tools` is broadly honoured; `context: fork` and skill hooks are Claude Code features (hooks also in a few others). A skill that relies on them still loads elsewhere, just without the feature.
+
 ## Validation
 
 ```bash
@@ -114,7 +131,9 @@ This skill uses two opt-in conventions on top of the base spec:
 1. **`metadata.graph: true`** — signals that the skill follows the **skill-graph** pattern (thin `SKILL.md` Map of Content + atomic wikilinked nodes in `references/<theme>/`). See [Akshay Pachaar's "Skill Graphs > SKILL.md"](https://x.com/akshay_pachaar).
 2. **`[[wikilinks]]` in prose** — Obsidian-style links between atomic nodes. The wikilink itself carries meaning ("follow this if you need depth on X"), not just a reference. Wikilinks resolve by basename — themed subfolders are organizational, not namespaces.
 
-Both are spec-compatible because they're just markdown.
+Both are spec-compatible because they're just markdown. The repo's `metadata` block also carries `author`, `version`, `subagents` and `soul` keys; keep every value a quoted string, since the spec types `metadata` as a string→string map (an unquoted `graph: true` parses as a boolean in strict YAML readers).
+
+Subagents, the eve runtime and the per-harness agent files (`agents/`, `agent/`, `harness/`) live outside the skill directory: they are not part of the Agent Skills format and the skill works without them.
 
 ## Related specs and tools
 

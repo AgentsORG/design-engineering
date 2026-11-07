@@ -1,0 +1,64 @@
+{
+  "model": "sonnet",
+  "date": "2026-11-07",
+  "tries": 1,
+  "relevant_only": false,
+  "clusters": [
+    "anti-patterns",
+    "components",
+    "diagram",
+    "faux-ui",
+    "launch-video",
+    "layout",
+    "meta",
+    "motion",
+    "philosophy",
+    "sound",
+    "surface",
+    "svg",
+    "typography",
+    "agents"
+  ],
+  "arms": {
+    "full": {
+      "runs": 3,
+      "valid": 3,
+      "isolation_failed": 0,
+      "errors": 0,
+      "score": 0.8666666666666667,
+      "within_fixture_sd": null,
+      "skill_fired": 1,
+      "cost_usd": 0.28513920000000004,
+      "tokens_in": 81673,
+      "tokens_out": 11648,
+      "mean_ms": 29106,
+      "grade_findings": 0.6666666666666666
+    },
+    "none": {
+      "runs": 3,
+      "valid": 3,
+      "isolation_failed": 0,
+      "errors": 0,
+      "score": 0.7833333333333333,
+      "within_fixture_sd": null,
+      "skill_fired": 0,
+      "cost_usd": 0.1597618,
+      "tokens_in": 27853,
+      "tokens_out": 9336,
+      "mean_ms": 21407.666666666668,
+      "grade_findings": 1.3333333333333333
+    }
+  },
+  "comparisons": {
+    "full-vs-none": {
+      "fixtures": 3,
+      "delta": 0.08333333333333333,
+      "lo": 0,
+      "hi": 0.25,
+      "se": 0.06701892045090485,
+      "mdd": 0.18765297726253358,
+      "enough": false
+    }
+  },
+  "verdicts": {}
+}

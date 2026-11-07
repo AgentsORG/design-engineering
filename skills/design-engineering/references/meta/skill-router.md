@@ -22,8 +22,9 @@ Precedence: user prompt → nearest `.design` → the `design` skill procedure �
 | Stuck on a vibe | "something like…", "I'll know it when I see it" | [[vibe-to-generator]] |
 | Foundation | "build this screen", "lay this out" | [[feeling-right]] → [[stacking-chains]] |
 | Pieces | card, form, component, landing page, sound, SVG | the material node below, or its subagent |
-| Works, feels off | "feels cheap", "janky", "broken on mobile" | [[ui-polish-pass]] / [[motion-auditor]] / [[touch-and-focus]] |
+| Works, feels off | "feels cheap", "janky", "broken on mobile" | [[ui-polish-pass]] / [[motion-auditor]] (several things moving at once → [[motion-choreography]]) / [[touch-and-focus]] |
 | Done | "does this look right", "review before I ship" | [[ui-reviewer]] or [[review-format]]; a branch, PR or uncommitted change → [[change-scoped-review]]; a film → [[launch-video-review]] (or spawn [[launch-film-analyst]]) |
+| Climb or grade | "get the models to judge it", "council", "keep going until it scores 9", "grade this run" | [[design-council]] via [[cmd-council]] (judges score, you fix, the target stays hidden); a report card for a human or an agent → [[design-grader]] via [[cmd-grade]] |
 | The words | "what's it called when…" | [[design-vocabulary]] — answer and stop |
 | Keeps missing | "closer, but not quite" after a round or two | [[build-a-tool]] |
 
@@ -76,7 +77,7 @@ This repo's own launch film, `docs/demo/hyperframes/`, is the worked example: it
 1. **Two questions, then act.** Phase, then material. If you opened four nodes before answering either, start over.
 2. **Judge posture never writes; build posture never reviews silently.** Keep the posture the user asked for.
 3. **Companions inherit the contract and the overrides.** Nothing leaves this router without [[gotchas]] and [[pov]] applied.
-4. **Overlaps that fool the router.** One diff → `review`; the whole app before launch → `ship` ([[ship-check]]). "Fine on desktop, wrong on my phone" → [[mobile-platform-layer]] / [[touch-and-focus]] before motion. "Feels slow" → [[performance-discipline]], not motion. Worst-case data → `break` ([[stress-scenarios]]).
+4. **Overlaps that fool the router.** One diff → `review`; the whole app before launch → `ship` ([[ship-check]]). "Fine on desktop, wrong on my phone" → [[mobile-platform-layer]] / [[touch-and-focus]] before motion. "Feels slow" → [[performance-discipline]], not motion. Worst-case data → `break` ([[stress-scenarios]]). One opinion on a diff → `review`; scores from judges on several providers, in rounds → `council`; a report card on an episode already finished → `grade`.
 5. **Say when nothing fits.** Backend logic, data fetching, build tooling, and state management are not this graph's job; answer plainly and say no skill applies.
 
 ## Gotcha

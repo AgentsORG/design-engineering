@@ -53,6 +53,21 @@ Integrated LUFS is unstable on files under ~400 ms — for ticks and taps, match
 
 Post-processing every generated or downloaded file, and reviewing any PR that adds an audio asset. `scripts/sound-family.mjs` applies the trim and peak steps automatically; the LUFS check is yours.
 
+## Reference
+
+| `tick` | Bad | Good |
+|---|---|---|
+| Length | 640 ms, reverb tail | 70 ms, last 10 ms faded |
+| Channels, rate | stereo, 48 kHz | mono, 44.1 kHz, 16-bit WAV source |
+| Lead-in | 12 ms before the hit | 0 ms above −60 dBFS |
+| Peak | −0.2 dBFS | −3 dBFS |
+| Low end | full range | high-passed at 180 Hz |
+| Shipped as | the WAV | `tick.mp3` at 128 kbps, or Opus |
+
+Gold example: the files `scripts/sound-family.mjs` writes (leading silence trimmed below −60 dBFS, tail cut, 10 ms fade, peaked to −3 dBFS); compare yours against them.
+
+Check: `ffprobe` each file for channels, sample rate and duration against its category band, and `ffmpeg -i tick.wav -af astats -f null -` for the peak. Then play each tick beside a −16 LUFS reference tick, by ear, on a laptop speaker.
+
 ## Gotcha
 
 Loudness normalization tools (`loudnorm`, streaming platforms) measure *integrated* loudness across the whole file. A sound that is 60 ms of hit and 600 ms of quiet tail will be normalized *up* until the hit clips. Trim the tail first, normalize second.

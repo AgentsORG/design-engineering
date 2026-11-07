@@ -83,6 +83,21 @@ Picture locks first; sound is placed on frames and cannot be placed on frames th
 3. **Every shipping chain ends at [[review-format]].** If the chain ends and no review happened, it isn't done.
 4. **[[gotchas]] and [[pov]] apply at every link**, not as a final step — an installer override can prune a whole link.
 
+## Reference
+
+A chain run well names each link's exit check before the next link opens. The product-shot leg of the marketing chain, for a 720 x 340 hero:
+
+```text
+product-shot-framing → still at 720 and at 390 beside the gold; window off an edge, one gutter
+faux-ui-restraint    → real strings counted: 5; bars only off the subject
+demo-story-and-loops → 4 beats, 12s loop, poster is the payoff frame
+demo-rehearsal       → film --gate on the loop ends "rehearsal passed"
+```
+
+Gold example: `stageshow/SKILL.md` (Workflow, steps 1 to 7): medium and place, look, story, start from the closest gold, screen, choreograph, rehearse. Step 4 settles the frame on a still before any motion.
+
+Check: when a later link exposes an earlier fault (motion reveals a bad crop), go back to the earliest broken link and run forward again, as Benji fixes framing, then hierarchy, then motion, then polish. Never patch it at the link you're on.
+
 ## Gotcha
 
 Don't run a full chain on a one-line change. Chains are for jobs that touch three or more clusters; a hover tweak routes through [[routing-table]] to one node and stops.
@@ -90,3 +105,4 @@ Don't run a full chain on a one-line change. Chains are for jobs that touch thre
 ## Sources
 
 - HKTITAN — orderings distilled from repeated multi-cluster sessions; companions: [[routing-table]], [[disambiguation]].
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Workflow, steps 1 to 7; step 7 fix order), `stageshow/references/rehearse.md` (Prove the still before choreography).

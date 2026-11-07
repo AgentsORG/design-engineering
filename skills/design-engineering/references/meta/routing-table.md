@@ -26,6 +26,7 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Understand why a screen feels flat or assembled | [[feeling-right]] |
 | Decide whether something should animate at all | [[animation-decision-framework]] |
 | Pick easing / duration for one animation | [[easing-curves]], then [[duration-table]] |
+| Several parts move on one event and the whole feels busy or slow: drawer and items, badge and card, list and toast | [[motion-choreography]], then [[stagger-choreography]] for the gaps |
 | Build drag / swipe / momentum interactions | [[gesture-momentum]], [[spring-animations]] |
 | Rapid presses miss moving items; a dragged card slides under its neighbours on release | [[animated-hit-testing]] |
 | An animation lands differently at 30, 60 and 120 fps, or jumps after a stalled tab | [[frame-rate-independence]] |
@@ -104,6 +105,8 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Write design docs an agent can follow | [[design-system-docs]] |
 | Write or fix a skill file, or [[pov]] | [[skill-writing-rules]] |
 | Measure whether a change made output better | [[design-benchmarks]] |
+| Push a screen, page or film until independent model judges agree it is good | [[grading-rubric]], then `/design-engineering council` ([[cmd-council]]; or spawn [[design-council]], with [[design-judge]] in the Claude seat) |
+| Grade a design episode, human or agent, or compare runs with and without the skill | [[grading-rubric]] + [[design-moves]], then `/design-engineering grade` ([[cmd-grade]]; or spawn [[design-grader]]) |
 | Get the app ready to launch: every lane, fixed and verified | [[ship-check]], then [[production-baseline]]; leftovers and secrets → [[leftovers-and-leaks]]; link previews, SEO, the conversion path → [[share-and-crawl-metadata]] |
 | Remove or tone down animations without breaking anything | [[animation-removal-hazards]] |
 | A flick should land where it would naturally coast; rubber-band past an edge | [[momentum-projection]], [[gesture-momentum]] |

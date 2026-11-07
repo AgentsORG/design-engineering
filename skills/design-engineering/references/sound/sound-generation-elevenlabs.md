@@ -56,6 +56,23 @@ Every file still needs [[sound-spec]]: trim leading silence to zero, high-pass a
 
 An installer has the key and the [[sound-decision-framework]] has said yes to at least one sound. For a launch video, [[launch-video-sound]] picks the register first: under a beat track the track carries the pops, and in the dry, bed and foley registers (A, B, E) [[sound-from-motion]] synthesizes the cues from the motion. Generate only a one-off that the cue sheet's kinds do not cover, such as a riser or a cinematic impact. Use the same prompt formula and trim its lead-in; an impact's transient lands on the contact frame per [[sound-motion-sync]], and a riser ends where the gap before the reveal opens.
 
+## Reference
+
+The success sound of a family, as a first prompt and as the formula writes it:
+
+- Bad: `{ "text": "a success sound" }` with the duration on auto, which returns a stock jingle with a room tail.
+- Good, the body `sound-family.mjs` POSTs to `/v1/sound-generation?output_format=mp3_44100_128` (material phrase prefixed, then the sound's own words; influence is the `--influence` default):
+
+```json
+{ "text": "felt mallet on a small wooden block, dry, no reverb, no tail, clean transient. three ascending mellow notes, major, warm, short decay, completion",
+  "model_id": "eleven_text_to_sound_v2", "duration_seconds": 1.0,
+  "prompt_influence": 0.8, "loop": false }
+```
+
+Then trim to the first transient, high-pass at 150 Hz, peak to -3 dBFS, mono, and commit the WAV with its prompt.
+Gold example: `skills/design-engineering/scripts/sound-family.example.json`, six sounds (tick, tap, send, receive, error, success) under one material phrase.
+Check: generate the whole family in one run and play it back to back on a loop. It should sound like one object struck six ways; if one member sounds like it came from another product, re-roll the family, not that member.
+
 ## Gotcha
 
 Generated files are not deterministic. Regenerating `tick` next sprint produces a *different* tick, and a family with one re-rolled member sounds patched. Commit the WAVs, record the prompts and settings in the manifest, and regenerate the *whole family* when the material changes.

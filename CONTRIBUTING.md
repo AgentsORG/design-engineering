@@ -78,12 +78,14 @@ tags: [<theme>, <topic>, <topic>]
 | SVG | `references/svg/` | Authoring clean SVG, animating it, morphing paths, video-to-vector mascots |
 | Diagram | `references/diagram/` | Whether to draw, which surface (figure, canvas, docs-as-code), figure craft, diagram-design reconciliation, tldraw canvases |
 | Launch video | `references/launch-video/` | Launch films, sizzles, reveals: register, structure, type, UI demo, film motion, seams, cuts, review, HyperFrames reconciliation |
+| Faux UI | `references/faux-ui/` | Product shots, cursor demos, bento grids, framing and restraint, Stageshow reconciliation |
 | Typography | `references/typography/` | Type, tracking, weight, hierarchy |
 | Surface | `references/surface/` | Color, shadow, radius, dark mode, imperfection |
 | Components | `references/components/` | Hover/loading/empty states, icons, cards, forms, avatars |
 | Layout | `references/layout/` | Page-level grids, viewports, sticky chrome |
 | Anti-patterns | `references/anti-patterns/` | What to remove. Consolidated tells. |
-| Meta | `references/meta/` | Review format, gotchas, POV, cross-model — non-content special files |
+| Meta | `references/meta/` | Review format, gotchas, POV, cross-model, routing, grading rubric and design moves — non-content special files |
+| Commands | `references/commands/` | One `cmd-<verb>.md` per `/design-engineering [verb]` plus `MOC-commands.md`. Not knowledge: a new verb also needs a SKILL.md dispatch row and a `dispatch.jsonl` row (CI enforces both) |
 
 Adding a new theme = adding `references/<theme>/`, a `MOC-<theme>.md` inside, and linking it from `SKILL.md`. Don't add a theme for fewer than 3 nodes — fold into an existing one.
 
@@ -120,6 +122,7 @@ Before opening:
 - [ ] You ran `skills-ref validate ./skills/design-engineering` (or equivalent) — no warnings.
 - [ ] If the change touches `SKILL.md`'s description, you've thought about routing → followed the **Cross-model checks** below.
 - [ ] If you added a node, added at least one row to `skills/design-engineering/evals/progressive-reads.jsonl`.
+- [ ] If you touched `skills/`, `agents/` or `templates/`, you ran `npm run build:agents` and `npm run build:registry` and committed the output.
 
 ## Evals (Perplexity Step 0)
 
@@ -133,13 +136,25 @@ Per [Perplexity's skill-building guide](https://research.perplexity.ai/articles/
 
 Skill descriptions route differently on different model families. Before merging any description change or new MOC-level link, run a smoke test against:
 
-1. **Claude Opus (latest)** — opus-4.x.
-2. **Claude Sonnet (latest)** — sonnet-4.x. Routes more conservatively than Opus.
-3. **GPT-4-class** (GPT-4o, GPT-5, or current equivalent) — phrasing-sensitive.
+1. **Claude Opus (latest)** — `claude-opus-5.5` at the time of writing.
+2. **Claude Sonnet (latest)** — `claude-sonnet-5.5`. Routes more conservatively than Opus.
+3. **GPT (latest Codex default)** — phrasing-sensitive.
+4. **Gemini (latest)**, when you have the CLI — optional, unscored, the same way the design council treats it.
 
 For each model, paste 3 positive + 2 negative queries from `evals/loading.jsonl`. Confirm the skill loads / doesn't load as expected.
 
 See `skills/design-engineering/references/meta/cross-model-testing.md` for the full procedure (the same content the skill itself loads when the agent needs to reason about cross-model routing).
+
+## Subagents
+
+`agents/<name>.md` (Claude Code format) is the single source for every harness. The eve twins in `agent/subagents/` and the Codex, OpenCode, Gemini and Cursor files in `harness/` are generated from it:
+
+```bash
+npm run build:agents   # rewrite every harness form
+npm run check:agents   # what CI runs: exit 1 on drift
+```
+
+Never hand-edit a generated file; CI's `agents-check` job fails on drift. A new subagent also needs rows in `references/meta/skill-router.md`, `references/meta/routing-table.md`, the SKILL.md "Workflow subagents" list, `docs/subagents.md` and the delegation table in `agent/instructions.md`, then `npm run build:registry`. Read [docs/subagents.md](docs/subagents.md) for the bar a new agent has to clear.
 
 ## Local development
 

@@ -8,11 +8,11 @@ export default defineEval({
   description:
     "A UI review request returns the required Before | After | Why table.",
   async test(t) {
-    await t.send(
+    const turn = await t.send(
       "Review this CSS for a modal animation:\n" +
         ".modal { transition: all 0.3s ease-in; transform: scale(0); }",
     );
     t.succeeded();
-    t.check(t.reply, includes("| Before | After | Why |"));
+    t.check(turn.reply, includes("| Before | After | Why |"));
   },
 });

@@ -2,7 +2,7 @@
 
 Per [Perplexity's skill-building guide](https://research.perplexity.ai/articles/designing-refining-and-maintaining-agent-skills-at-perplexity), evals are **Step 0** — write them before the skill, run them when the skill changes, paste them into PRs that touch the description.
 
-This folder ships starter evals. Forks should add their own.
+This folder ships the skill's own evals. Forks should add their own.
 
 ## What lives here
 
@@ -11,7 +11,7 @@ This folder ships starter evals. Forks should add their own.
 | `loading.jsonl` | one query per line | Does the agent load this skill on a query that should trigger it? Does it *not* load on a query that shouldn't? |
 | `progressive-reads.jsonl` | one query per line | Once the skill is loaded, does the agent open the right atomic node for the query? |
 | `dispatch.jsonl` | one invocation per line | Does `/design-engineering <verb> [target]` open the right command file (`expected_command`: a `cmd-*` basename, `router`, `menu` or `none`), then the right nodes? CI checks that every verb in the SKILL.md table has a file and a row here. |
-| `end-to-end.md` | freeform | A handful of realistic review/design tasks with the expected gotchas the agent should cite. Run manually. |
+| `design-bench.jsonl` | one fixture per line | End-to-end generation, edit, repair and review tasks with deterministic `must_match` / `must_not_match` rules on the answer. Optional `clusters` tags the reference folders a fixture exercises (used by the ablation bench); `score_on: "text"` scores the whole reply instead of its code blocks. `arena` rows need a pairwise judge. |
 
 ## `loading.jsonl` format
 
@@ -28,14 +28,21 @@ This folder ships starter evals. Forks should add their own.
 
 `expected_nodes` are nodes the agent must open. `forbidden_nodes` are sibling-like nodes it should *not* open (catches over-eager retrieval).
 
+## `design-bench.jsonl` format
+
+```jsonl
+{"id": "<task>-<topic>-01", "task": "generation|edit|repair|review", "clusters": ["motion"], "prompt": "...", "input": "<code to edit, optional>", "must_match": ["<regex>"], "must_not_match": ["<regex>"], "checklist_rows": [1, 2]}
+```
+
+`edit` rows use `instruction` and `repair` rows use `issue` in place of `prompt`. Rules are JavaScript regexes run with the `m` flag.
+
 ## How to run them
 
-There's no automated runner shipped here. Two ways to use the files:
+From the repository root (see `evals/README.md` for every runner):
 
-1. **Manual** — open Claude Code / Cursor / your agent, paste a query from `loading.jsonl`, check whether `design-engineering` loads. Paste a query from `progressive-reads.jsonl`, check which files the agent reads.
-2. **Custom harness** — build a wrapper around the Anthropic SDK / OpenAI SDK that submits each query, captures the loaded skills (from system prompt inspection) and read tool calls, and asserts against the JSONL expectations.
-
-A reference harness lives at [anthropics/claude-skill-evals](https://github.com/anthropics/claude-skill-evals) (community project — link may rot; check `awesome-agent-skills` lists for current best).
+1. **Ablation bench** — `node scripts/bench.mjs --arms none,full --tries 3` runs `design-bench.jsonl` through `claude -p` with and without an isolated plugin copy, and `--arms all --relevant-only` adds a `minus-<cluster>` arm per reference folder. It writes `evals/results/<date>-<model>-ablation/REPORT.md` with a noise floor and keep / slim / retire verdicts.
+2. **Plugin eval suite** — `claude plugin eval .` runs `evals/plugin/<case>/` (regex, `tool_used: Skill` and `llm` graders) three times per case, with and without the plugin.
+3. **Manual** — paste a query from `loading.jsonl` into Claude Code, Cursor or another agent and check whether `design-engineering` loads; paste one from `progressive-reads.jsonl` and check which files it reads.
 
 ## Cross-model
 
@@ -44,14 +51,14 @@ Run every eval against at least **Claude Opus**, **Claude Sonnet**, and **GPT-4-
 ## When to update
 
 - **Always**, if you change `SKILL.md`'s `description`. Description changes shift routing; you need evidence the change didn't break recall on existing positive queries or introduce false positives.
-- When you add a new theme folder, add 2+ rows to `loading.jsonl` covering queries that should resolve to that theme.
+- When you add a new theme folder, add 2+ rows to `loading.jsonl` covering queries that should resolve to that theme, and a `design-bench.jsonl` fixture tagged with that cluster so its ablation arm has something to measure.
 - When you add a new atomic node, add 1 row to `progressive-reads.jsonl` covering a query the node should answer.
 
 ## Gotcha
 
-These evals test *routing* and *retrieval* — they don't test whether the node content is correct. Content correctness is human-reviewed via the PR process. Don't try to automate taste.
+`loading`, `progressive-reads` and `dispatch` test *routing* and *retrieval*; `design-bench` tests a narrow slice of output with regexes. None of them proves the node content is good. Content correctness is human-reviewed via the PR process, and a cluster the bench marks "slim" may still carry facts only a value-recall eval protects. Don't try to automate taste.
 
 ## Sources
 
 - Perplexity Agent Skills team — "Step 0: Write the evals" + "Eval suites" sections of [the guide](https://research.perplexity.ai/articles/designing-refining-and-maintaining-agent-skills-at-perplexity).
-- Related: [[meta/cross-model-testing]], `CONTRIBUTING.md` PR checklist.
+- Related: [[meta/cross-model-testing]], [[meta/design-benchmarks]], `CONTRIBUTING.md` PR checklist.

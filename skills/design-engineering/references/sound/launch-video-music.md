@@ -71,6 +71,23 @@ In HyperFrames, make the gap with hyperframes-audio's carve.mjs, which is requir
 
 Any film with a licensed, retrieved or generated track, or a voice-over. HyperFrames' product-launch-video retrieves a stock bed by mood and lays it flat from 0 s ([[hyperframes-reconciliation]]), trimming only a weak opening; this node is how to place that bed. Loudness targets by register live in [[launch-video-sound]].
 
+## Reference
+
+A 30 s film, a stock track whose drop sits 15.0 s into the file, the wordmark revealed at 3.75 s:
+
+- Bad: the bed laid flat at 0.12 from 0 s; the drop lands at 15.0 s on the third feature card, the sub runs under the typing, cuts fall where they fall.
+- Good: 11.25 s trimmed off the file's head so the drop plays on the 3.75 s reveal; no sub under the hook's typing (0 to 3.2 s) and a 0.55 s gap before the reveal; act seams locked on downbeats and nothing else; two bars cut from the middle on a V to I splice; one chime on the tonic at the lockup.
+
+| Picture | Time | Track |
+|---|---|---|
+| Hook, typing | 0 to 3.2 s | intro, beat thinned, no sub |
+| Gap | 3.2 to 3.75 s | sub out |
+| Wordmark | 3.75 s | drop's attack on the frame |
+| Lockup | 26 s | the track's own ending, tonic chime |
+
+Gold example: HeyGen's `website-to-hyperframes` (README Credits and `index.html`): a 3 s head trim puts the drop at 12.0 s as act 3 opens, between voice lines at 10.5 s and 12.2 s.
+Check: scrub the render to the reveal frame and read the waveform: the drop's attack sits on that frame, never before it. Then list every cut you meant to lock with its onset offset; each is within a frame, and every other cut is unlocked on purpose.
+
 ## Gotcha
 
 A flat 0.12 bed started at 0 s is the unstructured bed, however good the track; if nothing in it can go on the reveal, fall back to register B or A ([[launch-video-sound]]). A cut a few frames off a strong onset reads as a miss, as Bud's do. Lock one chosen layer (act seams, phrases or the eighth grid) on the onset frame, or lock nothing. Cutting at chance is fine once the drop and gaps are placed.

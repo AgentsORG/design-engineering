@@ -44,6 +44,21 @@ cinetic says its numbers were "measured frame by frame in top-tier launch films"
 
 Until then, quote them as "cinetic reports" with the qualifier, or not at all.
 
+## Reference
+
+One overridden value, written so cinetic's lint and critics accept it (Remotion, 60 fps):
+
+```tsx
+// BRIEF.md, brand-supplied exception 2: crossfade 0.6 s; both scenes sit on one #f4efe6 paper ground
+// cinetic:brand-supplied crossfade over a shared ground
+const out = interpolate(frame, [cut - 36, cut], [1, 0], { extrapolateRight: 'clamp' }) // 36 f = 0.6 s
+```
+
+- Bad: deleting the crossfade ban from the project, or a bare `0.6` the next critic run flags. Good: one BRIEF.md line that names the value and the table row it comes from, and one tag on each line that sets it.
+- Unnamed measurements get one treatment wherever they come from. Stageshow's `kit/ease.ts` says its video curves (house, through, settle) were measured from launch films but names none, so quote them as "Stageshow's curves", the way cinetic's pacing waits above, not as corpus values.
+- Gold example: cinetic's `skills/cinetic/SKILL.md` (the brand-supplied exception) and the "Where this graph's values win" table above.
+- Check: count `cinetic:brand-supplied` tags against BRIEF.md exceptions; they match one to one, and every tagged value is a row of that table.
+
 ## Gotcha
 
 cinetic's evaluations were judged by language models, one run per brief. A neutral judge preferred it in 7 of 23 comparisons; a judge scoring against cinetic's own bans preferred it 4 of 4, which is circular. A film is about three times the baseline's cost (95 against 33 minutes). Remotion is free for individuals and companies of up to 3 people and needs a company licence from 4.
@@ -52,4 +67,5 @@ cinetic's evaluations were judged by language models, one run per brief. A neutr
 
 - Leon Lin, cinetic (MIT, HEAD ecfa660, 2026-10-18): `skills/cinetic/SKILL.md` (hard bans, the brand-supplied exception, engine choice), `references/craft-rules.md` §1–7, `references/copy-and-type.md`, `references/sound.md` §12–13, `references/hyperframes-engine.md`, `docs/evaluation.md`, `README.md` (Requirements: the Remotion licence).
 - This graph's values: `docs/research/launch-films/` (HKTITAN, 2026-09-28).
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/ease.ts` (header: video curves measured from unnamed launch films).
 - Related: [[skill-router]], [[hyperframes-reconciliation]], [[launch-video-review]], [[earshot-reconciliation]].

@@ -38,6 +38,22 @@ Some composers register their CC BY tracks with Content ID through a distributor
 
 A complete CC BY credit names the title, the author, the source link, the licence and its link, and says the recording was edited. It goes in the video description; it never needs to be on screen. Effects you rendered in code are yours: MotionVideo's launch film credits its forged effects as CC0, made in code, beside its Mixkit track.
 
+## Reference
+
+One manifest row per file in the final mix, written while the item's own page is open:
+
+| File | Page read | Licence as shown | Read on | Credit line (description) |
+|---|---|---|---|---|
+| `whoosh-02.wav` | `freesound.org/people/<user>/sounds/<id>/` | CC BY 4.0 | 2026-11-07 | `"<title>" by <author>, <page link>, CC BY 4.0, <deed link>, edited` |
+| `bed.mp3` | `mixkit.co/free-stock-music/<slug>/` | Mixkit Stock Music Free License | 2026-11-07 | courtesy; film never registered with Content ID |
+| `tick.wav` | rendered by `scripts/sound-family.mjs` | own work | 2026-11-07 | CC0, made in code |
+
+Bad: `whoosh.wav, CC BY (per an aggregator list)`. Good: the first row, licence copied from the Freesound sidebar and the author's credit request read from the description.
+
+Gold example: MotionVideo's `launch-video/CREDITS.md` for the credit block; earshot's `skills/real-sound/references/licences.md` for what the audit records.
+
+Check: list every file the final render actually decodes, not the brief, and diff it against the manifest. A file with no row, or a row reading NC, ND or SA, fails the film.
+
 ## Gotcha
 
 The audit is bookkeeping as much as law. The Clawd film, scored with earshot's real-sound skill, shipped four celesta notes added after the hand audit with no audit record. The licences had been read; the record was missing. Re-run the audit on what the *final* mix uses, not on what the brief listed.

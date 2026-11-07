@@ -64,6 +64,23 @@ Sounds fired on focus or on every list item collide with the reader's own speech
 
 Any PR that adds an audio file or an `AudioContext`. Check for the unlock, the toggle, the visual twin, and the absence of `focus` handlers — [[review-checklist]] rows 12 and 13.
 
+## Reference
+
+Bad: `const ctx = new AudioContext(); btn.onclick = () => new Audio("/sfx/tick.mp3").play();` (suspended context, a media element's start-up latency, sound with no toggle).
+Good: `unlock()` on the first `pointerdown`, `play("tick")` from a decoded buffer, `enabled` false until the user turns sound on.
+
+| Situation | Passing behaviour |
+|---|---|
+| Fresh private window, nothing set | Silent; the settings toggle reads Off |
+| Toggle turned on | The toggle confirms with one `tick` |
+| First click after reload, sound on | Sounds on that click, not the second |
+| Tab through a list with a screen reader | No sound on any focus move |
+| Tab hidden, toast arrives | Toast shows, no sound |
+
+Gold example: Josh Comeau's `use-sound` (`soundEnabled`, `interrupt`, `sprite`), the API the pattern above mirrors.
+
+Check: run the five rows by hand in a fresh profile with the speakers on, then mute the machine and confirm every event still has its visual twin on screen.
+
 ## Gotcha
 
 Calling `new AudioContext()` at module load "works" in Chrome — it just starts suspended and every `play()` silently drops until something resumes it. The symptom is "sound works on the second click." Create and resume inside the gesture, or resume in the handler before playing.

@@ -6,6 +6,33 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [4.0.0] — 2026-11-07
+
+Harness-portable agents that loop, a cross-model design council, a grader for humans and agents, local benchmarks, and Benji Taylor's taste on every node.
+
+### Added
+
+- **Three new agents.** `design-council` convenes judges from different providers (Claude, GPT via `codex exec`, Gemini as an unscored jester) to score a design by category, round after round, until every judge passes or the budget runs out. It adapts Theo Browne's tstack `council` skill (MIT) to design, the combination Emil Kowalski recommended. Judges see before/after evidence and reference products, never the target score; a missing provider is reported, never substituted. `design-judge` is one read-only judge; `design-grader` grades a design episode by a human or an agent.
+- **Two new verbs**, `council` and `grade`, with `scripts/council.mjs` (detects the CLIs on the machine, fans out one judge brief, prints a `## Council review` table) and `scripts/grade.mjs` (deterministic checks first, judges second; six axes, five bands, facts / counterweight / confidence, results cached by input hash, a gaming check, `--self-test`). New nodes `grading-rubric`, `design-moves` and `motion-choreography`.
+- **Loops in every agent.** Each agent has a `## Loop`: a budget, a deterministic verify step, stop conditions, a findings ledger (blocker / should / nit), "silence is not approval", and a scope guard.
+- **Every harness from one source.** `scripts/build-agents.mjs` turns `agents/*.md` into eve subagents and native Codex (TOML), Cursor, Gemini and OpenCode agents under `harness/`; CI fails on drift.
+- **One-line installer.** `install.sh` / `install.ps1` set up the skill, the Claude Code plugin, agents for every detected harness, a design-check hook, and (opt-in) the eve MCP server and companions; `--dry-run`, `--uninstall`, idempotent, backs up settings, pin with `DE_REF`. Manual steps in `docs/install.md`.
+- **Local benchmarks.** `scripts/bench.mjs` runs arms with the skill, without it, and without each cluster, through `claude -p` (and `codex exec`), with isolation checks, cost tracking, bootstrap intervals and a minimum detectable difference, and gives each cluster a keep / slim / retire verdict. `evals/plugin/` is a `claude plugin eval` suite.
+- **A `## Reference` section on 167 nodes** in Benji Taylor's taste (Stageshow 1.1.1, benji.org): a worked exemplar, the closest gold example to copy, and a check to run. The faux-UI cluster now follows Stageshow 1.1.1.
+- **CI/CD.** `ci.yml` adds a `code` job (scripts parse, `tsc`, skill slots in sync, versions agree, `npx skills add` finds exactly one skill, the plugin validates); `install.yml` installs and uninstalls on Ubuntu, macOS and Windows; `release.yml` publishes a release from a `v*` tag; `scripts/release.mjs` bumps all eight version fields; Dependabot. No CI job calls a model.
+
+### Changed
+
+- **eve 1.0.** The runtime moves to `eve@^1.0.0-rc.6` with `ai` and `zod`, Node 24, `anthropic/claude-opus-5.5`, an MCP channel so Claude Code, Codex and Cursor can hand work to it, an eve council with nested provider judges, and evals on the 1.0 API (plus delegation and council evals). The skill is hard-linked into every eve agent, since eve subagents inherit nothing.
+- **README** rebuilt: `npx skills add AgentsORG/design-engineering` first, the one-line installer, agent instructions, a capability matrix per harness, Stageshow scenes, sample prompts and outputs, manual install.
+- **Upstream freshness.** Sources re-checked on 2026-11-07; Emil Kowalski's newer skills (choreograph, remove-animations, animate-expo) folded into the motion nodes.
+- `lint.yml` is now `ci.yml`; actions pinned to commit SHAs; Node 24; read-only permissions.
+
+### Notes
+
+- GitHub releases stopped at v2.4.0; 2.5.0 through 3.3.1 were tagged in this changelog but never published. This is the first published release since then and includes all of them.
+- Benchmark sweep results on Opus 5.5 and any keep / slim / retire changes follow in 4.0.1.
+
 ## [3.3.1] — 2026-11-01
 
 ### Changed

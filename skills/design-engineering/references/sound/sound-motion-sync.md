@@ -58,6 +58,22 @@ A hard cut is a contact too: put it on the onset frame. Skale's Bud (listed as B
 
 Every time a sound and an animation describe the same event. If they don't describe the same event, one of them should probably go — see [[sound-decision-framework]].
 
+## Reference
+
+Bad: click cued at 2.000 s, the press tween's start, from a file with a 158 ms lead-in: the transient lands at 2.158 s, 58 ms after the press bottoms out at 2.100 s, past the ~45 ms echo point.
+Good: lead-in trimmed to the 5 % onset, click cued at 2.100 s where the 0.1 s press to scale 0.90 bottoms out, plus 10 ms lag: inside the 0–30 ms target.
+
+| Visual event | Sound aligns its | On |
+|---|---|---|
+| Press bottoms out | attack | the contact frame, +0–30 ms |
+| Exit accelerating into a cut | peak | the cut; onset 0.1–0.45 s ahead |
+| Wordmark hit | end (riser, zip) | the hit, or up to 250 ms before |
+| Spring entrance | attack | the first crossing of rest, not `animationend` |
+
+Gold example: `scripts/sound-sheet.mjs`, whose cue `t` is the contact frame and whose default `lag` is 10 ms; the bruno logo reveal for density (32 onsets, each within two frames of a motion peak).
+
+Check: render with `--report`, then step the picture to each listed frame. Every onset sits on or 1 frame after its contact, none before; a frame with no motion has no onset.
+
 ## Gotcha
 
 Springs never settle at a clean frame — they overshoot and oscillate. Sync the sound to the *first* crossing of the rest position (the visual "contact"), not to the spring's mathematical end. Firing on `animationend` of a spring lands the sound late by the whole oscillating tail, which grows as damping drops ([[spring-animations]]).

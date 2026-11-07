@@ -62,6 +62,16 @@ Write the sound as data next to the timeline, one row per visual event, *before*
 
 Logo reveals, brand films and product tours in registers A, B and E ([[launch-video-sound]]). In a beat-track sizzle the track carries the pops, and under a voice the voice is the clock; there only the track's structure is placed ([[launch-video-music]]). In product UI the same voices apply, but pan does not: UI sound is mono ([[sound-spec]]), because the element's position on a phone is not a position in the room.
 
+## Reference
+
+One chip, 120 x 120 px, landing at x = 1500 on a 1920 canvas with a 400 ms `power3.out` that starts at 2.00 s:
+
+- Bad: `{ "kind": "thud", "t": 2.00 }`, a library file, centre-panned, on the tween's first frame.
+- Good: `{ "id": "s2-chip", "kind": "click", "t": 2.34, "x": 1500, "y": 300, "w": 120, "h": 120 }`. The contact frame is 2.00 + 0.85 x 0.4 s; `--report` should then read the onset at 2.350 s (the default 10 ms lag), ~4.4 kHz (the click band, 2600 + 2600 x 0.5^0.5, inside 2.8 to 5.2 kHz) and pan +0.39 ((1500 / 1920 - 0.5) x 1.4). As a dry-register `land`, the same box would voice ~3.1 kHz (5200 x 0.5^0.75) with t60 ~230 ms.
+
+Gold example: `docs/demo/hyperframes/assets/sfx/cues.json`, 138 cues in register B (83 clicks, 14 thuds, a bed in F with dropouts before the name), rendered by `skills/design-engineering/scripts/sound-sheet.mjs`.
+Check: one cause per onset. Every line of `--report` names a cue id you can point at in the film as a move the eye tracks, on its frame or up to two after; an onset you cannot point at is cut. This carries into sound Benji Taylor's Stageshow rule that every motion has a cause.
+
 ## Gotcha
 
 Deriving is not the same as sonifying. If a scene has forty tweens, it does not get forty sounds; it gets the ones the eye actually tracks. In the bed register the bed is not a music track: one drone in one key, no beat, quiet enough that every click reads. In a beat or voice register the derivation moves up a level — the picture places the track's drop, dropouts and breakdowns ([[launch-video-music]]). The mapping decides *how* a sound behaves; [[sound-decision-framework]] and the register chosen in [[launch-video-sound]] decide *whether*.
@@ -74,4 +84,5 @@ Deriving is not the same as sonifying. If a scene has forty tweens, it does not 
 - Linear Agent (2026), Raycast (2025) — foley band, levels and harmony; Skale's Contra Indy (sub pulled 0.25–0.5 s before reveals) and Taste Labs (0.9 s at −42 dB before the raise is named). Measured by HKTITAN 2026-09-28; `docs/research/launch-films/notes/synthesis-acclaimed.md`, `notes/synthesis-skale.md`.
 - ITU-R BT.1359-1 — audio may lag video, never lead; see [[sound-motion-sync]].
 - Blattner, Sumikawa & Greenberg, *Earcons and icons* (1989) — pitch, rhythm, and register as a grammar of families.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (The one idea: every motion has a cause).
 - Related: [[launch-video-music]], [[sound-palette]], [[launch-video-seams]], [[stagger-choreography]].

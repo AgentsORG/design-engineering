@@ -44,12 +44,28 @@ The most-skipped step in design engineering is asking "should this animate at al
 - Does it survive [[prefers-reduced-motion]]? If not, fix it.
 - Will it look right at 25% playback speed? If not, the timing is off.
 - Would it still feel right on the 50th encounter? See [[delight-impact-curve]].
+- Cover it. Hide each moving element in turn; if the screen reads clearer without one, cut that one.
+- Feedback starts on the input and stays as quick as the real product; only explanation (marketing, onboarding) slows down.
 
 ## Application heuristics
 
 - **Persistent elements:** if a component is present before and after a state change, animate the change — don't crossfade. See [[fly-not-teleport]].
 - **Symmetric vs asymmetric timing:** enter and exit often want different durations. Exits can be faster. See [[duration-table]].
 - **Stagger only when grouping helps comprehension.** Random stagger reads as noise.
+
+## Reference
+
+The tree run on three real elements of one screen, every column filled before any code:
+
+| Element | Frequency | Purpose | Tool | Verdict |
+|---|---|---|---|---|
+| Command palette on Cmd+K | 100+ a day, keyboard | none | none | No motion: opens on the frame the key lands |
+| Row hover in a list | tens a day | state | CSS transition | `background-color 120ms ease`, nothing moves |
+| "Link copied" toast | occasional | feedback + spatial | CSS transition | Enters and exits; stays mounted until its fade ends |
+
+Gold example: `stageshow/teaching/contrasts.tsx`, the press pair (responds before the result) and the exit pair (fades out before it is removed): each changes one thing with the same endpoints, which is how to argue a row of this table.
+
+Check: cover test on a filmed contact sheet. Mask each moving element in turn; any row whose verdict is "animate" must make the frame harder to read when hidden, or it moves to "No motion".
 
 ## Gotcha
 
@@ -58,6 +74,7 @@ The bug is almost never "this needs more animation." The bug is almost always "t
 ## Sources
 
 - Emil Kowalski — animation decision tree (frequency-first).
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/animate/SKILL.md (frequency tiers, purposes, tool ladder), skills/find-animation-opportunities/SKILL.md (function test).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md (frequency tiers, purposes, tool ladder), skills/find-animation-opportunities/SKILL.md (function test).
 - Related: removing what fails this gate → [[animation-removal-hazards]].
 - Benji Taylor — "animation should serve architecture."
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `references/motion.md` (Story: motion without hierarchy; Pace and easing: feedback stays quick), `teaching/contrasts.tsx` (press, exit).

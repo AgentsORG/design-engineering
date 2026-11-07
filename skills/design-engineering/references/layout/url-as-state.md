@@ -63,6 +63,24 @@ Don't put modals in component state when they could be in URL state. The cost is
 
 Every page-level state change. Filters, tabs, sort, search, modals, expanded rows. If you find yourself reaching for `useState` for something a user can *see*, ask if it should be in the URL instead.
 
+## Reference
+
+```ts
+// Bad: const [tab, setTab] = useState('open'); a reload or a shared link lands on "open".
+// Good: one source. Read from the URL, write through the router, omit the default.
+const router = useRouter();
+const params = useSearchParams();
+const tab = params.get('tab') ?? 'open';
+function setTab(next: string) {
+  const q = new URLSearchParams(params);
+  if (next === 'open') q.delete('tab'); else q.set('tab', next);
+  router.push(`?${q}`, { scroll: false });
+}
+```
+
+- Gold example: `/projects/acme/issues?tab=closed&status=open,blocked&sort=-updated_at&modal=invite` from the table above, checked against the Vercel Web Interface Guidelines ("URL as state", "Deep-link everything").
+- Check: set a filter, a sort and an open modal, paste the URL into a private window and compare the two screenshots side by side; then open a row, press Back, and confirm the list returns to the same row, not the top.
+
 ## Gotcha
 
 URL state and component state can drift. Use a single source — read from the URL (via `useSearchParams` or equivalent), write through the router. Don't mirror URL state into local state — that's a bug surface.

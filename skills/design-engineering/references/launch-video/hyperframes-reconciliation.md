@@ -45,6 +45,20 @@ The stamp's values, for any row that names the stamp. Lateral: exit `power3.in` 
 
 Any HyperFrames project, and any time a HyperFrames skill and this graph give different numbers for the same move.
 
+## Reference
+
+One lateral seam, every value from one row:
+
+| Where | Exit | Entry |
+|---|---|---|
+| HyperFrames project | `power3.in` 0.34 s to 12 %, opacity 0 (the stamp) | `power4.out` 0.42 s from 10 % at 0.35 opacity |
+| Outside HyperFrames (this graph) | `ei` mirror, 36-82 % of the entry by seam type | `eo(dur, 0.13)` exponential settle ([[launch-video-motion]]) |
+
+- Bad: a stamped exit paired with a hand-picked entry, or the stamp's 0.42 s entry stretched to 0.6 s "to feel calmer". Good: one row per seam in `ledger.json`, nothing borrowed across rows.
+- Benji's call differs: Stageshow's `kit/ease.ts` pairs `through` `[0.8, 0, 0.1, 1]` into a cut with `settle` `[0.05, 0.85, 0.3, 1]` over 0.6 to 0.8 s after it, slower than either row. Use it in a Stageshow-built demo; never mix it into a stamped seam.
+- Gold example: motion-doctrine's `scripts/seam-stamp.mjs` for the first row; `stageshow/kit/ease.ts` for a Stageshow demo.
+- Check: `seam-gate.mjs verify` exits 0, and every seam in `ledger.json` traces to exactly one row.
+
 ## Gotcha
 
 HyperFrames' two layers also disagree with each other: crossfade by default against never, jitter against no idle motion, a caption keep-out band against an overlay. Check which layer is installed before quoting either, and never average them; a zoom entry halfway between 0.5 and 0.75 is nobody's value. The doctrine was read at HEAD on 2026-09-28 and is internal, so it changes without a release; re-read the named file before relying on a row.
@@ -55,3 +69,4 @@ HyperFrames' two layers also disagree with each other: crossfade by default agai
 - heygen-com/hyperframes, distributed: `skills/product-launch-video/references/motion-language.md`, `story-design.md`, `cut-catalog.md`, `scripts/lib/transitions.json`, `scripts/lib/bgm-volume.mjs`; `skills/hyperframes-animation/adapters/gsap-easing-and-stagger.md`, `rules/spring-pop-entrance.md`, `rules/sine-wave-loop.md`, `rules/physics-press-reaction.md`, `rules/3d-camera-flight.md` and `rules/multi-phase-camera.md` (no spring on a camera), `techniques.md`, `transitions/TRANSITION-REGISTRY.md`; `skills/hyperframes-creative/references/motion-principles.md`, `beat-direction.md`; `skills/hyperframes-core/references/sub-compositions.md`; `skills/hyperframes/references/frame-worker-core.md`, `skill-lifecycle.md` (core set eager, workflows on first use); `skills/motion-graphics/references/motion-vocabulary.md`, `agents/director.md`.
 - HeyGen, hyperframes-launches (Apache-2.0): `heygen-apple-motion/01-ui-sting/README.md` (the 1.166 boundary rule), `hyperframes-launch/HANDOFF.md` (runtime once stripped sub-composition `data-duration`), `figma-launch/HANDOFF.md` (a `fromTo` applies its from-state at build unless `immediateRender: false`), and `*/package.json` (CLI pins 0.6.75 to 0.8.26).
 - The full digest and conflict list: `docs/research/launch-films/digests/hyperframes-doctrine.json`.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/ease.ts` (`through`, `settle`).

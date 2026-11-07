@@ -42,6 +42,8 @@ One skill per aspect of the interface — and narrower is better: building anima
 
 Unsure whether a line matters? Run the skill with it and without it and compare the output. It is the loop that built taste in the first place — create, notice what feels off, articulate why, refine — except the thing being refined is the document that carries the taste, and every improvement compounds across everything the agents build after.
 
+- **Every correction becomes a rule.** When an output needs a hand-fix, write the rule with its reason and rerun from scratch; a hand-fixed output teaches the next run nothing (Benji Taylor, benji.org).
+
 ## Common mistakes
 
 Describing outcomes ("animations should feel smooth"); rules without reasoning; hedge words; explaining what the agent already knows; one giant skill; shipping untested. And the meta-mistake: dumping knowledge into a skill *before* running it on a brain dump — the better order is notes first, then extraction into a strict, focused, reasoned file.
@@ -50,6 +52,19 @@ Describing outcomes ("animations should feel smooth"); rules without reasoning; 
 
 Authoring or fixing any SKILL.md, this graph's nodes, [[pov]], a project's `AGENTS.md` design section, or [[design-system-docs]]; diagnosing "the agent ignores my skill".
 
+## Reference
+
+One rule, hedged and then strict, in the shape Stageshow writes its rules (the value, the reason, the check that catches it):
+
+- Bad: "Give text enough breathing room inside cards."
+- Good: "Words keep a 12px inset from the edge of a window, card or row; under 8px reads as touching, and the film flags it `tight inset:`."
+
+A correction, turned into a rule: "the status dot is touching the avatar" becomes "a dot sits 6px clear of avatar and text, inside the row's inset", and the run starts again from scratch.
+
+Gold example: `stageshow/SKILL.md`, "Faults that come back every round": each recurring fault is one bold phrase pointing at the file and section that hold its rule, so the reason lives in one place. For the test, `stageshow/references/teaching.md` (Making a comparison): change one thing, same content and timing on both sides.
+
+Check: run one brief with the line and without it, changing nothing else, and put the outputs side by side (Benji compares skill against no-skill this way). If you can't point at the difference, delete the line.
+
 ## Gotcha
 
 Strict is not long. A strict skill is usually shorter than the hedged version it replaces, because every hedge was a sentence that did nothing.
@@ -57,4 +72,6 @@ Strict is not long. A strict skill is usually shorter than the hedged version it
 ## Sources
 
 - Emil Kowalski, *Agents with Taste*, and his practice on writing skills, distilled by HKTITAN.
+- Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Faults that come back every round), `stageshow/references/craft.md` (Spacing and alignment), `stageshow/references/rehearse.md` (Lines that are never intentional), `stageshow/references/teaching.md` (Making a comparison).
+- Benji Taylor, benji.org (read 2026-11-07): every rule carries its reason; every correction becomes a permanent rule, rerun from scratch; skill against no-skill, side by side.
 - Related: [[pov]], [[gotchas]], [[taste-is-trained]], [[design-system-docs]].
