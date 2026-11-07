@@ -1,0 +1,465 @@
+/* The fonts each fork names, or its stated fallback, from Google Fonts at
+   render time (nothing is bundled). Gilroy (Swiggy), CursorGothic and
+   Berkeley Mono (Cursor) and Feather Bold (Duolingo) are not freely
+   loadable: Outfit, Geist, JetBrains Mono and Fredoka stand in for them. */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600&family=Nunito:wght@600;700;800&family=Poppins:wght@600;700;800&family=Montserrat:wght@500;600&family=Luckiest+Guy&family=Lilita+One&family=Rubik:wght@600;800&family=Outfit:wght@300;500;800&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Geist+Mono:wght@500&display=block');
+
+/* ---------- The scene: ground, product surface, the moment ---------- */
+
+.pv {
+  & .ss-stage {
+    --gutter: 32px;
+    overflow: hidden;
+    /* Square: GitHub shows the PNG on light and dark pages */
+    border-radius: 0;
+    background: var(--pv-ground);
+  }
+
+  /* Bars take the fork's own filler ink, not the kit's grey */
+  .pv-fill { background: var(--pv-fill) !important; }
+  .pv-side .pv-fill:nth-child(2) { background: var(--pv-fill-strong) !important; }
+
+  /* The product surface: pinned a gutter from the top, off the right and
+     the bottom; the moment covers only its sidebar */
+  .pv-panel {
+    position: absolute;
+    top: var(--gutter);
+    left: 170px;
+    width: 470px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    overflow: hidden;
+    border-radius: var(--pv-panel-radius);
+    background: var(--pv-panel);
+    box-shadow: var(--pv-panel-shadow);
+  }
+  .pv-side {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+    padding: 24px 20px;
+    background: var(--pv-side);
+    border-right: 1px solid var(--pv-line);
+  }
+  .pv-main {
+    display: grid;
+    align-content: start;
+    padding: 20px 24px;
+  }
+  .pv-panel__title {
+    margin-bottom: 8px;
+    color: var(--pv-ink);
+    font: var(--pv-panel-font);
+  }
+  .pv-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    height: 52px;
+    border-bottom: 1px solid var(--pv-line);
+  }
+  .pv-row__text { display: grid; gap: 7px; }
+
+  /* The moment, a level above: on the stage's gutter, centred on the
+     stage's height, its right edge inside the sidebar */
+  .pv-card {
+    position: absolute;
+    top: 50%;
+    left: var(--gutter);
+    width: 300px;
+    translate: 0 -50%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+  .pv-title { text-wrap: balance; }
+  .pv-copy { display: block; text-wrap: pretty; }
+  .pv-value { display: flex; align-items: baseline; }
+  .pv-actions { display: flex; }
+  .pv-btn {
+    position: relative;
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+  }
+  .pv-btn__label { display: block; line-height: 1.4; }
+}
+
+/* In a gallery tile the moment sits in the tile's flow, not over a panel */
+.pv-tile .pv-card {
+  position: relative;
+  top: auto;
+  left: auto;
+  width: 100%;
+  translate: none;
+}
+
+/* ---------- Default: references/meta/pov.md ----------
+   Restraint reads as confidence: one neutral family, hairlines, a whisper
+   shadow, one weight step, sentence case, the system face. The accent is
+   near-black ink; nothing is coloured that does not mean something. */
+.pv--default {
+  --pv-ground: #f3f3f2;
+  --pv-panel: #ffffff;
+  --pv-side: #fafafa;
+  --pv-line: rgb(0 0 0 / 0.07);
+  --pv-fill: #ececeb;
+  --pv-fill-strong: #d9d9d7;
+  --pv-ink: #1c1c1e;
+  --pv-panel-radius: 12px;
+  --pv-panel-shadow: 0 0 0 1px rgb(0 0 0 / 0.06), 0 8px 24px -12px rgb(0 0 0 / 0.12);
+  --pv-panel-font: 600 14px/1.3 system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  .pv-card {
+    gap: 6px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.07), 0 12px 32px -12px rgb(0 0 0 / 0.18);
+  }
+  .pv-title { color: #1c1c1e; font-size: 16px; font-weight: 600; line-height: 1.3; }
+  .pv-copy { color: #5f5f63; font-size: 14px; line-height: 1.45; }
+  .pv-value {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #f5f5f4;
+  }
+  .pv-value__label { color: #5f5f63; font-size: 13px; }
+  .pv-value__num { color: #1c1c1e; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .pv-actions { justify-content: flex-end; gap: 8px; margin-top: 16px; }
+  .pv-btn { height: 32px; padding: 0 14px; border-radius: 8px; font-size: 13px; font-weight: 500; }
+  .pv-btn[data-kind="secondary"] { color: #1c1c1e; background: #ffffff; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.14); }
+  .pv-btn[data-kind="primary"] { color: #ffffff; background: #1c1c1e; }
+}
+
+/* ---------- Duolingo: pov-examples/duolingo.md ----------
+   Buttons are physical: a solid lip in a darker shade of the fill, reserved
+   so a press moves into it. Labels ALL CAPS 700 at 0.04em. Display face
+   rounded and lowercase in a colour, never a neutral; body Nunito. Cards use
+   the same construction at 2px in Swan. The primary fill is the fork's own
+   AA fix for text-bearing green (#367F00, section 8), not Feather Green,
+   which is 2.1:1 under white. */
+.pv--duolingo {
+  --pv-ground: #f7f7f7;
+  --pv-panel: #ffffff;
+  --pv-side: #ffffff;
+  --pv-line: #e5e5e5;
+  --pv-fill: #f7f7f7;
+  --pv-fill-strong: #e5e5e5;
+  --pv-ink: #4b4b4b;
+  --pv-panel-radius: 16px;
+  --pv-panel-shadow: none;
+  --pv-panel-font: 800 15px/1.4 Nunito, system-ui, sans-serif;
+  font-family: Nunito, system-ui, sans-serif;
+
+  .pv-panel { border: 2px solid #e5e5e5; }
+  .pv-card {
+    gap: 8px;
+    padding: 24px 22px 22px;
+    border: 2px solid #e5e5e5;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 2px 0 #e5e5e5;
+  }
+  .pv-title {
+    color: #58a700;
+    font: 600 30px/1.05 Fredoka, Nunito, system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  .pv-copy { color: #4b4b4b; font-size: 16px; font-weight: 700; line-height: 1.4; }
+  .pv-value { gap: 6px; margin-top: 6px; }
+  /* Fox owns streaks; its lip shade carries the number, large and bold */
+  .pv-value__num { color: #cd7900; font-size: 28px; font-weight: 800; line-height: 1.1; }
+  .pv-value__label { color: #777777; font-size: 16px; font-weight: 800; }
+  .pv-actions { flex-direction: column; gap: 12px; margin-top: 16px; }
+  .pv-btn {
+    width: 100%;
+    height: 50px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .pv-btn[data-kind="primary"] { color: #ffffff; background: #367f00; box-shadow: 0 4px 0 #2a6300; }
+  .pv-btn[data-kind="secondary"] { color: #777777; background: #ffffff; box-shadow: inset 0 0 0 2px #e5e5e5, 0 2px 0 #e5e5e5; }
+}
+
+/* ---------- Campus Binge: pov-examples/campus-binge.md ----------
+   Light only. Poppins speaks, Montserrat reads. Exactly one gradient word
+   (Deep Green to Spanish Green, in oklab) per headline. Soft layered shadow
+   on white, never a border; the primary is a Spanish Green pill, 48px, with
+   one green glow under it. Warm grey text, never near-black. */
+.pv--campus-binge {
+  --pv-ground: #ecfdf2;
+  --pv-panel: #ffffff;
+  --pv-side: #ffffff;
+  --pv-line: #e5e5e5;
+  --pv-fill: #ecfdf2;
+  --pv-fill-strong: #c9f7d8;
+  --pv-ink: #3c3c3c;
+  --pv-panel-radius: 22px;
+  --pv-panel-shadow: 0 0 0 1px rgb(15 23 19 / 0.05), 0 1px 2px rgb(15 23 19 / 0.04), 0 6px 16px -8px rgb(15 23 19 / 0.12);
+  --pv-panel-font: 700 15px/1.3 Poppins, system-ui, sans-serif;
+  font-family: Montserrat, system-ui, sans-serif;
+
+  .pv-card {
+    gap: 8px;
+    padding: 24px;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgb(15 23 19 / 0.05), 0 1px 2px rgb(15 23 19 / 0.05), 0 6px 16px -8px rgb(15 23 19 / 0.16), 0 24px 48px -24px rgb(15 23 19 / 0.18);
+  }
+  .pv-title { color: #3c3c3c; font: 800 26px/1.3 Poppins, system-ui, sans-serif; letter-spacing: -0.035em; }
+  .pv-grad {
+    background: linear-gradient(110deg in oklab, #017835, #019543);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .pv-copy { color: #4b4b4b; font-size: 15px; font-weight: 500; line-height: 1.5; }
+  .pv-value {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-self: flex-start;
+    gap: 8px;
+    margin-top: 4px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #c9f7d8;
+  }
+  .pv-value__label { color: #01742d; font: 700 11px/1.3 Poppins, system-ui, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
+  .pv-value__num { color: #01742d; font: 700 13px/1.3 Poppins, system-ui, sans-serif; font-variant-numeric: tabular-nums; }
+  .pv-actions { align-items: center; gap: 8px; margin-top: 16px; }
+  .pv-btn { height: 48px; padding: 0 22px; border-radius: 999px; font: 700 15px/1 Poppins, system-ui, sans-serif; }
+  .pv-btn[data-kind="primary"] { color: #ffffff; background: #019543; box-shadow: 0 8px 18px -8px rgb(1 149 67 / 0.6); }
+  .pv-btn[data-kind="secondary"] { padding: 0 12px; color: #017835; background: transparent; }
+}
+
+/* ---------- Smash&Clash: pov-examples/smash-and-clash.md ----------
+   A radial sky-blue world, navy ink, sugar surfaces. Buttons, plates and
+   screen titles tilt -8 degrees with their content counter-tilted upright;
+   dialogs, chips and cards stay upright. Depth is a hard solid lip, not a
+   blur. One sun hero per screen; dialogs put the quiet action first and the
+   verb last. Sticker titles are white with a navy outline. */
+.pv--smash-and-clash {
+  --pv-ground: radial-gradient(130% 110% at 50% 0%, #0abeff 0%, #016dcb 80%);
+  --pv-panel: #eef6ff;
+  --pv-side: #dcebff;
+  --pv-line: rgb(13 26 74 / 0.1);
+  --pv-fill: #dcebff;
+  --pv-fill-strong: #b9d4f7;
+  --pv-ink: #0d1a4a;
+  --pv-panel-radius: 26px;
+  --pv-panel-shadow: 0 8px 0 #0d1a4a;
+  --pv-panel-font: 400 1.125rem/1.2 'Lilita One', system-ui, sans-serif;
+  font-family: Rubik, system-ui, sans-serif;
+
+  .pv-panel__title { text-transform: uppercase; }
+  .pv-side .pv-fill { background: #b9d4f7 !important; }
+  .pv-card {
+    gap: 8px;
+    padding: 24px;
+    border-radius: 26px;
+    background: linear-gradient(#ffffff, #eef6ff);
+    box-shadow: 0 8px 0 #0d1a4a;
+  }
+  /* The screen title: a sticker, tilted, straddling the dialog's top edge */
+  .pv-title {
+    align-self: center;
+    margin: 12px 0 14px;
+    rotate: -8deg;
+    color: #ffffff;
+    font: 400 2.25rem/1 'Luckiest Guy', system-ui, sans-serif;
+    text-transform: uppercase;
+    -webkit-text-stroke: 7px #0d1a4a;
+    paint-order: stroke fill;
+    text-shadow: 0 4px 0 #0d1a4a;
+  }
+  .pv-copy { color: #0d1a4a; font-size: 1rem; font-weight: 600; line-height: 1.4; }
+  .pv-value {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-self: flex-start;
+    gap: 8px;
+    margin-top: 4px;
+    padding: 6px 12px;
+    border-radius: 12px;
+    background: #dcebff;
+  }
+  .pv-value__label { color: #22357a; font-size: 0.875rem; font-weight: 600; }
+  .pv-value__num { color: #0d1a4a; font-size: 0.875rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+  /* Room above and below for the tilted slabs and their lips */
+  .pv-actions { gap: 16px; margin-top: 18px; padding: 8px 0 12px; }
+  .pv-btn {
+    flex: 1;
+    height: 3.25rem;
+    font: 400 1.25rem/1 'Lilita One', system-ui, sans-serif;
+    text-transform: uppercase;
+    color: #0d1a4a;
+  }
+  /* The slab tilts; the label, the button's own content, stays upright */
+  .pv-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 18px;
+    rotate: -8deg;
+  }
+  .pv-btn { isolation: isolate; }
+  .pv-btn[data-kind="primary"]::before { background: linear-gradient(#ffe872, #ffc21a); box-shadow: inset 0 0 0 2px #0d1a4a, 0 6px 0 #d98a00, 0 6px 0 2px #0d1a4a; }
+  .pv-btn[data-kind="secondary"]::before { background: linear-gradient(#ffffff, #dcebff); box-shadow: inset 0 0 0 2px #0d1a4a, 0 6px 0 #9db8e6, 0 6px 0 2px #0d1a4a; }
+}
+
+/* ---------- Swiggy: pov-examples/swiggy.md ----------
+   One orange, one typeface (Gilroy; Outfit stands in), everything inside a
+   large rounded panel on Salt. Headline ExtraBold, body Light, sentence
+   case. Buttons are pills: white on the lead colour or the lead colour on
+   white. Orange carries fills and large type, never body text. */
+.pv--swiggy {
+  --pv-ground: #ffede3;
+  --pv-panel: #ff5200;
+  --pv-side: #ff5200;
+  --pv-line: rgb(255 255 255 / 0.16);
+  --pv-fill: #ff7a3d;
+  --pv-fill-strong: #ff9a6b;
+  --pv-ink: #ffffff;
+  --pv-panel-radius: 36px;
+  --pv-panel-shadow: none;
+  --pv-panel-font: 800 26px/1.1 Outfit, system-ui, sans-serif;
+  font-family: Outfit, system-ui, sans-serif;
+
+  .pv-side { border-right: 0; }
+  .pv-panel__title { margin-bottom: 14px; letter-spacing: -0.01em; }
+  .pv-card {
+    gap: 6px;
+    padding: 28px 26px 26px;
+    border-radius: 36px;
+    background: #ffffff;
+    box-shadow: 0 18px 40px -18px rgb(120 40 0 / 0.28);
+  }
+  .pv-title { color: #1b1b1b; font-size: 30px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; }
+  .pv-copy { color: #3d3d3d; font-size: 16px; font-weight: 300; line-height: 1.4; }
+  .pv-value {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-self: flex-start;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #ffede3;
+  }
+  .pv-value__label { color: #3d3d3d; font-size: 14px; font-weight: 500; }
+  .pv-value__num { color: #1b1b1b; font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .pv-actions { gap: 10px; margin-top: 18px; }
+  .pv-btn { height: 48px; padding: 0 20px; border-radius: 999px; font-size: 17px; font-weight: 800; }
+  .pv-btn[data-kind="primary"] { color: #ffffff; background: #ff5200; }
+  .pv-btn[data-kind="secondary"] { color: #ff5200; background: #ffffff; box-shadow: inset 0 0 0 2px #ff5200; }
+}
+
+/* ---------- Cursor: pov-examples/cursor.md ----------
+   Warm paper and warm ink, never pure white or black; secondary ink at 60 %,
+   borders at 10 %. One orange for the thing that matters now. Small radii,
+   no shadows: depth is a tone step and a 10 % border. A grotesk for people,
+   a monospace only for machine output. */
+.pv--cursor {
+  --pv-ground: #f7f7f4;
+  --pv-panel: #f2f1ed;
+  --pv-side: #f2f1ed;
+  --pv-line: color-mix(in oklab, #26251e 10%, transparent);
+  --pv-fill: color-mix(in oklab, #26251e 8%, #f2f1ed);
+  --pv-fill-strong: color-mix(in oklab, #26251e 18%, #f2f1ed);
+  --pv-ink: #26251e;
+  --pv-panel-radius: 8px;
+  --pv-panel-shadow: inset 0 0 0 1px color-mix(in oklab, #26251e 10%, transparent);
+  --pv-panel-font: 500 14px/1.3 Geist, system-ui, sans-serif;
+  font-family: Geist, system-ui, sans-serif;
+
+  .pv-card {
+    gap: 6px;
+    padding: 18px;
+    border: 1px solid color-mix(in oklab, #26251e 10%, transparent);
+    border-radius: 8px;
+    background: #f7f7f4;
+  }
+  .pv-title { color: #26251e; font-size: 16px; font-weight: 500; line-height: 1.3; }
+  .pv-copy { color: color-mix(in oklab, #26251e 60%, #f7f7f4); font-size: 14px; line-height: 1.45; }
+  .pv-value {
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin-top: 10px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    background: #f2f1ed;
+    box-shadow: inset 0 0 0 1px color-mix(in oklab, #26251e 10%, transparent);
+  }
+  .pv-value__label { color: color-mix(in oklab, #26251e 60%, #f2f1ed); font-size: 12px; }
+  .pv-value__num { color: #26251e; font: 400 12px/1.3 'JetBrains Mono', ui-monospace, monospace; }
+  .pv-actions { justify-content: flex-end; gap: 8px; margin-top: 14px; }
+  .pv-btn { height: 30px; padding: 0 12px; border-radius: 4px; font-size: 13px; font-weight: 500; }
+  .pv-btn[data-kind="secondary"] { color: #26251e; background: transparent; box-shadow: inset 0 0 0 1px color-mix(in oklab, #26251e 14%, transparent); }
+  .pv-btn[data-kind="primary"] { color: #fffdf8; background: #f54e00; }
+}
+
+/* ---------- Aave: pov-examples/aave.md ----------
+   Warm-white calm, one periwinkle purple in tint steps (#e5e5ff, #d0ceff,
+   #978eff, #8075ff), a warm near-black, Geist Mono for numbers, small
+   control radii and 24px on large cards, depth from tone more than shadow.
+   Soft purple never sets body text: fills and large type only. */
+.pv--aave {
+  --pv-ground: #f7f6f6;
+  --pv-panel: #fbfbfb;
+  --pv-side: #fbfbfb;
+  --pv-line: #eeecec;
+  --pv-fill: #f1f0f0;
+  --pv-fill-strong: #e5e5ff;
+  --pv-ink: #201d1d;
+  --pv-panel-radius: 24px;
+  --pv-panel-shadow: inset 0 0 0 1px #eeecec;
+  --pv-panel-font: 600 15px/1.3 system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  .pv-row__end { background: #e5e5ff !important; }
+  .pv-card {
+    gap: 6px;
+    padding: 22px;
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: inset 0 0 0 1px #eeecec, 0 10px 30px -18px rgb(32 29 29 / 0.25);
+  }
+  .pv-title { color: #201d1d; font-size: 18px; font-weight: 600; line-height: 1.3; }
+  .pv-copy { color: #5c5757; font-size: 14px; line-height: 1.45; }
+  .pv-value {
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin-top: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #e5e5ff;
+  }
+  .pv-value__label { color: #201d1d; font-size: 13px; }
+  .pv-value__num {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #d0ceff;
+    color: #201d1d;
+    font: 500 13px/1.3 'Geist Mono', ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .pv-actions { justify-content: flex-end; gap: 8px; margin-top: 16px; }
+  .pv-btn { height: 36px; padding: 0 16px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+  .pv-btn[data-kind="secondary"] { color: #201d1d; background: #f7f6f6; }
+  .pv-btn[data-kind="primary"] { color: #201d1d; background: #978eff; }
+}

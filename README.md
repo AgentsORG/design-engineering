@@ -82,6 +82,24 @@ Never edit credentials. If a step fails, stop and show me the error.
 
 Each agent is written once, in `plugin/agents/<name>.md`, and generated into every other harness's format by `scripts/build-agents.mjs`. Harness-by-harness detail is in [plugin/harness/README.md](plugin/harness/README.md).
 
+## Taste: one brief, seven forks
+
+![One brief, seven tastes: the same daily-reminder card (a title, one line, one value, a primary and a secondary button) drawn seven times. The default is a quiet white card with a near-black button; Duolingo has a lowercase green title and chunky lipped buttons; Campus Binge has one gradient word and a green pill on mint; Smash&Clash has a tilted sticker title and tilted candy buttons on navy lips over sky blue; Swiggy is a rounded white panel with orange pills on Salt; Cursor is warm paper with one orange button and a monospace schedule; Aave is warm white with periwinkle tints and a monospace health factor](docs/readme/img/pov-gallery.png)
+
+[`references/meta/pov.md`](skills/design-engineering/references/meta/pov.md) is the taste layer: the one file where your opinions override the skill's canonical defaults, so the same request comes back in a different visual language. To switch, copy a fork over it (`cp skills/design-engineering/pov-examples/cursor.md skills/design-engineering/references/meta/pov.md` in this repo, or the same two paths inside your installed skill folder), or ask `/design-engineering pov` to fork your own.
+
+| Fork | Stance | Still |
+| --- | --- | --- |
+| [Default](skills/design-engineering/references/meta/pov.md) | Restrained taste calls distilled from the graph: no motion unless it earns it, constraints from the brand, every colour scheme first-class | [pov-default.png](docs/readme/img/pov-default.png) |
+| [Duolingo](skills/design-engineering/pov-examples/duolingo.md) | Physical, loud and kind: lipped buttons, colour that carries meaning, rounded lowercase type | [pov-duolingo.png](docs/readme/img/pov-duolingo.png) |
+| [Campus Binge](skills/design-engineering/pov-examples/campus-binge.md) | Calm, green and type-led: one gradient word per headline, light only, soft layered depth | [pov-campus-binge.png](docs/readme/img/pov-campus-binge.png) |
+| [Smash&Clash](skills/design-engineering/pov-examples/smash-and-clash.md) | A toy you can press: tilted candy slabs on a hard navy lip, one sun-yellow primary per screen | [pov-smash-and-clash.png](docs/readme/img/pov-smash-and-clash.png) |
+| [Swiggy](skills/design-engineering/pov-examples/swiggy.md) | One orange pin, one typeface, one rounded panel; each business changes the lead colour, never the system | [pov-swiggy.png](docs/readme/img/pov-swiggy.png) |
+| [Cursor](skills/design-engineering/pov-examples/cursor.md) | Warm paper, warm ink and one orange; a monospace only for what the machine says | [pov-cursor.png](docs/readme/img/pov-cursor.png) |
+| [Aave](skills/design-engineering/pov-examples/aave.md) | Money software that feels friendly: warm-white calm and one periwinkle purple in tint steps | [pov-aave.png](docs/readme/img/pov-aave.png) |
+
+Each card is drawn strictly from its file's stated colours, type, radii, depth, button construction, case rules and voice; no logo or mascot artwork is used. The scenes are in [docs/readme/stage](docs/readme/stage/README.md).
+
 ## Verbs
 
 ![Claude Code answering /design-engineering help: review, motion and council are the three verbs that fit the change in front of you, out of 22 verbs in all](docs/readme/img/de-verbs.png)
@@ -215,7 +233,7 @@ The same prompt, both arms, from the run above (try 1), rendered in Chrome by `b
 
 ![gen-modal-01, Build a settings modal with a title, two text inputs, a cancel button and a save button, with an enter animation: Opus 5.5 alone, 4 of 5 rules, a calm dark workspace-settings dialog; with design-engineering, 4 of 5 rules, a white profile-settings dialog with uppercase CANCEL and SAVE buttons and a saturated green Save](docs/readme/img/out-gen-modal-01.png)
 
-**Build a settings modal with an enter animation.** Both arms passed 4 of 5 rules, and here plain Opus looks better. The skill arm used uppercase button labels and a loud green. They came from [pov.md](skills/design-engineering/references/meta/pov.md), the taste file the skill loads, which at the time of this run was forked to Duolingo's design language. 4.1.0 ships a restrained default instead and keeps Duolingo, Campus Binge, Smash&Clash, Swiggy and Cursor as [example forks](skills/design-engineering/pov-examples/). The file is meant to be yours: fork it for your product.
+**Build a settings modal with an enter animation.** Both arms passed 4 of 5 rules, and here plain Opus looks better. The skill arm used uppercase button labels and a loud green. They came from [pov.md](skills/design-engineering/references/meta/pov.md), the taste file the skill loads, which at the time of this run was forked to Duolingo's design language. 4.1.0 ships a restrained default instead and keeps Duolingo, Campus Binge, Smash&Clash, Swiggy, Cursor and Aave as [example forks](skills/design-engineering/pov-examples/). The file is meant to be yours: fork it for your product.
 
 ![gen-toolbar-01, Build a toolbar of five icon-only buttons with tooltips: Opus 5.5 alone, 3 of 4 rules, a dark editor toolbar with an Italic tooltip; with design-engineering, 4 of 4 rules, a light rounded toolbar with an Italic Ctrl+I tooltip](docs/readme/img/out-gen-toolbar-01.png)
 

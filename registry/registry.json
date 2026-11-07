@@ -52,6 +52,11 @@
           "target": "~/.agents/skills/design-engineering/evals/progressive-reads.jsonl"
         },
         {
+          "path": "skills/design-engineering/pov-examples/aave.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/pov-examples/aave.md"
+        },
+        {
           "path": "skills/design-engineering/pov-examples/campus-binge.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/pov-examples/campus-binge.md"

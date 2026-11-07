@@ -6,6 +6,17 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 *Nothing yet.*
 
+## [4.2.0] — 2026-11-07
+
+### Added
+
+- **Aave example fork**, `pov-examples/aave.md`: from aave.com/brand, its brand kit and the styles aave.com ships (warm-white calm, one periwinkle purple in tint steps, a monospace for money, Ronnie the friendly ghost). Six example forks in all.
+- **"Taste: one brief, seven forks" in the README**: the same daily-reminder card rendered in the default `pov.md` and in each fork with Stageshow (`docs/readme/img/pov-*.png` and an overview grid), so the difference a fork makes is visible before anyone switches. No brand logo or mascot artwork is drawn; fonts that aren't freely available use named stand-ins.
+
+### Changed
+
+- Dependabot updates in `eve/`: TypeScript 7 and `@types/node` 26 (both pass the eve typecheck).
+
 ## [4.1.1] — 2026-11-07
 
 ### Added
