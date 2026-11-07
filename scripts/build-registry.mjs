@@ -91,7 +91,7 @@ const items = [
     title: "Design Engineering skill graph",
     description:
       `The full design-engineering skill graph — ${clusterNames.length} themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, faux product UI, typography, surface, components, layout, anti-patterns, and the routing layer, plus the ${listOf(scriptNames)} scripts. Installs into .agents/skills/ where any coding agent can load it.`,
-    author: "HKTITAN",
+    author: "AgentsORG",
     categories: ["design", "agents", "skills"],
     docs: "Restart your coding agent after installing so it picks up the new skill. Invoke it as /design-engineering [verb] [target]; with no verb it shows the menu. The dispatch table is at the top of SKILL.md. Fork references/meta/pov.md to record your own taste overrides.",
     files: skillFiles,
@@ -102,7 +102,7 @@ const items = [
     title: "Design Engineering subagents",
     description:
       `${capitalise(spell(agentNames.length))} subagents (${agentNames.join(", ")}) in Claude Code format. Optional: every /design-engineering verb runs without them.`,
-    author: "HKTITAN",
+    author: "AgentsORG",
     categories: ["design", "agents"],
     docs: "Installs into .claude/agents/. Requires the design-engineering skill item for the reference nodes these agents load.",
     registryDependencies: [`${RAW}/design-engineering.json`],
@@ -114,7 +114,7 @@ const items = [
     title: "Starter .design contract",
     description:
       "A design.v1 living visual contract encoding this skill's canonical motion and surface defaults — easing curves, duration scale, layered elevation, and the constraints that keep AI-default tells out. Color and typography are left to your brand.",
-    author: "HKTITAN",
+    author: "AgentsORG",
     categories: ["design", "design-tokens"],
     docs: "Installs as .design at your project root. Adapt name, intent, and tokens to your product — or reference it from your own contract via `extends`. Agents read it before generating UI; it outranks generic taste skills.",
     files: [
@@ -131,7 +131,7 @@ const items = [
     title: "Design Engineering motion tokens",
     description:
       "Motion theme variables: four easing curves worth memorizing and a duration scale keyed to element type. Drop-in for any shadcn project — reference them as var(--ease-out-quart) or, on Tailwind v4, register under @theme inline for utility classes.",
-    author: "HKTITAN",
+    author: "AgentsORG",
     categories: ["design", "animation", "design-tokens"],
     docs: "Never `transition: all` — name the properties. Entrances use --ease-out-quart; exits run at 60% of their entrance duration. Never ease-in on a UI entrance, and never scale an entrance from 0 (start at 0.95).",
     cssVars: { theme: motionVars },

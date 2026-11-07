@@ -63,7 +63,7 @@ Inline `<style>` inside an SVG becomes global CSS the moment the SVG is inlined 
 ## Sources
 
 - W3C SVG 2; SVGO documentation.
-- supermemoryai/skills `svg-animations` — viewBox, defs, and grouping practices; HKTITAN — token-aware authoring and the generated-SVG tells.
+- supermemoryai/skills `svg-animations` — viewBox, defs, and grouping practices; AgentsORG — token-aware authoring and the generated-SVG tells.
 - iart-ai/web-animation-skills (MIT) `svg-animation`, and Cathryn Lavery's `diagram-design` `export_svg.py` (namespaced `<defs>` ids) — prefixing ids on inlined SVGs.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Icons and logos), `stageshow/references/brands.md`, `stageshow/examples/brand-marks/index.tsx`, `stageshow/examples/kit-extras/index.tsx`.
 - Related: [[icon-systems]], [[svg-animation]], [[svg-path-morphing]], [[vibe-to-generator]].

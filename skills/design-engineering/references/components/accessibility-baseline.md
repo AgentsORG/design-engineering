@@ -81,7 +81,7 @@ Don't ship custom `<select>` or `<combobox>` components unless you've truly impl
 
 - Vercel Web Interface Guidelines — Interactions and Content sections.
 - bendc/frontend-guidelines — "Don't rely on color alone."
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN — DOM order, tooltips, page structure, reduced-motion media.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG — DOM order, tooltips, page structure, reduced-motion media.
 - WCAG 2.2 + Apple HIG hit-target guidance; the criterion numbers are in [[wcag-thresholds]], custom-widget key maps in [[keyboard-patterns]].
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/controls/Field.css`, `stageshow/kit/controls/Button.tsx`, `stageshow/examples/form-error/index.tsx`, `stageshow/kit/reduced-motion.ts`, `stageshow/references/verify.md` (the 10px floor at phone width).
 - Related: [[hover-states-subtle]], [[forms-validation]], [[prefers-reduced-motion]], [[contrast-and-color-scheme]].

@@ -79,7 +79,7 @@ A documented variant that doesn't exist is worse than an undocumented one that d
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on documenting systems for agents, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on documenting systems for agents, distilled by AgentsORG.
 - Google Labs DESIGN.md spec; AgentsORG `.design` (`rationale`, `components.when` / `when_not`).
 - Related: [[using-design-md]], [[using-design-file]], [[skill-writing-rules]], [[component-api-design]].
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (The kit: use the kit part, never a lookalike; specimen sheets are catalogs), `stageshow/references/kit.md` (`Button`), `stageshow/kit/controls/Button.tsx`, `stageshow/examples/buttons/`, `stageshow/references/looks.md` (Check it).

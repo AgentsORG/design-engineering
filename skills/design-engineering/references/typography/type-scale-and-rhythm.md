@@ -69,7 +69,7 @@ Never change font weight on hover or selection. The text reflows by a pixel and 
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on typography, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on typography, distilled by AgentsORG.
 - CSS Fonts Level 4 (`font-synthesis`, `font-optical-sizing`), CSS Inline Layout (`text-box`).
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/references/type.md` (202 sites measured at 1440 × 900 and 390 × 844, 2026-10-05; top and weak are model-panel tiers) and `references/copy.md` §2 (the headline budget; k values are its rule of thumb).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/parts/Row.css`, `stageshow/teaching/style.tsx` and `stageshow/teaching/style.css` (style-tiny), `stageshow/references/craft.md` (Type; title over subtitle), `stageshow/references/bento.md` (rules 5, 6, 14), `stageshow/references/verify.md`, `stageshow/scripts/film-checks.mjs` (`unsized text:`).

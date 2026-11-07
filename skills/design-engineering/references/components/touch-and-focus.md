@@ -67,6 +67,6 @@ Tabbing into a closed drawer is the classic miss. It was hidden with `opacity: 0
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on touch and accessibility, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on touch and accessibility, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/controls/Button.css`, `stageshow/references/craft.md` (`flex: none`, links and controls at rest, `data-open`), `stageshow/references/rehearse.md` (width is not touch).
 - Related: [[accessibility-baseline]], [[hover-states-subtle]], [[prefers-reduced-motion]], [[forms-behavior]].

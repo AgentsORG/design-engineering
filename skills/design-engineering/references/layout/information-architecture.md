@@ -56,6 +56,6 @@ Renaming beats restructuring. Before redrawing the sitemap, check whether the la
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG.
 - Benji Taylor, *Family Values* §Simplicity, [benji.org/family-values](https://benji.org/family-values).
 - Related: [[grouping-by-space]], [[url-as-state]], [[destructive-actions]], [[empty-loading-states]], [[design-vocabulary]].

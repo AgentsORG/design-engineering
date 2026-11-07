@@ -132,5 +132,5 @@ The router is for *entry*, not *coverage*. Landing on [[easing-curves]] doesn't 
 
 ## Sources
 
-- HKTITAN — routing patterns distilled from operating this graph across real sessions.
+- AgentsORG — routing patterns distilled from operating this graph across real sessions.
 - Related: [[disambiguation]] for the intents that blur together, [[stacking-chains]] for multi-step jobs.

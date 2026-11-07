@@ -101,6 +101,6 @@ Icon stroke is `stroke-width`, not `border-width`. Setting `stroke-width: 2` on 
 - guidelines.sh — "Never mix icon packs; match stroke to font weight; Lucide is overused."
 - lucide-animated.com — icon animation patterns.
 - Phosphor Icons — weight system documentation.
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN — the drawing, meaning and illustration rules.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG — the drawing, meaning and illustration rules.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Icons and logos), `stageshow/teaching/style.tsx`, `stageshow/examples/gmail/index.tsx`, `stageshow/references/rehearse.md` (`mixed icons`), `stageshow/kit/stage.css` (`--ss-icon`).
-- better-auth/better-icons (MIT; npm 1.0.4 on 2026-10-08, the repo's 1.0.5 is unpublished) — Iconify search and retrieval; the cross-pack pull is HKTITAN's reading of its tools.
+- better-auth/better-icons (MIT; npm 1.0.4 on 2026-10-08, the repo's 1.0.5 is unpublished) — Iconify search and retrieval; the cross-pack pull is AgentsORG's reading of its tools.

@@ -4,7 +4,7 @@ description: "Load when reviewing UI code, designing a component or layout, pick
 license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
-  author: HKTITAN
+  author: AgentsORG
   version: "4.0.0"
   graph: true
   subagents: plugin/agents/
@@ -191,4 +191,4 @@ The repo also ships a [`SOUL.md`](../../docs/SOUL.md) in `docs/` — voice, stan
 
 Every sentence above costs tokens in every session. If you find yourself adding a sentence, ask: *would the agent get this wrong without it?* If no, delete it. If yes, it belongs in an atomic node, not here.
 
-— HKTITAN, 2026.
+— AgentsORG, 2026.

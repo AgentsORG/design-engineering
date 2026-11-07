@@ -4,7 +4,7 @@
   "type": "registry:theme",
   "title": "Design Engineering motion tokens",
   "description": "Motion theme variables: four easing curves worth memorizing and a duration scale keyed to element type. Drop-in for any shadcn project — reference them as var(--ease-out-quart) or, on Tailwind v4, register under @theme inline for utility classes.",
-  "author": "HKTITAN",
+  "author": "AgentsORG",
   "categories": [
     "design",
     "animation",

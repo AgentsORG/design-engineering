@@ -60,7 +60,7 @@ Check: open it by LAN IP on a real phone, focus the last field with the keyboard
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/mobile-native/SKILL.md.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Chrome and devices: nothing under the island, a sheet or grabber below the status bar).
 - Related: [[touch-and-focus]], [[forms-behavior]], [[growth-and-overflow]], [[sticky-and-scroll-tells]], [[cmd-mobile]].

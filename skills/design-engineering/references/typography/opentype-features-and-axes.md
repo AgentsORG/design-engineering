@@ -70,7 +70,7 @@ Stroked or outlined text (`-webkit-text-stroke`) on a variable font often shows 
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG.
 - CSS Fonts Level 4; OpenType feature registry.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Count.css`, `stageshow/references/craft.md` (progress ring, centering a label on its letters).
 - Related: [[type-scale-and-rhythm]], [[line-behavior]], [[typography-humanity]].

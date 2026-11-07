@@ -8,7 +8,7 @@ tags: [moc, launch-video, film, motion, sound]
 
 A launch film is a run of decisions taken in order, and each has one owner node. Name the register first, because cut rate, stillness and loudness belong to it; then time the beats, set the words, the UI demo and the motion, make the seams and cuts, place the sound, and review the render against its own register. HyperFrames builds the film; this cluster decides it.
 
-Evidence: 29 Skale pieces (28 client films and the 2025 reel), 18 acclaimed films from 2024-2026 (13 in-house, 4 studio, 1 uncredited), HeyGen's hyperframes-launches source (20 project folders, 3,446 tween calls) and 3 of its renders, measured by HKTITAN on 2026-09-28, every film at its native frame rate. Per-film metrics and scripts live in `docs/research/launch-films/` (repo only; `npx skills add` does not install them).
+Evidence: 29 Skale pieces (28 client films and the 2025 reel), 18 acclaimed films from 2024-2026 (13 in-house, 4 studio, 1 uncredited), HeyGen's hyperframes-launches source (20 project folders, 3,446 tween calls) and 3 of its renders, measured by AgentsORG on 2026-09-28, every film at its native frame rate. Per-film metrics and scripts live in `docs/research/launch-films/` (repo only; `npx skills add` does not install them).
 
 ## The decision flow
 
@@ -47,6 +47,6 @@ Opening four nodes before naming the register wastes the flow: every number down
 
 ## Sources
 
-- HKTITAN, launch-film corpus measured 2026-09-28 (`docs/research/launch-films/`: README, tables/, metrics/, notes/synthesis-skale.md, notes/synthesis-acclaimed.md).
+- AgentsORG, launch-film corpus measured 2026-09-28 (`docs/research/launch-films/`: README, tables/, metrics/, notes/synthesis-skale.md, notes/synthesis-acclaimed.md).
 - Skale (skale.solutions/portfolio); the acclaimed films, with years and makers, as listed in [[launch-video-registers]].
 - HeyGen, hyperframes-launches and heygen-com/hyperframes skills (Apache-2.0).

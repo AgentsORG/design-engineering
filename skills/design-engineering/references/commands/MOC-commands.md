@@ -33,4 +33,4 @@ A bare `/design-engineering` never auto-runs a verb. It shows the menu and leads
 
 ## Sources
 
-- HKTITAN, the 3.0.0 single-entry migration. Its pattern comes from pbakaus/impeccable's command table and no-argument menu (`SKILL.md`, `reference/routing.md`), and from the Claude Code skills docs (`ARGUMENTS:` is appended when the body has no placeholder; routing belongs in the first 5,000 tokens, which survive compaction).
+- AgentsORG, the 3.0.0 single-entry migration. Its pattern comes from pbakaus/impeccable's command table and no-argument menu (`SKILL.md`, `reference/routing.md`), and from the Claude Code skills docs (`ARGUMENTS:` is appended when the body has no placeholder; routing belongs in the first 5,000 tokens, which survive compaction).

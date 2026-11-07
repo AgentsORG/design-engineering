@@ -92,7 +92,7 @@ Don't auto-redirect from empty states ("nothing here, going to home..."). That f
 ## Sources
 
 - guidelines.sh — progress bars past 3s; skeletons hint at structure.
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN — the four branches, the 150ms delay and 400ms deadline, first-paint state.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG — the four branches, the 150ms delay and 400ms deadline, first-paint state.
 - Emil Kowalski — Sonner skeleton patterns.
 - Brad Frost — "loading state best practices."
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/loading/index.tsx`, `stageshow/examples/loading/loading.css`.

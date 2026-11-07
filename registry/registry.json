@@ -8,7 +8,7 @@
       "type": "registry:file",
       "title": "Design Engineering skill graph",
       "description": "The full design-engineering skill graph — 13 themed clusters of atomic, wikilinked nodes covering motion, sound, SVG, diagrams, launch video, faux product UI, typography, surface, components, layout, anti-patterns, and the routing layer, plus the council, grade, sound-family, sound-sheet and svg-flipbook scripts. Installs into .agents/skills/ where any coding agent can load it.",
-      "author": "HKTITAN",
+      "author": "AgentsORG",
       "categories": [
         "design",
         "agents",
@@ -1118,7 +1118,7 @@
       "type": "registry:file",
       "title": "Design Engineering subagents",
       "description": "Thirteen subagents (agentation-fix-loop, anti-pattern-scanner, design-council, design-grader, design-judge, design-md-consumer, launch-film-analyst, motion-auditor, pov-curator, sound-designer, svg-animator, svg-creator, ui-reviewer) in Claude Code format. Optional: every /design-engineering verb runs without them.",
-      "author": "HKTITAN",
+      "author": "AgentsORG",
       "categories": [
         "design",
         "agents"
@@ -1200,7 +1200,7 @@
       "type": "registry:file",
       "title": "Starter .design contract",
       "description": "A design.v1 living visual contract encoding this skill's canonical motion and surface defaults — easing curves, duration scale, layered elevation, and the constraints that keep AI-default tells out. Color and typography are left to your brand.",
-      "author": "HKTITAN",
+      "author": "AgentsORG",
       "categories": [
         "design",
         "design-tokens"
@@ -1219,7 +1219,7 @@
       "type": "registry:theme",
       "title": "Design Engineering motion tokens",
       "description": "Motion theme variables: four easing curves worth memorizing and a duration scale keyed to element type. Drop-in for any shadcn project — reference them as var(--ease-out-quart) or, on Tailwind v4, register under @theme inline for utility classes.",
-      "author": "HKTITAN",
+      "author": "AgentsORG",
       "categories": [
         "design",
         "animation",

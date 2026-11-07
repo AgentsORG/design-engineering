@@ -61,7 +61,7 @@ When the agent keeps missing after two rounds, rephrasing a third time is the ca
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG.
 - Related: [[skill-router]], [[prototype-picker]], [[vibe-to-generator]], [[review-format]].
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Workflow step 4, How hard to press; `static-card` 400 × 300).
 - Benji Taylor, benji.org/stageshow (read 2026-11-07): corrections become permanent rules; the agent optimises for working, the human judges feel.

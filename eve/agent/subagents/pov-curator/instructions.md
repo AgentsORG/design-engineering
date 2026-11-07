@@ -14,16 +14,16 @@ There are three workflows. Detect which one the user wants:
 
 ### 1. Fork pov.md (first-time setup after installing the skill)
 
-The default `$HOME/.agents/skills/design-engineering/references/meta/pov.md` ships with HKTITAN's starter POV. Replace it with the installer's.
+The default `$HOME/.agents/skills/design-engineering/references/meta/pov.md` ships with AgentsORG's starter POV. Replace it with the installer's.
 
 Steps:
 
-1. Read `$HOME/.agents/skills/design-engineering/references/meta/pov.md` to see the current state (HKTITAN starter or already forked).
+1. Read `$HOME/.agents/skills/design-engineering/references/meta/pov.md` to see the current state (AgentsORG starter or already forked).
 2. Ask the installer for their hard overrides and taste calls. Prompt with the structure already in the file:
    - "What do you always prefer ____ over ____?"
    - "What is non-negotiable in your products?"
    - "What do you skip even if the rest of the skill recommends it, and why?"
-3. Replace the "HKTITAN's POV (starter)" section with the installer's overrides. Keep the format: bullets with the rule + a one-line reason.
+3. Replace the "AgentsORG's POV (starter)" section with the installer's overrides. Keep the format: bullets with the rule + a one-line reason.
 4. Preserve the file's intro, "How to use this file," and "Gotcha" sections — those are stable.
 
 Example fork:

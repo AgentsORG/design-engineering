@@ -1,6 +1,6 @@
 # Acclaimed corpus: measured metrics
 
-18 launch films from 2024-2026, measured at native frame rate with `measure.py` by HKTITAN on 2026-09-28. The [film list](../README.md#acclaimed-18-films) gives brand, title, year, maker and URL. Frame-read cut counts and the hand-timed endcard, first word, first seam, name, typing and hold values are entered in `others_stats.py`; stagger, seam, counter and time-constant values are in [the acclaimed notes](../notes/synthesis-acclaimed.md), sections 3-4.
+18 launch films from 2024-2026, measured at native frame rate with `measure.py` by AgentsORG on 2026-09-28. The [film list](../README.md#acclaimed-18-films) gives brand, title, year, maker and URL. Frame-read cut counts and the hand-timed endcard, first word, first seam, name, typing and hold values are entered in `others_stats.py`; stagger, seam, counter and time-constant values are in [the acclaimed notes](../notes/synthesis-acclaimed.md), sections 3-4.
 
 Read it with the [caveats](../README.md#caveats): `cuts`, `cpm` and `shot_med` are the automatic detector's counts, not the frame-read ones; `still` compares only within a register; move runs (`mv_*`) chain overlapping changes and are not tween durations; `blur` above 1 only means the still frames are flat; `speech` is a proxy.
 

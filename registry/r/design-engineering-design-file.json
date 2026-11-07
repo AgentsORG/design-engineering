@@ -4,7 +4,7 @@
   "type": "registry:file",
   "title": "Starter .design contract",
   "description": "A design.v1 living visual contract encoding this skill's canonical motion and surface defaults — easing curves, duration scale, layered elevation, and the constraints that keep AI-default tells out. Color and typography are left to your brand.",
-  "author": "HKTITAN",
+  "author": "AgentsORG",
   "categories": [
     "design",
     "design-tokens"

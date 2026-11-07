@@ -104,5 +104,5 @@ Don't run a full chain on a one-line change. Chains are for jobs that touch thre
 
 ## Sources
 
-- HKTITAN — orderings distilled from repeated multi-cluster sessions; companions: [[routing-table]], [[disambiguation]].
+- AgentsORG — orderings distilled from repeated multi-cluster sessions; companions: [[routing-table]], [[disambiguation]].
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Workflow, steps 1 to 7; step 7 fix order), `stageshow/references/rehearse.md` (Prove the still before choreography).

@@ -59,7 +59,7 @@ The pass ends when you can name the one choice a competitor couldn't copy-paste.
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice on generated UI, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice on generated UI, distilled by AgentsORG.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/static-card/index.tsx`, `stageshow/examples/static-card/card.css`, `stageshow/SKILL.md` (Five ways it fails), `stageshow/references/craft.md` (Restraint).
 - Benji Taylor, benji.org/stageshow (read 2026-11-07).
 - Related: [[ai-default-tells]], [[content-authenticity]], [[feeling-right]], [[copy-tells]].

@@ -1,6 +1,6 @@
 ---
 title: pov
-summary: Installer's opinions and taste calls. This install is forked to Duolingo's design language — physical buttons, meaning-bearing color, rounded lowercase type, celebration on the reward beat — plus HKTITAN's launch-film calls (Skale's UI-motion register, sound derived from motion) and diagram calls (diagram-design's own skin, ask then figure, static unless order is the point).
+summary: Installer's opinions and taste calls. This install is forked to Duolingo's design language — physical buttons, meaning-bearing color, rounded lowercase type, celebration on the reward beat — plus AgentsORG's launch-film calls (Skale's UI-motion register, sound derived from motion) and diagram calls (diagram-design's own skin, ask then figure, static unless order is the point).
 tags: [pov, opinion, customizable, duolingo, launch-video, diagram]
 ---
 
@@ -195,7 +195,7 @@ When reviewing UI in a product built on this language, the [[review-format]] tab
 > - In my products, ____ is non-negotiable.
 > - Skip ____, even if the rest of the skill recommends it. The reason is ____.
 
-### Launch films (HKTITAN)
+### Launch films (AgentsORG)
 
 The Duolingo sections above govern product UI. A rendered launch film follows these calls instead:
 
@@ -204,7 +204,7 @@ The Duolingo sections above govern product UI. A rendered launch film follows th
 - **Sound is OpenAI's register B, derived from the motion:** a bed in one key, clicks on the stamps, thuds on the landings, something taken away just before the name ([[launch-video-sound]], [[sound-from-motion]]). A licensed beat track only when its drop and breakdowns can be placed on picture events ([[launch-video-music]]). Never library blips dropped on frames.
 - **Every film ships with its numbers** (cuts a minute, still share, loudness), measured on the render before it goes out ([[launch-video-review]]).
 
-### Diagrams (HKTITAN)
+### Diagrams (AgentsORG)
 
 The Duolingo sections above govern product UI. A diagram follows these calls instead. A project's `.design` or DESIGN.md still outranks all three ([[diagram-design-reconciliation]]).
 

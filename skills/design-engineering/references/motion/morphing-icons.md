@@ -100,6 +100,6 @@ Also: opacity-collapsed lines still render in the SVG. If you have hundreds of i
 ## Sources
 
 - Benji Taylor — *Morphing Icons with Claude*, [benji.org/morphing-icons-with-claude](https://benji.org/morphing-icons-with-claude) (read 2026-11-07).
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN (contextual icon swap values).
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG (contextual icon swap values).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/contrasts.tsx` and `stageshow/teaching/contrasts.css` (identity pair), `stageshow/references/motion.md` (Story, the poster).
 - Related: [[icon-systems]], [[transform-mastery]], [[fly-not-teleport]], [[animations-dev-curriculum]].

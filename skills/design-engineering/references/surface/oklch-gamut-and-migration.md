@@ -70,6 +70,6 @@ Raising the base token's chroma to get "more punch" breaks on sRGB screens. The 
 
 ## Sources
 
-- Emil Kowalski's design-engineering practice, distilled by HKTITAN.
+- Emil Kowalski's design-engineering practice, distilled by AgentsORG.
 - CSS Color Level 4 (`oklch()`, `color-gamut`).
 - Related: [[color-scales-oklch]], [[contrast-and-color-scheme]], [[gradient-interpolation]], [[color-token-tiers]].

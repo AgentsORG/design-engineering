@@ -368,11 +368,11 @@ A wrong version number for better-icons, corrected.
 
 ## [2.7.1] — 2026-10-08
 
-HKTITAN's diagram taste, written into `pov.md`.
+AgentsORG's diagram taste, written into `pov.md`.
 
 ### Changed
 
-- **`pov.md`** gains "Diagrams (HKTITAN)", plus two rows in the override table:
+- **`pov.md`** gains "Diagrams (AgentsORG)", plus two rows in the override table:
   - With no `.design` or DESIGN.md, a figure keeps diagram-design's shipped editorial skin. The Duolingo language stays in product UI.
   - "Make a diagram" with no reader or editor named gets one question; with no answer, a finished diagram-design figure, its assumption noted.
   - Figures are static, with diagram-design's `step` mode only when the order is the point; no `reveal`, `loop` or autoplay unless asked.
@@ -430,7 +430,7 @@ Nine other skills.sh SVG skills were read on 2026-10-08:
 
 ## [2.6.0] — 2026-09-28
 
-This repo's own launch film, built on the 2.5.0 rules and measured the way the 47 reference films were. HKTITAN's launch-film taste is written into `pov.md`, the router's launch-film path is spelled out, and the description is trimmed under the Agent Skills limit.
+This repo's own launch film, built on the 2.5.0 rules and measured the way the 47 reference films were. AgentsORG's launch-film taste is written into `pov.md`, the router's launch-film path is spelled out, and the description is trimmed under the Agent Skills limit.
 
 ### Added — the launch film
 
@@ -449,7 +449,7 @@ This repo's own launch film, built on the 2.5.0 rules and measured the way the 4
 
 ### Changed
 
-- **`pov.md`** gains "Launch films (HKTITAN)", plus a row in the override table:
+- **`pov.md`** gains "Launch films (AgentsORG)", plus a row in the override table:
   - An unspecified launch film gets Skale's UI-motion register, with bounce only on request.
   - "Lively" means creep, accelerating rhythm and causality.
   - Sound is OpenAI's register B, derived from motion; a beat track only when its drop can be placed on the picture.
@@ -536,7 +536,7 @@ Motion that is alive: the demo remade on HeyGen's launch motion system, measured
 
 ## [2.3.0] — 2026-09-05
 
-The launch-video register, measured from the films HKTITAN pointed at — OpenAI's *Refreshed.* and *Introducing GPT-5* — and built into the renderer and the demo.
+The launch-video register, measured from the films AgentsORG pointed at — OpenAI's *Refreshed.* and *Introducing GPT-5* — and built into the renderer and the demo.
 
 ### Added — the bed-and-clicks register
 
@@ -599,7 +599,7 @@ Three things at once: `/design-engineering` becomes a **router** over the design
 ### Added — distilled craft nodes (20)
 
 - surface: **`color-scales-oklch`**, **`depth-and-nesting`**. typography: **`type-scale-and-rhythm`**, **`line-behavior`**. components: **`forms-behavior`**, **`touch-and-focus`** (with the mobile-native fixes table), **`ui-polish-pass`**, **`component-api-design`**. motion: **`performance-discipline`**. layout: **`marketing-surface-rules`**. anti-patterns: **`unslop-pass`**, **`copy-tells`**, **`code-tells`**. meta: **`prototype-picker`**, **`build-a-tool`**, **`vibe-to-generator`**, **`design-system-docs`**, **`skill-writing-rules`**, **`design-benchmarks`**, **`skill-router`**.
-- Every one cites "Emil Kowalski's design-engineering practice, distilled by HKTITAN" plus public references; no source text is quoted.
+- Every one cites "Emil Kowalski's design-engineering practice, distilled by AgentsORG" plus public references; no source text is quoted.
 
 ### Added — demo
 
@@ -766,7 +766,7 @@ The repo now ships three agent-specific plugin manifests in addition to the skil
 
 - **`.claude-plugin/plugin.json`** (NEW) — minimal Claude Code plugin metadata (name, description, version, author, homepage, repository, license). No `skills` field — Claude Code auto-discovers from `skills/`.
 - **`.claude-plugin/marketplace.json`** (refactored) — single-entry pattern with `"source": "./"` so the repo doubles as its own marketplace. Drops the nested `plugins[].skills[]` array in favor of auto-discovery. Top-level `owner` instead of `author` (matches the hyperframes / Claude Code marketplace schema).
-- **`.codex-plugin/plugin.json`** (NEW) — full OpenAI Codex manifest with `keywords`, `skills: "./skills/"`, and an `interface` block (displayName: "Design Engineering by HKTITAN", shortDescription, longDescription, developerName, category: Design, capabilities: Read+Write, defaultPrompt array, brandColor: `#0a0a0a`).
+- **`.codex-plugin/plugin.json`** (NEW) — full OpenAI Codex manifest with `keywords`, `skills: "./skills/"`, and an `interface` block (displayName: "Design Engineering by AgentsORG", shortDescription, longDescription, developerName, category: Design, capabilities: Read+Write, defaultPrompt array, brandColor: `#0a0a0a`).
 - **`.cursor-plugin/plugin.json`** (NEW) — Cursor IDE manifest with `$schema`, `displayName`, `publisher`, `category: developer-tools`, `tags`, `keywords`, and the same `skills` path.
 
 Install paths now read:
@@ -862,7 +862,7 @@ Nothing in the published skill content changed — these only affect the vault-v
 
 ### Changed — repo migration
 
-The skill's canonical home moved from [`HKTITAN/design-engineering`](https://github.com/AgentsORG/design-engineering) (auto-redirects) to [`AgentsORG/design-engineering`](https://github.com/AgentsORG/design-engineering). All URL references updated:
+The skill's canonical home moved from [`AgentsORG/design-engineering`](https://github.com/AgentsORG/design-engineering) (auto-redirects) to [`AgentsORG/design-engineering`](https://github.com/AgentsORG/design-engineering). All URL references updated:
 
 - **Install command** is now `npx skills add AgentsORG/design-engineering`.
 - **README** badges (`skills.sh`, `CI`), the paste-into-agent block, file-tree mentions, and Sources section updated to the new URL.
@@ -872,14 +872,14 @@ The skill's canonical home moved from [`HKTITAN/design-engineering`](https://git
 - **skills/design-engineering/SKILL.md** frontmatter `metadata.version` bumped to 1.3.0.
 - **CHANGELOG** compare links updated.
 
-The old URL (`HKTITAN/design-engineering`) auto-redirects via GitHub, so existing clones and installed skills continue to work. New installs should use the AgentsORG URL.
+The old URL (`AgentsORG/design-engineering`) auto-redirects via GitHub, so existing clones and installed skills continue to work. New installs should use the AgentsORG URL.
 
 ### Attribution unchanged
 
-- LICENSE copyright stays "HKTITAN" — the individual author.
-- `metadata.author: HKTITAN` in SKILL.md frontmatter — unchanged.
-- `marketplace.json` `author.name: HKTITAN`, `author.url: https://github.com/HKTITAN` — unchanged (HKTITAN is the human curator; AgentsORG is the new repo owner).
-- `meta/pov.md` HKTITAN starter POV — unchanged (it's an example for installers to override).
+- LICENSE copyright stays "AgentsORG" — the individual author.
+- `metadata.author: AgentsORG` in SKILL.md frontmatter — unchanged.
+- `marketplace.json` `author.name: AgentsORG`, `author.url: https://github.com/AgentsORG` — unchanged (AgentsORG is the human curator; AgentsORG is the new repo owner).
+- `meta/pov.md` AgentsORG starter POV — unchanged (it's an example for installers to override).
 
 ## [1.2.1] — 2026-05-22
 
@@ -993,7 +993,7 @@ Initial public release of the `design-engineering` skill graph.
 - **James Frewin** — [guidelines.sh](https://guidelines.sh).
 - **dmytro / @pqoqubbw** — [lucide-animated.com](https://lucide-animated.com).
 - **DiceBear** — [dicebear.com/styles](https://www.dicebear.com/styles) — all 31 v9.x styles in `components/avatar-systems`.
-- **HKTITAN / Duolingo Skills** — [hktitan/duolingo](https://github.com/hktitan/duolingo) — skill-graph layout reference.
+- **AgentsORG / Duolingo Skills** — [hktitan/duolingo](https://github.com/hktitan/duolingo) — skill-graph layout reference.
 - **Akshay Pachaar** — [Skill Graphs > SKILL.md](https://x.com/akshay_pachaar) — skill-graph framing.
 - **Perplexity Agents team** — [Designing, Refining, and Maintaining Agent Skills](https://research.perplexity.ai/articles/designing-refining-and-maintaining-agent-skills-at-perplexity) — progressive disclosure, gotchas flywheel, evals-first.
 - **Anthropic** — [anthropics/skills](https://github.com/anthropics/skills) — `spec/` + `template/` repo layout.

@@ -66,6 +66,6 @@ cinetic's evaluations were judged by language models, one run per brief. A neutr
 ## Sources
 
 - Leon Lin, cinetic (MIT, HEAD ecfa660, 2026-10-18): `skills/cinetic/SKILL.md` (hard bans, the brand-supplied exception, engine choice), `references/craft-rules.md` §1–7, `references/copy-and-type.md`, `references/sound.md` §12–13, `references/hyperframes-engine.md`, `docs/evaluation.md`, `README.md` (Requirements: the Remotion licence).
-- This graph's values: `docs/research/launch-films/` (HKTITAN, 2026-09-28).
+- This graph's values: `docs/research/launch-films/` (AgentsORG, 2026-09-28).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/ease.ts` (header: video curves measured from unnamed launch films).
 - Related: [[skill-router]], [[hyperframes-reconciliation]], [[launch-video-review]], [[earshot-reconciliation]].
