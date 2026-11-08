@@ -531,7 +531,7 @@ PRs welcome; the shorter the better. Edit agents only in `plugin/agents/` and ru
 
 ## Sources
 
-- **Emil Kowalski** — [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT, commit `c8a7962`), [emilkowal.ski](https://emilkowal.ski), [sonner.emilkowal.ski](https://sonner.emilkowal.ski)
+- **Emil Kowalski** — [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT, commit `5206a95`), [emilkowal.ski](https://emilkowal.ski), [sonner.emilkowal.ski](https://sonner.emilkowal.ski)
 - **Index (Emil Kowalski & Glenn Carstens-Peters)** — [index.how](https://index.how)
 - **Benji Taylor** — [benji.org](https://benji.org) + [Agentation](https://www.agentation.com) + [Stageshow](https://github.com/benjitaylor/skills) (MIT): the faux-ui cluster (product shots, cursor demos, bento grids, filming them), `stageshow-reconciliation`; Honk's presence patterns, Drawesome's toolbar and Liveline's live-data states
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev)

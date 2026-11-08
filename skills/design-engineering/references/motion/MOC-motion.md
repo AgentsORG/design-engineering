@@ -26,6 +26,7 @@ The largest cluster. Read [[animation-decision-framework]] first — it tells yo
 - [[clip-path-tricks]] — The most underrated animatable property. 5 patterns: tabs, hold-to-delete, image reveals, comparison sliders, directional swap.
 - [[never-scale-from-zero]] — Why `scale(0)` looks like an inflating balloon. Use `scale(0.95)` + opacity, or `@starting-style` for modern CSS.
 - [[gesture-momentum]] — Velocity-based dismissal. Damping at boundaries. Pointer capture.
+- [[gesture-phases]] — Track 1:1 while the pointer is down, release into a velocity-seeded spring; dismiss on distance or velocity, linked values from the drag, catchable mid-close, the Vaul curve and the floating-drawer override.
 - [[motion-choreography]] — Several parts on one event: cast lead, support, decoration, still; relate each pair (together, overlap, sequence, carry); hook secondary motion to a moment of the lead; test mid-flight.
 - [[stagger-choreography]] — Cascading reveals (30–80ms delays). When to stagger and when not.
 - [[responsive-feedback]] — Button press states, popover origin awareness, tooltip skip-delay. The micro-feedback nodes consolidated.

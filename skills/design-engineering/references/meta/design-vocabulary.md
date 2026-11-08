@@ -157,6 +157,7 @@ When "make it animate" is the whole prompt, the agent guesses. One of these name
 - **Asymmetric easing** — a curve that accelerates and decelerates at different rates. Real motion is asymmetric, which is why `ease-in-out` often reads mechanical. → [[easing-curves]]
 - **Linear** — constant speed. Right for spinners, marquees and progress tied to time; wrong for anything that starts or stops. → [[easing-curves]]
 - **Velocity / momentum** — how fast and which way something moves at the moment you touch it, and motion that keeps going after the input ends. A spring inherits velocity; a tween restarts from zero. → [[gesture-momentum]]
+- **Track phase / release phase** — the two halves of a gesture: while the pointer is down the element follows it 1:1 with no easing; once it lifts, a spring seeded with the release velocity finishes the move. → [[gesture-phases]]
 - **Stiffness · damping · mass** — the three spring dials: how hard it pulls, how fast it loses energy, how heavy it is. Name the dial instead of saying "bouncier". → [[spring-animations]]
 - **Interruptible animation** — it can be redirected mid-flight and curves toward the new target instead of jumping or finishing first. CSS transitions retarget; keyframe animations restart. → [[spring-animations]]
 - **Crossfade / morph / layout animation** — two elements swapping in one spot; one shape becoming another; an element animating to its new size or position instead of snapping. → [[cross-blur-transitions]], [[morphing-icons]], [[fly-not-teleport]]

@@ -1,6 +1,6 @@
 {
   "name": "design-engineering",
-  "version": "4.3.0",
+  "version": "4.4.0",
   "private": true,
   "type": "module",
   "description": "eve runtime for the design-engineering skill graph: a durable design-engineering agent with specialist subagents, an MCP channel for coding agents, and a cross-model design council.",

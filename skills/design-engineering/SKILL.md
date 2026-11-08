@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: AgentsORG
-  version: "4.3.0"
+  version: "4.4.0"
   graph: true
   subagents: plugin/agents/
   soul: docs/SOUL.md
@@ -59,7 +59,7 @@ How to think about taste, delight, and the difference between marketing and prod
 
 The largest cluster. Animation is the most overused tool in modern UI; this cluster tells you when *not* to animate as much as when to.
 
-- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[motion-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[text-morph-engine]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[frame-rate-independence]], [[animated-hit-testing]], [[animation-removal-hazards]], [[momentum-projection]], [[react-native-motion]]
+- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[gesture-phases]], [[stagger-choreography]], [[motion-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[text-morph-engine]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[frame-rate-independence]], [[animated-hit-testing]], [[animation-removal-hazards]], [[momentum-projection]], [[react-native-motion]]
 
 ## Transition techniques — Jakub Antalik's catalog
 

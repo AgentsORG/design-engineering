@@ -9,7 +9,7 @@ This repository is MIT licensed; see [LICENSE](../LICENSE). It also contains or 
 ## Adapted work (paraphrased, not copied)
 
 - **tstack** by Theo Browne (MIT, github.com/t3dotgg/tstack, HEAD `1085050`). The `design-council` agent, `skills/design-engineering/scripts/council.mjs` and the shared loop rules in [docs/subagents.md](subagents.md) adapt its `council` and `sol-loop` skills to design review: cross-provider judges, per-category scores, a hidden threshold, staged judges and a scope guard. Copyright (c) 2026 Theo Browne; the MIT permission notice applies to the adapted portions.
-- **emilkowalski/skills** (MIT, github.com/emilkowalski/skills, commit `c8a7962`). Cited by name and commit in the nodes that draw on it.
+- **emilkowalski/skills** (MIT, github.com/emilkowalski/skills, commit `5206a95`). Cited by name and commit in the nodes that draw on it.
 - **Emil Kowalski's design-engineering practice, distilled by AgentsORG.** Paraphrased principles with attribution; no course material is reproduced.
 
 ## Strategies only

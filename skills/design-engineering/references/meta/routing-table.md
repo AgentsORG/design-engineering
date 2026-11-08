@@ -27,7 +27,8 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Decide whether something should animate at all | [[animation-decision-framework]] |
 | Pick easing / duration for one animation | [[easing-curves]], then [[duration-table]] |
 | Several parts move on one event and the whole feels busy or slow: drawer and items, badge and card, list and toast | [[motion-choreography]], then [[stagger-choreography]] for the gaps |
-| Build drag / swipe / momentum interactions | [[gesture-momentum]], [[spring-animations]] |
+| Build drag / swipe / momentum interactions | [[gesture-phases]], [[gesture-momentum]], [[spring-animations]] |
+| A drag trails the finger, jumps on release, ignores a flick or can't be caught mid-close | [[gesture-phases]] |
 | Rapid presses miss moving items; a dragged card slides under its neighbours on release | [[animated-hit-testing]] |
 | An animation lands differently at 30, 60 and 120 fps, or jumps after a stalled tab | [[frame-rate-independence]] |
 | The reading position jumps when content above it loads or reflows | [[scroll-anchoring]] |

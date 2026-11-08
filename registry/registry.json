@@ -757,6 +757,11 @@
           "target": "~/.agents/skills/design-engineering/references/motion/gesture-momentum.md"
         },
         {
+          "path": "skills/design-engineering/references/motion/gesture-phases.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/gesture-phases.md"
+        },
+        {
           "path": "skills/design-engineering/references/motion/hover-default-imperative.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/hover-default-imperative.md"

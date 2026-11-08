@@ -6,6 +6,21 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 Nothing yet.
 
+## [4.4.0] — 2026-11-08
+
+Emil Kowalski's new `gestures` skill, from the public emilkowalski/skills (MIT, `5206a95`).
+
+### Added
+
+- **`motion/gesture-phases`**: the two phases of every gesture: the element tracks the pointer 1:1 while it is down, and a spring seeded with the release velocity finishes the move. Also: dismiss on distance or velocity, a fast snap-back, bounce only after a drag, linked values derived from one motion value, nothing a gesture can touch on `@keyframes`, Vaul's 500ms sheet curve and the ~200ms floating-drawer override, dismissing along the entry axis, holds that are linear while held, and reduced motion that keeps tracking.
+- Two settled points: Motion's linear `dragElastic` is capped on long overscrolls (the Apple rubber band in `gesture-momentum` stays the hand-rolled default), and `touch-action` on a drag surface leaves only the cross axis to the browser (`none` only when the surface owns both).
+- Routing-table row, MOC entry, a vocabulary term, two gotchas, three evals (`loading`, `progressive-reads`).
+
+### Changed
+
+- `gesture-momentum` points to `gesture-phases` for the distance half of a dismiss test.
+- emilkowalski/skills is cited at `5206a95` in AGENTS.md, NOTICE and the README.
+
 ## [4.3.0] — 2026-11-08
 
 Lochie Axon's three libraries, read from source: skeletons measured from the content, text and numbers that morph, and haptics on the mobile web.

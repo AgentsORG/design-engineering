@@ -123,3 +123,5 @@
 {"query": "animate a price that changes from $1,204 to $1,318 so only the changed digits roll", "expected_nodes": ["text-morph-engine"], "forbidden_nodes": ["measured-skeletons", "haptic-feedback"]}
 {"query": "morph a status line between 'Processing transaction' and 'Transaction complete'", "expected_nodes": ["text-morph-engine", "shared-letter-morph"], "forbidden_nodes": ["svg-path-morphing"]}
 {"query": "add vibration feedback to my mobile web app's toggles and form submit", "expected_nodes": ["haptic-feedback", "web-haptics-reconciliation"], "forbidden_nodes": ["sound-generation-elevenlabs"]}
+{"query": "build a swipe-to-dismiss card that respects quick flicks and can be grabbed mid-animation", "expected_nodes": ["gesture-phases", "gesture-momentum"], "forbidden_nodes": ["text-morph-engine", "haptic-feedback"]}
+{"query": "fade the overlay behind my drawer as the user drags it closed", "expected_nodes": ["gesture-phases"], "forbidden_nodes": ["cross-blur-transitions"]}

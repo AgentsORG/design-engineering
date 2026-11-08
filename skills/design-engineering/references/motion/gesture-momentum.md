@@ -25,7 +25,7 @@ const onPointerUp = (e) => {
 };
 ```
 
-`0.11 px/ms` is roughly the threshold below which a release reads as "the user stopped" and above which it reads as "the user threw it." Tune for your context.
+`0.11 px/ms` is roughly the threshold below which a release reads as "the user stopped" and above which it reads as "the user threw it." Tune for your context. Velocity is half of a dismiss test; distance travelled is the other half ([[gesture-phases]]).
 
 Two samples make a noisy velocity: one late `pointermove` can halve or double it. Keep the last ~20 pointer samples and measure over the last ~100 ms before the release, timed from the event's `timeStamp`. On release the spring starts from that velocity toward its new destination, and the next press tests against that destination ([[animated-hit-testing]]).
 
