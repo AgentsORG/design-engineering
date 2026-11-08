@@ -38,6 +38,8 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Add depth — shadows, borders, radii | [[shadows-whisper]], [[border-radius]] |
 | Build a form that behaves | [[forms-validation]] |
 | Write empty / loading / error states | [[empty-loading-states]], [[states-are-the-work]] |
+| A skeleton that jumps when data lands, or that has to be redrawn by hand for every layout | [[measured-skeletons]] |
+| A price, counter, status line or sentence that changes and should morph, not swap | [[text-morph-engine]] (two short labels → [[shared-letter-morph]]) |
 | Write UI copy or error messages | [[copy-voice]] |
 | Review a UI diff before shipping | [[review-format]] + [[review-checklist]] (or spawn [[ui-reviewer]]) |
 | Review a diff that is *specifically* motion | [[motion-auditor]] |
@@ -68,6 +70,7 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Decide whether an interaction should make a sound | [[sound-decision-framework]] |
 | Design or generate a set of UI sounds | [[sound-palette]], then [[sound-generation-elevenlabs]] or [[sound-generation-open-source]] (or spawn [[sound-designer]]) |
 | Sync a sound to an animation, or fix one that feels late | [[sound-motion-sync]] |
+| Add haptics to a mobile web app, or decide which moments vibrate | [[haptic-feedback]], then [[web-haptics-reconciliation]] when the library is installed |
 | Plan a launch film — register, beats, when the name lands, endcard | [[launch-video-registers]], then [[launch-video-structure]] |
 | Time words, typed prompts, a cursor or an agent's wait in a launch film | [[launch-video-type]]; prompts, cursor and agent output → [[launch-video-ui-demo]] |
 | Make launch-film motion feel alive — settles, springs, blur, holds, rhythm | [[launch-video-motion]] |

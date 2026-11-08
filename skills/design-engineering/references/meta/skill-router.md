@@ -1,6 +1,6 @@
 ---
 title: skill-router
-summary: What `/design-engineering` does first — classify the phase and the material, resolve the design contract, then hand the job to the owning node, subagent, or installed companion skill (AgentsORG design, impeccable, HyperFrames, cinetic, scenario-kinetic-film, earshot, ElevenLabs, the transitions catalog, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills, fun-isometric, Stageshow, taste-skill on request). One or two owners, never five.
+summary: What `/design-engineering` does first — classify the phase and the material, resolve the design contract, then hand the job to the owning node, subagent, or installed companion skill (AgentsORG design, impeccable, HyperFrames, cinetic, scenario-kinetic-film, earshot, ElevenLabs, the transitions catalog, the shadcn CLI, diagram-design, tldraw, GSAP, better-icons, Jakub Krehel's interfaces skills, fun-isometric, Stageshow, web-haptics, taste-skill on request). One or two owners, never five.
 tags: [meta, routing, ecosystem, skills]
 ---
 
@@ -58,6 +58,7 @@ A companion is installed when its `SKILL.md` exists under `.agents/skills/`, `.c
 | Apple-style interface and motion work in depth: materials, fluid gestures, WWDC-grade springs | `apple-design` (`npx skills add emilkowalski/skills`) | The Apple numbers this graph keeps are in [[momentum-projection]], [[translucent-materials]] and [[spring-animations]]; the contract's tokens and [[pov]] still win |
 | React Native / Expo motion, or native Swift | `animate-expo` (RN/Expo) or `write-swift` (Swift language) from the same repo | This graph keeps the web rules and a short RN digest ([[react-native-motion]]); Swift language work is not design and stays with `write-swift` |
 | Sonner toasts: setup, styling, the classic bugs | `ask-sonner` from the same repo | Principles stay in [[sonner-principles]]; the usage digest is [[sonner-usage]] |
+| Haptic feedback on the mobile web: buttons, toggles, pickers, form results, gesture thresholds | web-haptics (Lochie Axon; `npm i web-haptics`, its `SKILL.md` alongside) | It owns the API and presets; whether a moment earns a haptic, its frame against motion and sound, the settings toggle and the device check stay here ([[haptic-feedback]]). Conflicts → [[web-haptics-reconciliation]] |
 | Fetching icons from a set | `better-icons` (Iconify, CLI or MCP) | One pack, passed as `--prefix` ([[icon-systems]]); token cleanup ([[svg-creation]]); check the set's license yourself; add its MCP server by hand pinned to a version npm has (`npm view better-icons version`; 1.0.4 on 2026-10-08), not through `setup`, which edits every agent's config |
 
 ## 5. A launch film, end to end

@@ -4,7 +4,23 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 ## [Unreleased]
 
-*Nothing yet.*
+Nothing yet.
+
+## [4.3.0] — 2026-11-08
+
+Lochie Axon's three libraries, read from source: skeletons measured from the content, text and numbers that morph, and haptics on the mobile web.
+
+### Added
+
+- **`components/measured-skeletons`**, from skullet 0.0.3 (MIT, `770cba4`): lay a sample render out unseen and draw the skeleton from it, one bar per line of text between the font's own ascender and descender (read with canvas `measureText`), one block per image or control. The order of shape sources (data on screen, last shown under an id, remembered, `sample`, plain children, generic lines), remembered shapes that keep layout but never content, and the `smart` reveal table: at once under 150ms or mid-gesture, a 120ms crossfade for a refetch, whole when small, else row by row over 320ms. One shimmer clock for the page, timed per 1280px.
+- **`motion/text-morph-engine`**, from torph 0.1.3 (MIT, `d79a5aa`): words aligned before characters, character morphs only above 40% similarity, runs of six or more replaced characters receding as one shape at 0.8, fades as shares of the duration, numbers by place value (digits from above, symbols from below, a block-axis clip), strict number detection, caret matching for inputs, a container that keeps its speed when interrupted, and the screen-reader copy.
+- **`sound/haptic-feedback`** and **`sound/web-haptics-reconciliation`**, from web-haptics 0.0.6 (MIT, `7904ed1`): the notification, impact and selection patterns with their measured durations and intensities, when a haptic fires (the visual's frame, the async result, a threshold once), Android's PWM intensity and the iOS Safari switch route, and what only a real phone can check. web-haptics ships its own `SKILL.md`, so it is routed as a companion; six conflicts with its rules are settled (no haptic on every primary button or on a modal opening, never the 1000ms `buzz` in product UI, one settings toggle beside the sound mute).
+- Router and routing-table rows, MOC entries, four gotchas, three vocabulary terms, six evals (`progressive-reads`, `loading`).
+
+### Changed
+
+- The Sound cluster is now **Sound and haptics** in SKILL.md.
+- `empty-loading-states`, `shared-letter-morph` and `react-native-motion` point to the new nodes where they stop.
 
 ## [4.2.3] — 2026-11-07
 

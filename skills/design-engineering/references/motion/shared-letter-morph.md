@@ -80,6 +80,8 @@ Gold example: `stageshow/kit/motion/Roll.tsx` with `Roll.css`. Head and tail hol
 Benji's call differs: Stageshow's `Roll` splits numbers by character ("$0.01" → "$0.0098" keeps "$0.0") but moves words whole and never splits a word, so its button would crossfade "Continue" → "Confirm" as one word while the width eases.
 Check: step the change at 40ms. The head's pixels match in every frame, and the button beside it moves with the width instead of jumping (`stageshow/teaching/relationships.tsx`, adjacent action).
 
+Past two short labels (a status line, a price, a sentence), use the engine rules in [[text-morph-engine]]: words aligned first, characters only inside similar words, numbers by place value.
+
 ## Gotcha
 
 The morph fails if you re-render the parent on state change with no AnimatePresence — React unmounts the old span and mounts a new one with no animation. Wrap the morphing text in `AnimatePresence` and use stable keys (index + char, not random uuid).

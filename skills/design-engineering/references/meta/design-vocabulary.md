@@ -290,6 +290,8 @@ The building blocks. Their state behaviour is where craft lives — see [[states
 - **Breadcrumb** — a location trail in a hierarchy; navigate back at depth without the browser button. → [[url-as-state]]
 - **Pagination** — page controls for lists too long to load at once; infinite scroll is the tradeoff alternative.
 - **Skeleton** — a placeholder holding content's shape while it loads; better than a spinner for list/page loads. → [[empty-loading-states]]
+- **Measured skeleton** — one drawn from a sample of the real content laid out unseen, so it takes exactly the space the content will. → [[measured-skeletons]]
+- **Place-value morph** — a number that changes by rolling only the digits whose place changed, the rest held still. → [[text-morph-engine]]
 - **Spinner** — an indeterminate loader; fine for short action waits, a skeleton wins for page/list loads. → [[empty-loading-states]]
 - **Avatar** — a small user image; needs a fallback (initials or icon) when the image fails. → [[avatar-systems]]
 - **Card** — a contained surface grouping content; inner radius < outer, and a fully-linked surface kills text selection. → [[cards-design]]
@@ -317,6 +319,7 @@ The words for what an interface sounds like. This category is the skill's own ex
 - **Pre-roll** — silence before a file's transient; a sync bug disguised as an asset. → [[sound-motion-sync]]
 - **Whoosh / riser / stinger / braam** — the motion-graphics vocabulary: movement, tension build, a brand hit, a cinematic drone. Product UI uses none of them. → [[launch-video-sound]]
 - **Audio-haptic harmony** — Apple's term for sound, haptic, and visual describing the same physical event at the same instant. → [[sound-motion-sync]]
+- **Haptic families** — notification (success, warning, error), impact (light, medium, heavy) and selection (a detent tick), after iOS's three feedback generators. → [[haptic-feedback]]
 
 ## 14 — Launch film
 

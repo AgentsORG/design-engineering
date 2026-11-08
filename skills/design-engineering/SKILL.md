@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: AgentsORG
-  version: "4.2.3"
+  version: "4.3.0"
   graph: true
   subagents: plugin/agents/
   soul: docs/SOUL.md
@@ -59,7 +59,7 @@ How to think about taste, delight, and the difference between marketing and prod
 
 The largest cluster. Animation is the most overused tool in modern UI; this cluster tells you when *not* to animate as much as when to.
 
-- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[motion-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[frame-rate-independence]], [[animated-hit-testing]], [[animation-removal-hazards]], [[momentum-projection]], [[react-native-motion]]
+- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[stagger-choreography]], [[motion-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[text-morph-engine]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[frame-rate-independence]], [[animated-hit-testing]], [[animation-removal-hazards]], [[momentum-projection]], [[react-native-motion]]
 
 ## Transition techniques — Jakub Antalik's catalog
 
@@ -70,11 +70,11 @@ A subset of motion focused on **canonical** transitions for common UI archetypes
 - [[distance-falloff-propagation]] — Per-element lift via `lift * pow(falloff, distance)` for grouped hover.
 - [[multi-segment-shake]] — Form-error shake at 0%, 28.57%, 57.14%, 78.57%, 100% over 280ms.
 
-## Sound — when an interface should be heard, and how
+## Sound and haptics — when an interface should be heard or felt, and how
 
-The sense the web forgot. Product UI is silent by default; a launch video is the reverse. This cluster decides which, designs one material family, syncs it to motion, and generates the files — ElevenLabs on demand, or open-weight / procedural / CC0 without a key.
+The sense the web forgot. Product UI is silent by default; a launch video is the reverse. This cluster decides which, designs one material family, syncs it to motion, and generates the files — ElevenLabs on demand, or open-weight / procedural / CC0 without a key. On a phone the same event can also be felt: a brief haptic on the same frame, never the only feedback.
 
-- `[[MOC-sound]]` → [[sound-decision-framework]], [[sound-motion-sync]], [[sound-palette]], [[sound-spec]], [[sound-playback-web]], [[sound-generation-elevenlabs]], [[sound-generation-open-source]], [[launch-video-sound]], [[launch-video-music]], [[sound-from-motion]], [[designed-sfx-anatomy]], [[earshot-reconciliation]], [[sound-licensing]]
+- `[[MOC-sound]]` → [[sound-decision-framework]], [[sound-motion-sync]], [[sound-palette]], [[sound-spec]], [[sound-playback-web]], [[sound-generation-elevenlabs]], [[sound-generation-open-source]], [[launch-video-sound]], [[launch-video-music]], [[sound-from-motion]], [[designed-sfx-anatomy]], [[earshot-reconciliation]], [[sound-licensing]], [[haptic-feedback]], [[web-haptics-reconciliation]]
 
 ## Launch video — planning, cutting, scoring and reviewing a launch film
 
@@ -122,7 +122,7 @@ The container, not the component. Marketing especially benefits from custom-per-
 
 The atoms users actually touch. Their behavior is where craft lives.
 
-- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[cards-design]], [[forms-validation]], [[forms-behavior]], [[touch-and-focus]], [[ui-polish-pass]], [[component-api-design]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]], [[dashboard-tells]], [[screen-reader-announcements]], [[keyboard-patterns]], [[wcag-thresholds]], [[strings-and-locale]], [[destructive-actions]], [[sonner-usage]], [[presence-signals]], [[drawing-toolbar]]
+- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[measured-skeletons]], [[cards-design]], [[forms-validation]], [[forms-behavior]], [[touch-and-focus]], [[ui-polish-pass]], [[component-api-design]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]], [[dashboard-tells]], [[screen-reader-announcements]], [[keyboard-patterns]], [[wcag-thresholds]], [[strings-and-locale]], [[destructive-actions]], [[sonner-usage]], [[presence-signals]], [[drawing-toolbar]]
 
 ## Anti-patterns — what AI-generated UI gives away
 
@@ -134,7 +134,7 @@ What looks "AI default" and what to do instead. High-value because it's about de
 
 Procedural rules and growing files. `[[review-format]]` is mandatory when doing UI code reviews.
 
-- [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw, GSAP, better-icons, fun-isometric, Stageshow).
+- [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw, GSAP, better-icons, fun-isometric, Stageshow, web-haptics).
 - [[ship-check]] — The whole-app production pass behind `ship`: fix rather than report, verified vs needs-hardware, the severity tree, fix order. Baseline in [[production-baseline]].
 - [[directing-agents]] — Steering an agent: friction where judgment matters, a named concept instead of an adjective, one or two passes, fix the system not the screen, the papercut pipeline.
 - [[routing-table]] — Intent → entry-node router with the four postures (build / judge / decide / name). Open this before anything else on a single question.

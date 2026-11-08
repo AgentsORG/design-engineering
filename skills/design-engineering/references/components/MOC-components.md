@@ -12,6 +12,7 @@ Components are where craft lives because users *touch* them. Their states are wh
 
 - [[hover-states-subtle]] — Hover is not lift-and-shadow. 1px shifts. Pressed states are for B2C. How to layer disabled.
 - [[empty-loading-states]] — Empty states must direct action, not just say "nothing here." Skeletons hint at structure; spinners under 3s; progress bars over 3s.
+- [[measured-skeletons]] — Draw the skeleton from the content: a sample laid out unseen, one bar per line between the font's ascender and descender, the shape from the best source on hand, the reveal decided as data lands, one shimmer clock. From Lochie Axon's skullet.
 - [[icon-systems]] — Never mix icon packs. 10–32px range. Match icon stroke to font weight. Lucide is overused; consider Phosphor, Hugeicons.
 - [[cards-design]] — Don't nest cards. Design card interiors intentionally — whitespace, hover-only actions, subtle icons.
 - [[forms-validation]] — Validate at input, not on submit. Soft validation while typing, hard validation on blur. Inline beats summaries.

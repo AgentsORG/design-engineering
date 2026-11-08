@@ -37,6 +37,8 @@ Two surfaces share this cluster and have opposite defaults. **Product UI** is si
 - [[designed-sfx-anatomy]] — What a designed effect is made of, measured: one gesture, its own band, a hard end, a sync point per kind. Targets for whoosh, riser, impact, sub drop, sting, ding, pop-in, click, typing and zip, tuned to the track's key.
 - [[earshot-reconciliation]] — earshot, the agent's ears: describe, match, trim, realness, a listening timeline and scorecard, a code-rendered effects bank. What it owns, and where this graph's values win.
 - [[sound-licensing]] — What may go into a commercial, edited, published film: CC0 and CC BY yes; NC, ND and SA no; verify on the item's page; Content ID; credits.
+- [[haptic-feedback]] — The felt channel on the mobile web: notification, impact and selection patterns, fired on the visual's frame, matched to significance, never the only feedback; Android PWM and the iOS Safari switch route. From Lochie Axon's web-haptics.
+- [[web-haptics-reconciliation]] — The web-haptics companion skill owns the API and presets; this graph owns whether a moment earns a haptic. Six conflicts settled.
 
 ## Shipped tooling
 

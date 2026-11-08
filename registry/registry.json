@@ -292,6 +292,11 @@
           "target": "~/.agents/skills/design-engineering/references/components/keyboard-patterns.md"
         },
         {
+          "path": "skills/design-engineering/references/components/measured-skeletons.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/measured-skeletons.md"
+        },
+        {
           "path": "skills/design-engineering/references/components/optimistic-updates.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/optimistic-updates.md"
@@ -827,6 +832,11 @@
           "target": "~/.agents/skills/design-engineering/references/motion/stagger-choreography.md"
         },
         {
+          "path": "skills/design-engineering/references/motion/text-morph-engine.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/text-morph-engine.md"
+        },
+        {
           "path": "skills/design-engineering/references/motion/transform-mastery.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/transform-mastery.md"
@@ -917,6 +927,11 @@
           "target": "~/.agents/skills/design-engineering/references/sound/earshot-reconciliation.md"
         },
         {
+          "path": "skills/design-engineering/references/sound/haptic-feedback.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/haptic-feedback.md"
+        },
+        {
           "path": "skills/design-engineering/references/sound/launch-video-music.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/sound/launch-video-music.md"
@@ -970,6 +985,11 @@
           "path": "skills/design-engineering/references/sound/sound-spec.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/sound/sound-spec.md"
+        },
+        {
+          "path": "skills/design-engineering/references/sound/web-haptics-reconciliation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/sound/web-haptics-reconciliation.md"
         },
         {
           "path": "skills/design-engineering/references/surface/MOC-surface.md",

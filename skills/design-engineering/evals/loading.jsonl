@@ -73,3 +73,5 @@
 {"query": "grade this designer's pull request and give me a report card on craft and motion", "should_load": true, "reason": "grade: cmd-grade + grading-rubric + design-moves"}
 {"query": "grade my history essay out of ten", "should_load": false, "reason": "grading prose, not a design episode"}
 {"query": "set up a council of advisors for my startup board", "should_load": false, "reason": "a business council, not design judges"}
+{"query": "which interactions in my PWA should trigger haptic feedback?", "should_load": true, "reason": "haptic-feedback + web-haptics-reconciliation (the felt channel of the sound cluster)"}
+{"query": "make my loading skeletons match the real layout exactly", "should_load": true, "reason": "measured-skeletons + empty-loading-states"}

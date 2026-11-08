@@ -119,3 +119,7 @@
 {"query": "score this page against reference products with a panel of model judges", "expected_nodes": ["grading-rubric"], "forbidden_nodes": ["launch-video-review"]}
 {"query": "which design decisions did the agent make well in this diff", "expected_nodes": ["design-moves", "grading-rubric"], "forbidden_nodes": []}
 {"query": "the drawer, its items and the badge all animate at once when it opens and it feels busy", "expected_nodes": ["motion-choreography"], "forbidden_nodes": ["spring-animations"]}
+{"query": "my skeleton loader jumps when the real content arrives, can it be generated from the component", "expected_nodes": ["measured-skeletons", "empty-loading-states"], "forbidden_nodes": ["text-morph-engine"]}
+{"query": "animate a price that changes from $1,204 to $1,318 so only the changed digits roll", "expected_nodes": ["text-morph-engine"], "forbidden_nodes": ["measured-skeletons", "haptic-feedback"]}
+{"query": "morph a status line between 'Processing transaction' and 'Transaction complete'", "expected_nodes": ["text-morph-engine", "shared-letter-morph"], "forbidden_nodes": ["svg-path-morphing"]}
+{"query": "add vibration feedback to my mobile web app's toggles and form submit", "expected_nodes": ["haptic-feedback", "web-haptics-reconciliation"], "forbidden_nodes": ["sound-generation-elevenlabs"]}

@@ -39,6 +39,7 @@ Press feedback is `scale: 0.97` in 100–150ms on press-in; commit on press-out.
 ## Haptics
 
 `selectionAsync` for a detent tick, `impactAsync(Light)` when something snaps home, `notificationAsync` for success or error. Fire on the causal frame, once per user action, never per frame or on an entrance the user didn't cause, and never as the only feedback.
+The same families on the mobile web, with the Android and iOS Safari routes: [[haptic-feedback]].
 
 ## Reference
 
