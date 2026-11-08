@@ -82,6 +82,7 @@ Good: the window, "Recent orders" and the column heads are real from frame one; 
 ```
 
 Gold example: `stageshow/examples/loading/` (four 54px order rows; pressing Refresh is the seen cause of the reset back to skeleton).
+To stop hand-drawing these, measure them from the content ([[measured-skeletons]]): skullet's default is a page-wide shimmer on one clock, not a pulse, and its `smart` reveal arrives row by row with the same 150ms hold this node sets.
 Benji's call differs: his skeleton carries a faint, slow shimmer (a 1.6s sweep) that stops the moment its row resolves, where this node allows only a pulse; either way, one quiet motion.
 Check: film the resolve at 40 to 80ms steps and lay the last skeleton frame over the first loaded one: no word, avatar or badge moves a pixel, and nothing above the data ever showed a bar.
 
