@@ -6,6 +6,24 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 Nothing yet.
 
+## [4.5.0] — 2026-11-09
+
+Meta's Astryx design system, shadcn/ui and its new AI Elements patterns, read from source.
+
+### Added
+
+- **`components/press-and-pending-states`**, from Astryx (MIT, `9f55320`): the press paints the part the hand moves, only while held, and release restores the resting pixels; disabled never answers; a persistent selection outranks the press; pending keeps size and name with `aria-busy`; elevation belongs to the painted surface and no state changes it; slide-to-lift touch action groups.
+- **`motion/hover-intent-timing`**: entry delay and exit guard on everything a hover reveals, instant hand-off inside a group, keyboard immediate, touch never gated, `delay` / `hideDelay`.
+- **`motion/reduced-motion-by-pointer`**: no travel, scale or spring under reduced motion; a ≤ 200 ms cross-fade on a coarse pointer, immediate otherwise; values and colours at once; drags and momentum keep tracking; themes may only tighten it.
+- **`surface/overlay-dismissal-stack`**: one stack for every dismissible layer: Escape and back reach the top one only, content claims Escape first, IME composition is not dismissal, a backdrop press starts and ends on the backdrop, the top layer consumes its outside press, focus returns without scrolling.
+- **`typography/mobile-type-pin`**: body text to 16px on phones without inflating headings: pin one role by the desktop ratio and re-derive the scale, width and coarse pointer together, never the root size.
+- **`components/reorder-insertion-cue`**: reorder from a handle, a quiet preview, an accent insertion line while the other rows stay still, one commit, keyboard parity.
+- **`meta/astryx-reconciliation`**: Astryx as a companion (`astryx build`, `template`, `component`, its MCP server), its on-system rules, current versus draft records, five conflicts settled.
+- **`components/streaming-chat-scroll`**, from shadcn/ui's Message Scroller (MIT, `8ab2771`): never move the reader against their intent: follow only at the live edge, anchor the new turn, Jump to latest, reopen at the last meaningful turn, `role="log"`, append-stable streaming type.
+- **`components/agent-trace-states`**, from shadcn/ui's AI Elements: an agent's work as one trace, every AI SDK tool state mapped, reasoning open while it runs unless toggled, approval as a question outside the trace, plans updated in place, sources deduped; Astryx's open agentic-state questions as the review list.
+- **`meta/shadcn-reconciliation`**: the shadcn skill, CLI, MCP and registry as the owner of components and bases; the token pairs, the rules worth enforcing in any shadcn app, registry safety, six conflicts settled, and AI Elements' move from vercel/ai-elements into shadcn/ui.
+- Router rows for Astryx, AI Elements and the shadcn skill; ten routing-table rows; MOC entries; four vocabulary terms; four gotchas; ten evals (`loading`, `progressive-reads`).
+
 ## [4.4.0] — 2026-11-08
 
 Emil Kowalski's new `gestures` skill, from the public emilkowalski/skills (MIT, `5206a95`).
