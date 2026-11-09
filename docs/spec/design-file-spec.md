@@ -54,7 +54,7 @@ It differs from `DESIGN.md` (Google Labs, mirrored at [`design-md-spec.md`](desi
 
 ## Discovery — nearest wins
 
-Walk parent directories from the edited file or cwd. Prefer a literal `.design`; else exactly one `*.design` in that directory; if several, ask which system. Resolve `extends` depth-first, child overriding parent. A monorepo package may own a nearer `.design` that overrides the repo root.
+Walk parent directories from the edited file or cwd. Match the extension case-insensitively (the usual form is `<name>.DESIGN`, e.g. `campusbinge.DESIGN`). Prefer a literal `.design`; else exactly one `*.DESIGN` in that directory; if several, ask which system. Resolve `extends` depth-first, child overriding parent. A monorepo package may own a nearer `.design` that overrides the repo root.
 
 ## Precedence
 

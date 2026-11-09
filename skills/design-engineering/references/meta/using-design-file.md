@@ -22,7 +22,7 @@ So: if `.design` sets `tokens.motion.duration.base: 400ms`, you use 400ms even t
 
 ## Detection
 
-Walk up from the file you're editing. Prefer a literal `.design`; otherwise exactly one `*.design` in that directory. Several candidates → ask which system. Resolve `extends` depth-first, child overriding parent. In a monorepo, a package's nearer contract beats the repo root.
+Walk up from the file you're editing. Match the extension case-insensitively: the usual form is a named `<name>.DESIGN` (e.g. `campusbinge.DESIGN`). Prefer a literal `.design`; otherwise exactly one `*.DESIGN` in that directory. Several candidates → ask which system. Resolve `extends` depth-first, child overriding parent. In a monorepo, a package's nearer contract beats the repo root.
 
 If UI work is requested and no contract exists, **offer to bootstrap — don't invent an untracked system.** Scan adjacent signals first: design notes in `AGENTS.md`, an existing `DESIGN.md` (see [[using-design-md]]), global CSS, Tailwind config, `components.json`. Extract the whole visual vocabulary — density, elevation language, motion character, copy tone — not just hex values.
 
