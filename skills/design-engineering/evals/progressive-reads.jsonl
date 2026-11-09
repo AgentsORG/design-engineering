@@ -131,3 +131,11 @@
 {"query": "what should replace my slide-in panel animation when reduced motion is on, on phone and desktop", "expected_nodes": ["reduced-motion-by-pointer", "prefers-reduced-motion"], "forbidden_nodes": ["spring-animations"]}
 {"query": "drag to reorder rows in a settings list, accessible by keyboard", "expected_nodes": ["reorder-insertion-cue"], "forbidden_nodes": ["drawing-toolbar"]}
 {"query": "set up shadcn components and theme tokens in a new Next.js app", "expected_nodes": ["shadcn-reconciliation"], "forbidden_nodes": ["astryx-reconciliation"]}
+{"query": "the price needs to animate when it changes, what should I install", "expected_nodes": ["library-picks", "dependency-discipline"], "forbidden_nodes": ["prototype-picker"]}
+{"query": "justify a settings screen redesign with Apple's design principles", "expected_nodes": ["apple-design-principles", "information-architecture"], "forbidden_nodes": ["spring-animations", "gesture-phases"]}
+{"query": "which tool should I use for a press scale vs a pull to refresh vs a celebration animation in Expo", "expected_nodes": ["expo-tool-ladder", "react-native-motion"], "forbidden_nodes": ["gesture-momentum"]}
+{"query": "custom slide transition in Expo Router but the back swipe looks like a different animation", "expected_nodes": ["expo-navigation-motion"], "forbidden_nodes": ["momentum-projection"]}
+{"query": "put a link inside a Sonner toast and dismiss all toasts at once", "expected_nodes": ["sonner-api-surface"], "forbidden_nodes": ["sonner-principles"]}
+{"query": "what worst-case data should I test this invoice list with beyond long names", "expected_nodes": ["worst-case-values", "stress-scenarios"], "forbidden_nodes": ["prototype-picker"]}
+{"query": "which of Emil's skills should I run after animating this dialog", "expected_nodes": ["upstream-skill-lifecycle"], "forbidden_nodes": ["prototype-picker"]}
+{"query": "write a docs page for our skill with a before and after of the same UI", "expected_nodes": ["skill-docs-pages", "skill-writing-rules"], "forbidden_nodes": ["design-system-docs"]}

@@ -24,6 +24,7 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | You want to… | Open first |
 |---|---|
 | Understand why a screen feels flat or assembled | [[feeling-right]] |
+| The principles under Apple-style UI: feedback kinds, wayfinding, controls beside what they change | [[apple-design-principles]] |
 | Decide whether something should animate at all | [[animation-decision-framework]] |
 | Pick easing / duration for one animation | [[easing-curves]], then [[duration-table]] |
 | Several parts move on one event and the whole feels busy or slow: drawer and items, badge and card, list and toast | [[motion-choreography]], then [[stagger-choreography]] for the gaps |
@@ -33,7 +34,7 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | An animation lands differently at 30, 60 and 120 fps, or jumps after a stalled tab | [[frame-rate-independence]] |
 | The reading position jumps when content above it loads or reflows | [[scroll-anchoring]] |
 | A dropdown hides under the header; `z-index: 9999` | [[z-index-strategy]] |
-| Fix jank, stutter, or layout thrash | [[transform-opacity-only]], then [[debugging-animations]] |
+| Fix jank, stutter, dropped frames, a drag that gets laggy | [[performance-discipline]] (diagnosis order first), then [[transform-opacity-only]] and [[debugging-animations]] |
 | Pick or fix a typeface, wrapping, tracking | [[typography-humanity]], [[line-length-tracking]] |
 | Build a palette, fix contrast, derive dark mode | [[color-monochromatic]], [[contrast-and-color-scheme]], [[dark-mode]] |
 | Add depth — shadows, borders, radii | [[shadows-whisper]], [[border-radius]] |
@@ -57,6 +58,7 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Plurals, string concatenation, dates and currency per locale; button and link labels | [[strings-and-locale]] |
 | Delete, archive, revoke — undo or confirm, and the dialog's words | [[destructive-actions]] |
 | Render a component under worst-case content and widths, or every state it has | [[stress-scenarios]] |
+| Worst-case values beyond long names: numbers, time, page sizes, enums, pasted content, broken media | [[worst-case-values]] |
 | "How did they build that?" — explain another site, effect or screenshot | [[reading-others-interfaces]] |
 | Audit "does this look AI-generated?" | [[ai-default-tells]] (or spawn [[anti-pattern-scanner]]) |
 | Build a marketing / landing surface | [[marketing-vs-product-ui]] |
@@ -93,6 +95,7 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Listen to a sound or a film's soundtrack with a tool; pick or trim a recording | [[earshot-reconciliation]] |
 | Check whether a recording or track may go in a launch film; write its credit | [[sound-licensing]] |
 | Decide which skill or companion should own a job | [[skill-router]] |
+| Which of Emil's skills comes next, or which verb owns an upstream skill's job | [[upstream-skill-lifecycle]] |
 | Build an OKLCH palette or ramp, repair contrast by lightness | [[color-scales-oklch]] |
 | Fix pinched corners, harsh borders, dark-mode cards vanishing | [[depth-and-nesting]] |
 | Set up a type scale, leading, tracking, font loading | [[type-scale-and-rhythm]] |
@@ -114,9 +117,11 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Draw or review an architecture, flow, sequence or chart figure | [[diagram-craft]]; with diagram-design and a `.design` → [[diagram-design-reconciliation]] |
 | Edit a whiteboard, a planning board, or a `.tldraw` / `.tldr` file | [[tldraw-canvas]] |
 | Explore several directions before deciding | [[prototype-picker]] |
+| Pick one library for a job that is mostly edge cases: OTP, toasts, command menu, animated numbers, charts | [[library-picks]], then [[dependency-discipline]] |
 | Stop re-prompting; build the tool that makes the artifact | [[build-a-tool]]; no target yet → [[vibe-to-generator]] |
 | Write design docs an agent can follow | [[design-system-docs]] |
 | Write or fix a skill file, or [[pov]] | [[skill-writing-rules]] |
+| Document a skill or verb for people: pairings, a before/after, example prompts | [[skill-docs-pages]] (docs for agents → [[design-system-docs]]) |
 | Measure whether a change made output better | [[design-benchmarks]] |
 | Push a screen, page or film until independent model judges agree it is good | [[grading-rubric]], then `/design-engineering council` ([[cmd-council]]; or spawn [[design-council]], with [[design-judge]] in the Claude seat) |
 | Grade a design episode, human or agent, or compare runs with and without the skill | [[grading-rubric]] + [[design-moves]], then `/design-engineering grade` ([[cmd-grade]]; or spawn [[design-grader]]) |
@@ -129,7 +134,10 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Small caps, slashed zero, stylistic sets, variable axes, stroked text | [[opentype-features-and-axes]] |
 | Colours out of sRGB, P3, migrating hex/HSL to OKLCH | [[oklch-gamut-and-migration]] |
 | React Native or Expo motion | [[react-native-motion]] |
+| Which Expo or Reanimated tool for this motion, cheapest first | [[expo-tool-ladder]] |
+| Expo Router screen transitions: push, modal or form sheet, detents, the back swipe | [[expo-navigation-motion]] |
 | Set up or fix Sonner toasts | [[sonner-usage]] (principles → [[sonner-principles]]) |
+| A Sonner call or option the usage digest lacks; a toast that never closes or swipes the wrong way | [[sonner-api-surface]] |
 | Steer an agent: prompts, how many passes, fixing the system not the screen, papercuts | [[directing-agents]] |
 
 ## Rules

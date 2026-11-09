@@ -23,6 +23,18 @@ Evidence: 29 Skale pieces (28 client films and the 2025 reel), 18 acclaimed film
 
 Around the film: [[launch-video-formats]] for the loop, the sting and the vertical cuts; [[cinetic-reconciliation]] when cinetic builds it in Remotion; [[scenario-kinetic-reconciliation]] when scenario-kinetic-film builds a beat-cut type teaser as one page; [[film-as-function-of-time]] for any film rendered from code (sub-frame motion blur, the beat grid fitted to the track, the delivery gates).
 
+## A film, end to end
+
+This graph directs the film and HyperFrames builds it. When the sound is derived from the motion and there is no stock bed or voice-over, host the build in HyperFrames' `general-video` with `flow: companion`. `product-launch-video` runs its own capture, voice-over and library-music pipeline, so use it only when the user wants that pipeline.
+
+1. **Contract, then taste.** `frame.md` → `design.md` → `DESIGN.md` ([[using-design-md]]). Then [[pov]], which names the default register for an unspecified launch film.
+2. **Decide the film.** Pick the register first ([[launch-video-registers]]), then [[launch-video-structure]], [[launch-video-type]] and [[launch-video-ui-demo]].
+3. **Write the plan before the timeline.** Record the motion ([[launch-video-motion]]) and one ledger row per seam ([[launch-video-seams]], [[launch-video-cuts]]) in `STORYBOARD.md` and `ledger.json`. Build and gate it in HyperFrames (`check` must pass); inside the project, [[hyperframes-reconciliation]] settles value conflicts.
+4. **Lock the picture, then score it.** Write one cue per contact frame and render the stem with `sound-sheet.mjs` ([[sound-from-motion]], [[launch-video-sound]]); designed effects follow [[designed-sfx-anatomy]], and any recording you use passes [[sound-licensing]].
+5. **Measure the render against its register** before anyone calls it done ([[launch-video-review]], or spawn [[launch-film-analyst]]); with earshot installed, read its `timeline` and `sheet` too ([[earshot-reconciliation]]). Loops, stings and vertical cuts follow [[launch-video-formats]].
+
+This repo's own launch film, `docs/demo/hyperframes/`, is the worked example: its `STORYBOARD.md`, `ledger.json` and `assets/sfx/cues.json` follow these five steps.
+
 ## What every register keeps
 
 - No dead cut (a settled frame followed by a scene that waits): the outgoing scene is still moving on the cut frame, or the incoming frame acts within ~0.3-0.4 s. Hard cuts are fine (26/29 Skale and 14/18 acclaimed films cut); a crossfade fails only when its midpoint exposes a ground neither scene has (the dip law, [[launch-video-cuts]]); a dip through a shared ground, or a straight mix of the two frames, is fine (11/29 Skale and 6/18 acclaimed films dip or dissolve).
@@ -33,7 +45,7 @@ Around the film: [[launch-video-formats]] for the loop, the sting and the vertic
 
 ## Who builds it
 
-HyperFrames builds and gates the film: for a launch piece, `/hyperframes` routes to `product-launch-video`, `motion-graphics` or `general-video`, and to `music-to-video` when a track's beat grid drives the piece. This cluster decides the register, beats and type cadence, and owns the sound; it also authors seams and cuts, but inside a HyperFrames project the seam stamp's eases, zoom values and exit timings win. Routing between the two lives in [[skill-router]], and [[hyperframes-reconciliation]] names the value to use for every other conflict.
+HyperFrames builds and gates the film: for a launch piece, `/hyperframes` routes to `product-launch-video`, `motion-graphics` or `general-video`, and to `music-to-video` when a track's beat grid drives the piece. This cluster decides the register, beats and type cadence, and owns the sound; it also authors seams and cuts, but inside a HyperFrames project the seam stamp's eases, zoom values and exit timings win. The end-to-end steps are above; routing to other engines lives in [[skill-router]], and [[hyperframes-reconciliation]] names the value to use for every other conflict.
 
 ## Cross-cluster
 

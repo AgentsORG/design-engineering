@@ -19,6 +19,8 @@ The cluster that answers "why bother." Use when the user asks why something feel
 - [[states-are-the-work]] — The empty, loading, error, partial, offline, permission-denied states are 80% of the actual product work — the "happy path" is the easy 20%.
 - [[data-is-content]] — Tables, charts, lists, dashboards deserve the same typography / alignment / whitespace care as marketing prose. Data display *is* design.
 - [[dependency-discipline]] — Every dependency is a tax. Replicate simple utilities. Draw shapes in CSS. Prefer native browser APIs. The bundle is design.
+- [[library-picks]] — When a job is mostly edge cases (animated digits, OTP, primitives, virtualization, drag and drop), install one maintained pick from a short trusted list; one answer per task, never a menu, plus the code smells that mean a package exists. Emil Kowalski's pick-ui-library.
+- [[apple-design-principles]] — Apple's eight principles (Purpose, Agency, Responsibility, Familiarity, Flexibility, Simplicity-not-minimalism, Craft, Delight) serving four human needs, with the tactics under them: four kinds of feedback, wayfinding, mapping, specific labels. Via Emil Kowalski's apple-design.
 - [[pointing-beats-describing]] — Precise machine-readable selection (selectors, file paths, coordinates) outperforms prose when feedback goes to an AI agent. Benji Taylor's framing.
 - [[articulate-precisely]] — Name the phenomenon exactly and say why it works; precise vocabulary is what turns taste into a rule an agent can follow. Its lexicon is [[design-vocabulary]]. Emil Kowalski & Glenn Carstens-Peters (Index).
 

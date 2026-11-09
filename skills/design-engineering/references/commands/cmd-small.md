@@ -24,15 +24,15 @@ Sub-modes of `options`:
 
 ## /design-engineering pick "a task"
 
-Aliases: `library`. Name the task, not the library the user named. Read `package.json` first: never add a competitor to something already installed. Recommend one maintained library, with its install line and the reason, and say so when the best fit is off your trusted list. If a few lines of code would do, say that instead ([[dependency-discipline]]).
+Aliases: `library`. Name the task, not the library the user named. Read `package.json` first: never add a competitor to something already installed. If what is installed is off the list, name the listed pick in one line and keep the installed one unless the user asks to switch. Otherwise recommend one maintained library from [[library-picks]], with its install line and the reason, and say so when the best fit is off that list. If a few lines of code would do, say that instead ([[dependency-discipline]]).
 
 ## /design-engineering name "the thing"
 
-Aliases: `word`, `vocab`. **Posture: name.** Give the precise term from [[design-vocabulary]] and the node that goes deeper, in one line, then stop. Write no code.
+Aliases: `word`, `vocab`. **Posture: name.** Give the precise term from [[design-vocabulary]] and the node that goes deeper, in one line, then stop. Write no code. When the term has a known trap, add one `Avoid:` line after it. When two terms compete, lead with the best fit and add at most two alternates, each with how it differs. If nothing fits exactly, give the closest word and say it is approximate, or build it from lexicon words ("a stagger of scale-in entrances"). Never invent a term.
 
 ## /design-engineering which [job]
 
-Aliases: `route`, `who`. Say which node, subagent or installed companion owns the job, and why, in at most three lines ([[skill-router]]). Do not do the job.
+Aliases: `route`, `who`. Say which node, subagent or installed companion owns the job, and why, in at most three lines ([[skill-router]]). Do not do the job. Asked which of Emil's skills comes after the current one, read the row in [[upstream-skill-lifecycle]] and name the next stage.
 
 ## /design-engineering agentation
 
@@ -41,3 +41,9 @@ The Session-2 fix loop ([[agentation-workflow]]). Pull annotations from the Agen
 ## /design-engineering pov [fork | gotcha "what went wrong"]
 
 `fork`: produce a diff-ready [[pov]], short and opinionated, that the installer can adopt. `gotcha`: draft one append-only line for [[gotchas]] in its dated format: specific, actionable, linked to the owner node. Never overwrite either file without the user's yes. You may delegate to `pov-curator` where the host has it.
+
+## Hand-offs
+
+- A word settled (`name`) or a direction kept (`options`) and the motion still to build → [[cmd-motion]].
+- The kept variant before it is integrated → [[cmd-review]]; winning the picker is not passing review.
+- A `pick` that lands on Sonner → [[sonner-usage]]; a `which` answer that names a verb → that verb's command file.

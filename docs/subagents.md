@@ -51,7 +51,7 @@ Every subagent carries a `## Loop` section: **act → verify → fix**, inside a
 
 | Subagent | Budget | Verify step |
 |---|---|---|
-| `ui-reviewer` | 3 rounds | Every Before quote is Grepped in the code, every Why's node is Globbed, the grep patterns of [[review-checklist]] rows 1–3, 6, 8, 9, 14, 20, 30, 32, 34 re-run; later rounds re-scan all thirty-nine rows on the changed code. |
+| `ui-reviewer` | 3 rounds | Every Before quote is Grepped in the code, every Why's node is Globbed, the grep patterns of [[review-checklist]] rows 1–3, 6, 8, 9, 14, 20, 30, 32, 34 re-run; later rounds re-scan all forty rows on the changed code. |
 | `motion-auditor` | 3 rounds | Every value re-checked against [[duration-table]] bands, the 60–80 % exit ratio and the [[easing-curves]] list; checklist rows 1–6 and 34 re-grepped. Films check against `launch-video-motion`. |
 | `anti-pattern-scanner` | 3 rounds | Checklist rows 14–22 grepped; each Delete row's quote Grepped; after deletions, a returning tell or a replacement tell reopens its id. |
 | `agentation-fix-loop` | 3 attempts per annotation | The element carries the change, the project's typecheck / lint / tests pass, rows 1–3 and 34 re-grepped; only then commit and resolve. |

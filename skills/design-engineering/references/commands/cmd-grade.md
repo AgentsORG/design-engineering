@@ -26,7 +26,11 @@ Per axis (Craft, Motion, Restraint, Access, Verification, and Direction only whe
 
 To compare a human, an agent with the skill and one without, grade each episode with the same `--judges` and reference panel, then compare per axis. A gap smaller than the spread between judges is noise ([[design-benchmarks]]). Keep a few holdout briefs outside the repo and grade on them before believing a gain.
 
-You may delegate this to the `design-grader` subagent where the host has it.
+## Hand-offs
+
+- Push the score up rather than report it → [[cmd-council]], which fixes and re-judges in rounds.
+- One diff to judge and fix in the same pass → [[cmd-review]].
+- You may delegate this to the `design-grader` subagent where the host has it.
 
 ## Sources
 

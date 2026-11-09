@@ -42,4 +42,4 @@ Copy, a brand or header colour, a description, a preview image, the header heigh
 
 ## Hand-offs
 
-One diff to judge rather than an app to ship → [[cmd-review]]. A finding that needs real design work → its owner after launch: [[cmd-a11y]], [[cmd-motion]], [[cmd-polish]], [[cmd-tells]]. A whole component's states → [[stress-scenarios]].
+One diff to judge rather than an app to ship → [[cmd-review]]. A finding that needs real design work → its owner after launch: [[cmd-a11y]], [[cmd-motion]], [[cmd-polish]], [[cmd-tells]]. A whole component's states → [[stress-scenarios]]. Any surface added since the last ship that renders user-authored data gets one [[cmd-break]] pass first, the cheapest catch for first-hour breaks; list the surfaces not stress-tested under Needs a human.

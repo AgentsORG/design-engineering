@@ -34,6 +34,7 @@ Components are where craft lives because users *touch* them. Their states are wh
 - [[destructive-actions]] — Undo for frequent reversible actions; confirm the irreversible with action-and-object titles, verb-plus-object buttons, focus on the safe button, type-to-confirm for accounts.
 
 - [[sonner-usage]] — Sonner in practice: one Toaster, theme and richColors, the styling ladder, why toasts duplicate or hide behind a modal, its defaults.
+- [[sonner-api-surface]] — The rest of Sonner: JSX in the shell vs headless `toast.custom`, function titles for links, `cancel`, dismiss one or all, `useSonner` / `getActiveToasts`, icons, `unstyled`, and toasts that never close, swipe the wrong way or crowd a phone's edge.
 - [[presence-signals]] — Here, half here, gone: an arrival ring, a dashed outline for partial attention, a leaving beat, live typing that resizes, reactions pinned where tapped, one colour per person. From Benji Taylor's Honk.
 - [[drawing-toolbar]] — Drawing and markup in a product: a bar that morphs instead of swapping panels, pens that answer speed, area erasing, export that matches the screen, a side rail on phones. From Drawesome.
 - [[press-and-pending-states]] — The press paints the part the hand moves and only while held; disabled never answers; selection outranks press; pending keeps size with `aria-busy`; no state changes elevation; slide-to-lift action groups. From Meta's Astryx.

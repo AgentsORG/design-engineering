@@ -10,7 +10,7 @@ The second word picks the job. Without one, a video file or URL means `review`; 
 
 ## film plan
 
-**Posture: decide, then build.** Follow [[MOC-launch-video]]'s decision flow in order. Name the register first ([[launch-video-registers]]), then [[launch-video-structure]], [[launch-video-type]], [[launch-video-ui-demo]], [[launch-video-motion]], [[launch-video-seams]] / [[launch-video-cuts]], and the sound ([[launch-video-sound]]). [[skill-router]] §5 names the build engine: HyperFrames by default, cinetic for Remotion ([[cinetic-reconciliation]]), and scenario-kinetic-film for a beat-cut type teaser ([[scenario-kinetic-reconciliation]]). Any film rendered from code follows [[film-as-function-of-time]].
+**Posture: decide, then build.** Follow [[MOC-launch-video]]'s decision flow in order. Name the register first ([[launch-video-registers]]), then [[launch-video-structure]], [[launch-video-type]], [[launch-video-ui-demo]], [[launch-video-motion]], [[launch-video-seams]] / [[launch-video-cuts]], and the sound ([[launch-video-sound]]). [[MOC-launch-video]] "A film, end to end" names the build engine: HyperFrames by default, cinetic for Remotion ([[cinetic-reconciliation]]), and scenario-kinetic-film for a beat-cut type teaser ([[scenario-kinetic-reconciliation]]). Any film rendered from code follows [[film-as-function-of-time]].
 
 ## film review
 
@@ -26,3 +26,9 @@ You may delegate to the `launch-film-analyst` subagent where the host has it.
 ## film formats
 
 A loop, a logo sting, or a 9:16, 1:1 or 4:5 cut → [[launch-video-formats]].
+
+## Hand-offs
+
+- Motion inside the product, not the film → [[cmd-motion]]; film values never transfer to UI.
+- The soundtrack, once picture is locked → [[cmd-sound]] (A video).
+- The product UI the film shows, built as a faux demo first → [[cmd-stage]].

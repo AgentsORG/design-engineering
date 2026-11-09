@@ -27,4 +27,8 @@ Pick the register first ([[launch-video-sound]]).
 
 A sound map table (Moment | Sound | Material / contour | Length | Trigger | Why), then the file list and the playback wiring.
 
-You may delegate to the `sound-designer` subagent where the host has it.
+## Hand-offs
+
+- The motion the sound lands on is not settled yet → [[cmd-motion]] first; a transient needs a contact frame.
+- A launch film's whole score and structure → [[cmd-film]].
+- You may delegate to the `sound-designer` subagent where the host has it.

@@ -72,6 +72,8 @@ Catalog of canonical transitions for common UI archetypes. Implementation layer 
 - [[animation-removal-hazards]] — Taking motion out safely: delete the start state with it, unhook what waited on it, keep layout animations that hide a jump, the reduce table.
 - [[momentum-projection]] — Where a flick would come to rest, snapping to the nearest target, handing the release velocity to the spring, one spring per axis, grab offset.
 - [[react-native-motion]] — The React Native and Expo digest: UI-thread animation, spring presets, native navigators, gesture axes, haptics on the frame.
+- [[expo-tool-ladder]] — The cheapest-tool ladder for Expo motion (CSS transition → layout animation → shared value → native stack, sheet, tabs, menus, large title → keyboard-controller → Lottie → Skia), press and RN toast rules, and the setup misses that kill motion silently.
+- [[expo-navigation-motion]] — Expo Router screen motion: push for depth, modal for an abandonable task, formSheet with detents for a short interruption, none between tabs, fade under reduced motion, `animationMatchesGesture`, and the Android sheet limits.
 - [[hover-intent-timing]] — Entry delay and exit guard on everything a hover reveals, instant hand-off within a group, keyboard immediate, touch never gated, `delay` / `hideDelay`. From Astryx.
 
 ## Required-knowledge nodes (always relevant)

@@ -39,3 +39,9 @@ Build posture, except `review`, which judges and does not edit. The second word 
 Judge posture. Run the fresh-eye brief in [[demo-rehearsal]] from frames you film yourself, rank framing → hierarchy and density → motion → polish, and output a [[review-format]] table. Do not fix anything.
 
 You may delegate `review` to the `ui-reviewer` subagent where the host has it, with the frames attached.
+
+## Hand-offs
+
+- A real product screen, not a picture of one → [[cmd-polish]] or [[cmd-review]].
+- The demo becomes a launch film → [[cmd-film]] `plan`.
+- Judges should score it beside reference products → [[cmd-council]].

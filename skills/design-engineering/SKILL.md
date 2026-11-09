@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: AgentsORG
-  version: "4.5.0"
+  version: "4.6.0"
   graph: true
   subagents: plugin/agents/
   soul: docs/SOUL.md
@@ -135,6 +135,7 @@ What looks "AI default" and what to do instead. High-value because it's about de
 Procedural rules and growing files. `[[review-format]]` is mandatory when doing UI code reviews.
 
 - [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw, GSAP, better-icons, fun-isometric, Stageshow, web-haptics).
+- [[upstream-skill-lifecycle]] — Emil Kowalski's public skills by stage (before building, building, refining, whole app): the graph verb or node that owns each, the two or three to run next, and why a typed slash command wins over a plain request.
 - [[ship-check]] — The whole-app production pass behind `ship`: fix rather than report, verified vs needs-hardware, the severity tree, fix order. Baseline in [[production-baseline]].
 - [[directing-agents]] — Steering an agent: friction where judgment matters, a named concept instead of an adjective, one or two passes, fix the system not the screen, the papercut pipeline.
 - [[routing-table]] — Intent → entry-node router with the four postures (build / judge / decide / name). Open this before anything else on a single question.
@@ -143,15 +144,17 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 - [[vibe-to-generator]] — Only a mood, no spec? Research the visual language into rules, then a seeded generator with knobs and a save button.
 - [[design-system-docs]] — Writing a DESIGN.md or docs folder an agent can follow: inventory the code, when/alternative, closed variant sets, correct/incorrect examples, verify by prompting.
 - [[skill-writing-rules]] — Encode process, write the why, be strict, earn every line, one aspect per skill, test by running. Governs every node here and [[pov]].
+- [[skill-docs-pages]] — Documenting a skill or verb for people: purpose, decisions, when, pairings with a reason, one before/after with numeric captions and slow replay, example prompts that are also dispatch rows.
 - [[grading-rubric]] — The one scale for council and grader: twelve categories, six axes, five bands, checks cap and judges raise, no re-rolls, hidden target and holdouts.
 - [[design-moves]] — The named decisions a grader counts from the diff and evidence (subtract before adding, crop first, film it, one accent), each with its node.
 - [[design-benchmarks]] — DesignBench's generation / edit / repair tasks and Design Arena's pairwise votes, and this skill's own eval suite that borrows both.
 - [[disambiguation]] — The questions that blur together (four motion questions, three dark-mode owners, two layout-shift owners) and which node owns each.
 - [[stacking-chains]] — Ordered node chains for multi-step jobs (new screen, feel-better pass, design system, marketing site, a11y pass).
 - [[review-format]] — Required output format for UI critiques (Before | After | Why markdown table).
-- [[review-checklist]] — Thirty-nine-row audit to scan against before signing off on a UI review.
+- [[review-checklist]] — Forty-row audit to scan against before signing off on a UI review.
 - [[change-scoped-review]] — Reviewing a diff, not a screen: scope, blast radius, the removed side of every hunk, and each finding statused Introduced, Regression or Pre-existing.
 - [[stress-scenarios]] — One component under every scenario that can reach it (length, shape, quantity, container, state) on a throwaway harness, and its product states behind a switcher.
+- [[worst-case-values]] — The worst case beyond long names: numbers, time, collections, states, content and media, one realistic value per row with what it breaks.
 - [[reading-others-interfaces]] — How someone else's site or effect was built: evidence not instruction, measured / derived / inferred, layers in paint order, the recipe in words.
 - [[interfaces-reconciliation]] — Jakub Krehel's interfaces skills as companions: who owns which job when installed, and twelve value conflicts settled.
 - [[astryx-reconciliation]] — Meta's Astryx design system as a companion: its CLI and MCP pick templates and components in an Astryx app, its on-system rules, current versus draft records, five conflicts settled.

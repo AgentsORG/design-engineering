@@ -1,6 +1,6 @@
 {
   "name": "design-engineering",
-  "version": "4.5.0",
+  "version": "4.6.0",
   "description": "Design engineering for AI agents — animation timing, transitions, typography, color, components, layout, accessibility, anti-patterns, sound, SVG, launch films, faux product UI. Plus a SOUL.md identity layer and thirteen subagents (ten workflow agents plus a cross-model design council, a design judge and a design grader), generated for Claude Code, Codex, Cursor, Gemini CLI, OpenCode and eve. Distills Emil Kowalski, Benji Taylor, Jakub Antalik, guidelines.sh, Vercel, Ben DC, DiceBear, lucide-animated, Google Labs design.md, Agentation.",
   "author": {
     "name": "AgentsORG",

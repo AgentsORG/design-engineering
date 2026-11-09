@@ -26,4 +26,9 @@ The second word picks the job. Without one, `create` applies to a new or messy f
 
 An animated isometric sticker → [[isometric-stickers]]; with fun-isometric installed → [[fun-isometric-reconciliation]].
 
-You may delegate to the `svg-creator` or `svg-animator` subagent where the host has them.
+## Hand-offs
+
+- Timing questions beyond the file (a page transition, a gesture) → [[cmd-motion]].
+- A reveal that should make a sound → [[cmd-sound]], cued to the contact frame.
+- Icons going into a faux product demo → [[cmd-stage]].
+- You may delegate to the `svg-creator` or `svg-animator` subagent where the host has them.

@@ -106,25 +106,26 @@ Each card is drawn strictly from its file's stated colours, type, radii, depth, 
 
 ![Claude Code answering /design-engineering help: review, motion and council are the three verbs that fit the change in front of you, out of 22 verbs in all](docs/readme/img/de-verbs.png)
 
-Everything goes through one skill: `/design-engineering [verb] [target]`. A plain request (`/design-engineering why does this card feel flat`) is routed to the one node that owns it. With no arguments it shows the menu and suggests the verbs that fit what is in front of it.
+Everything goes through one skill: `/design-engineering [verb] [target]`. A plain request (`/design-engineering why does this card feel flat`) is routed to the one node that owns it. With no arguments it shows the menu and suggests the verbs that fit what is in front of it. The Pairs with column is read from each command file's Hand-offs section.
 
-| Verb | Does |
-| --- | --- |
-| `review` | A UI code review as a Before / After / Why table, scoped to the diff |
-| `polish` | The screen works but feels unfinished: states, optical details, fixes applied |
-| `motion` | Whether it should move, then timing, easing and springs with concrete values |
-| `tells` | AI-default tells in UI, code or copy, as a deletion list |
-| `a11y` | An evidence-only accessibility audit tied to WCAG 2.2 criteria |
-| `tokens` | Find the `.design` / DESIGN.md and thread its tokens through the UI |
-| `sound` | Which moments earn a sound; one family, generated, wired, mapped |
-| `council` | Cross-model judges score before/after evidence per category until every judge passes |
-| `grade` | Score a design episode, human or agent, on six axes |
-| `svg` | `create`, `animate` or `sticker` |
-| `mobile` | A web app that feels native on a phone: the symptom, the fix, what needs a real device |
-| `break` | Realistic worst-case data until the layout breaks; reports and stops |
-| `ship` | The whole-app production pass, then what still needs a device or a human |
-| `film` | `plan` a launch film, `review` a render, or `formats` |
-| `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork the taste or log a gotcha |
+| Verb | Does | Pairs with |
+| --- | --- | --- |
+| `review` | A UI code review as a Before / After / Why table, scoped to the diff | `motion` when motion is most of it; `tells` for "looks AI-made"; `ship` for the whole app |
+| `polish` | The screen works but feels unfinished: states, optical details, fixes applied | `motion` when motion feels off; `mobile` on a phone; `break` when data breaks it |
+| `motion` | Whether it should move, then timing, easing and springs with concrete values | `film` for a launch film's motion; `svg` for an SVG that moves |
+| `tells` | AI-default tells in UI, code or copy, as a deletion list | `options` for a new direction, only when asked |
+| `a11y` | An evidence-only accessibility audit tied to WCAG 2.2 criteria | `review` for the whole screen |
+| `tokens` | Find the `.design` / DESIGN.md and thread its tokens through the UI | `options` when there is no look yet; `polish` once tokens land; `review` for stale literals |
+| `sound` | Which moments earn a sound; one family, generated, wired, mapped | `motion` first, for the contact frames; `film` for a film's score |
+| `council` | Cross-model judges score before/after evidence per category until every judge passes | `review` for one opinion; `grade` for a report card; `stage` or `film` for evidence first |
+| `grade` | Score a design episode, human or agent, on six axes | `council` to push the score up; `review` to fix one diff |
+| `svg` | `create`, `animate` or `sticker` | `motion` for timing beyond the file; `sound` for a reveal; `stage` for a demo |
+| `stage` | `still`, `demo`, `bento` or `review`: faux product UI, framed first and filmed | `polish` or `review` for a real screen; `film` when it becomes a film; `council` for judges |
+| `mobile` | A web app that feels native on a phone: the symptom, the fix, what needs a real device | `motion` for gesture feel; `a11y` for keyboard and screen readers; `break` for overflow |
+| `break` | Realistic worst-case data until the layout breaks; reports and stops | `review` or `polish` for taste; `mobile` for phone-only breaks; `motion` for what moves |
+| `ship` | The whole-app production pass, then what still needs a device or a human | `review` for one diff; `break` on new user-data surfaces first |
+| `film` | `plan` a launch film, `review` a render, or `formats` | `motion` for product UI motion; `sound` once picture locks; `stage` for the demo |
+| `diagram` · `options` · `pick` · `name` · `which` · `agentation` · `pov` | Draw or not; three directions behind a picker; the exact word; who owns a job; the annotation fix loop; fork the taste or log a gotcha | Each hands off to one owner node and stops |
 
 The 2.x commands (`/design-engineering:review-ui` and the rest) still work as aliases.
 
@@ -531,7 +532,7 @@ PRs welcome; the shorter the better. Edit agents only in `plugin/agents/` and ru
 
 ## Sources
 
-- **Emil Kowalski** — [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT, commit `5206a95`), [emilkowal.ski](https://emilkowal.ski), [sonner.emilkowal.ski](https://sonner.emilkowal.ski)
+- **Emil Kowalski** — [emilkowalski/skills](https://github.com/emilkowalski/skills) (MIT, commit `715c180`, read 2026-11-09), [emilkowal.ski](https://emilkowal.ski), [sonner.emilkowal.ski](https://sonner.emilkowal.ski)
 - **Index (Emil Kowalski & Glenn Carstens-Peters)** — [index.how](https://index.how)
 - **Benji Taylor** — [benji.org](https://benji.org) + [Agentation](https://www.agentation.com) + [Stageshow](https://github.com/benjitaylor/skills) (MIT): the faux-ui cluster (product shots, cursor demos, bento grids, filming them), `stageshow-reconciliation`; Honk's presence patterns, Drawesome's toolbar and Liveline's live-data states
 - **Jakub Antalik** — [transitions.dev](https://transitions.dev)

@@ -57,7 +57,12 @@ Rounds: 2
 
 If the work is a pull request, put the section in its description before the model and harness line (edit the description; do not comment). Without a PR, it goes in the final reply only.
 
-You may delegate the whole loop to the `design-council` subagent where the host has it.
+## Hand-offs
+
+- One opinion on one diff, no rounds → [[cmd-review]].
+- A report card on an episode already finished, no fixing → [[cmd-grade]].
+- No evidence for something that moves yet → [[cmd-stage]] or [[cmd-film]] first; judges score frames, not promises.
+- You may delegate the whole loop to the `design-council` subagent where the host has it.
 
 ## Sources
 

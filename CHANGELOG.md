@@ -6,6 +6,32 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 Nothing yet.
 
+## [4.6.0] — 2026-11-09
+
+Emil Kowalski's per-skill documentation for all 17 of his public skills (a before/after of the same UI, example prompts, when to reach for each, what pairs with it), read together with emilkowalski/skills (MIT) at `715c180`.
+
+### Added
+
+- **`meta/upstream-skill-lifecycle`**: Emil's skills by stage of the work (before building, building, refining, the whole app), the verb or node in this graph that owns each job, the two or three to run next, and why a slash command the user typed wins over a plain request.
+- **`meta/skill-docs-pages`**: how to document a skill or verb for people: purpose, the decisions it makes, when, pairings with a reason, one before/after of the same UI captioned with its numbers and a slow replay, and example prompts that are also dispatch rows.
+- **`meta/worst-case-values`**: the worst case beyond long names: numbers, time, collections, states, content and media, one realistic value per row and what it breaks.
+- **`philosophy/library-picks`**: one maintained package per edge-case job (primitives, command menu, toasts, OTP, animated numbers, virtualization, drag and drop, state, theming, live vs other charts) and the code smells that mean a package exists.
+- **`philosophy/apple-design-principles`**: Apple's principles in service of four human needs, with the feedback, wayfinding, mapping and labelling tactics under them.
+- **`motion/expo-tool-ladder`** and **`motion/expo-navigation-motion`**: the cheapest tool for each kind of Expo motion, the setup misses that kill motion with no error, and Expo Router screen motion (push, modal, formSheet with detents, `animationMatchesGesture`, Android sheet limits).
+- **`components/sonner-api-surface`**: the rest of Sonner's API and the toasts that never close, swipe the wrong way or crowd a phone's edge.
+- The docs' before/after deltas as worked cases: the dialog (scale 0.95, ease-out, 300ms in / 150ms out), the pill that grows into a card (old view gone in ~90ms), the sidebar on `margin-left` vs `translateX`, the card hover (`scale-[1.02]`, `transition-transform`, 150ms), the PiP corner snap projected per axis, the warm tooltip group, the account menu that keeps one entrance, the arrow-key highlight that must move on keydown, the NumberFlow price, the loading-then-success toast, the Expo card stack.
+- `motion` closes a review with **Block** or **Approve**, proposes fixes in a fixed order (delete first), opens on several elements moving together, on drags (gesture phases, projection) and on jank (inventory first); `motion audit` gains `quick` / `deep` / category, `plan`, `execute` and `reconcile`, checkable rows and merged plans. `break` gains `fix` and `data only`; `ship` runs `break` on new surfaces that render user data.
+- Vocabulary for motion anti-patterns, loops and ambient motion, principles by name and gesture terms; `name` answers with a best fit and at most two alternates.
+- The prototype picker ignores its keys in text fields, re-mounts on switch, moves its pill out of the way of bottom-centre variants, and reviews the winner before integrating it.
+- `review-checklist` row 40 (opacity-only entrances, a group that appears in one frame); a router row for emilkowalski/skills as an installed companion; every command file ends with Hand-offs; a Pairs with column in the README verb table; 14 gotchas; 56 dispatch evals (many verb-less); 8 progressive-read evals.
+
+### Changed
+
+- `design-vocabulary` no longer recommends ease-in for exits, matching `easing-curves`; `marketing-vs-product-ui` no longer lists a reveal per section in the marketing budget, matching `marketing-surface-rules`.
+- The "make this app feel better" chain removes before it audits and adds last; product staggers cap at about six items.
+- The launch-film walkthrough moved from `skill-router` into `MOC-launch-video`.
+- emilkowalski/skills is cited at `715c180` (its only change since `5206a95` removed dead links from `gestures`).
+
 ## [4.5.0] — 2026-11-09
 
 Meta's Astryx design system, shadcn/ui and its new AI Elements patterns, read from source.

@@ -21,11 +21,15 @@ The skill has one entry point. `/design-engineering` reads its first argument, a
 - [[cmd-ship]] — the whole-app production pass: every lane, fixed and verified.
 - [[cmd-break]] — worst-case data until something breaks; reports and stops.
 - [[cmd-mobile]] — a web app that feels native on a phone.
+- [[cmd-council]] — judges on different providers score; you fix and re-judge until all clear a hidden bar.
+- [[cmd-grade]] — a report card on a finished design episode, human or agent, on one scale.
 - [[cmd-small]] — `diagram`, `options` (`riff`, `tune`, `mix`, `keep`), `pick`, `name`, `which`, `agentation`, `pov`.
 
 ## Rules for a command file
 
 A command file is a procedure, not knowledge. It names its posture, the nodes to read in order, the steps, the output shape and where to hand off, and it says nothing a node already says. Each one must run on its own, because a skills.sh install has no subagents. A new verb needs a row in the SKILL.md table, a file here and a line in `evals/dispatch.jsonl`, or CI fails.
+
+Every command file ends its procedure with a `## Hand-offs` section: two or three neighbour verbs, each with a short reason that says when to move on ("the soundtrack, once picture is locked → `sound`"). It is the one source for a verb's pairings: the README's Pairs with column and any skill page ([[skill-docs-pages]]) read it and keep no copy of their own.
 
 ## Gotcha
 
@@ -33,4 +37,5 @@ A bare `/design-engineering` never auto-runs a verb. It shows the menu and leads
 
 ## Sources
 
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG: two or three pairings per skill, each with a reason.
 - AgentsORG, the 3.0.0 single-entry migration. Its pattern comes from pbakaus/impeccable's command table and no-argument menu (`SKILL.md`, `reference/routing.md`), and from the Claude Code skills docs (`ARGUMENTS:` is appended when the body has no placeholder; routing belongs in the first 5,000 tokens, which survive compaction).

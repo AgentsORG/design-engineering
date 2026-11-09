@@ -24,4 +24,9 @@ Say so, scan the code for the system it already uses, and offer to bootstrap one
 
 The token map (token → where it lands), the edits, and any literal you left in place along with the reason.
 
-You may delegate to the `design-md-consumer` subagent where the host has it.
+## Hand-offs
+
+- No contract and no settled look to bootstrap from → [[cmd-small]] `options` first.
+- Tokens threaded and the screen still feels unfinished → [[cmd-polish]].
+- Check that no stale literal survived the change → [[cmd-review]].
+- You may delegate to the `design-md-consumer` subagent where the host has it.

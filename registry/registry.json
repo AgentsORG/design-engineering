@@ -327,6 +327,11 @@
           "target": "~/.agents/skills/design-engineering/references/components/screen-reader-announcements.md"
         },
         {
+          "path": "skills/design-engineering/references/components/sonner-api-surface.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/sonner-api-surface.md"
+        },
+        {
           "path": "skills/design-engineering/references/components/sonner-usage.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/sonner-usage.md"
@@ -672,6 +677,11 @@
           "target": "~/.agents/skills/design-engineering/references/meta/ship-check.md"
         },
         {
+          "path": "skills/design-engineering/references/meta/skill-docs-pages.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/skill-docs-pages.md"
+        },
+        {
           "path": "skills/design-engineering/references/meta/skill-router.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/skill-router.md"
@@ -692,6 +702,11 @@
           "target": "~/.agents/skills/design-engineering/references/meta/stress-scenarios.md"
         },
         {
+          "path": "skills/design-engineering/references/meta/upstream-skill-lifecycle.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/upstream-skill-lifecycle.md"
+        },
+        {
           "path": "skills/design-engineering/references/meta/using-design-file.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/using-design-file.md"
@@ -705,6 +720,11 @@
           "path": "skills/design-engineering/references/meta/vibe-to-generator.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/vibe-to-generator.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/worst-case-values.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/worst-case-values.md"
         },
         {
           "path": "skills/design-engineering/references/motion/MOC-motion.md",
@@ -770,6 +790,16 @@
           "path": "skills/design-engineering/references/motion/easing-curves.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/motion/easing-curves.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/expo-navigation-motion.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/expo-navigation-motion.md"
+        },
+        {
+          "path": "skills/design-engineering/references/motion/expo-tool-ladder.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/motion/expo-tool-ladder.md"
         },
         {
           "path": "skills/design-engineering/references/motion/fly-not-teleport.md",
@@ -902,6 +932,11 @@
           "target": "~/.agents/skills/design-engineering/references/philosophy/MOC-philosophy.md"
         },
         {
+          "path": "skills/design-engineering/references/philosophy/apple-design-principles.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/apple-design-principles.md"
+        },
+        {
           "path": "skills/design-engineering/references/philosophy/articulate-precisely.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/philosophy/articulate-precisely.md"
@@ -930,6 +965,11 @@
           "path": "skills/design-engineering/references/philosophy/feeling-right.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/philosophy/feeling-right.md"
+        },
+        {
+          "path": "skills/design-engineering/references/philosophy/library-picks.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/philosophy/library-picks.md"
         },
         {
           "path": "skills/design-engineering/references/philosophy/marketing-vs-product-ui.md",
