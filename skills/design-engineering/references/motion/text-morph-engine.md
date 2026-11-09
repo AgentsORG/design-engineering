@@ -45,8 +45,11 @@ Detection is strict: a token counts as a quantity only when it starts and ends w
 
 Don't rebuild this with a key of `index + char` on a long string: inserting one word at the start re-keys every character after it, and the whole line animates. Identity has to come from the alignment, not the position. And happy-dom has no layout, so test that a transform was applied or an animation cancelled, never a measured distance.
 
+Keying digit spans by their index from the left breaks the moment the length changes: $996 → $1,008 re-keys every glyph, separator included, the width snaps and a trailing unit like /mo jumps. Key by place value from the right and animate the width, or install NumberFlow ([[library-picks]]) when the counter is the whole job.
+
 ## Sources
 
 - Lochie Axon, torph 0.1.3 (MIT, github.com/lochie/torph, HEAD `d79a5aa`, read 2026-11-08; torph.lochie.me): `packages/torph/README.md`, `AGENTS.md`, `src/lib/text-morph/index.ts`, `utils/diff.ts` (`MIN_SIMILARITY`), `utils/animate.ts`, `utils/replace-animate.ts` (`GROUP_MIN`, `GROUP_SCALE`), `utils/number.ts`, `utils/number-animate.ts`, `src/lib/utils/animate.ts` (the velocity carry), `src/lib/utils/styles.ts`. Paraphrased; values cited.
 - Benji Taylor, *Family Values* (benji.org/family-values) — the method torph credits.
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (the $996 → $1,008 index-keying failure).
 - Related: [[shared-letter-morph]], [[fly-not-teleport]], [[cross-blur-transitions]], [[prefers-reduced-motion]], [[screen-reader-announcements]]. For number-only counters, Maxwell Barvian's number-flow is the alternative torph itself points to ([[dependency-discipline]]).

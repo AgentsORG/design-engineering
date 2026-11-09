@@ -83,6 +83,7 @@ Audit your `package.json` annually. Many production apps have 5+ MB of dependenc
 - **The library has a security team** maintaining it (`@stripe/stripe-js`, OAuth clients).
 - **The library is small and focused** with a clear single purpose (`nanoid`, `clsx`).
 - **The team's velocity matters more than the bundle** (early-stage product, internal tool).
+- **The job is mostly edge cases**: animated digits, OTP paste and autofill, focus-trapped primitives, virtualized scroll, drag and drop. Take the package from [[library-picks]]; a ten-minute hand-rolled version ships the bugs. The motion library earns its place only for springs, layout or exit animations, or gesture-driven values; a hover or a fade stays a CSS transition.
 
 These are real reasons. "It's convenient" is not.
 
@@ -114,6 +115,7 @@ This rule applies in proportion to the project's expected lifetime and audience.
 - Ben DC — [frontend-guidelines](https://github.com/bendc/frontend-guidelines) — "Favor native methods."
 - Vercel — bundle-size as a design dimension.
 - web.dev — "Tame third parties," bundle audits.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/pick-ui-library/SKILL.md (clsx for conditional classes, cva for real variants).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/pick-ui-library/SKILL.md (clsx for conditional classes, cva for real variants); unchanged through `715c180`.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/pick-ui-library/SKILL.md (edge-case-heavy jobs earn a package; when the motion library is worth it).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): stageshow/SKILL.md (The kit), stageshow/package.json, stageshow/kit/ease.ts, stageshow/kit/controls/Button.css, stageshow/kit/parts/Icon.tsx, stageshow/references/craft.md (Icons and logos).
 - Related: [[transform-opacity-only]] and [[debugging-animations]] (the performance-is-design framing lives in those motion nodes), [[unseen-details-compound]].

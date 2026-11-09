@@ -14,7 +14,7 @@ Stageshow 1.1.1 (`npx skills add benjitaylor/skills --skill stageshow`; Node 20.
 |---|---|---|
 | A hero demo, feature card, docs plate or bento tile in a React project | Stageshow: start from the closest gold example, build on the kit (every button, card, draft and shortcut from its kit part), film with `--gate` and hand over only on `rehearsal passed` | the contract's tokens ([[using-design-file]]) mapped onto the kit's `--ss-*` tokens; whether it should move ([[animation-decision-framework]]); the page around it ([[marketing-surface-rules]]); the accessibility below |
 | The same picture in a non-React project, or a static image | This graph: [[product-shot-framing]], [[faux-ui-restraint]], built in the project's own stack | everything; Stageshow's kit is React-only |
-| A product demo inside a rendered launch film | The film's engine ([[skill-router]] §5), timed by [[launch-video-ui-demo]] | everything; a page demo and a film shot are different media |
+| A product demo inside a rendered launch film | The film's engine ([[MOC-launch-video]], "A film, end to end"), timed by [[launch-video-ui-demo]] | everything; a page demo and a film shot are different media |
 | A grid of feature tiles | Stageshow per tile, planned with [[bento-grids]] | the plan, the page grid ([[viewport-custom-design]]) |
 | Reviewing someone's demo | [[demo-rehearsal]]'s fresh-eye brief, output in [[review-format]] | the format and the severity order |
 

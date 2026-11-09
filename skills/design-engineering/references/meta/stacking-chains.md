@@ -24,9 +24,15 @@ Structure first, surfaces second, behavior third, motion only after the static v
 
 ### "Make this app feel better"
 
-[[motion-auditor]] (audit what exists) → [[delight-impact-curve]] (where motion is missing — propose few) → [[review-checklist]] (the finishing pass)
+`motion remove` ([[animation-removal-hazards]]: subtract first) → `motion audit` (retune what stays, as plans; or the `motion-auditor` subagent) → `motion opportunities` (5–7 additions at most, [[delight-impact-curve]]) → build each pick with [[cmd-motion]] → [[review-checklist]] (the finishing pass)
 
-Fix what's wrong before adding what's absent.
+Subtract, then retune, then add. Retuning an animation you are about to delete wastes the pass, and additions are judged fairly only once the noise is gone ([[upstream-skill-lifecycle]]).
+
+### One motion, idea to ship
+
+[[design-vocabulary]] (name it) → [[animation-decision-framework]] (should it move) → [[dependency-discipline]] (only if a library is in question) → [[prototype-picker]] (only if two directions are live) → [[cmd-motion]] build sequence → [[motion-choreography]] (when several things move) → [[gesture-phases]] + [[performance-discipline]] (anything dragged) → [[review-format]] closed Block or Approve
+
+Exit checks: a word you can say; a purpose word or a stop; one package or none; one kept direction; values that each cite a node; a role per element; a drag that tracks 1:1 and composites only; a verdict.
 
 ### Design system from scratch
 
@@ -106,3 +112,4 @@ Don't run a full chain on a one-line change. Chains are for jobs that touch thre
 
 - AgentsORG — orderings distilled from repeated multi-cluster sessions; companions: [[routing-table]], [[disambiguation]].
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Workflow, steps 1 to 7; step 7 fix order), `stageshow/references/rehearse.md` (Prove the still before choreography).
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG: the whole-app order (remove, improve, find) and one motion from naming to review.

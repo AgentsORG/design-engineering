@@ -32,6 +32,11 @@ The exit is usually 60–80% of the enter: the user has already moved on. A pane
 .panel[data-state="open"] { transition-duration: 250ms; }                /* enter */
 ```
 
+A worked pair, a static dialog given motion by default:
+
+- Before: scale 0→1, `ease-in`, 400ms in and 400ms out. It swells from a point and starts slowest on the frame the user is looking at.
+- After: scale 0.95→1 with opacity, the strong ease-out token, 300ms to open and 150ms to close. When the user chose to dismiss it, an exit at about half the enter is fine; 60–80% stays the default for panels.
+
 A second asymmetry applies where the user is deciding: the deliberate phase is slow and the system's answer snaps (hold-to-confirm: 2s linear on press, 200ms ease-out on release; see [[clip-path-tricks]]).
 
 Sonner itself is the counter-example: its toasts run a symmetric ~400ms `ease`, slower than the UI budget on purpose to match the component's calm personality ([[sonner-principles]]). Treat that as a deliberate exception, not a default.
@@ -65,7 +70,8 @@ One product's whole set, read from a real kit, so every part stays in proportion
 ## Sources
 
 - Emil Kowalski — button feedback timing.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md and RECIPES.md (duration budgets, tooltip, toast, hold-to-confirm).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md and RECIPES.md (duration budgets, tooltip, toast, hold-to-confirm); unchanged through `715c180`.
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (the dialog pair: 0.95 start, 300ms in, 150ms out).
 - Emil Kowalski's design-engineering practice, distilled by AgentsORG (exits 20–30% faster than enters).
 - Vercel Design — internal duration tokens.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `kit/controls/Button.css`, `kit/controls/Toggle.css`, `kit/controls/Segmented.css`, `kit/controls/Tabs.css`, `kit/parts/Menu.css`, `kit/parts/Tooltip.css`, `kit/motion/Popover.css`, `references/choreography.md` (Timing has different jobs).

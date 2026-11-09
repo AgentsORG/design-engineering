@@ -127,7 +127,7 @@ How things move and transition. The largest cluster in this skill — see [[anim
 
 - **Easing** — the speed curve of an animation; a custom cubic-bezier almost always beats the CSS built-ins. → [[easing-curves]]
 - **Ease-out** — fast then slow; the default for things entering the screen. → [[easing-curves]]
-- **Ease-in** — slow then fast; for things leaving. On an entrance it feels reluctant. → [[easing-curves]]
+- **Ease-in** — slow then fast. Keep it out of UI, exits included: the slow start sits on the very frame the user is looking at. Quiet an exit with fewer properties and less time instead ([[compose-subtract-asymmetry]]). → [[easing-curves]]
 - **Ease-in-out** — slow-fast-slow; for moves across the screen (a toggle, a sliding card). Overkill for simple enter/exit.
 - **Stagger** — list items animating in sequence (~40ms apart); all-at-once reads as a flash. → [[stagger-choreography]]
 - **Duration** — UI is sub-300ms; hovers ~150ms, buttons 100–160ms, >400ms with no feedback looks broken. → [[duration-table]]
@@ -136,7 +136,7 @@ How things move and transition. The largest cluster in this skill — see [[anim
 - **Skeleton shimmer** — a gradient sweep on a skeleton to suggest activity; must respect reduced motion. → [[empty-loading-states]]
 - **Spring** — physics-based easing that overshoots and settles; reads more alive than a fixed curve. → [[spring-animations]]
 - **Choreography** — timing several animations as one phrase so attention lands in one place; uncoordinated motion just scatters the gaze. → [[stagger-choreography]]
-- **Enter vs exit asymmetry** — enter decelerates in, exit accelerates away; a reversed enter feels like arriving backwards. → [[compose-subtract-asymmetry]]
+- **Enter vs exit asymmetry** — enter decelerates in; exit is shorter and simpler, never the enter played backwards (that feels like arriving in reverse). → [[compose-subtract-asymmetry]]
 - **Shared axis transition** — motion direction reflects spatial relationship: forward animates right, back animates left. → [[fly-not-teleport]]
 - **Motion as feedback** — press-compress, error-shake, success-draw: the motion *is* the response, not decoration. → [[responsive-feedback]]
 - **GPU compositing** — transform/opacity run on the GPU and skip layout recalc; animating width/top forces reflow per frame. → [[transform-mastery]]
@@ -176,6 +176,17 @@ When "make it animate" is the whole prompt, the agent guesses. One of these name
 - **Layout thrashing** — reading and writing layout in alternation, or animating width, height, top or left, so the browser re-lays the page out every frame. → [[transform-opacity-only]], [[debugging-animations]]
 - **Opacity vs visibility** — `opacity: 0` keeps both the space and the clicks; `visibility: hidden` keeps the space and drops the clicks; `display: none` drops both. Fading something out leaves invisible click targets behind unless you also set `pointer-events: none` or `visibility`.
 - **Filled vs outlined (contextual swap)** — outlined icons for the default state and filled ones for active or selected, applied as one rule everywhere or not at all. → [[icon-systems]]
+- **Scale from zero / hover flicker / layered entry** — three named traps: an entrance inflating from a dot (start near full size and fade instead); a hover that shifts the element out from under the cursor so it toggles on and off; a container entering while its children also stagger, two entrances to sit through. → [[never-scale-from-zero]], [[hover-states-subtle]], [[motion-choreography]]
+- **Loop / alternate (yoyo) / idle animation** — repeating a fixed number of times or forever; running forward then back on each pass rather than jumping to the start; motion while something waits to be used, which holds before its first run, repeats rarely and stops on interaction. → [[motion-choreography]]
+- **Pulse / float / orbit** — a soft repeating scale or opacity beat; a slow drift up and down; one element circling another. Ambient words, for marketing and empty states, never for data.
+- **Rubber-banding / swipe to dismiss** — rising resistance past an edge, then a snap back; flinging an element away to close it, judged on distance or speed. → [[gesture-momentum]], [[gesture-phases]], [[momentum-projection]]
+- **Line drawing / before-after slider / parallax** — a path tracing itself in; a draggable wipe between two layers; layers scrolling at different speeds (tied 1:1 to the scroll, or not at all). Text changing glyph by glyph is a text morph. → [[svg-animation]], [[clip-path-tricks]], [[marketing-surface-rules]], [[text-morph-engine]]
+- **Perceptual duration** — the moment a spring looks done, even though it is still settling. → [[spring-animations]]
+
+### Motion: principles by name
+
+- **Anticipation / follow-through / squash and stretch** — a wind-up against the direction of travel; parts that keep settling after the body stops; deformation that sells speed and weight. Film and character moves, rare in product UI. → [[launch-video-motion]]
+- **Frequency of use / spatial consistency / perceived performance** — the more often it plays, the shorter and quieter it gets; an element keeps its identity and place across states; feedback that makes a wait feel shorter. → [[animation-decision-framework]], [[fly-not-teleport]], [[optimistic-updates]]
 
 ## 07 — Accessibility
 
@@ -338,6 +349,8 @@ The words for a rendered film's editorial choices. Like Sound, this category is 
 
 ## Sources
 
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/animation-vocabulary/SKILL.md and skills/animate/SKILL.md (ease-in kept out of UI exits; loop, ambient, gesture and principle terms).
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (scale from zero, hover flicker and layered entry as named traps).
 - *Index — Say Precisely What You Mean*, Emil Kowalski & Glenn Carstens-Peters — [index.how/to/articulate](https://index.how/to/articulate). The 188-term articulate module this lexicon is seeded from; the canonical reference, arriving fall 2026. Glosses here are this skill's own.
 - Launch film terms: AgentsORG's launch-film corpus (Skale and acclaimed films, measured 2026-09-28, `docs/research/launch-films/`) and heygen-com/hyperframes `.agents/skills/cut-the-curve/SKILL.md` (Apache-2.0, repo-internal).
 - Cross-linked throughout to this skill's own clusters: [[MOC-philosophy]], [[MOC-motion]], [[MOC-surface]], [[MOC-typography]], [[MOC-components]], [[MOC-layout]], [[MOC-anti-patterns]], [[MOC-sound]], [[MOC-launch-video]].

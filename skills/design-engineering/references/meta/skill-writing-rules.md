@@ -43,6 +43,7 @@ One skill per aspect of the interface — and narrower is better: building anima
 Unsure whether a line matters? Run the skill with it and without it and compare the output. It is the loop that built taste in the first place — create, notice what feels off, articulate why, refine — except the thing being refined is the document that carries the taste, and every improvement compounds across everything the agents build after.
 
 - **Every correction becomes a rule.** When an output needs a hand-fix, write the rule with its reason and rerun from scratch; a hand-fixed output teaches the next run nothing (Benji Taylor, benji.org).
+- **Caption a published comparison with numbers.** Each side states its values, `scale 0.95→1 · ease-out · 300ms in / 150ms out` against the failing side's, or its per-frame cost. "Smoother" is a hedge word, banned by §3. The page shape is in [[skill-docs-pages]].
 
 ## Common mistakes
 
@@ -72,6 +73,7 @@ Strict is not long. A strict skill is usually shorter than the hedged version it
 ## Sources
 
 - Emil Kowalski, *Agents with Taste*, and his practice on writing skills, distilled by AgentsORG.
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG: numeric captions on each side of a comparison.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/SKILL.md` (Faults that come back every round), `stageshow/references/craft.md` (Spacing and alignment), `stageshow/references/rehearse.md` (Lines that are never intentional), `stageshow/references/teaching.md` (Making a comparison).
 - Benji Taylor, benji.org (read 2026-11-07): every rule carries its reason; every correction becomes a permanent rule, rerun from scratch; skill against no-skill, side by side.
 - Related: [[pov]], [[gotchas]], [[taste-is-trained]], [[design-system-docs]].

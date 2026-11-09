@@ -36,7 +36,7 @@ Delete what the removals orphaned: unreferenced `@keyframes` and animation utili
 
 ## When to apply
 
-"The app feels slow", "too much animation", "tone down the motion", or `/design-engineering motion remove` ([[cmd-motion]]). Prime targets: keyboard-triggered menus, in-app route and tab transitions, fade-in-on-scroll on every section, hover lift on non-primary cards, charts that redraw from zero on every mount, numbers that count up on load, spinners and shimmer on loads under 300ms ([[empty-loading-states]]).
+"The app feels slow", "too much animation", "tone down the motion", or `/design-engineering motion remove` ([[cmd-motion]]). Prime targets: keyboard-triggered menus, in-app route and tab transitions, fade-in-on-scroll on every section, hover lift on non-primary cards, charts that redraw from zero on every mount, numbers that count up on load, spinners and shimmer on loads under 300ms ([[empty-loading-states]]). The mirror pass is `motion opportunities`, which looks for places that should move. A survivor that is badly built (ease-in, wrong origin) goes to `motion audit`; never retune it here.
 
 ## Reference
 
@@ -48,6 +48,7 @@ A removal report for one settings screen, the shape every restraint pass hands b
 | Card hover `translateY(-2px) scale(1.02)` over 300ms | Reduced to `background-color 150ms ease` | Frequent surface |
 | "Saved" toast exit | Kept | Without it the toast vanishes on the first frame |
 | Height of an added row | Kept | The line below would jump instead of being carried |
+| Arrow-key selection highlight, `translateY` 300ms ease-in-out | Removed, moves on keydown | Keyboard-triggered; at a 120ms key repeat it trails several rows behind |
 
 Gold example: `stageshow/teaching/contrasts.tsx`, the exit pair (removed on the first frame vs fades out before it is removed) and the space pair (a new row carries the next line with it): the two motions this table keeps.
 
@@ -60,5 +61,6 @@ Deleting everything is also wrong. A toast that would otherwise teleport in, or 
 ## Sources
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, unchanged since `a81dbca`): skills/remove-animations/SKILL.md.
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG: the arrow-key highlight row, the mirror and audit hand-offs.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `teaching/contrasts.tsx` (exit, space), `kit/stage.css` (the still shows the settled poster), `references/motion.md` (nothing pops).
 - Related: [[animation-decision-framework]], [[delight-impact-curve]], [[marketing-vs-product-ui]].

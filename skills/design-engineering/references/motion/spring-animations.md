@@ -30,6 +30,8 @@ const settle = { type: "spring", duration: 0.35, bounce: 0 }
 
 Bounce 0, a perceived duration of about 0.3–0.4s, no overshoot. Bounce (0.1–0.3, never more) is earned only when the gesture carried momentum — a flicked card, a drag-to-dismiss release. Overshoot on a menu that simply opened feels wrong.
 
+Apple tunes a spring with two numbers: a damping ratio (1.0 settles with no overshoot; lower overshoots more) and a response, roughly the seconds it takes to reach the target. Settle time falls out of both, so response is not a duration. Shipped pairs: move or reposition (PiP) 1.0/0.4, rotation 0.8/0.4, sheet or drawer 0.8/0.3. In Motion a move is `bounce: 0, duration: 0.4`; the drawer pair's overshoot belongs only after a flick ([[gesture-phases]]), and the RN forms are in [[react-native-motion]].
+
 ## The drawer / momentum spring
 
 ```ts
@@ -95,7 +97,8 @@ Step them on a fixed 4 ms clock or sample a closed form, cap the catch-up after 
 ## Sources
 
 - Emil Kowalski — interruptibility argument.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md (spring forms, bounce range), skills/animate-expo/SKILL.md (dampingRatio 1 settle, bounce only after momentum).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md (spring forms, bounce range), skills/animate-expo/SKILL.md (dampingRatio 1 settle, bounce only after momentum); unchanged through `715c180`.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/apple-design/SKILL.md (damping ratio and response, the three shipped pairs).
 - Emil Kowalski's design-engineering practice, distilled by AgentsORG (bounce 0 default).
 - Apple Human Interface Guidelines — spring parameter ranges.
 - guidelines.sh — "Spring physics over bezier" for interactive motion.

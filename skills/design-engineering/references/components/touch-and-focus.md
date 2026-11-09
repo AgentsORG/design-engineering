@@ -44,6 +44,8 @@ A tooltip waits ~200ms so it doesn't fire on incidental travel; once one is open
 | Status bar color doesn't match | `theme-color` meta per color scheme |
 | Right in Chrome, wrong on the phone | Real hardware: dev server on `0.0.0.0`, open by LAN IP, Safari Web Inspector or `chrome://inspect`, a phone a few years old |
 
+Before a carousel gets a JS drag and `touch-action: pan-y`, check whether native scroll does the job: `scroll-snap-type: x mandatory` on the track and `scroll-snap-align: start` on each slide keep the platform's momentum and need no `touch-action` ([[sticky-and-scroll-tells]]). When you do set it, the value names what the browser keeps: `pan-y` leaves vertical panning to the browser and horizontal to your code.
+
 ## When to apply
 
 Any interactive UI — buttons, modals, tooltips, menus, video, timers — and every mobile bug report. Run it even when the screen already looks finished: a failure here ships broken for someone.
@@ -68,5 +70,6 @@ Tabbing into a closed drawer is the classic miss. It was hidden with `opacity: 0
 ## Sources
 
 - Emil Kowalski's design-engineering practice on touch and accessibility, distilled by AgentsORG.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/mobile-native/SKILL.md §9 (native snap over a JS carousel, reading `touch-action` values).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/controls/Button.css`, `stageshow/references/craft.md` (`flex: none`, links and controls at rest, `data-open`), `stageshow/references/rehearse.md` (width is not touch).
 - Related: [[accessibility-baseline]], [[hover-states-subtle]], [[prefers-reduced-motion]], [[forms-behavior]].

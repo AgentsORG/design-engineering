@@ -38,12 +38,14 @@ const delay = (i) => i * 0.02;
 
 Sweet spot is **30–80ms** between items. Adjust for item count and physical size on screen. Keep the steps uneven: the lead moves furthest, support less, decoration only fades, and gaps that shrink down the group read as a wave where equal gaps read as a metronome (Motion's `stagger()` takes `from` and `ease` for this).
 
+In plain CSS, give each item `--i` and set `animation-delay: calc(var(--step) * var(--i))` with `animation-fill-mode: both`. Without the backwards half, a delayed item sits at rest through its delay and then jumps to the first frame. A keyframe with only `from` ends on the element's own styles, so there is no end state to keep in sync. Things that land as one beat (a title and its first paragraph) share an index.
+
 ## The "stop at 12" pattern
 
-If you have more than 12 items, cap the stagger:
+For product UI the cap is about six: items past the sixth share its delay, so a 50–60ms step stays inside the ~300ms budget. Twelve is the ceiling for an occasional, first-run list.
 
 ```ts
-const STAGGER_CAP = 12;
+const STAGGER_CAP = 6; // 12 only for a first-run list
 const delay = (i) => Math.min(i, STAGGER_CAP) * 0.05;
 ```
 
@@ -51,7 +53,7 @@ Items past the cap appear together with the last staggered item. This avoids the
 
 ## Section entrances: split, then stagger
 
-For a page or hero entrance, don't move one wrapper. Split it into heading, copy and call to action, offset each by ~90–100ms (per word in a hero headline, ~80ms), and enter each with opacity, `translateY(8px)` → 0 and `blur(2px)` → 0. Section pieces are fewer and larger than list items, which is why the gap is wider than 30–80ms.
+For a page or hero entrance, don't move one wrapper. Split it into heading, copy and call to action, offset each by ~90–100ms (per word in a hero headline, ~80ms), and enter each with opacity, `translateY(8px)` → 0 and `blur(2px)` → 0. Section pieces are fewer and larger than list items, which is why the gap is wider than 30–80ms. A moment seen once per visit (a hero, a personal site) may widen the step to 100–150ms on 0.5–0.6s entrances; product UI keeps 30–80ms.
 
 ## First paint is not an entrance
 
@@ -91,9 +93,10 @@ Stagger on every state change is exhausting. Only stagger on **first appearance*
 
 ## Sources
 
-- Emil Kowalski — stagger guidance (30–80ms, decorative, never blocks interaction). The cap at 12 is house guidance.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/remove-animations/SKILL.md (300ms total cap).
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/choreograph/SKILL.md (one entrance per container, no stagger on high-frequency UI, no uniform stagger, simultaneous exits).
+- Emil Kowalski — stagger guidance (30–80ms, decorative, never blocks interaction). The cap at 12 is house guidance; the product cap of six is upstream's.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/remove-animations/SKILL.md (300ms total cap); unchanged through `715c180`.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/choreograph/SKILL.md (one entrance per container, no stagger on high-frequency UI, no uniform stagger, simultaneous exits); unchanged through `715c180`.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/choreograph/SKILL.md and RECIPES.md (the CSS index stagger with fill mode `both`, the six-item product cap, 100–150ms steps for first-run moments).
 - Emil Kowalski's design-engineering practice, distilled by AgentsORG (split-then-stagger sections, no entrance on first paint).
 - guidelines.sh — "stagger reveals 30–50ms."
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/choreography.md`, `stageshow/references/motion.md` (Pace and easing, Changing text and values, Loops), `stageshow/kit/act.ts` (`stagger`), `stageshow/examples/choreography/choreography.css`.

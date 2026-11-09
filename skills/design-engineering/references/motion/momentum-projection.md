@@ -46,6 +46,12 @@ A 600px sheet is 180px from open when the finger lifts moving down at 900 px/s.
 - Bad: it is past halfway open, so it snaps open from rest and the flick is ignored.
 - Good: `180 + 0.9 * 0.998 / 0.002` rests near 629px, the nearest snap is closed (600), and the spring starts at 900 px/s.
 
+The same rule in 2D: a picture-in-picture window is flicked up and to the right from the bottom-left corner.
+
+- Bad: take the corner nearest the release point. That is still bottom-left, so the throw is lost.
+- Good: `px = x + project(vx)`, `py = y + project(vy)`; pick the corner nearest (px, py); start an x spring at vx and a y spring at vy, on Apple's move pair (damping 1.0, response 0.4; [[spring-animations]]).
+- Check: a gentle flick stays put; a hard diagonal flick crosses to the opposite corner without bending its path.
+
 With no spring to hand the speed to (a CSS throw), give the curve a first slope equal to the finger's speed. Adapted from `stageshow/examples/swipe/index.tsx`, with `v` in px/ms from the last four drag samples:
 
 ```ts
@@ -63,6 +69,7 @@ Projection without velocity hand-off still looks wrong: the element picks the ri
 
 ## Sources
 
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/apple-design/SKILL.md (from Apple's *Designing Fluid Interfaces*, WWDC 2018).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/apple-design/SKILL.md (from Apple's *Designing Fluid Interfaces*, WWDC 2018); unchanged through `715c180`.
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (the 2D corner-snap case).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/swipe/index.tsx`, `stageshow/teaching/contrasts.tsx` (interrupt), `stageshow/references/verify.md` (beats filmed at 40 to 80ms).
 - Related: [[gesture-momentum]], [[spring-animations]], [[frame-rate-independence]], [[animated-hit-testing]].

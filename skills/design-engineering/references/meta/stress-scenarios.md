@@ -20,7 +20,7 @@ A component looks finished with the mockup's copy, three rows and a 1280px conta
 
 Write the kept scenarios down first, one line each, and the dropped axes with a reason in one line, so a wrong inference is cheap to catch. A static icon button with a fixed label gets container and environment, never long text. Add any value the component's own data makes worse — the longest real option, copied into a fixture.
 
-**Every hostile value is realistic or the real limit.** A hyphenated, accented two-part surname, a 60-character corporate email, a two-letter first name, a workspace of 1,284 — or the exact cap from the validation schema, the column type, or the form's `maxLength`. Random strings get dismissed as "never happens" and end the conversation. No limit anywhere is a finding ("unbounded"); so is a 50-character input saving to a 255-character column, because imports and the API will send the longer value. Spread the failures across the first rows the way real data does, rather than stacking them in row 1.
+**Every hostile value is realistic or the real limit.** A hyphenated, accented two-part surname, a 60-character corporate email, a two-letter first name, a workspace of 1,284 — or the exact cap from the validation schema, the column type, or the form's `maxLength`. Random strings get dismissed as "never happens" and end the conversation. No limit anywhere is a finding ("unbounded"); so is a 50-character input saving to a 255-character column, because imports and the API will send the longer value. Spread the failures across the first rows the way real data does, rather than stacking them in row 1. Numbers, time, collections, states, content and media have their own breaks in [[worst-case-values]].
 
 ## Failure signatures
 
@@ -74,7 +74,7 @@ Isolation is the point here and the trap in [[prototype-picker]]: stress tests r
 ## Sources
 
 - Jakub Krehel, interfaces skills (MIT, github.com/jakubkrehel/skills, HEAD `592aedc`, read 2026-10-25): `skills/break/SKILL.md`, `break/scenarios.md`; `skills/state-machine/SKILL.md`, `state-machine/switcher.md`. With the companion installed, `/break` and `/state-machine` own the run ([[interfaces-reconciliation]]).
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/break-ui/SKILL.md, skills/break-ui/CATALOG.md (realistic values, failure signatures, keeping the fixture).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, a81dbca): skills/break-ui/SKILL.md, skills/break-ui/CATALOG.md (realistic values, failure signatures, keeping the fixture); the per-kind catalog re-read at HEAD `715c180` (2026-11-09) for [[worst-case-values]].
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/rehearse.md` (filming at 390, the never-intentional lines, clearing by hiding), `stageshow/scripts/layout.mjs` (flags from its `--help`).
 - Benji Taylor, benji.org/liveline (read 2026-11-07).
 - Related: [[states-are-the-work]], [[content-authenticity]], [[skill-router]].

@@ -37,7 +37,7 @@ For most interactive rows, lists, and table cells, this is enough. The shift sig
 }
 ```
 
-A 1px lift is felt more than seen. It's the smallest possible motion that still registers. 4px lifts look bouncy and amateur.
+A 1px lift is felt more than seen. It's the smallest possible motion that still registers. 4px lifts look bouncy and amateur. If a card hover scales at all, the ceiling is about `scale(1.02)`; 1.05 swells the whole card. Use `transition-transform` (never `transition-all`) at about 150ms: hover answers a pointer that is already there, so 300ms drags.
 
 ### Border-color shift on inputs
 
@@ -125,4 +125,5 @@ Hover effects that change layout (margin, padding, width) cause adjacent element
 
 - guidelines.sh — "Hover isn't lift-and-shadow; 1px shifts."
 - Emil Kowalski — touch device hover gating, disabled-state layering.
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (the card-hover ceiling: 1.02, `transition-transform`, 150ms).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Spacing and alignment; Color and looks), `stageshow/kit/controls/Button.css`, `stageshow/kit/parts/Menu.css`, `stageshow/kit/stage.css` (ink tokens), `stageshow/examples/gmail/gmail.css`.

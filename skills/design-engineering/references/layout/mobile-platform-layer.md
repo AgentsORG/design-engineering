@@ -24,17 +24,17 @@ In Next.js these are the root layout's `viewport` export (`viewportFit`, `intera
 
 ## The rules and their reasons
 
-- **Height.** `100vh` is the viewport with the chrome *collapsed*, so on load it overflows by the URL bar. App shells and bottom-pinned UI use `100dvh`; heroes use `min-height: 100svh`, because `dvh` re-lays-out mid-scroll. Tailwind's `h-screen` carries the old bug; use `h-dvh` / `min-h-svh`.
+- **Height.** `100vh` is the viewport with the chrome *collapsed*, so on load it overflows by the URL bar. App shells and bottom-pinned UI use `100dvh`; heroes use `min-height: 100svh`, because `dvh` re-lays-out mid-scroll. Tailwind's `h-screen` carries the old bug; use `h-dvh` / `min-h-svh`. `lvh` is the old `vh` under a new name and almost never what you want.
 - **Safe areas.** `viewport-fit=cover` paints under the notch; `env(safe-area-inset-*)` pads content back. Without the meta tag every inset is `0px`. Headers take top, tab bars and sheets take bottom, sidebars take left/right in landscape. Inside `calc()` give a fallback: `env(safe-area-inset-bottom, 0px)`.
 - **Keyboard.** iOS shrinks the visual viewport; Android Chrome overlays the keyboard on the page. `interactive-widget=resizes-content` makes Android resize too, so a composer at the bottom of a `100dvh` column rides above it with no script. A fixed bottom CTA hides the last field: pad the scroller by the CTA height plus the bottom inset. Never autofocus on a coarse pointer.
 - **Overscroll.** `none` on the root stops pull-to-refresh and the page rubber band in an app; `contain` on inner scrollers keeps their own bounce without chaining to the page. Drop the root rule on a document where pull-to-refresh is welcome. Never `touchmove` + `preventDefault()`: it blocks scroll and makes the listener non-passive.
 - **Scroll lock.** Behind a modal or sheet, lock through a dialog primitive (Base UI, Radix, vaul). `overflow: hidden` on `body` is ignored by iOS touch scrolling.
-- **Status bar.** One `theme-color` per scheme, matched to the top of the page (the header), not the brand colour; update the tag on a class-based theme toggle. A PWA's manifest colours are the same decision.
+- **Status bar.** One `theme-color` per scheme, matched to the top of the page (the header), not the brand colour; update the tag on a class-based theme toggle. A PWA's manifest colours are the same decision: an installed iOS PWA also reads `apple-mobile-web-app-status-bar-style`, set together with the manifest's `theme_color` and `background_color`, and `<meta name="color-scheme" content="light dark">` sits beside the two theme-color tags when both schemes ship.
 - **Anchors** clear a sticky header with `scroll-margin-top` equal to its height; cap that header, since 80px is a quarter of a landscape phone.
 
 ## Prove it on hardware
 
-Emulation reproduces none of this. Serve on `0.0.0.0`, open by LAN IP; Safari → Develop → device on iOS, `chrome://inspect` on Android. Use a phone a few years old, with the keyboard open, once in landscape, and installed as a PWA if that ships — standalone changes the viewport, insets and status bar.
+Emulation reproduces none of this. Serve on `0.0.0.0`, open by LAN IP; Safari → Develop → device on iOS, `chrome://inspect` on Android. Use a phone a few years old, with the keyboard open, once in landscape, and installed as a PWA if that ships — standalone changes the viewport, insets and status bar. The Xcode Simulator beats desktop emulation for viewport and insets, but it still can't show how touch feels.
 
 ## Reference
 
@@ -62,5 +62,6 @@ Check: open it by LAN IP on a real phone, focus the last field with the keyboard
 
 - Emil Kowalski's design-engineering practice, distilled by AgentsORG.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/mobile-native/SKILL.md.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/mobile-native/SKILL.md §3, §10, §11 (`lvh`, the PWA status-bar meta and `color-scheme`, the Simulator's limit).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/craft.md` (Chrome and devices: nothing under the island, a sheet or grabber below the status bar).
 - Related: [[touch-and-focus]], [[forms-behavior]], [[growth-and-overflow]], [[sticky-and-scroll-tells]], [[cmd-mobile]].

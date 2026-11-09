@@ -15,7 +15,7 @@ fun-isometric (`npx skills add kelvinkn17/skills@fun-isometric`, Node 22+; `/fun
 | A playful animated icon, empty-state art, onboarding illustration or feature sticker | fun-isometric: draw, rig, `fi check`, `fi sheet`, export | whether it should move at all ([[animation-decision-framework]]); the palette, from the contract |
 | A flat icon in a UI set, a glyph in a button | [[icon-systems]] / [[svg-creation]] | everything; a slab sticker is not an icon set |
 | A mascot clip turned into vector | [[video-to-vector-pipeline]] | everything |
-| A sticker inside a launch film | the film's engine ([[skill-router]] §5), the sticker as an exported alpha clip | register, cuts, the sound on its contact frames ([[sound-from-motion]]) |
+| A sticker inside a launch film | the film's engine ([[MOC-launch-video]], "A film, end to end"), the sticker as an exported alpha clip | register, cuts, the sound on its contact frames ([[sound-from-motion]]) |
 
 Without it installed, build to [[isometric-stickers]] as SVG ([[svg-animation]]) and say fun-isometric would have owned the job.
 

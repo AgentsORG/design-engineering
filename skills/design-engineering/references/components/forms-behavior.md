@@ -18,7 +18,7 @@ Forms are where users do real work, and they notice every rough edge: the label 
 
 ## Browser behaviors, curated
 
-Keep `autocomplete` **on** for identity, address, and payment fields — there it helps. Turn `spellcheck` and `autocomplete` **off** for usernames, search, codes, and slugs, and suppress password-manager overlays (`data-1p-ignore`, `data-lpignore`) where they don't belong. Ask for the keyboard you need: `inputmode="numeric"` for codes, `"decimal"` for amounts, `autocomplete="one-time-code"` on verification fields, and `enterkeyhint` (`search`, `send`, `done`) so the return key says what it does. Login passwords take `current-password`, signup and change-password take `new-password`.
+Keep `autocomplete` **on** for identity, address, and payment fields — there it helps. Turn `spellcheck` and `autocomplete` **off** for usernames, search, codes, and slugs, and suppress password-manager overlays (`data-1p-ignore`, `data-lpignore`) where they don't belong. Ask for the keyboard you need: `inputmode="numeric"` for codes, `"decimal"` for amounts, `autocomplete="one-time-code"` on verification fields, and `enterkeyhint` (`search`, `send`, `done`) so the return key says what it does. Usernames, handles and codes also take `autocapitalize="none"` and `autocorrect="off"`, or iOS capitalises the first letter and swaps in a dictionary word. Login passwords take `current-password`, signup and change-password take `new-password`.
 
 ## Decorations, focus, submission
 
@@ -66,5 +66,6 @@ Auto-advancing verification-code inputs feel clever until someone needs to corre
 ## Sources
 
 - Emil Kowalski's design-engineering practice on forms, distilled by AgentsORG.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/mobile-native/SKILL.md §4 (autocapitalize and autocorrect off on usernames and codes).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/form-error/index.tsx`, `stageshow/examples/form-error/form.css`, `stageshow/references/motion.md` (a button changes on itself).
 - Related: [[forms-validation]], [[accessibility-baseline]], [[touch-and-focus]], [[responsive-feedback]].

@@ -68,6 +68,10 @@ const reducedMotion = useReducedMotion();
 
 Emil's published skills say fewer and gentler: keep opacity and color changes that explain a state, drop movement, scale, parallax and overshoot. His practice notes go further and disable everything, opacity fades included. This node keeps the short fade as the default because it carries meaning without motion; take the stricter line when a product's audience or a client's standard asks for it. Either way, ship the reduced path with the animation, not as a follow-up.
 
+## Beyond the media query
+
+Some motion causes vestibular trouble even with the setting off: a whole-viewport background in motion, a slow loop around 0.2 Hz (one cycle about every 5s), a hard jump in brightness. Ease a theme switch instead of cutting it. When a large surface has to travel, make it partly see-through on the way, or fade it out for the move and back in once it lands. Transparency and contrast preferences are in [[translucent-materials]].
+
 ## Reference
 
 The reduced path is the finished state, not frame 0: the toast already shown, the chart already drawn, an overlay already on its target, nothing caught mid-change. Read the preference live, and treat a host that renders a still as reduced too. Adapted from `stageshow/kit/reduced-motion.ts`:
@@ -97,7 +101,8 @@ The second worst: an entrance that starts from `opacity: 0` and only runs under 
 
 - WCAG 2.1 — Animation from Interactions.
 - Emil Kowalski — prefers-reduced-motion as a first-class concern, not an afterthought.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md, skills/review-animations/STANDARDS.md (fewer and gentler, not zero).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md, skills/review-animations/STANDARDS.md (fewer and gentler, not zero); unchanged through `715c180`.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/apple-design/SKILL.md §14 (vestibular triggers beyond the media query).
 - Emil Kowalski's design-engineering practice, distilled by AgentsORG (disable all, opacity included).
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/scripts/lib/rules.mjs` (`reduced-hidden`) and `references/motion.md` §2 (35 of 99 award sites have any reduced-motion rule).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/reduced-motion.ts`, `stageshow/kit/motion/Follow.tsx`, `stageshow/references/kit.md` (Playback), `stageshow/references/motion.md` (Story, the poster), `stageshow/references/rehearse.md` (Reduced motion).

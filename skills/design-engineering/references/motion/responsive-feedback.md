@@ -82,6 +82,7 @@ Any time you build a button, a tooltip, a popover, a context menu, or a hover-re
 ```
 
 Bad: pointer-down changes nothing and "Saved" appears 300ms later. Good: `scale(0.97)` on pointer-down, then the label changes on the same button.
+Bad: a toolbar where every tooltip waits its full 500ms, even when the pointer slides straight from one open tooltip to the next, so exploring feels gluey. Good: the first tooltip in the group waits 500ms; while the group is warm, its siblings open at 0ms with no entrance.
 Gold example: `stageshow/kit/motion/Popover.css`. Only the surface scales from the origin and the words just fade, because text that ends a scale is redrawn snapped to the pixel grid and wobbles as it lands; closing, the whole popover shrinks toward its origin as one object. The press pair is in `stageshow/teaching/contrasts.tsx` (press).
 Benji's call differs: Stageshow's Button settles its press over 180ms `cubic-bezier(0.2, 0.8, 0.2, 1)` and its popover surface over 240ms `cubic-bezier(0.22, 1, 0.36, 1)`; this node keeps 100–160ms for the press.
 Check: film a press and a popover open stepped at 40ms. The button moves on the first frame after pointer-down, before any result; the popover's first frame grows out of the trigger's corner; its text is sharp on the settle frame.
@@ -94,6 +95,7 @@ Don't set `:active` on form `<input>` elements the same way — scaling an input
 
 - Emil Kowalski — tooltips, popovers, origin-awareness from Sonner / Vaul.
 - Radix UI — `Tooltip.Provider skipDelay` implementation.
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/RECIPES.md (button press, tooltip `data-instant`).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/RECIPES.md (button press, tooltip `data-instant`); unchanged through `715c180`.
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (the warm tooltip group at 500ms).
 - Emil Kowalski's design-engineering practice, distilled by AgentsORG (0.96 small-control press, 0.95 floor, `still` opt-out).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Popover.css`, `stageshow/kit/controls/Button.css`, `stageshow/teaching/contrasts.tsx` (press).

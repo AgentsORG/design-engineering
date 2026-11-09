@@ -62,8 +62,9 @@ The tree run on three real elements of one screen, every column filled before an
 | Command palette on Cmd+K | 100+ a day, keyboard | none | none | No motion: opens on the frame the key lands |
 | Row hover in a list | tens a day | state | CSS transition | `background-color 120ms ease`, nothing moves |
 | "Link copied" toast | occasional | feedback + spatial | CSS transition | Enters and exits; stays mounted until its fade ends |
+| Account menu, opened all day | tens a day, pointer | spatial | CSS transition | One ~150ms scale from the trigger; items arrive together, no stagger |
 
-Gold example: `stageshow/teaching/contrasts.tsx`, the press pair (responds before the result) and the exit pair (fades out before it is removed): each changes one thing with the same endpoints, which is how to argue a row of this table.
+Gold example: `stageshow/teaching/contrasts.tsx`, the press and exit pairs: each changes one thing with the same endpoints, which is how to argue a row.
 
 Check: cover test on a filmed contact sheet. Mask each moving element in turn; any row whose verdict is "animate" must make the frame harder to read when hidden, or it moves to "No motion".
 
@@ -73,8 +74,7 @@ The bug is almost never "this needs more animation." The bug is almost always "t
 
 ## Sources
 
-- Emil Kowalski — animation decision tree (frequency-first).
-- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md (frequency tiers, purposes, tool ladder), skills/find-animation-opportunities/SKILL.md (function test).
-- Related: removing what fails this gate → [[animation-removal-hazards]].
+- Emil Kowalski — animation decision tree (frequency-first); skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md (frequency tiers, purposes, tool ladder), skills/find-animation-opportunities/SKILL.md (function test).
+- Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG: the account-menu row. Related: [[animation-removal-hazards]].
 - Benji Taylor — "animation should serve architecture."
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `references/motion.md` (Story: motion without hierarchy; Pace and easing: feedback stays quick), `teaching/contrasts.tsx` (press, exit).

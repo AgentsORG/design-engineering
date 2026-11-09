@@ -1,6 +1,6 @@
 ---
 title: review-checklist
-summary: Audit table — thirty-nine common UI issues, each with a grep and a fix. Scan against this before signing off.
+summary: Audit table — forty common UI issues, each with a grep and a fix. Scan against this before signing off.
 tags: [meta, review, checklist]
 ---
 
@@ -51,6 +51,7 @@ A pre-flight checklist for UI code review. Scan the user's code against each row
 | 37 | Undesigned scheme declared | `color-scheme: light dark` or a dark `theme-color` on an app with no dark theme | Declare only the schemes that exist | [[contrast-and-color-scheme]] |
 | 38 | Theme-blind SVG | `fill="#fff"`, `fill="#000"`, `stroke="white"` inline in icons or logos | `currentColor` or a CSS variable | [[dark-mode]] |
 | 39 | Truncation with no way out | `truncate`, `line-clamp-*`, `text-overflow: ellipsis` on meaningful text with no `title`, tooltip or expand | Give the full string a route | [[line-behavior]] |
+| 40 | Entrance is opacity only, or a group appears in one frame | `initial={{ opacity: 0 }}` with no transform; list items sharing one delay | Start from a small translate or `scale(0.95)` with the fade; stagger list items 30–80ms | [[never-scale-from-zero]], [[stagger-choreography]] |
 
 ## Workflow
 
@@ -88,6 +89,7 @@ Also: the checklist is not exhaustive. The most valuable reviews catch what's *n
 ## Sources
 
 - Emil Kowalski — Review Checklist section of [emilkowalski/skill](https://github.com/emilkowalski/skill).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/review-animations/SKILL.md — row 40.
 - Jakub Krehel, interfaces skills (MIT, HEAD `592aedc`): the Before-you-finish tables in `better-accessibility`, `better-colors` and `better-ui` — rows 23–26 and the row-5 fix.
 - Leonxlnx, taste-skill v2.1.1 (MIT, HEAD a9c73c3): `skills/taste-skill/scripts/lint.mjs` — the patterns behind rows 14–22. Its mono, numbering, hairline, shadow and terracotta rules are its owner's taste and are not adopted (`references/research.md` §6).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/verify.md` (What you see, what you do), `stageshow/references/rehearse.md` (Lines that are never intentional), `stageshow/kit/stage.css` (default accent), `stageshow/references/looks.md` (mapping a product's tokens).
