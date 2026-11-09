@@ -36,6 +36,10 @@ Components are where craft lives because users *touch* them. Their states are wh
 - [[sonner-usage]] — Sonner in practice: one Toaster, theme and richColors, the styling ladder, why toasts duplicate or hide behind a modal, its defaults.
 - [[presence-signals]] — Here, half here, gone: an arrival ring, a dashed outline for partial attention, a leaving beat, live typing that resizes, reactions pinned where tapped, one colour per person. From Benji Taylor's Honk.
 - [[drawing-toolbar]] — Drawing and markup in a product: a bar that morphs instead of swapping panels, pens that answer speed, area erasing, export that matches the screen, a side rail on phones. From Drawesome.
+- [[press-and-pending-states]] — The press paints the part the hand moves and only while held; disabled never answers; selection outranks press; pending keeps size with `aria-busy`; no state changes elevation; slide-to-lift action groups. From Meta's Astryx.
+- [[reorder-insertion-cue]] — Reorder from a handle, a quiet (never raised) preview, an accent insertion line while the rest stay still, commit once, keyboard moves the same line. From Astryx.
+- [[streaming-chat-scroll]] — Never move the reader against their intent: follow only at the live edge, anchor the new turn, Jump to latest, reopen at the last meaningful turn, `role="log"`. From shadcn/ui's Message Scroller.
+- [[agent-trace-states]] — An agent's work as one trace: every tool state mapped (running after the stream ended is a failure), reasoning open while it runs, approval as a question, plans updated in place. From shadcn/ui's AI Elements.
 
 ## Cross-cluster
 

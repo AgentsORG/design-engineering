@@ -16,6 +16,7 @@ Typography is where AI-generated UIs give themselves away first. Inter and SF Pr
 - [[line-behavior]] — Measure near 65ch, wrap mode per role, overflow guards both ways, truncation with an escape hatch, casing by CSS, real punctuation, tuned underlines, logical properties, the 16px and contrast floors.
 
 - [[opentype-features-and-axes]] — Static vs variable, the registered axes, real small caps / slashed zero / super-sub through properties, font-specific stylistic sets, optical cuts, stroked-text seams.
+- [[mobile-type-pin]] — Raise phone body text to 16px without inflating headings: pin one role by the desktop ratio and re-derive the scale; width and coarse pointer; never the root size. From Astryx.
 
 ## Cross-cluster
 

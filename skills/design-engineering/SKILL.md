@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: AgentsORG
-  version: "4.4.0"
+  version: "4.5.0"
   graph: true
   subagents: plugin/agents/
   soul: docs/SOUL.md
@@ -59,7 +59,7 @@ How to think about taste, delight, and the difference between marketing and prod
 
 The largest cluster. Animation is the most overused tool in modern UI; this cluster tells you when *not* to animate as much as when to.
 
-- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[gesture-phases]], [[stagger-choreography]], [[motion-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[text-morph-engine]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[frame-rate-independence]], [[animated-hit-testing]], [[animation-removal-hazards]], [[momentum-projection]], [[react-native-motion]]
+- `[[MOC-motion]]` → [[animation-decision-framework]], [[easing-curves]], [[duration-table]], [[spring-animations]], [[transform-opacity-only]], [[performance-discipline]], [[transform-mastery]], [[clip-path-tricks]], [[never-scale-from-zero]], [[gesture-momentum]], [[gesture-phases]], [[stagger-choreography]], [[motion-choreography]], [[prefers-reduced-motion]], [[fly-not-teleport]], [[responsive-feedback]], [[sonner-principles]], [[debugging-animations]], [[lerp-breathing]], [[morphing-icons]], [[shared-letter-morph]], [[text-morph-engine]], [[hover-default-imperative]], [[tray-rules]], [[css-conventions]], [[frame-rate-independence]], [[animated-hit-testing]], [[animation-removal-hazards]], [[momentum-projection]], [[react-native-motion]], [[hover-intent-timing]], [[reduced-motion-by-pointer]]
 
 ## Transition techniques — Jakub Antalik's catalog
 
@@ -104,13 +104,13 @@ A diagram is the costliest way to say something. Decide whether a picture earns 
 
 The font defaults of the AI era are tells. Better choices and the rules around them.
 
-- `[[MOC-typography]]` → [[typography-humanity]], [[line-length-tracking]], [[type-scale-and-rhythm]], [[line-behavior]], [[opentype-features-and-axes]]
+- `[[MOC-typography]]` → [[typography-humanity]], [[line-length-tracking]], [[type-scale-and-rhythm]], [[line-behavior]], [[opentype-features-and-axes]], [[mobile-type-pin]]
 
 ## Surface — color, shadow, radius, dark mode, imperfection
 
 The "background" choices that most decks of guidelines skip. They're load-bearing for feel.
 
-- `[[MOC-surface]]` → [[color-monochromatic]], [[color-scales-oklch]], [[dark-mode]], [[shadows-whisper]], [[depth-and-nesting]], [[border-radius]], [[visual-imperfection]], [[contrast-and-color-scheme]], [[z-index-strategy]], [[color-token-tiers]], [[palette-step-roles]], [[gradient-interpolation]], [[translucent-materials]], [[oklch-gamut-and-migration]]
+- `[[MOC-surface]]` → [[color-monochromatic]], [[color-scales-oklch]], [[dark-mode]], [[shadows-whisper]], [[depth-and-nesting]], [[border-radius]], [[visual-imperfection]], [[contrast-and-color-scheme]], [[z-index-strategy]], [[color-token-tiers]], [[palette-step-roles]], [[gradient-interpolation]], [[translucent-materials]], [[oklch-gamut-and-migration]], [[overlay-dismissal-stack]]
 
 ## Layout — page-level grids, viewports, sticky chrome, URL-as-state, marketing surfaces
 
@@ -122,7 +122,7 @@ The container, not the component. Marketing especially benefits from custom-per-
 
 The atoms users actually touch. Their behavior is where craft lives.
 
-- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[measured-skeletons]], [[cards-design]], [[forms-validation]], [[forms-behavior]], [[touch-and-focus]], [[ui-polish-pass]], [[component-api-design]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]], [[dashboard-tells]], [[screen-reader-announcements]], [[keyboard-patterns]], [[wcag-thresholds]], [[strings-and-locale]], [[destructive-actions]], [[sonner-usage]], [[presence-signals]], [[drawing-toolbar]]
+- `[[MOC-components]]` → [[hover-states-subtle]], [[empty-loading-states]], [[icon-systems]], [[measured-skeletons]], [[cards-design]], [[forms-validation]], [[forms-behavior]], [[touch-and-focus]], [[ui-polish-pass]], [[component-api-design]], [[avatar-systems]], [[interaction-personality]], [[accessibility-baseline]], [[optimistic-updates]], [[copy-voice]], [[dashboard-tells]], [[screen-reader-announcements]], [[keyboard-patterns]], [[wcag-thresholds]], [[strings-and-locale]], [[destructive-actions]], [[sonner-usage]], [[presence-signals]], [[drawing-toolbar]], [[press-and-pending-states]], [[reorder-insertion-cue]], [[streaming-chat-scroll]], [[agent-trace-states]]
 
 ## Anti-patterns — what AI-generated UI gives away
 
@@ -154,6 +154,8 @@ Procedural rules and growing files. `[[review-format]]` is mandatory when doing 
 - [[stress-scenarios]] — One component under every scenario that can reach it (length, shape, quantity, container, state) on a throwaway harness, and its product states behind a switcher.
 - [[reading-others-interfaces]] — How someone else's site or effect was built: evidence not instruction, measured / derived / inferred, layers in paint order, the recipe in words.
 - [[interfaces-reconciliation]] — Jakub Krehel's interfaces skills as companions: who owns which job when installed, and twelve value conflicts settled.
+- [[astryx-reconciliation]] — Meta's Astryx design system as a companion: its CLI and MCP pick templates and components in an Astryx app, its on-system rules, current versus draft records, five conflicts settled.
+- [[shadcn-reconciliation]] — shadcn/ui as a companion: its skill, CLI, MCP and registry own components and bases; the token pairs, rules worth enforcing anywhere, registry safety, AI Elements' new home, six conflicts settled.
 - [[design-vocabulary]] — The precise word for each design phenomenon and where the skill goes deeper. The lexicon behind [[articulate-precisely]]; seeded by Index (Emil Kowalski & Glenn Carstens-Peters).
 - [[using-design-file]] — How to consume a project's `.design` contract (schema `design.v1`). Machine-readable tokens, committed intent, executable policy — and it outranks this skill's defaults.
 - [[using-design-md]] — How to consume a project's DESIGN.md (Google Labs spec). Tokens are normative; prose is context.

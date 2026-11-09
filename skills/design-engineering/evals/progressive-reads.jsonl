@@ -125,3 +125,9 @@
 {"query": "add vibration feedback to my mobile web app's toggles and form submit", "expected_nodes": ["haptic-feedback", "web-haptics-reconciliation"], "forbidden_nodes": ["sound-generation-elevenlabs"]}
 {"query": "build a swipe-to-dismiss card that respects quick flicks and can be grabbed mid-animation", "expected_nodes": ["gesture-phases", "gesture-momentum"], "forbidden_nodes": ["text-morph-engine", "haptic-feedback"]}
 {"query": "fade the overlay behind my drawer as the user drags it closed", "expected_nodes": ["gesture-phases"], "forbidden_nodes": ["cross-blur-transitions"]}
+{"query": "build a chat thread where the reply streams in and a Jump to latest button appears", "expected_nodes": ["streaming-chat-scroll"], "forbidden_nodes": ["sonner-usage"]}
+{"query": "show the agent's tool calls with running, failed and approval states", "expected_nodes": ["agent-trace-states"], "forbidden_nodes": ["optimistic-updates"]}
+{"query": "our tooltips flash when the mouse brushes across the toolbar", "expected_nodes": ["hover-intent-timing"], "forbidden_nodes": ["cross-blur-transitions"]}
+{"query": "what should replace my slide-in panel animation when reduced motion is on, on phone and desktop", "expected_nodes": ["reduced-motion-by-pointer", "prefers-reduced-motion"], "forbidden_nodes": ["spring-animations"]}
+{"query": "drag to reorder rows in a settings list, accessible by keyboard", "expected_nodes": ["reorder-insertion-cue"], "forbidden_nodes": ["drawing-toolbar"]}
+{"query": "set up shadcn components and theme tokens in a new Next.js app", "expected_nodes": ["shadcn-reconciliation"], "forbidden_nodes": ["astryx-reconciliation"]}

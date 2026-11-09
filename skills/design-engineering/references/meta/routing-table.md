@@ -66,6 +66,15 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Check an animated demo frame by frame before handing it over | [[demo-rehearsal]] |
 | Show who is here, half here or gone in a real-time product | [[presence-signals]] |
 | Add drawing or markup to a product | [[drawing-toolbar]] |
+| Build or review an AI chat: streaming replies, auto-scroll, a thread that jumps | [[streaming-chat-scroll]]; in a shadcn project → [[shadcn-reconciliation]] |
+| Show an agent's work: reasoning, tool calls, approvals, sources, plans, todo queues | [[agent-trace-states]] |
+| Pressed, loading or disabled controls that feel wrong, or a press on touch that slides across a toolbar | [[press-and-pending-states]] |
+| Drag-to-reorder a list, with keyboard parity | [[reorder-insertion-cue]] |
+| Tooltips, hover cards or flyouts that flash, flicker or open on a brush-past | [[hover-intent-timing]] |
+| What replaces motion under reduced motion, on touch and on desktop | [[reduced-motion-by-pointer]] |
+| Escape closes two layers, a drag closes a dialog, focus jumps after close | [[overlay-dismissal-stack]] |
+| Body text on phones vs inputs that zoom at under 16px | [[mobile-type-pin]] |
+| Build in a project that uses Astryx or shadcn/ui | [[astryx-reconciliation]] / [[shadcn-reconciliation]] |
 | Consume a project's DESIGN.md tokens | [[using-design-md]] (or spawn [[design-md-consumer]]) |
 | Put the right word to a design idea | [[design-vocabulary]] |
 | Decide whether an interaction should make a sound | [[sound-decision-framework]] |

@@ -72,10 +72,12 @@ Catalog of canonical transitions for common UI archetypes. Implementation layer 
 - [[animation-removal-hazards]] — Taking motion out safely: delete the start state with it, unhook what waited on it, keep layout animations that hide a jump, the reduce table.
 - [[momentum-projection]] — Where a flick would come to rest, snapping to the nearest target, handing the release velocity to the spring, one spring per axis, grab offset.
 - [[react-native-motion]] — The React Native and Expo digest: UI-thread animation, spring presets, native navigators, gesture axes, haptics on the frame.
+- [[hover-intent-timing]] — Entry delay and exit guard on everything a hover reveals, instant hand-off within a group, keyboard immediate, touch never gated, `delay` / `hideDelay`. From Astryx.
 
 ## Required-knowledge nodes (always relevant)
 
 - [[prefers-reduced-motion]] — The one accessibility rule that everyone skips and that breaks for real users.
+- [[reduced-motion-by-pointer]] — What replaces stripped motion: a ≤ 200 ms cross-fade on a coarse pointer, immediate otherwise; values and colours at once; drags and momentum keep tracking. From Astryx.
 
 ## Cross-cluster
 
