@@ -24,6 +24,10 @@ Meta's Astryx design system, shadcn/ui and its new AI Elements patterns, read fr
 - **`meta/shadcn-reconciliation`**: the shadcn skill, CLI, MCP and registry as the owner of components and bases; the token pairs, the rules worth enforcing in any shadcn app, registry safety, six conflicts settled, and AI Elements' move from vercel/ai-elements into shadcn/ui.
 - Router rows for Astryx, AI Elements and the shadcn skill; ten routing-table rows; MOC entries; four vocabulary terms; four gotchas; ten evals (`loading`, `progressive-reads`).
 
+### Changed
+
+- `using-design-file` and the offline spec mirror find a contract named `<name>.DESIGN` (e.g. `campusbinge.DESIGN`), matching the extension case-insensitively, the form AgentsORG `.DESIGN` now documents.
+
 ## [4.4.0] — 2026-11-08
 
 Emil Kowalski's new `gestures` skill, from the public emilkowalski/skills (MIT, `5206a95`).
