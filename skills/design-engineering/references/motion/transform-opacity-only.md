@@ -1,12 +1,12 @@
 ---
 title: transform-opacity-only
-summary: Only animate transform and opacity. They are GPU-accelerated. Everything else forces layout.
+summary: Prefer transform and opacity, which composite without layout or paint. A clip-path reveal and a measured-height accordion are the documented exceptions; every other property costs paint or layout on each frame.
 tags: [motion, performance, css]
 ---
 
 # Animate only transform and opacity
 
-The browser can animate `transform` and `opacity` on the GPU without going through layout or paint. Every other animatable property triggers layout, paint, or both — and you'll feel it on a low-end Android.
+The browser can animate `transform` and `opacity` on the GPU without going through layout or paint. Every other animatable property triggers layout, paint, or both — and you'll feel it on a low-end Android. Two exceptions are documented: `clip-path` for reveals and holds ([[clip-path-tricks]]), and a measured height for an accordion. Anything else needs a reason you can state.
 
 ## The rule
 
@@ -65,8 +65,8 @@ In every version these stay on the main thread: layout animations (`layout`, `la
 
 ## When this breaks
 
-- **`clip-path`** is GPU-accelerated in modern browsers and is the right tool for reveals — see [[clip-path-tricks]] for usage.
-- **`box-shadow`** repaints every frame. Animate `filter: drop-shadow()` instead, or the opacity of a pre-shadowed layer.
+- **`clip-path`** is a documented exception and the right tool for reveals; whether it composites depends on the engine, so measure it on the target device — see [[clip-path-tricks]] for usage.
+- **`box-shadow`** repaints every frame. Animate `filter: drop-shadow()` instead (Chrome composites `filter`; other engines may repaint, so measure), or the opacity of a pre-shadowed layer.
 - **`filter: blur()`** is GPU-accelerated but expensive on large surfaces. Use sparingly.
 - **`background-color`** is fine for hover, but don't try to animate a gradient — animate opacity of an overlay instead.
 
@@ -93,5 +93,6 @@ A `will-change: transform` on every element is *worse* than none. The browser pr
 
 - Emil Kowalski — performance rules, Sonner internals.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animation-performance/SKILL.md (the motion 14.2 shorthand change, what stays on the main thread, drop-shadow swap).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/animation-performance/SKILL.md and skills/review-animations/STANDARDS.md as corrected in `0f2e23b` (transform and opacity preferred with two named exceptions, `filter` composited in Chrome only).
 - web.dev — "High performance animations" reference table.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Collapse.css`, `stageshow/kit/parts/Toast.css`, `stageshow/references/motion.md` (Changing text and values), `stageshow/scripts/motion-watch.mjs` (`steps in its box`).

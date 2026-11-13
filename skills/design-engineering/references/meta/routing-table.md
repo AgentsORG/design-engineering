@@ -99,6 +99,7 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Check whether a recording or track may go in a launch film; write its credit | [[sound-licensing]] |
 | Decide which skill or companion should own a job | [[skill-router]] |
 | Which of Emil's skills comes next, or which verb owns an upstream skill's job | [[upstream-skill-lifecycle]] |
+| End of a session: the design corrections the user made, written down as rules with reasons in the contract, a project skill or a lint check | [[taste-capture]] |
 | Build an OKLCH palette or ramp, repair contrast by lightness | [[color-scales-oklch]] |
 | Fix pinched corners, harsh borders, dark-mode cards vanishing | [[depth-and-nesting]] |
 | Set up a type scale, leading, tracking, font loading | [[type-scale-and-rhythm]] |

@@ -15,13 +15,14 @@ Some jobs look like an afternoon and turn out to be a month of edge cases: digit
 | Primitives | Unstyled accessible parts (dialog, popover, menu, select) | base-ui |
 | Primitives | Command menu (Cmd+K palette) | cmdk |
 | Primitives | Toasts | Sonner ([[sonner-usage]]) |
+| Primitives | Drawer or bottom sheet | Vaul ([[gesture-phases]]) |
 | Primitives | One-time code input | input-otp |
 | Primitives | Control panel for tuning values | Leva, or DialKit ([[prototype-picker]]) |
 | Motion and visuals | Springs, layout and exit animation | motion |
 | Motion and visuals | Animated numbers (prices, counters, stats) | NumberFlow ([[text-morph-engine]]) |
 | Motion and visuals | Animated text | torph |
 | Motion and visuals | 3D globe | Cobe |
-| Motion and visuals | OG images from HTML and CSS | Satori |
+| Motion and visuals | OG images from HTML and CSS | Satori (it outputs SVG; rasterise that separately for a PNG) |
 | Motion and visuals | Syntax highlighting | shiki |
 | Charts | Live, streaming chart | Liveline |
 | Charts | Every other chart | recharts |
@@ -63,4 +64,5 @@ Being on the list is not a pass. A pick still has to earn its place under [[depe
 ## Sources
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/pick-ui-library/SKILL.md (the curated list, the Liveline/recharts split, when motion is worth it, the mismatch smells), skills/ask-sonner/SKILL.md.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/pick-ui-library/SKILL.md as corrected in `0f2e23b` (Vaul added for drawers, Satori's output is SVG).
 - Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (the animated-price case).

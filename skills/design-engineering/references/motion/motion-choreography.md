@@ -38,7 +38,7 @@ Before casting, run each element past [[animation-decision-framework]]; still is
 - No stagger on surfaces opened many times a day or from the keyboard: menus, palettes, tab panels, list rows ([[animation-decision-framework]]).
 - No uniform stagger. Equal delay, distance and curve on every item reads like `linear` on one element; vary by role.
 - Nothing waits for choreography. Every visible control takes input at once.
-- A leaving element gives up its space the moment it leaves, so siblings close the gap while it fades (`AnimatePresence mode="popLayout"`, or `position: absolute` at its current box). A same-container view swap is a crossfade, not out-then-in.
+- A leaving element gives up its space the moment it leaves, so siblings close the gap while it fades (`AnimatePresence mode="popLayout"`, or `position: absolute` at its current box). A same-container view swap is a crossfade, not out-then-in, and it needs `popLayout` too: the default `sync` mode keeps the leaving view in the layout, so the two stack until the exit ends.
 - One timing family per component: sub-animations share the container's duration and easing family; an inner fade may be lighter, never a different family. Set it once (`MotionConfig`, or one custom property).
 
 ## 4. Hook secondary motion to a moment
@@ -55,15 +55,16 @@ Forward moves content left and Back moves it right. Pass the direction to exits 
 
 ## Interruption, idling, reduced motion
 
-Re-trigger mid-flight (hover out halfway, Next twice fast, switch menus mid-open): in-flight animations stop before new ones start, a resumed idle loop waits for every reset to finish, and rapid swaps never leave two children mounted (stable `key`s). Gate "only after the build-up" on a ref, not state. An idle hint first plays after about 2.5s, then about every 6s, and stops while the user interacts. Reach for imperative orchestration (`useAnimate`) only when parts coordinate across hover, click and idle and you must wait for them to finish; a plain stagger stays declarative. When the running animations differ in length, await all of them, and stop the in-flight set before starting the next. Under `prefers-reduced-motion` the group appears together with opacity only; if the sequence is the explanation, step between its frames ([[prefers-reduced-motion]]).
+Re-trigger mid-flight (hover out halfway, Next twice fast, switch menus mid-open): in-flight animations stop before new ones start, a resumed idle loop waits for every reset to finish, and rapid swaps never leave two children mounted (stable `key`s). An idle hint first plays after about 2.5s, then about every 6s, and stops while the user interacts. Reach for imperative orchestration (`useAnimate`) only when parts coordinate across hover, click and idle and you must wait for them to finish; a plain stagger stays declarative. When the running animations differ in length, await all of them, and stop the in-flight set before starting the next. Under `prefers-reduced-motion` the group appears together with opacity only; if the sequence is the explanation, step between its frames ([[prefers-reduced-motion]]).
 
 ## Check
 
-Write the timeline before code: one row per element with role, start, duration, motion and relationship, plus 2–5 elements deliberately left still and why. Then film the interaction and step it frame by frame ([[debugging-animations]]): a wave and a queue look alike at full speed. Imagine the fiftieth use of the day; if you would skip it, cut it.
+Write the timeline before code: one row per element with role, start, duration, motion and relationship, plus up to five elements deliberately left still and why, or a line saying none were. Then film the interaction and step it frame by frame ([[debugging-animations]]): a wave and a queue look alike at full speed. Imagine the fiftieth use of the day; if you would skip it, cut it.
 
 ## Sources
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): `skills/choreograph/SKILL.md` and `RECIPES.md` (casting, the four relationships and carry, the hard rules, moment sync, distance-scaled timing, direction, interruption, attention loops, the timeline format). Paraphrased; unchanged through `715c180`.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): `skills/choreograph/SKILL.md` and `RECIPES.md` (the duplicate-view crossfade, the /500 divisor, the 110% step slide, idle-loop timing, when to use `useAnimate`). Paraphrased.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): `skills/choreograph/SKILL.md` and `RECIPES.md` as corrected in `0f2e23b` (what the default `sync` mode does to a view swap, the ready-flag gate removed, the still list capped at five).
 - Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (the pill-to-card morph; checking whether the group should move at all).
 - Related: [[stagger-choreography]], [[animation-removal-hazards]], [[fly-not-teleport]], [[compose-subtract-asymmetry]], [[sound-motion-sync]].

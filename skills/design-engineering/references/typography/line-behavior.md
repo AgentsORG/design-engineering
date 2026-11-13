@@ -22,7 +22,7 @@ One line: `nowrap` + `overflow: hidden` + `text-overflow: ellipsis`. Several: `l
 - **Wrap** what identifies the thing (a name, a detail-view title). Two lines is fine; four means the column is too narrow.
 - **End-truncate** secondary metadata whose start carries the meaning: role, description, message preview.
 - **Middle-truncate** when items differ at the end — file names (`Q3-report…v12.pdf`), emails on one long domain, paths, hashes. End-truncation makes them identical. CSS can't do it; split the string and keep the tail.
-- **Clamp** card previews at 2 lines (`line-clamp: 2`) so card heights stay predictable.
+- **Clamp** card previews at 2 lines (`-webkit-line-clamp: 2` with `display: -webkit-box`, `-webkit-box-orient: vertical` and `overflow: hidden`; Tailwind `line-clamp-2`) so card heights stay predictable.
 - **Values people compare stay whole.** Prices, counts, dates and IDs are never cut. Widen the column, or truncate the label next to them instead.
 - **Copy you choose should fit.** In a demo, empty state or marketing shot, pick names, emails and values short enough for their slot rather than truncating them. A truncated chip or a wrapped name in an illustration reads as broken, not realistic.
 
@@ -70,5 +70,6 @@ Check: render at the shown width and again at 390px, then count every wrapped an
 - Emil Kowalski's design-engineering practice on typography, distilled by AgentsORG.
 - CSS Text Level 4 (`text-wrap`), WCAG 2.2 1.4.3 / 1.4.4.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/break-ui/SKILL.md (wrap, truncate or clamp per field).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/break-ui/SKILL.md as corrected in `0f2e23b` (the full declaration set a clamp needs).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/teaching/details.tsx` (detail-copy), `stageshow/references/bento.md` (rule 14), `stageshow/references/rehearse.md` and `stageshow/scripts/film-checks.mjs` (`unit wrapped:`).
 - Related: [[line-length-tracking]], [[type-scale-and-rhythm]], [[accessibility-baseline]].

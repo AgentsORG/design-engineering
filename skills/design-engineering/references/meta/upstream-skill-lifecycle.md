@@ -27,6 +27,7 @@ Pick a skill by the stage the work is in first, and by its neighbour second. Emi
 | Whole app | `remove-animations` | `motion remove` · [[animation-removal-hazards]] | `improve-animations` for what stays; `find-animation-opportunities` |
 | Whole app | `improve-animations` | `motion audit` (plans only) | `find-animation-opportunities`; `review-animations` on the plans |
 | Whole app | `find-animation-opportunities` | `motion opportunities` · [[delight-impact-curve]] | `animate` to build a pick; `remove-animations` the other way |
+| After the session | `learn-taste` (user-invoked) | [[taste-capture]] | none; it ends the session, and its rules are what the next one starts from |
 | Other | `animate-expo` | companion; digest in [[react-native-motion]], [[expo-tool-ladder]] | `apple-design` for the reasoning |
 | Other | `ask-sonner` | companion; [[sonner-usage]], [[sonner-api-surface]] | `pick-ui-library` for the rest of the stack |
 | Other | `write-swift` | companion only; Swift language is not design | none here |
@@ -48,3 +49,4 @@ Almost every row ends at a review. A lifecycle that stops at "built" skips the s
 
 - Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG: the stage grouping and each skill's pairings.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): `README.md` and each `skills/<name>/SKILL.md` (invocation flags, scope).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): `skills/learn-taste/SKILL.md` (added upstream in `f7ce8c0`), and `0f2e23b`, which corrected API names and contradictions across the set without changing any skill's job.

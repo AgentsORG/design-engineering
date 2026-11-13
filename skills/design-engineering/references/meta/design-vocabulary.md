@@ -131,7 +131,7 @@ How things move and transition. The largest cluster in this skill — see [[anim
 - **Ease-in-out** — slow-fast-slow; for moves across the screen (a toggle, a sliding card). Overkill for simple enter/exit.
 - **Stagger** — list items animating in sequence (~40ms apart); all-at-once reads as a flash. → [[stagger-choreography]]
 - **Duration** — UI is sub-300ms; hovers ~150ms, buttons 100–160ms, >400ms with no feedback looks broken. → [[duration-table]]
-- **Transition property** — animate only `transform` and `opacity`; `all` catches layout props and janks. → [[transform-opacity-only]]
+- **Transition property** — name the properties, preferring `transform` and `opacity`; `all` catches layout props and janks. → [[transform-opacity-only]]
 - **Reduced motion** — the `prefers-reduced-motion` preference; any significant movement must honour it. → [[prefers-reduced-motion]]
 - **Skeleton shimmer** — a gradient sweep on a skeleton to suggest activity; must respect reduced motion. → [[empty-loading-states]]
 - **Spring** — physics-based easing that overshoots and settles; reads more alive than a fixed curve. → [[spring-animations]]
@@ -176,7 +176,7 @@ When "make it animate" is the whole prompt, the agent guesses. One of these name
 - **Number ticker / typewriter** — digits rolling to a value (with tabular figures, or the width jitters); text appearing one character at a time. Both read as gimmicks when used for routine updates. → [[line-length-tracking]]
 - **Mask** — like clip-path, but the edge can fade. A mask fade is how overflowing animated content gets clipped softly without breaking the animation. → [[clip-path-tricks]]
 - **Frame rate / dropped frame / jank** — frames drawn per second (60 is the floor and 120 is common); a frame that missed its deadline; the visible stutter of several in a row. → [[performance-discipline]]
-- **Layout thrashing** — reading and writing layout in alternation, or animating width, height, top or left, so the browser re-lays the page out every frame. → [[transform-opacity-only]], [[debugging-animations]]
+- **Layout thrashing** — reading layout (`offsetHeight`, `getBoundingClientRect`) right after writing styles, over and over, so the browser recalculates layout synchronously each time. Animating width, height, top or left is a different fault, a layout animation. → [[transform-opacity-only]], [[debugging-animations]]
 - **Opacity vs visibility** — `opacity: 0` keeps both the space and the clicks; `visibility: hidden` keeps the space and drops the clicks; `display: none` drops both. Fading something out leaves invisible click targets behind unless you also set `pointer-events: none` or `visibility`.
 - **Filled vs outlined (contextual swap)** — outlined icons for the default state and filled ones for active or selected, applied as one rule everywhere or not at all. → [[icon-systems]]
 - **Scale from zero / hover flicker / layered entry** — three named traps: an entrance inflating from a dot (start near full size and fade instead); a hover that shifts the element out from under the cursor so it toggles on and off; a container entering while its children also stagger, two entrances to sit through. → [[never-scale-from-zero]], [[hover-states-subtle]], [[motion-choreography]]
@@ -353,6 +353,7 @@ The words for a rendered film's editorial choices. Like Sound, this category is 
 ## Sources
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/animation-vocabulary/SKILL.md and skills/animate/SKILL.md (ease-in kept out of UI exits; loop, ambient, gesture and principle terms).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/animation-vocabulary/SKILL.md as corrected in `0f2e23b` (layout thrashing is forced synchronous layout, not a layout animation).
 - Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (scale from zero, hover flicker and layered entry as named traps).
 - *Index — Say Precisely What You Mean*, Emil Kowalski & Glenn Carstens-Peters — [index.how/to/articulate](https://index.how/to/articulate). The 188-term articulate module this lexicon is seeded from; the canonical reference, arriving fall 2026. Glosses here are this skill's own.
 - Launch film terms: AgentsORG's launch-film corpus (Skale and acclaimed films, measured 2026-09-28, `docs/research/launch-films/`) and heygen-com/hyperframes `.agents/skills/cut-the-curve/SKILL.md` (Apache-2.0, repo-internal).

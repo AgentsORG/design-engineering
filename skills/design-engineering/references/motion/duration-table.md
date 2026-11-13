@@ -1,6 +1,6 @@
 ---
 title: duration-table
-summary: Specific durations by element type. UI < 300ms. Buttons 100–160ms.
+summary: Specific durations by element type. UI < 300ms, with modals, drawers, sheets and toasts as the documented exceptions. Buttons 100–160ms.
 tags: [motion, duration]
 ---
 
@@ -39,6 +39,8 @@ A worked pair, a static dialog given motion by default:
 
 A second asymmetry applies where the user is deciding: the deliberate phase is slow and the system's answer snaps (hold-to-confirm: 2s linear on press, 200ms ease-out on release; see [[clip-path-tricks]]).
 
+The 300ms budget has four documented exceptions: a modal or a drawer may run to 500ms, a sheet follows the drawer, and a Sonner-style toast keeps its 400ms `ease`. Anything else over 300ms is a finding unless its reason is written down.
+
 Sonner itself is the counter-example: its toasts run a symmetric ~400ms `ease`, slower than the UI budget on purpose to match the component's calm personality ([[sonner-principles]]). Treat that as a deliberate exception, not a default.
 
 ## How to choose
@@ -71,6 +73,7 @@ One product's whole set, read from a real kit, so every part stays in proportion
 
 - Emil Kowalski — button feedback timing.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animate/SKILL.md and RECIPES.md (duration budgets, tooltip, toast, hold-to-confirm); unchanged through `715c180`.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/animate/SKILL.md, skills/emil-design-eng/SKILL.md and skills/review-animations/STANDARDS.md as corrected in `0f2e23b` (the four named exceptions to the 300ms budget).
 - Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (the dialog pair: 0.95 start, 300ms in, 150ms out).
 - Emil Kowalski's design-engineering practice, distilled by AgentsORG (exits 20–30% faster than enters).
 - Vercel Design — internal duration tokens.

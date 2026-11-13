@@ -18,7 +18,7 @@ Most Sonner work needs only the calls in [[sonner-usage]]. This node is the rest
 | `cancel: { label, onClick }` | The secondary button; clicking it closes the toast |
 | `toast.dismiss(id)` / `toast.dismiss()` | Close one toast / close every toast |
 | `useSonner()` | `{ toasts }` inside React |
-| `toast.getActiveToasts()` | The active toasts, from outside React |
+| `toast.getToasts()` | The active toasts, from outside React; `toast.getHistory()` also returns dismissed ones |
 | Toaster `icons`, toast `icon`, or `null` | Replace the type icons globally, per toast, or remove one |
 | `unstyled: true` | Drops the default styles; a halfway step, since headless gives more control for the same work |
 
@@ -28,13 +28,13 @@ The `<Toaster />` can sit in a Next.js layout that is a server component; only `
 
 | Symptom | Cause → fix |
 |---|---|
-| Never closes | `duration: Infinity`, `dismissible: false`, or `toast.promise` on a promise that neither resolves nor rejects |
+| Never closes | `duration: Infinity`, or `toast.promise` on a promise that neither resolves nor rejects |
 | Swipe dismisses the wrong way, or not at all | Directions follow `position`; set `swipeDirections` on the Toaster |
-| Cramped against a phone's edge | `offset` applies on desktop (32px), `mobileOffset` under 600px (16px); each takes a number, a CSS string or a per-side object |
+| Cramped against a phone's edge | `offset` applies on desktop (24px), `mobileOffset` under 600px (16px); each takes a number, a CSS string or a per-side object |
 
 ## Defaults people miss
 
-`expand` is off, so the stack opens only on hover. There is no close button until `closeButton` is set. `Alt+T` focuses the toast region; keep that hotkey, because it is how keyboard users get to a toast ([[keyboard-patterns]]).
+`expand` is off, so the stack opens only on hover. There is no close button until `closeButton` is set. `Alt+T` focuses the toast region; keep that hotkey, because it is how keyboard users get to a toast ([[keyboard-patterns]]). The `hotkey` prop is an array of key codes (`['altKey', 'KeyT']`), not a string. `dir` follows the document, and `containerAriaLabel` (`'Notifications'`) is set on the Toaster. An `id` may be a string or a number.
 
 ## Gotcha
 
@@ -43,4 +43,5 @@ Reaching for `toast.custom` to put a link in a toast throws away the default she
 ## Sources
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/ask-sonner/SKILL.md (Picking the call, Styling, Troubleshooting), skills/ask-sonner/API.md (Toaster props, toast options, Functions).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/ask-sonner/SKILL.md and API.md as corrected in `0f2e23b` (`toast.getToasts()` and `getHistory()`, the 24px desktop offset, the `hotkey` array, `dir` and `containerAriaLabel` on the Toaster, `dismissible: false` dropped from the never-closes causes).
 - Related: [[sonner-principles]], [[screen-reader-announcements]], [[stacking-chains]].

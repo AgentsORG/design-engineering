@@ -24,7 +24,7 @@ Sonner needs two pieces: one `<Toaster />` mounted once as close to the root as 
 | A button | `action: { label, onClick }`; `event.preventDefault()` keeps it open |
 | Your own JSX, no default styles | `toast.custom((t) => …)` |
 
-Calling `toast()` again with the same `id` updates that toast. `duration: Infinity` persists it. `onDismiss` (close button or swipe) and `onAutoClose` (timeout) are separate callbacks. Links in the text, `cancel`, dismissing, reading active toasts and icons are in [[sonner-api-surface]].
+Calling `toast()` again with the same `id` updates that toast. `duration: Infinity` persists it. `onDismiss` (close button, swipe or `toast.dismiss()`) and `onAutoClose` (timeout) are separate callbacks. Links in the text, `cancel`, dismissing, reading active toasts and icons are in [[sonner-api-surface]].
 
 ## Styling ladder
 
@@ -35,20 +35,20 @@ Calling `toast()` again with the same `id` updates that toast. `duration: Infini
 
 ## Defaults worth knowing
 
-Position `bottom-right`, 3 visible, 4000ms duration, 14px gap when expanded, 32px edge offset (16px under 600px wide), swipe direction derived from position.
+Position `bottom-right`, 3 visible, 4000ms duration, 14px gap when expanded, 24px edge offset (16px under 600px wide), swipe direction derived from position.
 
 ## Troubleshooting
 
 | Symptom | Cause → fix |
 |---|---|
 | Nothing appears | No Toaster mounted, it unmounted, or `toast()` ran on the server |
-| Appears twice | Two Toasters (layout and page), or an effect re-run by StrictMode; fire from the handler or pass a stable `id` |
+| Appears twice | Two Toasters with no `id` (layout and page), or an effect re-run by StrictMode; fire from the handler or pass a stable `id` |
 | Fully unstyled (Astro, view transitions) | The injected stylesheet was lost; import `sonner/dist/styles.css` |
 | Unstyled in a Shadow DOM | Copy the `[data-sonner-toaster]` style tag into the shadow root |
-| Behind a modal or clipped | An ancestor creates a stacking context; mount the Toaster at the document root ([[stacking-chains]]) |
+| Behind a modal or clipped | An ancestor creates a stacking context (`transform`, `filter`) or clips it (`overflow`); mount the Toaster at the document root ([[stacking-chains]]) |
 | Stuck on loading | The promise never settles |
 | Spinner keeps spinning under a success toast | Loading and success fired as two toasts; use `toast.promise`, or pass the loading toast's `id` to `toast.success` |
-| Shows in every toaster | Give each Toaster an `id` and pass `toasterId` |
+| Shows in the wrong toaster, or in two | A Toaster with an `id` renders only toasts sent to it with `toasterId`; one without an `id` renders only untargeted toasts. Give each an `id` and target every call |
 
 ## Reference
 
@@ -72,6 +72,7 @@ Position `bottom-right`, 3 visible, 4000ms duration, 14px gap when expanded, 32p
 ## Sources
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07; unchanged through `715c180`): skills/ask-sonner/SKILL.md, skills/ask-sonner/API.md. The promise-callback note checked at HEAD `715c180` (read 2026-11-09).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/ask-sonner/SKILL.md and API.md as corrected in `0f2e23b` (the 24px offset, `onDismiss` on `toast.dismiss()`, how an `id` on a Toaster decides which toasts it renders).
 - Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG: the doubled loading and success toast.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/parts/Toast.css`, `stageshow/kit/parts/Toast.tsx`, `stageshow/kit/stage.css` (`--ss-raised`), `stageshow/examples/gmail/index.tsx`.
 - Related: [[sonner-principles]], [[screen-reader-announcements]].
