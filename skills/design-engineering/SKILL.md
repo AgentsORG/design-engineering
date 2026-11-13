@@ -5,7 +5,7 @@ license: MIT
 compatibility: Agent-agnostic. Pairs with Obsidian as a vault, Agentation for click-to-annotate review, and any coding agent that reads SKILL.md (Claude Code, Cursor, Codex, Windsurf, Aider, Cline, Gemini, 18+ via skills.sh).
 metadata:
   author: AgentsORG
-  version: "4.7.0"
+  version: "4.8.0"
   graph: true
   subagents: plugin/agents/
   soul: docs/SOUL.md
@@ -135,6 +135,7 @@ What looks "AI default" and what to do instead. High-value because it's about de
 Procedural rules and growing files. `[[review-format]]` is mandatory when doing UI code reviews.
 
 - [[skill-router]] — What `/design-engineering` does first: resolve the contract, classify the phase, hand off to one owner — a node, a subagent, or an installed companion (AgentsORG `design`, impeccable, HyperFrames, ElevenLabs, transitions-dev, shadcn CLI, diagram-design, tldraw, GSAP, better-icons, fun-isometric, Stageshow, web-haptics).
+- [[taste-capture]] — End of a session: the user's design corrections (stated, silent edits, nudges, reverts, confirmed choices) turned into class-level rules with their reasons, a check where code can be matched, proposed and written only on approval.
 - [[upstream-skill-lifecycle]] — Emil Kowalski's public skills by stage (before building, building, refining, whole app): the graph verb or node that owns each, the two or three to run next, and why a typed slash command wins over a plain request.
 - [[ship-check]] — The whole-app production pass behind `ship`: fix rather than report, verified vs needs-hardware, the severity tree, fix order. Baseline in [[production-baseline]].
 - [[directing-agents]] — Steering an agent: friction where judgment matters, a named concept instead of an adjective, one or two passes, fix the system not the screen, the papercut pipeline.

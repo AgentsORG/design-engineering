@@ -712,6 +712,11 @@
           "target": "~/.agents/skills/design-engineering/references/meta/stress-scenarios.md"
         },
         {
+          "path": "skills/design-engineering/references/meta/taste-capture.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/taste-capture.md"
+        },
+        {
           "path": "skills/design-engineering/references/meta/ui-sdk-reconciliation.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/ui-sdk-reconciliation.md"
