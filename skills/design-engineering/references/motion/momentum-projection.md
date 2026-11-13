@@ -1,6 +1,6 @@
 ---
 title: momentum-projection
-summary: On release, project where the flick would come to rest (current + (v/1000)·d/(1−d), d ≈ 0.998), snap to the target nearest that point, hand the release velocity to the spring, decide by velocity sign, run X and Y on separate springs, and always start from the on-screen value.
+summary: On release, project where the flick would come to rest (current + (v/1000)·d/(1−d), d ≈ 0.998), snap to the target nearest that point, hand the release velocity to the spring, decide by the projected endpoint, run X and Y on separate springs, and always start from the on-screen value.
 tags: [motion, gesture, spring, velocity, interruptibility]
 ---
 
@@ -24,7 +24,7 @@ This is exponential decay, not the textbook `v²/(2a)`. At 0.998 a 1000 px/s rel
 ## Hand the velocity over
 
 - Pass the release velocity as the spring's initial velocity. Motion takes absolute px/s; an API that wants *relative* velocity needs `v / (target − current)`: 50 px/s with 100px left to go is `0.5`.
-- **Commit or reverse by the velocity's sign**, not by which half of the track the element sits in. A sheet dragged 70% open and flicked down closes.
+- **Commit or reverse by the projected endpoint**, not by which half of the track the element sits in: snap to the point nearest where the flick would land. A sheet dragged 70% open and flicked down hard closes; the same sheet released on a slow downward drift stays open, which the velocity's sign alone gets wrong.
 - Measure velocity over the last ~100 ms of samples ([[gesture-momentum]]), never from two events.
 
 ## Interruptible from the screen
@@ -70,6 +70,7 @@ Projection without velocity hand-off still looks wrong: the element picks the ri
 ## Sources
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/apple-design/SKILL.md (from Apple's *Designing Fluid Interfaces*, WWDC 2018); unchanged through `715c180`.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/apple-design/SKILL.md as corrected in `0f2e23b` (reverse or commit by the point nearest the projected endpoint; the mirrored-easing and strobing lines removed upstream).
 - Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (the 2D corner-snap case).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/swipe/index.tsx`, `stageshow/teaching/contrasts.tsx` (interrupt), `stageshow/references/verify.md` (beats filmed at 40 to 80ms).
 - Related: [[gesture-momentum]], [[spring-animations]], [[frame-rate-independence]], [[animated-hit-testing]].

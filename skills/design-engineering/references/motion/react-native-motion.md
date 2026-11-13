@@ -29,7 +29,7 @@ Mobile changes three things: there is no hover, there are two runtimes, and the 
 
 ## Springs
 
-If a finger was involved, use a spring and pass it the release velocity ([[gesture-momentum]]). Pass `reduceMotion: ReduceMotion.System`; reduced means fewer and gentler, keeping opacity and colour ([[prefers-reduced-motion]]).
+If a finger is dragging, flinging or releasing it, use a spring and pass it the release velocity ([[gesture-momentum]]); press feedback is a discrete state change and uses timing. A grab calls `cancelAnimation` on the shared value before reading it, or a running spring makes the element jump. Pass `reduceMotion: ReduceMotion.System`; reduced means fewer and gentler, keeping opacity and colour ([[prefers-reduced-motion]]).
 
 | Interaction | Config |
 |---|---|
@@ -42,7 +42,7 @@ Press feedback is `scale: 0.97` in 100–150ms on press-in; commit on press-out.
 
 ## Haptics
 
-`selectionAsync` for a detent tick, `impactAsync(Light)` when something snaps home, `notificationAsync` for success or error. Fire on the causal frame, once per user action, never per frame or on an entrance the user didn't cause, and never as the only feedback.
+`selectionAsync` for a detent tick, `impactAsync(Haptics.ImpactFeedbackStyle.Light)` when something snaps home (the style and notification enums live on the `Haptics` namespace), `notificationAsync` for success or error. Fire on the causal frame, once per semantic event (a step, a snap, a commit), never per frame or on an entrance the user didn't cause, and never as the only feedback.
 The same families on the mobile web, with the Android and iOS Safari routes: [[haptic-feedback]].
 
 ## Reference
@@ -74,6 +74,7 @@ Expo Go and the simulator hide exactly the problems that matter. Judge feel on a
 ## Sources
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, unchanged since `a81dbca`; unchanged through `715c180`): skills/animate-expo/SKILL.md, skills/animate-expo/RECIPES.md. Gesture plumbing, keyboard, property and reduced-motion rules added at HEAD `715c180` (read 2026-11-09): RECIPES.md, SKILL.md.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/animate-expo/SKILL.md and RECIPES.md as corrected in `0f2e23b` (springs for drag, fling and release only, `cancelAnimation` on grab, the `Haptics.` enum namespace, one haptic per semantic event).
 - Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG: the card-stack flick.
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/examples/swipe/index.tsx`, `stageshow/references/motion.md` (Phones in motion), `stageshow/references/rehearse.md` (What the tools can't sign off).
 - Related: [[spring-animations]], [[gesture-momentum]], [[momentum-projection]], [[prefers-reduced-motion]], [[touch-and-focus]].

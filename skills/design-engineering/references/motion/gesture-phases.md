@@ -26,10 +26,10 @@ For a drawer or bottom sheet, use Vaul before you write one. Momentum, an overla
 
 ## Release
 
-- **A spring seeded with the release velocity**, never a fixed-duration ease: with a fixed ease every fling lands the same way, and that reads as fake. Measure velocity over a window, as [[gesture-momentum]] describes.
+- **A custom drag finishes on a spring seeded with the release velocity**, never a fixed-duration ease: with a fixed ease every fling lands the same way, and that reads as fake. A CSS-only component (Vaul, a hold-to-confirm fill) finishes on a CSS transition instead; nothing finishes on a keyframe. Measure velocity over a window, as [[gesture-momentum]] describes.
 - **Dismiss on distance *or* velocity.** Past about 40–50% of the travel dismisses, and so does a fast flick over a short distance. In Motion, `onDragEnd` gives both (`info.offset`, `info.velocity`). With a distance-only threshold, flicks are ignored. Mind the units: Motion's `info.velocity` is px/s, and a sheet dismisses on `info.offset.y > threshold || info.velocity.y > 500`. The 0.11 px/ms in [[gesture-momentum]] is 110 px/s, the line between letting go and throwing; a sheet asks for a firmer flick. Convert before comparing: px/ms × 1000 = px/s.
 - **A snap-back is fast.** A slow return reads as the UI disagreeing in slow motion.
-- **Bounce only after a drag.** A drag applies force, so a small overshoot on release is physical. The same sheet closed by a button gets none. Small elements need a little more bounce to read the same as large ones ([[spring-animations]]).
+- **Bounce only after a drag.** A drag applies force, so a small overshoot on release is physical: bounce 0.1–0.3. The same sheet closed by a button gets none. Small elements need a little more bounce to read the same as large ones ([[spring-animations]]).
 - **Lean toward the outcome.** In-between frames show where the gesture is going: a module that expands grows toward the finger that opened it, not evenly from its centre.
 
 ## Keep it catchable
@@ -40,8 +40,8 @@ The user must be able to catch a closing sheet and drag it back. A retargeted sp
 
 ## Sheets, holds and direction
 
-- **Vaul's CSS curve** is `cubic-bezier(0.32, 0.72, 0, 1)` over 500ms. It is steep at the start, so it still feels quick ([[easing-curves]] `--ease-drawer`). That timing suits a full-width sheet attached to the screen edge. A small floating drawer wants about 200ms: override `[vaul-drawer]` to `transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1)` and give `[vaul-overlay]` opacity the same 0.2s curve, so the scrim moves with the drawer. Its height change and content crossfade use the same timing family, or the component stops reading as one thing. Mark buttons inside it `data-vaul-no-drag`.
-- **`dragMomentum`** is on by default in Motion. That suits a flung card. Turn it off when the element should stop where the finger stops.
+- **Vaul's CSS curve** is `cubic-bezier(0.32, 0.72, 0, 1)` over 500ms. It is steep at the start, so it still feels quick ([[easing-curves]] `--ease-drawer`). That timing suits a full-width sheet attached to the screen edge. A small floating drawer wants about 200ms: override `[data-vaul-drawer]` to `transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1)` and give `[data-vaul-overlay]` opacity the same 0.2s curve, so the scrim moves with the drawer. Its height change and content crossfade use the same timing family, or the component stops reading as one thing. Mark buttons inside it `data-vaul-no-drag`.
+- **`dragMomentum`** is on by default in Motion. That suits a flung card. Turn it off when the element should stop where the finger stops, and when `onDragEnd` hands the release to your own spring (`animate(y, 0, { type: 'spring', bounce: 0.2, velocity: info.velocity.y })`), or the two fight over the element.
 - **Dismiss along the axis it entered on.** A toast that rises from the bottom swipes down to dismiss. A gesture that reverses the entrance needs no teaching.
 - **Holds are asymmetric:** `linear` while held, because the fill shows time passing, then a fast ease-out snap back if the user lets go early ([[duration-table]], [[clip-path-tricks]]).
 
@@ -59,3 +59,4 @@ A gesture that feels "weird" after release is usually under-damped. Raise `dampi
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09; unchanged in substance since `5206a95`, as `7cdf994` only removed links to skills that do not exist): `skills/gestures/SKILL.md` (the two phases, distance-or-velocity dismissal, linked values, Motion drag props, the Vaul curve and the floating-drawer override, spatial consistency, hold asymmetry, the touch checklist, the px/s velocity sample, the floating-drawer overlay curve). Paraphrased; the `touch-action` axis rule and the `dragElastic` cap are settled against this graph.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): `skills/apple-design/SKILL.md` §8 and §10 (recognising taps and drags, parallel recognizers, the double-tap cost, frames that lean toward the outcome). Paraphrased.
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): `skills/gestures/SKILL.md` as corrected in `0f2e23b` (the `data-vaul-*` selectors, bounce 0.1–0.3, a CSS transition as the release for CSS-only components, `dragMomentum={false}` when the release is your own spring).

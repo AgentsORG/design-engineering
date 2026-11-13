@@ -14,11 +14,11 @@ Most jank is self-inflicted: DOM nodes nobody can see, properties the browser ha
 
 | Tier | Properties | Cost |
 |---|---|---|
-| Composite | `transform`, `opacity` (and, in current Chrome/Firefox, `filter`, `clip-path`, `background-color`) | Cheapest |
+| Composite | `transform`, `opacity` | Cheapest |
 | Paint | `box-shadow`, `border-radius`, `color` | A redraw every frame |
 | Layout | `width`, `height`, `padding`, `margin`, `top`/`left`, `border-width` | Re-measures, and moves the neighbours |
 
-Swap down a tier: size → `scale()`, position → `translate()`, `display`/`visibility` → `opacity`, `box-shadow` → `filter: drop-shadow()`. Acceleration is something the browser may grant; property choice is what you control, so keep `translateY(100%)` for unknown-size elements even where a browser declines to accelerate percentages. Looking fine on your machine doesn't exempt a layout property: an absolutely positioned box with few children may get away with `padding`, but `scale()` draws the same thing and can't regress on a slower phone. When two properties look the same, take the cheaper tier.
+Swap down a tier: size → `scale()`, position → `translate()`, `display`/`visibility` → `opacity` (then `visibility: hidden` once it ends, so the invisible element stops taking clicks), `box-shadow` → `filter: drop-shadow()` (Chrome composites `filter`; other engines may repaint, so measure). Acceleration is something the browser may grant; property choice is what you control, so keep `translateY(100%)` for unknown-size elements even where a browser declines to accelerate percentages. Looking fine on your machine doesn't exempt a layout property: an absolutely positioned box with few children may get away with `padding`, but where `scale()` gives the look you want (it scales the children too and keeps the layout space) it can't regress on a slower phone. When two properties look the same, take the cheaper tier.
 
 Worked case, a sidebar: `margin-left: -92px → 0` reflows the dashboard beside it on every frame, through all three tiers. Overlay the panel and slide it with `transform: translateX(-100%) → none` (in Motion, the string `transform` form) so only compositing runs. If the content must make room, move it once at the end, never per frame.
 
@@ -82,6 +82,7 @@ const wake = () => { if (!running) { running = true; id = requestAnimationFrame(
 - Emil Kowalski's design-engineering practice on performance, distilled by AgentsORG.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/animation-performance/SKILL.md (frame budget, tiers, swaps, Vaul and Vercel cases, diagnosis order); unchanged through `715c180`.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/animation-performance/SKILL.md (no exemption for layout that looks fine locally, up-front `will-change` on costly paint).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/animation-performance/SKILL.md as corrected in `0f2e23b` (the composite tier cut to `transform` and `opacity`, `visibility: hidden` after an opacity exit, where `scale()` is and is not the same picture as `padding`).
 - Emil Kowalski's per-skill documentation (before/after demos), distilled by AgentsORG (the margin-to-transform sidebar case).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/motion/Follow.tsx`, `stageshow/kit/motion/Collapse.css` (drop glide layer), `stageshow/references/rehearse.md` (Live pacing).
 - Related: [[transform-opacity-only]], [[debugging-animations]], [[empty-loading-states]], [[marketing-surface-rules]].

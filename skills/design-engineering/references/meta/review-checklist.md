@@ -51,7 +51,7 @@ A pre-flight checklist for UI code review. Scan the user's code against each row
 | 37 | Undesigned scheme declared | `color-scheme: light dark` or a dark `theme-color` on an app with no dark theme | Declare only the schemes that exist | [[contrast-and-color-scheme]] |
 | 38 | Theme-blind SVG | `fill="#fff"`, `fill="#000"`, `stroke="white"` inline in icons or logos | `currentColor` or a CSS variable | [[dark-mode]] |
 | 39 | Truncation with no way out | `truncate`, `line-clamp-*`, `text-overflow: ellipsis` on meaningful text with no `title`, tooltip or expand | Give the full string a route | [[line-behavior]] |
-| 40 | Entrance is opacity only, or a group appears in one frame | `initial={{ opacity: 0 }}` with no transform; list items sharing one delay | Start from a small translate or `scale(0.95)` with the fade; stagger list items 30–80ms | [[never-scale-from-zero]], [[stagger-choreography]] |
+| 40 | Entrance is opacity only (outside the reduced-motion variant), or a group appears in one frame | `initial={{ opacity: 0 }}` with no transform; list items sharing one delay | Start from a small translate or `scale(0.95)` with the fade; stagger list items 30–80ms with uneven gaps | [[never-scale-from-zero]], [[stagger-choreography]] |
 
 ## Workflow
 

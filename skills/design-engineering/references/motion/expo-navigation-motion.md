@@ -20,11 +20,11 @@ Screen transitions in an Expo app are configured on the native stack, not built.
 
 ## The back swipe must match
 
-Whenever a screen gets a custom `animation` (say `slide_from_right`), also set `animationMatchesGesture: true`. The iOS back swipe then plays your transition in reverse under the finger. Without it, pushing forward and dragging back look like two different apps.
+Whenever a screen gets a custom `animation` (say `slide_from_right`), also set `animationMatchesGesture: true`, and repeat the reduced-motion check on that screen: a per-screen `animation` overrides the stack's `fade`. The iOS back swipe then plays your transition in reverse under the finger. Without it, pushing forward and dragging back look like two different apps.
 
 ```jsx
 <Stack screenOptions={{ animation: reduced ? 'fade' : 'default' }}>
-  <Stack.Screen name="settings" options={{ animation: 'slide_from_right', animationMatchesGesture: true }} />
+  <Stack.Screen name="settings" options={{ animation: reduced ? 'fade' : 'slide_from_right', animationMatchesGesture: true }} />
   <Stack.Screen name="filter" options={{ presentation: 'formSheet', sheetAllowedDetents: 'fitToContents' }} />
 </Stack>
 ```
@@ -45,4 +45,5 @@ A grabber as the sheet's only "you can drag this" cue looks right on an iPhone a
 ## Sources
 
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/animate-expo/RECIPES.md (Screen transitions), skills/animate-expo/SKILL.md (Timing, Reduced motion).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/animate-expo/RECIPES.md as corrected in `0f2e23b` (a per-screen `animation` needs its own reduced-motion fallback).
 - Related: [[expo-tool-ladder]], [[touch-and-focus]], [[haptic-feedback]].

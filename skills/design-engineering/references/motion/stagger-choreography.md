@@ -38,14 +38,14 @@ const delay = (i) => i * 0.02;
 
 Sweet spot is **30–80ms** between items. Adjust for item count and physical size on screen. Keep the steps uneven: the lead moves furthest, support less, decoration only fades, and gaps that shrink down the group read as a wave where equal gaps read as a metronome (Motion's `stagger()` takes `from` and `ease` for this).
 
-In plain CSS, give each item `--i` and set `animation-delay: calc(var(--step) * var(--i))` with `animation-fill-mode: both`. Without the backwards half, a delayed item sits at rest through its delay and then jumps to the first frame. A keyframe with only `from` ends on the element's own styles, so there is no end state to keep in sync. Things that land as one beat (a title and its first paragraph) share an index.
+In plain CSS, give each item its own `--delay` (0ms, 0ms, 120ms, 200ms: the gaps shrink) and set `animation-delay: var(--delay, 0ms)` with `animation-fill-mode: both`. A multiplied index (`calc(var(--step) * var(--i))`) can only produce equal gaps, which is the metronome above. Without the backwards half, a delayed item sits at rest through its delay and then jumps to the first frame. A keyframe with only `from` ends on the element's own styles, so there is no end state to keep in sync. Things that land as one beat (a title and its first paragraph) share a delay.
 
 ## The "stop at 12" pattern
 
-For product UI the cap is about six: items past the sixth share its delay, so a 50–60ms step stays inside the ~300ms budget. Twelve is the ceiling for an occasional, first-run list.
+For product UI the cap is five: items past the fifth share its delay, so a 50–60ms step stays inside the ~300ms budget. Twelve is the ceiling for an occasional, first-run list.
 
 ```ts
-const STAGGER_CAP = 6; // 12 only for a first-run list
+const STAGGER_CAP = 5; // 12 only for a first-run list
 const delay = (i) => Math.min(i, STAGGER_CAP) * 0.05;
 ```
 
@@ -97,6 +97,7 @@ Stagger on every state change is exhausting. Only stagger on **first appearance*
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/remove-animations/SKILL.md (300ms total cap); unchanged through `715c180`.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `c8a7962`, read 2026-11-07): skills/choreograph/SKILL.md (one entrance per container, no stagger on high-frequency UI, no uniform stagger, simultaneous exits); unchanged through `715c180`.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/choreograph/SKILL.md and RECIPES.md (the CSS index stagger with fill mode `both`, the six-item product cap, 100–150ms steps for first-run moments).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/choreograph/SKILL.md and RECIPES.md as corrected in `0f2e23b` (a per-item `--delay` with shrinking gaps in place of an index times a step, the cap at the fifth item).
 - Emil Kowalski's design-engineering practice, distilled by AgentsORG (split-then-stagger sections, no entrance on first paint).
 - guidelines.sh — "stagger reveals 30–50ms."
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/references/choreography.md`, `stageshow/references/motion.md` (Pace and easing, Changing text and values, Loops), `stageshow/kit/act.ts` (`stagger`), `stageshow/examples/choreography/choreography.css`.

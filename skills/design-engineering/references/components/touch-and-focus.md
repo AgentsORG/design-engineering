@@ -37,7 +37,7 @@ A tooltip waits ~200ms so it doesn't fire on incidental travel; once one is open
 | Tap feels laggy | Feedback on pointer-down + `touch-action: manipulation` |
 | Pull-to-refresh hijacks scroll | `overscroll-behavior: none` on `html, body` |
 | Content stops at the notch | `viewport-fit=cover` + `env(safe-area-inset-*)` |
-| Long-press selects button text | `user-select: none` and `-webkit-touch-callout: none` on controls, never on `body` |
+| Long-press selects button text | `user-select: none` and `-webkit-touch-callout: none` on buttons and `role="button"`, never on `body` and never on links, whose text people copy |
 | Keyboard covers the composer (Android) | `interactive-widget=resizes-content` in the viewport tag ([[production-baseline]]) |
 | Whole page pans sideways | Fix the element that overflows (`overflow-wrap`, a scroll wrapper on tables and `pre`, no `100vw`); `overflow-x: hidden` on `body` hides it and breaks sticky |
 | Carousel scrolls vertically | `touch-action: pan-y` on the gesture surface |
@@ -71,5 +71,6 @@ Tabbing into a closed drawer is the classic miss. It was hidden with `opacity: 0
 
 - Emil Kowalski's design-engineering practice on touch and accessibility, distilled by AgentsORG.
 - Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `715c180`, read 2026-11-09): skills/mobile-native/SKILL.md §9 (native snap over a JS carousel, reading `touch-action` values).
+- Emil Kowalski, skills (MIT, github.com/emilkowalski/skills, HEAD `0f2e23b`, read 2026-11-13): skills/mobile-native/SKILL.md as corrected in `0f2e23b` (`user-select: none` on buttons only, not on links).
 - Benji Taylor, Stageshow 1.1.1 (MIT, github.com/benjitaylor/skills, HEAD `299140f`, read 2026-11-07): `stageshow/kit/controls/Button.css`, `stageshow/references/craft.md` (`flex: none`, links and controls at rest, `data-open`), `stageshow/references/rehearse.md` (width is not touch).
 - Related: [[accessibility-baseline]], [[hover-states-subtle]], [[prefers-reduced-motion]], [[forms-behavior]].
