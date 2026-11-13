@@ -80,3 +80,6 @@
 {"query": "how should I show tool calls and reasoning in my agent UI?", "should_load": true, "reason": "agent-trace-states (one trace, mapped tool states)"}
 {"query": "pressing Escape closes both the dropdown and the modal behind it", "should_load": true, "reason": "overlay-dismissal-stack"}
 {"query": "I'm building on Meta's Astryx design system, which component should I use for this page?", "should_load": true, "reason": "astryx-reconciliation (Astryx CLI / MCP owns the pick)"}
+{"query":"I'm using Vercel's UI SDK (@ui-sdk/react), how should I style the select and animate the popover?","should_load":true,"reason":"ui-sdk-reconciliation (its skill owns parts; look and motion values stay here)"}
+{"query":"make our settings page usable by an AI agent through WebMCP without letting it delete things","should_load":true,"reason":"agent-ready-interfaces (names, data-agent-confirm, allow)"}
+{"query":"I need a custom kanban component, where should focus go when a card is removed?","should_load":true,"reason":"component-behavior-spec (parts that leave)"}

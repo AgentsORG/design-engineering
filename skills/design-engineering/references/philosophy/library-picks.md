@@ -47,7 +47,7 @@ The motion library is for springs, layout or exit animations and values driven b
 
 ## How to answer
 
-Name the task before the library: "show a dropdown" is a primitives job even if the user asked about something else. Read `package.json` first. If a listed pick is installed, use it. If a competitor is installed (react-window rather than Virtuoso), mention the listed pick in one line and keep what is there unless asked to switch. If the task is not on the list, say you have left it before recommending anything ([[cmd-small]], `pick`).
+Name the task before the library: "show a dropdown" is a primitives job even if the user asked about something else. Read `package.json` first. If a listed pick is installed, use it. An `@ui-sdk/*` package covers the primitives rows and more, in React, Vue, Svelte, Solid and web components, so build on it rather than adding a second base ([[ui-sdk-reconciliation]]; beta as of 2026-11). If a competitor is installed (react-window rather than Virtuoso), mention the listed pick in one line and keep what is there unless asked to switch. If the task is not on the list, say you have left it before recommending anything ([[cmd-small]], `pick`).
 
 ## Reference
 

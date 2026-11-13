@@ -43,7 +43,7 @@ A third-party registry runs code in the project. `view` an item before `add`; pi
 | Copied code drifting from upstream | the code is yours | [[dependency-discipline]] | Keep the copied layer thin; `add --diff` before re-adding |
 | AI chat parts | AI Elements in shadcn (`npx shadcn@latest add trace code-block`, then copy the pattern) | — | Use the shadcn patterns; the older `npx ai-elements` / elements.ai-sdk.dev install is deprecated (end of November 2026) |
 
-Astryx ships its components to shadcn users as registry items that install compositions and CSS imports, never component source ([[astryx-reconciliation]]).
+Astryx ships its components to shadcn users as registry items that install compositions and CSS imports, never component source ([[astryx-reconciliation]]). UI SDK is a different layer: a behavior dependency with no registry and no copied code ([[ui-sdk-reconciliation]]).
 
 ## Sources
 

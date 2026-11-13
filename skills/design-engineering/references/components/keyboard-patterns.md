@@ -6,7 +6,7 @@ tags: [components, accessibility, keyboard, focus, aria, apg]
 
 # Keyboard patterns
 
-Native elements ship their keyboard behaviour; a custom widget has to rebuild it, and the rebuild is where it fails. Before writing one, check that a native element or a headless library (Radix, React Aria) can't do it ([[accessibility-baseline]]). If you do write one, it owes these key maps — the ARIA Authoring Practices patterns — exactly.
+Native elements ship their keyboard behaviour; a custom widget has to rebuild it, and the rebuild is where it fails. Before writing one, check that a native element or a headless library (Radix, React Aria, UI SDK) can't do it ([[accessibility-baseline]]). If you do write one, it owes these key maps — the ARIA Authoring Practices patterns — exactly.
 
 ## tabindex has two legal values
 

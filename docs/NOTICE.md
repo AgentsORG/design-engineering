@@ -12,6 +12,7 @@ This repository is MIT licensed; see [LICENSE](../LICENSE). It also contains or 
 - **emilkowalski/skills** (MIT, github.com/emilkowalski/skills, commit `715c180`, read 2026-11-09). Cited by name and commit in the nodes that draw on it.
 - **Astryx** by Meta (MIT, github.com/meta/astryx, HEAD `9f55320`). Its design and family records are paraphrased in the nodes that cite them.
 - **shadcn/ui** (MIT, github.com/shadcn-ui/ui, HEAD `8ab2771`), including AI Elements. Paraphrased in the nodes that cite it; no component code is copied.
+- **UI SDK** by Vercel Labs (Apache-2.0, github.com/vercel-labs/ui, HEAD `8ff6bcf`, read 2026-11-13). Its docs and its `ui-sdk` skill are paraphrased in the nodes that cite them; no code, docs text or `web.css` is copied.
 - **Emil Kowalski's design-engineering practice, distilled by AgentsORG.** Paraphrased principles with attribution; no course material is reproduced.
 
 ## Strategies only

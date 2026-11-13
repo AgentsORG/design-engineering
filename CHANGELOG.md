@@ -6,6 +6,25 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 Nothing yet.
 
+## [4.7.0] — 2026-11-13
+
+Vercel Labs' UI SDK (github.com/vercel-labs/ui, Apache-2.0, `8ff6bcf`, `@ui-sdk/*` 0.1.0-beta.2; ui-sdk.dev), read from source the day after its public beta: the repo, its shipped `ui-sdk` skill and the docs site.
+
+### Added
+
+- **`meta/ui-sdk-reconciliation`**: UI SDK as a companion in any project with an `@ui-sdk/*` dependency. Its `ui-sdk` skill and the docs inside the package own behaviors, parts, props and tests; it ships no look, so tokens, states, motion values and the review stay here. How it differs from shadcn/ui (a dependency, no registry or copied code) and Astryx (no theme), the `--ui-*` tokens and the `ui-sdk` cascade layer, `data-slot` and state attributes, `data-starting-style` / `data-ending-style`, seven conflicts settled.
+- **`components/agent-ready-interfaces`**: a screen an agent can operate while the product stays in charge: unique names, state through change callbacks that report `source: "agent"` and can cancel, `data-agent-confirm` on the confirming button with a sentence for the person, write-only secrets, hidden regions, attributable undo, WebMCP, and one test that proves it.
+- **`components/component-behavior-spec`**: the decisions to write down before a custom component (pattern, focus on open, selection versus focus, who owns Escape, where focus goes when a part leaves, `aria-disabled`, what an agent may call), behaviors over handlers, and breaking each key on purpose.
+- A router row for UI SDK; three routing-table rows; MOC entries; three vocabulary terms (behavior, agent bridge, change source); four gotchas; six evals (`loading`, `progressive-reads`).
+
+### Changed
+
+- `keyboard-patterns`, `forms-behavior` and `library-picks` name UI SDK beside the other headless bases; `shadcn-reconciliation` says how it differs.
+
+### Not verified
+
+- The agent-bridge benchmark (5 tool calls against 16) is Vercel's own and is quoted as such. No UI SDK code was run for this release; values come from its docs, skill and types at the commit above, and the library is in beta.
+
 ## [4.6.0] — 2026-11-09
 
 Emil Kowalski's per-skill documentation for all 17 of his public skills (a before/after of the same UI, example prompts, when to reach for each, what pairs with it), read together with emilkowalski/skills (MIT) at `715c180`.
