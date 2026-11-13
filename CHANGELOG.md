@@ -6,6 +6,32 @@ All notable changes to this skill are recorded here. Format follows [Keep a Chan
 
 Nothing yet.
 
+## [4.8.0] — 2026-11-13
+
+Emil Kowalski's update to emilkowalski/skills (MIT) of 2026-11-13, read at `0f2e23b`: a nineteenth skill, `learn-taste`, and a pass over the other eighteen that corrected API names and settled places where two skills disagreed.
+
+### Added
+
+- **`meta/taste-capture`**, from `learn-taste`: at the end of a session, the design corrections the user made become written rules. Five signals to read for (a stated correction, a silent edit, a repeated nudge, a revert, a confirmed odd choice), a filter that keeps only what a fresh agent would get wrong on a different component, the class level over the instance and the universal, the user's reason or one marked inferred and asked about, a check over a sentence where code can be matched, and a report that stops for approval. Rules go to the project's `.design` or DESIGN.md; `pov` only when the user says it holds everywhere.
+- A routing-table row, an index line, a lifecycle row and a router entry for `learn-taste` (user-invoked upstream); four gotchas; four evals.
+- `library-picks` names Vaul for drawers and bottom sheets.
+
+### Changed
+
+- **Sonner**: `toast.getToasts()` (and `getHistory()`) replaces `getActiveToasts()`; the desktop `offset` default is 24px, not 32px; `hotkey` is an array of key codes; `onDismiss` also fires on `toast.dismiss()`; `dismissible: false` is no longer listed as a cause of a toast that never closes; a Toaster with an `id` renders only toasts targeted at it, and one without renders only untargeted toasts.
+- **Gestures**: Vaul's selectors are `[data-vaul-drawer]` and `[data-vaul-overlay]`; bounce after a drag is 0.1–0.3; a CSS-only component finishes its release on a CSS transition; `dragMomentum` goes off when `onDragEnd` runs its own spring. `momentum-projection` commits or reverses by the point nearest the projected endpoint, no longer by the velocity's sign.
+- **Performance**: the composite tier is `transform` and `opacity` only; `filter: drop-shadow()` is composited in Chrome and measured elsewhere; an opacity exit ends on `visibility: hidden`. `transform-opacity-only` now says prefer, with `clip-path` and a measured-height accordion as the documented exceptions.
+- **Timing**: the 300ms budget names its exceptions (modals and drawers to 500ms, sheets, Sonner-style toasts at 400ms `ease`). Product staggers cap at the fifth item, and a CSS stagger carries a per-item `--delay` with shrinking gaps in place of an index times a step.
+- **Choreography**: a view swap needs `popLayout` because the default `sync` mode stacks both views; the ready-flag gate is gone; the still list is up to five, or a line saying none.
+- **React Native**: springs for drag, fling and release, timing for press feedback; `cancelAnimation` on grab; the `Haptics.` namespace on the feedback enums; one haptic per semantic event; a per-screen `animation` repeats the reduced-motion fallback.
+- **Mobile and text**: `apple-mobile-web-app-status-bar-style` picks a style and carries no colour; `user-select: none` goes on buttons, never on links; a line clamp is written with its full declaration set; layout thrashing is defined as forced synchronous layout.
+- The prototype picker opens the first variant for an out-of-range `?v=`, gates its hover and drops `will-change`. `break` writes a missing limit as "no limit found". Review-checklist row 40 exempts the reduced-motion variant.
+- emilkowalski/skills is cited at `0f2e23b`, as a set of nineteen.
+
+### Not verified
+
+- The corrected values come from the upstream skills at the commit above. No Sonner, Vaul, Motion or Expo code was run for this release.
+
 ## [4.7.0] — 2026-11-13
 
 Vercel Labs' UI SDK (github.com/vercel-labs/ui, Apache-2.0, `8ff6bcf`, `@ui-sdk/*` 0.1.0-beta.2; ui-sdk.dev), read from source the day after its public beta: the repo, its shipped `ui-sdk` skill and the docs site.

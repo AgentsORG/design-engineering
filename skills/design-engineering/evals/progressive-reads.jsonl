@@ -142,3 +142,6 @@
 {"query":"build a settings form with ui-sdk components and theme it to our brand tokens","expected_nodes":["ui-sdk-reconciliation"],"forbidden_nodes":["astryx-reconciliation"]}
 {"query":"an agent should be able to rename the project but must ask before deleting it","expected_nodes":["agent-ready-interfaces","destructive-actions"],"forbidden_nodes":["agent-trace-states"]}
 {"query":"write the spec for a custom multi-select listbox before coding it: does selection follow focus?","expected_nodes":["component-behavior-spec","keyboard-patterns"],"forbidden_nodes":["reorder-insertion-cue"]}
+{"query": "I changed your 400ms to 200 twice today, turn that into a rule in DESIGN.md", "expected_nodes": ["taste-capture", "using-design-md"], "forbidden_nodes": ["prototype-picker"]}
+{"query": "my flicked sheet should close even when it is dragged past halfway open, how do I decide on release", "expected_nodes": ["momentum-projection"], "forbidden_nodes": ["prototype-picker"]}
+{"query": "toast shows in both of my toasters, how does toasterId work", "expected_nodes": ["sonner-usage"], "forbidden_nodes": ["stacking-chains"]}
