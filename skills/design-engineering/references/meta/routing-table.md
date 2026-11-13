@@ -77,6 +77,9 @@ Judge-posture outputs are read-only: return the [[review-format]] table or a del
 | Escape closes two layers, a drag closes a dialog, focus jumps after close | [[overlay-dismissal-stack]] |
 | Body text on phones vs inputs that zoom at under 16px | [[mobile-type-pin]] |
 | Build in a project that uses Astryx or shadcn/ui | [[astryx-reconciliation]] / [[shadcn-reconciliation]] |
+| Build in a project that uses UI SDK (`@ui-sdk/*`), or choose between it, shadcn/ui and a headless base | [[ui-sdk-reconciliation]] |
+| Make a screen usable by an agent: names it can find, actions that wait for a person, secrets, WebMCP | [[agent-ready-interfaces]] |
+| Build a custom widget (stepper, kanban, emoji picker, grid) and decide its focus, selection and Escape rules first | [[component-behavior-spec]], then [[keyboard-patterns]] |
 | Consume a project's DESIGN.md tokens | [[using-design-md]] (or spawn [[design-md-consumer]]) |
 | Put the right word to a design idea | [[design-vocabulary]] |
 | Decide whether an interaction should make a sound | [[sound-decision-framework]] |

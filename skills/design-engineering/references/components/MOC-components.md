@@ -41,6 +41,8 @@ Components are where craft lives because users *touch* them. Their states are wh
 - [[reorder-insertion-cue]] — Reorder from a handle, a quiet (never raised) preview, an accent insertion line while the rest stay still, commit once, keyboard moves the same line. From Astryx.
 - [[streaming-chat-scroll]] — Never move the reader against their intent: follow only at the live edge, anchor the new turn, Jump to latest, reopen at the last meaningful turn, `role="log"`. From shadcn/ui's Message Scroller.
 - [[agent-trace-states]] — An agent's work as one trace: every tool state mapped (running after the stream ended is a failure), reasoning open while it runs, approval as a question, plans updated in place. From shadcn/ui's AI Elements.
+- [[agent-ready-interfaces]] — A screen an agent can operate: unique names, state through change callbacks that know the source and can refuse, `data-agent-confirm` on the confirming button with a sentence for the person, write-only secrets, one test that proves it. From Vercel Labs' UI SDK.
+- [[component-behavior-spec]] — Write a custom component's behavior down first (pattern, focus on open, selection versus focus, who owns Escape, where focus goes when a part leaves, `aria-disabled`), build from tested behaviors, then break each key on purpose. From UI SDK.
 
 ## Cross-cluster
 

@@ -217,6 +217,11 @@
           "target": "~/.agents/skills/design-engineering/references/components/accessibility-baseline.md"
         },
         {
+          "path": "skills/design-engineering/references/components/agent-ready-interfaces.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/agent-ready-interfaces.md"
+        },
+        {
           "path": "skills/design-engineering/references/components/agent-trace-states.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/agent-trace-states.md"
@@ -235,6 +240,11 @@
           "path": "skills/design-engineering/references/components/component-api-design.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/components/component-api-design.md"
+        },
+        {
+          "path": "skills/design-engineering/references/components/component-behavior-spec.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/components/component-behavior-spec.md"
         },
         {
           "path": "skills/design-engineering/references/components/component-confusables.md",
@@ -700,6 +710,11 @@
           "path": "skills/design-engineering/references/meta/stress-scenarios.md",
           "type": "registry:file",
           "target": "~/.agents/skills/design-engineering/references/meta/stress-scenarios.md"
+        },
+        {
+          "path": "skills/design-engineering/references/meta/ui-sdk-reconciliation.md",
+          "type": "registry:file",
+          "target": "~/.agents/skills/design-engineering/references/meta/ui-sdk-reconciliation.md"
         },
         {
           "path": "skills/design-engineering/references/meta/upstream-skill-lifecycle.md",

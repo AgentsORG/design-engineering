@@ -37,7 +37,7 @@ Keep `autocomplete` **on** for identity, address, and payment fields — there i
 - **Destructive actions are confirmed** and spatially separated from the primary action, through the project's dialog primitive with a button that names the outcome ("Delete project"), never `window.confirm()` and never "OK". Prefer easy undo everywhere the action is reversible ([[destructive-actions]]).
 - **Prefill everything you can** from the logged-in user and the link context: a "change username" link lands on a form already carrying the current value, and a signup reached from an invite reads the `?email=` it carries.
 - **Long forms survive an accident.** An editor, a multi-step flow or a settings page warns on `beforeunload` while dirty, or keeps its draft in `sessionStorage`, so a stray back-swipe or refresh costs nothing.
-- **Build on accessible primitives** (Base UI, Radix, React Aria) rather than hand-rolling focus management. The bar — focus, ARIA, keyboard — is non-negotiable whichever library you pick.
+- **Build on accessible primitives** (Base UI, Radix, React Aria, UI SDK) rather than hand-rolling focus management. The bar — focus, ARIA, keyboard — is non-negotiable whichever library you pick.
 
 ## When to apply
 
